@@ -44,7 +44,7 @@ public class LoginController {
 		logger.info("Inicio welcomePage, user: " +username +" password: " + password);
 		
 		ModelAndView model = new ModelAndView();
-		userService.insertUser();
+//		userService.insertUser();
 		
 		User userView = userService.readUser(username,  password);
 
