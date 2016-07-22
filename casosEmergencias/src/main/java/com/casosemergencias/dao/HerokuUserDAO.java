@@ -22,6 +22,8 @@ public class HerokuUserDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	private String a;
+	
 	/**
 	 * Devuelve una lista con todos los HerokuUser de BBDD
 	 * 
