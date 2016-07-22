@@ -24,6 +24,7 @@ public class HerokuUserDAO {
 	
 	private String a;
 	private String b;
+	private String c;
 	
 	/**
 	 * Devuelve una lista con todos los HerokuUser de BBDD
