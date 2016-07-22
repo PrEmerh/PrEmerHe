@@ -4,13 +4,14 @@ package com.casosemergencias.controller.views;
 public class UserView {
 
 	private Integer id;
+	private String sfid;
 	private String name;
 	private String user;
 	private String pass;
 	private String email;
 	
 	private String mensajeError;
-	
+	private String mensaje;
 	
 
 	
@@ -20,6 +21,12 @@ public class UserView {
 	}
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	public String getSfid() {
+		return sfid;
+	}
+	public void setSfid(String sfid) {
+		this.sfid = sfid;
 	}
 	public String getName() {
 		return name;
@@ -50,6 +57,12 @@ public class UserView {
 	}
 	public void setMensajeError(String mensajeError) {
 		this.mensajeError = mensajeError;
+	}
+	public String getMensaje() {
+		return mensaje;
+	}
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
 	}
 
 	

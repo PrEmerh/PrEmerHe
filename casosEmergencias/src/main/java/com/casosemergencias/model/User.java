@@ -13,6 +13,8 @@ public class User {
 	private String user;
 	private String pass;
 	private String email;
+	private String sfid;
+	private boolean envioEmail;
 	
 	
 	public Integer getId() {
@@ -44,6 +46,18 @@ public class User {
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getSfid() {
+		return sfid;
+	}
+	public void setSfid(String sfid) {
+		this.sfid = sfid;
+	}
+	public boolean isEnvioEmail() {
+		return envioEmail;
+	}
+	public void setEnvioEmail(boolean envioEmail) {
+		this.envioEmail = envioEmail;
 	}
 	
 	

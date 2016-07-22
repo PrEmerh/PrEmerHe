@@ -5,10 +5,13 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Repository
@@ -19,7 +22,6 @@ public class HerokuUserDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	private void pruebas(){}
 	/**
 	 * Devuelve una lista con todos los HerokuUser de BBDD
 	 * 
@@ -79,6 +81,42 @@ public class HerokuUserDAO {
 	    	logger.error("--- readHerokuUserById "+ e.getMessage() +"---");
 	    	logger.error(e.getStackTrace()); 
 	    	logger.error("--- Fin -- readHerokuUserById ---");
+	    }finally {
+	    	session.close(); 
+	    }
+		
+	    return null;
+	    
+	}
+	
+	/**
+	 * Devuelve el HerokuUser que tiene como sfid el pasado por parametro al metodo
+	 * 
+	 * @param sfid - id de un HerokuUser
+	 * @return
+	 */
+	public HerokuUser readHerokuUserBySfid(String sfid){
+		
+		logger.debug("--- Inicio -- readHerokuUserBySfid ---");
+		
+		Session session = sessionFactory.openSession();
+				
+		try{
+			Query query = session.createQuery("from HerokuUser as herUser WHERE herUser.sfid = :sfid");
+			query.setString("sfid", sfid);
+			
+			List<HerokuUser> userList = query.list(); 
+
+			if(userList != null){
+				return userList.get(0);
+			}			
+			
+			logger.debug("--- Fin -- readHerokuUserBySfid ---");
+			
+	    }catch (HibernateException e) {
+	    	logger.error("--- readHerokuUserBySfid "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- readHerokuUserBySfid ---");
 	    }finally {
 	    	session.close(); 
 	    }
@@ -269,6 +307,37 @@ public class HerokuUserDAO {
 	    return null;
 	}
 	
+	
+	/**
+	 * Actualiza la fila de HerokuUser correspondiente al id de herokuUser. Modifica todos los campos con el valor que hay en herokuUser. 
+	 * 
+	 * @param herokuUser
+	 * @return
+	 */
+	@Transactional
+    public int updateHerokuUser(HerokuUser herokuUser){
+		
+		logger.debug("--- Inicio -- updateHerokuUser ---");
+		
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		try{
+			session.update(herokuUser);
+			tx.commit();
+			
+			logger.debug("--- Fin -- updateHerokuUser ---");			
+			return 1;
+		}catch (HibernateException e) {
+	    	tx.rollback();
+			logger.error("--- updateHerokuUser "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- updateHerokuUser ---");
+	    	return 0;
+	    }finally {
+	    	session.close(); 
+	    }
+
+    }
 	
 	
 	/**
