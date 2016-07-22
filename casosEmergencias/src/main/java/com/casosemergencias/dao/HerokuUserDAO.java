@@ -23,6 +23,7 @@ public class HerokuUserDAO {
 	private SessionFactory sessionFactory;
 	
 	private String a;
+	private String b;
 	
 	/**
 	 * Devuelve una lista con todos los HerokuUser de BBDD
