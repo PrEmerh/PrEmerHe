@@ -30,13 +30,18 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private HerokuUserDAO herokuUserDao;
 	
+	
 	/**
-	 * Dado un usuario y una contraseña, busca en BBDD si existe. Si existe, devuelve el objeto user, si no devuelve null.
-	 * */
+	 * Metodo que dado un usuario y una contraseña, recupera de BBDD un HerokuUser. Si no existe devuelve null
+	 * 
+	 * @param user
+	 * @param pass
+	 * @return
+	 */
 	@Override
-	public User readUser(String user, String pass) {
+	public User readUserPass(String user, String pass) {
 
-		logger.info("Inicio readUser");
+		logger.info("--- Inicio -- readUserPass ---");
 		User userView = new User();
 				
 		HerokuUser herokuUser = new HerokuUser();
@@ -48,8 +53,7 @@ public class UserServiceImpl implements UserService{
 		listHerokuUser = herokuUserDao.readHerokuUser(herokuUser);
 		
 		if(listHerokuUser != null && !listHerokuUser.isEmpty()){
-			//Si la lista no esta vacia y tiene solo un dato, el usuario y contraseña es correcta
-			//Si tiene mas de un elemento tenemos un problema 
+			//El UserName es unico, por lo tanto  listHerokuUser solo tendra un dato
 			herokuUser = listHerokuUser.get(0);
 			
 			//guardamos el HerokuUser en UserView
@@ -58,18 +62,118 @@ public class UserServiceImpl implements UserService{
 			userView.setUser(herokuUser.getUsername());
 			userView.setPass(herokuUser.getPassword());
 			userView.setEmail(herokuUser.getEmail());
+			userView.setEnvioEmail(herokuUser.getEnvioMail());
 			
-			logger.info("Fin readUser - Existe usuario y password");
+			logger.info("--- Fin -- readUserPass -- Existe usuario y password ---");
 			
 			return userView;
 			
 		}else{
 			//si no existen datos devuelvo el usuario vacio
-			logger.info("Fin readUser - No existe usuario y password");
+			logger.info("--- Fin -- readUserPass -- No existe usuario y password ---");
 			return null;
 		}
 
 	}
+	
+
+	/**
+	 * Metodo que dado un usuario y una contraseña, recupera de BBDD un HerokuUser. Si no existe devuelve null
+	 * 
+	 * @param user
+	 * @param pass
+	 * @return
+	 */
+	@Override
+	public User readUser(String userName) {
+
+		logger.info("--- Inicio -- readUser ---");
+		User userView = new User();
+				
+		HerokuUser herokuUser = new HerokuUser();
+		herokuUser.setUsername(userName);		
+		
+		List<HerokuUser> listHerokuUser = new ArrayList<HerokuUser>();
+		listHerokuUser = herokuUserDao.readHerokuUser(herokuUser);
+		
+		if(listHerokuUser != null && !listHerokuUser.isEmpty()){
+			//El UserName es unico, por lo tanto  listHerokuUser solo tendra un dato
+			herokuUser = listHerokuUser.get(0);
+			
+			//guardamos el HerokuUser en UserView
+			userView.setId(herokuUser.getId());
+			userView.setName(herokuUser.getName());
+			userView.setUser(herokuUser.getUsername());
+			userView.setPass(herokuUser.getPassword());
+			userView.setEmail(herokuUser.getEmail());
+			userView.setEnvioEmail(herokuUser.getEnvioMail());
+			
+			logger.info("--- Fin -- readUser -- Existe usuario y password ---");
+			
+			return userView;
+			
+		}else{
+			//si no existen datos devuelvo el usuario vacio
+			logger.info("--- Fin -- readUser -- No existe usuario y password ---");
+			return null;
+		}
+
+	}
+	
+	 /**
+	 * Pone a true el campo envioEmail de HerokuUser. Le pasamos un User del que utilizaremos el id para recuperar los datos del HerokuUser que modificaremos
+	 * 
+	 * @param userChangEmail
+	 * @return
+	 */
+	@Override
+	public boolean changeEnvioEmail(User userChangEmail){
+		logger.info("--- Inicio -- changeEnvioEmail ---");
+		
+		//Creamos un HerokuUser con ide de userChangEmail para que en el update sepa que usuario modificar y enviaoEmail = true
+		HerokuUser herokuUser = new HerokuUser();
+		herokuUser = herokuUserDao.readHerokuUserById(userChangEmail.getId());
+		herokuUser.setEnvioMail(true);
+		
+		int row = this.herokuUserDao.updateHerokuUser(herokuUser);
+		if(row>0){
+			logger.info("--- Fin -- changeEnvioEmail ---");
+			return true;
+		}else{
+			logger.info("--- Fin -- changeEnvioEmail ---");
+			return false;
+		}
+		
+	}
+	
+	 /**
+	 * Recupera el herokuUser con sfid pasado por parametro y le modifica la password 
+	 * 
+	 * @param newpass
+	 * @param sfid
+	 * @return
+	 */
+	@Override
+	public boolean changePassHerokuUser (String newpass, String sfid){
+		
+		logger.info("--- Inicio -- changePassHerokuUser ---");
+		
+		//Creamos un HerokuUser con ide de userChangEmail para que en el update sepa que usuario modificar y enviaoEmail = true
+		HerokuUser herokuUser = new HerokuUser();
+		herokuUser = herokuUserDao.readHerokuUserBySfid(sfid);
+		herokuUser.setPassword(newpass);
+		
+		int row =  this.herokuUserDao.updateHerokuUser(herokuUser);
+		if(row>0){
+			logger.info("--- Fin -- changePassHerokuUser ---");
+			return true;
+		}else{
+			logger.info("--- Fin -- changePassHerokuUser ---");
+			return false;
+		}
+			
+	}
+	
 	
 	@Transactional
 	@Override
@@ -108,6 +212,5 @@ public class UserServiceImpl implements UserService{
 	    }
 	
 	}
-
 
 }

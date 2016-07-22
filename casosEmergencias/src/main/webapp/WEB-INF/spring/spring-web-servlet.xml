@@ -74,5 +74,6 @@
 	<!-- Nombre de los Service de la aplicacion -->
 	<bean id="userService" class="com.casosemergencias.logic.UserServiceImpl"/>
 	
+	<mvc:resources mapping="/resources/**" location="/resources/"/> 
 	
 </beans>

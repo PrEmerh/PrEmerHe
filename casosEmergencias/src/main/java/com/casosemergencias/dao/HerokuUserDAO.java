@@ -1,6 +1,5 @@
 package com.casosemergencias.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -9,6 +8,7 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +30,8 @@ public class HerokuUserDAO {
 	 */
 	public List<HerokuUser> readAllHerokuUser(){
 				
+		logger.debug("--- Inicio -- readAllHerokuUser ---");
+		
 		Session session = sessionFactory.openSession();
 				
 		try{
@@ -37,10 +39,14 @@ public class HerokuUserDAO {
 			
 			List<HerokuUser> userList = query.list(); 
 
+			logger.debug("--- Fin -- readAllHerokuUser ---");
+			
 			return userList;
 			
 	    }catch (HibernateException e) {
-	    	e.printStackTrace(); 
+	    	logger.error("--- readHerokuUser "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- readAllHerokuUser ---");
 	    }finally {
 	    	session.close(); 
 	    }
@@ -51,10 +57,12 @@ public class HerokuUserDAO {
 	/**
 	 * Devuelve el HerokuUser que tiene como id el pasado por parametro al metodo
 	 * 
-	 * @param id
+	 * @param id - id de un HerokuUser
 	 * @return
 	 */
 	public HerokuUser readHerokuUserById(Integer id){
+		
+		logger.debug("--- Inicio -- readHerokuUserById ---");
 		
 		Session session = sessionFactory.openSession();
 				
@@ -68,8 +76,48 @@ public class HerokuUserDAO {
 				return userList.get(0);
 			}			
 			
+			logger.debug("--- Fin -- readHerokuUserById ---");
+			
 	    }catch (HibernateException e) {
-	    	e.printStackTrace(); 
+	    	logger.error("--- readHerokuUserById "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- readHerokuUserById ---");
+	    }finally {
+	    	session.close(); 
+	    }
+		
+	    return null;
+	    
+	}
+	
+	/**
+	 * Devuelve el HerokuUser que tiene como sfid el pasado por parametro al metodo
+	 * 
+	 * @param sfid - id de un HerokuUser
+	 * @return
+	 */
+	public HerokuUser readHerokuUserBySfid(String sfid){
+		
+		logger.debug("--- Inicio -- readHerokuUserBySfid ---");
+		
+		Session session = sessionFactory.openSession();
+				
+		try{
+			Query query = session.createQuery("from HerokuUser as herUser WHERE herUser.sfid = :sfid");
+			query.setString("sfid", sfid);
+			
+			List<HerokuUser> userList = query.list(); 
+
+			if(userList != null){
+				return userList.get(0);
+			}			
+			
+			logger.debug("--- Fin -- readHerokuUserBySfid ---");
+			
+	    }catch (HibernateException e) {
+	    	logger.error("--- readHerokuUserBySfid "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- readHerokuUserBySfid ---");
 	    }finally {
 	    	session.close(); 
 	    }
@@ -81,11 +129,13 @@ public class HerokuUserDAO {
 
 	/**
 	 * Dado un HerokuUser, recupera una lista de HerokuUser con los mismos datos que HerokuUser
+	 * 
 	 * @param herokuUser
 	 * @return
 	 */
 	public List<HerokuUser> readHerokuUser(HerokuUser herokuUser){
-		logger.debug("readHerokuUser -- inicio");
+		
+		logger.debug("--- Inicio -- readHerokuUser ---");
 		
 		Session session = sessionFactory.openSession();
 		boolean isFirst = true;
@@ -108,13 +158,14 @@ public class HerokuUserDAO {
 				}else{
 					query.append(" AND herUser.name = :name");
 				}
-			}
+			}			
+			//Campo username no es case sensitive, lo convertimos a mayusculas para la condicion
 			if(herokuUser.getUsername()!= null){
 				if(isFirst){
-					query.append(" WHERE herUser.username = :username");
+					query.append(" WHERE UPPER(herUser.username) = UPPER(:username)");
 					isFirst = false;
 				}else{
-					query.append(" AND herUser.username = :username");
+					query.append(" AND UPPER(herUser.username) = UPPER(:username)");
 				}
 			}
 			if(herokuUser.getPassword()!= null){
@@ -243,16 +294,52 @@ public class HerokuUserDAO {
 			
 			List<HerokuUser> userList = result.list(); 	 
 			
+			logger.debug("--- Fin -- readHerokuUser ---");
+			
 			return userList;
 
 	    }catch (HibernateException e) {
-	    	logger.error("readHerokuUser "+ e.getMessage());
+	    	logger.error("--- readHerokuUser "+ e.getMessage() +"---");
 	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- readHerokuUser ---"); 
 	    }finally {
 	    	session.close(); 
 	    }
 	    return null;
 	}
+	
+	
+	/**
+	 * Actualiza la fila de HerokuUser correspondiente al id de herokuUser. Modifica todos los campos con el valor que hay en herokuUser. 
+	 * 
+	 * @param herokuUser
+	 * @return
+	 */
+	@Transactional
+    public int updateHerokuUser(HerokuUser herokuUser){
+		
+		logger.debug("--- Inicio -- updateHerokuUser ---");
+		
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		try{
+			session.update(herokuUser);
+			tx.commit();
+			
+			logger.debug("--- Fin -- updateHerokuUser ---");			
+			return 1;
+		}catch (HibernateException e) {
+	    	tx.rollback();
+			logger.error("--- updateHerokuUser "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- updateHerokuUser ---");
+	    	return 0;
+	    }finally {
+	    	session.close(); 
+	    }
+
+    }
+	
 	
 	/**
 	 * Inserta un HerokuUser en BBDD
