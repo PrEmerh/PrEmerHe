@@ -3,37 +3,50 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Reset Password Page</title>
+		<link href="resources/css/styles.css" rel="stylesheet">
 	</head>
-	<body>
-		<div>
-			<h1><s:message code="reset_label_title"/></h1>
-	  		<h3><s:message code="reset_label_text"/>:</h3>  
+	<body style="background-color:#99CCFF;">
+	<center><img src="resources/images/heroku.png"  /></center>
+		
+			<center><h1><s:message code="reset_label_title"/></h1></center>
+	  		<center><h3><s:message code="reset_label_text"/>:</h3> </center> 
 	    
-	    	<div>
+	    	<div id="reset-pass">
 		  		<form name='resetForm' action="sendEmail" method='POST' >
-			    	<table>
-						<tr>
+			    	<table align="center" >
+						<tr align="center">
 				           	<td>
-				           		<s:message code="reset_form_label_user"/>:
-				           	</td>
-				        	<td>
-				        		<input type='text' name='userName' value=''>
+				           		<h3 style="font-weight:bold;color:black"><s:message code="reset_form_label_user"/></h3>
+				           	</td>				        	
+				        </tr>
+				        <tr align="center" >
+				       		<td>
+				        		<input type='text' name='userName' value='' class="buttontext">
+				        	</td>				        
+				        </tr>
+				        <tr> 
+        				<td>
+        				<br>
+        				</td>
+        				</tr>
+				        <tr align="center" >
+				        	<td >
+				        		<input name="submit" type="submit" class="button" value='<s:message code="reset_form_button_submit" />'/>
 				        	</td>
 				        </tr>
-				        <tr>
-				        	<td>
-				        		<input name="submit" type="submit" value='<s:message code="reset_form_button_submit"/>'/>
-				        	</td>
-				        </tr>
+				         <tr> 
+        				<td>
+        				<br>
+        				</td>
+        				</tr>
+				        <tr align="center" >
+	        				<td >
+							 	<h4 style="font-weight:bold;color:red;"><s:message code="${userView.mensajeError}" text=""/></h4>
+							 	<h4 style="font-weight:bold;color:green;"><s:message code="${userView.mensaje}" text=""/> <s:message code="${userView.email}" text=""/></h4>		
+	        				</td>
+        				</tr> 
 					</table>
 			 	</form>
-		 	</div>
-		 	
-		 	<div>
-			 	<h1><s:message code="${userView.mensajeError}" text=""/></h1>
-			 	<h1><s:message code="${userView.mensaje}" text=""/> <s:message code="${userView.email}" text=""/></h1>		
-			</div>
-		</div>
+		 	</div>		 	
 	</body>
 </html>
