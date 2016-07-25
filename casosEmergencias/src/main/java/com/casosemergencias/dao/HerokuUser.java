@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 
+
 @Entity
 @Table(name="salesforce.herokuuser__c")
 public class HerokuUser implements Serializable{
