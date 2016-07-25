@@ -1,0 +1,31 @@
+
+.buttontext
+{
+color:blue;
+font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica, sans-serif;
+
+
+
+}
+.button
+{
+    width:105px;
+    height: 20px;
+    weight:10;
+    line-height: 20px;
+    padding-bottom: 2px;
+    midlle-align: bottom;
+    font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: bold; 
+}
+#reset-pass {
+	width: 250px;
+	padding: 40px;
+	margin: 50px auto;
+	background-color: silver;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 20px;
+	border: 2px solid #000;
+	opacity: 0.80;
+}
