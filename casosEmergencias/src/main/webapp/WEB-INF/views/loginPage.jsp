@@ -30,7 +30,8 @@
 			         <tr align="center" >
 			         	<td colspan="2">
 							<h4 style="font-weight:bold;color:red;"><s:message code="${userView.mensajeError}" text=""/></h4><!-- añadiomos text, si loginNoUser es vacio, no existe ninguna etiqueta en los properties y mostrará el valor de text-->		
-	        		    </td>					
+	        		    </td>
+	        		 </tr>					
 		    	</table>
 		  	</form>	  	
 		</div>
