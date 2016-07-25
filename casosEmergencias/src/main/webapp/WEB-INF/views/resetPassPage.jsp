@@ -23,23 +23,12 @@
 				       		<td>
 				        		<input type='text' name='userName' value='' class="buttontext">
 				        	</td>				        
-				        </tr>
-				        <tr> 
-        				<td>
-        				<br>
-        				</td>
-        				</tr>
+				        </tr><tr><td><br></td></tr>
 				        <tr align="center" >
 				        	<td >
 				        		<input name="submit" type="submit" class="button" value='<s:message code="reset_form_button_submit" />'/>
 				        	</td>
-				        </tr>
-				         <tr> 
-        				<td>
-        				<br>
-        				</td>
-        				</tr>
-				        <tr  >
+				        </tr><tr> <td><br></td></tr><tr>
 	        				<td >
 							 	<h4 style="font-weight:bold;color:red;"><s:message code="${userView.mensajeError}" text=""/></h4>
 							 	<h4 style="font-weight:bold;color:green;"><s:message code="${userView.mensaje}" text=""/> <s:message code="${userView.email}" text=""/></h4>		
