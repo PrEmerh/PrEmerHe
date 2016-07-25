@@ -179,7 +179,7 @@
 	        <artifactId>heroku-maven-plugin</artifactId>
 	        <version>1.0.3</version>
 	        <configuration>
-				<appName>miapp012</appName>
+	        	<appName>heroku-en-dev</appName>
 			</configuration>			
      	</plugin>
     </plugins>
