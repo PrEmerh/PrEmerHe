@@ -4,8 +4,6 @@
 color:blue;
 font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica, sans-serif;
 
-
-
 }
 .button
 {
@@ -19,13 +17,16 @@ font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: bold; 
 }
-#reset-pass {
+#box-page {
 	width: 250px;
 	padding: 40px;
 	margin: 40px auto;
-	background-color: silver;
+	background-color: silver;  
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 20px;
+	border:medium;
 	border: 2px solid #000;
 	opacity: 0.80;
 }
+
+

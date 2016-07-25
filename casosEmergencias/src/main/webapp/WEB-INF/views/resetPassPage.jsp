@@ -11,7 +11,7 @@
 			<center><h1><s:message code="reset_label_title"/></h1></center>
 	  		<center><h3><s:message code="reset_label_text"/>:</h3> </center> 
 	    
-	    	<div id="reset-pass">
+	    	<div id="box-page">
 		  		<form name='resetForm' action="sendEmail" method='POST' >
 			    	<table align="center" >
 						<tr align="center">
@@ -39,7 +39,7 @@
         				<br>
         				</td>
         				</tr>
-				        <tr align="center" >
+				        <tr  >
 	        				<td >
 							 	<h4 style="font-weight:bold;color:red;"><s:message code="${userView.mensajeError}" text=""/></h4>
 							 	<h4 style="font-weight:bold;color:green;"><s:message code="${userView.mensaje}" text=""/> <s:message code="${userView.email}" text=""/></h4>		
