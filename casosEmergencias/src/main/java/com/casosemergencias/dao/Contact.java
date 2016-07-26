@@ -20,17 +20,17 @@ public class Contact implements Serializable{
 	//campo de Heroku
 	//Used to track the IsDeleted field from Salesforce allowing Heroku Connect to handle deletes when polling for updates
 	@Column(name = "isdeleted")
-	private Boolean isdeleted;
+	private Boolean isDeleted;
 	//campo de Heroku
 	//Used to track the IsDeleted field from Salesforce allowing Heroku Connect to handle deletes when polling for updates
 	@Column(name = "systemmodstamp")
-	private Date systemmodstamp;
+	private Date systemDate;
 	//campo de Heroku
 	@Column(name = "_hc_lastop")
-	private String _hc_lastop;
+	private String hcLastop;
 	//campo de Heroku
 	@Column(name = "_hc_err")
-	private String _hc_err;
+	private String hcError;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -207,10 +207,10 @@ public class Contact implements Serializable{
 			String idEmpresa, String tipoContacto, String phone, String segmentoPersona, String createdById,
 			String apellidoPaterno) {
 		super();
-		this.isdeleted = isdeleted;
-		this.systemmodstamp = systemmodstamp;
-		this._hc_lastop = _hc_lastop;
-		this._hc_err = _hc_err;
+		this.isDeleted = isDeleted;
+		this.systemDate = systemDate;
+		this.hcLastop = hcLastop;
+		this.hcError = hcError;
 		this.id = id;
 		this.sfid = sfid;
 		this.createddate = createddate;
@@ -270,36 +270,36 @@ public class Contact implements Serializable{
 		super();
 	}
 
-	public Boolean getIsdeleted() {
-		return isdeleted;
+	public Boolean getIsDeleted() {
+		return isDeleted;
 	}
 
-	public void setIsdeleted(Boolean isdeleted) {
-		this.isdeleted = isdeleted;
+	public void setIsDeleted(Boolean isdeleted) {
+		this.isDeleted = isDeleted;
 	}
 
-	public Date getSystemmodstamp() {
-		return systemmodstamp;
+	public Date getSystemDate() {
+		return systemDate;
 	}
 
-	public void setSystemmodstamp(Date systemmodstamp) {
-		this.systemmodstamp = systemmodstamp;
+	public void setSystemDate(Date systemmodstamp) {
+		this.systemDate = systemDate;
 	}
 
-	public String get_hc_lastop() {
-		return _hc_lastop;
+	public String getHcLastop() {
+		return hcLastop;
 	}
 
-	public void set_hc_lastop(String _hc_lastop) {
-		this._hc_lastop = _hc_lastop;
+	public void setHcLastop(String _hc_lastop) {
+		this.hcLastop = hcLastop;
 	}
 
-	public String get_hc_err() {
-		return _hc_err;
+	public String getHcError() {
+		return hcError;
 	}
 
-	public void set_hc_err(String _hc_err) {
-		this._hc_err = _hc_err;
+	public void setHcError(String _hc_err) {
+		this.hcError = hcError;
 	}
 
 	public Integer getId() {
@@ -725,7 +725,5 @@ public class Contact implements Serializable{
 	public void setApellidoPaterno(String apellidoPaterno) {
 		this.apellidoPaterno = apellidoPaterno;
 	}
-
-
 	
 }
