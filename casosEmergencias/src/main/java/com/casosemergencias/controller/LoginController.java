@@ -58,7 +58,7 @@ public class LoginController {
 		if(user != null && ((user.getId() != null) && !"".equals(user.getId()))){
 			logger.info("--- Usuario y contraseña correctas ---");
 			
-			//Guardamos el usurio en la sesion
+			//Guardamos el usuario en la sesion
 			HttpSession session = request.getSession(true);
 			session.setAttribute("user", user);
 			
