@@ -39,22 +39,22 @@ public class Case implements Serializable{
 	private String sfid;
 	
 	@Column(name = "createddate")
-	private Date createddate;
+	private Date systemDate;
 	
 	@Column(name = "subject")
 	private String subject;
 	
 	@Column(name = "fecha_estimada_de_cierre__c")
-	private Date fecha_estimada_de_cierre;
+	private Date fechaEstimadaCierre;
 	
 	@Column(name = "accountid")
 	private String accountid;
 	
 	@Column(name = "favorabilidad_del_caso__c")
-	private String favorabilidad_del_caso;
+	private String favorabilidadDelCaso;
 	
 	@Column(name = "flag_sec__c")
-	private String flag_sec;
+	private String flagSec;
 	
 	@Column(name = "lastmodifiedbyid")
 	private String lastmodifiedbyid;
@@ -63,10 +63,10 @@ public class Case implements Serializable{
 	private String productid;
 	
 	@Column(name = "validar_electrodependiente__c")
-	private Boolean validar_electrodependiente;
+	private Boolean validarElectrodependiente;
 	
 	@Column(name = "sf4twitter__twitter_username__c")
-	private String sf4twitter__twitter_username;
+	private String sf4twitterTwitterUsername;
 	
 	@Column(name = "ownerid")
 	private String ownerid;
@@ -75,49 +75,49 @@ public class Case implements Serializable{
 	private Date slastartdate;
 	
 	@Column(name = "motivo_empresa__c")
-	private String motivo_empresa;
+	private String motivoEmpresa;
 	
 	@Column(name = "call_center__c")
-	private String call_center;
+	private String callCenter;
 	
 	@Column(name = "fallo_envio_validacion__c")
-	private Boolean fallo_envio_validacion;
+	private Boolean falloEnvioValidacion;
 	
 	@Column(name = "literal_comuna__c")
-	private String literal_comuna;
+	private String literalComuna;
 	
 	@Column(name = "act_datos_contacto__c")
-	private Boolean act_datos_contacto;
+	private Boolean actDatosContacto;
 	
 	@Column(name = "fallo_creacion_observacion__c")
-	private String fallo_creacion_observacion;
+	private String falloCreacionObservacion;
 	
 	@Column(name = "estado_preingreso__c")
-	private Boolean sfidestado_preingreso;
+	private Boolean sfidestadoPreingreso;
 	
 	@Column(name = "email_de_notificacion__c")
-	private String email_de_notificacion;
+	private String emailNotificacion;
 	
 	@Column(name = "horaap__c")
 	private Double horaap;
 	
 	@Column(name = "numero_de_inservice__c")
-	private String numero_de_inservice;
+	private String numeroInservice;
 	
 	@Column(name = "suppliedphone")
 	private String suppliedphone;
 	
 	@Column(name = "numero_de_medidor__c")
-	private String numero_de_medidor;
+	private String numeroMedidor;
 	
 	@Column(name = "isstopped")
 	private Boolean isstopped;
 	
 	@Column(name = "cuerpo_mail__c")
-	private String cuerpo_mail;
+	private String cuerpoMail;
 	
 	@Column(name = "telefono_de_contacto__c")
-	private String telefono_de_contacto;
+	private String telefonoContacto;
 	
 	@Column(name = "questionid")
 	private String questionid;
@@ -126,16 +126,16 @@ public class Case implements Serializable{
 	private Boolean hasselfservicecomments;
 	
 	@Column(name = "traza_fallo_inservice__c")
-	private String traza_fallo_inservice;
+	private String trazaFalloInservice;
 	
 	@Column(name = "canal_de_notificacion__c")
-	private String canal_de_notificacion;
+	private String canalNotificacion;
 	
 	@Column(name = "createdbyid")
 	private String createdbyid;
 	
 	@Column(name = "categor_a__c")
-	private String categor_a;
+	private String categoria;
 	
 	@Column(name = "flag__c")
 	private String flag;
@@ -153,13 +153,13 @@ public class Case implements Serializable{
 	private String status;
 	
 	@Column(name = "sf4twitter__twitterid__c")
-	private String sf4twitter__twitterid;
+	private String sf4twitterTwitterid;
 	
 	@Column(name = "respuesta_al_cliente__c")
-	private String respuesta_al_cliente;
+	private String respuestaAlCliente;
 	
 	@Column(name = "n_mero_de_caso_ap__c")
-	private String n_mero_de_caso_ap;
+	private String numeroCasoAp;
 	
 	@Column(name = "isescalated")
 	private Boolean isescalated;
@@ -168,25 +168,25 @@ public class Case implements Serializable{
 	private String interaccion;
 	
 	@Column(name = "tipo_atencion_sec__c")
-	private String tipo_atencion_sec;
+	private String tipoAtencionSec;
 	
 	@Column(name = "sub_estado__c")
-	private String sub_estado;
+	private String subEstado;
 	
 	@Column(name = "isvisibleinselfservice")
 	private Boolean isvisibleinselfservice;
 	
 	@Column(name = "tipo_atencion_interna__c")
-	private String tipo_atencion_interna;
+	private String tipoAtencionInterna;
 	
 	@Column(name = "hora_sec__c")
-	private Date hora_sec;
+	private Date horaSec;
 	
 	@Column(name = "pendientevalidacioncondagr__c")
-	private Boolean pendientevalidacioncondagr;
+	private Boolean pendienteValidacionCondagr;
 	
 	@Column(name = "ejecutivoanterior__c")
-	private String ejecutivoanterior;
+	private String ejecutivoAnterior;
 	
 	@Column(name = "entitlementid")
 	private String entitlementid;
@@ -195,25 +195,25 @@ public class Case implements Serializable{
 	private String assetid;
 	
 	@Column(name = "stopstartdate")
-	private Date stopstartdate;
+	private Date stopstartDate;
 	
 	@Column(name = "suppliedcompany")
-	private String suppliedcompany;
+	private String suppliedCompany;
 	
 	@Column(name = "isclosedoncreate")
-	private Boolean isclosedoncreate;
+	private Boolean isClosedonCreate;
 	
 	@Column(name = "estado_condici_n_agravante__c")
-	private String estado_condici_n_agravante;
+	private String estadoCondicionAgravante;
 	
 	@Column(name = "hora_cancelado__c")
-	private Date hora_cancelado;
+	private Date horaCancelado;
 	
 	@Column(name = "suministro__c")
 	private String suministro;
 	
 	@Column(name = "isselfserviceclosed")
-	private	Boolean isselfserviceclosed;
+	private	Boolean isSelfserviceClosed;
 	
 	@Column(name = "parentid")
 	private String parentid;
@@ -222,58 +222,58 @@ public class Case implements Serializable{
 	private Boolean ui;
 	
 	@Column(name = "numsum__c")
-	private String numsum;
+	private String numSum;
 	
 	@Column(name = "twitter__c")
 	private String twitter;
 	
 	@Column(name = "suppliedname")
-	private String suppliedname;
+	private String suppliedName;
 	
 	@Column(name = "closeddate")
-	private Date closeddate;
+	private Date closedDate;
 	
 	@Column(name = "fallo_envio_inservice__c")
-	private Boolean fallo_envio_inservice;
+	private Boolean falloEnvioInservice;
 	
 	@Column(name = "description")
 	private String description;
 	
 	@Column(name = "hora_arribado__c")
-	private Date hora_arribado;
+	private Date horaArribado;
 	
 	@Column(name = "slaexitdate")
-	private Date slaexitdate;
+	private Date slaexitDate;
 	
 	@Column(name = "origin")
 	private String origin;
 	
 	@Column(name = "descripcion_estado__c")
-	private String descripcion_estado;
+	private String descripcionEstado;
 	
 	@Column(name = "businesshoursid")
-	private String businesshoursid;
+	private String businessHoursId;
 	
 	@Column(name = "sf4twitter__author_external_id__c")
-	private String sf4twitter__author_external_id;
+	private String sf4twitterAuthorExternalId;
 	
 	@Column(name = "hascommentsunreadbyowner")
-	private Boolean hascommentsunreadbyowner;
+	private Boolean hasCommentSunReadByOwner;
 	
 	@Column(name = "hora_cerrado__c")
-	private Date hora_cerrado;
+	private Date horaCerrado;
 	
 	@Column(name = "literal_condici_n_agravante__c")
-	private String literal_condici_n_agravante;
+	private String literalCondicionAgravante;
 	
 	@Column(name = "type")
 	private String type;
 	
 	@Column(name = "direccion_del_suministro__c")
-	private String direccion_del_suministro;
+	private String direccionSuministro;
 	
 	@Column(name = "hora_pendiente__c")
-	private Date hora_pendiente;
+	private Date horaPendiente;
 	
 	@Column(name = "ani__c")
 	private String ani;
@@ -282,90 +282,89 @@ public class Case implements Serializable{
 	private String facebook;
 	
 	@Column(name = "petici_n__c")
-	private String petici_n;
+	private String peticion;
 	
 	@Column(name = "communityid")
-	private String communityid;
+	private String communityId;
 	
 	@Column(name = "direccion__c")
 	private String direccion;
 	
 	@Column(name = "hora_asignado__c")
-	private Date hora_asignado;
+	private Date horaAsignado;
 	
 	@Column(name = "milestonestatus")
-	private String milestonestatus;
+	private String milestoneStatus;
 	
 	@Column(name = "contactid")
-	private String contactid;
+	private String contactId;
 	
 	@Column(name = "hora_predespacho__c")
-	private Date hora_predespacho;
+	private Date horaPredespacho;
 	
 	@Column(name = "hora_enruta__c")
-	private Date hora_enruta;
+	private Date horaEnruta;
 	
 	@Column(name = "reason")
 	private String reason;
 	
 	@Column(name = "id_empresa__c")
-	private String id_empresa;
+	private String idEmpresa;
 	
 	@Column(name = "hora_programado__c")
-	private Date hora_programado;
+	private Date horaProgramado;
 	
 	@Column(name = "numero_de_seguidores_del__c")
-	private Double numero_de_seguidores_del;
+	private Double numeroSeguidoresDel;
 	
 	@Column(name = "literal_categoria__c")
-	private String literal_categorias;
+	private String literalCategorias;
 	
 	@Column(name = "recordtypeid")
-	private String recordtypeid;
+	private String recordtypeId;
 	
 	@Column(name = "comuna_f__c")
-	private String comuna_f;
+	private String comunaF;
 	
 	@Column(name = "prioridad__c")
 	private String prioridad;
 	
 	@Column(name = "valorsubestadoins__c")
-	private String valorsubestadoins;
+	private String valorSubestadoins;
 	
 	@Column(name = "control_electrodependiente__c")
-	private Boolean control_electrodependiente;
+	private Boolean controlElectrodependiente;
 	
 	@Column(name = "cancelar__c")
 	private Boolean cancelar;
 	
 	@Column(name = "condici_n_agravante__c")
-	private String condici_n_agravante;
+	private String condicionAgravante;
 
 	public Case(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
-			Date createddate, String subject, Date fecha_estimada_de_cierre, String accountid,
-			String favorabilidad_del_caso, String flag_sec, String lastmodifiedbyid, String productid,
-			Boolean validar_electrodependiente, String sf4twitter__twitter_username, String ownerid, Date slastartdate,
-			String motivo_empresa, String call_center, Boolean fallo_envio_validacion, String literal_comuna,
-			Boolean act_datos_contacto, String fallo_creacion_observacion, Boolean sfidestado_preingreso,
-			String email_de_notificacion, Double horaap, String numero_de_inservice, String suppliedphone,
-			String numero_de_medidor, Boolean isstopped, String cuerpo_mail, String telefono_de_contacto,
-			String questionid, Boolean hasselfservicecomments, String traza_fallo_inservice,
-			String canal_de_notificacion, String createdbyid, String categor_a, String flag, String observaciones,
-			String casenumber, String url, String status, String sf4twitter__twitterid, String respuesta_al_cliente,
-			String n_mero_de_caso_ap, Boolean isescalated, String interaccion, String tipo_atencion_sec,
-			String sub_estado, Boolean isvisibleinselfservice, String tipo_atencion_interna, Date hora_sec,
-			Boolean pendientevalidacioncondagr, String ejecutivoanterior, String entitlementid, String assetid,
-			Date stopstartdate, String suppliedcompany, Boolean isclosedoncreate, String estado_condici_n_agravante,
-			Date hora_cancelado, String suministro, Boolean isselfserviceclosed, String parentid, Boolean ui,
-			String numsum, String twitter, String suppliedname, Date closeddate, Boolean fallo_envio_inservice,
-			String description, Date hora_arribado, Date slaexitdate, String origin, String descripcion_estado,
-			String businesshoursid, String sf4twitter__author_external_id, Boolean hascommentsunreadbyowner,
-			Date hora_cerrado, String literal_condici_n_agravante, String type, String direccion_del_suministro,
-			Date hora_pendiente, String ani, String facebook, String petici_n, String communityid, String direccion,
-			Date hora_asignado, String milestonestatus, String contactid, Date hora_predespacho, Date hora_enruta,
-			String reason, String id_empresa, Date hora_programado, Double numero_de_seguidores_del,
-			String literal_categorias, String recordtypeid, String comuna_f, String prioridad, String valorsubestadoins,
-			Boolean control_electrodependiente, Boolean cancelar, String condici_n_agravante) {
+			Date systemDate, String subject, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
+			String flagSec, String lastmodifiedbyid, String productid, Boolean validarElectrodependiente,
+			String sf4twitterTwitterUsername, String ownerid, Date slastartdate, String motivoEmpresa,
+			String callCenter, Boolean falloEnvioValidacion, String literalComuna, Boolean actDatosContacto,
+			String falloCreacionObservacion, Boolean sfidestadoPreingreso, String emailNotificacion, Double horaap,
+			String numeroInservice, String suppliedphone, String numeroMedidor, Boolean isstopped, String cuerpoMail,
+			String telefonoContacto, String questionid, Boolean hasselfservicecomments, String trazaFalloInservice,
+			String canalNotificacion, String createdbyid, String categoria, String flag, String observaciones,
+			String casenumber, String url, String status, String sf4twitterTwitterid, String respuestaAlCliente,
+			String numeroCasoAp, Boolean isescalated, String interaccion, String tipoAtencionSec, String subEstado,
+			Boolean isvisibleinselfservice, String tipoAtencionInterna, Date horaSec,
+			Boolean pendienteValidacionCondagr, String ejecutivoAnterior, String entitlementid, String assetid,
+			Date stopstartDate, String suppliedCompany, Boolean isClosedonCreate, String estadoCondicionAgravante,
+			Date horaCancelado, String suministro, Boolean isSelfserviceClosed, String parentid, Boolean ui,
+			String numSum, String twitter, String suppliedName, Date closedDate, Boolean falloEnvioInservice,
+			String description, Date horaArribado, Date slaexitDate, String origin, String descripcionEstado,
+			String businessHoursId, String sf4twitterAuthorExternalId, Boolean hasCommentSunReadByOwner,
+			Date horaCerrado, String literalCondicionAgravante, String type, String direccionSuministro,
+			Date horaPendiente, String ani, String facebook, String peticion, String communityId, String direccion,
+			Date horaAsignado, String milestoneStatus, String contactId, Date horaPredespacho, Date horaEnruta,
+			String reason, String idEmpresa, Date horaProgramado, Double numeroSeguidoresDel, String literalCategorias,
+			String recordtypeId, String comunaF, String prioridad, String valorSubestadoins,
+			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante) {
 		super();
 		this.isdeleted = isdeleted;
 		this.systemmodstamp = systemmodstamp;
@@ -373,107 +372,107 @@ public class Case implements Serializable{
 		this._hc_err = _hc_err;
 		this.id = id;
 		this.sfid = sfid;
-		this.createddate = createddate;
+		this.systemDate = systemDate;
 		this.subject = subject;
-		this.fecha_estimada_de_cierre = fecha_estimada_de_cierre;
+		this.fechaEstimadaCierre = fechaEstimadaCierre;
 		this.accountid = accountid;
-		this.favorabilidad_del_caso = favorabilidad_del_caso;
-		this.flag_sec = flag_sec;
+		this.favorabilidadDelCaso = favorabilidadDelCaso;
+		this.flagSec = flagSec;
 		this.lastmodifiedbyid = lastmodifiedbyid;
 		this.productid = productid;
-		this.validar_electrodependiente = validar_electrodependiente;
-		this.sf4twitter__twitter_username = sf4twitter__twitter_username;
+		this.validarElectrodependiente = validarElectrodependiente;
+		this.sf4twitterTwitterUsername = sf4twitterTwitterUsername;
 		this.ownerid = ownerid;
 		this.slastartdate = slastartdate;
-		this.motivo_empresa = motivo_empresa;
-		this.call_center = call_center;
-		this.fallo_envio_validacion = fallo_envio_validacion;
-		this.literal_comuna = literal_comuna;
-		this.act_datos_contacto = act_datos_contacto;
-		this.fallo_creacion_observacion = fallo_creacion_observacion;
-		this.sfidestado_preingreso = sfidestado_preingreso;
-		this.email_de_notificacion = email_de_notificacion;
+		this.motivoEmpresa = motivoEmpresa;
+		this.callCenter = callCenter;
+		this.falloEnvioValidacion = falloEnvioValidacion;
+		this.literalComuna = literalComuna;
+		this.actDatosContacto = actDatosContacto;
+		this.falloCreacionObservacion = falloCreacionObservacion;
+		this.sfidestadoPreingreso = sfidestadoPreingreso;
+		this.emailNotificacion = emailNotificacion;
 		this.horaap = horaap;
-		this.numero_de_inservice = numero_de_inservice;
+		this.numeroInservice = numeroInservice;
 		this.suppliedphone = suppliedphone;
-		this.numero_de_medidor = numero_de_medidor;
+		this.numeroMedidor = numeroMedidor;
 		this.isstopped = isstopped;
-		this.cuerpo_mail = cuerpo_mail;
-		this.telefono_de_contacto = telefono_de_contacto;
+		this.cuerpoMail = cuerpoMail;
+		this.telefonoContacto = telefonoContacto;
 		this.questionid = questionid;
 		this.hasselfservicecomments = hasselfservicecomments;
-		this.traza_fallo_inservice = traza_fallo_inservice;
-		this.canal_de_notificacion = canal_de_notificacion;
+		this.trazaFalloInservice = trazaFalloInservice;
+		this.canalNotificacion = canalNotificacion;
 		this.createdbyid = createdbyid;
-		this.categor_a = categor_a;
+		this.categoria = categoria;
 		this.flag = flag;
 		this.observaciones = observaciones;
 		this.casenumber = casenumber;
 		this.url = url;
 		this.status = status;
-		this.sf4twitter__twitterid = sf4twitter__twitterid;
-		this.respuesta_al_cliente = respuesta_al_cliente;
-		this.n_mero_de_caso_ap = n_mero_de_caso_ap;
+		this.sf4twitterTwitterid = sf4twitterTwitterid;
+		this.respuestaAlCliente = respuestaAlCliente;
+		this.numeroCasoAp = numeroCasoAp;
 		this.isescalated = isescalated;
 		this.interaccion = interaccion;
-		this.tipo_atencion_sec = tipo_atencion_sec;
-		this.sub_estado = sub_estado;
+		this.tipoAtencionSec = tipoAtencionSec;
+		this.subEstado = subEstado;
 		this.isvisibleinselfservice = isvisibleinselfservice;
-		this.tipo_atencion_interna = tipo_atencion_interna;
-		this.hora_sec = hora_sec;
-		this.pendientevalidacioncondagr = pendientevalidacioncondagr;
-		this.ejecutivoanterior = ejecutivoanterior;
+		this.tipoAtencionInterna = tipoAtencionInterna;
+		this.horaSec = horaSec;
+		this.pendienteValidacionCondagr = pendienteValidacionCondagr;
+		this.ejecutivoAnterior = ejecutivoAnterior;
 		this.entitlementid = entitlementid;
 		this.assetid = assetid;
-		this.stopstartdate = stopstartdate;
-		this.suppliedcompany = suppliedcompany;
-		this.isclosedoncreate = isclosedoncreate;
-		this.estado_condici_n_agravante = estado_condici_n_agravante;
-		this.hora_cancelado = hora_cancelado;
+		this.stopstartDate = stopstartDate;
+		this.suppliedCompany = suppliedCompany;
+		this.isClosedonCreate = isClosedonCreate;
+		this.estadoCondicionAgravante = estadoCondicionAgravante;
+		this.horaCancelado = horaCancelado;
 		this.suministro = suministro;
-		this.isselfserviceclosed = isselfserviceclosed;
+		this.isSelfserviceClosed = isSelfserviceClosed;
 		this.parentid = parentid;
 		this.ui = ui;
-		this.numsum = numsum;
+		this.numSum = numSum;
 		this.twitter = twitter;
-		this.suppliedname = suppliedname;
-		this.closeddate = closeddate;
-		this.fallo_envio_inservice = fallo_envio_inservice;
+		this.suppliedName = suppliedName;
+		this.closedDate = closedDate;
+		this.falloEnvioInservice = falloEnvioInservice;
 		this.description = description;
-		this.hora_arribado = hora_arribado;
-		this.slaexitdate = slaexitdate;
+		this.horaArribado = horaArribado;
+		this.slaexitDate = slaexitDate;
 		this.origin = origin;
-		this.descripcion_estado = descripcion_estado;
-		this.businesshoursid = businesshoursid;
-		this.sf4twitter__author_external_id = sf4twitter__author_external_id;
-		this.hascommentsunreadbyowner = hascommentsunreadbyowner;
-		this.hora_cerrado = hora_cerrado;
-		this.literal_condici_n_agravante = literal_condici_n_agravante;
+		this.descripcionEstado = descripcionEstado;
+		this.businessHoursId = businessHoursId;
+		this.sf4twitterAuthorExternalId = sf4twitterAuthorExternalId;
+		this.hasCommentSunReadByOwner = hasCommentSunReadByOwner;
+		this.horaCerrado = horaCerrado;
+		this.literalCondicionAgravante = literalCondicionAgravante;
 		this.type = type;
-		this.direccion_del_suministro = direccion_del_suministro;
-		this.hora_pendiente = hora_pendiente;
+		this.direccionSuministro = direccionSuministro;
+		this.horaPendiente = horaPendiente;
 		this.ani = ani;
 		this.facebook = facebook;
-		this.petici_n = petici_n;
-		this.communityid = communityid;
+		this.peticion = peticion;
+		this.communityId = communityId;
 		this.direccion = direccion;
-		this.hora_asignado = hora_asignado;
-		this.milestonestatus = milestonestatus;
-		this.contactid = contactid;
-		this.hora_predespacho = hora_predespacho;
-		this.hora_enruta = hora_enruta;
+		this.horaAsignado = horaAsignado;
+		this.milestoneStatus = milestoneStatus;
+		this.contactId = contactId;
+		this.horaPredespacho = horaPredespacho;
+		this.horaEnruta = horaEnruta;
 		this.reason = reason;
-		this.id_empresa = id_empresa;
-		this.hora_programado = hora_programado;
-		this.numero_de_seguidores_del = numero_de_seguidores_del;
-		this.literal_categorias = literal_categorias;
-		this.recordtypeid = recordtypeid;
-		this.comuna_f = comuna_f;
+		this.idEmpresa = idEmpresa;
+		this.horaProgramado = horaProgramado;
+		this.numeroSeguidoresDel = numeroSeguidoresDel;
+		this.literalCategorias = literalCategorias;
+		this.recordtypeId = recordtypeId;
+		this.comunaF = comunaF;
 		this.prioridad = prioridad;
-		this.valorsubestadoins = valorsubestadoins;
-		this.control_electrodependiente = control_electrodependiente;
+		this.valorSubestadoins = valorSubestadoins;
+		this.controlElectrodependiente = controlElectrodependiente;
 		this.cancelar = cancelar;
-		this.condici_n_agravante = condici_n_agravante;
+		this.condicionAgravante = condicionAgravante;
 	}
 
 	public Case() {
@@ -528,12 +527,12 @@ public class Case implements Serializable{
 		this.sfid = sfid;
 	}
 
-	public Date getCreateddate() {
-		return createddate;
+	public Date getSystemDate() {
+		return systemDate;
 	}
 
-	public void setCreateddate(Date createddate) {
-		this.createddate = createddate;
+	public void setSystemDate(Date systemDate) {
+		this.systemDate = systemDate;
 	}
 
 	public String getSubject() {
@@ -544,12 +543,12 @@ public class Case implements Serializable{
 		this.subject = subject;
 	}
 
-	public Date getFecha_estimada_de_cierre() {
-		return fecha_estimada_de_cierre;
+	public Date getFechaEstimadaCierre() {
+		return fechaEstimadaCierre;
 	}
 
-	public void setFecha_estimada_de_cierre(Date fecha_estimada_de_cierre) {
-		this.fecha_estimada_de_cierre = fecha_estimada_de_cierre;
+	public void setFechaEstimadaCierre(Date fechaEstimadaCierre) {
+		this.fechaEstimadaCierre = fechaEstimadaCierre;
 	}
 
 	public String getAccountid() {
@@ -560,20 +559,20 @@ public class Case implements Serializable{
 		this.accountid = accountid;
 	}
 
-	public String getFavorabilidad_del_caso() {
-		return favorabilidad_del_caso;
+	public String getFavorabilidadDelCaso() {
+		return favorabilidadDelCaso;
 	}
 
-	public void setFavorabilidad_del_caso(String favorabilidad_del_caso) {
-		this.favorabilidad_del_caso = favorabilidad_del_caso;
+	public void setFavorabilidadDelCaso(String favorabilidadDelCaso) {
+		this.favorabilidadDelCaso = favorabilidadDelCaso;
 	}
 
-	public String getFlag_sec() {
-		return flag_sec;
+	public String getFlagSec() {
+		return flagSec;
 	}
 
-	public void setFlag_sec(String flag_sec) {
-		this.flag_sec = flag_sec;
+	public void setFlagSec(String flagSec) {
+		this.flagSec = flagSec;
 	}
 
 	public String getLastmodifiedbyid() {
@@ -592,20 +591,20 @@ public class Case implements Serializable{
 		this.productid = productid;
 	}
 
-	public Boolean getValidar_electrodependiente() {
-		return validar_electrodependiente;
+	public Boolean getValidarElectrodependiente() {
+		return validarElectrodependiente;
 	}
 
-	public void setValidar_electrodependiente(Boolean validar_electrodependiente) {
-		this.validar_electrodependiente = validar_electrodependiente;
+	public void setValidarElectrodependiente(Boolean validarElectrodependiente) {
+		this.validarElectrodependiente = validarElectrodependiente;
 	}
 
-	public String getSf4twitter__twitter_username() {
-		return sf4twitter__twitter_username;
+	public String getSf4twitterTwitterUsername() {
+		return sf4twitterTwitterUsername;
 	}
 
-	public void setSf4twitter__twitter_username(String sf4twitter__twitter_username) {
-		this.sf4twitter__twitter_username = sf4twitter__twitter_username;
+	public void setSf4twitterTwitterUsername(String sf4twitterTwitterUsername) {
+		this.sf4twitterTwitterUsername = sf4twitterTwitterUsername;
 	}
 
 	public String getOwnerid() {
@@ -624,68 +623,68 @@ public class Case implements Serializable{
 		this.slastartdate = slastartdate;
 	}
 
-	public String getMotivo_empresa() {
-		return motivo_empresa;
+	public String getMotivoEmpresa() {
+		return motivoEmpresa;
 	}
 
-	public void setMotivo_empresa(String motivo_empresa) {
-		this.motivo_empresa = motivo_empresa;
+	public void setMotivoEmpresa(String motivoEmpresa) {
+		this.motivoEmpresa = motivoEmpresa;
 	}
 
-	public String getCall_center() {
-		return call_center;
+	public String getCallCenter() {
+		return callCenter;
 	}
 
-	public void setCall_center(String call_center) {
-		this.call_center = call_center;
+	public void setCallCenter(String callCenter) {
+		this.callCenter = callCenter;
 	}
 
-	public Boolean getFallo_envio_validacion() {
-		return fallo_envio_validacion;
+	public Boolean getFalloEnvioValidacion() {
+		return falloEnvioValidacion;
 	}
 
-	public void setFallo_envio_validacion(Boolean fallo_envio_validacion) {
-		this.fallo_envio_validacion = fallo_envio_validacion;
+	public void setFalloEnvioValidacion(Boolean falloEnvioValidacion) {
+		this.falloEnvioValidacion = falloEnvioValidacion;
 	}
 
-	public String getLiteral_comuna() {
-		return literal_comuna;
+	public String getLiteralComuna() {
+		return literalComuna;
 	}
 
-	public void setLiteral_comuna(String literal_comuna) {
-		this.literal_comuna = literal_comuna;
+	public void setLiteralComuna(String literalComuna) {
+		this.literalComuna = literalComuna;
 	}
 
-	public Boolean getAct_datos_contacto() {
-		return act_datos_contacto;
+	public Boolean getActDatosContacto() {
+		return actDatosContacto;
 	}
 
-	public void setAct_datos_contacto(Boolean act_datos_contacto) {
-		this.act_datos_contacto = act_datos_contacto;
+	public void setActDatosContacto(Boolean actDatosContacto) {
+		this.actDatosContacto = actDatosContacto;
 	}
 
-	public String getFallo_creacion_observacion() {
-		return fallo_creacion_observacion;
+	public String getFalloCreacionObservacion() {
+		return falloCreacionObservacion;
 	}
 
-	public void setFallo_creacion_observacion(String fallo_creacion_observacion) {
-		this.fallo_creacion_observacion = fallo_creacion_observacion;
+	public void setFalloCreacionObservacion(String falloCreacionObservacion) {
+		this.falloCreacionObservacion = falloCreacionObservacion;
 	}
 
-	public Boolean getSfidestado_preingreso() {
-		return sfidestado_preingreso;
+	public Boolean getSfidestadoPreingreso() {
+		return sfidestadoPreingreso;
 	}
 
-	public void setSfidestado_preingreso(Boolean sfidestado_preingreso) {
-		this.sfidestado_preingreso = sfidestado_preingreso;
+	public void setSfidestadoPreingreso(Boolean sfidestadoPreingreso) {
+		this.sfidestadoPreingreso = sfidestadoPreingreso;
 	}
 
-	public String getEmail_de_notificacion() {
-		return email_de_notificacion;
+	public String getEmailNotificacion() {
+		return emailNotificacion;
 	}
 
-	public void setEmail_de_notificacion(String email_de_notificacion) {
-		this.email_de_notificacion = email_de_notificacion;
+	public void setEmailNotificacion(String emailNotificacion) {
+		this.emailNotificacion = emailNotificacion;
 	}
 
 	public Double getHoraap() {
@@ -696,12 +695,12 @@ public class Case implements Serializable{
 		this.horaap = horaap;
 	}
 
-	public String getNumero_de_inservice() {
-		return numero_de_inservice;
+	public String getNumeroInservice() {
+		return numeroInservice;
 	}
 
-	public void setNumero_de_inservice(String numero_de_inservice) {
-		this.numero_de_inservice = numero_de_inservice;
+	public void setNumeroInservice(String numeroInservice) {
+		this.numeroInservice = numeroInservice;
 	}
 
 	public String getSuppliedphone() {
@@ -712,12 +711,12 @@ public class Case implements Serializable{
 		this.suppliedphone = suppliedphone;
 	}
 
-	public String getNumero_de_medidor() {
-		return numero_de_medidor;
+	public String getNumeroMedidor() {
+		return numeroMedidor;
 	}
 
-	public void setNumero_de_medidor(String numero_de_medidor) {
-		this.numero_de_medidor = numero_de_medidor;
+	public void setNumeroMedidor(String numeroMedidor) {
+		this.numeroMedidor = numeroMedidor;
 	}
 
 	public Boolean getIsstopped() {
@@ -728,20 +727,20 @@ public class Case implements Serializable{
 		this.isstopped = isstopped;
 	}
 
-	public String getCuerpo_mail() {
-		return cuerpo_mail;
+	public String getCuerpoMail() {
+		return cuerpoMail;
 	}
 
-	public void setCuerpo_mail(String cuerpo_mail) {
-		this.cuerpo_mail = cuerpo_mail;
+	public void setCuerpoMail(String cuerpoMail) {
+		this.cuerpoMail = cuerpoMail;
 	}
 
-	public String getTelefono_de_contacto() {
-		return telefono_de_contacto;
+	public String getTelefonoContacto() {
+		return telefonoContacto;
 	}
 
-	public void setTelefono_de_contacto(String telefono_de_contacto) {
-		this.telefono_de_contacto = telefono_de_contacto;
+	public void setTelefonoContacto(String telefonoContacto) {
+		this.telefonoContacto = telefonoContacto;
 	}
 
 	public String getQuestionid() {
@@ -760,20 +759,20 @@ public class Case implements Serializable{
 		this.hasselfservicecomments = hasselfservicecomments;
 	}
 
-	public String getTraza_fallo_inservice() {
-		return traza_fallo_inservice;
+	public String getTrazaFalloInservice() {
+		return trazaFalloInservice;
 	}
 
-	public void setTraza_fallo_inservice(String traza_fallo_inservice) {
-		this.traza_fallo_inservice = traza_fallo_inservice;
+	public void setTrazaFalloInservice(String trazaFalloInservice) {
+		this.trazaFalloInservice = trazaFalloInservice;
 	}
 
-	public String getCanal_de_notificacion() {
-		return canal_de_notificacion;
+	public String getCanalNotificacion() {
+		return canalNotificacion;
 	}
 
-	public void setCanal_de_notificacion(String canal_de_notificacion) {
-		this.canal_de_notificacion = canal_de_notificacion;
+	public void setCanalNotificacion(String canalNotificacion) {
+		this.canalNotificacion = canalNotificacion;
 	}
 
 	public String getCreatedbyid() {
@@ -784,12 +783,12 @@ public class Case implements Serializable{
 		this.createdbyid = createdbyid;
 	}
 
-	public String getCategor_a() {
-		return categor_a;
+	public String getCategoria() {
+		return categoria;
 	}
 
-	public void setCategor_a(String categor_a) {
-		this.categor_a = categor_a;
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 	public String getFlag() {
@@ -832,28 +831,28 @@ public class Case implements Serializable{
 		this.status = status;
 	}
 
-	public String getSf4twitter__twitterid() {
-		return sf4twitter__twitterid;
+	public String getSf4twitterTwitterid() {
+		return sf4twitterTwitterid;
 	}
 
-	public void setSf4twitter__twitterid(String sf4twitter__twitterid) {
-		this.sf4twitter__twitterid = sf4twitter__twitterid;
+	public void setSf4twitterTwitterid(String sf4twitterTwitterid) {
+		this.sf4twitterTwitterid = sf4twitterTwitterid;
 	}
 
-	public String getRespuesta_al_cliente() {
-		return respuesta_al_cliente;
+	public String getRespuestaAlCliente() {
+		return respuestaAlCliente;
 	}
 
-	public void setRespuesta_al_cliente(String respuesta_al_cliente) {
-		this.respuesta_al_cliente = respuesta_al_cliente;
+	public void setRespuestaAlCliente(String respuestaAlCliente) {
+		this.respuestaAlCliente = respuestaAlCliente;
 	}
 
-	public String getN_mero_de_caso_ap() {
-		return n_mero_de_caso_ap;
+	public String getNumeroCasoAp() {
+		return numeroCasoAp;
 	}
 
-	public void setN_mero_de_caso_ap(String n_mero_de_caso_ap) {
-		this.n_mero_de_caso_ap = n_mero_de_caso_ap;
+	public void setNumeroCasoAp(String numeroCasoAp) {
+		this.numeroCasoAp = numeroCasoAp;
 	}
 
 	public Boolean getIsescalated() {
@@ -872,20 +871,20 @@ public class Case implements Serializable{
 		this.interaccion = interaccion;
 	}
 
-	public String getTipo_atencion_sec() {
-		return tipo_atencion_sec;
+	public String getTipoAtencionSec() {
+		return tipoAtencionSec;
 	}
 
-	public void setTipo_atencion_sec(String tipo_atencion_sec) {
-		this.tipo_atencion_sec = tipo_atencion_sec;
+	public void setTipoAtencionSec(String tipoAtencionSec) {
+		this.tipoAtencionSec = tipoAtencionSec;
 	}
 
-	public String getSub_estado() {
-		return sub_estado;
+	public String getSubEstado() {
+		return subEstado;
 	}
 
-	public void setSub_estado(String sub_estado) {
-		this.sub_estado = sub_estado;
+	public void setSubEstado(String subEstado) {
+		this.subEstado = subEstado;
 	}
 
 	public Boolean getIsvisibleinselfservice() {
@@ -896,36 +895,36 @@ public class Case implements Serializable{
 		this.isvisibleinselfservice = isvisibleinselfservice;
 	}
 
-	public String getTipo_atencion_interna() {
-		return tipo_atencion_interna;
+	public String getTipoAtencionInterna() {
+		return tipoAtencionInterna;
 	}
 
-	public void setTipo_atencion_interna(String tipo_atencion_interna) {
-		this.tipo_atencion_interna = tipo_atencion_interna;
+	public void setTipoAtencionInterna(String tipoAtencionInterna) {
+		this.tipoAtencionInterna = tipoAtencionInterna;
 	}
 
-	public Date getHora_sec() {
-		return hora_sec;
+	public Date getHoraSec() {
+		return horaSec;
 	}
 
-	public void setHora_sec(Date hora_sec) {
-		this.hora_sec = hora_sec;
+	public void setHoraSec(Date horaSec) {
+		this.horaSec = horaSec;
 	}
 
-	public Boolean getPendientevalidacioncondagr() {
-		return pendientevalidacioncondagr;
+	public Boolean getPendienteValidacionCondagr() {
+		return pendienteValidacionCondagr;
 	}
 
-	public void setPendientevalidacioncondagr(Boolean pendientevalidacioncondagr) {
-		this.pendientevalidacioncondagr = pendientevalidacioncondagr;
+	public void setPendienteValidacionCondagr(Boolean pendienteValidacionCondagr) {
+		this.pendienteValidacionCondagr = pendienteValidacionCondagr;
 	}
 
-	public String getEjecutivoanterior() {
-		return ejecutivoanterior;
+	public String getEjecutivoAnterior() {
+		return ejecutivoAnterior;
 	}
 
-	public void setEjecutivoanterior(String ejecutivoanterior) {
-		this.ejecutivoanterior = ejecutivoanterior;
+	public void setEjecutivoAnterior(String ejecutivoAnterior) {
+		this.ejecutivoAnterior = ejecutivoAnterior;
 	}
 
 	public String getEntitlementid() {
@@ -944,44 +943,44 @@ public class Case implements Serializable{
 		this.assetid = assetid;
 	}
 
-	public Date getStopstartdate() {
-		return stopstartdate;
+	public Date getStopstartDate() {
+		return stopstartDate;
 	}
 
-	public void setStopstartdate(Date stopstartdate) {
-		this.stopstartdate = stopstartdate;
+	public void setStopstartDate(Date stopstartDate) {
+		this.stopstartDate = stopstartDate;
 	}
 
-	public String getSuppliedcompany() {
-		return suppliedcompany;
+	public String getSuppliedCompany() {
+		return suppliedCompany;
 	}
 
-	public void setSuppliedcompany(String suppliedcompany) {
-		this.suppliedcompany = suppliedcompany;
+	public void setSuppliedCompany(String suppliedCompany) {
+		this.suppliedCompany = suppliedCompany;
 	}
 
-	public Boolean getIsclosedoncreate() {
-		return isclosedoncreate;
+	public Boolean getIsClosedonCreate() {
+		return isClosedonCreate;
 	}
 
-	public void setIsclosedoncreate(Boolean isclosedoncreate) {
-		this.isclosedoncreate = isclosedoncreate;
+	public void setIsClosedonCreate(Boolean isClosedonCreate) {
+		this.isClosedonCreate = isClosedonCreate;
 	}
 
-	public String getEstado_condici_n_agravante() {
-		return estado_condici_n_agravante;
+	public String getEstadoCondicionAgravante() {
+		return estadoCondicionAgravante;
 	}
 
-	public void setEstado_condici_n_agravante(String estado_condici_n_agravante) {
-		this.estado_condici_n_agravante = estado_condici_n_agravante;
+	public void setEstadoCondicionAgravante(String estadoCondicionAgravante) {
+		this.estadoCondicionAgravante = estadoCondicionAgravante;
 	}
 
-	public Date getHora_cancelado() {
-		return hora_cancelado;
+	public Date getHoraCancelado() {
+		return horaCancelado;
 	}
 
-	public void setHora_cancelado(Date hora_cancelado) {
-		this.hora_cancelado = hora_cancelado;
+	public void setHoraCancelado(Date horaCancelado) {
+		this.horaCancelado = horaCancelado;
 	}
 
 	public String getSuministro() {
@@ -992,12 +991,12 @@ public class Case implements Serializable{
 		this.suministro = suministro;
 	}
 
-	public Boolean getIsselfserviceclosed() {
-		return isselfserviceclosed;
+	public Boolean getIsSelfserviceClosed() {
+		return isSelfserviceClosed;
 	}
 
-	public void setIsselfserviceclosed(Boolean isselfserviceclosed) {
-		this.isselfserviceclosed = isselfserviceclosed;
+	public void setIsSelfserviceClosed(Boolean isSelfserviceClosed) {
+		this.isSelfserviceClosed = isSelfserviceClosed;
 	}
 
 	public String getParentid() {
@@ -1016,12 +1015,12 @@ public class Case implements Serializable{
 		this.ui = ui;
 	}
 
-	public String getNumsum() {
-		return numsum;
+	public String getNumSum() {
+		return numSum;
 	}
 
-	public void setNumsum(String numsum) {
-		this.numsum = numsum;
+	public void setNumSum(String numSum) {
+		this.numSum = numSum;
 	}
 
 	public String getTwitter() {
@@ -1032,28 +1031,28 @@ public class Case implements Serializable{
 		this.twitter = twitter;
 	}
 
-	public String getSuppliedname() {
-		return suppliedname;
+	public String getSuppliedName() {
+		return suppliedName;
 	}
 
-	public void setSuppliedname(String suppliedname) {
-		this.suppliedname = suppliedname;
+	public void setSuppliedName(String suppliedName) {
+		this.suppliedName = suppliedName;
 	}
 
-	public Date getCloseddate() {
-		return closeddate;
+	public Date getClosedDate() {
+		return closedDate;
 	}
 
-	public void setCloseddate(Date closeddate) {
-		this.closeddate = closeddate;
+	public void setClosedDate(Date closedDate) {
+		this.closedDate = closedDate;
 	}
 
-	public Boolean getFallo_envio_inservice() {
-		return fallo_envio_inservice;
+	public Boolean getFalloEnvioInservice() {
+		return falloEnvioInservice;
 	}
 
-	public void setFallo_envio_inservice(Boolean fallo_envio_inservice) {
-		this.fallo_envio_inservice = fallo_envio_inservice;
+	public void setFalloEnvioInservice(Boolean falloEnvioInservice) {
+		this.falloEnvioInservice = falloEnvioInservice;
 	}
 
 	public String getDescription() {
@@ -1064,20 +1063,20 @@ public class Case implements Serializable{
 		this.description = description;
 	}
 
-	public Date getHora_arribado() {
-		return hora_arribado;
+	public Date getHoraArribado() {
+		return horaArribado;
 	}
 
-	public void setHora_arribado(Date hora_arribado) {
-		this.hora_arribado = hora_arribado;
+	public void setHoraArribado(Date horaArribado) {
+		this.horaArribado = horaArribado;
 	}
 
-	public Date getSlaexitdate() {
-		return slaexitdate;
+	public Date getSlaexitDate() {
+		return slaexitDate;
 	}
 
-	public void setSlaexitdate(Date slaexitdate) {
-		this.slaexitdate = slaexitdate;
+	public void setSlaexitDate(Date slaexitDate) {
+		this.slaexitDate = slaexitDate;
 	}
 
 	public String getOrigin() {
@@ -1088,52 +1087,52 @@ public class Case implements Serializable{
 		this.origin = origin;
 	}
 
-	public String getDescripcion_estado() {
-		return descripcion_estado;
+	public String getDescripcionEstado() {
+		return descripcionEstado;
 	}
 
-	public void setDescripcion_estado(String descripcion_estado) {
-		this.descripcion_estado = descripcion_estado;
+	public void setDescripcionEstado(String descripcionEstado) {
+		this.descripcionEstado = descripcionEstado;
 	}
 
-	public String getBusinesshoursid() {
-		return businesshoursid;
+	public String getBusinessHoursId() {
+		return businessHoursId;
 	}
 
-	public void setBusinesshoursid(String businesshoursid) {
-		this.businesshoursid = businesshoursid;
+	public void setBusinessHoursId(String businessHoursId) {
+		this.businessHoursId = businessHoursId;
 	}
 
-	public String getSf4twitter__author_external_id() {
-		return sf4twitter__author_external_id;
+	public String getSf4twitterAuthorExternalId() {
+		return sf4twitterAuthorExternalId;
 	}
 
-	public void setSf4twitter__author_external_id(String sf4twitter__author_external_id) {
-		this.sf4twitter__author_external_id = sf4twitter__author_external_id;
+	public void setSf4twitterAuthorExternalId(String sf4twitterAuthorExternalId) {
+		this.sf4twitterAuthorExternalId = sf4twitterAuthorExternalId;
 	}
 
-	public Boolean getHascommentsunreadbyowner() {
-		return hascommentsunreadbyowner;
+	public Boolean getHasCommentSunReadByOwner() {
+		return hasCommentSunReadByOwner;
 	}
 
-	public void setHascommentsunreadbyowner(Boolean hascommentsunreadbyowner) {
-		this.hascommentsunreadbyowner = hascommentsunreadbyowner;
+	public void setHasCommentSunReadByOwner(Boolean hasCommentSunReadByOwner) {
+		this.hasCommentSunReadByOwner = hasCommentSunReadByOwner;
 	}
 
-	public Date getHora_cerrado() {
-		return hora_cerrado;
+	public Date getHoraCerrado() {
+		return horaCerrado;
 	}
 
-	public void setHora_cerrado(Date hora_cerrado) {
-		this.hora_cerrado = hora_cerrado;
+	public void setHoraCerrado(Date horaCerrado) {
+		this.horaCerrado = horaCerrado;
 	}
 
-	public String getLiteral_condici_n_agravante() {
-		return literal_condici_n_agravante;
+	public String getLiteralCondicionAgravante() {
+		return literalCondicionAgravante;
 	}
 
-	public void setLiteral_condici_n_agravante(String literal_condici_n_agravante) {
-		this.literal_condici_n_agravante = literal_condici_n_agravante;
+	public void setLiteralCondicionAgravante(String literalCondicionAgravante) {
+		this.literalCondicionAgravante = literalCondicionAgravante;
 	}
 
 	public String getType() {
@@ -1144,20 +1143,20 @@ public class Case implements Serializable{
 		this.type = type;
 	}
 
-	public String getDireccion_del_suministro() {
-		return direccion_del_suministro;
+	public String getDireccionSuministro() {
+		return direccionSuministro;
 	}
 
-	public void setDireccion_del_suministro(String direccion_del_suministro) {
-		this.direccion_del_suministro = direccion_del_suministro;
+	public void setDireccionSuministro(String direccionSuministro) {
+		this.direccionSuministro = direccionSuministro;
 	}
 
-	public Date getHora_pendiente() {
-		return hora_pendiente;
+	public Date getHoraPendiente() {
+		return horaPendiente;
 	}
 
-	public void setHora_pendiente(Date hora_pendiente) {
-		this.hora_pendiente = hora_pendiente;
+	public void setHoraPendiente(Date horaPendiente) {
+		this.horaPendiente = horaPendiente;
 	}
 
 	public String getAni() {
@@ -1176,20 +1175,20 @@ public class Case implements Serializable{
 		this.facebook = facebook;
 	}
 
-	public String getPetici_n() {
-		return petici_n;
+	public String getPeticion() {
+		return peticion;
 	}
 
-	public void setPetici_n(String petici_n) {
-		this.petici_n = petici_n;
+	public void setPeticion(String peticion) {
+		this.peticion = peticion;
 	}
 
-	public String getCommunityid() {
-		return communityid;
+	public String getCommunityId() {
+		return communityId;
 	}
 
-	public void setCommunityid(String communityid) {
-		this.communityid = communityid;
+	public void setCommunityId(String communityId) {
+		this.communityId = communityId;
 	}
 
 	public String getDireccion() {
@@ -1200,44 +1199,44 @@ public class Case implements Serializable{
 		this.direccion = direccion;
 	}
 
-	public Date getHora_asignado() {
-		return hora_asignado;
+	public Date getHoraAsignado() {
+		return horaAsignado;
 	}
 
-	public void setHora_asignado(Date hora_asignado) {
-		this.hora_asignado = hora_asignado;
+	public void setHoraAsignado(Date horaAsignado) {
+		this.horaAsignado = horaAsignado;
 	}
 
-	public String getMilestonestatus() {
-		return milestonestatus;
+	public String getMilestoneStatus() {
+		return milestoneStatus;
 	}
 
-	public void setMilestonestatus(String milestonestatus) {
-		this.milestonestatus = milestonestatus;
+	public void setMilestoneStatus(String milestoneStatus) {
+		this.milestoneStatus = milestoneStatus;
 	}
 
-	public String getContactid() {
-		return contactid;
+	public String getContactId() {
+		return contactId;
 	}
 
-	public void setContactid(String contactid) {
-		this.contactid = contactid;
+	public void setContactId(String contactId) {
+		this.contactId = contactId;
 	}
 
-	public Date getHora_predespacho() {
-		return hora_predespacho;
+	public Date getHoraPredespacho() {
+		return horaPredespacho;
 	}
 
-	public void setHora_predespacho(Date hora_predespacho) {
-		this.hora_predespacho = hora_predespacho;
+	public void setHoraPredespacho(Date horaPredespacho) {
+		this.horaPredespacho = horaPredespacho;
 	}
 
-	public Date getHora_enruta() {
-		return hora_enruta;
+	public Date getHoraEnruta() {
+		return horaEnruta;
 	}
 
-	public void setHora_enruta(Date hora_enruta) {
-		this.hora_enruta = hora_enruta;
+	public void setHoraEnruta(Date horaEnruta) {
+		this.horaEnruta = horaEnruta;
 	}
 
 	public String getReason() {
@@ -1248,52 +1247,52 @@ public class Case implements Serializable{
 		this.reason = reason;
 	}
 
-	public String getId_empresa() {
-		return id_empresa;
+	public String getIdEmpresa() {
+		return idEmpresa;
 	}
 
-	public void setId_empresa(String id_empresa) {
-		this.id_empresa = id_empresa;
+	public void setIdEmpresa(String idEmpresa) {
+		this.idEmpresa = idEmpresa;
 	}
 
-	public Date getHora_programado() {
-		return hora_programado;
+	public Date getHoraProgramado() {
+		return horaProgramado;
 	}
 
-	public void setHora_programado(Date hora_programado) {
-		this.hora_programado = hora_programado;
+	public void setHoraProgramado(Date horaProgramado) {
+		this.horaProgramado = horaProgramado;
 	}
 
-	public Double getNumero_de_seguidores_del() {
-		return numero_de_seguidores_del;
+	public Double getNumeroSeguidoresDel() {
+		return numeroSeguidoresDel;
 	}
 
-	public void setNumero_de_seguidores_del(Double numero_de_seguidores_del) {
-		this.numero_de_seguidores_del = numero_de_seguidores_del;
+	public void setNumeroSeguidoresDel(Double numeroSeguidoresDel) {
+		this.numeroSeguidoresDel = numeroSeguidoresDel;
 	}
 
-	public String getLiteral_categorias() {
-		return literal_categorias;
+	public String getLiteralCategorias() {
+		return literalCategorias;
 	}
 
-	public void setLiteral_categorias(String literal_categorias) {
-		this.literal_categorias = literal_categorias;
+	public void setLiteralCategorias(String literalCategorias) {
+		this.literalCategorias = literalCategorias;
 	}
 
-	public String getRecordtypeid() {
-		return recordtypeid;
+	public String getRecordtypeId() {
+		return recordtypeId;
 	}
 
-	public void setRecordtypeid(String recordtypeid) {
-		this.recordtypeid = recordtypeid;
+	public void setRecordtypeId(String recordtypeId) {
+		this.recordtypeId = recordtypeId;
 	}
 
-	public String getComuna_f() {
-		return comuna_f;
+	public String getComunaF() {
+		return comunaF;
 	}
 
-	public void setComuna_f(String comuna_f) {
-		this.comuna_f = comuna_f;
+	public void setComunaF(String comunaF) {
+		this.comunaF = comunaF;
 	}
 
 	public String getPrioridad() {
@@ -1304,20 +1303,20 @@ public class Case implements Serializable{
 		this.prioridad = prioridad;
 	}
 
-	public String getValorsubestadoins() {
-		return valorsubestadoins;
+	public String getValorSubestadoins() {
+		return valorSubestadoins;
 	}
 
-	public void setValorsubestadoins(String valorsubestadoins) {
-		this.valorsubestadoins = valorsubestadoins;
+	public void setValorSubestadoins(String valorSubestadoins) {
+		this.valorSubestadoins = valorSubestadoins;
 	}
 
-	public Boolean getControl_electrodependiente() {
-		return control_electrodependiente;
+	public Boolean getControlElectrodependiente() {
+		return controlElectrodependiente;
 	}
 
-	public void setControl_electrodependiente(Boolean control_electrodependiente) {
-		this.control_electrodependiente = control_electrodependiente;
+	public void setControlElectrodependiente(Boolean controlElectrodependiente) {
+		this.controlElectrodependiente = controlElectrodependiente;
 	}
 
 	public Boolean getCancelar() {
@@ -1328,23 +1327,13 @@ public class Case implements Serializable{
 		this.cancelar = cancelar;
 	}
 
-	public String getCondici_n_agravante() {
-		return condici_n_agravante;
+	public String getCondicionAgravante() {
+		return condicionAgravante;
 	}
 
-	public void setCondici_n_agravante(String condici_n_agravante) {
-		this.condici_n_agravante = condici_n_agravante;
+	public void setCondicionAgravante(String condicionAgravante) {
+		this.condicionAgravante = condicionAgravante;
 	}
-	
 
-	
-	
 
-	
-	
-	
-
-	
-
-	
 }

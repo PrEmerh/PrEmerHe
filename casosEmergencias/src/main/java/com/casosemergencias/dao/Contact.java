@@ -46,167 +46,166 @@ public class Contact implements Serializable{
 	private String name;
 	
 	@Column(name = "parent__rut_empresa__c")
-	private String parent__rut_empresa;
+	private String parentRutEmpresa;
 	
 	@Column(name = "fecha_nacimiento__c")
-	private Date fecha_nacimiento;
+	private Date fechaNacimiento;
 	
 	@Column(name = "nombre_concatenado__c")
-	private String nombre_concatenado;
+	private String nombreConcatenado;
 	
 	@Column(name = "rut_empresa_laboral__c")
-	private String rut_empresa_laboral;
+	private String rutEmpresaLaboral;
 
 	@Column(name = "birthdate")
 	private Date birthdate;
 
 	@Column(name = "detalle_relaci_n__c")
-	private String detalle_relaci_n;
+	private String detalleRelacion;
 	
 	@Column(name = "sf4twitter__contact_source__c")
-	private String sf4twitter__contact_source;
+	private String sf4twitterContactSource;
 	
 	@Column(name = "mobilephone")
-	private String mobilephone;
+	private String mobilePhone;
 	
 	@Column(name = "masterrecordid")
-	private String masterrecordid;
+	private String masterRecordId;
 	
 	@Column(name = "email_laboral__c")
-	private String email_laboral;
+	private String emailLaboral;
 	
 	@Column(name = "reportstoid")
-	private String reportstoid;
+	private String reportstoId;
 	
 	@Column(name = "accountid")
-	private String accountid;
+	private String accountId;
 	
 	@Column(name = "homephone")
-	private String homephone;
+	private String homePhone;
 	
 	@Column(name = "canal_preferente_de_contacto__c")
-	private String canal_preferente_de_contacto;
+	private String canalPreferenteContacto;
 	
 	@Column(name = "tipo_de_cuenta_asociado__c")
-	private String tipo_de_cuenta_asociado;
+	private String tipoCuentaAsociado;
 	
 	@Column(name = "apellido_materno__c")
-	private String apellido_materno;
+	private String apellidoMaterno;
 	
 	@Column(name = "sf4twitter__origin__c")
-	private String sf4twitter__origin;
+	private String sf4twitterOrigin;
 	
 	@Column(name = "tipo_de_identidad__c")
-	private String tipo_de_identidad;
+	private String tipoIdentidad;
 	
 	@Column(name = "tel_fono_secundario__c")
-	private String tel_fono_secundario;
+	private String telefonoSecundario;
 	
 	@Column(name = "ownerid")
 	private String ownerid;
 	
 	@Column(name = "email_secundario__c")
-	private String email_secundario;
+	private String emailSecundario;
 	
 	@Column(name = "lastmodifiedbyid")
-	private String lastmodifiedbyid;
+	private String lastModifiedById;
 	
 	@Column(name = "tel_fono_adicional__c")
-	private String tel_fono_adicional;
+	private String telefonoAdicional;
 	
 	@Column(name = "assistantname")
-	private String assistantname;
+	private String assistantName;
 	
 	@Column(name = "vip__c")
 	private Boolean vip;
 	
 	@Column(name = "sf4twitter__fcbk_username__c")
-	private String sf4twitter__fcbk_username;
+	private String sf4twitterFcbkUsername;
 	
 	@Column(name = "direccion__c")
 	private String direccion;
 	
 	@Column(name = "casos_reiterados__c")
-	private Boolean casos_reiterados;
+	private Boolean casosReiterados;
 	
 	@Column(name = "reportsto__pruebatwitter__c")
-	private String reportsto__pruebatwitter;
+	private String reportstoPruebaTwitter;
 	
 	@Column(name = "email")
 	private String email;
 	
 	@Column(name = "otherphone")
-	private String otherphone;
+	private String otherPhone;
 	
 	@Column(name = "department")
 	private String department;
 	
 	@Column(name = "account__run__c")
-	private String account__run;
+	private String accountRun;
 	
 	@Column(name = "longtel2__c")
 	private Double longtel2;
 	
 	@Column(name = "nombrecompleto__c")
-	private String nombrecompleto;
+	private String nombreCompleto;
 	
 	@Column(name = "dircontacto__c")
-	private String dircontacto;
+	private String dirContacto;
 	
 	@Column(name = "sf4twitter__twitter_user_id__c")
-	private String sf4twitter__twitter_user_id;
+	private String sf4twitterTwitterUserId;
 	
 	@Column(name = "n_mero_serie_c_dula_identidad__c")
-	private Double n_mero_serie_c_dula_identidad;
+	private Double numeroSerieCedulaIdentidad;
 	
 	@Column(name = "masterrecord__pruebatwitter__c")
-	private String masterrecord__pruebatwitter;
+	private String masterRecordPruebaTwitter;
 	
 	@Column(name = "description")
 	private String description;
 	
 	@Column(name = "sf4twitter__fcbk_user_id__c")
-	private String sf4twitter__fcbk_user_id;
+	private String sf4twitterFcbkUserId;
 	
 	@Column(name = "sf4twitter__twitter_username__c")
-	private String sf4twitter__twitter_username;
+	private String sf4twitterTwitterUsername;
 	
 	@Column(name = "tipo_relaci_n_suministro__c")
-	private String tipo_relaci_n_suministro;
+	private String tipoRelacionSuministro;
 	
 	@Column(name = "id_empresa__c")
-	private String id_empresa;
+	private String idEmpresa;
 	
 	@Column(name = "tipo_de_contacto__c")
-	private String tipo_de_contacto;
+	private String tipoContacto;
 	
 	@Column(name = "phone")
 	private String phone;
 	
 	@Column(name = "segmento_de_persona__c")
-	private String segmento_de_persona;
+	private String segmentoPersona;
 	
 	@Column(name = "createdbyid")
-	private String createdbyid;
+	private String createdById;
 	
 	@Column(name = "apellido_paterno__c")
-	private String apellido_paterno;
+	private String apellidoPaterno;
 
 	public Contact(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
-			Date createddate, String name, String parent__rut_empresa, Date fecha_nacimiento, String nombre_concatenado,
-			String rut_empresa_laboral, Date birthdate, String detalle_relaci_n, String sf4twitter__contact_source,
-			String mobilephone, String masterrecordid, String email_laboral, String reportstoid, String accountid,
-			String homephone, String canal_preferente_de_contacto, String tipo_de_cuenta_asociado,
-			String apellido_materno, String sf4twitter__origin, String tipo_de_identidad, String tel_fono_secundario,
-			String ownerid, String email_secundario, String lastmodifiedbyid, String tel_fono_adicional,
-			String assistantname, Boolean vip, String sf4twitter__fcbk_username, String direccion,
-			Boolean casos_reiterados, String reportsto__pruebatwitter, String email, String otherphone,
-			String department, String account__run, Double longtel2, String nombrecompleto, String dircontacto,
-			String sf4twitter__twitter_user_id, Double n_mero_serie_c_dula_identidad,
-			String masterrecord__pruebatwitter, String description, String sf4twitter__fcbk_user_id,
-			String sf4twitter__twitter_username, String tipo_relaci_n_suministro, String id_empresa,
-			String tipo_de_contacto, String phone, String segmento_de_persona, String createdbyid,
-			String apellido_paterno) {
+			Date createddate, String name, String parentRutEmpresa, Date fechaNacimiento, String nombreConcatenado,
+			String rutEmpresaLaboral, Date birthdate, String detalleRelacion, String sf4twitterContactSource,
+			String mobilePhone, String masterRecordId, String emailLaboral, String reportstoId, String accountId,
+			String homePhone, String canalPreferenteContacto, String tipoCuentaAsociado, String apellidoMaterno,
+			String sf4twitterOrigin, String tipoIdentidad, String telefonoSecundario, String ownerid,
+			String emailSecundario, String lastModifiedById, String telefonoAdicional, String assistantName,
+			Boolean vip, String sf4twitterFcbkUsername, String direccion, Boolean casosReiterados,
+			String reportstoPruebaTwitter, String email, String otherPhone, String department, String accountRun,
+			Double longtel2, String nombreCompleto, String dirContacto, String sf4twitterTwitterUserId,
+			Double numeroSerieCedulaIdentidad, String masterRecordPruebaTwitter, String description,
+			String sf4twitterFcbkUserId, String sf4twitterTwitterUsername, String tipoRelacionSuministro,
+			String idEmpresa, String tipoContacto, String phone, String segmentoPersona, String createdById,
+			String apellidoPaterno) {
 		super();
 		this.isdeleted = isdeleted;
 		this.systemmodstamp = systemmodstamp;
@@ -216,55 +215,55 @@ public class Contact implements Serializable{
 		this.sfid = sfid;
 		this.createddate = createddate;
 		this.name = name;
-		this.parent__rut_empresa = parent__rut_empresa;
-		this.fecha_nacimiento = fecha_nacimiento;
-		this.nombre_concatenado = nombre_concatenado;
-		this.rut_empresa_laboral = rut_empresa_laboral;
+		this.parentRutEmpresa = parentRutEmpresa;
+		this.fechaNacimiento = fechaNacimiento;
+		this.nombreConcatenado = nombreConcatenado;
+		this.rutEmpresaLaboral = rutEmpresaLaboral;
 		this.birthdate = birthdate;
-		this.detalle_relaci_n = detalle_relaci_n;
-		this.sf4twitter__contact_source = sf4twitter__contact_source;
-		this.mobilephone = mobilephone;
-		this.masterrecordid = masterrecordid;
-		this.email_laboral = email_laboral;
-		this.reportstoid = reportstoid;
-		this.accountid = accountid;
-		this.homephone = homephone;
-		this.canal_preferente_de_contacto = canal_preferente_de_contacto;
-		this.tipo_de_cuenta_asociado = tipo_de_cuenta_asociado;
-		this.apellido_materno = apellido_materno;
-		this.sf4twitter__origin = sf4twitter__origin;
-		this.tipo_de_identidad = tipo_de_identidad;
-		this.tel_fono_secundario = tel_fono_secundario;
+		this.detalleRelacion = detalleRelacion;
+		this.sf4twitterContactSource = sf4twitterContactSource;
+		this.mobilePhone = mobilePhone;
+		this.masterRecordId = masterRecordId;
+		this.emailLaboral = emailLaboral;
+		this.reportstoId = reportstoId;
+		this.accountId = accountId;
+		this.homePhone = homePhone;
+		this.canalPreferenteContacto = canalPreferenteContacto;
+		this.tipoCuentaAsociado = tipoCuentaAsociado;
+		this.apellidoMaterno = apellidoMaterno;
+		this.sf4twitterOrigin = sf4twitterOrigin;
+		this.tipoIdentidad = tipoIdentidad;
+		this.telefonoSecundario = telefonoSecundario;
 		this.ownerid = ownerid;
-		this.email_secundario = email_secundario;
-		this.lastmodifiedbyid = lastmodifiedbyid;
-		this.tel_fono_adicional = tel_fono_adicional;
-		this.assistantname = assistantname;
+		this.emailSecundario = emailSecundario;
+		this.lastModifiedById = lastModifiedById;
+		this.telefonoAdicional = telefonoAdicional;
+		this.assistantName = assistantName;
 		this.vip = vip;
-		this.sf4twitter__fcbk_username = sf4twitter__fcbk_username;
+		this.sf4twitterFcbkUsername = sf4twitterFcbkUsername;
 		this.direccion = direccion;
-		this.casos_reiterados = casos_reiterados;
-		this.reportsto__pruebatwitter = reportsto__pruebatwitter;
+		this.casosReiterados = casosReiterados;
+		this.reportstoPruebaTwitter = reportstoPruebaTwitter;
 		this.email = email;
-		this.otherphone = otherphone;
+		this.otherPhone = otherPhone;
 		this.department = department;
-		this.account__run = account__run;
+		this.accountRun = accountRun;
 		this.longtel2 = longtel2;
-		this.nombrecompleto = nombrecompleto;
-		this.dircontacto = dircontacto;
-		this.sf4twitter__twitter_user_id = sf4twitter__twitter_user_id;
-		this.n_mero_serie_c_dula_identidad = n_mero_serie_c_dula_identidad;
-		this.masterrecord__pruebatwitter = masterrecord__pruebatwitter;
+		this.nombreCompleto = nombreCompleto;
+		this.dirContacto = dirContacto;
+		this.sf4twitterTwitterUserId = sf4twitterTwitterUserId;
+		this.numeroSerieCedulaIdentidad = numeroSerieCedulaIdentidad;
+		this.masterRecordPruebaTwitter = masterRecordPruebaTwitter;
 		this.description = description;
-		this.sf4twitter__fcbk_user_id = sf4twitter__fcbk_user_id;
-		this.sf4twitter__twitter_username = sf4twitter__twitter_username;
-		this.tipo_relaci_n_suministro = tipo_relaci_n_suministro;
-		this.id_empresa = id_empresa;
-		this.tipo_de_contacto = tipo_de_contacto;
+		this.sf4twitterFcbkUserId = sf4twitterFcbkUserId;
+		this.sf4twitterTwitterUsername = sf4twitterTwitterUsername;
+		this.tipoRelacionSuministro = tipoRelacionSuministro;
+		this.idEmpresa = idEmpresa;
+		this.tipoContacto = tipoContacto;
 		this.phone = phone;
-		this.segmento_de_persona = segmento_de_persona;
-		this.createdbyid = createdbyid;
-		this.apellido_paterno = apellido_paterno;
+		this.segmentoPersona = segmentoPersona;
+		this.createdById = createdById;
+		this.apellidoPaterno = apellidoPaterno;
 	}
 
 	public Contact() {
@@ -335,36 +334,36 @@ public class Contact implements Serializable{
 		this.name = name;
 	}
 
-	public String getParent__rut_empresa() {
-		return parent__rut_empresa;
+	public String getParentRutEmpresa() {
+		return parentRutEmpresa;
 	}
 
-	public void setParent__rut_empresa(String parent__rut_empresa) {
-		this.parent__rut_empresa = parent__rut_empresa;
+	public void setParentRutEmpresa(String parentRutEmpresa) {
+		this.parentRutEmpresa = parentRutEmpresa;
 	}
 
-	public Date getFecha_nacimiento() {
-		return fecha_nacimiento;
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
-	public void setFecha_nacimiento(Date fecha_nacimiento) {
-		this.fecha_nacimiento = fecha_nacimiento;
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public String getNombre_concatenado() {
-		return nombre_concatenado;
+	public String getNombreConcatenado() {
+		return nombreConcatenado;
 	}
 
-	public void setNombre_concatenado(String nombre_concatenado) {
-		this.nombre_concatenado = nombre_concatenado;
+	public void setNombreConcatenado(String nombreConcatenado) {
+		this.nombreConcatenado = nombreConcatenado;
 	}
 
-	public String getRut_empresa_laboral() {
-		return rut_empresa_laboral;
+	public String getRutEmpresaLaboral() {
+		return rutEmpresaLaboral;
 	}
 
-	public void setRut_empresa_laboral(String rut_empresa_laboral) {
-		this.rut_empresa_laboral = rut_empresa_laboral;
+	public void setRutEmpresaLaboral(String rutEmpresaLaboral) {
+		this.rutEmpresaLaboral = rutEmpresaLaboral;
 	}
 
 	public Date getBirthdate() {
@@ -375,116 +374,116 @@ public class Contact implements Serializable{
 		this.birthdate = birthdate;
 	}
 
-	public String getDetalle_relaci_n() {
-		return detalle_relaci_n;
+	public String getDetalleRelacion() {
+		return detalleRelacion;
 	}
 
-	public void setDetalle_relaci_n(String detalle_relaci_n) {
-		this.detalle_relaci_n = detalle_relaci_n;
+	public void setDetalleRelacion(String detalleRelacion) {
+		this.detalleRelacion = detalleRelacion;
 	}
 
-	public String getSf4twitter__contact_source() {
-		return sf4twitter__contact_source;
+	public String getSf4twitterContactSource() {
+		return sf4twitterContactSource;
 	}
 
-	public void setSf4twitter__contact_source(String sf4twitter__contact_source) {
-		this.sf4twitter__contact_source = sf4twitter__contact_source;
+	public void setSf4twitterContactSource(String sf4twitterContactSource) {
+		this.sf4twitterContactSource = sf4twitterContactSource;
 	}
 
-	public String getMobilephone() {
-		return mobilephone;
+	public String getMobilePhone() {
+		return mobilePhone;
 	}
 
-	public void setMobilephone(String mobilephone) {
-		this.mobilephone = mobilephone;
+	public void setMobilePhone(String mobilePhone) {
+		this.mobilePhone = mobilePhone;
 	}
 
-	public String getMasterrecordid() {
-		return masterrecordid;
+	public String getMasterRecordId() {
+		return masterRecordId;
 	}
 
-	public void setMasterrecordid(String masterrecordid) {
-		this.masterrecordid = masterrecordid;
+	public void setMasterRecordId(String masterRecordId) {
+		this.masterRecordId = masterRecordId;
 	}
 
-	public String getEmail_laboral() {
-		return email_laboral;
+	public String getEmailLaboral() {
+		return emailLaboral;
 	}
 
-	public void setEmail_laboral(String email_laboral) {
-		this.email_laboral = email_laboral;
+	public void setEmailLaboral(String emailLaboral) {
+		this.emailLaboral = emailLaboral;
 	}
 
-	public String getReportstoid() {
-		return reportstoid;
+	public String getReportstoId() {
+		return reportstoId;
 	}
 
-	public void setReportstoid(String reportstoid) {
-		this.reportstoid = reportstoid;
+	public void setReportstoId(String reportstoId) {
+		this.reportstoId = reportstoId;
 	}
 
-	public String getAccountid() {
-		return accountid;
+	public String getAccountId() {
+		return accountId;
 	}
 
-	public void setAccountid(String accountid) {
-		this.accountid = accountid;
+	public void setAccountId(String accountId) {
+		this.accountId = accountId;
 	}
 
-	public String getHomephone() {
-		return homephone;
+	public String getHomePhone() {
+		return homePhone;
 	}
 
-	public void setHomephone(String homephone) {
-		this.homephone = homephone;
+	public void setHomePhone(String homePhone) {
+		this.homePhone = homePhone;
 	}
 
-	public String getCanal_preferente_de_contacto() {
-		return canal_preferente_de_contacto;
+	public String getCanalPreferenteContacto() {
+		return canalPreferenteContacto;
 	}
 
-	public void setCanal_preferente_de_contacto(String canal_preferente_de_contacto) {
-		this.canal_preferente_de_contacto = canal_preferente_de_contacto;
+	public void setCanalPreferenteContacto(String canalPreferenteContacto) {
+		this.canalPreferenteContacto = canalPreferenteContacto;
 	}
 
-	public String getTipo_de_cuenta_asociado() {
-		return tipo_de_cuenta_asociado;
+	public String getTipoCuentaAsociado() {
+		return tipoCuentaAsociado;
 	}
 
-	public void setTipo_de_cuenta_asociado(String tipo_de_cuenta_asociado) {
-		this.tipo_de_cuenta_asociado = tipo_de_cuenta_asociado;
+	public void setTipoCuentaAsociado(String tipoCuentaAsociado) {
+		this.tipoCuentaAsociado = tipoCuentaAsociado;
 	}
 
-	public String getApellido_materno() {
-		return apellido_materno;
+	public String getApellidoMaterno() {
+		return apellidoMaterno;
 	}
 
-	public void setApellido_materno(String apellido_materno) {
-		this.apellido_materno = apellido_materno;
+	public void setApellidoMaterno(String apellidoMaterno) {
+		this.apellidoMaterno = apellidoMaterno;
 	}
 
-	public String getSf4twitter__origin() {
-		return sf4twitter__origin;
+	public String getSf4twitterOrigin() {
+		return sf4twitterOrigin;
 	}
 
-	public void setSf4twitter__origin(String sf4twitter__origin) {
-		this.sf4twitter__origin = sf4twitter__origin;
+	public void setSf4twitterOrigin(String sf4twitterOrigin) {
+		this.sf4twitterOrigin = sf4twitterOrigin;
 	}
 
-	public String getTipo_de_identidad() {
-		return tipo_de_identidad;
+	public String getTipoIdentidad() {
+		return tipoIdentidad;
 	}
 
-	public void setTipo_de_identidad(String tipo_de_identidad) {
-		this.tipo_de_identidad = tipo_de_identidad;
+	public void setTipoIdentidad(String tipoIdentidad) {
+		this.tipoIdentidad = tipoIdentidad;
 	}
 
-	public String getTel_fono_secundario() {
-		return tel_fono_secundario;
+	public String getTelefonoSecundario() {
+		return telefonoSecundario;
 	}
 
-	public void setTel_fono_secundario(String tel_fono_secundario) {
-		this.tel_fono_secundario = tel_fono_secundario;
+	public void setTelefonoSecundario(String telefonoSecundario) {
+		this.telefonoSecundario = telefonoSecundario;
 	}
 
 	public String getOwnerid() {
@@ -495,36 +494,36 @@ public class Contact implements Serializable{
 		this.ownerid = ownerid;
 	}
 
-	public String getEmail_secundario() {
-		return email_secundario;
+	public String getEmailSecundario() {
+		return emailSecundario;
 	}
 
-	public void setEmail_secundario(String email_secundario) {
-		this.email_secundario = email_secundario;
+	public void setEmailSecundario(String emailSecundario) {
+		this.emailSecundario = emailSecundario;
 	}
 
-	public String getLastmodifiedbyid() {
-		return lastmodifiedbyid;
+	public String getLastModifiedById() {
+		return lastModifiedById;
 	}
 
-	public void setLastmodifiedbyid(String lastmodifiedbyid) {
-		this.lastmodifiedbyid = lastmodifiedbyid;
+	public void setLastModifiedById(String lastModifiedById) {
+		this.lastModifiedById = lastModifiedById;
 	}
 
-	public String getTel_fono_adicional() {
-		return tel_fono_adicional;
+	public String getTelefonoAdicional() {
+		return telefonoAdicional;
 	}
 
-	public void setTel_fono_adicional(String tel_fono_adicional) {
-		this.tel_fono_adicional = tel_fono_adicional;
+	public void setTelefonoAdicional(String telefonoAdicional) {
+		this.telefonoAdicional = telefonoAdicional;
 	}
 
-	public String getAssistantname() {
-		return assistantname;
+	public String getAssistantName() {
+		return assistantName;
 	}
 
-	public void setAssistantname(String assistantname) {
-		this.assistantname = assistantname;
+	public void setAssistantName(String assistantName) {
+		this.assistantName = assistantName;
 	}
 
 	public Boolean getVip() {
@@ -535,12 +534,12 @@ public class Contact implements Serializable{
 		this.vip = vip;
 	}
 
-	public String getSf4twitter__fcbk_username() {
-		return sf4twitter__fcbk_username;
+	public String getSf4twitterFcbkUsername() {
+		return sf4twitterFcbkUsername;
 	}
 
-	public void setSf4twitter__fcbk_username(String sf4twitter__fcbk_username) {
-		this.sf4twitter__fcbk_username = sf4twitter__fcbk_username;
+	public void setSf4twitterFcbkUsername(String sf4twitterFcbkUsername) {
+		this.sf4twitterFcbkUsername = sf4twitterFcbkUsername;
 	}
 
 	public String getDireccion() {
@@ -551,20 +550,20 @@ public class Contact implements Serializable{
 		this.direccion = direccion;
 	}
 
-	public Boolean getCasos_reiterados() {
-		return casos_reiterados;
+	public Boolean getCasosReiterados() {
+		return casosReiterados;
 	}
 
-	public void setCasos_reiterados(Boolean casos_reiterados) {
-		this.casos_reiterados = casos_reiterados;
+	public void setCasosReiterados(Boolean casosReiterados) {
+		this.casosReiterados = casosReiterados;
 	}
 
-	public String getReportsto__pruebatwitter() {
-		return reportsto__pruebatwitter;
+	public String getReportstoPruebaTwitter() {
+		return reportstoPruebaTwitter;
 	}
 
-	public void setReportsto__pruebatwitter(String reportsto__pruebatwitter) {
-		this.reportsto__pruebatwitter = reportsto__pruebatwitter;
+	public void setReportstoPruebaTwitter(String reportstoPruebaTwitter) {
+		this.reportstoPruebaTwitter = reportstoPruebaTwitter;
 	}
 
 	public String getEmail() {
@@ -575,12 +574,12 @@ public class Contact implements Serializable{
 		this.email = email;
 	}
 
-	public String getOtherphone() {
-		return otherphone;
+	public String getOtherPhone() {
+		return otherPhone;
 	}
 
-	public void setOtherphone(String otherphone) {
-		this.otherphone = otherphone;
+	public void setOtherPhone(String otherPhone) {
+		this.otherPhone = otherPhone;
 	}
 
 	public String getDepartment() {
@@ -591,12 +590,12 @@ public class Contact implements Serializable{
 		this.department = department;
 	}
 
-	public String getAccount__run() {
-		return account__run;
+	public String getAccountRun() {
+		return accountRun;
 	}
 
-	public void setAccount__run(String account__run) {
-		this.account__run = account__run;
+	public void setAccountRun(String accountRun) {
+		this.accountRun = accountRun;
 	}
 
 	public Double getLongtel2() {
@@ -607,44 +606,44 @@ public class Contact implements Serializable{
 		this.longtel2 = longtel2;
 	}
 
-	public String getNombrecompleto() {
-		return nombrecompleto;
+	public String getNombreCompleto() {
+		return nombreCompleto;
 	}
 
-	public void setNombrecompleto(String nombrecompleto) {
-		this.nombrecompleto = nombrecompleto;
+	public void setNombreCompleto(String nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
 	}
 
-	public String getDircontacto() {
-		return dircontacto;
+	public String getDirContacto() {
+		return dirContacto;
 	}
 
-	public void setDircontacto(String dircontacto) {
-		this.dircontacto = dircontacto;
+	public void setDirContacto(String dirContacto) {
+		this.dirContacto = dirContacto;
 	}
 
-	public String getSf4twitter__twitter_user_id() {
-		return sf4twitter__twitter_user_id;
+	public String getSf4twitterTwitterUserId() {
+		return sf4twitterTwitterUserId;
 	}
 
-	public void setSf4twitter__twitter_user_id(String sf4twitter__twitter_user_id) {
-		this.sf4twitter__twitter_user_id = sf4twitter__twitter_user_id;
+	public void setSf4twitterTwitterUserId(String sf4twitterTwitterUserId) {
+		this.sf4twitterTwitterUserId = sf4twitterTwitterUserId;
 	}
 
-	public Double getN_mero_serie_c_dula_identidad() {
-		return n_mero_serie_c_dula_identidad;
+	public Double getNumeroSerieCedulaIdentidad() {
+		return numeroSerieCedulaIdentidad;
 	}
 
-	public void setN_mero_serie_c_dula_identidad(Double n_mero_serie_c_dula_identidad) {
-		this.n_mero_serie_c_dula_identidad = n_mero_serie_c_dula_identidad;
+	public void setNumeroSerieCedulaIdentidad(Double numeroSerieCedulaIdentidad) {
+		this.numeroSerieCedulaIdentidad = numeroSerieCedulaIdentidad;
 	}
 
-	public String getMasterrecord__pruebatwitter() {
-		return masterrecord__pruebatwitter;
+	public String getMasterRecordPruebaTwitter() {
+		return masterRecordPruebaTwitter;
 	}
 
-	public void setMasterrecord__pruebatwitter(String masterrecord__pruebatwitter) {
-		this.masterrecord__pruebatwitter = masterrecord__pruebatwitter;
+	public void setMasterRecordPruebaTwitter(String masterRecordPruebaTwitter) {
+		this.masterRecordPruebaTwitter = masterRecordPruebaTwitter;
 	}
 
 	public String getDescription() {
@@ -655,44 +654,44 @@ public class Contact implements Serializable{
 		this.description = description;
 	}
 
-	public String getSf4twitter__fcbk_user_id() {
-		return sf4twitter__fcbk_user_id;
+	public String getSf4twitterFcbkUserId() {
+		return sf4twitterFcbkUserId;
 	}
 
-	public void setSf4twitter__fcbk_user_id(String sf4twitter__fcbk_user_id) {
-		this.sf4twitter__fcbk_user_id = sf4twitter__fcbk_user_id;
+	public void setSf4twitterFcbkUserId(String sf4twitterFcbkUserId) {
+		this.sf4twitterFcbkUserId = sf4twitterFcbkUserId;
 	}
 
-	public String getSf4twitter__twitter_username() {
-		return sf4twitter__twitter_username;
+	public String getSf4twitterTwitterUsername() {
+		return sf4twitterTwitterUsername;
 	}
 
-	public void setSf4twitter__twitter_username(String sf4twitter__twitter_username) {
-		this.sf4twitter__twitter_username = sf4twitter__twitter_username;
+	public void setSf4twitterTwitterUsername(String sf4twitterTwitterUsername) {
+		this.sf4twitterTwitterUsername = sf4twitterTwitterUsername;
 	}
 
-	public String getTipo_relaci_n_suministro() {
-		return tipo_relaci_n_suministro;
+	public String getTipoRelacionSuministro() {
+		return tipoRelacionSuministro;
 	}
 
-	public void setTipo_relaci_n_suministro(String tipo_relaci_n_suministro) {
-		this.tipo_relaci_n_suministro = tipo_relaci_n_suministro;
+	public void setTipoRelacionSuministro(String tipoRelacionSuministro) {
+		this.tipoRelacionSuministro = tipoRelacionSuministro;
 	}
 
-	public String getId_empresa() {
-		return id_empresa;
+	public String getIdEmpresa() {
+		return idEmpresa;
 	}
 
-	public void setId_empresa(String id_empresa) {
-		this.id_empresa = id_empresa;
+	public void setIdEmpresa(String idEmpresa) {
+		this.idEmpresa = idEmpresa;
 	}
 
-	public String getTipo_de_contacto() {
-		return tipo_de_contacto;
+	public String getTipoContacto() {
+		return tipoContacto;
 	}
 
-	public void setTipo_de_contacto(String tipo_de_contacto) {
-		this.tipo_de_contacto = tipo_de_contacto;
+	public void setTipoContacto(String tipoContacto) {
+		this.tipoContacto = tipoContacto;
 	}
 
 	public String getPhone() {
@@ -703,39 +702,30 @@ public class Contact implements Serializable{
 		this.phone = phone;
 	}
 
-	public String getSegmento_de_persona() {
-		return segmento_de_persona;
+	public String getSegmentoPersona() {
+		return segmentoPersona;
 	}
 
-	public void setSegmento_de_persona(String segmento_de_persona) {
-		this.segmento_de_persona = segmento_de_persona;
+	public void setSegmentoPersona(String segmentoPersona) {
+		this.segmentoPersona = segmentoPersona;
 	}
 
-	public String getCreatedbyid() {
-		return createdbyid;
+	public String getCreatedById() {
+		return createdById;
 	}
 
-	public void setCreatedbyid(String createdbyid) {
-		this.createdbyid = createdbyid;
+	public void setCreatedById(String createdById) {
+		this.createdById = createdById;
 	}
 
-	public String getApellido_paterno() {
-		return apellido_paterno;
+	public String getApellidoPaterno() {
+		return apellidoPaterno;
 	}
 
-	public void setApellido_paterno(String apellido_paterno) {
-		this.apellido_paterno = apellido_paterno;
+	public void setApellidoPaterno(String apellidoPaterno) {
+		this.apellidoPaterno = apellidoPaterno;
 	}
-	
-	
-	
-	
 
-	
-	
-	
-
-	
 
 	
 }

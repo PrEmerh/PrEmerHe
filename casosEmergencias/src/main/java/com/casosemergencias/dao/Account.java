@@ -16,66 +16,66 @@ public class Account implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
+
 	//campo de Heroku
 	//Used to track the IsDeleted field from Salesforce allowing Heroku Connect to handle deletes when polling for updates
 	@Column(name = "isdeleted")
-	private Boolean isdeleted;
+	private Boolean isDeleted;
 	//campo de Heroku
-	//Used to track the IsDeleted field from Salesforce allowing Heroku Connect to handle deletes when polling for updates
+	//The date and time (in the UTC time zone) that the Salesforce object was last modified and used by Heroku Connect when polling for updates
 	@Column(name = "systemmodstamp")
 	private Date systemmodstamp;
 	//campo de Heroku
 	@Column(name = "_hc_lastop")
-	private String _hc_lastop;
+	private String hcLastop;
 	//campo de Heroku
 	@Column(name = "_hc_err")
-	private String _hc_err;
+	private String hcError;
+	@Column(name = "createddate")
+	private Date createddate;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(name = "sfid")
-	private String sfid;
-	
-	@Column(name = "createddate")
-	private Date createddate;
+	private String sfid;	
 	
 	@Column(name = "name")
 	private String name;
 	
 	@Column(name = "parent__rut_empresa__c")
-	private String parent__rut_empresa;
+	private String parentRutEmpresa;
 	
 	@Column(name = "fecha_nacimiento__c")
-	private Date fecha_nacimiento;
+	private Date fechaNacimiento;
 	
 	@Column(name = "tipo_de_usuario_empresa__c")
-	private String tipo_de_usuario_empresa;
+	private String tipoUsuarioEmpresa;
 	
 	@Column(name = "id_empresa__c")
-	private String id_empresa;
+	private String idEmpresa;
 	
 	@Column(name = "masterrecord__run__c")
-	private String masterrecord__run;
+	private String masterrecordRun;
 	
 	@Column(name = "recordtypeid")
 	private String recordtypeid;
 	
 	@Column(name = "codigo_cuenta__c")
-	private String codigo_cuenta;
+	private String codigoCuenta;
 	
 	@Column(name = "tipo_de_identidad__c")
-	private String tipo_de_identidad;
+	private String tipoIdentidad;
 	
 	@Column(name = "type")
 	private String type;
 	
 	@Column(name = "ejecutivo__c")
-	private String ejecutivo__c;
+	private String ejecutivo;
 	
 	@Column(name = "rubro_empresa__c")
-	private String rubro_empresa;
+	private String rubroEmpresa;
 	
 	@Column(name = "parentid")
 	private String parentid;
@@ -84,10 +84,10 @@ public class Account implements Serializable{
 	private String ownerid;
 	
 	@Column(name = "email_secundario__c")
-	private String email_secundario;
+	private String emailSecundario;
 	
 	@Column(name = "tel_fono_principal__c")
-	private String tel_fono_principal;
+	private String telefonoPrincipal;
 	
 	@Column(name = "masterrecordid")
 	private String masterrecordid;
@@ -96,7 +96,7 @@ public class Account implements Serializable{
 	private String createdbyid;
 	
 	@Column(name = "tel_fono_secundario__c")
-	private String tel_fono_secundario;
+	private String telefonoSecundario;
 	
 	@Column(name = "accountsource")
 	private String accountsource;
@@ -111,84 +111,84 @@ public class Account implements Serializable{
 	private String direccion;
 	
 	@Column(name = "raz_n_social_empresa__c")
-	private String raz_n_social_empresa;
+	private String razonSocialEmpresa;
 	
 	@Column(name = "description")
 	private String description;
 	
 	@Column(name = "email_principal__c")
-	private String email_principal;
+	private String emailPrincipal;
 	
 	@Column(name = "apellido_paterno__c")
-	private String apellido_paterno;
+	private String apellidoPaterno;
 	
 	@Column(name = "phone")
 	private String phone;
 	
 	@Column(name = "apellido_materno__c")
-	private String apellido_materno;
+	private String apellidoMaterno;
 	
 	@Column(name = "tel_fono_adicional__c")
-	private String tel_fono_adicional;
+	private String telefonoAdicional;
 
-	public Account(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
-			Date createddate, String name, String parent__rut_empresa, Date fecha_nacimiento,
-			String tipo_de_usuario_empresa, String id_empresa, String masterrecord__run, String recordtypeid,
-			String codigo_cuenta, String tipo_de_identidad, String type, String ejecutivo__c, String rubro_empresa,
-			String parentid, String ownerid, String email_secundario, String tel_fono_principal, String masterrecordid,
-			String createdbyid, String tel_fono_secundario, String accountsource, String lastmodifiedbyid, String giro,
-			String direccion, String raz_n_social_empresa, String description, String email_principal,
-			String apellido_paterno, String phone, String apellido_materno, String tel_fono_adicional) {
+	public Account(Boolean isDeleted, Date systemmodstamp, String hcLastop, String hcError, Date createddate,
+			Integer id, String sfid, String name, String parentRutEmpresa, Date fechaNacimiento,
+			String tipoUsuarioEmpresa, String idEmpresa, String masterrecordRun, String recordtypeid,
+			String codigoCuenta, String tipoIdentidad, String type, String ejecutivo, String rubroEmpresa,
+			String parentid, String ownerid, String emailSecundario, String telefonoPrincipal, String masterrecordid,
+			String createdbyid, String telefonoSecundario, String accountsource, String lastmodifiedbyid, String giro,
+			String direccion, String razonSocialEmpresa, String description, String emailPrincipal,
+			String apellidoPaterno, String phone, String apellidoMaterno, String telefonoAdicional) {
 		super();
-		this.isdeleted = isdeleted;
+		this.isDeleted = isDeleted;
 		this.systemmodstamp = systemmodstamp;
-		this._hc_lastop = _hc_lastop;
-		this._hc_err = _hc_err;
+		this.hcLastop = hcLastop;
+		this.hcError = hcError;
+		this.createddate = createddate;
 		this.id = id;
 		this.sfid = sfid;
-		this.createddate = createddate;
 		this.name = name;
-		this.parent__rut_empresa = parent__rut_empresa;
-		this.fecha_nacimiento = fecha_nacimiento;
-		this.tipo_de_usuario_empresa = tipo_de_usuario_empresa;
-		this.id_empresa = id_empresa;
-		this.masterrecord__run = masterrecord__run;
+		this.parentRutEmpresa = parentRutEmpresa;
+		this.fechaNacimiento = fechaNacimiento;
+		this.tipoUsuarioEmpresa = tipoUsuarioEmpresa;
+		this.idEmpresa = idEmpresa;
+		this.masterrecordRun = masterrecordRun;
 		this.recordtypeid = recordtypeid;
-		this.codigo_cuenta = codigo_cuenta;
-		this.tipo_de_identidad = tipo_de_identidad;
+		this.codigoCuenta = codigoCuenta;
+		this.tipoIdentidad = tipoIdentidad;
 		this.type = type;
-		this.ejecutivo__c = ejecutivo__c;
-		this.rubro_empresa = rubro_empresa;
+		this.ejecutivo = ejecutivo;
+		this.rubroEmpresa = rubroEmpresa;
 		this.parentid = parentid;
 		this.ownerid = ownerid;
-		this.email_secundario = email_secundario;
-		this.tel_fono_principal = tel_fono_principal;
+		this.emailSecundario = emailSecundario;
+		this.telefonoPrincipal = telefonoPrincipal;
 		this.masterrecordid = masterrecordid;
 		this.createdbyid = createdbyid;
-		this.tel_fono_secundario = tel_fono_secundario;
+		this.telefonoSecundario = telefonoSecundario;
 		this.accountsource = accountsource;
 		this.lastmodifiedbyid = lastmodifiedbyid;
 		this.giro = giro;
 		this.direccion = direccion;
-		this.raz_n_social_empresa = raz_n_social_empresa;
+		this.razonSocialEmpresa = razonSocialEmpresa;
 		this.description = description;
-		this.email_principal = email_principal;
-		this.apellido_paterno = apellido_paterno;
+		this.emailPrincipal = emailPrincipal;
+		this.apellidoPaterno = apellidoPaterno;
 		this.phone = phone;
-		this.apellido_materno = apellido_materno;
-		this.tel_fono_adicional = tel_fono_adicional;
+		this.apellidoMaterno = apellidoMaterno;
+		this.telefonoAdicional = telefonoAdicional;
 	}
 
 	public Account() {
 		super();
 	}
 
-	public Boolean getIsdeleted() {
-		return isdeleted;
+	public Boolean getIsDeleted() {
+		return isDeleted;
 	}
 
-	public void setIsdeleted(Boolean isdeleted) {
-		this.isdeleted = isdeleted;
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 
 	public Date getSystemmodstamp() {
@@ -199,20 +199,28 @@ public class Account implements Serializable{
 		this.systemmodstamp = systemmodstamp;
 	}
 
-	public String get_hc_lastop() {
-		return _hc_lastop;
+	public String getHcLastop() {
+		return hcLastop;
 	}
 
-	public void set_hc_lastop(String _hc_lastop) {
-		this._hc_lastop = _hc_lastop;
+	public void setHcLastop(String hcLastop) {
+		this.hcLastop = hcLastop;
 	}
 
-	public String get_hc_err() {
-		return _hc_err;
+	public String getHcError() {
+		return hcError;
 	}
 
-	public void set_hc_err(String _hc_err) {
-		this._hc_err = _hc_err;
+	public void setHcError(String hcError) {
+		this.hcError = hcError;
+	}
+
+	public Date getCreateddate() {
+		return createddate;
+	}
+
+	public void setCreateddate(Date createddate) {
+		this.createddate = createddate;
 	}
 
 	public Integer getId() {
@@ -231,14 +239,6 @@ public class Account implements Serializable{
 		this.sfid = sfid;
 	}
 
-	public Date getCreateddate() {
-		return createddate;
-	}
-
-	public void setCreateddate(Date createddate) {
-		this.createddate = createddate;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -247,44 +247,44 @@ public class Account implements Serializable{
 		this.name = name;
 	}
 
-	public String getParent__rut_empresa() {
-		return parent__rut_empresa;
+	public String getParentRutEmpresa() {
+		return parentRutEmpresa;
 	}
 
-	public void setParent__rut_empresa(String parent__rut_empresa) {
-		this.parent__rut_empresa = parent__rut_empresa;
+	public void setParentRutEmpresa(String parentRutEmpresa) {
+		this.parentRutEmpresa = parentRutEmpresa;
 	}
 
-	public Date getFecha_nacimiento() {
-		return fecha_nacimiento;
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
 	}
 
-	public void setFecha_nacimiento(Date fecha_nacimiento) {
-		this.fecha_nacimiento = fecha_nacimiento;
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public String getTipo_de_usuario_empresa() {
-		return tipo_de_usuario_empresa;
+	public String getTipoUsuarioEmpresa() {
+		return tipoUsuarioEmpresa;
 	}
 
-	public void setTipo_de_usuario_empresa(String tipo_de_usuario_empresa) {
-		this.tipo_de_usuario_empresa = tipo_de_usuario_empresa;
+	public void setTipoUsuarioEmpresa(String tipoUsuarioEmpresa) {
+		this.tipoUsuarioEmpresa = tipoUsuarioEmpresa;
 	}
 
-	public String getId_empresa() {
-		return id_empresa;
+	public String getIdEmpresa() {
+		return idEmpresa;
 	}
 
-	public void setId_empresa(String id_empresa) {
-		this.id_empresa = id_empresa;
+	public void setIdEmpresa(String idEmpresa) {
+		this.idEmpresa = idEmpresa;
 	}
 
-	public String getMasterrecord__run() {
-		return masterrecord__run;
+	public String getMasterrecordRun() {
+		return masterrecordRun;
 	}
 
-	public void setMasterrecord__run(String masterrecord__run) {
-		this.masterrecord__run = masterrecord__run;
+	public void setMasterrecordRun(String masterrecordRun) {
+		this.masterrecordRun = masterrecordRun;
 	}
 
 	public String getRecordtypeid() {
@@ -295,20 +295,20 @@ public class Account implements Serializable{
 		this.recordtypeid = recordtypeid;
 	}
 
-	public String getCodigo_cuenta() {
-		return codigo_cuenta;
+	public String getCodigoCuenta() {
+		return codigoCuenta;
 	}
 
-	public void setCodigo_cuenta(String codigo_cuenta) {
-		this.codigo_cuenta = codigo_cuenta;
+	public void setCodigoCuenta(String codigoCuenta) {
+		this.codigoCuenta = codigoCuenta;
 	}
 
-	public String getTipo_de_identidad() {
-		return tipo_de_identidad;
+	public String getTipoIdentidad() {
+		return tipoIdentidad;
 	}
 
-	public void setTipo_de_identidad(String tipo_de_identidad) {
-		this.tipo_de_identidad = tipo_de_identidad;
+	public void setTipoIdentidad(String tipoIdentidad) {
+		this.tipoIdentidad = tipoIdentidad;
 	}
 
 	public String getType() {
@@ -319,20 +319,20 @@ public class Account implements Serializable{
 		this.type = type;
 	}
 
-	public String getEjecutivo__c() {
-		return ejecutivo__c;
+	public String getEjecutivo() {
+		return ejecutivo;
 	}
 
-	public void setEjecutivo__c(String ejecutivo__c) {
-		this.ejecutivo__c = ejecutivo__c;
+	public void setEjecutivo(String ejecutivo) {
+		this.ejecutivo = ejecutivo;
 	}
 
-	public String getRubro_empresa() {
-		return rubro_empresa;
+	public String getRubroEmpresa() {
+		return rubroEmpresa;
 	}
 
-	public void setRubro_empresa(String rubro_empresa) {
-		this.rubro_empresa = rubro_empresa;
+	public void setRubroEmpresa(String rubroEmpresa) {
+		this.rubroEmpresa = rubroEmpresa;
 	}
 
 	public String getParentid() {
@@ -351,20 +351,20 @@ public class Account implements Serializable{
 		this.ownerid = ownerid;
 	}
 
-	public String getEmail_secundario() {
-		return email_secundario;
+	public String getEmailSecundario() {
+		return emailSecundario;
 	}
 
-	public void setEmail_secundario(String email_secundario) {
-		this.email_secundario = email_secundario;
+	public void setEmailSecundario(String emailSecundario) {
+		this.emailSecundario = emailSecundario;
 	}
 
-	public String getTel_fono_principal() {
-		return tel_fono_principal;
+	public String getTelefonoPrincipal() {
+		return telefonoPrincipal;
 	}
 
-	public void setTel_fono_principal(String tel_fono_principal) {
-		this.tel_fono_principal = tel_fono_principal;
+	public void setTelefonoPrincipal(String telefonoPrincipal) {
+		this.telefonoPrincipal = telefonoPrincipal;
 	}
 
 	public String getMasterrecordid() {
@@ -383,12 +383,12 @@ public class Account implements Serializable{
 		this.createdbyid = createdbyid;
 	}
 
-	public String getTel_fono_secundario() {
-		return tel_fono_secundario;
+	public String getTelefonoSecundario() {
+		return telefonoSecundario;
 	}
 
-	public void setTel_fono_secundario(String tel_fono_secundario) {
-		this.tel_fono_secundario = tel_fono_secundario;
+	public void setTelefonoSecundario(String telefonoSecundario) {
+		this.telefonoSecundario = telefonoSecundario;
 	}
 
 	public String getAccountsource() {
@@ -423,12 +423,12 @@ public class Account implements Serializable{
 		this.direccion = direccion;
 	}
 
-	public String getRaz_n_social_empresa() {
-		return raz_n_social_empresa;
+	public String getRazonSocialEmpresa() {
+		return razonSocialEmpresa;
 	}
 
-	public void setRaz_n_social_empresa(String raz_n_social_empresa) {
-		this.raz_n_social_empresa = raz_n_social_empresa;
+	public void setRazonSocialEmpresa(String razonSocialEmpresa) {
+		this.razonSocialEmpresa = razonSocialEmpresa;
 	}
 
 	public String getDescription() {
@@ -439,20 +439,20 @@ public class Account implements Serializable{
 		this.description = description;
 	}
 
-	public String getEmail_principal() {
-		return email_principal;
+	public String getEmailPrincipal() {
+		return emailPrincipal;
 	}
 
-	public void setEmail_principal(String email_principal) {
-		this.email_principal = email_principal;
+	public void setEmailPrincipal(String emailPrincipal) {
+		this.emailPrincipal = emailPrincipal;
 	}
 
-	public String getApellido_paterno() {
-		return apellido_paterno;
+	public String getApellidoPaterno() {
+		return apellidoPaterno;
 	}
 
-	public void setApellido_paterno(String apellido_paterno) {
-		this.apellido_paterno = apellido_paterno;
+	public void setApellidoPaterno(String apellidoPaterno) {
+		this.apellidoPaterno = apellidoPaterno;
 	}
 
 	public String getPhone() {
@@ -463,30 +463,21 @@ public class Account implements Serializable{
 		this.phone = phone;
 	}
 
-	public String getApellido_materno() {
-		return apellido_materno;
+	public String getApellidoMaterno() {
+		return apellidoMaterno;
 	}
 
-	public void setApellido_materno(String apellido_materno) {
-		this.apellido_materno = apellido_materno;
+	public void setApellidoMaterno(String apellidoMaterno) {
+		this.apellidoMaterno = apellidoMaterno;
 	}
 
-	public String getTel_fono_adicional() {
-		return tel_fono_adicional;
+	public String getTelefonoAdicional() {
+		return telefonoAdicional;
 	}
 
-	public void setTel_fono_adicional(String tel_fono_adicional) {
-		this.tel_fono_adicional = tel_fono_adicional;
+	public void setTelefonoAdicional(String telefonoAdicional) {
+		this.telefonoAdicional = telefonoAdicional;
 	}
-	
-	
-	
-	
-	
-	
-	
 
-	
-
-	
+		
 }

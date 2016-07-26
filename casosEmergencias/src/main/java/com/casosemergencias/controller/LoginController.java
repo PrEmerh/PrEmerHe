@@ -92,7 +92,7 @@ public class LoginController {
 		
 		ModelAndView model = new ModelAndView();
 		model.setViewName("resetPassPage");
-		
+		userService.insertUser();
 		user = this.userService.readUser(userName);
 		
 		if(user != null && ((user.getId() != null) && !"".equals(user.getId()))){

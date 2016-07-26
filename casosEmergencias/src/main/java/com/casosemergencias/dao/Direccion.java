@@ -48,65 +48,65 @@ public class Direccion implements Serializable{
 	private String ownerid;
 	
 	@Column(name = "coordenada_x__c")
-	private String coordenada_x;
+	private String coordenadaX;
 	
 	@Column(name = "id_empresa__c")
-	private String id_empresa;
+	private String idEmpresa;
 	
 	@Column(name = "departamento__c")
 	private String departamento;
 	
 	@Column(name = "createdbyid")
-	private String createdbyid;
+	private String createdById;
 	
 	@Column(name = "comuna__c")
 	private String comuna;
 	
 	@Column(name = "alias_nombre_calle__c")
-	private String alias_nombre_calle;
+	private String aliasNombreCalle;
 	
 	@Column(name = "regi_n__c")
-	private String regi_n;
+	private String region;
 	
 	@Column(name = "tipo_de_calle__c")
-	private String tipo_de_calle;
+	private String tipoCalle;
 	
 	@Column(name = "coordenadas_utm_x_y__longitude__s")
-	private Double coordenadas_utm_x_y__longitude__s;
+	private Double coordenadasUtmXYLongitude;
 	
 	@Column(name = "esquina__c")
 	private String esquina;
 	
 	@Column(name = "id_via__c")
-	private String id_via;
+	private String idVia;
 	
 	@Column(name = "lastmodifiedbyid")
-	private String lastmodifiedbyid;
+	private String lastModifiedById;
 	
 	@Column(name = "calle__c")
 	private String calle;
 	
 	@Column(name = "coordenadas_utm_x_y__latitude__s")
-	private Double coordenadas_utm_x_y__latitude__s;
+	private Double coordenadasUtmXYLatitude;
 	
 	@Column(name = "coordenada_y__c")
-	private String coordenada_y;
+	private String coordenadaY;
 	
 	@Column(name = "direccionconcatenada__c")
-	private String direccionconcatenada;
+	private String direccionConcatenada;
 	
 	@Column(name = "altura__c")
 	private String altura;
 	
 	@Column(name = "literalcomuna__c")
-	private String literalcomuna;
+	private String literalComuna;
 
 	public Direccion(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
-			Date createddate, String name, String ownerid, String coordenada_x, String id_empresa, String departamento,
-			String createdbyid, String comuna, String alias_nombre_calle, String regi_n, String tipo_de_calle,
-			Double coordenadas_utm_x_y__longitude__s, String esquina, String id_via, String lastmodifiedbyid,
-			String calle, Double coordenadas_utm_x_y__latitude__s, String coordenada_y, String direccionconcatenada,
-			String altura, String literalcomuna) {
+			Date createddate, String name, String ownerid, String coordenadaX, String idEmpresa, String departamento,
+			String createdById, String comuna, String aliasNombreCalle, String region, String tipoCalle,
+			Double coordenadasUtmXYLongitude, String esquina, String idVia, String lastModifiedById, String calle,
+			Double coordenadasUtmXYLatitude, String coordenadaY, String direccionConcatenada, String altura,
+			String literalComuna) {
 		super();
 		this.isdeleted = isdeleted;
 		this.systemmodstamp = systemmodstamp;
@@ -117,24 +117,24 @@ public class Direccion implements Serializable{
 		this.createddate = createddate;
 		this.name = name;
 		this.ownerid = ownerid;
-		this.coordenada_x = coordenada_x;
-		this.id_empresa = id_empresa;
+		this.coordenadaX = coordenadaX;
+		this.idEmpresa = idEmpresa;
 		this.departamento = departamento;
-		this.createdbyid = createdbyid;
+		this.createdById = createdById;
 		this.comuna = comuna;
-		this.alias_nombre_calle = alias_nombre_calle;
-		this.regi_n = regi_n;
-		this.tipo_de_calle = tipo_de_calle;
-		this.coordenadas_utm_x_y__longitude__s = coordenadas_utm_x_y__longitude__s;
+		this.aliasNombreCalle = aliasNombreCalle;
+		this.region = region;
+		this.tipoCalle = tipoCalle;
+		this.coordenadasUtmXYLongitude = coordenadasUtmXYLongitude;
 		this.esquina = esquina;
-		this.id_via = id_via;
-		this.lastmodifiedbyid = lastmodifiedbyid;
+		this.idVia = idVia;
+		this.lastModifiedById = lastModifiedById;
 		this.calle = calle;
-		this.coordenadas_utm_x_y__latitude__s = coordenadas_utm_x_y__latitude__s;
-		this.coordenada_y = coordenada_y;
-		this.direccionconcatenada = direccionconcatenada;
+		this.coordenadasUtmXYLatitude = coordenadasUtmXYLatitude;
+		this.coordenadaY = coordenadaY;
+		this.direccionConcatenada = direccionConcatenada;
 		this.altura = altura;
-		this.literalcomuna = literalcomuna;
+		this.literalComuna = literalComuna;
 	}
 
 	public Direccion() {
@@ -213,20 +213,20 @@ public class Direccion implements Serializable{
 		this.ownerid = ownerid;
 	}
 
-	public String getCoordenada_x() {
-		return coordenada_x;
+	public String getCoordenadaX() {
+		return coordenadaX;
 	}
 
-	public void setCoordenada_x(String coordenada_x) {
-		this.coordenada_x = coordenada_x;
+	public void setCoordenadaX(String coordenadaX) {
+		this.coordenadaX = coordenadaX;
 	}
 
-	public String getId_empresa() {
-		return id_empresa;
+	public String getIdEmpresa() {
+		return idEmpresa;
 	}
 
-	public void setId_empresa(String id_empresa) {
-		this.id_empresa = id_empresa;
+	public void setIdEmpresa(String idEmpresa) {
+		this.idEmpresa = idEmpresa;
 	}
 
 	public String getDepartamento() {
@@ -237,12 +237,12 @@ public class Direccion implements Serializable{
 		this.departamento = departamento;
 	}
 
-	public String getCreatedbyid() {
-		return createdbyid;
+	public String getCreatedById() {
+		return createdById;
 	}
 
-	public void setCreatedbyid(String createdbyid) {
-		this.createdbyid = createdbyid;
+	public void setCreatedById(String createdById) {
+		this.createdById = createdById;
 	}
 
 	public String getComuna() {
@@ -253,36 +253,36 @@ public class Direccion implements Serializable{
 		this.comuna = comuna;
 	}
 
-	public String getAlias_nombre_calle() {
-		return alias_nombre_calle;
+	public String getAliasNombreCalle() {
+		return aliasNombreCalle;
 	}
 
-	public void setAlias_nombre_calle(String alias_nombre_calle) {
-		this.alias_nombre_calle = alias_nombre_calle;
+	public void setAliasNombreCalle(String aliasNombreCalle) {
+		this.aliasNombreCalle = aliasNombreCalle;
 	}
 
-	public String getRegi_n() {
-		return regi_n;
+	public String getRegion() {
+		return region;
 	}
 
-	public void setRegi_n(String regi_n) {
-		this.regi_n = regi_n;
+	public void setRegion(String region) {
+		this.region = region;
 	}
 
-	public String getTipo_de_calle() {
-		return tipo_de_calle;
+	public String getTipoCalle() {
+		return tipoCalle;
 	}
 
-	public void setTipo_de_calle(String tipo_de_calle) {
-		this.tipo_de_calle = tipo_de_calle;
+	public void setTipoCalle(String tipoCalle) {
+		this.tipoCalle = tipoCalle;
 	}
 
-	public Double getCoordenadas_utm_x_y__longitude__s() {
-		return coordenadas_utm_x_y__longitude__s;
+	public Double getCoordenadasUtmXYLongitude() {
+		return coordenadasUtmXYLongitude;
 	}
 
-	public void setCoordenadas_utm_x_y__longitude__s(Double coordenadas_utm_x_y__longitude__s) {
-		this.coordenadas_utm_x_y__longitude__s = coordenadas_utm_x_y__longitude__s;
+	public void setCoordenadasUtmXYLongitude(Double coordenadasUtmXYLongitude) {
+		this.coordenadasUtmXYLongitude = coordenadasUtmXYLongitude;
 	}
 
 	public String getEsquina() {
@@ -293,20 +293,20 @@ public class Direccion implements Serializable{
 		this.esquina = esquina;
 	}
 
-	public String getId_via() {
-		return id_via;
+	public String getIdVia() {
+		return idVia;
 	}
 
-	public void setId_via(String id_via) {
-		this.id_via = id_via;
+	public void setIdVia(String idVia) {
+		this.idVia = idVia;
 	}
 
-	public String getLastmodifiedbyid() {
-		return lastmodifiedbyid;
+	public String getLastModifiedById() {
+		return lastModifiedById;
 	}
 
-	public void setLastmodifiedbyid(String lastmodifiedbyid) {
-		this.lastmodifiedbyid = lastmodifiedbyid;
+	public void setLastModifiedById(String lastModifiedById) {
+		this.lastModifiedById = lastModifiedById;
 	}
 
 	public String getCalle() {
@@ -317,28 +317,28 @@ public class Direccion implements Serializable{
 		this.calle = calle;
 	}
 
-	public Double getCoordenadas_utm_x_y__latitude__s() {
-		return coordenadas_utm_x_y__latitude__s;
+	public Double getCoordenadasUtmXYLatitude() {
+		return coordenadasUtmXYLatitude;
 	}
 
-	public void setCoordenadas_utm_x_y__latitude__s(Double coordenadas_utm_x_y__latitude__s) {
-		this.coordenadas_utm_x_y__latitude__s = coordenadas_utm_x_y__latitude__s;
+	public void setCoordenadasUtmXYLatitude(Double coordenadasUtmXYLatitude) {
+		this.coordenadasUtmXYLatitude = coordenadasUtmXYLatitude;
 	}
 
-	public String getCoordenada_y() {
-		return coordenada_y;
+	public String getCoordenadaY() {
+		return coordenadaY;
 	}
 
-	public void setCoordenada_y(String coordenada_y) {
-		this.coordenada_y = coordenada_y;
+	public void setCoordenadaY(String coordenadaY) {
+		this.coordenadaY = coordenadaY;
 	}
 
-	public String getDireccionconcatenada() {
-		return direccionconcatenada;
+	public String getDireccionConcatenada() {
+		return direccionConcatenada;
 	}
 
-	public void setDireccionconcatenada(String direccionconcatenada) {
-		this.direccionconcatenada = direccionconcatenada;
+	public void setDireccionConcatenada(String direccionConcatenada) {
+		this.direccionConcatenada = direccionConcatenada;
 	}
 
 	public String getAltura() {
@@ -349,18 +349,13 @@ public class Direccion implements Serializable{
 		this.altura = altura;
 	}
 
-	public String getLiteralcomuna() {
-		return literalcomuna;
+	public String getLiteralComuna() {
+		return literalComuna;
 	}
 
-	public void setLiteralcomuna(String literalcomuna) {
-		this.literalcomuna = literalcomuna;
+	public void setLiteralComuna(String literalComuna) {
+		this.literalComuna = literalComuna;
 	}
-	
-	
-	
-	
-	
-	
+
 }
 	

@@ -350,6 +350,9 @@ public class HerokuUserDAO {
 		logger.debug("updateHerokuUser -- inicio");
 		
 //		Session session = sessionFactory.openSession();
+		Session session2 =sessionFactory.getCurrentSession();
+		System.out.println(session);
+		System.out.println(session2);
 		int numModif = 0;
 //		session.setAutocommit(false); 
 //		StringBuilder query = new StringBuilder("INSERT INTO HerokuUser(name, createddate, password, envioMail, username, activo,  email) VALUES("); 

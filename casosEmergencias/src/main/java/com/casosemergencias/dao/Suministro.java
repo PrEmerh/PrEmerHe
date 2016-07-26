@@ -19,17 +19,17 @@ public class Suministro implements Serializable{
 	//campo de Heroku
 	//Used to track the IsDeleted field from Salesforce allowing Heroku Connect to handle deletes when polling for updates
 	@Column(name = "isdeleted")
-	private Boolean isdeleted;
+	private Boolean isDeleted;
 	//campo de Heroku
-	//Used to track the IsDeleted field from Salesforce allowing Heroku Connect to handle deletes when polling for updates
+	//The date and time (in the UTC time zone) that the Salesforce object was last modified and used by Heroku Connect when polling for updates
 	@Column(name = "systemmodstamp")
-	private Date systemmodstamp;
+	private Date systemDate;
 	//campo de Heroku
 	@Column(name = "_hc_lastop")
-	private String _hc_lastop;
+	private String hcLastop;
 	//campo de Heroku
 	@Column(name = "_hc_err")
-	private String _hc_err;
+	private String hcError;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -39,160 +39,160 @@ public class Suministro implements Serializable{
 	private String sfid;
 	
 	@Column(name = "createddate")
-	private Date createddate;
+	private Date createdDate;
 	
 	@Column(name = "name")
 	private String name;
 	
 	@Column(name = "full_electric__c")
-	private String full_electric;
+	private String fullElectric;
 	
 	@Column(name = "casos_abiertos__c")
-	private Boolean casos_abiertos;
+	private Boolean casosAbiertos;
 	
 	@Column(name = "tipo_de_transformador__c")
-	private String tipo_de_transformador;
+	private String tipoTransformador;
 	
 	@Column(name = "createdbyid")
 	private String createdbyid;
 	
 	@Column(name = "corte_por_deuda__c")
-	private String corte_por_deuda;
+	private Boolean cortePorDeuda;
 	
 	@Column(name = "tipo_lectura__c")
-	private String tipo_lectura;
+	private String tipoLectura;
 	
 	@Column(name = "estado_de_conexi_n__c")
-	private String estado_de_conexi_n;
+	private String estadoConexion;
 	
 	@Column(name = "clasificaci_n_cliente__c")
-	private String clasificaci_n_cliente;
+	private String clasificacionCliente;
 	
 	@Column(name = "vip__c")
 	private String vip;
 	
 	@Column(name = "tipo_de_medida__c")
-	private String tipo_de_medida;
+	private String tipoMedida;
 	
 	@Column(name = "comuna_reparto__c")
-	private String comuna_reparto;
+	private String comunaReparto;
 	
 	@Column(name = "comuna__c")
 	private String comuna;
 	
 	@Column(name = "n_mero_medidor__c")
-	private String n_mero_medidor;
+	private String numeroMedidor;
 	
 	@Column(name = "dv_numero_suministro__c")
-	private String dv_numero_suministro;
+	private String dvNumeroSuministro;
 	
 	@Column(name = "datos_clientes_con_disciplina__c")
-	private String datos_clientes_con_disciplina;
+	private String datosClientesConDisciplina;
 	
 	@Column(name = "modelo_medidor__c")
-	private String modelo_medidor;
+	private String modeloMedidor;
 	
 	@Column(name = "n_mero_suministro__c")
-	private String n_mero_suministro;
+	private String numeroSuministro;
 	
 	@Column(name = "numero_de_transformador__c")
-	private String numero_de_transformador;
+	private String numeroTransformador;
 	
-	@Column(name = "ncondominio_sector__came")
-	private String condominio_sector;
+	@Column(name = "condominio_sector__c")
+	private String condominioSector;
 	
 	@Column(name = "proceso_de_lectura__c")
-	private String proceso_de_lectura;
+	private String procesoLectura;
 	
 	@Column(name = "ownerid")
 	private String ownerid;
 	
 	@Column(name = "nombre_transformador__c")
-	private String nombre_transformador;
+	private String nombreTransformador;
 	
 	@Column(name = "estado_del_suministro__c")
-	private String estado_del_suministro;
+	private String estadoSuministro;
 	
 	@Column(name = "marca_medidor__c")
-	private String marca_medidor;
+	private String marcaMedidor;
 	
 	@Column(name = "fecha_de_corte__c")
-	private Date namefecha_de_corte;
+	private Date fechaCorte;
 	
 	@Column(name = "propiedad_medidor__c")
-	private String propiedad_medidor;
+	private String propiedadMedidor;
 	
 	@Column(name = "lastmodifiedbyid")
 	private String lastmodifiedbyid;
 	
 	@Column(name = "id_empresa__c")
-	private String id_empresa;
+	private String idEmpresa;
 	
 	@Column(name = "direccion__c")
 	private String direccion;
 	
 	@Column(name = "item_contrato__c")
-	private String item_contrato;
+	private String itemContrato;
 	
 	@Column(name = "run_rut__c")
-	private String run_rut;
+	private String runRut;
 	
 	@Column(name = "pago_en_proceso__c")
-	private Boolean pago_en_proceso;
+	private Boolean pagoEnProceso;
 	
 	@Column(name = "nombre_due_o_boleta__c")
-	private String nombre_due_o_boleta;
+	private String nombreDuenoBoleta;
 	
 	@Column(name = "bloque__c")
 	private String bloque;
 	
 	@Column(name = "tipo_de_conexi_n__c")
-	private String tipo_de_conexi_n;
+	private String tipoConexion;
 	
 	@Column(name = "punto_conexi_n_red__c")
-	private String punto_conexi_n_red;
+	private String puntoConexionRed;
 	
 	@Column(name = "idcontactonavegacion__c")
 	private String idcontactonavegacion;
 	
 	@Column(name = "direccion_cliente__c")
-	private String direccion_cliente;
+	private String direccionCliente;
 	
 	@Column(name = "electrodependiente__c")
 	private String electrodependiente;
 	
 	@Column(name = "medida_de_disciplina__c")
-	private String medida_de_disciplina;
+	private String medidaDisciplina;
 	
 	@Column(name = "horario_de_racionamiento__c")
-	private String horario_de_racionamiento;
+	private String horarioRacionamiento;
 	
 	@Column(name = "casos_reiterados__c")
-	private Double casos_reiterados;
+	private Double casosReiterados;
 	
 	@Column(name = "zona_peligrosa__c")
-	private Boolean zona_peligrosa;
+	private Boolean zonaPeligrosa;
 	
 	@Column(name = "tarifa__c")
 	private String tarifa;
 	
 	@Column(name = "tipo_de_vivienda__c")
-	private String tipo_de_vivienda;
+	private String tipoVivienda;
 	
 	@Column(name = "tipo_de_agrupaci_n__c")
-	private String tipo_de_agrupaci_n;
+	private String tipoAgrupacion;
 	
 	@Column(name = "alimentador__c")
 	private String alimentador;
 	
 	@Column(name = "direcci_n_de_boleta__c")
-	private String direcci_n_de_boleta;
+	private String direccionBoleta;
 	
 	@Column(name = "cuenta__c")
 	private String cuenta;
 	
 	@Column(name = "subestaci_n_el_ctrica_conexi_n__c")
-	private String subestaci_n_el_ctrica_conexi_n;
+	private String subestacionElectricaConexion;
 	
 	@Column(name = "ruta__c")
 	private String ruta;
@@ -201,130 +201,130 @@ public class Suministro implements Serializable{
 	private String direccionconcatenada;
 	
 	@Column(name = "tipo_de_cuenta__c")
-	private String tipo_de_cuenta;
+	private String tipoCuenta;
 	
 	@Column(name = "tipo_de_segmento__c")
-	private String tipo_de_segmento;
+	private String tipoSegmento;
 	
 	@Column(name = "tipo_de_servicio__c")
-	private String tipo_de_servicio;
+	private String tipoServicio;
 
-	public Suministro(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id,
-			String sfid, Date createddate, String name, String full_electric, Boolean casos_abiertos,
-			String tipo_de_transformador, String createdbyid, String corte_por_deuda, String tipo_lectura,
-			String estado_de_conexi_n, String clasificaci_n_cliente, String vip, String tipo_de_medida,
-			String comuna_reparto, String comuna, String n_mero_medidor, String dv_numero_suministro,
-			String datos_clientes_con_disciplina, String modelo_medidor, String n_mero_suministro,
-			String numero_de_transformador, String condominio_sector, String proceso_de_lectura, String ownerid,
-			String nombre_transformador, String estado_del_suministro, String marca_medidor, Date namefecha_de_corte,
-			String propiedad_medidor, String lastmodifiedbyid, String id_empresa, String direccion,
-			String item_contrato, String run_rut, Boolean pago_en_proceso, String nombre_due_o_boleta, String bloque,
-			String tipo_de_conexi_n, String punto_conexi_n_red, String idcontactonavegacion, String direccion_cliente,
-			String electrodependiente, String medida_de_disciplina, String horario_de_racionamiento,
-			Double casos_reiterados, Boolean zona_peligrosa, String tarifa, String tipo_de_vivienda,
-			String tipo_de_agrupaci_n, String alimentador, String direcci_n_de_boleta, String cuenta,
-			String subestaci_n_el_ctrica_conexi_n, String ruta, String direccionconcatenada, String tipo_de_cuenta,
-			String tipo_de_segmento, String tipo_de_servicio) {
+	public Suministro(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
+			Date createdDate, String name, String fullElectric, Boolean casosAbiertos, String tipoTransformador,
+			String createdbyid, Boolean cortePorDeuda, String tipoLectura, String estadoConexion,
+			String clasificacionCliente, String vip, String tipoMedida, String comunaReparto, String comuna,
+			String numeroMedidor, String dvNumeroSuministro, String datosClientesConDisciplina,
+			String modeloMedidor, String numeroSuministro, String numeroTransformador, String condominioSector,
+			String procesoLectura, String ownerid, String nombreTransformador, String estadoSuministro,
+			String marcaMedidor, Date fechaCorte, String propiedadMedidor, String lastmodifiedbyid,
+			String idEmpresa, String direccion, String itemContrato, String runRut, Boolean pagoEnProceso,
+			String nombreDuenoBoleta, String bloque, String tipoConexion, String puntoConexionRed,
+			String idcontactonavegacion, String direccionCliente, String electrodependiente,
+			String medidaDisciplina, String horarioRacionamiento, Double casosReiterados,
+			Boolean zonaPeligrosa, String tarifa, String tipoVivienda, String tipoAgrupacion,
+			String alimentador, String direccionBoleta, String cuenta, String subestacionElectricaConexion,
+			String ruta, String direccionconcatenada, String tipoCuenta, String tipoSegmento,
+			String tipoServicio) {
 		super();
-		this.isdeleted = isdeleted;
-		this.systemmodstamp = systemmodstamp;
-		this._hc_lastop = _hc_lastop;
-		this._hc_err = _hc_err;
+		this.isDeleted = isDeleted;
+		this.systemDate = systemDate;
+		this.hcLastop = hcLastop;
+		this.hcError = hcError;
 		this.id = id;
 		this.sfid = sfid;
-		this.createddate = createddate;
+		this.createdDate = createdDate;
 		this.name = name;
-		this.full_electric = full_electric;
-		this.casos_abiertos = casos_abiertos;
-		this.tipo_de_transformador = tipo_de_transformador;
+		this.fullElectric = fullElectric;
+		this.casosAbiertos = casosAbiertos;
+		this.tipoTransformador = tipoTransformador;
 		this.createdbyid = createdbyid;
-		this.corte_por_deuda = corte_por_deuda;
-		this.tipo_lectura = tipo_lectura;
-		this.estado_de_conexi_n = estado_de_conexi_n;
-		this.clasificaci_n_cliente = clasificaci_n_cliente;
+		this.cortePorDeuda = cortePorDeuda;
+		this.tipoLectura = tipoLectura;
+		this.estadoConexion = estadoConexion;
+		this.clasificacionCliente = clasificacionCliente;
 		this.vip = vip;
-		this.tipo_de_medida = tipo_de_medida;
-		this.comuna_reparto = comuna_reparto;
+		this.tipoMedida = tipoMedida;
+		this.comunaReparto = comunaReparto;
 		this.comuna = comuna;
-		this.n_mero_medidor = n_mero_medidor;
-		this.dv_numero_suministro = dv_numero_suministro;
-		this.datos_clientes_con_disciplina = datos_clientes_con_disciplina;
-		this.modelo_medidor = modelo_medidor;
-		this.n_mero_suministro = n_mero_suministro;
-		this.numero_de_transformador = numero_de_transformador;
-		this.condominio_sector = condominio_sector;
-		this.proceso_de_lectura = proceso_de_lectura;
+		this.numeroMedidor = numeroMedidor;
+		this.dvNumeroSuministro = dvNumeroSuministro;
+		this.datosClientesConDisciplina = datosClientesConDisciplina;
+		this.modeloMedidor = modeloMedidor;
+		this.numeroSuministro = numeroSuministro;
+		this.numeroTransformador = numeroTransformador;
+		this.condominioSector = condominioSector;
+		this.procesoLectura = procesoLectura;
 		this.ownerid = ownerid;
-		this.nombre_transformador = nombre_transformador;
-		this.estado_del_suministro = estado_del_suministro;
-		this.marca_medidor = marca_medidor;
-		this.namefecha_de_corte = namefecha_de_corte;
-		this.propiedad_medidor = propiedad_medidor;
+		this.nombreTransformador = nombreTransformador;
+		this.estadoSuministro = estadoSuministro;
+		this.marcaMedidor = marcaMedidor;
+		this.fechaCorte = fechaCorte;
+		this.propiedadMedidor = propiedadMedidor;
 		this.lastmodifiedbyid = lastmodifiedbyid;
-		this.id_empresa = id_empresa;
+		this.idEmpresa = idEmpresa;
 		this.direccion = direccion;
-		this.item_contrato = item_contrato;
-		this.run_rut = run_rut;
-		this.pago_en_proceso = pago_en_proceso;
-		this.nombre_due_o_boleta = nombre_due_o_boleta;
+		this.itemContrato = itemContrato;
+		this.runRut = runRut;
+		this.pagoEnProceso = pagoEnProceso;
+		this.nombreDuenoBoleta = nombreDuenoBoleta;
 		this.bloque = bloque;
-		this.tipo_de_conexi_n = tipo_de_conexi_n;
-		this.punto_conexi_n_red = punto_conexi_n_red;
+		this.tipoConexion = tipoConexion;
+		this.puntoConexionRed = puntoConexionRed;
 		this.idcontactonavegacion = idcontactonavegacion;
-		this.direccion_cliente = direccion_cliente;
+		this.direccionCliente = direccionCliente;
 		this.electrodependiente = electrodependiente;
-		this.medida_de_disciplina = medida_de_disciplina;
-		this.horario_de_racionamiento = horario_de_racionamiento;
-		this.casos_reiterados = casos_reiterados;
-		this.zona_peligrosa = zona_peligrosa;
+		this.medidaDisciplina = medidaDisciplina;
+		this.horarioRacionamiento = horarioRacionamiento;
+		this.casosReiterados = casosReiterados;
+		this.zonaPeligrosa = zonaPeligrosa;
 		this.tarifa = tarifa;
-		this.tipo_de_vivienda = tipo_de_vivienda;
-		this.tipo_de_agrupaci_n = tipo_de_agrupaci_n;
+		this.tipoVivienda = tipoVivienda;
+		this.tipoAgrupacion = tipoAgrupacion;
 		this.alimentador = alimentador;
-		this.direcci_n_de_boleta = direcci_n_de_boleta;
+		this.direccionBoleta = direccionBoleta;
 		this.cuenta = cuenta;
-		this.subestaci_n_el_ctrica_conexi_n = subestaci_n_el_ctrica_conexi_n;
+		this.subestacionElectricaConexion = subestacionElectricaConexion;
 		this.ruta = ruta;
 		this.direccionconcatenada = direccionconcatenada;
-		this.tipo_de_cuenta = tipo_de_cuenta;
-		this.tipo_de_segmento = tipo_de_segmento;
-		this.tipo_de_servicio = tipo_de_servicio;
+		this.tipoCuenta = tipoCuenta;
+		this.tipoSegmento = tipoSegmento;
+		this.tipoServicio = tipoServicio;
 	}
 
 	public Suministro() {
 		super();
 	}
 
-	public Boolean getIsdeleted() {
-		return isdeleted;
+	public Boolean getIsDeleted() {
+		return isDeleted;
 	}
 
-	public void setIsdeleted(Boolean isdeleted) {
-		this.isdeleted = isdeleted;
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 
-	public Date getSystemmodstamp() {
-		return systemmodstamp;
+	public Date getSystemDate() {
+		return systemDate;
 	}
 
-	public void setSystemmodstamp(Date systemmodstamp) {
-		this.systemmodstamp = systemmodstamp;
+	public void setSystemDate(Date systemDate) {
+		this.systemDate = systemDate;
 	}
 
-	public String get_hc_lastop() {
-		return _hc_lastop;
+	public String getHcLastop() {
+		return hcLastop;
 	}
 
-	public void set_hc_lastop(String _hc_lastop) {
-		this._hc_lastop = _hc_lastop;
+	public void setHcLastop(String hcLastop) {
+		this.hcLastop = hcLastop;
 	}
 
-	public String get_hc_err() {
-		return _hc_err;
+	public String getHcError() {
+		return hcError;
 	}
 
-	public void set_hc_err(String _hc_err) {
-		this._hc_err = _hc_err;
+	public void setHcError(String hcError) {
+		this.hcError = hcError;
 	}
 
 	public Integer getId() {
@@ -343,12 +343,12 @@ public class Suministro implements Serializable{
 		this.sfid = sfid;
 	}
 
-	public Date getCreateddate() {
-		return createddate;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setCreateddate(Date createddate) {
-		this.createddate = createddate;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 
 	public String getName() {
@@ -359,28 +359,28 @@ public class Suministro implements Serializable{
 		this.name = name;
 	}
 
-	public String getFull_electric() {
-		return full_electric;
+	public String getFullElectric() {
+		return fullElectric;
 	}
 
-	public void setFull_electric(String full_electric) {
-		this.full_electric = full_electric;
+	public void setFullElectric(String fullElectric) {
+		this.fullElectric = fullElectric;
 	}
 
-	public Boolean getCasos_abiertos() {
-		return casos_abiertos;
+	public Boolean getCasosAbiertos() {
+		return casosAbiertos;
 	}
 
-	public void setCasos_abiertos(Boolean casos_abiertos) {
-		this.casos_abiertos = casos_abiertos;
+	public void setasosAbiertos(Boolean casosAbiertos) {
+		this.casosAbiertos = casosAbiertos;
 	}
 
-	public String getTipo_de_transformador() {
-		return tipo_de_transformador;
+	public String getTipoTransformador() {
+		return tipoTransformador;
 	}
 
-	public void setTipo_de_transformador(String tipo_de_transformador) {
-		this.tipo_de_transformador = tipo_de_transformador;
+	public void setTipoTransformador(String tipoTransformador) {
+		this.tipoTransformador = tipoTransformador;
 	}
 
 	public String getCreatedbyid() {
@@ -391,36 +391,36 @@ public class Suministro implements Serializable{
 		this.createdbyid = createdbyid;
 	}
 
-	public String getCorte_por_deuda() {
-		return corte_por_deuda;
+	public Boolean getCortePorDeuda() {
+		return cortePorDeuda;
 	}
 
-	public void setCorte_por_deuda(String corte_por_deuda) {
-		this.corte_por_deuda = corte_por_deuda;
+	public void setCorte_por_deuda(Boolean cortePorDeuda) {
+		this.cortePorDeuda = cortePorDeuda;
 	}
 
-	public String getTipo_lectura() {
-		return tipo_lectura;
+	public String getTipoLectura() {
+		return tipoLectura;
 	}
 
-	public void setTipo_lectura(String tipo_lectura) {
-		this.tipo_lectura = tipo_lectura;
+	public void setTipoLectura(String tipoLectura) {
+		this.tipoLectura = tipoLectura;
 	}
 
-	public String getEstado_de_conexi_n() {
-		return estado_de_conexi_n;
+	public String getEstadoConexion() {
+		return estadoConexion;
 	}
 
-	public void setEstado_de_conexi_n(String estado_de_conexi_n) {
-		this.estado_de_conexi_n = estado_de_conexi_n;
+	public void setEstadoConexion(String estadoConexion) {
+		this.estadoConexion = estadoConexion;
 	}
 
-	public String getClasificaci_n_cliente() {
-		return clasificaci_n_cliente;
+	public String getClasificacionCliente() {
+		return clasificacionCliente;
 	}
 
-	public void setClasificaci_n_cliente(String clasificaci_n_cliente) {
-		this.clasificaci_n_cliente = clasificaci_n_cliente;
+	public void setClasificacionCliente(String clasificacionCliente) {
+		this.clasificacionCliente = clasificacionCliente;
 	}
 
 	public String getVip() {
@@ -431,20 +431,20 @@ public class Suministro implements Serializable{
 		this.vip = vip;
 	}
 
-	public String getTipo_de_medida() {
-		return tipo_de_medida;
+	public String getTipoMedida() {
+		return tipoMedida;
 	}
 
-	public void setTipo_de_medida(String tipo_de_medida) {
-		this.tipo_de_medida = tipo_de_medida;
+	public void setTipoMedida(String tipoMedida) {
+		this.tipoMedida = tipoMedida;
 	}
 
-	public String getComuna_reparto() {
-		return comuna_reparto;
+	public String getComunaReparto() {
+		return comunaReparto;
 	}
 
-	public void setComuna_reparto(String comuna_reparto) {
-		this.comuna_reparto = comuna_reparto;
+	public void setComunaReparto(String comunaReparto) {
+		this.comunaReparto = comunaReparto;
 	}
 
 	public String getComuna() {
@@ -455,68 +455,68 @@ public class Suministro implements Serializable{
 		this.comuna = comuna;
 	}
 
-	public String getN_mero_medidor() {
-		return n_mero_medidor;
+	public String getNumeroMedidor() {
+		return numeroMedidor;
 	}
 
-	public void setN_mero_medidor(String n_mero_medidor) {
-		this.n_mero_medidor = n_mero_medidor;
+	public void setNumeroMedidor(String numeroMedidor) {
+		this.numeroMedidor = numeroMedidor;
 	}
 
-	public String getDv_numero_suministro() {
-		return dv_numero_suministro;
+	public String getDvNumeroSuministro() {
+		return dvNumeroSuministro;
 	}
 
-	public void setDv_numero_suministro(String dv_numero_suministro) {
-		this.dv_numero_suministro = dv_numero_suministro;
+	public void setDvNumeroSuministro(String dvNumeroSuministro) {
+		this.dvNumeroSuministro = dvNumeroSuministro;
 	}
 
-	public String getDatos_clientes_con_disciplina() {
-		return datos_clientes_con_disciplina;
+	public String getDatosClientesConDisciplina() {
+		return datosClientesConDisciplina;
 	}
 
-	public void setDatos_clientes_con_disciplina(String datos_clientes_con_disciplina) {
-		this.datos_clientes_con_disciplina = datos_clientes_con_disciplina;
+	public void setDatosClientesConDisciplina(String datosClientesConDisciplina) {
+		this.datosClientesConDisciplina = datosClientesConDisciplina;
 	}
 
-	public String getModelo_medidor() {
-		return modelo_medidor;
+	public String getModeloMedidor() {
+		return modeloMedidor;
 	}
 
-	public void setModelo_medidor(String modelo_medidor) {
-		this.modelo_medidor = modelo_medidor;
+	public void setModeloMedidor(String modeloMedidor) {
+		this.modeloMedidor = modeloMedidor;
 	}
 
-	public String getN_mero_suministro() {
-		return n_mero_suministro;
+	public String getNumeroSuministro() {
+		return numeroSuministro;
 	}
 
-	public void setN_mero_suministro(String n_mero_suministro) {
-		this.n_mero_suministro = n_mero_suministro;
+	public void setNumeroSuministro(String numeroSuministro) {
+		this.numeroSuministro = numeroSuministro;
 	}
 
-	public String getNumero_de_transformador() {
-		return numero_de_transformador;
+	public String getNumeroTransformador() {
+		return numeroTransformador;
 	}
 
-	public void setNumero_de_transformador(String numero_de_transformador) {
-		this.numero_de_transformador = numero_de_transformador;
+	public void setNumeroTransformador(String numeroTransformador) {
+		this.numeroTransformador = numeroTransformador;
 	}
 
-	public String getCondominio_sector() {
-		return condominio_sector;
+	public String getCondominioSector() {
+		return condominioSector;
 	}
 
-	public void setCondominio_sector(String condominio_sector) {
-		this.condominio_sector = condominio_sector;
+	public void setCondominioSector(String condominioSector) {
+		this.condominioSector = condominioSector;
 	}
 
-	public String getProceso_de_lectura() {
-		return proceso_de_lectura;
+	public String getProcesoLectura() {
+		return procesoLectura;
 	}
 
-	public void setProceso_de_lectura(String proceso_de_lectura) {
-		this.proceso_de_lectura = proceso_de_lectura;
+	public void setProcesoLectura(String procesoLectura) {
+		this.procesoLectura = procesoLectura;
 	}
 
 	public String getOwnerid() {
@@ -527,44 +527,44 @@ public class Suministro implements Serializable{
 		this.ownerid = ownerid;
 	}
 
-	public String getNombre_transformador() {
-		return nombre_transformador;
+	public String getNombreTransformador() {
+		return nombreTransformador;
 	}
 
-	public void setNombre_transformador(String nombre_transformador) {
-		this.nombre_transformador = nombre_transformador;
+	public void setNombreTransformador(String nombreTransformador) {
+		this.nombreTransformador = nombreTransformador;
 	}
 
-	public String getEstado_del_suministro() {
-		return estado_del_suministro;
+	public String getEstadoSuministro() {
+		return estadoSuministro;
 	}
 
-	public void setEstado_del_suministro(String estado_del_suministro) {
-		this.estado_del_suministro = estado_del_suministro;
+	public void setEstadoSuministro(String estadoSuministro) {
+		this.estadoSuministro = estadoSuministro;
 	}
 
-	public String getMarca_medidor() {
-		return marca_medidor;
+	public String getMarcaMedidor() {
+		return marcaMedidor;
 	}
 
-	public void setMarca_medidor(String marca_medidor) {
-		this.marca_medidor = marca_medidor;
+	public void setMarcaMedidor(String marcaMedidor) {
+		this.marcaMedidor = marcaMedidor;
 	}
 
-	public Date getNamefecha_de_corte() {
-		return namefecha_de_corte;
+	public Date getFechaCorte() {
+		return fechaCorte;
 	}
 
-	public void setNamefecha_de_corte(Date namefecha_de_corte) {
-		this.namefecha_de_corte = namefecha_de_corte;
+	public void setFechaCorte(Date fechaCorte) {
+		this.fechaCorte = fechaCorte;
 	}
 
-	public String getPropiedad_medidor() {
-		return propiedad_medidor;
+	public String getPropiedadMedidor() {
+		return propiedadMedidor;
 	}
 
-	public void setPropiedad_medidor(String propiedad_medidor) {
-		this.propiedad_medidor = propiedad_medidor;
+	public void setPropiedadMedidor(String propiedadMedidor) {
+		this.propiedadMedidor = propiedadMedidor;
 	}
 
 	public String getLastmodifiedbyid() {
@@ -575,12 +575,12 @@ public class Suministro implements Serializable{
 		this.lastmodifiedbyid = lastmodifiedbyid;
 	}
 
-	public String getId_empresa() {
-		return id_empresa;
+	public String getIdEmpresa() {
+		return idEmpresa;
 	}
 
-	public void setId_empresa(String id_empresa) {
-		this.id_empresa = id_empresa;
+	public void setIdEmpresa(String idEmpresa) {
+		this.idEmpresa = idEmpresa;
 	}
 
 	public String getDireccion() {
@@ -591,36 +591,36 @@ public class Suministro implements Serializable{
 		this.direccion = direccion;
 	}
 
-	public String getItem_contrato() {
-		return item_contrato;
+	public String getItemContrato() {
+		return itemContrato;
 	}
 
-	public void setItem_contrato(String item_contrato) {
-		this.item_contrato = item_contrato;
+	public void setItemContrato(String itemContrato) {
+		this.itemContrato = itemContrato;
 	}
 
-	public String getRun_rut() {
-		return run_rut;
+	public String getRunRut() {
+		return runRut;
 	}
 
-	public void setRun_rut(String run_rut) {
-		this.run_rut = run_rut;
+	public void setRunRut(String runRut) {
+		this.runRut = runRut;
 	}
 
-	public Boolean getPago_en_proceso() {
-		return pago_en_proceso;
+	public Boolean getPagoEnProceso() {
+		return pagoEnProceso;
 	}
 
-	public void setPago_en_proceso(Boolean pago_en_proceso) {
-		this.pago_en_proceso = pago_en_proceso;
+	public void setPagoEnProceso(Boolean pagoEnProceso) {
+		this.pagoEnProceso = pagoEnProceso;
 	}
 
-	public String getNombre_due_o_boleta() {
-		return nombre_due_o_boleta;
+	public String getNombreDuenoBoleta() {
+		return nombreDuenoBoleta;
 	}
 
-	public void setNombre_due_o_boleta(String nombre_due_o_boleta) {
-		this.nombre_due_o_boleta = nombre_due_o_boleta;
+	public void setNombreDuenoBoleta(String nombreDuenoBoleta) {
+		this.nombreDuenoBoleta = nombreDuenoBoleta;
 	}
 
 	public String getBloque() {
@@ -631,20 +631,20 @@ public class Suministro implements Serializable{
 		this.bloque = bloque;
 	}
 
-	public String getTipo_de_conexi_n() {
-		return tipo_de_conexi_n;
+	public String getTipoConexion() {
+		return tipoConexion;
 	}
 
-	public void setTipo_de_conexi_n(String tipo_de_conexi_n) {
-		this.tipo_de_conexi_n = tipo_de_conexi_n;
+	public void setTipoConexion(String tipoConexion) {
+		this.tipoConexion = tipoConexion;
 	}
 
-	public String getPunto_conexi_n_red() {
-		return punto_conexi_n_red;
+	public String getPuntoConexionRed() {
+		return puntoConexionRed;
 	}
 
-	public void setPunto_conexi_n_red(String punto_conexi_n_red) {
-		this.punto_conexi_n_red = punto_conexi_n_red;
+	public void setPuntoConexionRed(String puntoConexionRed) {
+		this.puntoConexionRed = puntoConexionRed;
 	}
 
 	public String getIdcontactonavegacion() {
@@ -655,12 +655,12 @@ public class Suministro implements Serializable{
 		this.idcontactonavegacion = idcontactonavegacion;
 	}
 
-	public String getDireccion_cliente() {
-		return direccion_cliente;
+	public String getDireccionCliente() {
+		return direccionCliente;
 	}
 
-	public void setDireccion_cliente(String direccion_cliente) {
-		this.direccion_cliente = direccion_cliente;
+	public void setDireccionCliente(String direccionCliente) {
+		this.direccionCliente = direccionCliente;
 	}
 
 	public String getElectrodependiente() {
@@ -671,36 +671,36 @@ public class Suministro implements Serializable{
 		this.electrodependiente = electrodependiente;
 	}
 
-	public String getMedida_de_disciplina() {
-		return medida_de_disciplina;
+	public String getMedidaDisciplina() {
+		return medidaDisciplina;
 	}
 
-	public void setMedida_de_disciplina(String medida_de_disciplina) {
-		this.medida_de_disciplina = medida_de_disciplina;
+	public void setMedidaDisciplina(String medidaDisciplina) {
+		this.medidaDisciplina = medidaDisciplina;
 	}
 
-	public String getHorario_de_racionamiento() {
-		return horario_de_racionamiento;
+	public String getHorarioRacionamiento() {
+		return horarioRacionamiento;
 	}
 
-	public void setHorario_de_racionamiento(String horario_de_racionamiento) {
-		this.horario_de_racionamiento = horario_de_racionamiento;
+	public void setHorarioRacionamiento(String horarioRacionamiento) {
+		this.horarioRacionamiento = horarioRacionamiento;
 	}
 
-	public Double getCasos_reiterados() {
-		return casos_reiterados;
+	public Double getCasosReiterados() {
+		return casosReiterados;
 	}
 
-	public void setCasos_reiterados(Double casos_reiterados) {
-		this.casos_reiterados = casos_reiterados;
+	public void setCasosReiterados(Double casosReiterados) {
+		this.casosReiterados = casosReiterados;
 	}
 
-	public Boolean getZona_peligrosa() {
-		return zona_peligrosa;
+	public Boolean getZonaPeligrosa() {
+		return zonaPeligrosa;
 	}
 
-	public void setZona_peligrosa(Boolean zona_peligrosa) {
-		this.zona_peligrosa = zona_peligrosa;
+	public void setZonaPeligrosa(Boolean zonaPeligrosa) {
+		this.zonaPeligrosa = zonaPeligrosa;
 	}
 
 	public String getTarifa() {
@@ -711,20 +711,20 @@ public class Suministro implements Serializable{
 		this.tarifa = tarifa;
 	}
 
-	public String getTipo_de_vivienda() {
-		return tipo_de_vivienda;
+	public String getTipoVivienda() {
+		return tipoVivienda;
 	}
 
-	public void setTipo_de_vivienda(String tipo_de_vivienda) {
-		this.tipo_de_vivienda = tipo_de_vivienda;
+	public void setTipoVivienda(String tipoVivienda) {
+		this.tipoVivienda = tipoVivienda;
 	}
 
-	public String getTipo_de_agrupaci_n() {
-		return tipo_de_agrupaci_n;
+	public String getTipoAgrupacion() {
+		return tipoAgrupacion;
 	}
 
-	public void setTipo_de_agrupaci_n(String tipo_de_agrupaci_n) {
-		this.tipo_de_agrupaci_n = tipo_de_agrupaci_n;
+	public void setTipoAgrupacion(String tipoAgrupacion) {
+		this.tipoAgrupacion = tipoAgrupacion;
 	}
 
 	public String getAlimentador() {
@@ -735,12 +735,12 @@ public class Suministro implements Serializable{
 		this.alimentador = alimentador;
 	}
 
-	public String getDirecci_n_de_boleta() {
-		return direcci_n_de_boleta;
+	public String getDireccionBoleta() {
+		return direccionBoleta;
 	}
 
-	public void setDirecci_n_de_boleta(String direcci_n_de_boleta) {
-		this.direcci_n_de_boleta = direcci_n_de_boleta;
+	public void setDireccionBoleta(String direccionBoleta) {
+		this.direccionBoleta = direccionBoleta;
 	}
 
 	public String getCuenta() {
@@ -751,12 +751,12 @@ public class Suministro implements Serializable{
 		this.cuenta = cuenta;
 	}
 
-	public String getSubestaci_n_el_ctrica_conexi_n() {
-		return subestaci_n_el_ctrica_conexi_n;
+	public String getSubestacionElectricaConexion() {
+		return subestacionElectricaConexion;
 	}
 
-	public void setSubestaci_n_el_ctrica_conexi_n(String subestaci_n_el_ctrica_conexi_n) {
-		this.subestaci_n_el_ctrica_conexi_n = subestaci_n_el_ctrica_conexi_n;
+	public void setSubestacionElectricaConexion(String subestacionElectricaConexion) {
+		this.subestacionElectricaConexion = subestacionElectricaConexion;
 	}
 
 	public String getRuta() {
@@ -775,34 +775,29 @@ public class Suministro implements Serializable{
 		this.direccionconcatenada = direccionconcatenada;
 	}
 
-	public String getTipo_de_cuenta() {
-		return tipo_de_cuenta;
+	public String getTipoCuenta() {
+		return tipoCuenta;
 	}
 
-	public void setTipo_de_cuenta(String tipo_de_cuenta) {
-		this.tipo_de_cuenta = tipo_de_cuenta;
+	public void setTipoCuenta(String tipoCuenta) {
+		this.tipoCuenta = tipoCuenta;
 	}
 
-	public String getTipo_de_segmento() {
-		return tipo_de_segmento;
+	public String getTipoSegmento() {
+		return tipoSegmento;
 	}
 
-	public void setTipo_de_segmento(String tipo_de_segmento) {
-		this.tipo_de_segmento = tipo_de_segmento;
+	public void setTipoSegmento(String tipoSegmento) {
+		this.tipoSegmento = tipoSegmento;
 	}
 
-	public String getTipo_de_servicio() {
-		return tipo_de_servicio;
+	public String getTipoServicio() {
+		return tipoServicio;
 	}
 
-	public void setTipo_de_servicio(String tipo_de_servicio) {
-		this.tipo_de_servicio = tipo_de_servicio;
+	public void setTipoServicio(String tipoServicio) {
+		this.tipoServicio = tipoServicio;
 	}
-	
-	
-	
 
-	
 
-	
 }
