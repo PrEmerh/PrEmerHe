@@ -26,7 +26,7 @@ public class ContactDAO {
 	 * 
 	 * @return
 	 */
-	public List<Contact> readAllContact(){
+	public List<ContactVO> readAllContact(){
 				
 		logger.debug("--- Inicio -- readAllContact ---");
 		
@@ -35,7 +35,7 @@ public class ContactDAO {
 		try{
 			Query query = session.createQuery("from Contact");
 			
-			List<Contact> contactList = query.list(); 
+			List<ContactVO> contactList = query.list(); 
 
 			logger.debug("--- Fin -- readAllContact ---");
 			
@@ -58,7 +58,7 @@ public class ContactDAO {
 	 * @param id - id de un Contacto
 	 * @return
 	 */
-	public Contact readContactById(Integer id){
+	public ContactVO readContactById(Integer id){
 		
 		logger.debug("--- Inicio -- readContactById ---");
 		
@@ -68,7 +68,7 @@ public class ContactDAO {
 			Query query = session.createQuery("from Contact as contact WHERE contact.id = :id");
 			query.setInteger("id", id);
 			
-			List<Contact> contactList = query.list(); 
+			List<ContactVO> contactList = query.list(); 
 
 			if(contactList != null){
 				return contactList.get(0);
@@ -95,7 +95,7 @@ public class ContactDAO {
 	 * @param sfid - id de un Contact
 	 * @return
 	 */
-	public Contact readContactBySfid(String sfid){
+	public ContactVO readContactBySfid(String sfid){
 		
 		logger.debug("--- Inicio -- readContactBySfid ---");
 		
@@ -105,7 +105,7 @@ public class ContactDAO {
 			Query query = session.createQuery("from Contact as contact WHERE contact.sfid = :sfid");
 			query.setString("sfid", sfid);
 			
-			List<Contact> contactList = query.list(); 
+			List<ContactVO> contactList = query.list(); 
 
 			if(contactList != null){
 				return contactList.get(0);
@@ -132,7 +132,7 @@ public class ContactDAO {
 	 * @param Contacto
 	 * @return
 	 */
-	public List<Contact> readContact(Contact contact){
+	public List<ContactVO> readContact(ContactVO contact){
 		
 		logger.debug("--- Inicio -- readContact ---");
 		
@@ -716,7 +716,7 @@ public class ContactDAO {
 			}
 
 			
-			List<Contact> contactsList = result.list(); 	 
+			List<ContactVO> contactsList = result.list(); 	 
 			
 			logger.debug("--- Fin -- readContact ---");
 			
@@ -740,7 +740,7 @@ public class ContactDAO {
 	 * @return
 	 */
 	@Transactional
-    public int updateContact(Contact Contact){
+    public int updateContact(ContactVO Contact){
 		
 		logger.debug("--- Inicio -- updateContact ---");
 		
@@ -774,7 +774,7 @@ public class ContactDAO {
 	 * @param Contact
 	 * @return
 	 */
-	public int insertContact(Contact Contact, Session session){
+	public int insertContact(ContactVO Contact, Session session){
 		
 		logger.debug("updateContact -- inicio");
 

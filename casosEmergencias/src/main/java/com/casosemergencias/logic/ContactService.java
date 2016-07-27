@@ -5,6 +5,8 @@ import com.casosemergencias.model.Contacto;
 
 public interface ContactService {
 
-	public List<Contacto> listOfAllContacts();
+	public List<Contacto> listOfContactsTable();
+
+	
 
 }
