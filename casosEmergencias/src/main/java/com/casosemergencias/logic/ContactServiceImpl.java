@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.casosemergencias.dao.Contact;
+import com.casosemergencias.dao.ContactVO;
 import com.casosemergencias.dao.ContactDAO;
 import com.casosemergencias.model.Contacto;
 
@@ -23,14 +23,14 @@ public class ContactServiceImpl implements ContactService{
 	 * @return listofallcontacts
 	 */
 	@Override
-	public List<Contacto> listOfAllContacts() {
+	public List<Contacto> listOfContactsTable() {
 		
 		List<Contacto> listOfContactsTable= new ArrayList<Contacto>();
-		List<Contact> listOfAllContacs =new ArrayList<Contact>();
+		List<ContactVO> listOfAllContacs =new ArrayList<ContactVO>();
 		listOfAllContacs=contactDao.readAllContact();
 		Contacto contacto= new Contacto();
 		
-		for(Contact con:listOfAllContacs){
+		for(ContactVO con:listOfAllContacs){
 
 				contacto.setId(con.getId());
 				contacto.setSfid(con.getSfid());
