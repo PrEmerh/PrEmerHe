@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="salesforce.account")
-public class Account implements Serializable{
+public class AccountVO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -131,7 +131,7 @@ public class Account implements Serializable{
 	@Column(name = "tel_fono_adicional__c")
 	private String telefonoAdicional;
 
-	public Account(Boolean isDeleted, Date systemmodstamp, String hcLastop, String hcError, Date createddate,
+	public AccountVO(Boolean isDeleted, Date systemmodstamp, String hcLastop, String hcError, Date createddate,
 			Integer id, String sfid, String name, String parentRutEmpresa, Date fechaNacimiento,
 			String tipoUsuarioEmpresa, String idEmpresa, String masterrecordRun, String recordtypeid,
 			String codigoCuenta, String tipoIdentidad, String type, String ejecutivo, String rubroEmpresa,
@@ -179,7 +179,7 @@ public class Account implements Serializable{
 		this.telefonoAdicional = telefonoAdicional;
 	}
 
-	public Account() {
+	public AccountVO() {
 		super();
 	}
 

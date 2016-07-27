@@ -28,7 +28,7 @@ public class HerokuUserDAO {
 	 * 
 	 * @return
 	 */
-	public List<HerokuUser> readAllHerokuUser(){
+	public List<HerokuUserVO> readAllHerokuUser(){
 				
 		logger.debug("--- Inicio -- readAllHerokuUser ---");
 		
@@ -37,7 +37,7 @@ public class HerokuUserDAO {
 		try{
 			Query query = session.createQuery("from HerokuUser");
 			
-			List<HerokuUser> userList = query.list(); 
+			List<HerokuUserVO> userList = query.list(); 
 
 			logger.debug("--- Fin -- readAllHerokuUser ---");
 			
@@ -60,7 +60,7 @@ public class HerokuUserDAO {
 	 * @param id - id de un HerokuUser
 	 * @return
 	 */
-	public HerokuUser readHerokuUserById(Integer id){
+	public HerokuUserVO readHerokuUserById(Integer id){
 		
 		logger.debug("--- Inicio -- readHerokuUserById ---");
 		
@@ -70,7 +70,7 @@ public class HerokuUserDAO {
 			Query query = session.createQuery("from HerokuUser as herUser WHERE herUser.id = :id");
 			query.setInteger("id", id);
 			
-			List<HerokuUser> userList = query.list(); 
+			List<HerokuUserVO> userList = query.list(); 
 
 			if(userList != null){
 				return userList.get(0);
@@ -96,7 +96,7 @@ public class HerokuUserDAO {
 	 * @param sfid - id de un HerokuUser
 	 * @return
 	 */
-	public HerokuUser readHerokuUserBySfid(String sfid){
+	public HerokuUserVO readHerokuUserBySfid(String sfid){
 		
 		logger.debug("--- Inicio -- readHerokuUserBySfid ---");
 		
@@ -106,7 +106,7 @@ public class HerokuUserDAO {
 			Query query = session.createQuery("from HerokuUser as herUser WHERE herUser.sfid = :sfid");
 			query.setString("sfid", sfid);
 			
-			List<HerokuUser> userList = query.list(); 
+			List<HerokuUserVO> userList = query.list(); 
 
 			if(userList != null){
 				return userList.get(0);
@@ -133,7 +133,7 @@ public class HerokuUserDAO {
 	 * @param herokuUser
 	 * @return
 	 */
-	public List<HerokuUser> readHerokuUser(HerokuUser herokuUser){
+	public List<HerokuUserVO> readHerokuUser(HerokuUserVO herokuUser){
 		
 		logger.debug("--- Inicio -- readHerokuUser ---");
 		
@@ -292,7 +292,7 @@ public class HerokuUserDAO {
 				result.setDate("createdDate", herokuUser.getCreatedDate());
 			}
 			
-			List<HerokuUser> userList = result.list(); 	 
+			List<HerokuUserVO> userList = result.list(); 	 
 			
 			logger.debug("--- Fin -- readHerokuUser ---");
 			
@@ -316,7 +316,7 @@ public class HerokuUserDAO {
 	 * @return
 	 */
 	@Transactional
-    public int updateHerokuUser(HerokuUser herokuUser){
+    public int updateHerokuUser(HerokuUserVO herokuUser){
 		
 		logger.debug("--- Inicio -- updateHerokuUser ---");
 		
@@ -346,7 +346,7 @@ public class HerokuUserDAO {
 	 * @param herokuUser
 	 * @return
 	 */
-	public int insertHerokuUser(HerokuUser herokuUser, Session session){
+	public int insertHerokuUser(HerokuUserVO herokuUser, Session session){
 		logger.debug("updateHerokuUser -- inicio");
 		
 //		Session session = sessionFactory.openSession();

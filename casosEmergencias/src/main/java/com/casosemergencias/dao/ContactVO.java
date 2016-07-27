@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="salesforce.contact")
-public class Contact implements Serializable{
+public class ContactVO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -192,7 +192,7 @@ public class Contact implements Serializable{
 	@Column(name = "apellido_paterno__c")
 	private String apellidoPaterno;
 
-	public Contact(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
+	public ContactVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
 			Date createddate, String name, String parentRutEmpresa, Date fechaNacimiento, String nombreConcatenado,
 			String rutEmpresaLaboral, Date birthdate, String detalleRelacion, String sf4twitterContactSource,
 			String mobilePhone, String masterRecordId, String emailLaboral, String reportstoId, String accountId,
@@ -266,7 +266,7 @@ public class Contact implements Serializable{
 		this.apellidoPaterno = apellidoPaterno;
 	}
 
-	public Contact() {
+	public ContactVO() {
 		super();
 	}
 

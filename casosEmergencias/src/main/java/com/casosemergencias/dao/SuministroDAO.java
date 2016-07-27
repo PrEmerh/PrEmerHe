@@ -26,7 +26,7 @@ public class SuministroDAO {
 	 * 
 	 * @return
 	 */
-	public List<Suministro> readAllSuministro(){
+	public List<SuministroVO> readAllSuministro(){
 				
 		logger.debug("--- Inicio -- readAllSuministro ---");
 		
@@ -35,7 +35,7 @@ public class SuministroDAO {
 		try{
 			Query query = session.createQuery("from Suministro");
 			
-			List<Suministro> suministroList = query.list(); 
+			List<SuministroVO> suministroList = query.list(); 
 
 			logger.debug("--- Fin -- readAllSuministro ---");
 			
@@ -58,7 +58,7 @@ public class SuministroDAO {
 	 * @param id - id de un Suministro
 	 * @return
 	 */
-	public Suministro readSuministroById(Integer id){
+	public SuministroVO readSuministroById(Integer id){
 		
 		logger.debug("--- Inicio -- readSuministroById ---");
 		
@@ -68,7 +68,7 @@ public class SuministroDAO {
 			Query query = session.createQuery("from Suministro as suministro WHERE suministro.id = :id");
 			query.setInteger("id", id);
 			
-			List<Suministro> suministroList = query.list(); 
+			List<SuministroVO> suministroList = query.list(); 
 
 			if(suministroList != null){
 				return suministroList.get(0);
@@ -94,7 +94,7 @@ public class SuministroDAO {
 	 * @param sfid - id de un Suministro
 	 * @return
 	 */
-	public Suministro readSuministroBySfid(String sfid){
+	public SuministroVO readSuministroBySfid(String sfid){
 		
 		logger.debug("--- Inicio -- readSuministroBySfid ---");
 		
@@ -104,7 +104,7 @@ public class SuministroDAO {
 			Query query = session.createQuery("from Suministro as suministro WHERE suministro.sfid = :sfid");
 			query.setString("sfid", sfid);
 			
-			List<Suministro> suministroList = query.list(); 
+			List<SuministroVO> suministroList = query.list(); 
 
 			if(suministroList != null){
 				return suministroList.get(0);
@@ -128,10 +128,10 @@ public class SuministroDAO {
 	/**
 	 * Dado un Suministro, recupera una lista de Suministro con los mismos datos que Suministro
 	 * 
-	 * @param Suministro
+	 * @param SuministroVO
 	 * @return
 	 */
-	public List<Suministro> readSuministro(Suministro suministro){
+	public List<SuministroVO> readSuministro(SuministroVO suministro){
 		
 		logger.debug("--- Inicio -- readSuministro ---");
 		
@@ -825,7 +825,7 @@ public class SuministroDAO {
 				result.setDate("createdDate", suministro.getCreatedDate());
 			}
 			
-			List<Suministro> suministrosList = result.list(); 	 
+			List<SuministroVO> suministrosList = result.list(); 	 
 			
 			logger.debug("--- Fin -- readSuministro ---");
 			
@@ -849,7 +849,7 @@ public class SuministroDAO {
 	 * @return
 	 */
 	@Transactional
-    public int updateSuministro(Suministro Suministro){
+    public int updateSuministro(SuministroVO Suministro){
 		
 		logger.debug("--- Inicio -- updateSuministro ---");
 		
@@ -883,7 +883,7 @@ public class SuministroDAO {
 	 * @param Suministro
 	 * @return
 	 */
-	public int insertSuministro(Suministro Suministro, Session session){
+	public int insertSuministro(SuministroVO Suministro, Session session){
 		
 		logger.debug("updateSuministro -- inicio");
 

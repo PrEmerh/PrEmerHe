@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="salesforce.case")
-public class Case implements Serializable{
+public class CaseVO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -341,7 +341,7 @@ public class Case implements Serializable{
 	@Column(name = "condici_n_agravante__c")
 	private String condicionAgravante;
 
-	public Case(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
+	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
 			Date systemDate, String subject, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
 			String flagSec, String lastmodifiedbyid, String productid, Boolean validarElectrodependiente,
 			String sf4twitterTwitterUsername, String ownerid, Date slastartdate, String motivoEmpresa,
@@ -475,7 +475,7 @@ public class Case implements Serializable{
 		this.condicionAgravante = condicionAgravante;
 	}
 
-	public Case() {
+	public CaseVO() {
 		super();
 	}
 

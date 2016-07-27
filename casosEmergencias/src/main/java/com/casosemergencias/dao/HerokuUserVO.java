@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="salesforce.herokuuser__c")
-public class HerokuUser implements Serializable{
+public class HerokuUserVO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -66,7 +66,7 @@ public class HerokuUser implements Serializable{
 	private Date createdDate;
 	
 
-	public HerokuUser(Integer id, String name, String username, String password, String email, Boolean envioMail,
+	public HerokuUserVO(Integer id, String name, String username, String password, String email, Boolean envioMail,
 			Boolean activo, String sfid, String hcError, String hcLastop, Boolean isDeleted, Date systemDate,
 			Date createdDate) {
 		super();
@@ -85,7 +85,7 @@ public class HerokuUser implements Serializable{
 		this.createdDate = createdDate;
 	}
 
-	public HerokuUser() {
+	public HerokuUserVO() {
 		super();
 	}
 

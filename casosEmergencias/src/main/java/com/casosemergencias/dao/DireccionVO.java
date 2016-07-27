@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="salesforce.direccion__c")
-public class Direccion implements Serializable{
+public class DireccionVO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -101,7 +101,7 @@ public class Direccion implements Serializable{
 	@Column(name = "literalcomuna__c")
 	private String literalComuna;
 
-	public Direccion(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
+	public DireccionVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
 			Date createddate, String name, String ownerid, String coordenadaX, String idEmpresa, String departamento,
 			String createdById, String comuna, String aliasNombreCalle, String region, String tipoCalle,
 			Double coordenadasUtmXYLongitude, String esquina, String idVia, String lastModifiedById, String calle,
@@ -137,7 +137,7 @@ public class Direccion implements Serializable{
 		this.literalComuna = literalComuna;
 	}
 
-	public Direccion() {
+	public DireccionVO() {
 		super();
 	}
 

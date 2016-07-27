@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="salesforce.suministro__c")
-public class Suministro implements Serializable{
+public class SuministroVO implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 
@@ -209,7 +209,7 @@ public class Suministro implements Serializable{
 	@Column(name = "tipo_de_servicio__c")
 	private String tipoServicio;
 
-	public Suministro(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
+	public SuministroVO(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
 			Date createdDate, String name, String fullElectric, Boolean casosAbiertos, String tipoTransformador,
 			String createdbyid, Boolean cortePorDeuda, String tipoLectura, String estadoConexion,
 			String clasificacionCliente, String vip, String tipoMedida, String comunaReparto, String comuna,
@@ -291,7 +291,7 @@ public class Suministro implements Serializable{
 		this.tipoServicio = tipoServicio;
 	}
 
-	public Suministro() {
+	public SuministroVO() {
 		super();
 	}
 
