@@ -35,7 +35,7 @@ public class HerokuUserDAO {
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from HerokuUser");
+			Query query = session.createQuery("from HerokuUserVO");
 			
 			List<HerokuUserVO> userList = query.list(); 
 
@@ -67,7 +67,7 @@ public class HerokuUserDAO {
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from HerokuUser as herUser WHERE herUser.id = :id");
+			Query query = session.createQuery("from HerokuUserVO as herUser WHERE herUser.id = :id");
 			query.setInteger("id", id);
 			
 			List<HerokuUserVO> userList = query.list(); 
@@ -103,7 +103,7 @@ public class HerokuUserDAO {
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from HerokuUser as herUser WHERE herUser.sfid = :sfid");
+			Query query = session.createQuery("from HerokuUserVO as herUser WHERE herUser.sfid = :sfid");
 			query.setString("sfid", sfid);
 			
 			List<HerokuUserVO> userList = query.list(); 
@@ -142,7 +142,7 @@ public class HerokuUserDAO {
 	
 	    try{
 	    	//preparamos la query
-	    	StringBuilder query = new StringBuilder("from HerokuUser as herUser");
+	    	StringBuilder query = new StringBuilder("from HerokuUserVO as herUser");
 			if(herokuUser.getId()!= null){
 				if(isFirst){
 					query.append(" WHERE herUser.id = :id");

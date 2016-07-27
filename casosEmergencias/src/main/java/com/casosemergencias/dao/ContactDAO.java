@@ -33,7 +33,7 @@ public class ContactDAO {
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from Contact");
+			Query query = session.createQuery("from ContactVO");
 			
 			List<ContactVO> contactList = query.list(); 
 
@@ -65,7 +65,7 @@ public class ContactDAO {
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from Contact as contact WHERE contact.id = :id");
+			Query query = session.createQuery("from ContactVO as contact WHERE contact.id = :id");
 			query.setInteger("id", id);
 			
 			List<ContactVO> contactList = query.list(); 
@@ -102,7 +102,7 @@ public class ContactDAO {
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from Contact as contact WHERE contact.sfid = :sfid");
+			Query query = session.createQuery("from ContactVO as contact WHERE contact.sfid = :sfid");
 			query.setString("sfid", sfid);
 			
 			List<ContactVO> contactList = query.list(); 
@@ -141,7 +141,7 @@ public class ContactDAO {
 	
 	    try{
 	    	//preparamos la query
-	    	StringBuilder query = new StringBuilder("from Contact as contact");
+	    	StringBuilder query = new StringBuilder("from ContactVO as contact");
 			if(contact.getId()!= null){
 				if(isFirst){
 					query.append(" WHERE contact.id = :id");
