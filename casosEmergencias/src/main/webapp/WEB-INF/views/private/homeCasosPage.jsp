@@ -31,7 +31,7 @@
 					<thead>
 			            <tr>
 			            <!-- <th data-orderable="false"> -->
-			                <th width="20%"><s:message code="homeCasos_tabla_head_numCasos"/></th>
+			                <th width="20%"><s:message code="homeCasos_table_head_numCasos"/></th>
 			                <th width="16%"><s:message code="homeCasos_table_head_numInservice"/></th>
 			                <th width="16%"><s:message code="homeCasos_table_head_canalOrigen"/></th>
 			                <th width="16%"><s:message code="homeCasos_table_head_estado"/></th>

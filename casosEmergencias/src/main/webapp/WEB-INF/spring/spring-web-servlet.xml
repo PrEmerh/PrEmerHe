@@ -59,7 +59,7 @@
 	                <value>com.casosemergencias.dao.DireccionVO</value>
 	                <value>com.casosemergencias.dao.HerokuUserVO</value> 
 	                <value>com.casosemergencias.dao.SuministroVO</value>
-	                <value>com.casosemergencias.dao.PickListDTO</value>
+	                <value>com.casosemergencias.dao.PickListsVO</value>
 	                
 	            </list>  
 		  </property> 
