@@ -164,7 +164,7 @@ public class ContactDAO {
 //					query.append(" WHERE UPPER(contact.parentRutEmpresa) = UPPER(:parentRutEmpresa)");
 //					isFirst = false;
 //				}else{
-//					query.append(" AND UPPER(contact.parentRutEmpresa) = UPPER(:fechaNacimiento)");
+//					query.append(" AND UPPER(contact.parentRutEmpresa) = UPPER(:parentRutEmpresa)");
 //				}
 //			}
 			if(contact.getFechaNacimiento()!= null){
@@ -175,100 +175,7 @@ public class ContactDAO {
 					query.append(" AND contact.fechaNacimiento = :fechaNacimiento");
 				}
 			}
-			if(contact.getNombreConcatenado()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.nombreConcatenado = :nombreConcatenado");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.nombreConcatenado = :nombreConcatenado");
-				}
-			}
-			if(contact.getRutEmpresaLaboral()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.rutEmpresaLaboral = :rutEmpresaLaboral");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.rutEmpresaLaboral = :rutEmpresaLaboral");
-				}
-			}
-			if(contact.getBirthdate()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.birthdate = :birthdate");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.birthdate = :birthdate");
-				}
-			}
-			if(contact.getDetalleRelacion()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.detalleRelacion = :detalleRelacion");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.detalleRelacion = :detalleRelacion");
-				}
-			}
-			if(contact.getSf4twitterContactSource()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.sf4twitterContactSource = :sf4twitterContactSource");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.sf4twitterContactSource = :sf4twitterContactSource");
-				}
-			}
-			if(contact.getMobilePhone()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.mobilePhone = :mobilePhone");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.mobilePhone = :mobilePhone");
-				}
-			}
-			if(contact.getMasterRecordId()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.masterRecordId = :masterRecordId");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.masterRecordId = :masterRecordId");
-				}
-			}
-			if(contact.getEmailLaboral()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.emailLaboral = :emailLaboral");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.emailLaboral = :emailLaboral");
-				}
-			}
-			if(contact.getReportstoId()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.reportstoId = :reportstoId");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.reportstoId = :reportstoId");
-				}
-			}if(contact.getAccountId()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.accountId = :accountId");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.accountId = :accountId");
-				}
-			}
-			if(contact.getVip()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.vip = :vip");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.vip = :vip");
-				}
-			}if(contact.getHomePhone()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.homephone = :homephone");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.homephone = :homephone");
-				}
-			}
+
 			if(contact.getCanalPreferenteContacto()!= null){
 				if(isFirst){
 					query.append(" WHERE contact.canalPreferenteContacto = :canalPreferenteContacto");
@@ -292,14 +199,7 @@ public class ContactDAO {
 					query.append(" AND contact.apellidoMaterno = :apellidoMaterno");
 				}
 			}
-			if(contact.getSf4twitterOrigin()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.sf4twitterOrigin = :sf4twitterOrigin");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.sf4twitterOrigin = :sf4twitterOrigin");
-				}
-			}
+
 			if(contact.getTipoIdentidad()!= null){
 				if(isFirst){
 					query.append(" WHERE contact.tipoIdentidad = :tipoIdentidad");
@@ -316,44 +216,12 @@ public class ContactDAO {
 					query.append(" AND contact.telefonoSecundario = :telefonoSecundario");
 				}
 			}
-			if(contact.getOwnerid()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.ownerid = :ownerid");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.ownerid = :ownerid");
-				}
-			}
 			if(contact.getEmailSecundario()!= null){
 				if(isFirst){
 					query.append(" WHERE contact.emailSecundario = :emailSecundario");
 					isFirst = false;
 				}else{
 					query.append(" AND contact.emailSecundario = :emailSecundario");
-				}
-			}
-			if(contact.getLastModifiedById()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.lastModifiedById = :lastModifiedById");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.lastModifiedById = :lastModifiedById");
-				}
-			}
-			if(contact.getTelefonoAdicional()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.telefonoAdicional = :telefonoAdicional");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.telefonoAdicional = :telefonoAdicional");
-				}
-			}
-			if(contact.getAssistantName()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.assistantName = :assistantName");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.assistantName = :assistantName");
 				}
 			}
 			if(contact.getSf4twitterFcbkUsername()!= null){
@@ -364,36 +232,12 @@ public class ContactDAO {
 					query.append(" AND contact.sf4twitterFcbkUsername = :sf4twitterFcbkUsername");
 				}
 			}
-			if(contact.getDireccion()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.direccion = :direccion");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.direccion = :direccion");
-				}
-			}
 			if(contact.getCasosReiterados()!= null){
 				if(isFirst){
 					query.append(" WHERE contact.casosReiterados = :casosReiterados");
 					isFirst = false;
 				}else{
 					query.append(" AND contact.casosReiterados = :casosReiterados");
-				}
-			}
-			if(contact.getReportstoPruebaTwitter()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.reportstoPruebaTwitter = :reportstoPruebaTwitter");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.reportstoPruebaTwitter = :reportstoPruebaTwitter");
-				}
-			}
-			if(contact.getIdEmpresa()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.idEmpresa = :idEmpresa");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.idEmpresa = :idEmpresa");
 				}
 			}
 			if(contact.getEmail()!= null){
@@ -404,44 +248,12 @@ public class ContactDAO {
 					query.append(" AND contact.email = :email");
 				}
 			}
-			if(contact.getOtherPhone()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.otherPhone = :otherPhone");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.otherPhone = :otherPhone");
-				}
-			}
-			if(contact.getDepartment()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.department = :department");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.department = :department");
-				}
-			}
 			if(contact.getAccountRun()!= null){
 				if(isFirst){
 					query.append(" WHERE contact.accountRun = :accountRun");
 					isFirst = false;
 				}else{
 					query.append(" AND contact.accountRun = :accountRun");
-				}
-			}
-			if(contact.getLongtel2()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.longtel2 = :longtel2");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.longtel2 = :longtel2");
-				}
-			}
-			if(contact.getNombreCompleto()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.nombreCompleto = :nombreCompleto");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.nombreCompleto = :nombreCompleto");
 				}
 			}
 			if(contact.getDirContacto()!= null){
@@ -460,30 +272,6 @@ public class ContactDAO {
 					query.append(" AND contact.sf4twitterTwitterUserId = :sf4twitterTwitterUserId");
 				}
 			}
-			if(contact.getNumeroSerieCedulaIdentidad()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.numeroSerieCedulaIdentidad = :numeroSerieCedulaIdentidad");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.numeroSerieCedulaIdentidad = :numeroSerieCedulaIdentidad");
-				}
-			}
-			if(contact.getMasterRecordPruebaTwitter()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.masterRecordPruebaTwitter = :masterRecordPruebaTwitter");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.masterRecordPruebaTwitter = :masterRecordPruebaTwitter");
-				}
-			}
-			if(contact.getDescription()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.description = :description");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.description = :description");
-				}
-			}
 			if(contact.getSf4twitterFcbkUserId()!= null){
 				if(isFirst){
 					query.append(" WHERE contact.sf4twitterFcbkUserId = :sf4twitterFcbkUserId");
@@ -500,14 +288,6 @@ public class ContactDAO {
 					query.append(" AND contact.sf4twitterTwitterUsername = :sf4twitterTwitterUsername");
 				}
 			}
-			if(contact.getTipoRelacionSuministro()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.tipoRelacionSuministro = :tipoRelacionSuministro");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.tipoRelacionSuministro = :tipoRelacionSuministro");
-				}
-			}
 			if(contact.getTipoContacto()!= null){
 				if(isFirst){
 					query.append(" WHERE contact.tipoContacto = :tipoContacto");
@@ -522,22 +302,6 @@ public class ContactDAO {
 					isFirst = false;
 				}else{
 					query.append(" AND contact.phone = :phone");
-				}
-			}
-			if(contact.getSegmentoPersona()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.segmentoPersona = :segmentoPersona");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.segmentoPersona = :segmentoPersona");
-				}
-			}
-			if(contact.getCreatedById()!= null){
-				if(isFirst){
-					query.append(" WHERE contact.createdById = :createdById");
-					isFirst = false;
-				}else{
-					query.append(" AND contact.createdById = :createdById");
 				}
 			}
 			if(contact.getApellidoPaterno()!= null){
@@ -576,42 +340,7 @@ public class ContactDAO {
 			if(contact.getFechaNacimiento()!= null){
 				result.setDate("fechaNacimiento", contact.getFechaNacimiento());
 			}
-			if(contact.getNombreConcatenado()!= null){
-				result.setString("nombreConcatenado", contact.getNombreConcatenado());
-			}
-			if(contact.getRutEmpresaLaboral()!= null){
-				result.setString("rutEmpresaLaboral", contact.getRutEmpresaLaboral());
-			}
-			if(contact.getBirthdate()!= null){
-				result.setDate("birthdate", contact.getBirthdate());
-			}
-			if(contact.getDetalleRelacion()!= null){
-				result.setString("detalleRelacion", contact.getDetalleRelacion());
-			}
-			if(contact.getSf4twitterContactSource()!= null){
-				result.setString("sf4twitterContactSource", contact.getSf4twitterContactSource());
-			}
-			if(contact.getMobilePhone()!= null){
-				result.setString("mobilePhone", contact.getMobilePhone());
-			}
-			if(contact.getMasterRecordId()!= null){
-				result.setString("masterRecordId", contact.getMasterRecordId());
-			}
-			if(contact.getEmailLaboral() != null){
-				result.setString("emailLaboral", contact.getEmailLaboral());
-			}
-			if(contact.getReportstoId()!= null){
-				result.setString("reportstoId", contact.getReportstoId());
-			}
-			if(contact.getAccountId()!= null){
-				result.setString("accountId", contact.getAccountId());
-			}
-			if(contact.getVip()!= null){
-				result.setBoolean("vip", contact.getVip());
-			}
-			if(contact.getHomePhone()!= null){
-				result.setString("homePhone", contact.getHomePhone());
-			}
+			
 			if(contact.getCanalPreferenteContacto()!= null){
 				result.setString("canalPreferenteContacto", contact.getCanalPreferenteContacto());
 			}
@@ -621,59 +350,27 @@ public class ContactDAO {
 			if(contact.getApellidoMaterno()!= null){
 				result.setString("apellidoMaterno", contact.getApellidoMaterno());
 			}
-			if(contact.getSf4twitterOrigin()!= null){
-				result.setString("sf4twitterOrigin", contact.getSf4twitterOrigin());
-			}
 			if(contact.getTipoIdentidad()!= null){
 				result.setString("tipoIdentidad", contact.getTipoIdentidad());
 			}
 			if(contact.getTelefonoSecundario()!= null){
 				result.setString("telefonoSecundario", contact.getTelefonoSecundario());
 			}
-			if(contact.getOwnerid()!= null){
-				result.setString("ownerid", contact.getOwnerid());
-			}
 			if(contact.getEmailSecundario()!= null){
 				result.setString("emailSecundario", contact.getEmailSecundario());
 			}
-			if(contact.getLastModifiedById()!= null){
-				result.setString("lastModifiedById", contact.getLastModifiedById());
-			}
-			if(contact.getTelefonoAdicional()!= null){
-				result.setString("telefonoAdicional", contact.getTelefonoAdicional());
-			}
-			if(contact.getAssistantName()!= null){
-				result.setString("assistantName", contact.getAssistantName());
-			}
+
 			if(contact.getSf4twitterFcbkUsername()!= null){
 				result.setString("sf4twitterFcbkUsername", contact.getSf4twitterFcbkUsername());
-			}
-			if(contact.getDireccion()!= null){
-				result.setString("direccion", contact.getDireccion());
 			}
 			if(contact.getCasosReiterados()!= null){
 				result.setBoolean("casosReiterados", contact.getCasosReiterados());
 			}
-			if(contact.getIdEmpresa()!= null){
-				result.setString("idEmpresa", contact.getIdEmpresa());
-			}
 			if(contact.getEmail()!= null){
 				result.setString("email", contact.getEmail());
 			}
-			if(contact.getOtherPhone()!= null){
-				result.setString("otherPhone", contact.getOtherPhone());
-			}
-			if(contact.getDepartment()!= null){
-				result.setString("department", contact.getDepartment());
-			}
 			if(contact.getAccountRun()!= null){
 				result.setString("accountRun", contact.getAccountRun());
-			}
-			if(contact.getLongtel2()!= null){
-				result.setDouble("longtel2", contact.getLongtel2());
-			}
-			if(contact.getNombreCompleto()!= null){
-				result.setString("nombreCompleto", contact.getNombreCompleto());
 			}
 			if(contact.getDirContacto()!= null){
 				result.setString("dirContacto", contact.getDirContacto());
@@ -681,35 +378,17 @@ public class ContactDAO {
 			if(contact.getSf4twitterTwitterUserId()!= null){
 				result.setString("sf4twitterTwitterUserId", contact.getSf4twitterTwitterUserId());
 			}
-			if(contact.getNumeroSerieCedulaIdentidad()!= null){
-				result.setDouble("numeroSerieCedulaIdentidad", contact.getNumeroSerieCedulaIdentidad());
-			}
-			if(contact.getMasterRecordPruebaTwitter()!= null){
-				result.setString("masterRecordPruebaTwitter", contact.getMasterRecordPruebaTwitter());
-			}
-			if(contact.getDescription()!= null){
-				result.setString("description", contact.getDescription());
-			}
 			if(contact.getSf4twitterFcbkUserId()!= null){
 				result.setString("sf4twitterFcbkUserId", contact.getSf4twitterFcbkUserId());
 			}
 			if(contact.getSf4twitterTwitterUsername()!= null){
 				result.setString("sf4twitterTwitterUsername", contact.getSf4twitterTwitterUsername());
 			}
-			if(contact.getTipoRelacionSuministro()!= null){
-				result.setString("tipoRelacionSuministro", contact.getTipoRelacionSuministro());
-			}
 			if(contact.getTipoContacto()!= null){
 				result.setString("tipoContacto", contact.getTipoContacto());
 			}
 			if(contact.getPhone()!= null){
 				result.setString("phone", contact.getPhone());
-			}
-			if(contact.getSegmentoPersona()!= null){
-				result.setString("segmentoPersona", contact.getSegmentoPersona());
-			}
-			if(contact.getCreatedById()!= null){
-				result.setString("createdById", contact.getCreatedById());
 			}
 			if(contact.getApellidoPaterno()!= null){
 				result.setString("apellidoPaterno", contact.getApellidoPaterno());
