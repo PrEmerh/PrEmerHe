@@ -1,174 +1,100 @@
-package com.casosemergencias.dao;
-import java.io.Serializable;
+package com.casosemergencias.model;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class Suministro {
 
-
-@Entity
-@Table(name="salesforce.suministro__c")
-public class SuministroVO implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
-
-	//campo de Heroku
-	//Used to track the IsDeleted field from Salesforce allowing Heroku Connect to handle deletes when polling for updates
-	@Column(name = "isdeleted")
-	private Boolean isDeleted;
-	//campo de Heroku
-	//The date and time (in the UTC time zone) that the Salesforce object was last modified and used by Heroku Connect when polling for updates
-	@Column(name = "systemmodstamp")
-	private Date systemDate;
-	//campo de Heroku
-	@Column(name = "_hc_lastop")
-	private String hcLastop;
-	//campo de Heroku
-	@Column(name = "_hc_err")
-	private String hcError;
-	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "sfid")
 	private String sfid;
 	
-	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "full_electric__c")
 	private String fullElectric;
 	
-	@Column(name = "casos_abiertos__c")
 	private Boolean casosAbiertos;
 	
-	@Column(name = "tipo_de_transformador__c")
 	private String tipoTransformador;
 	
-	@Column(name = "corte_por_deuda__c")
 	private Boolean cortePorDeuda;
 	
-	@Column(name = "tipo_lectura__c")
 	private String tipoLectura;
 	
-	@Column(name = "estado_de_conexi_n__c")
 	private String estadoConexion;
 	
-	@Column(name = "tipo_de_medida__c")
 	private String tipoMedida;
 	
-	@Column(name = "comuna_reparto__c")
 	private String comunaReparto;
 	
-	@Column(name = "comuna__c")
 	private String comuna;
 	
-	@Column(name = "n_mero_medidor__c")
 	private String numeroMedidor;
 	
-	@Column(name = "modelo_medidor__c")
 	private String modeloMedidor;
 	
-	@Column(name = "n_mero_suministro__c")
 	private String numeroSuministro;
 	
-	@Column(name = "numero_de_transformador__c")
 	private String numeroTransformador;
 	
-	@Column(name = "estado_del_suministro__c")
 	private String estadoSuministro;
 	
-	@Column(name = "marca_medidor__c")
 	private String marcaMedidor;
 	
-	@Column(name = "fecha_de_corte__c")
 	private Date fechaCorte;
 	
-	@Column(name = "propiedad_medidor__c")
 	private String propiedadMedidor;
 	
-	@Column(name = "id_empresa__c")
 	private String idEmpresa;
 	
-	@Column(name = "direccion__c")
 	private String direccion;
-
-	@Column(name = "run_rut__c")
+	
 	private String runRut;
 	
-	@Column(name = "pago_en_proceso__c")
 	private Boolean pagoEnProceso;
 	
-	@Column(name = "nombre_due_o_boleta__c")
 	private String nombreDuenoBoleta;
 	
-	@Column(name = "bloque__c")
 	private String bloque;
 	
-	@Column(name = "tipo_de_conexi_n__c")
 	private String tipoConexion;
-
-	@Column(name = "direccion_cliente__c")
+	
 	private String direccionCliente;
 	
-	@Column(name = "electrodependiente__c")
 	private String electrodependiente;
 	
-	@Column(name = "medida_de_disciplina__c")
 	private String medidaDisciplina;
 	
-	@Column(name = "horario_de_racionamiento__c")
 	private String horarioRacionamiento;
 	
-	@Column(name = "casos_reiterados__c")
 	private Double casosReiterados;
-
-	@Column(name = "tarifa__c")
+	
 	private String tarifa;
 	
-	@Column(name = "alimentador__c")
 	private String alimentador;
 	
-	@Column(name = "direcci_n_de_boleta__c")
 	private String direccionBoleta;
 	
-	@Column(name = "cuenta__c")
 	private String cuenta;
 	
-	@Column(name = "subestaci_n_el_ctrica_conexi_n__c")
 	private String subestacionElectricaConexion;
 	
-	@Column(name = "ruta__c")
 	private String ruta;
 	
-	@Column(name = "tipo_de_cuenta__c")
 	private String tipoCuenta;
 	
-	@Column(name = "tipo_de_segmento__c")
 	private String tipoSegmento;
 
-	public SuministroVO(){}
+	public Suministro(){}
 	
-	public SuministroVO(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
-			String name, String fullElectric, Boolean casosAbiertos, String tipoTransformador, Boolean cortePorDeuda,
-			String tipoLectura, String estadoConexion, String tipoMedida, String comunaReparto, String comuna,
-			String numeroMedidor, String modeloMedidor, String numeroSuministro, String numeroTransformador,
-			String estadoSuministro, String marcaMedidor, Date fechaCorte, String propiedadMedidor, String idEmpresa,
-			String direccion, String runRut, Boolean pagoEnProceso, String nombreDuenoBoleta, String bloque,
-			String tipoConexion, String direccionCliente, String electrodependiente, String medidaDisciplina,
-			String horarioRacionamiento, Double casosReiterados, String tarifa, String alimentador,
-			String direccionBoleta, String cuenta, String subestacionElectricaConexion, String ruta, String tipoCuenta,
-			String tipoSegmento) {
+	public Suministro(Integer id, String sfid, String name, String fullElectric, Boolean casosAbiertos,
+			String tipoTransformador, Boolean cortePorDeuda, String tipoLectura, String estadoConexion,
+			String tipoMedida, String comunaReparto, String comuna, String numeroMedidor, String modeloMedidor,
+			String numeroSuministro, String numeroTransformador, String estadoSuministro, String marcaMedidor,
+			Date fechaCorte, String propiedadMedidor, String idEmpresa, String direccion, String runRut,
+			Boolean pagoEnProceso, String nombreDuenoBoleta, String bloque, String tipoConexion,
+			String direccionCliente, String electrodependiente, String medidaDisciplina, String horarioRacionamiento,
+			Double casosReiterados, String tarifa, String alimentador, String direccionBoleta, String cuenta,
+			String subestacionElectricaConexion, String ruta, String tipoCuenta, String tipoSegmento) {
 		super();
-		this.isDeleted = isDeleted;
-		this.systemDate = systemDate;
-		this.hcLastop = hcLastop;
-		this.hcError = hcError;
 		this.id = id;
 		this.sfid = sfid;
 		this.name = name;
@@ -209,38 +135,6 @@ public class SuministroVO implements Serializable{
 		this.ruta = ruta;
 		this.tipoCuenta = tipoCuenta;
 		this.tipoSegmento = tipoSegmento;
-	}
-
-	public Boolean getIsDeleted() {
-		return isDeleted;
-	}
-
-	public void setIsDeleted(Boolean isDeleted) {
-		this.isDeleted = isDeleted;
-	}
-
-	public Date getSystemDate() {
-		return systemDate;
-	}
-
-	public void setSystemDate(Date systemDate) {
-		this.systemDate = systemDate;
-	}
-
-	public String getHcLastop() {
-		return hcLastop;
-	}
-
-	public void setHcLastop(String hcLastop) {
-		this.hcLastop = hcLastop;
-	}
-
-	public String getHcError() {
-		return hcError;
-	}
-
-	public void setHcError(String hcError) {
-		this.hcError = hcError;
 	}
 
 	public Integer getId() {
@@ -562,6 +456,5 @@ public class SuministroVO implements Serializable{
 	public void setTipoSegmento(String tipoSegmento) {
 		this.tipoSegmento = tipoSegmento;
 	}
-
-
+	
 }
