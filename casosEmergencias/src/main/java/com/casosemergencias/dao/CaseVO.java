@@ -32,6 +32,7 @@ public class CaseVO implements Serializable{
 	private String _hc_err;
 	
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
