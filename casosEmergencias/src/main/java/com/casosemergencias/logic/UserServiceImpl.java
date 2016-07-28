@@ -14,8 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.casosemergencias.controller.LoginController;
-import com.casosemergencias.dao.HerokuUser;
 import com.casosemergencias.dao.HerokuUserDAO;
+import com.casosemergencias.dao.HerokuUserVO;
 import com.casosemergencias.model.User;
 
 
@@ -44,12 +44,12 @@ public class UserServiceImpl implements UserService{
 		logger.info("--- Inicio -- readUserPass ---");
 		User userView = new User();
 				
-		HerokuUser herokuUser = new HerokuUser();
+		HerokuUserVO herokuUser = new HerokuUserVO();
 		herokuUser.setUsername(user);
 		herokuUser.setPassword(pass);
 		
 		
-		List<HerokuUser> listHerokuUser = new ArrayList<HerokuUser>();
+		List<HerokuUserVO> listHerokuUser = new ArrayList<HerokuUserVO>();
 		listHerokuUser = herokuUserDao.readHerokuUser(herokuUser);
 		
 		if(listHerokuUser != null && !listHerokuUser.isEmpty()){
@@ -90,10 +90,10 @@ public class UserServiceImpl implements UserService{
 		logger.info("--- Inicio -- readUser ---");
 		User userView = new User();
 				
-		HerokuUser herokuUser = new HerokuUser();
+		HerokuUserVO herokuUser = new HerokuUserVO();
 		herokuUser.setUsername(userName);		
 		
-		List<HerokuUser> listHerokuUser = new ArrayList<HerokuUser>();
+		List<HerokuUserVO> listHerokuUser = new ArrayList<HerokuUserVO>();
 		listHerokuUser = herokuUserDao.readHerokuUser(herokuUser);
 		
 		if(listHerokuUser != null && !listHerokuUser.isEmpty()){
@@ -131,7 +131,7 @@ public class UserServiceImpl implements UserService{
 		logger.info("--- Inicio -- changeEnvioEmail ---");
 		
 		//Creamos un HerokuUser con ide de userChangEmail para que en el update sepa que usuario modificar y enviaoEmail = true
-		HerokuUser herokuUser = new HerokuUser();
+		HerokuUserVO herokuUser = new HerokuUserVO();
 		herokuUser = herokuUserDao.readHerokuUserById(userChangEmail.getId());
 		herokuUser.setEnvioMail(true);
 		
@@ -159,7 +159,7 @@ public class UserServiceImpl implements UserService{
 		logger.info("--- Inicio -- changePassHerokuUser ---");
 		
 		//Creamos un HerokuUser con ide de userChangEmail para que en el update sepa que usuario modificar y enviaoEmail = true
-		HerokuUser herokuUser = new HerokuUser();
+		HerokuUserVO herokuUser = new HerokuUserVO();
 		herokuUser = herokuUserDao.readHerokuUserBySfid(sfid);
 		herokuUser.setPassword(newpass);
 		
@@ -182,7 +182,7 @@ public class UserServiceImpl implements UserService{
 		Transaction tx = session.beginTransaction();
 		
 		try{
-			HerokuUser herokuUser1 = new HerokuUser();
+			HerokuUserVO herokuUser1 = new HerokuUserVO();
 			herokuUser1.setName("User3");
 			herokuUser1.setPassword("User3");
 			herokuUser1.setEnvioMail(false);
@@ -191,7 +191,7 @@ public class UserServiceImpl implements UserService{
 			herokuUser1.setEmail("user1@email.com");
 			herokuUser1.setCreatedDate(new Date());
 			
-			HerokuUser herokuUser2 = new HerokuUser();
+			HerokuUserVO herokuUser2 = new HerokuUserVO();
 			herokuUser2.setName("User4");
 			herokuUser2.setPassword("User4");
 			herokuUser2.setEnvioMail(false);

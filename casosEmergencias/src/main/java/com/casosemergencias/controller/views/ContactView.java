@@ -1,14 +1,11 @@
-package com.casosemergencias.model;
+package com.casosemergencias.controller.views;
 
 import java.util.Date;
 
-//Objeto que tiene el modelo de un contacto, se utiliza en el Servicio
-
-
-public class Contacto {
-
+public class ContactView {
+	
+	
 	/*ID*/                                  private Integer id;
-
 	/*SFID*/                               private String sfid;
 	/*Nombre*/                              private String name;
 	/*Apellido Paterno*/                    private String apellidoPaterno;
@@ -166,10 +163,5 @@ public class Contacto {
 		this.tipoCuentaAsociado = tipoCuentaAsociado;
 	}
 
-	
 
-	
-	
-	
-	
 }

@@ -33,7 +33,7 @@ public class ContactDAO {
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from Contact");
+			Query query = session.createQuery("from ContactVO");
 			
 			List<ContactVO> contactList = query.list(); 
 
@@ -65,7 +65,7 @@ public class ContactDAO {
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from Contact as contact WHERE contact.id = :id");
+			Query query = session.createQuery("from ContactVO as contact WHERE contact.id = :id");
 			query.setInteger("id", id);
 			
 			List<ContactVO> contactList = query.list(); 
@@ -102,7 +102,7 @@ public class ContactDAO {
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from Contact as contact WHERE contact.sfid = :sfid");
+			Query query = session.createQuery("from ContactVO as contact WHERE contact.sfid = :sfid");
 			query.setString("sfid", sfid);
 			
 			List<ContactVO> contactList = query.list(); 
@@ -141,7 +141,7 @@ public class ContactDAO {
 	
 	    try{
 	    	//preparamos la query
-	    	StringBuilder query = new StringBuilder("from Contact as contact");
+	    	StringBuilder query = new StringBuilder("from ContactVO as contact");
 			if(contact.getId()!= null){
 				if(isFirst){
 					query.append(" WHERE contact.id = :id");
@@ -159,14 +159,14 @@ public class ContactDAO {
 				}
 			}			
 			//Campo username no es case sensitive, lo convertimos a mayusculas para la condicion
-			if(contact.getParentRutEmpresa()!= null){
-				if(isFirst){
-					query.append(" WHERE UPPER(contact.parentRutEmpresa) = UPPER(:parentRutEmpresa)");
-					isFirst = false;
-				}else{
-					query.append(" AND UPPER(contact.parentRutEmpresa) = UPPER(:fechaNacimiento)");
-				}
-			}
+//			if(contact.getParentRutEmpresa()!= null){
+//				if(isFirst){
+//					query.append(" WHERE UPPER(contact.parentRutEmpresa) = UPPER(:parentRutEmpresa)");
+//					isFirst = false;
+//				}else{
+//					query.append(" AND UPPER(contact.parentRutEmpresa) = UPPER(:fechaNacimiento)");
+//				}
+//			}
 			if(contact.getFechaNacimiento()!= null){
 				if(isFirst){
 					query.append(" WHERE contact.fechaNacimiento = :fechaNacimiento");
@@ -570,9 +570,9 @@ public class ContactDAO {
 			if(contact.getName()!= null){
 				result.setString("name", contact.getName());
 			}
-			if(contact.getParentRutEmpresa()!= null){
-				result.setString("parentRutEmpresa", contact.getParentRutEmpresa());
-			}
+//			if(contact.getParentRutEmpresa()!= null){
+//				result.setString("parentRutEmpresa", contact.getParentRutEmpresa());
+//			}
 			if(contact.getFechaNacimiento()!= null){
 				result.setDate("fechaNacimiento", contact.getFechaNacimiento());
 			}

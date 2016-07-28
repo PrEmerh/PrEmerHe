@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.UserView;
+import com.casosemergencias.logic.ContactService;
 import com.casosemergencias.logic.UserService;
 import com.casosemergencias.model.User;
 import com.casosemergencias.util.Constantes;
@@ -60,11 +61,11 @@ public class LoginController {
 			
 			//Guardamos el usuario en la sesion
 			HttpSession session = request.getSession(true);
-			session.setAttribute("user", user);
-			
-			model.addObject("title", "Heroku Hello World");
-			model.addObject("name",  user.getName());
-			model.setViewName("private/hello");
+			session.setAttribute("user", user);			
+//			model.addObject("title", "Heroku Hello World");
+//			model.addObject("name",  user.getName());
+//			model.setViewName("private/hello");
+			model.setViewName("redirect: tableOfContacts");
 		}else{
 			logger.info("No existe el usuario");
 			userView.setMensajeError(Constantes.MSG_NO_USER_PASS);

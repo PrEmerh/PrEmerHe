@@ -26,25 +26,48 @@ public class ContactServiceImpl implements ContactService{
 	public List<Contacto> listOfContactsTable() {
 		
 		List<Contacto> listOfContactsTable= new ArrayList<Contacto>();
-		List<ContactVO> listOfAllContacs =new ArrayList<ContactVO>();
-		listOfAllContacs=contactDao.readAllContact();
-		Contacto contacto= new Contacto();
+		List<ContactVO> listOfAllContacts =new ArrayList<ContactVO>();
+		listOfAllContacts=contactDao.readAllContact();
+		Contacto contacto= null;
 		
-		for(ContactVO con:listOfAllContacs){
-
-				contacto.setId(con.getId());
-				contacto.setSfid(con.getSfid());
-				contacto.setName(con.getName());
-				contacto.setAccountRun(con.getAccountRun());
-				contacto.setPhone(con.getPhone());
-				contacto.setEmail(con.getEmail());
-							
+		
+		for(ContactVO con:listOfAllContacts){
+			
+			contacto = new Contacto();
+			contacto.setId(con.getId());
+			contacto.setSfid(con.getSfid());
+			contacto.setName(con.getName());
+			contacto.setApellidoPaterno(con.getApellidoPaterno());
+			contacto.setApellidoMaterno(con.getApellidoMaterno());
+			contacto.setTipoIdentidad(con.getTipoIdentidad());			
+			contacto.setAccountRun(con.getAccountRun());
+			contacto.setCanalPreferenteContacto(con.getCanalPreferenteContacto());
+			contacto.setPhone(con.getPhone());
+			contacto.setTelefonoSecundario(con.getTelefonoSecundario());
+			contacto.setEmail(con.getEmail());
+			contacto.setFechaNacimiento(con.getFechaNacimiento());
+			/*contacto.setNombrecuenta*/
+			contacto.setDirContacto(con.getDirContacto());
+			contacto.setEmailSecundario(con.getEmailSecundario());
+			contacto.setSf4twitterFcbkUsername(con.getSf4twitterFcbkUsername());
+			/*contacto.setRecuentoSeguidoresTwitter*/
+			/*contacto.setInfluencer*/
+			/*contacto.setInfluencerType*/
+			/*contacto.setBiografiaTwitter*/
+			contacto.setSf4twitterTwitterUserId(con.getSf4twitterTwitterUserId());
+			contacto.setSf4twitterFcbkUsername(con.getSf4twitterFcbkUsername());
+			contacto.setSf4twitterFcbkUserId(con.getSf4twitterFcbkUserId());
+			contacto.setTipoContacto(con.getTipoContacto());
+			contacto.setCasosReiterados(con.getCasosReiterados());
+			contacto.setTipoCuentaAsociado(con.getTipoCuentaAsociado());
+			
 			listOfContactsTable.add(contacto);
-			contacto=null;			
+					
 		}		
 		return listOfContactsTable;		
 	}
-	
+
+
 
 
 }

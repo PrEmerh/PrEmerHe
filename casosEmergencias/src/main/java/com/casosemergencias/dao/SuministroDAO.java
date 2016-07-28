@@ -33,7 +33,7 @@ public class SuministroDAO {
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from Suministro");
+			Query query = session.createQuery("from SuministroVO");
 			
 			List<SuministroVO> suministroList = query.list(); 
 
@@ -65,7 +65,7 @@ public class SuministroDAO {
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from Suministro as suministro WHERE suministro.id = :id");
+			Query query = session.createQuery("from SuministroVO as suministro WHERE suministro.id = :id");
 			query.setInteger("id", id);
 			
 			List<SuministroVO> suministroList = query.list(); 
@@ -101,7 +101,7 @@ public class SuministroDAO {
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from Suministro as suministro WHERE suministro.sfid = :sfid");
+			Query query = session.createQuery("from SuministroVO as suministro WHERE suministro.sfid = :sfid");
 			query.setString("sfid", sfid);
 			
 			List<SuministroVO> suministroList = query.list(); 
@@ -140,7 +140,7 @@ public class SuministroDAO {
 	
 	    try{
 	    	//preparamos la query
-	    	StringBuilder query = new StringBuilder("from Suministro as suministro");
+	    	StringBuilder query = new StringBuilder("from SuministroVO as suministro");
 			if(suministro.getId()!= null){
 				if(isFirst){
 					query.append(" WHERE suministro.id = :id");

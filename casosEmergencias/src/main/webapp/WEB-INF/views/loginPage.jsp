@@ -4,9 +4,10 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link href="resources/css/styles.css" rel="stylesheet">
+		<title>Login Page</title>
 	</head>
 	<body style="background-color:#99CCFF;">
-	<center><img src="resources/images/heroku.png"  /></center>
+		<center><img src="resources/images/heroku.png"  /></center>
 		<center><h1><s:message code="login_label_title"/></h1></center>
 	   	<center><h3><s:message code="login_label_text"/>:</h3></center>  
 	    

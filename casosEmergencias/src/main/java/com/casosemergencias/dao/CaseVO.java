@@ -39,7 +39,7 @@ public class CaseVO implements Serializable{
 	private String sfid;
 	
 	@Column(name = "createddate")
-	private Date systemDate;
+	private Date createdDate;
 	
 	@Column(name = "subject")
 	private String subject;
@@ -93,7 +93,7 @@ public class CaseVO implements Serializable{
 	private String falloCreacionObservacion;
 	
 	@Column(name = "estado_preingreso__c")
-	private Boolean sfidestadoPreingreso;
+	private Boolean estadoPreingreso;
 	
 	@Column(name = "email_de_notificacion__c")
 	private String emailNotificacion;
@@ -342,11 +342,11 @@ public class CaseVO implements Serializable{
 	private String condicionAgravante;
 
 	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
-			Date systemDate, String subject, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
+			Date createdDate, String subject, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
 			String flagSec, String lastmodifiedbyid, String productid, Boolean validarElectrodependiente,
 			String sf4twitterTwitterUsername, String ownerid, Date slastartdate, String motivoEmpresa,
 			String callCenter, Boolean falloEnvioValidacion, String literalComuna, Boolean actDatosContacto,
-			String falloCreacionObservacion, Boolean sfidestadoPreingreso, String emailNotificacion, Double horaap,
+			String falloCreacionObservacion, Boolean estadoPreingreso, String emailNotificacion, Double horaap,
 			String numeroInservice, String suppliedphone, String numeroMedidor, Boolean isstopped, String cuerpoMail,
 			String telefonoContacto, String questionid, Boolean hasselfservicecomments, String trazaFalloInservice,
 			String canalNotificacion, String createdbyid, String categoria, String flag, String observaciones,
@@ -372,7 +372,7 @@ public class CaseVO implements Serializable{
 		this._hc_err = _hc_err;
 		this.id = id;
 		this.sfid = sfid;
-		this.systemDate = systemDate;
+		this.createdDate = createdDate;
 		this.subject = subject;
 		this.fechaEstimadaCierre = fechaEstimadaCierre;
 		this.accountid = accountid;
@@ -390,7 +390,7 @@ public class CaseVO implements Serializable{
 		this.literalComuna = literalComuna;
 		this.actDatosContacto = actDatosContacto;
 		this.falloCreacionObservacion = falloCreacionObservacion;
-		this.sfidestadoPreingreso = sfidestadoPreingreso;
+		this.estadoPreingreso = estadoPreingreso;
 		this.emailNotificacion = emailNotificacion;
 		this.horaap = horaap;
 		this.numeroInservice = numeroInservice;
@@ -527,12 +527,12 @@ public class CaseVO implements Serializable{
 		this.sfid = sfid;
 	}
 
-	public Date getSystemDate() {
-		return systemDate;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
-	public void setSystemDate(Date systemDate) {
-		this.systemDate = systemDate;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
 
 	public String getSubject() {
@@ -671,12 +671,12 @@ public class CaseVO implements Serializable{
 		this.falloCreacionObservacion = falloCreacionObservacion;
 	}
 
-	public Boolean getSfidestadoPreingreso() {
-		return sfidestadoPreingreso;
+	public Boolean getEstadoPreingreso() {
+		return estadoPreingreso;
 	}
 
-	public void setSfidestadoPreingreso(Boolean sfidestadoPreingreso) {
-		this.sfidestadoPreingreso = sfidestadoPreingreso;
+	public void setEstadoPreingreso(Boolean estadoPreingreso) {
+		this.estadoPreingreso = estadoPreingreso;
 	}
 
 	public String getEmailNotificacion() {

@@ -5,7 +5,12 @@ import org.springframework.stereotype.Repository;
 
 import com.casosemergencias.logic.UserService;
 
-//objeto que tiene el modelo de un usuario, se utiliza en el Servicio
+/**
+ * @author MPC
+* 
+* Clase que contiene el modelo de un Usuario. Esta clase es la que utilizaremos en el Servicio.
+*
+*/
 public class User {
 
 	private Integer id;
