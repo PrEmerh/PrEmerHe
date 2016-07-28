@@ -51,6 +51,43 @@ public class CaseDAO{
 	      return null;
 	}
 	
+	/**
+	 * Devuelve una lista con todos los Case de BBDD pero en los campos que son picklist, le pone la descripcion en vez del codigo
+	 * 
+	 * @return
+	 */
+	public List<CaseVO> readAllCaseDescriptionPick(){
+				
+		logger.debug("--- Inicio -- readAllCaseDescriptionPick ---");
+		
+		Session session = sessionFactory.openSession();
+				
+		try{
+			Query query = session.createQuery("from CaseVO");
+			
+//			select CaseNumber, Status, Motivo_Empresa__c, sub_estado__c, estado.valor descripcionStatus, motivo.valor descripcionMotivo, subestado.valor descripcionSubestado
+//			from salesforce.Case 
+//			left join salesforce.picklists estado on (estado.codigo=status and estado.campo ='Status' and estado.objeto='Case') 
+//			left join salesforce.picklists motivo on (motivo.codigo=Motivo_Empresa__c and motivo.campo ='Motivo_Empresa__c' and motivo.objeto='Case') 
+//			left join salesforce.picklists subestado on (subestado.codigo=sub_estado__c and subestado.campo ='Sub_estado__c' and subestado.objeto='Case')
+
+			List<CaseVO> casoList = query.list(); 
+
+			
+			logger.debug("--- Fin -- readAllCaseDescriptionPick ---");
+			
+			return casoList;
+			
+	    }catch (HibernateException e) {
+	    	logger.error("--- readAllCaseDescriptionPick "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- readAllCaseDescriptionPick ---");
+	    }finally {
+	    	session.close(); 
+	    }
+	      return null;
+	}
+	
 	
 	/**
 	 * Devuelve el Case que tiene como id el pasado por parametro al metodo
@@ -65,7 +102,7 @@ public class CaseDAO{
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from Case as caso WHERE caso.id = :id");
+			Query query = session.createQuery("from CaseVO as caso WHERE caso.id = :id");
 			query.setInteger("id", id);
 			
 			List<CaseVO> casoList = query.list(); 
@@ -101,7 +138,7 @@ public class CaseDAO{
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from Case as caso WHERE caso.sfid = :sfid");
+			Query query = session.createQuery("from CaseVO as caso WHERE caso.sfid = :sfid");
 			query.setString("sfid", sfid);
 			
 			List<CaseVO> casoList = query.list(); 
@@ -140,7 +177,7 @@ public class CaseDAO{
 	
 	    try{
 	    	//preparamos la query
-	    	StringBuilder query = new StringBuilder("from Case as caso");
+	    	StringBuilder query = new StringBuilder("from CaseVO as caso");
 			if(caso.getId()!= null){
 				if(isFirst){
 					query.append(" WHERE caso.id = :id");

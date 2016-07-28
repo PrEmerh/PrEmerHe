@@ -1,0 +1,44 @@
+body {	
+	background-color: #FFFFFF;
+	padding:0px;
+	margin:3px;	
+}
+
+.botoneraListado{
+	width:100%;	
+	margin: 8px 2px 15px 2px;
+}
+
+.botoneraListado ul {
+	margin:0px;
+	padding:0px;
+}
+.botoneraListado li {
+	display: inline;
+	list-style-type: none;
+	margin:0px;
+	padding:0px;
+}
+	
+.botoneraListado li input {
+	font-family: Helvetica,Arial,sans-serif;
+	font-size: 12.5px;
+	font-weight: normal;
+	padding: 5px 10px;
+	background: #e8e8e9 url('../../resources/images/btn_sprite.png') repeat-x right top;
+	border-radius: 3px;
+	cursor:pointer;
+    align-items: flex-start;
+    text-align: center;    
+}
+
+.botoneraListado li:first-child input {
+    border-color: #4a90e2;
+    background-color: #0070d2;
+    color: #fff;
+    background-image: none;
+}
+
+.tdPrincipal{
+	color:blue;
+}

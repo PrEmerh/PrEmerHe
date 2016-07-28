@@ -80,6 +80,7 @@
 
 	<!-- Nombre de los Service de la aplicacion -->
 	<bean id="userService" class="com.casosemergencias.logic.UserServiceImpl"/>
+	<bean id="casoService" class="com.casosemergencias.logic.CaseServiceImpl"/>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/"/> 
 	
