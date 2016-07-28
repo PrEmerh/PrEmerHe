@@ -182,14 +182,6 @@ public class SuministroDAO {
 					query.append(" AND suministro.tipoTransformador = :tipoTransformador");
 				}
 			}
-			if(suministro.getCreatedbyid()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.createdbyid = :createdbyid");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.createdbyid = :createdbyid");
-				}
-			}
 			if(suministro.getCortePorDeuda()!= null){
 				if(isFirst){
 					query.append(" WHERE suministro.cortePorDeuda = :cortePorDeuda");
@@ -245,21 +237,6 @@ public class SuministroDAO {
 				}else{
 					query.append(" AND suministro.estadoConexion = :estadoConexion");
 				}
-			}if(suministro.getClasificacionCliente()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.clasificacionCliente = :clasificacionCliente");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.clasificacionCliente = :clasificacionCliente");
-				}
-			}
-			if(suministro.getVip()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.vip = :vip");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.vip = :vip");
-				}
 			}if(suministro.getTipoMedida()!= null){
 				if(isFirst){
 					query.append(" WHERE suministro.tipoMedida = :tipoMedida");
@@ -291,22 +268,6 @@ public class SuministroDAO {
 					query.append(" AND suministro.numeroMedidor = :numeroMedidor");
 				}
 			}
-			if(suministro.getDvNumeroSuministro()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.dvNumeroSuministro = :dvNumeroSuministro");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.dvNumeroSuministro = :dvNumeroSuministro");
-				}
-			}
-			if(suministro.getDatosClientesConDisciplina()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.datosClientesConDisciplina = :datosClientesConDisciplina");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.datosClientesConDisciplina = :datosClientesConDisciplina");
-				}
-			}
 			if(suministro.getModeloMedidor()!= null){
 				if(isFirst){
 					query.append(" WHERE suministro.modeloMedidor = :modeloMedidor");
@@ -331,38 +292,7 @@ public class SuministroDAO {
 					query.append(" AND suministro.numeroTransformador = :numeroTransformador");
 				}
 			}
-			if(suministro.getCondominioSector()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.condominioSector = :condominioSector");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.condominioSector = :condominioSector");
-				}
-			}
-			if(suministro.getProcesoLectura()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.procesoLectura = :procesoLectura");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.procesoLectura = :procesoLectura");
-				}
-			}
-			if(suministro.getOwnerid()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.ownerid = :ownerid");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.ownerid = :ownerid");
-				}
-			}
-			if(suministro.getNombreTransformador()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.nombreTransformador = :nombreTransformador");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.nombreTransformador = :nombreTransformador");
-				}
-			}
+			
 			if(suministro.getEstadoSuministro()!= null){
 				if(isFirst){
 					query.append(" WHERE suministro.estadoSuministro = :estadoSuministro");
@@ -395,14 +325,7 @@ public class SuministroDAO {
 					query.append(" AND suministro.propiedadMedidor = :propiedadMedidor");
 				}
 			}
-			if(suministro.getLastmodifiedbyid()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.lastmodifiedbyid = :lastmodifiedbyid");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.lastmodifiedbyid = :lastmodifiedbyid");
-				}
-			}
+			
 			if(suministro.getIdEmpresa()!= null){
 				if(isFirst){
 					query.append(" WHERE suministro.idEmpresa = :idEmpresa");
@@ -419,14 +342,7 @@ public class SuministroDAO {
 					query.append(" AND suministro.direccion = :direccion");
 				}
 			}
-			if(suministro.getItemContrato()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.itemContrato = :itemContrato");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.itemContrato = :itemContrato");
-				}
-			}
+			
 			if(suministro.getRunRut()!= null){
 				if(isFirst){
 					query.append(" WHERE suministro.runRut = :runRut");
@@ -467,22 +383,7 @@ public class SuministroDAO {
 					query.append(" AND suministro.tipoConexion = :tipoConexion");
 				}
 			}
-			if(suministro.getPuntoConexionRed()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.puntoConexionRed = :puntoConexionRed");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.puntoConexionRed = :puntoConexionRed");
-				}
-			}
-			if(suministro.getIdcontactonavegacion()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.idcontactonavegacion = :idcontactonavegacion");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.idcontactonavegacion = :idcontactonavegacion");
-				}
-			}
+			
 			if(suministro.getDireccionCliente()!= null){
 				if(isFirst){
 					query.append(" WHERE suministro.direccionCliente = :direccionCliente");
@@ -523,14 +424,7 @@ public class SuministroDAO {
 					query.append(" AND suministro.casosReiterados = :casosReiterados");
 				}
 			}
-			if(suministro.getZonaPeligrosa()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.zonaPeligrosa = :zonaPeligrosa");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.zonaPeligrosa = :zonaPeligrosa");
-				}
-			}
+			
 			if(suministro.getTarifa()!= null){
 				if(isFirst){
 					query.append(" WHERE suministro.tarifa = :tarifa");
@@ -539,22 +433,7 @@ public class SuministroDAO {
 					query.append(" AND suministro.tarifa = :tarifa");
 				}
 			}
-			if(suministro.getTipoVivienda()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.tipoVivienda = :tipoVivienda");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.tipoVivienda = :tipoVivienda");
-				}
-			}
-			if(suministro.getTipoAgrupacion()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.tipoAgrupacion = :tipoAgrupacion");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.tipoAgrupacion = :tipoAgrupacion");
-				}
-			}
+			
 			if(suministro.getAlimentador()!= null){
 				if(isFirst){
 					query.append(" WHERE suministro.alimentador = :alimentador");
@@ -595,14 +474,7 @@ public class SuministroDAO {
 					query.append(" AND suministro.ruta = :ruta");
 				}
 			}
-			if(suministro.getDireccionconcatenada()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.direccionconcatenada = :direccionconcatenada");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.direccionconcatenada = :direccionconcatenada");
-				}
-			}
+			
 			if(suministro.getTipoCuenta()!= null){
 				if(isFirst){
 					query.append(" WHERE suministro.tipoCuenta = :tipoCuenta");
@@ -619,14 +491,7 @@ public class SuministroDAO {
 					query.append(" AND suministro.tipoSegmento = :tipoSegmento");
 				}
 			}
-			if(suministro.getTipoServicio()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.tipoServicio = :tipoServicio");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.tipoServicio = :tipoServicio");
-				}
-			}
+			
 			if(suministro.getSystemDate()!= null){
 				if(isFirst){
 					query.append(" WHERE suministro.systemDate = :systemDate");
@@ -635,14 +500,7 @@ public class SuministroDAO {
 					query.append(" AND suministro.systemDate = :systemDate");
 				}
 			}
-			if(suministro.getCreatedDate()!= null){
-				if(isFirst){
-					query.append(" WHERE suministro.createdDate = :createdDate");
-					isFirst = false;
-				}else{
-					query.append(" AND suministro.createdDate = :createdDate");
-				}
-			}
+			
 			
 			//añadimos los valores por los que filtrara la query
 			Query result = session.createQuery(query.toString());
@@ -662,9 +520,7 @@ public class SuministroDAO {
 			if(suministro.getTipoTransformador()!= null){
 				result.setString("tipoTransformador", suministro.getTipoTransformador());
 			}
-			if(suministro.getCreatedbyid()!= null){
-				result.setString("createdbyid", suministro.getCreatedbyid());
-			}
+			
 			if(suministro.getCortePorDeuda()!= null){
 				result.setBoolean("cortePorDeuda", suministro.getCortePorDeuda());
 			}
@@ -686,9 +542,7 @@ public class SuministroDAO {
 			if(suministro.getEstadoConexion()!= null){
 				result.setString("estadoConexion", suministro.getEstadoConexion());
 			}
-			if(suministro.getVip()!= null){
-				result.setString("vip", suministro.getVip());
-			}
+			
 			if(suministro.getTipoMedida()!= null){
 				result.setString("tipoMedida", suministro.getTipoMedida());
 			}
@@ -701,12 +555,7 @@ public class SuministroDAO {
 			if(suministro.getNumeroMedidor()!= null){
 				result.setString("numeroMedidor", suministro.getNumeroMedidor());
 			}
-			if(suministro.getDvNumeroSuministro()!= null){
-				result.setString("dvNumeroSuministro", suministro.getDvNumeroSuministro());
-			}
-			if(suministro.getDatosClientesConDisciplina()!= null){
-				result.setString("datosClientesConDisciplina", suministro.getDatosClientesConDisciplina());
-			}
+			
 			if(suministro.getModeloMedidor()!= null){
 				result.setString("modeloMedidor", suministro.getModeloMedidor());
 			}
@@ -716,36 +565,21 @@ public class SuministroDAO {
 			if(suministro.getNumeroTransformador()!= null){
 				result.setString("numeroTransformador", suministro.getNumeroTransformador());
 			}
-			if(suministro.getCondominioSector()!= null){
-				result.setString("condominioSector", suministro.getCondominioSector());
-			}
-			if(suministro.getProcesoLectura()!= null){
-				result.setString("procesoLectura", suministro.getProcesoLectura());
-			}
-			if(suministro.getOwnerid()!= null){
-				result.setString("ownerid", suministro.getOwnerid());
-			}
-			if(suministro.getNombreTransformador()!= null){
-				result.setString("nombreTransformador", suministro.getNombreTransformador());
-			}
+			
 			if(suministro.getFechaCorte()!= null){
 				result.setDate("propiedadMedidor", suministro.getFechaCorte());
 			}
 			if(suministro.getPropiedadMedidor()!= null){
 				result.setString("propiedadMedidor", suministro.getPropiedadMedidor());
 			}
-			if(suministro.getLastmodifiedbyid()!= null){
-				result.setString("lastmodifiedbyid", suministro.getLastmodifiedbyid());
-			}
+			
 			if(suministro.getIdEmpresa()!= null){
 				result.setString("idEmpresa", suministro.getIdEmpresa());
 			}
 			if(suministro.getDireccion()!= null){
 				result.setString("direccion", suministro.getDireccion());
 			}
-			if(suministro.getItemContrato()!= null){
-				result.setString("itemContrato", suministro.getItemContrato());
-			}
+			
 			if(suministro.getRunRut()!= null){
 				result.setString("runRut", suministro.getRunRut());
 			}
@@ -761,12 +595,7 @@ public class SuministroDAO {
 			if(suministro.getTipoConexion()!= null){
 				result.setString("tipoConexion", suministro.getTipoConexion());
 			}
-			if(suministro.getPuntoConexionRed()!= null){
-				result.setString("puntoConexionRed", suministro.getPuntoConexionRed());
-			}
-			if(suministro.getIdcontactonavegacion()!= null){
-				result.setString("idcontactonavegacion", suministro.getIdcontactonavegacion());
-			}
+			
 			if(suministro.getDireccionCliente()!= null){
 				result.setString("direccionCliente", suministro.getDireccionCliente());
 			}
@@ -782,15 +611,11 @@ public class SuministroDAO {
 			if(suministro.getCasosReiterados()!= null){
 				result.setDouble("casosReiterados", suministro.getCasosReiterados());
 			}
-			if(suministro.getZonaPeligrosa()!= null){
-				result.setBoolean("zonaPeligrosa", suministro.getZonaPeligrosa());
-			}
+			
 			if(suministro.getTarifa()!= null){
 				result.setString("tarifa", suministro.getTarifa());
 			}
-			if(suministro.getTipoVivienda()!= null){
-				result.setString("tipoVivienda", suministro.getTipoVivienda());
-			}
+			
 			if(suministro.getAlimentador()!= null){
 				result.setString("alimentador", suministro.getAlimentador());
 			}
@@ -806,24 +631,18 @@ public class SuministroDAO {
 			if(suministro.getRuta()!= null){
 				result.setString("ruta", suministro.getRuta());
 			}
-			if(suministro.getDireccionconcatenada()!= null){
-				result.setString("direccionconcatenada", suministro.getDireccionconcatenada());
-			}
+			
 			if(suministro.getTipoCuenta()!= null){
 				result.setString("tipoCuenta", suministro.getTipoCuenta());
 			}
 			if(suministro.getTipoSegmento()!= null){
 				result.setString("tipoSegmento", suministro.getTipoSegmento());
 			}
-			if(suministro.getTipoServicio()!= null){
-				result.setString("tipoServicio", suministro.getTipoServicio());
-			}
+			
 			if(suministro.getSystemDate()!= null){
 				result.setDate("systemDate", suministro.getSystemDate());
 			}
-			if(suministro.getCreatedDate()!= null){
-				result.setDate("createdDate", suministro.getCreatedDate());
-			}
+			
 			
 			List<SuministroVO> suministrosList = result.list(); 	 
 			

@@ -159,14 +159,14 @@ public class ContactDAO {
 				}
 			}			
 			//Campo username no es case sensitive, lo convertimos a mayusculas para la condicion
-			if(contact.getParentRutEmpresa()!= null){
-				if(isFirst){
-					query.append(" WHERE UPPER(contact.parentRutEmpresa) = UPPER(:parentRutEmpresa)");
-					isFirst = false;
-				}else{
-					query.append(" AND UPPER(contact.parentRutEmpresa) = UPPER(:fechaNacimiento)");
-				}
-			}
+//			if(contact.getParentRutEmpresa()!= null){
+//				if(isFirst){
+//					query.append(" WHERE UPPER(contact.parentRutEmpresa) = UPPER(:parentRutEmpresa)");
+//					isFirst = false;
+//				}else{
+//					query.append(" AND UPPER(contact.parentRutEmpresa) = UPPER(:fechaNacimiento)");
+//				}
+//			}
 			if(contact.getFechaNacimiento()!= null){
 				if(isFirst){
 					query.append(" WHERE contact.fechaNacimiento = :fechaNacimiento");
@@ -570,9 +570,9 @@ public class ContactDAO {
 			if(contact.getName()!= null){
 				result.setString("name", contact.getName());
 			}
-			if(contact.getParentRutEmpresa()!= null){
-				result.setString("parentRutEmpresa", contact.getParentRutEmpresa());
-			}
+//			if(contact.getParentRutEmpresa()!= null){
+//				result.setString("parentRutEmpresa", contact.getParentRutEmpresa());
+//			}
 			if(contact.getFechaNacimiento()!= null){
 				result.setDate("fechaNacimiento", contact.getFechaNacimiento());
 			}

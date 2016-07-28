@@ -39,9 +39,6 @@ public class SuministroVO implements Serializable{
 	@Column(name = "sfid")
 	private String sfid;
 	
-	@Column(name = "createddate")
-	private Date createdDate;
-	
 	@Column(name = "name")
 	private String name;
 	
@@ -54,9 +51,6 @@ public class SuministroVO implements Serializable{
 	@Column(name = "tipo_de_transformador__c")
 	private String tipoTransformador;
 	
-	@Column(name = "createdbyid")
-	private String createdbyid;
-	
 	@Column(name = "corte_por_deuda__c")
 	private Boolean cortePorDeuda;
 	
@@ -65,12 +59,6 @@ public class SuministroVO implements Serializable{
 	
 	@Column(name = "estado_de_conexi_n__c")
 	private String estadoConexion;
-	
-	@Column(name = "clasificaci_n_cliente__c")
-	private String clasificacionCliente;
-	
-	@Column(name = "vip__c")
-	private String vip;
 	
 	@Column(name = "tipo_de_medida__c")
 	private String tipoMedida;
@@ -84,12 +72,6 @@ public class SuministroVO implements Serializable{
 	@Column(name = "n_mero_medidor__c")
 	private String numeroMedidor;
 	
-	@Column(name = "dv_numero_suministro__c")
-	private String dvNumeroSuministro;
-	
-	@Column(name = "datos_clientes_con_disciplina__c")
-	private String datosClientesConDisciplina;
-	
 	@Column(name = "modelo_medidor__c")
 	private String modeloMedidor;
 	
@@ -98,18 +80,6 @@ public class SuministroVO implements Serializable{
 	
 	@Column(name = "numero_de_transformador__c")
 	private String numeroTransformador;
-	
-	@Column(name = "condominio_sector__c")
-	private String condominioSector;
-	
-	@Column(name = "proceso_de_lectura__c")
-	private String procesoLectura;
-	
-	@Column(name = "ownerid")
-	private String ownerid;
-	
-	@Column(name = "nombre_transformador__c")
-	private String nombreTransformador;
 	
 	@Column(name = "estado_del_suministro__c")
 	private String estadoSuministro;
@@ -123,18 +93,12 @@ public class SuministroVO implements Serializable{
 	@Column(name = "propiedad_medidor__c")
 	private String propiedadMedidor;
 	
-	@Column(name = "lastmodifiedbyid")
-	private String lastmodifiedbyid;
-	
 	@Column(name = "id_empresa__c")
 	private String idEmpresa;
 	
 	@Column(name = "direccion__c")
 	private String direccion;
-	
-	@Column(name = "item_contrato__c")
-	private String itemContrato;
-	
+
 	@Column(name = "run_rut__c")
 	private String runRut;
 	
@@ -149,13 +113,7 @@ public class SuministroVO implements Serializable{
 	
 	@Column(name = "tipo_de_conexi_n__c")
 	private String tipoConexion;
-	
-	@Column(name = "punto_conexi_n_red__c")
-	private String puntoConexionRed;
-	
-	@Column(name = "idcontactonavegacion__c")
-	private String idcontactonavegacion;
-	
+
 	@Column(name = "direccion_cliente__c")
 	private String direccionCliente;
 	
@@ -170,18 +128,9 @@ public class SuministroVO implements Serializable{
 	
 	@Column(name = "casos_reiterados__c")
 	private Double casosReiterados;
-	
-	@Column(name = "zona_peligrosa__c")
-	private Boolean zonaPeligrosa;
-	
+
 	@Column(name = "tarifa__c")
 	private String tarifa;
-	
-	@Column(name = "tipo_de_vivienda__c")
-	private String tipoVivienda;
-	
-	@Column(name = "tipo_de_agrupaci_n__c")
-	private String tipoAgrupacion;
 	
 	@Column(name = "alimentador__c")
 	private String alimentador;
@@ -198,34 +147,24 @@ public class SuministroVO implements Serializable{
 	@Column(name = "ruta__c")
 	private String ruta;
 	
-	@Column(name = "direccionconcatenada__c")
-	private String direccionconcatenada;
-	
 	@Column(name = "tipo_de_cuenta__c")
 	private String tipoCuenta;
 	
 	@Column(name = "tipo_de_segmento__c")
 	private String tipoSegmento;
-	
-	@Column(name = "tipo_de_servicio__c")
-	private String tipoServicio;
 
+	public SuministroVO(){}
+	
 	public SuministroVO(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
-			Date createdDate, String name, String fullElectric, Boolean casosAbiertos, String tipoTransformador,
-			String createdbyid, Boolean cortePorDeuda, String tipoLectura, String estadoConexion,
-			String clasificacionCliente, String vip, String tipoMedida, String comunaReparto, String comuna,
-			String numeroMedidor, String dvNumeroSuministro, String datosClientesConDisciplina,
-			String modeloMedidor, String numeroSuministro, String numeroTransformador, String condominioSector,
-			String procesoLectura, String ownerid, String nombreTransformador, String estadoSuministro,
-			String marcaMedidor, Date fechaCorte, String propiedadMedidor, String lastmodifiedbyid,
-			String idEmpresa, String direccion, String itemContrato, String runRut, Boolean pagoEnProceso,
-			String nombreDuenoBoleta, String bloque, String tipoConexion, String puntoConexionRed,
-			String idcontactonavegacion, String direccionCliente, String electrodependiente,
-			String medidaDisciplina, String horarioRacionamiento, Double casosReiterados,
-			Boolean zonaPeligrosa, String tarifa, String tipoVivienda, String tipoAgrupacion,
-			String alimentador, String direccionBoleta, String cuenta, String subestacionElectricaConexion,
-			String ruta, String direccionconcatenada, String tipoCuenta, String tipoSegmento,
-			String tipoServicio) {
+			String name, String fullElectric, Boolean casosAbiertos, String tipoTransformador, Boolean cortePorDeuda,
+			String tipoLectura, String estadoConexion, String tipoMedida, String comunaReparto, String comuna,
+			String numeroMedidor, String modeloMedidor, String numeroSuministro, String numeroTransformador,
+			String estadoSuministro, String marcaMedidor, Date fechaCorte, String propiedadMedidor, String idEmpresa,
+			String direccion, String runRut, Boolean pagoEnProceso, String nombreDuenoBoleta, String bloque,
+			String tipoConexion, String direccionCliente, String electrodependiente, String medidaDisciplina,
+			String horarioRacionamiento, Double casosReiterados, String tarifa, String alimentador,
+			String direccionBoleta, String cuenta, String subestacionElectricaConexion, String ruta, String tipoCuenta,
+			String tipoSegmento) {
 		super();
 		this.isDeleted = isDeleted;
 		this.systemDate = systemDate;
@@ -233,67 +172,44 @@ public class SuministroVO implements Serializable{
 		this.hcError = hcError;
 		this.id = id;
 		this.sfid = sfid;
-		this.createdDate = createdDate;
 		this.name = name;
 		this.fullElectric = fullElectric;
 		this.casosAbiertos = casosAbiertos;
 		this.tipoTransformador = tipoTransformador;
-		this.createdbyid = createdbyid;
 		this.cortePorDeuda = cortePorDeuda;
 		this.tipoLectura = tipoLectura;
 		this.estadoConexion = estadoConexion;
-		this.clasificacionCliente = clasificacionCliente;
-		this.vip = vip;
 		this.tipoMedida = tipoMedida;
 		this.comunaReparto = comunaReparto;
 		this.comuna = comuna;
 		this.numeroMedidor = numeroMedidor;
-		this.dvNumeroSuministro = dvNumeroSuministro;
-		this.datosClientesConDisciplina = datosClientesConDisciplina;
 		this.modeloMedidor = modeloMedidor;
 		this.numeroSuministro = numeroSuministro;
 		this.numeroTransformador = numeroTransformador;
-		this.condominioSector = condominioSector;
-		this.procesoLectura = procesoLectura;
-		this.ownerid = ownerid;
-		this.nombreTransformador = nombreTransformador;
 		this.estadoSuministro = estadoSuministro;
 		this.marcaMedidor = marcaMedidor;
 		this.fechaCorte = fechaCorte;
 		this.propiedadMedidor = propiedadMedidor;
-		this.lastmodifiedbyid = lastmodifiedbyid;
 		this.idEmpresa = idEmpresa;
 		this.direccion = direccion;
-		this.itemContrato = itemContrato;
 		this.runRut = runRut;
 		this.pagoEnProceso = pagoEnProceso;
 		this.nombreDuenoBoleta = nombreDuenoBoleta;
 		this.bloque = bloque;
 		this.tipoConexion = tipoConexion;
-		this.puntoConexionRed = puntoConexionRed;
-		this.idcontactonavegacion = idcontactonavegacion;
 		this.direccionCliente = direccionCliente;
 		this.electrodependiente = electrodependiente;
 		this.medidaDisciplina = medidaDisciplina;
 		this.horarioRacionamiento = horarioRacionamiento;
 		this.casosReiterados = casosReiterados;
-		this.zonaPeligrosa = zonaPeligrosa;
 		this.tarifa = tarifa;
-		this.tipoVivienda = tipoVivienda;
-		this.tipoAgrupacion = tipoAgrupacion;
 		this.alimentador = alimentador;
 		this.direccionBoleta = direccionBoleta;
 		this.cuenta = cuenta;
 		this.subestacionElectricaConexion = subestacionElectricaConexion;
 		this.ruta = ruta;
-		this.direccionconcatenada = direccionconcatenada;
 		this.tipoCuenta = tipoCuenta;
 		this.tipoSegmento = tipoSegmento;
-		this.tipoServicio = tipoServicio;
-	}
-
-	public SuministroVO() {
-		super();
 	}
 
 	public Boolean getIsDeleted() {
@@ -344,14 +260,6 @@ public class SuministroVO implements Serializable{
 		this.sfid = sfid;
 	}
 
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -372,7 +280,7 @@ public class SuministroVO implements Serializable{
 		return casosAbiertos;
 	}
 
-	public void setasosAbiertos(Boolean casosAbiertos) {
+	public void setCasosAbiertos(Boolean casosAbiertos) {
 		this.casosAbiertos = casosAbiertos;
 	}
 
@@ -384,19 +292,11 @@ public class SuministroVO implements Serializable{
 		this.tipoTransformador = tipoTransformador;
 	}
 
-	public String getCreatedbyid() {
-		return createdbyid;
-	}
-
-	public void setCreatedbyid(String createdbyid) {
-		this.createdbyid = createdbyid;
-	}
-
 	public Boolean getCortePorDeuda() {
 		return cortePorDeuda;
 	}
 
-	public void setCorte_por_deuda(Boolean cortePorDeuda) {
+	public void setCortePorDeuda(Boolean cortePorDeuda) {
 		this.cortePorDeuda = cortePorDeuda;
 	}
 
@@ -414,22 +314,6 @@ public class SuministroVO implements Serializable{
 
 	public void setEstadoConexion(String estadoConexion) {
 		this.estadoConexion = estadoConexion;
-	}
-
-	public String getClasificacionCliente() {
-		return clasificacionCliente;
-	}
-
-	public void setClasificacionCliente(String clasificacionCliente) {
-		this.clasificacionCliente = clasificacionCliente;
-	}
-
-	public String getVip() {
-		return vip;
-	}
-
-	public void setVip(String vip) {
-		this.vip = vip;
 	}
 
 	public String getTipoMedida() {
@@ -464,22 +348,6 @@ public class SuministroVO implements Serializable{
 		this.numeroMedidor = numeroMedidor;
 	}
 
-	public String getDvNumeroSuministro() {
-		return dvNumeroSuministro;
-	}
-
-	public void setDvNumeroSuministro(String dvNumeroSuministro) {
-		this.dvNumeroSuministro = dvNumeroSuministro;
-	}
-
-	public String getDatosClientesConDisciplina() {
-		return datosClientesConDisciplina;
-	}
-
-	public void setDatosClientesConDisciplina(String datosClientesConDisciplina) {
-		this.datosClientesConDisciplina = datosClientesConDisciplina;
-	}
-
 	public String getModeloMedidor() {
 		return modeloMedidor;
 	}
@@ -502,38 +370,6 @@ public class SuministroVO implements Serializable{
 
 	public void setNumeroTransformador(String numeroTransformador) {
 		this.numeroTransformador = numeroTransformador;
-	}
-
-	public String getCondominioSector() {
-		return condominioSector;
-	}
-
-	public void setCondominioSector(String condominioSector) {
-		this.condominioSector = condominioSector;
-	}
-
-	public String getProcesoLectura() {
-		return procesoLectura;
-	}
-
-	public void setProcesoLectura(String procesoLectura) {
-		this.procesoLectura = procesoLectura;
-	}
-
-	public String getOwnerid() {
-		return ownerid;
-	}
-
-	public void setOwnerid(String ownerid) {
-		this.ownerid = ownerid;
-	}
-
-	public String getNombreTransformador() {
-		return nombreTransformador;
-	}
-
-	public void setNombreTransformador(String nombreTransformador) {
-		this.nombreTransformador = nombreTransformador;
 	}
 
 	public String getEstadoSuministro() {
@@ -568,14 +404,6 @@ public class SuministroVO implements Serializable{
 		this.propiedadMedidor = propiedadMedidor;
 	}
 
-	public String getLastmodifiedbyid() {
-		return lastmodifiedbyid;
-	}
-
-	public void setLastmodifiedbyid(String lastmodifiedbyid) {
-		this.lastmodifiedbyid = lastmodifiedbyid;
-	}
-
 	public String getIdEmpresa() {
 		return idEmpresa;
 	}
@@ -590,14 +418,6 @@ public class SuministroVO implements Serializable{
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
-	}
-
-	public String getItemContrato() {
-		return itemContrato;
-	}
-
-	public void setItemContrato(String itemContrato) {
-		this.itemContrato = itemContrato;
 	}
 
 	public String getRunRut() {
@@ -640,22 +460,6 @@ public class SuministroVO implements Serializable{
 		this.tipoConexion = tipoConexion;
 	}
 
-	public String getPuntoConexionRed() {
-		return puntoConexionRed;
-	}
-
-	public void setPuntoConexionRed(String puntoConexionRed) {
-		this.puntoConexionRed = puntoConexionRed;
-	}
-
-	public String getIdcontactonavegacion() {
-		return idcontactonavegacion;
-	}
-
-	public void setIdcontactonavegacion(String idcontactonavegacion) {
-		this.idcontactonavegacion = idcontactonavegacion;
-	}
-
 	public String getDireccionCliente() {
 		return direccionCliente;
 	}
@@ -696,36 +500,12 @@ public class SuministroVO implements Serializable{
 		this.casosReiterados = casosReiterados;
 	}
 
-	public Boolean getZonaPeligrosa() {
-		return zonaPeligrosa;
-	}
-
-	public void setZonaPeligrosa(Boolean zonaPeligrosa) {
-		this.zonaPeligrosa = zonaPeligrosa;
-	}
-
 	public String getTarifa() {
 		return tarifa;
 	}
 
 	public void setTarifa(String tarifa) {
 		this.tarifa = tarifa;
-	}
-
-	public String getTipoVivienda() {
-		return tipoVivienda;
-	}
-
-	public void setTipoVivienda(String tipoVivienda) {
-		this.tipoVivienda = tipoVivienda;
-	}
-
-	public String getTipoAgrupacion() {
-		return tipoAgrupacion;
-	}
-
-	public void setTipoAgrupacion(String tipoAgrupacion) {
-		this.tipoAgrupacion = tipoAgrupacion;
 	}
 
 	public String getAlimentador() {
@@ -768,14 +548,6 @@ public class SuministroVO implements Serializable{
 		this.ruta = ruta;
 	}
 
-	public String getDireccionconcatenada() {
-		return direccionconcatenada;
-	}
-
-	public void setDireccionconcatenada(String direccionconcatenada) {
-		this.direccionconcatenada = direccionconcatenada;
-	}
-
 	public String getTipoCuenta() {
 		return tipoCuenta;
 	}
@@ -790,14 +562,6 @@ public class SuministroVO implements Serializable{
 
 	public void setTipoSegmento(String tipoSegmento) {
 		this.tipoSegmento = tipoSegmento;
-	}
-
-	public String getTipoServicio() {
-		return tipoServicio;
-	}
-
-	public void setTipoServicio(String tipoServicio) {
-		this.tipoServicio = tipoServicio;
 	}
 
 
