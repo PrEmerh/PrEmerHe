@@ -45,8 +45,8 @@ public class ContactVO implements Serializable{
 	@Column(name = "name")
 	private String name;
 	
-//	@Column(name = "parent__rut_empresa__c")
-//	private String parentRutEmpresa;
+	@Column(name = "parent__rut_empresa__c")
+	private String parentRutEmpresa;
 	
 	@Column(name = "fecha_nacimiento__c")
 	private Date fechaNacimiento;
@@ -192,7 +192,7 @@ public class ContactVO implements Serializable{
 	@Column(name = "apellido_paterno__c")
 	private String apellidoPaterno;
 
-	public ContactVO(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
+	public ContactVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
 			Date createddate, String name, String parentRutEmpresa, Date fechaNacimiento, String nombreConcatenado,
 			String rutEmpresaLaboral, Date birthdate, String detalleRelacion, String sf4twitterContactSource,
 			String mobilePhone, String masterRecordId, String emailLaboral, String reportstoId, String accountId,
@@ -215,7 +215,7 @@ public class ContactVO implements Serializable{
 		this.sfid = sfid;
 		this.createddate = createddate;
 		this.name = name;
-		//this.parentRutEmpresa = parentRutEmpresa;
+		this.parentRutEmpresa = parentRutEmpresa;
 		this.fechaNacimiento = fechaNacimiento;
 		this.nombreConcatenado = nombreConcatenado;
 		this.rutEmpresaLaboral = rutEmpresaLaboral;
@@ -274,7 +274,7 @@ public class ContactVO implements Serializable{
 		return isDeleted;
 	}
 
-	public void setIsDeleted(Boolean isDeleted) {
+	public void setIsDeleted(Boolean isdeleted) {
 		this.isDeleted = isDeleted;
 	}
 
@@ -282,7 +282,7 @@ public class ContactVO implements Serializable{
 		return systemDate;
 	}
 
-	public void setSystemDate(Date systemDate) {
+	public void setSystemDate(Date systemmodstamp) {
 		this.systemDate = systemDate;
 	}
 
@@ -290,7 +290,7 @@ public class ContactVO implements Serializable{
 		return hcLastop;
 	}
 
-	public void setHcLastop(String hcLastop) {
+	public void setHcLastop(String _hc_lastop) {
 		this.hcLastop = hcLastop;
 	}
 
@@ -298,7 +298,7 @@ public class ContactVO implements Serializable{
 		return hcError;
 	}
 
-	public void setHcError(String hcError) {
+	public void setHcError(String _hc_err) {
 		this.hcError = hcError;
 	}
 
@@ -334,13 +334,13 @@ public class ContactVO implements Serializable{
 		this.name = name;
 	}
 
-//	public String getParentRutEmpresa() {
-//		return parentRutEmpresa;
-//	}
+	public String getParentRutEmpresa() {
+		return parentRutEmpresa;
+	}
 
-//	public void setParentRutEmpresa(String parentRutEmpresa) {
-//		this.parentRutEmpresa = parentRutEmpresa;
-//	}
+	public void setParentRutEmpresa(String parentRutEmpresa) {
+		this.parentRutEmpresa = parentRutEmpresa;
+	}
 
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;

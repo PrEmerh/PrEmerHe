@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -32,13 +33,15 @@ public class UserFilter implements Filter{
 		logger.info("UserFilter -- inicio");
 		
 		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse resp = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
 	    User user = (User) session.getAttribute("user");
 	         
 	        if (user == null){
 	        	logger.debug("UserFilter -- usuario NO esta en sesion");
-	            RequestDispatcher rd = req.getRequestDispatcher("/");
-	            rd.forward(request, response);
+//	            RequestDispatcher rd = req.getRequestDispatcher("/");
+//	            rd.forward(request, response);
+	        	resp.sendRedirect("/casosEmergencias");
 	        }else{
 	        	logger.debug("UserFilter -- usuario esta en sesion");
 	        	chain.doFilter(request, response);

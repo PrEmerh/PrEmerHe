@@ -4,6 +4,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link href="resources/css/styles.css" rel="stylesheet">
+		<title>Change Password Page</title>
 	</head>
 	<body style="background-color:#99CCFF;">
 	 	<!-- <center><img src="resources/images/heroku.png"  /></center> -->

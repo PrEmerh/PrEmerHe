@@ -22,7 +22,7 @@ public class ContactDAO {
 	
 	
 	/**
-	 * Devuelve una lista con todos los Contactos de BBDD
+	 * Devuelve una lista con todos los Suministro de BBDD
 	 * 
 	 * @return
 	 */

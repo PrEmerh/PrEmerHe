@@ -14,8 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.casosemergencias.controller.LoginController;
-import com.casosemergencias.dao.HerokuUserVO;
 import com.casosemergencias.dao.HerokuUserDAO;
+import com.casosemergencias.dao.HerokuUserVO;
 import com.casosemergencias.model.User;
 
 

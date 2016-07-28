@@ -35,6 +35,8 @@ public class LoginController {
 	
 	@Autowired
 	private UserService userService;
+	
+	
 	/**
 	 * Metodo al que se accede tras hacer submit en el login. Si el usuario existe nos lleva al jsp Hello y se guarda un User en session.
 	 * Si el usuario no existe, se muestra en mensaje en la pagina login.
