@@ -31,14 +31,14 @@
 					<thead>
 			            <tr>
 		            <!-- <th data-orderable="false"> -->
-		                <th width="20%">Nombre</th>
-		                <th width="16%">Id</th>
-		                <th width="16%">Sfid</th>		                
-		                <th width="16%">RUN</th>
-		                <th width="16%">Telefono</th>
-		                <th width="16%">Email</th>		                
-		            </tr>
-	        	</thead>
+		           		<th width="20%"><s:message code="homeContacts_table_head_name"/></th>
+			            <th width="16%"><s:message code="homeContacts_table_head_id"/></th>
+			            <th width="16%"><s:message code="homeContacts_table_head_sfid"/></th>
+			            <th width="16%"><s:message code="homeContacts_table_head_accountRun"/></th>
+			            <th width="16%"><s:message code="homeContacts_table_head_phone"/></th>
+			            <th width="16%"><s:message code="homeContacts_table_head_email"/></th>                               
+		            	</tr>
+	        		</thead>
 	        	<tbody>
 	        		<c:forEach items="${listaContactos}" var="datosContacto">
 						<tr>
