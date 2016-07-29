@@ -2,17 +2,21 @@ package com.casosemergencias.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.logic.CaseService;
+import com.casosemergencias.logic.PickListsService;
 import com.casosemergencias.model.Caso;
+import com.casosemergencias.util.ParserModelVO;
 
 
 /**
@@ -51,6 +55,7 @@ public class CaseController {
 		listCasos = casoService.readAllCase();
 		for(Caso caso : listCasos){
 			CaseView caseView = new CaseView();
+			caseView.setSfid(caso.getSfid());
 			caseView.setNumeroCaso(caso.getNumeroCaso());
 			caseView.setNumeroInservice(caso.getNumeroInservice());
 			caseView.setSubmotivo(caso.getSubMotivo());
@@ -74,5 +79,41 @@ public class CaseController {
 		return model;
 	}
 	
+	@Autowired
+	private PickListsService pickListsService;
+	
+	@RequestMapping(value = "/private/entidadCaso", method = RequestMethod.GET)
+	public ModelAndView getCaseData(@RequestParam String sfid, @RequestParam String editMode) {
+		System.out.println("Ejecutar consulta");
+		ModelAndView model = new ModelAndView();		
+		model.setViewName("/private/entidadCasoPage");
+		model.addObject("sfid", sfid);
+		model.addObject("editMode", editMode);
+		
+		//List<CaseView> listCaseView = new ArrayList<CaseView>();
+		CaseView casoView = new CaseView();
+		if (!"insert".equalsIgnoreCase(editMode)){
+			Caso casoBBDD = casoService.readCaseBySfid(sfid);
+			if (casoBBDD != null){
+				ParserModelVO.parseDataModelVO(casoBBDD, casoView);
+			}
+		}
+		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("Case");
+		model.addObject("caso", casoView);
+		model.addObject("statusList", this.getPickListPorCampo(mapaGeneral, "Status"));
+		model.addObject("substatusList", this.getPickListPorCampo(mapaGeneral, "Sub_Estado__c"));
+		model.addObject("peticionList", this.getPickListPorCampo(mapaGeneral, "Petici_n__c"));
+		model.addObject("canalOrigenList", this.getPickListPorCampo(mapaGeneral, "Origin"));
+		
+		return model;
+	}
+	
+	private Map<String, String> getPickListPorCampo(Map<String, Map<String, String>> mapaGeneral, String campo){
+		Map<String, String> returnMap = null;
+		if (mapaGeneral != null && !mapaGeneral.isEmpty() && mapaGeneral.containsKey(campo)){
+			returnMap = mapaGeneral.get(campo);
+		}
+		return returnMap;
+	}
 	
 }
