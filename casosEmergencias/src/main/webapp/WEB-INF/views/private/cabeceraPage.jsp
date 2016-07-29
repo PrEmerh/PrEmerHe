@@ -1,14 +1,14 @@
 <%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> --%>
-
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
 		
 		<div id="cabeceraEnel">
 			<div id="divImagenEnel">
 				<img src="../resources/images/logo.png" id="logoEnel" />
 			</div>
 			<div id="divNoImagenEnel">
-				<a href="#">Salir del sistema</a>
+				<a href="#"><s:message code="cabeceraPage_href_exit"/></a>
 			</div>
 		</div>
 		<div id="menuCabecera">
@@ -17,25 +17,25 @@
 				<img src="../resources/images/caso.png" id="imgGeneralMenu" />
 				</div>
 				<div style="float:left;">
-				<label id="lblMenu">Casos</label>
+				<label id="lblMenu"><s:message code="cabeceraPage_label_case"/></label>
 				</div>
 			</div>
 			<div id="desplegable">
 				<div class="menuListado" onclick="javascript:cambiarLabel('Casos');">
 					<img src="../resources/images/caso.png" id="imgCasoMenu" />
-					<a href="#" >Casos</a>
+					<a href="#" ><s:message code="cabeceraPage_list_case"/></a>
 				</div>
 				<div class="menuListado" onclick="javascript:cambiarLabel('Contactos');">
-					<a href="#">Contactos</a>
+					<a href="#"><s:message code="cabeceraPage_list_contact"/></a>
 				</div>
 				<div class="menuListado" onclick="javascript:cambiarLabel('Suministros');">
-					<a href="#">Suministros</a>
+					<a href="#"><s:message code="cabeceraPage_list_suministro"/></a>
 				</div>
 				<div class="menuListado" onclick="javascript:cambiarLabel('Direcciones');">
-					<a href="#"  >Direcciones</a>
+					<a href="#"  ><s:message code="cabeceraPage_list_direcction"/></a>
 				</div>
 				<div class="menuListado" onclick="javascript:cambiarLabel('Cuentas');">
-					<a href="#" >Cuentas</a>
+					<a href="#" ><s:message code="cabeceraPage_list_cuentas"/></a>
 				</div>
 			</div>
 			<div id="divBotonDesplegable">			

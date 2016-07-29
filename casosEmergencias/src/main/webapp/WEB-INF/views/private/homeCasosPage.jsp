@@ -31,12 +31,12 @@
 					<thead>
 			            <tr>
 			            <!-- <th data-orderable="false"> -->
-			                <th width="20%">Número de caso</th>
-			                <th width="16%">Número de inservice</th>
-			                <th width="16%">Canal origen</th>
-			                <th width="16%">Estado</th>
-			                <th width="16%">Subestado</th>
-			                <th width="16%">Submotivo</th>
+			                <th width="20%"><s:message code="homeCasos_table_head_numCasos"/></th>
+			                <th width="16%"><s:message code="homeCasos_table_head_numInservice"/></th>
+			                <th width="16%"><s:message code="homeCasos_table_head_canalOrigen"/></th>
+			                <th width="16%"><s:message code="homeCasos_table_head_estado"/></th>
+			                <th width="16%"><s:message code="homeCasos_table_head_subestado"/></th>
+			                <th width="16%"><s:message code="homeCasos_table_head_submotivo"/></th>
 			            </tr>
 		        	</thead>
 		        	<tbody>

@@ -33,6 +33,7 @@ public class ContactVO implements Serializable{
 	private String hcError;
 	
 	@Id
+	@Column(name = "id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
