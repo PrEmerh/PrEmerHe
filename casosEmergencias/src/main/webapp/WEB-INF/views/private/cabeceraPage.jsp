@@ -14,28 +14,28 @@
 		<div id="menuCabecera">
 			<div id="posicionamiento">
 				<div style="float:left;">
-				<img src="../resources/images/caso.png" id="imgGeneralMenu" />
+				<!-- <img src="../resources/images/caso.png" id="imgGeneralMenu" /> -->
 				</div>
 				<div style="float:left;">
 				<label id="lblMenu"><s:message code="cabeceraPage_label_case"/></label>
 				</div>
 			</div>
 			<div id="desplegable">
-				<div class="menuListado" onclick="javascript:cambiarLabel('Casos');">
+				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_label_case"/>');">
 					<img src="../resources/images/caso.png" id="imgCasoMenu" />
-					<a href="#" ><s:message code="cabeceraPage_list_case"/></a>
+					<a href="homeCasos" ><s:message code="cabeceraPage_list_case"/></a>
 				</div>
-				<div class="menuListado" onclick="javascript:cambiarLabel('Contactos');">
-					<a href="#"><s:message code="cabeceraPage_list_contact"/></a>
+				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_contact"/>');">
+					<a href="homeContacts"><s:message code="cabeceraPage_list_contact"/></a>
 				</div>
 				<div class="menuListado" onclick="javascript:cambiarLabel('Suministros');">
-					<a href="#"><s:message code="cabeceraPage_list_suministro"/></a>
+					<a href="listSuministros"><s:message code="cabeceraPage_list_suministro"/></a>
 				</div>
 				<div class="menuListado" onclick="javascript:cambiarLabel('Direcciones');">
 					<a href="#"  ><s:message code="cabeceraPage_list_direcction"/></a>
 				</div>
-				<div class="menuListado" onclick="javascript:cambiarLabel('Cuentas');">
-					<a href="#" ><s:message code="cabeceraPage_list_cuentas"/></a>
+				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_cuentas"/>');">
+					<a href="homeCuentas" ><s:message code="cabeceraPage_list_cuentas"/></a>
 				</div>
 			</div>
 			<div id="divBotonDesplegable">			
@@ -70,7 +70,28 @@
 			    	}
 			    }
 			});
-			function cambiarLabel(valor){
-				document.getElementById('lblMenu').innerHTML= valor;
+			function cambiarLabel(valorMenu){
+				var label = objetoSeleccionado;
+				if (valorMenu != null && valorMenu != 'undefined' && valorMenu != ''){
+					switch(valorMenu){
+						case '1':
+							valorMenu = '<s:message code="cabeceraPage_list_case"/>';
+							break;
+						case '2':
+							valorMenu = '<s:message code="cabeceraPage_list_contact"/>';
+							break;
+						case '3':
+							valorMenu = '<s:message code="cabeceraPage_list_suministro"/>';
+							break;
+						case '4':
+							valorMenu = '<s:message code="cabeceraPage_list_direcction"/>';
+							break;
+						case '5':
+							valorMenu = '<s:message code="cabeceraPage_list_cuentas"/>';
+							break;
+					}
+					label = valorMenu;
+				}
+				document.getElementById('lblMenu').innerHTML= label;
 			}
 		</script>
