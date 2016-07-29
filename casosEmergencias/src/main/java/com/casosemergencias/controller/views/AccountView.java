@@ -1,10 +1,9 @@
-package com.casosemergencias.model;
+package com.casosemergencias.controller.views;
 
 import java.util.Date;
 
-//Objeto que tiene el modelo de una cuenta, se utiliza en el Servicio
-
-public class Cuenta {
+public class AccountView {
+	
 	
 	/*ID*/                                  private Integer id;
 	/*SFID*/                                private String sfid;
@@ -24,7 +23,7 @@ public class Cuenta {
 	//Tipo de registro de cuenta
 	
 	
-	/* Getters y Setters */
+/* Getters y Setters */
 	
 	
 	public Integer getId() {
@@ -117,13 +116,5 @@ public class Cuenta {
 	public void setIdEmpresa(String idEmpresa) {
 		this.idEmpresa = idEmpresa;
 	}
-	
-	
-	
-	
-	
-	
-	
-
 
 }
