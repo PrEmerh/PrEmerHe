@@ -44,7 +44,7 @@ public class CaseController {
 		List<Caso> listCasos = new ArrayList<Caso>();
 		
 		ModelAndView model = new ModelAndView();
-		model.setViewName("/private/homeCasosPage");
+		model.setViewName("private/homeCasosPage");
 		
 		logger.info("--- Llamamos al servicio -- listadoCasos ---");
 		

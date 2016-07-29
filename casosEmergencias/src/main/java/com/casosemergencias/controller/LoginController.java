@@ -65,7 +65,7 @@ public class LoginController {
 //			model.addObject("title", "Heroku Hello World");
 //			model.addObject("name",  user.getName());
 //			model.setViewName("private/hello");
-			model.setViewName("redirect: tableOfContacts");
+			model.setViewName("redirect: private/homeCasos");
 		}else{
 			logger.info("No existe el usuario");
 			userView.setMensajeError(Constantes.MSG_NO_USER_PASS);
