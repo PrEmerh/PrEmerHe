@@ -21,12 +21,12 @@
 				</div>
 			</div>
 			<div id="desplegable">
-				<div class="menuListado" onclick="javascript:cambiarLabel('Casos');">
+				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_label_case"/>');">
 					<img src="../resources/images/caso.png" id="imgCasoMenu" />
-					<a href="#" ><s:message code="cabeceraPage_list_case"/></a>
+					<a href="homeCasos" ><s:message code="cabeceraPage_list_case"/></a>
 				</div>
-				<div class="menuListado" onclick="javascript:cambiarLabel('Contactos');">
-					<a href="#"><s:message code="cabeceraPage_list_contact"/></a>
+				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_contact"/>');">
+					<a href="homeContacts"><s:message code="cabeceraPage_list_contact"/></a>
 				</div>
 				<div class="menuListado" onclick="javascript:cambiarLabel('Suministros');">
 					<a href="#"><s:message code="cabeceraPage_list_suministro"/></a>
