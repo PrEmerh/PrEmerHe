@@ -84,6 +84,7 @@
 	<bean id="contactService" class="com.casosemergencias.logic.ContactServiceImpl"/>
 	<bean id="casoService" class="com.casosemergencias.logic.CaseServiceImpl"/>
 	<bean id="accountService" class="com.casosemergencias.logic.AccountServiceImpl"/>
+	<bean id="pickListsService" class="com.casosemergencias.logic.PickListsServiceImpl"/>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/"/> 
 	

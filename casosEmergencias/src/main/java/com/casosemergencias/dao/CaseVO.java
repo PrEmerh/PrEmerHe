@@ -145,13 +145,13 @@ public class CaseVO implements Serializable{
 	private String observaciones;
 	
 	@Column(name = "casenumber")
-	private String casenumber;
+	private String numeroCaso;
 	
 	@Column(name = "url__c")
 	private String url;
 	
 	@Column(name = "status")
-	private String status;
+	private String estado;
 	
 	@Column(name = "sf4twitter__twitterid__c")
 	private String sf4twitterTwitterid;
@@ -408,9 +408,9 @@ public class CaseVO implements Serializable{
 		this.categoria = categoria;
 		this.flag = flag;
 		this.observaciones = observaciones;
-		this.casenumber = casenumber;
+		this.numeroCaso = casenumber;
 		this.url = url;
-		this.status = status;
+		this.estado = status;
 		this.sf4twitterTwitterid = sf4twitterTwitterid;
 		this.respuestaAlCliente = respuestaAlCliente;
 		this.numeroCasoAp = numeroCasoAp;
@@ -808,12 +808,12 @@ public class CaseVO implements Serializable{
 		this.observaciones = observaciones;
 	}
 
-	public String getCasenumber() {
-		return casenumber;
+	public String getNumeroCaso() {
+		return numeroCaso;
 	}
 
-	public void setCasenumber(String casenumber) {
-		this.casenumber = casenumber;
+	public void setNumeroCaso(String numeroCaso) {
+		this.numeroCaso = numeroCaso;
 	}
 
 	public String getUrl() {
@@ -824,12 +824,12 @@ public class CaseVO implements Serializable{
 		this.url = url;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getEstado() {
+		return estado;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 
 	public String getSf4twitterTwitterid() {

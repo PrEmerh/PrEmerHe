@@ -488,7 +488,7 @@ public class CaseDAO{
 					query.append(" AND caso.observaciones = :observaciones");
 				}
 			}
-			if(caso.getCasenumber()!= null){
+			if(caso.getNumeroCaso()!= null){
 				if(isFirst){
 					query.append(" WHERE caso.casenumber = :casenumber");
 					isFirst = false;
@@ -504,7 +504,7 @@ public class CaseDAO{
 					query.append(" AND caso.url = :url");
 				}
 			}
-			if(caso.getStatus()!= null){
+			if(caso.getEstado()!= null){
 				if(isFirst){
 					query.append(" WHERE caso.status = :status");
 					isFirst = false;
@@ -1137,14 +1137,14 @@ public class CaseDAO{
 			if(caso.getObservaciones()!= null){
 				result.setString("observaciones", caso.getObservaciones());
 			}
-			if(caso.getCasenumber()!= null){
-				result.setString("casenumber", caso.getCasenumber());
+			if(caso.getNumeroCaso()!= null){
+				result.setString("casenumber", caso.getNumeroCaso());
 			}
 			if(caso.getUrl()!= null){
 				result.setString("url", caso.getUrl());
 			}
-			if(caso.getStatus()!= null){
-				result.setString("status", caso.getStatus());
+			if(caso.getEstado()!= null){
+				result.setString("status", caso.getEstado());
 			}
 			if(caso.getSf4twitterTwitterid()!= null){
 				result.setString("sf4twitterTwitterid", caso.getSf4twitterTwitterid());

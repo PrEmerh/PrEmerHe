@@ -14,7 +14,7 @@
 		<div id="menuCabecera">
 			<div id="posicionamiento">
 				<div style="float:left;">
-				<img src="../resources/images/caso.png" id="imgGeneralMenu" />
+				<!-- <img src="../resources/images/caso.png" id="imgGeneralMenu" /> -->
 				</div>
 				<div style="float:left;">
 				<label id="lblMenu"><s:message code="cabeceraPage_label_case"/></label>
@@ -70,7 +70,28 @@
 			    	}
 			    }
 			});
-			function cambiarLabel(valor){
-				document.getElementById('lblMenu').innerHTML= valor;
+			function cambiarLabel(valorMenu){
+				var label = objetoSeleccionado;
+				if (valorMenu != null && valorMenu != 'undefined' && valorMenu != ''){
+					switch(valorMenu){
+						case '1':
+							valorMenu = '<s:message code="cabeceraPage_list_case"/>';
+							break;
+						case '2':
+							valorMenu = '<s:message code="cabeceraPage_list_contact"/>';
+							break;
+						case '3':
+							valorMenu = '<s:message code="cabeceraPage_list_suministro"/>';
+							break;
+						case '4':
+							valorMenu = '<s:message code="cabeceraPage_list_direcction"/>';
+							break;
+						case '5':
+							valorMenu = '<s:message code="cabeceraPage_list_cuentas"/>';
+							break;
+					}
+					label = valorMenu;
+				}
+				document.getElementById('lblMenu').innerHTML= label;
 			}
 		</script>
