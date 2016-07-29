@@ -8,7 +8,6 @@ import java.util.Date;
 public class Contacto {
 
 	/*ID*/                                  private Integer id;
-
 	/*SFID*/                               private String sfid;
 	/*Nombre*/                              private String name;
 	/*Apellido Paterno*/                    private String apellidoPaterno;

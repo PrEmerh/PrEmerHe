@@ -1,7 +1,7 @@
 <%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> --%>
-
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
 		
 		<div id="cabeceraEnel">
 			<div id="divImagenEnel">
@@ -21,19 +21,20 @@
 				</div>
 			</div>
 			<div id="desplegable">
-				<div class="menuListado" onclick="javascript:cambiarLabel('1');">
-					<a href="../private/homeCasos" ><s:message code="cabeceraPage_list_case"/></a>
+				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_label_case"/>');">
+					<img src="../resources/images/caso.png" id="imgCasoMenu" />
+					<a href="homeCasos" ><s:message code="cabeceraPage_list_case"/></a>
 				</div>
-				<div class="menuListado" onclick="javascript:cambiarLabel('2');">
-					<a href="#"><s:message code="cabeceraPage_list_contact"/></a>
+				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_contact"/>');">
+					<a href="homeContacts"><s:message code="cabeceraPage_list_contact"/></a>
 				</div>
-				<div class="menuListado" onclick="javascript:cambiarLabel('3');">
+				<div class="menuListado" onclick="javascript:cambiarLabel('Suministros');">
 					<a href="#"><s:message code="cabeceraPage_list_suministro"/></a>
 				</div>
-				<div class="menuListado" onclick="javascript:cambiarLabel('4');">
+				<div class="menuListado" onclick="javascript:cambiarLabel('Direcciones');">
 					<a href="#"  ><s:message code="cabeceraPage_list_direcction"/></a>
 				</div>
-				<div class="menuListado" onclick="javascript:cambiarLabel('5');">
+				<div class="menuListado" onclick="javascript:cambiarLabel('Cuentas');">
 					<a href="#" ><s:message code="cabeceraPage_list_cuentas"/></a>
 				</div>
 			</div>

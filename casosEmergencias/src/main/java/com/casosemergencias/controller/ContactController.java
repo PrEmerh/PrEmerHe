@@ -15,14 +15,14 @@ import com.casosemergencias.logic.ContactService;
 import com.casosemergencias.model.Contacto;
 
 @Controller
-public class TableOfContactsController {
+public class ContactController {
 	
 	final static Logger logger = Logger.getLogger(LoginController.class);
 	
 	@Autowired
 	private ContactService contactService;
 	
-	@RequestMapping(value = "/tableOfContacts", method = RequestMethod.GET)
+	@RequestMapping(value = "/private/homeContacts", method = RequestMethod.GET)
 	public ModelAndView listadoContactos() {
 		
 		List<ContactView> listOfContactHome= new ArrayList<ContactView>();
@@ -45,8 +45,8 @@ public class TableOfContactsController {
 			}
 		
 		ModelAndView model = new ModelAndView();
-		model.addObject("contacts", listOfContactHome);
-		model.setViewName("tableOfContacts");
+		model.addObject("listaContactos", listOfContactHome);
+		model.setViewName("private/homeContactsPage");
 
 		return model;
 	}
