@@ -83,6 +83,7 @@
 	<bean id="userService" class="com.casosemergencias.logic.UserServiceImpl"/>
 	<bean id="contactService" class="com.casosemergencias.logic.ContactServiceImpl"/>
 	<bean id="casoService" class="com.casosemergencias.logic.CaseServiceImpl"/>
+	<bean id="accountService" class="com.casosemergencias.logic.AccountServiceImpl"/>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/"/> 
 	
