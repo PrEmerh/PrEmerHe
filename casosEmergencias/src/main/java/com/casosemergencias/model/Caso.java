@@ -43,6 +43,7 @@ public class Caso {
 	private String canalNotificacion;
 	private String telefonoContacto;
 	private String emailNotificacion;
+	private String peticion;
 	
 	private String idFacebook;
 	private String twitter;
@@ -271,6 +272,12 @@ public class Caso {
 	}
 	public void setActualizarDatosContancto(boolean actualizarDatosContancto) {
 		this.actualizarDatosContancto = actualizarDatosContancto;
+	}
+	public String getPeticion() {
+		return peticion;
+	}
+	public void setPeticion(String peticion) {
+		this.peticion = peticion;
 	}
 	
 	

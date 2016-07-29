@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class CaseView {
 
+	private String sfid;
 	private String numeroCaso;
 	private String estado;
 	private String numeroInservice;
@@ -18,6 +19,8 @@ public class CaseView {
 	private String nombreCuenta;
 	private String suministro;
 	private String estadoSuministro;
+	private String peticion;
+	
 	
 	public String getNumeroCaso() {
 		return numeroCaso;
@@ -103,8 +106,17 @@ public class CaseView {
 	public void setEstadoSuministro(String estadoSuministro) {
 		this.estadoSuministro = estadoSuministro;
 	}
-	
-	
-	
+	public String getSfid() {
+		return sfid;
+	}
+	public void setSfid(String sfid) {
+		this.sfid = sfid;
+	}
+	public String getPeticion() {
+		return peticion;
+	}
+	public void setPeticion(String peticion) {
+		this.peticion = peticion;
+	}
 	
 }

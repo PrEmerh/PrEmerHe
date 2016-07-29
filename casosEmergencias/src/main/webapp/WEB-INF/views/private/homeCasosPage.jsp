@@ -17,6 +17,7 @@
 		
 	</head>
 	<body>
+		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		 
 		<form name='formListadoCasos' action="listar" method='POST'>
@@ -27,7 +28,7 @@
 				</ul>
 			</div>
 			<div>
-				<table id="tablaCasos" class="display" data-page-length="2" data-order="[[ 1, &quot;asc&quot; ]]">
+				<table id="tablaCasos" class="display" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
 					<thead>
 			            <tr>
 			            <!-- <th data-orderable="false"> -->
@@ -42,7 +43,7 @@
 		        	<tbody>
 		        		<c:forEach items="${listaCasos}" var="datosCaso">
 							<tr>
-								<td>${datosCaso.numeroCaso}</td>
+								<td><a href="../private/entidadCaso?sfid=${datosCaso.sfid}&editMode=view">${datosCaso.numeroCaso}</a></td>
 								<td>${datosCaso.numeroInservice}</td>
 								<td>${datosCaso.canalOrigen}</td>
 								<td>${datosCaso.estado}</td>
@@ -57,7 +58,11 @@
 		
 		<script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
-			    $('#tablaCasos').DataTable();			    
+			    $('#tablaCasos').DataTable( {
+			        "scrollY":        "250px",
+			        "scrollCollapse": true,
+			        "paging":         true
+			    } );			    
 			});
 		</script>
 	</body>

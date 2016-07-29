@@ -14,6 +14,7 @@ import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.model.Direccion;
 import com.casosemergencias.model.Suministro;
+import com.casosemergencias.util.ParserModelVO;
 
 public class CaseServiceImpl implements CaseService{
 
@@ -45,7 +46,7 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 			caso.setId(casoVO.getId());
 			caso.setSfid(casoVO.getSfid());
 			caso.setMotivo(casoVO.getPeticion());
-			caso.setNumeroCaso(casoVO.getCasenumber());
+			caso.setNumeroCaso(casoVO.getNumeroCaso());
 			caso.setNumeroInservice(casoVO.getNumeroInservice());
 			caso.setFechaApertura(casoVO.getCreatedDate());
 			caso.setFechaEstimadoNormalizacion(casoVO.getFechaEstimadaCierre());
@@ -63,7 +64,7 @@ caso.setCuenta(new Cuenta()); //añadir los datos de la cuenta
 			caso.setNumeroMedidor(casoVO.getNumeroMedidor());
 			caso.setCuerpoMail(casoVO.getCuerpoMail());
 			caso.setRespuestaCliente(casoVO.getRespuestaAlCliente());
-			caso.setEstado(casoVO.getStatus());
+			caso.setEstado(casoVO.getEstado());
 			caso.setSubEstado(casoVO.getSubEstado());
 			caso.setCanalOrigen(casoVO.getOrigin());
 			caso.setUnidad(casoVO.getCallCenter());
@@ -89,6 +90,19 @@ caso.setCasoPrincipal(casoVO.getParentid()); //buscar el nombre de este
 		return listCaso;
 	}
 	
-	
+	/**
+	 * Metodo que devuelve caso de BBDD por su sfid
+	 * 
+	 * @return
+	 */
+	@Override
+	public Caso readCaseBySfid(String sfid){
+		Caso returnCase = new Caso();
+		CaseVO casoVO = caseDao.readCaseBySfid(sfid);
+		if (casoVO != null){
+			ParserModelVO.parseDataModelVO(casoVO, returnCase);
+		}
+		return returnCase;
+	}
 
 }

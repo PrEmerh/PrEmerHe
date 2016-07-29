@@ -5,6 +5,15 @@ table.dataTable{
 	border-collapse:separate;
 	border-spacing:0;	
 }
+/*AAT*/
+table.dataTable a{
+	text-decoration:none;
+	font-family:Helvetica,Arial,sans-serif;
+	font-size: 12px;	
+	color: #006cb5;
+}
+/**/
+
 table.dataTable thead th,table.dataTable tfoot th{
 	font-weight:bold
 }
@@ -28,14 +37,15 @@ table.dataTable thead .sorting,table.dataTable thead .sorting_asc,table.dataTabl
 		background-position:center right;
 		Text-align:left;
 		color: #54698d;
-		font-family:'SalesforceSans-Regular',Helvetica,Arial,sans-serif;
+		font-family:Helvetica,Arial,sans-serif;
 		font-size: 12.5px;
 }
 table.dataTable td{
-		Text-align:left;
-		color: #16325c;
-		font-family:'SalesforceSans-Regular',Helvetica,Arial,sans-serif;
-		font-size: 12.5px;
+	height: 20px;
+	Text-align:left;
+	color: #16325c;
+	font-family:Helvetica,Arial,sans-serif;
+	font-size: 11px;
 }
 table.dataTable th:hover{
 		background-color: white;
@@ -230,7 +240,7 @@ table.dataTable,table.dataTable th,table.dataTable td{
 	float:left;
 	margin-bottom: 8px;
 	color: #54698d;
-	font-family:'SalesforceSans-Regular',Helvetica,Arial,sans-serif;
+	font-family:Helvetica,Arial,sans-serif;
 	font-size: 11px;
 }
 .dataTables_wrapper .dataTables_filter{
@@ -346,6 +356,16 @@ table.dataTable,table.dataTable th,table.dataTable td{
 .dataTables_wrapper.no-footer div.dataTables_scrollHead table,.dataTables_wrapper.no-footer div.dataTables_scrollBody table{
 	border-bottom:none;
 }
+/*Alvaro*/
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+/* optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+    background: #FF0000;
+}
+/**/
 .dataTables_wrapper:after{
 	visibility:hidden;
 	display:block;

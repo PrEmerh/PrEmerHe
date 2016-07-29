@@ -39,6 +39,67 @@ body {
     background-image: none;
 }
 
-.tdPrincipal{
-	color:blue;
+.divEntidad{
+	width:98%;	
+	margin-left: 5px;
+}
+.divEntidad div{
+	width:100%;
+	padding-top:2px; 
+	padding-bottom:4px;
+	
+}
+.divEntidad div div{
+	float:left;	
+	width:30%;
+	font-family: Helvetica,Arial,sans-serif;
+	border-bottom:1px solid #ececec;
+	font-size: 91%;
+	height:20px;
+}
+.divEntidad div .divLabel{	
+	width:20%;	
+	text-align: right;
+}
+.divEntidad div .divLabel label{
+	padding-right:10px;
+}
+
+.divCabeceraEntidad{
+	width:100%;
+	margin:15px 0 10px 0px;	
+}
+.botoneraEntidad{
+	float:left;
+	width:65%;	
+}
+
+.botoneraEntidad ul {
+	margin:0px;
+	padding:0px;
+}
+.botoneraEntidad li {
+	display: inline;
+	list-style-type: none;
+	margin:0px;
+	padding:0px;
+}
+.botoneraEntidad li input {
+	font-family: Helvetica,Arial,sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	padding: 5px 10px;
+	background: #e8e8e9 url('../../resources/images/btn_sprite.png') repeat-x right top;
+	border-radius: 3px;
+	cursor:pointer;
+    align-items: flex-start;
+    text-align: center;    
+}
+.divTituloEntidad{
+	float:left;
+	width:35%;
+}
+
+.divTituloEntidad label{
+	padding-left:10px;
 }
