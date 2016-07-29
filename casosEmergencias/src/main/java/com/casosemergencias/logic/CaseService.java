@@ -7,5 +7,7 @@ import com.casosemergencias.model.Caso;
 public interface CaseService {
 	
 	public List<Caso> readAllCase();
+	
+	public Caso readCaseBySfid(String sfid);
 
 }
