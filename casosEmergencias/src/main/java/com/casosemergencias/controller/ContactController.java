@@ -22,7 +22,7 @@ public class ContactController {
 	@Autowired
 	private ContactService contactService;
 	
-	@RequestMapping(value = "/private/homeContactsPage", method = RequestMethod.GET)
+	@RequestMapping(value = "/private/homeContacts", method = RequestMethod.GET)
 	public ModelAndView listadoContactos() {
 		
 		List<ContactView> listOfContactHome= new ArrayList<ContactView>();
