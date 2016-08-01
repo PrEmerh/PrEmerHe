@@ -28,8 +28,8 @@
 				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_contact"/>');">
 					<a href="homeContacts"><s:message code="cabeceraPage_list_contact"/></a>
 				</div>
-				<div class="menuListado" onclick="javascript:cambiarLabel('Suministros');">
-					<a href="listSuministros"><s:message code="cabeceraPage_list_suministro"/></a>
+				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_suministro"/>');">
+					<a href="homeSuministros"><s:message code="cabeceraPage_list_suministro"/></a>
 				</div>
 				<div class="menuListado" onclick="javascript:cambiarLabel('Direcciones');">
 					<a href="#"  ><s:message code="cabeceraPage_list_direcction"/></a>
