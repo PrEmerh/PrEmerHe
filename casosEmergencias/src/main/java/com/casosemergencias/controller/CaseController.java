@@ -95,10 +95,6 @@ public class CaseController {
 	public ModelAndView getCaseData(@RequestParam String sfid, @RequestParam String editMode) {
 		System.out.println("Ejecutar consulta");
 		ModelAndView model = new ModelAndView();		
-<<<<<<< HEAD
-=======
-		model.setViewName("private/entidadCasoPage");
->>>>>>> refs/remotes/origin/branch01
 		model.addObject("sfid", sfid);
 		model.addObject("editMode", editMode);
 		
