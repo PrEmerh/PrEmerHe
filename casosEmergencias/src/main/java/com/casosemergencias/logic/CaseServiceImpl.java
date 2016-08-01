@@ -80,7 +80,7 @@ caso.setCasoPrincipal(casoVO.getParentid()); //buscar el nombre de este
 //			caso.setActualizarDatosContancto(casoVO.getActDatosContacto());
 			caso.setAni(casoVO.getAni());
 			caso.setFavorabilidadCaso(casoVO.getFavorabilidadDelCaso());
-
+			caso.setEstadoPickList(casoVO.getEstadoPickList());
 			listCaso.add(caso);
 			
 		}

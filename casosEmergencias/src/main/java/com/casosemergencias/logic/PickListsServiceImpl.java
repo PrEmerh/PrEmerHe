@@ -23,8 +23,11 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 	
 	@Override
 	public Map<String, Map<String, String>> getPickListPorObjeto(String objeto){
+		
 		Map<String, Map<String, String>> datosRetorno = null;
-		List<PickListsVO> listaPickList = pickListDao.readPickListsByObject(objeto);
+		PickListsVO objPick = new PickListsVO();
+		objPick.setObjeto(objeto);
+		List<PickListsVO> listaPickList = pickListDao.readPickListsUser(objPick);
 		
 		if (listaPickList != null && !listaPickList.isEmpty()){			
 			PickListsVO ob = null;			
@@ -51,7 +54,10 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 	@Override
 	public Map<String, String> getPickListPorCampo(String objeto, String campo){
 		Map<String, String> datosRetorno = null;
-		List<PickListsVO> listaPickList = pickListDao.readPickListsByField(objeto, campo);
+		PickListsVO objPick = new PickListsVO();
+		objPick.setObjeto(objeto);
+		objPick.setCampo(campo);
+		List<PickListsVO> listaPickList = pickListDao.readPickListsUser(objPick);
 		if (listaPickList != null && !listaPickList.isEmpty()){
 			PickListsVO ob = null;					
 			for(int i=0; i<listaPickList.size();i++){

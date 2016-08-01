@@ -29,7 +29,7 @@
 					<a href="homeContacts"><s:message code="cabeceraPage_list_contact"/></a>
 				</div>
 				<div class="menuListado" onclick="javascript:cambiarLabel('Suministros');">
-					<a href="homeSuministros"><s:message code="cabeceraPage_list_suministro"/></a>
+					<a href="listSuministros"><s:message code="cabeceraPage_list_suministro"/></a>
 				</div>
 				<div class="menuListado" onclick="javascript:cambiarLabel('Direcciones');">
 					<a href="#"  ><s:message code="cabeceraPage_list_direcction"/></a>

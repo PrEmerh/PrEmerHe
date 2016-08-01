@@ -16,6 +16,7 @@ import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.logic.CaseService;
 import com.casosemergencias.logic.PickListsService;
 import com.casosemergencias.model.Caso;
+import com.casosemergencias.util.Constantes;
 import com.casosemergencias.util.ParserModelVO;
 
 
@@ -55,7 +56,7 @@ public class CaseController {
 		listCasos = casoService.readAllCase();
 		for(Caso caso : listCasos){
 			CaseView caseView = new CaseView();
-			caseView.setSfid(caso.getSfid());
+			/*caseView.setSfid(caso.getSfid());
 			caseView.setNumeroCaso(caso.getNumeroCaso());
 			caseView.setNumeroInservice(caso.getNumeroInservice());
 			caseView.setSubmotivo(caso.getSubMotivo());
@@ -67,7 +68,8 @@ public class CaseController {
 			caseView.setComuna(caso.getComuna());
 			caseView.setTiempoEstimacion("Tiempo estimado");
 			caseView.setCanalOrigen(caso.getCanalOrigen());
-			
+			caseView.setEstadoPickList(caso.getEstadoPickList());*/
+			ParserModelVO.parseDataModelVO(caso, caseView);
 			listCaseView.add(caseView);
 		}
 		
@@ -79,6 +81,13 @@ public class CaseController {
 		return model;
 	}
 	
+	@RequestMapping(value = "/private/homeCasosAction", params="goCrearCaso", method = RequestMethod.POST)
+	public ModelAndView goCrearCaso() {
+		ModelAndView model = new ModelAndView();
+		model.setViewName("private/entidadCasoAltaPage");
+		return model;
+	}
+	
 	@Autowired
 	private PickListsService pickListsService;
 	
@@ -86,24 +95,19 @@ public class CaseController {
 	public ModelAndView getCaseData(@RequestParam String sfid, @RequestParam String editMode) {
 		System.out.println("Ejecutar consulta");
 		ModelAndView model = new ModelAndView();		
-		model.setViewName("private/entidadCasoPage");
 		model.addObject("sfid", sfid);
 		model.addObject("editMode", editMode);
 		
 		//List<CaseView> listCaseView = new ArrayList<CaseView>();
 		CaseView casoView = new CaseView();
-		if (!"insert".equalsIgnoreCase(editMode)){
-			Caso casoBBDD = casoService.readCaseBySfid(sfid);
-			if (casoBBDD != null){
-				ParserModelVO.parseDataModelVO(casoBBDD, casoView);
-			}
+		
+		Caso casoBBDD = casoService.readCaseBySfid(sfid);
+		if (casoBBDD != null){
+			ParserModelVO.parseDataModelVO(casoBBDD, casoView);
 		}
-		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("Case");
+		model.setViewName("private/entidadCasoPage");
+		/*Hay que añadir recuperación de label de los picklists si no sale el código solo*/
 		model.addObject("caso", casoView);
-		model.addObject("statusList", this.getPickListPorCampo(mapaGeneral, "Status"));
-		model.addObject("substatusList", this.getPickListPorCampo(mapaGeneral, "Sub_Estado__c"));
-		model.addObject("peticionList", this.getPickListPorCampo(mapaGeneral, "Petici_n__c"));
-		model.addObject("canalOrigenList", this.getPickListPorCampo(mapaGeneral, "Origin"));
 		
 		return model;
 	}
@@ -114,6 +118,24 @@ public class CaseController {
 			returnMap = mapaGeneral.get(campo);
 		}
 		return returnMap;
+	}
+	
+	@RequestMapping(value = "/private/entidadCasoAlta", method = RequestMethod.GET)
+	public ModelAndView altaCaso() {
+		System.out.println("Ejecutar consulta");
+		ModelAndView model = new ModelAndView();		
+		model.addObject("editMode", Constantes.EDIT_MODE_INSERT);
+		CaseView casoView = new CaseView();
+		model.setViewName("private/entidadCasoAltaPage");
+		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("Case");
+		casoView.setMapStatus(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_STATUS));
+		casoView.setMapSubStatus(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_SUBSTATUS));
+		casoView.setMapPeticion(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_PETICION));
+		casoView.setMapOrigin(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_ORIGIN));
+		casoView.setMapCallCenter(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CALLCENTER));
+		model.addObject("caso", casoView);
+		
+		return model;
 	}
 	
 }

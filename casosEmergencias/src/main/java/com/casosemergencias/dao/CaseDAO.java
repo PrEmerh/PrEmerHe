@@ -63,16 +63,19 @@ public class CaseDAO{
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from CaseVO");
+			//Query query = session.createQuery("from CaseVO");
+			Query query = session.createQuery("from CaseVO caso left join fetch caso.estadoPickList estado ");
+
 			
+			//Query query = em.createQuery("SELECT q FROM Question q LEFT JOIN FETCH q.answers");
 //			select CaseNumber, Status, Motivo_Empresa__c, sub_estado__c, estado.valor descripcionStatus, motivo.valor descripcionMotivo, subestado.valor descripcionSubestado
 //			from salesforce.Case 
 //			left join salesforce.picklists estado on (estado.codigo=status and estado.campo ='Status' and estado.objeto='Case') 
 //			left join salesforce.picklists motivo on (motivo.codigo=Motivo_Empresa__c and motivo.campo ='Motivo_Empresa__c' and motivo.objeto='Case') 
 //			left join salesforce.picklists subestado on (subestado.codigo=sub_estado__c and subestado.campo ='Sub_estado__c' and subestado.objeto='Case')
 
-			List<CaseVO> casoList = query.list(); 
-
+			List<CaseVO> casoList = query.list();
+			logger.debug("Casos: " + casoList);
 			
 			logger.debug("--- Fin -- readAllCaseDescriptionPick ---");
 			
