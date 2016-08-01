@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.casosemergencias.util.Constantes" %>
 
 <html>
 	<head>
@@ -20,11 +21,10 @@
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		 
-		<form name='formListadoCasos' action="listar" method='POST'>
+		<form name='formListadoCasos' action="homeCasosAction" method='POST'>
 			<div class="botoneraListado">
 				<ul>
-					<li><input type="submit" name="insertar" value="CrearCaso" /></li>
-					<li><input type="submit" name="actualizar" value="Actualizar" /></li>
+					<li><input type="submit" name="goCrearCaso" value="<s:message code="homeCasos_button_nuevocaso"/>" /></li>
 				</ul>
 			</div>
 			<div>
@@ -43,10 +43,10 @@
 		        	<tbody>
 		        		<c:forEach items="${listaCasos}" var="datosCaso">
 							<tr>
-								<td><a href="../private/entidadCaso?sfid=${datosCaso.sfid}&editMode=view">${datosCaso.numeroCaso}</a></td>
+								<td><a href="../private/entidadCaso?sfid=${datosCaso.sfid}&editMode=<%=Constantes.EDIT_MODE_VIEW%>">${datosCaso.numeroCaso}</a></td>
 								<td>${datosCaso.numeroInservice}</td>
 								<td>${datosCaso.canalOrigen}</td>
-								<td>${datosCaso.estado}</td>
+								<td>${datosCaso.labelEstadoPickList}</td>
 								<td>${datosCaso.subestado}</td>
 								<td>${datosCaso.submotivo}</td>
 							</tr>

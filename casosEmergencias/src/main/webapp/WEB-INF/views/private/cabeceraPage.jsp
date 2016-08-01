@@ -34,8 +34,8 @@
 				<div class="menuListado" onclick="javascript:cambiarLabel('Direcciones');">
 					<a href="#"  ><s:message code="cabeceraPage_list_direcction"/></a>
 				</div>
-				<div class="menuListado" onclick="javascript:cambiarLabel('Cuentas');">
-					<a href="#" ><s:message code="cabeceraPage_list_cuentas"/></a>
+				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_cuentas"/>');">
+					<a href="homeCuentas" ><s:message code="cabeceraPage_list_cuentas"/></a>
 				</div>
 			</div>
 			<div id="divBotonDesplegable">			

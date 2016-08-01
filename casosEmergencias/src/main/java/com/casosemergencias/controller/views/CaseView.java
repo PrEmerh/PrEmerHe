@@ -1,6 +1,10 @@
 package com.casosemergencias.controller.views;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import com.casosemergencias.dao.PickListsVO;
 
 public class CaseView {
 
@@ -20,6 +24,15 @@ public class CaseView {
 	private String suministro;
 	private String estadoSuministro;
 	private String peticion;
+	private String callCenter;
+	private String editMode;
+	private List<PickListsVO> estadoPickList;
+	
+	private Map<String, String> mapStatus;
+	private Map<String, String> mapSubStatus;
+	private Map<String, String> mapPeticion;
+	private Map<String, String> mapOrigin;
+	private Map<String, String> mapCallCenter;
 	
 	
 	public String getNumeroCaso() {
@@ -118,5 +131,60 @@ public class CaseView {
 	public void setPeticion(String peticion) {
 		this.peticion = peticion;
 	}
-	
+	public Map<String, String> getMapStatus() {
+		return mapStatus;
+	}
+	public void setMapStatus(Map<String, String> mapStatus) {
+		this.mapStatus = mapStatus;
+	}
+	public Map<String, String> getMapSubStatus() {
+		return mapSubStatus;
+	}
+	public void setMapSubStatus(Map<String, String> mapSubStatus) {
+		this.mapSubStatus = mapSubStatus;
+	}
+	public Map<String, String> getMapPeticion() {
+		return mapPeticion;
+	}
+	public void setMapPeticion(Map<String, String> mapPeticion) {
+		this.mapPeticion = mapPeticion;
+	}
+	public Map<String, String> getMapOrigin() {
+		return mapOrigin;
+	}
+	public void setMapOrigin(Map<String, String> mapOrigin) {
+		this.mapOrigin = mapOrigin;
+	}
+	public String getCallCenter() {
+		return callCenter;
+	}
+	public void setCallCenter(String callCenter) {
+		this.callCenter = callCenter;
+	}
+	public Map<String, String> getMapCallCenter() {
+		return mapCallCenter;
+	}
+	public void setMapCallCenter(Map<String, String> mapCallCenter) {
+		this.mapCallCenter = mapCallCenter;
+	}
+	public String getEditMode() {
+		return editMode;
+	}
+	public void setEditMode(String editMode) {
+		this.editMode = editMode;
+	}
+	public List<PickListsVO> getEstadoPickList() {
+		return estadoPickList;
+	}
+	public void setEstadoPickList(List<PickListsVO> estadoPickList) {
+		this.estadoPickList = estadoPickList;
+	}
+
+	public String getLabelEstadoPickList(){
+		String result = this.getEstado();
+		if (this.getEstadoPickList() != null && !this.getEstadoPickList().isEmpty()){
+			result=this.getEstadoPickList().get(0).getValor();
+		}
+		return result; 
+	}
 }

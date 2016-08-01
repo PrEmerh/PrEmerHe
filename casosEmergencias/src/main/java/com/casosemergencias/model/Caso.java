@@ -1,6 +1,9 @@
 package com.casosemergencias.model;
 
 import java.util.Date;
+import java.util.List;
+
+import com.casosemergencias.dao.PickListsVO;
 
 /**
  * @author MPC
@@ -50,6 +53,7 @@ public class Caso {
 	private boolean actualizarDatosContancto;
 	private String ani;
 	private String favorabilidadCaso;
+	private List<PickListsVO> estadoPickList;
 	
 	public Integer getId() {
 		return id;
@@ -279,7 +283,10 @@ public class Caso {
 	public void setPeticion(String peticion) {
 		this.peticion = peticion;
 	}
-	
-	
-	
+	public List<PickListsVO> getEstadoPickList() {
+		return estadoPickList;
+	}
+	public void setEstadoPickList(List<PickListsVO> estadoPickList) {
+		this.estadoPickList = estadoPickList;
+	}
 }
