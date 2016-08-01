@@ -22,7 +22,7 @@
 			</div>
 			<div id="desplegable">
 				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_label_case"/>');">
-					<img src="../resources/images/caso.png" id="imgCasoMenu" />
+					<!-- <img src="../resources/images/caso.png" id="imgCasoMenu" /> -->
 					<a href="homeCasos" ><s:message code="cabeceraPage_list_case"/></a>
 				</div>
 				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_contact"/>');">
@@ -73,23 +73,6 @@
 			function cambiarLabel(valorMenu){
 				var label = objetoSeleccionado;
 				if (valorMenu != null && valorMenu != 'undefined' && valorMenu != ''){
-					switch(valorMenu){
-						case '1':
-							valorMenu = '<s:message code="cabeceraPage_list_case"/>';
-							break;
-						case '2':
-							valorMenu = '<s:message code="cabeceraPage_list_contact"/>';
-							break;
-						case '3':
-							valorMenu = '<s:message code="cabeceraPage_list_suministro"/>';
-							break;
-						case '4':
-							valorMenu = '<s:message code="cabeceraPage_list_direcction"/>';
-							break;
-						case '5':
-							valorMenu = '<s:message code="cabeceraPage_list_cuentas"/>';
-							break;
-					}
 					label = valorMenu;
 				}
 				document.getElementById('lblMenu').innerHTML= label;
