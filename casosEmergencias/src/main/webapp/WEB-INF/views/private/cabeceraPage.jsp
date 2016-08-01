@@ -31,8 +31,8 @@
 				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_suministro"/>');">
 					<a href="homeSuministros"><s:message code="cabeceraPage_list_suministro"/></a>
 				</div>
-				<div class="menuListado" onclick="javascript:cambiarLabel('Direcciones');">
-					<a href="#"  ><s:message code="cabeceraPage_list_direcction"/></a>
+				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_direccion"/>');">
+					<a href="homeDirecciones"><s:message code="cabeceraPage_list_direccion"/></a>
 				</div>
 				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_cuentas"/>');">
 					<a href="homeCuentas" ><s:message code="cabeceraPage_list_cuentas"/></a>
