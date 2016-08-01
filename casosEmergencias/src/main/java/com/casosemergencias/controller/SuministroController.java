@@ -15,14 +15,14 @@ import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 
 @Controller
-public class ListaSuministros {
+public class SuministroController {
 	
-	final static Logger logger = Logger.getLogger(ListaSuministros.class);
+	final static Logger logger = Logger.getLogger(SuministroController.class);
 	
 	@Autowired
 	private SuministroService suministroService;
 	
-	@RequestMapping(value = "/private/listSuministros", method = RequestMethod.GET)
+	@RequestMapping(value = "/private/homeSuministros", method = RequestMethod.GET)
 	public ModelAndView detalleSuministro() {
 		List<SuministroView> listaAMostrar = new ArrayList<SuministroView>(); 
 		List<Suministro> listSuministros = suministroService.readAllSuministros();
@@ -34,6 +34,7 @@ public class ListaSuministros {
 		}
 		ModelAndView model = new ModelAndView();
 		model.addObject("suministros", listaAMostrar);
+		model.setViewName("private/homeSuministrosPage");
 		
 		return model;
 	}
