@@ -8,4 +8,6 @@ public interface SuministroService {
 	
 	public List<Suministro> readAllSuministros();
 
+	public Suministro readSuministroById(String id);
+
 }

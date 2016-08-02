@@ -18,18 +18,18 @@ public class DireccionVO implements Serializable{
 
 	//campo de Heroku
 	//Used to track the IsDeleted field from Salesforce allowing Heroku Connect to handle deletes when polling for updates
-	@Column(name = "isdeleted")
-	private Boolean isdeleted;
+	@Column(name = "isDeleted")
+	private Boolean isDeleted;
 	//campo de Heroku
 	//Used to track the IsDeleted field from Salesforce allowing Heroku Connect to handle deletes when polling for updates
 	@Column(name = "systemmodstamp")
 	private Date systemmodstamp;
 	//campo de Heroku
 	@Column(name = "_hc_lastop")
-	private String _hc_lastop;
+	private String hcLastop;
 	//campo de Heroku
 	@Column(name = "_hc_err")
-	private String _hc_err;
+	private String hcError;
 	
 	@Id
 	@Column(name = "id")
@@ -41,113 +41,66 @@ public class DireccionVO implements Serializable{
 	
 	@Column(name = "createddate")
 	private Date createddate;
-	
-	@Column(name = "name")
-	private String name;
-	
-	@Column(name = "ownerid")
-	private String ownerid;
-	
-	@Column(name = "coordenada_x__c")
-	private String coordenadaX;
-	
-	@Column(name = "id_empresa__c")
-	private String idEmpresa;
-	
-	@Column(name = "departamento__c")
-	private String departamento;
-	
-	@Column(name = "createdbyid")
-	private String createdById;
+			
+	@Column(name = "regi_n__c")
+	private String region;
 	
 	@Column(name = "comuna__c")
 	private String comuna;
 	
-	@Column(name = "alias_nombre_calle__c")
-	private String aliasNombreCalle;
-	
-	@Column(name = "regi_n__c")
-	private String region;
-	
 	@Column(name = "tipo_de_calle__c")
 	private String tipoCalle;
-	
-	@Column(name = "coordenadas_utm_x_y__longitude__s")
-	private Double coordenadasUtmXYLongitude;
-	
-	@Column(name = "esquina__c")
-	private String esquina;
-	
-	@Column(name = "id_via__c")
-	private String idVia;
-	
-	@Column(name = "lastmodifiedbyid")
-	private String lastModifiedById;
 	
 	@Column(name = "calle__c")
 	private String calle;
 	
-	@Column(name = "coordenadas_utm_x_y__latitude__s")
-	private Double coordenadasUtmXYLatitude;
+	@Column(name = "altura__c")
+	private String numero;
 	
-	@Column(name = "coordenada_y__c")
-	private String coordenadaY;
+	@Column(name = "departamento__c")
+	private String departamento;
 	
+	@Column(name = "name")
+	private String name;
+		
 	@Column(name = "direccionconcatenada__c")
 	private String direccionConcatenada;
 	
-	@Column(name = "altura__c")
-	private String altura;
-	
-	@Column(name = "literalcomuna__c")
-	private String literalComuna;
+	@Column(name = "esquina__c")
+	private String esquina;
 
-	public DireccionVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
-			Date createddate, String name, String ownerid, String coordenadaX, String idEmpresa, String departamento,
-			String createdById, String comuna, String aliasNombreCalle, String region, String tipoCalle,
-			Double coordenadasUtmXYLongitude, String esquina, String idVia, String lastModifiedById, String calle,
-			Double coordenadasUtmXYLatitude, String coordenadaY, String direccionConcatenada, String altura,
-			String literalComuna) {
+	public DireccionVO(Boolean isdeleted, Date systemmodstamp, String hcLastop, String hcError, Integer id, String sfid,
+			Date createddate, String region, String comuna, String tipoCalle, String calle, String numero,
+			String departamento, String name, String direccionConcatenada, String esquina) {
 		super();
-		this.isdeleted = isdeleted;
+		this.isDeleted = isdeleted;
 		this.systemmodstamp = systemmodstamp;
-		this._hc_lastop = _hc_lastop;
-		this._hc_err = _hc_err;
+		this.hcLastop = hcLastop;
+		this.hcError = hcError;
 		this.id = id;
 		this.sfid = sfid;
 		this.createddate = createddate;
-		this.name = name;
-		this.ownerid = ownerid;
-		this.coordenadaX = coordenadaX;
-		this.idEmpresa = idEmpresa;
-		this.departamento = departamento;
-		this.createdById = createdById;
-		this.comuna = comuna;
-		this.aliasNombreCalle = aliasNombreCalle;
 		this.region = region;
+		this.comuna = comuna;
 		this.tipoCalle = tipoCalle;
-		this.coordenadasUtmXYLongitude = coordenadasUtmXYLongitude;
-		this.esquina = esquina;
-		this.idVia = idVia;
-		this.lastModifiedById = lastModifiedById;
 		this.calle = calle;
-		this.coordenadasUtmXYLatitude = coordenadasUtmXYLatitude;
-		this.coordenadaY = coordenadaY;
+		this.numero = numero;
+		this.departamento = departamento;
+		this.name = name;
 		this.direccionConcatenada = direccionConcatenada;
-		this.altura = altura;
-		this.literalComuna = literalComuna;
+		this.esquina = esquina;
 	}
 
 	public DireccionVO() {
 		super();
 	}
 
-	public Boolean getIsdeleted() {
-		return isdeleted;
+	public Boolean getIsDeleted() {
+		return isDeleted;
 	}
 
-	public void setIsdeleted(Boolean isdeleted) {
-		this.isdeleted = isdeleted;
+	public void setIsDeleted(Boolean isdeleted) {
+		this.isDeleted = isdeleted;
 	}
 
 	public Date getSystemmodstamp() {
@@ -158,20 +111,20 @@ public class DireccionVO implements Serializable{
 		this.systemmodstamp = systemmodstamp;
 	}
 
-	public String get_hc_lastop() {
-		return _hc_lastop;
+	public String getHcLastop() {
+		return hcLastop;
 	}
 
-	public void set_hc_lastop(String _hc_lastop) {
-		this._hc_lastop = _hc_lastop;
+	public void setHcLastop(String hcLastop) {
+		this.hcLastop = hcLastop;
 	}
 
-	public String get_hc_err() {
-		return _hc_err;
+	public String getHcError() {
+		return hcError;
 	}
 
-	public void set_hc_err(String _hc_err) {
-		this._hc_err = _hc_err;
+	public void setHcError(String hcError) {
+		this.hcError = hcError;
 	}
 
 	public Integer getId() {
@@ -198,52 +151,12 @@ public class DireccionVO implements Serializable{
 		this.createddate = createddate;
 	}
 
-	public String getName() {
-		return name;
+	public String getRegion() {
+		return region;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getOwnerid() {
-		return ownerid;
-	}
-
-	public void setOwnerid(String ownerid) {
-		this.ownerid = ownerid;
-	}
-
-	public String getCoordenadaX() {
-		return coordenadaX;
-	}
-
-	public void setCoordenadaX(String coordenadaX) {
-		this.coordenadaX = coordenadaX;
-	}
-
-	public String getIdEmpresa() {
-		return idEmpresa;
-	}
-
-	public void setIdEmpresa(String idEmpresa) {
-		this.idEmpresa = idEmpresa;
-	}
-
-	public String getDepartamento() {
-		return departamento;
-	}
-
-	public void setDepartamento(String departamento) {
-		this.departamento = departamento;
-	}
-
-	public String getCreatedById() {
-		return createdById;
-	}
-
-	public void setCreatedById(String createdById) {
-		this.createdById = createdById;
+	public void setRegion(String region) {
+		this.region = region;
 	}
 
 	public String getComuna() {
@@ -254,60 +167,12 @@ public class DireccionVO implements Serializable{
 		this.comuna = comuna;
 	}
 
-	public String getAliasNombreCalle() {
-		return aliasNombreCalle;
-	}
-
-	public void setAliasNombreCalle(String aliasNombreCalle) {
-		this.aliasNombreCalle = aliasNombreCalle;
-	}
-
-	public String getRegion() {
-		return region;
-	}
-
-	public void setRegion(String region) {
-		this.region = region;
-	}
-
 	public String getTipoCalle() {
 		return tipoCalle;
 	}
 
 	public void setTipoCalle(String tipoCalle) {
 		this.tipoCalle = tipoCalle;
-	}
-
-	public Double getCoordenadasUtmXYLongitude() {
-		return coordenadasUtmXYLongitude;
-	}
-
-	public void setCoordenadasUtmXYLongitude(Double coordenadasUtmXYLongitude) {
-		this.coordenadasUtmXYLongitude = coordenadasUtmXYLongitude;
-	}
-
-	public String getEsquina() {
-		return esquina;
-	}
-
-	public void setEsquina(String esquina) {
-		this.esquina = esquina;
-	}
-
-	public String getIdVia() {
-		return idVia;
-	}
-
-	public void setIdVia(String idVia) {
-		this.idVia = idVia;
-	}
-
-	public String getLastModifiedById() {
-		return lastModifiedById;
-	}
-
-	public void setLastModifiedById(String lastModifiedById) {
-		this.lastModifiedById = lastModifiedById;
 	}
 
 	public String getCalle() {
@@ -318,20 +183,28 @@ public class DireccionVO implements Serializable{
 		this.calle = calle;
 	}
 
-	public Double getCoordenadasUtmXYLatitude() {
-		return coordenadasUtmXYLatitude;
+	public String getNumero() {
+		return numero;
 	}
 
-	public void setCoordenadasUtmXYLatitude(Double coordenadasUtmXYLatitude) {
-		this.coordenadasUtmXYLatitude = coordenadasUtmXYLatitude;
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 
-	public String getCoordenadaY() {
-		return coordenadaY;
+	public String getDepartamento() {
+		return departamento;
 	}
 
-	public void setCoordenadaY(String coordenadaY) {
-		this.coordenadaY = coordenadaY;
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDireccionConcatenada() {
@@ -342,21 +215,22 @@ public class DireccionVO implements Serializable{
 		this.direccionConcatenada = direccionConcatenada;
 	}
 
-	public String getAltura() {
-		return altura;
+	public String getEsquina() {
+		return esquina;
 	}
 
-	public void setAltura(String altura) {
-		this.altura = altura;
+	public void setEsquina(String esquina) {
+		this.esquina = esquina;
 	}
 
-	public String getLiteralComuna() {
-		return literalComuna;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
-	public void setLiteralComuna(String literalComuna) {
-		this.literalComuna = literalComuna;
-	}
+	
+	
+	
 
+	
 }
 	

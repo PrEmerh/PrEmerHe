@@ -17,7 +17,11 @@
 				<!-- <img src="../resources/images/caso.png" id="imgGeneralMenu" /> -->
 				</div>
 				<div style="float:left;">
+<<<<<<< HEAD
 				<label id="lblMenu"></label>
+=======
+				<label id="lblMenu"><s:message code="cabeceraPage_label_case" /></label>
+>>>>>>> refs/remotes/origin/branch01
 				</div>
 			</div>
 			<div id="desplegable">
@@ -28,11 +32,20 @@
 				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_contact"/>');window.location.href='homeContacts'">
 					<a href="homeContacts"><s:message code="cabeceraPage_list_contact"/></a>
 				</div>
+<<<<<<< HEAD
 				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_suministro"/>');window.location.href='homeSuministros'">
+=======
+				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_suministro"/>');">
+>>>>>>> refs/remotes/origin/branch01
 					<a href="homeSuministros"><s:message code="cabeceraPage_list_suministro"/></a>
 				</div>
+<<<<<<< HEAD
 				<div class="menuListado" onclick="javascript:cambiarLabel('Direcciones');window.location.href='homeDirecciones'">
 					<a href="homeDirecciones"  ><s:message code="cabeceraPage_list_direcction"/></a>
+=======
+				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_direccion"/>');">
+					<a href="homeDirecciones"><s:message code="cabeceraPage_list_direccion"/></a>
+>>>>>>> refs/remotes/origin/branch01
 				</div>
 				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_cuentas"/>');window.location.href='homeCuentas'">
 					<a href="homeCuentas" ><s:message code="cabeceraPage_list_cuentas"/></a>

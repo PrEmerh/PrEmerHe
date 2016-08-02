@@ -93,8 +93,7 @@ public class CaseController {
 	@RequestMapping(value = "/private/entidadCaso", method = RequestMethod.GET)
 	public ModelAndView getCaseData(@RequestParam String sfid, @RequestParam String editMode) {
 		System.out.println("Ejecutar consulta");
-		ModelAndView model = new ModelAndView();		
-		model.setViewName("private/entidadCasoPage");
+		ModelAndView model = new ModelAndView();
 		model.addObject("sfid", sfid);
 		model.addObject("editMode", editMode);
 		
