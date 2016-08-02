@@ -16,6 +16,7 @@ import com.casosemergencias.logic.AccountService;
 import com.casosemergencias.logic.ContactService;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Cuenta;
+import com.casosemergencias.util.ParserModelVO;
 
 @Controller
 public class AccountController {
@@ -35,13 +36,7 @@ public class AccountController {
 			for(Cuenta cuen:listOfAccountsTable){
 				
 				accountview=new AccountView();
-				
-				accountview.setId(cuen.getId());
-				accountview.setSfid(cuen.getSfid());
-				accountview.setEmailPrincipal(cuen.getEmailPrincipal());
-				accountview.setPhone(cuen.getPhone());
-				//accountview.setPhone(cuen.Tipo de registro de cuenta);
-			
+				ParserModelVO.parseDataModelVO(cuen,accountview );			
 				listOfAccountHome.add(accountview);
 				
 			}

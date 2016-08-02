@@ -13,11 +13,11 @@
 
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>
-		
-		
+	
 	</head>
 	<body>
 		<jsp:include page="cabeceraPage.jsp"/>
+		
 		 
 		<form name='formListadoCasos' action="listar" method='POST'>
 			<div class="botoneraListado">
@@ -26,23 +26,25 @@
 				</ul>
 			</div>
 			<div>
-				<table id="tablaContactos" class="display" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]">
+				<table id="tablaDirecciones" class="display" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]">
 					<thead>
 			            <tr>
 		            <!-- <th data-orderable="false"> -->
-		           		<th width="20%"><s:message code="homeContacts_table_head_name"/></th>
-			            <th width="16%"><s:message code="homeContacts_table_head_accountRun"/></th>
-			            <th width="16%"><s:message code="homeContacts_table_head_phone"/></th>
-			            <th width="16%"><s:message code="homeContacts_table_head_email"/></th>                               
+		           		<th width="20%"><s:message code="homeDirecciones_table_head_codigoDireccion"/></th>
+			            <th width="16%"><s:message code="homeDirecciones_table_head_calle"/></th>
+			            <th width="16%"><s:message code="homeDirecciones_table_head_numero"/></th>
+			            <th width="16%"><s:message code="homeDirecciones_table_head_comuna"/></th>
+			            <th width="16%"><s:message code="homeDirecciones_table_head_direccionConcatenada"/></th>
 		            	</tr>
 	        		</thead>
 	        	<tbody>
-	        		<c:forEach items="${listaContactos}" var="datosContacto">
+	        		<c:forEach items="${listaDirecciones}" var="datosDireccion">
 						<tr>
-							<td>${datosContacto.name}</td>						
-							<td>${datosContacto.accountRun}</td>
-							<td>${datosContacto.phone}</td>
-							<td>${datosContacto.email}</td>
+							<td>${datosDireccion.name}</td>						
+							<td>${datosDireccion.calle}</td>
+							<td>${datosDireccion.numero}</td>
+							<td>${datosDireccion.comuna}</td>
+							<td>${datosDireccion.direccionConcatenada}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -52,7 +54,7 @@
 	
     <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-		$('#tablaContactos').DataTable({
+		$('#tablaDirecciones').DataTable({	
         "scrollY":        "250px",
         "scrollCollapse": true,
         "paging":         true
