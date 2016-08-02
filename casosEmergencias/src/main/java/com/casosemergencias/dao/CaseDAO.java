@@ -63,8 +63,8 @@ public class CaseDAO{
 		Session session = sessionFactory.openSession();
 				
 		try{
-			//Query query = session.createQuery("from CaseVO");
-			Query query = session.createQuery("from CaseVO caso left join fetch caso.estadoPickList estado ");
+			Query query = session.createQuery("from CaseVO caso");
+			//Query query = session.createQuery("from CaseVO caso left join fetch caso.estadoPickList estado ");
 
 			
 			//Query query = em.createQuery("SELECT q FROM Question q LEFT JOIN FETCH q.answers");

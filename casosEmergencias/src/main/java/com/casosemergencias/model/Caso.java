@@ -53,7 +53,7 @@ public class Caso {
 	private boolean actualizarDatosContancto;
 	private String ani;
 	private String favorabilidadCaso;
-	private List<PickListsVO> estadoPickList;
+	private PickListsVO estadoPickList;
 	
 	public Integer getId() {
 		return id;
@@ -283,10 +283,10 @@ public class Caso {
 	public void setPeticion(String peticion) {
 		this.peticion = peticion;
 	}
-	public List<PickListsVO> getEstadoPickList() {
+	public PickListsVO getEstadoPickList() {
 		return estadoPickList;
 	}
-	public void setEstadoPickList(List<PickListsVO> estadoPickList) {
+	public void setEstadoPickList(PickListsVO estadoPickList) {
 		this.estadoPickList = estadoPickList;
 	}
 }

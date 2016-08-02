@@ -26,7 +26,7 @@ public class CaseView {
 	private String peticion;
 	private String callCenter;
 	private String editMode;
-	private List<PickListsVO> estadoPickList;
+	private PickListsVO estadoPickList;
 	
 	private Map<String, String> mapStatus;
 	private Map<String, String> mapSubStatus;
@@ -173,17 +173,17 @@ public class CaseView {
 	public void setEditMode(String editMode) {
 		this.editMode = editMode;
 	}
-	public List<PickListsVO> getEstadoPickList() {
+	public PickListsVO getEstadoPickList() {
 		return estadoPickList;
 	}
-	public void setEstadoPickList(List<PickListsVO> estadoPickList) {
+	public void setEstadoPickList(PickListsVO estadoPickList) {
 		this.estadoPickList = estadoPickList;
 	}
 
 	public String getLabelEstadoPickList(){
 		String result = this.getEstado();
-		if (this.getEstadoPickList() != null && !this.getEstadoPickList().isEmpty()){
-			result=this.getEstadoPickList().get(0).getValor();
+		if (this.getEstadoPickList() != null ){
+			result=this.getEstadoPickList().getValor();
 		}
 		return result; 
 	}
