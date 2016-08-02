@@ -47,13 +47,14 @@ public class Caso {
 	private String telefonoContacto;
 	private String emailNotificacion;
 	private String peticion;
-	
+	private String description;
 	private String idFacebook;
 	private String twitter;
 	private boolean actualizarDatosContancto;
 	private String ani;
 	private String favorabilidadCaso;
-	private List<PickListsVO> estadoPickList;
+	private String type;
+	private PickListsVO estadoPickList;
 	
 	public Integer getId() {
 		return id;
@@ -283,10 +284,23 @@ public class Caso {
 	public void setPeticion(String peticion) {
 		this.peticion = peticion;
 	}
-	public List<PickListsVO> getEstadoPickList() {
+	public PickListsVO getEstadoPickList() {
 		return estadoPickList;
 	}
-	public void setEstadoPickList(List<PickListsVO> estadoPickList) {
+	public void setEstadoPickList(PickListsVO estadoPickList) {
 		this.estadoPickList = estadoPickList;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 }

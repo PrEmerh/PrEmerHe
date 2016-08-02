@@ -17,24 +17,24 @@
 				<!-- <img src="../resources/images/caso.png" id="imgGeneralMenu" /> -->
 				</div>
 				<div style="float:left;">
-				<label id="lblMenu"><s:message code="cabeceraPage_label_case"/></label>
+				<label id="lblMenu"></label>
 				</div>
 			</div>
 			<div id="desplegable">
-				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_label_case"/>');">
+				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_label_case"/>');window.location.href='homeCasos'">
 					<!-- <img src="../resources/images/caso.png" id="imgCasoMenu" /> -->
 					<a href="homeCasos" ><s:message code="cabeceraPage_list_case"/></a>
 				</div>
-				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_contact"/>');">
+				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_contact"/>');window.location.href='homeContacts'">
 					<a href="homeContacts"><s:message code="cabeceraPage_list_contact"/></a>
 				</div>
-				<div class="menuListado" onclick="javascript:cambiarLabel('Suministros');">
-					<a href="listSuministros"><s:message code="cabeceraPage_list_suministro"/></a>
+				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_suministro"/>');window.location.href='homeSuministros'">
+					<a href="homeSuministros"><s:message code="cabeceraPage_list_suministro"/></a>
 				</div>
-				<div class="menuListado" onclick="javascript:cambiarLabel('Direcciones');">
-					<a href="#"  ><s:message code="cabeceraPage_list_direcction"/></a>
+				<div class="menuListado" onclick="javascript:cambiarLabel('Direcciones');window.location.href='homeDirecciones'">
+					<a href="homeDirecciones"  ><s:message code="cabeceraPage_list_direcction"/></a>
 				</div>
-				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_cuentas"/>');">
+				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_cuentas"/>');window.location.href='homeCuentas'">
 					<a href="homeCuentas" ><s:message code="cabeceraPage_list_cuentas"/></a>
 				</div>
 			</div>
@@ -47,7 +47,15 @@
 		</div>
 		
 		<script type="text/javascript">
+			function cambiarLabel(valorMenu){
+				var label = objetoSeleccionado;
+				if (valorMenu != null && valorMenu != 'undefined' && valorMenu != ''){
+					label = valorMenu;
+				}
+				document.getElementById('lblMenu').innerHTML= label;
+			}
 			$(document).ready(function() {
+				cambiarLabel(null);
 			    $("#botonDesplegable").click(function(){
 			    	desplegarMenu();
 			    });
@@ -70,11 +78,4 @@
 			    	}
 			    }
 			});
-			function cambiarLabel(valorMenu){
-				var label = objetoSeleccionado;
-				if (valorMenu != null && valorMenu != 'undefined' && valorMenu != ''){
-					label = valorMenu;
-				}
-				document.getElementById('lblMenu').innerHTML= label;
-			}
 		</script>
