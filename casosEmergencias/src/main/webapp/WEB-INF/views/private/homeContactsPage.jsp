@@ -22,8 +22,7 @@
 		<form name='formListadoCasos' action="listar" method='POST'>
 			<div class="botoneraListado">
 				<ul>
-					<li><input type="submit" name="insertar" value="CrearCaso" /></li>
-					<li><input type="submit" name="actualizar" value="Actualizar" /></li>
+					<li><input type="submit" name="goCrearCaso" value="<s:message code="homeCasos_button_nuevocaso"/>" /></li>
 				</ul>
 			</div>
 			<div>
@@ -32,8 +31,6 @@
 			            <tr>
 		            <!-- <th data-orderable="false"> -->
 		           		<th width="20%"><s:message code="homeContacts_table_head_name"/></th>
-			            <th width="16%"><s:message code="homeContacts_table_head_id"/></th>
-			            <th width="16%"><s:message code="homeContacts_table_head_sfid"/></th>
 			            <th width="16%"><s:message code="homeContacts_table_head_accountRun"/></th>
 			            <th width="16%"><s:message code="homeContacts_table_head_phone"/></th>
 			            <th width="16%"><s:message code="homeContacts_table_head_email"/></th>                               
@@ -42,9 +39,7 @@
 	        	<tbody>
 	        		<c:forEach items="${listaContactos}" var="datosContacto">
 						<tr>
-							<td>${datosContacto.name}</td>
-							<td>${datosContacto.id}</td>
-							<td>${datosContacto.sfid}</td>							
+							<td>${datosContacto.name}</td>						
 							<td>${datosContacto.accountRun}</td>
 							<td>${datosContacto.phone}</td>
 							<td>${datosContacto.email}</td>
@@ -57,7 +52,11 @@
 	
     <script type="text/javascript" charset="utf-8">
     $(document).ready(function() {
-		$('#tablaContactos').DataTable();			    
+		$('#tablaContactos').DataTable({
+        "scrollY":        "250px",
+        "scrollCollapse": true,
+        "paging":         true
+		});
 	});
 	</script>
 </body>

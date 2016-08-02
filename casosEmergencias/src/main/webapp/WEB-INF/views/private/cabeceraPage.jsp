@@ -17,7 +17,7 @@
 				<!-- <img src="../resources/images/caso.png" id="imgGeneralMenu" /> -->
 				</div>
 				<div style="float:left;">
-				<label id="lblMenu"><s:message code="cabeceraPage_label_case"/></label>
+				<label id="lblMenu"><s:message code="cabeceraPage_label_case" /></label>
 				</div>
 			</div>
 			<div id="desplegable">
