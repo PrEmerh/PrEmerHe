@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.casosemergencias.controller.views.DireccionView;
 import com.casosemergencias.logic.DireccionService;
 import com.casosemergencias.model.Direccion;
+import com.casosemergencias.util.ParserModelVO;
 
 @Controller
 public class DireccionController {
@@ -31,15 +32,8 @@ public class DireccionController {
 		
 			for(Direccion dir:listOfDireccionesTable){
 				
-				direccionview=new DireccionView();
-				
-				direccionview.setName(dir.getName());
-				direccionview.setCalle(dir.getCalle());
-				direccionview.setNumero(dir.getNumero());
-				direccionview.setComuna(dir.getComuna());
-				direccionview.setDireccionConcatenada(dir.getDireccionConcatenada());
-
-			
+				direccionview=new DireccionView();				
+				ParserModelVO.parseDataModelVO(dir,direccionview );	
 				listOfDireccionHome.add(direccionview);
 				
 			}

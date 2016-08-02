@@ -13,6 +13,7 @@ import com.casosemergencias.controller.views.ContactView;
 import com.casosemergencias.dao.ContactVO;
 import com.casosemergencias.logic.ContactService;
 import com.casosemergencias.model.Contacto;
+import com.casosemergencias.util.ParserModelVO;
 
 @Controller
 public class ContactController {
@@ -32,14 +33,7 @@ public class ContactController {
 			for(Contacto con:listOfContactsTable){
 				
 				contactview=new ContactView();
-				
-				contactview.setId(con.getId());
-				contactview.setSfid(con.getSfid());
-				contactview.setName(con.getName());
-				contactview.setAccountRun(con.getAccountRun());
-				contactview.setPhone(con.getPhone());
-				contactview.setEmail(con.getEmail());
-				
+				ParserModelVO.parseDataModelVO(con,contactview );					
 				listOfContactHome.add(contactview);
 				
 			}
