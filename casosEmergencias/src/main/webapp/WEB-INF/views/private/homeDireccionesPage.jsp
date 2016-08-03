@@ -40,7 +40,7 @@
 	        	<tbody>
 	        		<c:forEach items="${listaDirecciones}" var="datosDireccion">
 						<tr>
-							<td>${datosDireccion.name}</td>						
+							<td><a href="../private/entidadDireccion?sfid=${datosDireccion.sfid}">${datosDireccion.name}</a></td>												
 							<td>${datosDireccion.calle}</td>
 							<td>${datosDireccion.numero}</td>
 							<td>${datosDireccion.comuna}</td>

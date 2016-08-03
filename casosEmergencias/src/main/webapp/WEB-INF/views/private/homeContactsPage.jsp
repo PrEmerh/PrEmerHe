@@ -40,7 +40,7 @@
 	        	<tbody>
 	        		<c:forEach items="${listaContactos}" var="datosContacto">
 						<tr>
-							<td>${datosContacto.name}</td>						
+							<td><a href="../private/entidadContacto?sfid=${datosContacto.sfid}">${datosContacto.name}</a></td>						
 							<td>${datosContacto.accountRun}</td>
 							<td>${datosContacto.phone}</td>
 							<td>${datosContacto.email}</td>

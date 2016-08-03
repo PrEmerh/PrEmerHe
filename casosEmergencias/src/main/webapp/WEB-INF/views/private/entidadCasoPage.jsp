@@ -22,7 +22,7 @@
 		
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
-					<label><s:message code="entidadCaso_title_label_detalle_caso"/></label>
+					<b><label><s:message code="entidadCaso_title_label_detalle_caso"/></label></b>
 			</div>
 			<div class="botoneraEntidad">
 				<ul>
