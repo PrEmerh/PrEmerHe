@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.json.JsonArray;
+
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +39,10 @@ public class CaseController {
 	@Autowired
 	private CaseService casoService;
 	
+	@Autowired
+	private PickListsService pickListsService;
+	
+
 	/**
 	 * Metodo que recupera una lista con todos los casos que hay creados en BBDD y los muestra en la pantalla homeCasosPage.jsp
 	 * 
@@ -88,12 +96,12 @@ public class CaseController {
 		return model;
 	}
 	
-	@Autowired
-	private PickListsService pickListsService;
 	
 	@RequestMapping(value = "/private/entidadCaso", method = RequestMethod.GET)
 	public ModelAndView getCaseData(@RequestParam String sfid, @RequestParam String editMode) {
-		System.out.println("Ejecutar consulta");
+		
+		logger.info("--- Inicio -- getCaseData ---");
+		
 		ModelAndView model = new ModelAndView();		
 		model.addObject("sfid", sfid);
 		model.addObject("editMode", editMode);
@@ -109,6 +117,7 @@ public class CaseController {
 		/*Hay que añadir recuperación de label de los picklists si no sale el código solo*/
 		model.addObject("caso", casoView);
 		
+		logger.info("--- Fin -- getCaseData ---");
 		return model;
 	}
 	
@@ -122,11 +131,15 @@ public class CaseController {
 	
 	@RequestMapping(value = "/private/entidadCasoAlta", method = RequestMethod.GET)
 	public ModelAndView altaCaso() {
-		System.out.println("Ejecutar consulta");
-		ModelAndView model = new ModelAndView();		
-		model.addObject("editMode", Constantes.EDIT_MODE_INSERT);
+		
+		logger.info("--- Inicio -- altaCaso ---");
+		
+		ModelAndView model = new ModelAndView();	
 		CaseView casoView = new CaseView();
+		
+		model.addObject("editMode", Constantes.EDIT_MODE_INSERT);
 		model.setViewName("private/entidadCasoAltaPage");
+		
 		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("Case");
 		casoView.setMapStatus(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_STATUS));
 		casoView.setMapSubStatus(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_SUBSTATUS));
