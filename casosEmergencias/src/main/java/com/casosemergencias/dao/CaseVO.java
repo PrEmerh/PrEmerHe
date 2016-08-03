@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
@@ -347,10 +348,10 @@ public class CaseVO implements Serializable{
 	@Column(name = "condici_n_agravante__c")
 	private String condicionAgravante;
 	
-   @OneToMany
-   @JoinColumn(name="codigo", referencedColumnName="status")
+   @OneToOne
+   @JoinColumn(name="status", referencedColumnName="codigo", insertable =false, updatable=false)
    @Where(clause = "campo ='Status' and objeto='Case'")
-   private List<PickListsVO> estadoPickList;
+   private PickListsVO estadoPickList;
    
 
 	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
@@ -376,7 +377,7 @@ public class CaseVO implements Serializable{
 			Date horaAsignado, String milestoneStatus, String contactId, Date horaPredespacho, Date horaEnruta,
 			String reason, String idEmpresa, Date horaProgramado, Double numeroSeguidoresDel, String literalCategorias,
 			String recordtypeId, String comunaF, String prioridad, String valorSubestadoins,
-			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante, List<PickListsVO> estadoPickList) {
+			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante, PickListsVO estadoPickList) {
 		super();
 		this.isdeleted = isdeleted;
 		this.systemmodstamp = systemmodstamp;
@@ -1348,11 +1349,11 @@ public class CaseVO implements Serializable{
 		this.condicionAgravante = condicionAgravante;
 	}
 
-	public List<PickListsVO> getEstadoPickList() {
+	public PickListsVO getEstadoPickList() {
 		return estadoPickList;
 	}
 
-	public void setEstadoPickList(List<PickListsVO> estadoPickList) {
+	public void setEstadoPickList(PickListsVO estadoPickList) {
 		this.estadoPickList = estadoPickList;
 	}
 }

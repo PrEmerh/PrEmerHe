@@ -1,6 +1,7 @@
 package com.casosemergencias.controller.views;
 
 import java.util.Date;
+import java.util.List;
 
 public class AccountView {
 	
@@ -20,6 +21,8 @@ public class AccountView {
 	/*Dirección*/        					private String direccion;
 	/*Cuenta principal*/ 					private String accountsource;
 	/*Id Empresa*/							private String idEmpresa;
+	/*Suministros asociados*/				private List<SuministroView> suministros;
+	/*Contactos asociados*/					private List<ContactView> contactos;
 	//Tipo de registro de cuenta
 	
 	
@@ -116,5 +119,16 @@ public class AccountView {
 	public void setIdEmpresa(String idEmpresa) {
 		this.idEmpresa = idEmpresa;
 	}
-
+	public List<SuministroView> getSuministros() {
+		return suministros;
+	}
+	public void setSuministros(List<SuministroView> suministros) {
+		this.suministros = suministros;
+	}
+	public List<ContactView> getContactos() {
+		return contactos;
+	}
+	public void setContactos(List<ContactView> contactos) {
+		this.contactos = contactos;
+	}
 }

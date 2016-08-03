@@ -50,6 +50,17 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 		return listSuministro;
 	}
 	
+	public Suministro readSuministroById(String id){
+		SuministroVO suministroVO = suministroDao.readSuministroById(Integer.valueOf(id));
+		//Si nos devuelve null, devolvemos null, si no, devolvemos el objeto relleno con los datos que nos devuelve BBDD
+		if(suministroVO!=null){
+			Suministro suministro = new Suministro();
+			ParserModelVO.parseDataModelVO(suministroVO, suministro);
+			return suministro;
+		}
+		return null;
+	}
+	
 	
 
 }

@@ -1,6 +1,11 @@
 package com.casosemergencias.controller.views;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,19 +25,27 @@ public class CaseView {
 	private String comuna;
 	private String tiempoEstimacion;
 	private String canalOrigen;
+	private String canalOrigenLabel;
 	private String nombreCuenta;
 	private String suministro;
 	private String estadoSuministro;
 	private String peticion;
+	private String peticionLabel;
 	private String callCenter;
 	private String editMode;
-	private List<PickListsVO> estadoPickList;
+	private String type;
+	private String typeLabel;
+	private String description;
+	private String condicionAgravante;
+	private PickListsVO estadoPickList;
 	
 	private Map<String, String> mapStatus;
 	private Map<String, String> mapSubStatus;
 	private Map<String, String> mapPeticion;
 	private Map<String, String> mapOrigin;
 	private Map<String, String> mapCallCenter;
+	private Map<String, String> mapSubMotivo;
+	private Map<String, String> mapCondicionAgravante;
 	
 	
 	public String getNumeroCaso() {
@@ -132,7 +145,7 @@ public class CaseView {
 		this.peticion = peticion;
 	}
 	public Map<String, String> getMapStatus() {
-		return mapStatus;
+		return this.ordenarMapa(mapStatus);
 	}
 	public void setMapStatus(Map<String, String> mapStatus) {
 		this.mapStatus = mapStatus;
@@ -173,18 +186,95 @@ public class CaseView {
 	public void setEditMode(String editMode) {
 		this.editMode = editMode;
 	}
-	public List<PickListsVO> getEstadoPickList() {
+	public PickListsVO getEstadoPickList() {
 		return estadoPickList;
 	}
-	public void setEstadoPickList(List<PickListsVO> estadoPickList) {
+	public void setEstadoPickList(PickListsVO estadoPickList) {
 		this.estadoPickList = estadoPickList;
 	}
-
+	public String getPeticionLabel() {
+		return peticionLabel;
+	}
+	public void setPeticionLabel(String peticionLabel) {
+		this.peticionLabel = peticionLabel;
+	}
+	
+	public String getCanalOrigenLabel() {
+		return canalOrigenLabel;
+	}
+	public void setCanalOrigenLabel(String canalOrigenLabel) {
+		this.canalOrigenLabel = canalOrigenLabel;
+	}
+	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	public String getTypeLabel() {
+		return typeLabel;
+	}
+	public void setTypeLabel(String typeLabel) {
+		this.typeLabel = typeLabel;
+	}
+	
+	public Map<String, String> getMapSubMotivo() {
+		return this.ordenarMapa(mapSubMotivo);
+	}
+	public void setMapSubMotivo(Map<String, String> mapSubMotivo) {
+		this.mapSubMotivo = mapSubMotivo;
+	}
+	public Map<String, String> getMapCondicionAgravante() {
+		return this.ordenarMapa(mapCondicionAgravante);
+	}
+	public void setMapCondicionAgravante(Map<String, String> mapCondicionAgravante) {
+		this.mapCondicionAgravante = mapCondicionAgravante;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public String getCondicionAgravante() {
+		return condicionAgravante;
+	}
+	public void setCondicionAgravante(String condicionAgravante) {
+		this.condicionAgravante = condicionAgravante;
+	}
 	public String getLabelEstadoPickList(){
 		String result = this.getEstado();
-		if (this.getEstadoPickList() != null && !this.getEstadoPickList().isEmpty()){
-			result=this.getEstadoPickList().get(0).getValor();
+		if (this.getEstadoPickList() != null ){
+			result=this.getEstadoPickList().getValor();
 		}
 		return result; 
 	}
+	
+	private Map<String, String> ordenarMapa(Map<String, String> mapa) {
+		Map<String, String> sortedMap = null;
+		if (mapa != null && !mapa.isEmpty()){
+			//Convertir el mapa a lista
+			List<Map.Entry<String, String>> list = new LinkedList<Map.Entry<String, String>>(mapa.entrySet());
+	
+			// Ordena con el comparador
+			Collections.sort(list, new Comparator<Map.Entry<String, String>>() {
+				public int compare(Map.Entry<String, String> o1, Map.Entry<String, String> o2) {
+					return (o1.getValue()).compareTo(o2.getValue());
+				}
+			});
+			
+			// Convert sorted map back to a Map
+			sortedMap = new LinkedHashMap<String, String>();
+			for (Iterator<Map.Entry<String, String>> it = list.iterator(); it.hasNext();) {
+				Map.Entry<String, String> entry = it.next();
+				sortedMap.put(entry.getKey(), entry.getValue());
+			}
+		}
+		return sortedMap;
+	}
+
+
 }

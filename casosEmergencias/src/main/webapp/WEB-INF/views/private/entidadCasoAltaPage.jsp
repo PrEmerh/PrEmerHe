@@ -17,11 +17,10 @@
 	<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
 	<jsp:include page="cabeceraPage.jsp"/>
 	<form:form name="formEntidadCasoAlta" action="altaCaso" modelAttribute="caso" method="POST">
-		<form:hidden path="sfid"/>
-		
+		<form:hidden path="sfid"/>		
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
-					<label><s:message code="entidadCaso_title_label_detalle_caso"/></label>
+					<label><s:message code="entidadCasoAlta_title_label_detalle_caso"/></label>
 			</div>
 			<div class="botoneraEntidad">
 				<ul>
@@ -30,61 +29,67 @@
 				</ul>
 			</div>
 		</div>
-		<div id="divEntidadCaso" class="divEntidad">
+		<div id="divEntidadCasoAlta" class="divEntidad">
+			<div class="subtittlePrincipalAltaEntidad">
+				<div class="subtittlePrincipalAltaEntidadDivInfo"><label><s:message code="entidadCasoAlta_table_title_label_infoentidad"/></label></div>
+				<div class="subtittlePrincipalAltaEntidadDivOblig">
+					<div class="tittleObligatorio"></div>
+					<label><s:message code="entidadCasoAlta_table_title_label_infoobligatorio"/></label>
+				</div>
+			</div>
 			<div>
 				<div class="divLabel">
 					<label><s:message code="entidadCaso_table_label_motivo"/></label>
 				</div>
 				<div>
-					<form:select path="peticion" items="${caso.mapPeticion}" />
+					<!--<form:select path="peticion" items="${caso.mapPeticion}"/>-->
+					<label>${caso.peticionLabel}</label>
 				</div>
 				<div class="divLabel">
 					<label><s:message code="entidadCaso_table_label_estado"/></label>
 				</div>
 				<div>
-					<form:select path="estado" items="${caso.mapStatus}" />
+					<div class="divObligatorio"></div>
+					<form:select path="estado" items="${caso.mapStatus}"/>
 				</div>
 			</div>
 			<div>
-				<div class="divLabel">
-					<label><s:message code="entidadCaso_table_label_numcaso"/></label>
-				</div>
-				<div>				
-					<form:input path="numeroCaso" readonly="true"/>
-				</div>
-				<div class="divLabel">
-					<label><s:message code="entidadCaso_table_label_subestado"/></label>
-				</div>
-				<div>
-					<form:select path="subestado" items="${caso.mapSubStatus}" />
-				</div>
-			</div>
-			<div>
-				<div class="divLabel">
-					<label><s:message code="entidadCaso_table_label_numinservice"/></label>
-				</div>
-				<div>				
-					<form:input path="numeroInservice"/>
-				</div>
 				<div class="divLabel">
 					<label><s:message code="entidadCaso_table_label_canalorigen"/></label>
 				</div>
+				<div class="divAnchoEspecial">
+					<label>${caso.canalOrigenLabel}</label>
+				</div>
+			</div>
+			<div class="subtittleAltaEntidad">
+				<div><label><s:message code="entidadCasoAlta_table_title_label_datosemergencia"/></label></div>
+			</div>
+			<div>
+				<div class="divLabel">
+					<label><s:message code="entidadCaso_table_label_type"/></label>
+				</div>
 				<div>
-					<form:select path="canalOrigen" items="${caso.mapOrigin}" />
+					<label>${caso.typeLabel}</label>
+				</div>
+				<div class="divLabel"><label><s:message code="entidadCaso_table_label_description"/></label></div>
+				<div>
+					<form:textarea path="description"/>
 				</div>
 			</div>
 			<div>
 				<div class="divLabel">
-					<label><s:message code="entidadCaso_table_label_fechahoraapertura"/></label>
+					<label><s:message code="entidadCaso_table_label_submotivo"/></label>
 				</div>
-				<div>				
-					<form:label path="fechaApertura"/>
+				<div class="divAnchoEspecial">
+					<form:select path="submotivo" items="${caso.mapSubMotivo}"/>
 				</div>
+			</div>
+			<div>
 				<div class="divLabel">
-					<label><s:message code="entidadCaso_table_label_unidad"/></label>
+					<label><s:message code="entidadCaso_table_label_condagravante"/></label>
 				</div>
-				<div>
-					<form:select path="callCenter" items="${caso.callCenter}" />
+				<div class="divAnchoEspecial">
+					<form:select path="condicionAgravante" items="${caso.mapCondicionAgravante}"/>
 				</div>
 			</div>
 		</div>	

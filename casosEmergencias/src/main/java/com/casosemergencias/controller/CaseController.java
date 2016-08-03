@@ -3,6 +3,7 @@ package com.casosemergencias.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.json.JsonArray;
 
@@ -90,10 +91,8 @@ public class CaseController {
 	}
 	
 	@RequestMapping(value = "/private/homeCasosAction", params="goCrearCaso", method = RequestMethod.POST)
-	public ModelAndView goCrearCaso() {
-		ModelAndView model = new ModelAndView();
-		model.setViewName("private/entidadCasoAltaPage");
-		return model;
+	public String goCrearCaso() {
+		return "redirect:entidadCasoAlta";
 	}
 	
 	
@@ -121,10 +120,11 @@ public class CaseController {
 		return model;
 	}
 	
-	private Map<String, String> getPickListPorCampo(Map<String, Map<String, String>> mapaGeneral, String campo){
+	private Map<String, String> getPickListPorCampo(Map<String, Map<String, String>> mapaGeneral, String campo, Boolean anniadirDefault){
 		Map<String, String> returnMap = null;
 		if (mapaGeneral != null && !mapaGeneral.isEmpty() && mapaGeneral.containsKey(campo)){
 			returnMap = mapaGeneral.get(campo);
+			if(anniadirDefault){returnMap.put(Constantes.PICKLIST_CASO_DEFAULT, "");}
 		}
 		return returnMap;
 	}
@@ -139,14 +139,36 @@ public class CaseController {
 		
 		model.addObject("editMode", Constantes.EDIT_MODE_INSERT);
 		model.setViewName("private/entidadCasoAltaPage");
-		
+		//Setteo de datos fijos
+		casoView.setCanalOrigen(Constantes.COD_CASO_ORIGEN_WEB);
+		casoView.setCanalOrigenLabel(Constantes.COD_CASO_ORIGEN_WEB_DESC);
+		casoView.setType(Constantes.COD_CASO_TYPE_RECLAMO);
+		casoView.setTypeLabel(Constantes.COD_CASO_TYPE_RECLAMO_DESC);
+		casoView.setEstado(Constantes.COD_CASO_STATUS_INGRESADO);
+
+		//Recuperacion mapa picklists
 		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("Case");
-		casoView.setMapStatus(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_STATUS));
-		casoView.setMapSubStatus(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_SUBSTATUS));
-		casoView.setMapPeticion(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_PETICION));
-		casoView.setMapOrigin(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_ORIGIN));
-		casoView.setMapCallCenter(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CALLCENTER));
+		casoView.setMapStatus(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_STATUS, false));
+		casoView.setMapPeticion(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_PETICION, false));
+		//Recupero el RecordTypeId de Emergencia. Cambia por entorno
+		if (casoView.getMapPeticion() != null && !casoView.getMapPeticion().isEmpty() 
+				&& casoView.getMapPeticion().containsValue(Constantes.PICKLIST_CASO_PETICION_EMERGENCIA_NAME)){
+	        for (Entry<String, String> entry : casoView.getMapPeticion().entrySet()) {
+	            if (Constantes.PICKLIST_CASO_PETICION_EMERGENCIA_NAME.equalsIgnoreCase(entry.getValue())){
+	            	casoView.setPeticion(entry.getKey());
+	            	casoView.setPeticionLabel(entry.getValue());
+	                break;
+	            }
+	        }
+		}
+		casoView.setMapSubMotivo(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_SUBMOTIVO, true));
+		casoView.setMapCondicionAgravante(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CONDICION_AGRAVANTE, true));
+		
 		model.addObject("caso", casoView);
+		//casoView.setMapOrigin(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_ORIGIN));
+		//casoView.setMapCallCenter(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CALLCENTER));
+		//casoView.setMapSubStatus(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_SUBSTATUS));
+		
 		
 		return model;
 	}

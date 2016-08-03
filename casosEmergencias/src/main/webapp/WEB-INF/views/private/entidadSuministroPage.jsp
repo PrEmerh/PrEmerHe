@@ -14,22 +14,15 @@
 	<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 	</head>
 <body>
-	<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
+	<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_suministro"/>';</script>
 	<jsp:include page="cabeceraPage.jsp"/>
-	<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
-		<form:hidden path="sfid"/>
-		<form:hidden path="editMode"/>
-		
+	<form:form name="formEntidadSuministro" action="detalleSuministro" modelAttribute="su" method="POST">
+		<form:hidden path="id"/>
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
-					<b><label><s:message code="entidadCaso_title_label_detalle_caso"/></label></b>
+					<label><s:message code="entidadCaso_title_label_detalle_caso"/></label>
 			</div>
-			<div class="botoneraEntidad">
-				<ul>
-					<li><input type="submit" name="Guardar" value="Guardar" /></li>
-					<li><input type="submit" name="Cancelar" value="Cancelar" /></li>
-				</ul>
-			</div>
+			
 		</div>
 		<div id="divEntidadCaso" class="divEntidad">
 			<div>

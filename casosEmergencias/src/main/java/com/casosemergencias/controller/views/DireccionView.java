@@ -1,7 +1,9 @@
-package com.casosemergencias.model;
+package com.casosemergencias.controller.views;
 
-public class Direccion {
-	
+import java.util.Date;
+
+public class DireccionView {
+
 	/*ID*/                                  private Integer id;
 	/*SFID*/                              	private String sfid;
 	/*Region*/                              private String region;
@@ -85,4 +87,8 @@ public class Direccion {
 	}
 
 
+	
+	
+	
+	
 }
