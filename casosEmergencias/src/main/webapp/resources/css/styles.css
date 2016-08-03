@@ -1,8 +1,4 @@
-
-<<<<<<< HEAD
-
 /*-------------------------------- DATATABLE STYLES --------------------------------------- */
-
 table.dataTable{
 	width:100%;
 	margin:0 auto;
@@ -374,14 +370,8 @@ table.dataTable,table.dataTable th,table.dataTable td{
 		margin-top:0.5em;
 	}
 }
-
-
-
 /*-------------------------------- DATATABLE STYLES --------------------------------------- */
 
-
-=======
->>>>>>> refs/remotes/origin/branch01
 .buttontext
 {
 color:blue;

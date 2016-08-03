@@ -33,13 +33,10 @@ public class CaseView {
 	private String peticionLabel;
 	private String callCenter;
 	private String editMode;
-<<<<<<< HEAD
 	private String type;
 	private String typeLabel;
 	private String description;
 	private String condicionAgravante;
-=======
->>>>>>> refs/remotes/origin/branch01
 	private PickListsVO estadoPickList;
 	
 	private Map<String, String> mapStatus;

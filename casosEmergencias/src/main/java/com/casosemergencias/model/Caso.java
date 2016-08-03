@@ -1,7 +1,6 @@
 package com.casosemergencias.model;
 
 import java.util.Date;
-import java.util.List;
 
 import com.casosemergencias.dao.PickListsVO;
 
@@ -53,10 +52,7 @@ public class Caso {
 	private boolean actualizarDatosContancto;
 	private String ani;
 	private String favorabilidadCaso;
-<<<<<<< HEAD
 	private String type;
-=======
->>>>>>> refs/remotes/origin/branch01
 	private PickListsVO estadoPickList;
 	
 	public Integer getId() {
