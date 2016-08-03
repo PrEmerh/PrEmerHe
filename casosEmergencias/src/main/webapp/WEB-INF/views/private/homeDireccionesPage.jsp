@@ -16,6 +16,7 @@
 	
 	</head>
 	<body>
+		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_direccion"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		
 		 
@@ -40,7 +41,7 @@
 	        	<tbody>
 	        		<c:forEach items="${listaDirecciones}" var="datosDireccion">
 						<tr>
-							<td>${datosDireccion.name}</td>						
+							<td><a href="../private/entidadDireccion?sfid=${datosDireccion.sfid}">${datosDireccion.name}</a></td>												
 							<td>${datosDireccion.calle}</td>
 							<td>${datosDireccion.numero}</td>
 							<td>${datosDireccion.comuna}</td>
