@@ -17,6 +17,7 @@
 		
 	</head>
 	<body>
+		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_cuentas"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		 
 		<form name='formListadoCasos' action="listar" method='POST'>
@@ -30,7 +31,11 @@
 					<thead>
 			            <tr>
 		            <!-- <th data-orderable="false"> -->
+<<<<<<< HEAD
+		           		<th width="20%"><s:message code="homeCuentas_table_head_name"/></th>			            
+=======
 		           		<th width="20%"><s:message code="homeCuentas_table_head_name"/></th>
+>>>>>>> refs/remotes/origin/branch01
 			            <th width="16%"><s:message code="homeCuentas_table_head_emailPrincipal"/></th>
 			            <th width="16%"><s:message code="homeCuentas_table_head_phone"/></th>
 <%-- 			        <th width="16%"><s:message code=#homeCuentas_table_head_*=Tipo de registro de cuenta/></th>    --%>                            

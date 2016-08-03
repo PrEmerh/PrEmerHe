@@ -33,13 +33,13 @@ table.dataTable thead .sorting,table.dataTable thead .sorting_asc,table.dataTabl
 		background-position:center right;
 		Text-align:left;
 		color: #54698d;
-		font-family:'SalesforceSans-Regular',Helvetica,Arial,sans-serif;
+		font-family:Helvetica,Arial,sans-serif;
 		font-size: 12.5px;
 }
 table.dataTable td{
 		Text-align:left;
 		color: #16325c;
-		font-family:'SalesforceSans-Regular',Helvetica,Arial,sans-serif;
+		font-family:Helvetica,Arial,sans-serif;
 		font-size: 12.5px;
 }
 table.dataTable th:hover{
@@ -235,7 +235,7 @@ table.dataTable,table.dataTable th,table.dataTable td{
 	float:left;
 	margin-bottom: 8px;
 	color: #54698d;
-	font-family:'SalesforceSans-Regular',Helvetica,Arial,sans-serif;
+	font-family:Helvetica,Arial,sans-serif;
 	font-size: 11px;
 }
 .dataTables_wrapper .dataTables_filter{
