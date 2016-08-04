@@ -43,12 +43,12 @@
 		        	<tbody>
 		        		<c:forEach items="${listaCasos}" var="datosCaso">
 							<tr>
-								<td><a href="../private/entidadCaso?sfid=${datosCaso.sfid}&editMode=<%=Constantes.EDIT_MODE_VIEW%>">${datosCaso.numeroCaso}</a></td>
+								<td><a href="../private/entidadCaso?id=${datosCaso.id}&editMode=<%=Constantes.EDIT_MODE_VIEW%>">${datosCaso.numeroCaso}</a></td>
 								<td>${datosCaso.numeroInservice}</td>
 								<td>${datosCaso.canalOrigen}</td>
 								<td>${datosCaso.labelEstadoPickList}</td>
 								<td>${datosCaso.subestado}</td>
-								<td>${datosCaso.submotivo}</td>
+								<td>${datosCaso.labeSubmotivoPickList}</td>
 							</tr>
 						</c:forEach>
 					</tbody>

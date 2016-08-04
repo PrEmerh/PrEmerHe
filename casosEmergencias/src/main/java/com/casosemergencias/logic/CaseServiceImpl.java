@@ -43,7 +43,8 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 		
 		for(CaseVO casoVO : listCasosVO){
 			Caso caso = new Caso();
-			caso.setId(casoVO.getId());
+			ParserModelVO.parseDataModelVO(casoVO, caso);
+			/*caso.setId(casoVO.getId());
 			caso.setSfid(casoVO.getSfid());
 			caso.setMotivo(casoVO.getPeticion());
 			caso.setNumeroCaso(casoVO.getNumeroCaso());
@@ -80,7 +81,7 @@ caso.setCasoPrincipal(casoVO.getParentid()); //buscar el nombre de este
 //			caso.setActualizarDatosContancto(casoVO.getActDatosContacto());
 			caso.setAni(casoVO.getAni());
 			caso.setFavorabilidadCaso(casoVO.getFavorabilidadDelCaso());
-			caso.setEstadoPickList(casoVO.getEstadoPickList());
+			caso.setEstadoPickList(casoVO.getEstadoPickList());*/
 			listCaso.add(caso);
 			
 		}
@@ -99,6 +100,21 @@ caso.setCasoPrincipal(casoVO.getParentid()); //buscar el nombre de este
 	public Caso readCaseBySfid(String sfid){
 		Caso returnCase = new Caso();
 		CaseVO casoVO = caseDao.readCaseBySfid(sfid);
+		if (casoVO != null){
+			ParserModelVO.parseDataModelVO(casoVO, returnCase);
+		}
+		return returnCase;
+	}
+	
+	/**
+	 * Metodo que devuelve caso de BBDD por su id
+	 * 
+	 * @return
+	 */
+	@Override
+	public Caso readCaseById(Integer id){
+		Caso returnCase = new Caso();
+		CaseVO casoVO = caseDao.readCaseById(id);
 		if (casoVO != null){
 			ParserModelVO.parseDataModelVO(casoVO, returnCase);
 		}

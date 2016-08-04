@@ -1,7 +1,7 @@
 package com.casosemergencias.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 import com.casosemergencias.dao.PickListsVO;
 
@@ -20,26 +20,26 @@ public class Caso {
 	private String numeroCaso; 	 
 	private String numeroInservice;
 	private Date fechaApertura;	//createdCate
-	private Date fechaEstimadoNormalizacion;
+	private Date fechaEstimadaCierre;
 	private String propietarioCaso;	//owner
 	private Date fechaCierre;
 	private String subMotivo;
 	private String condicionAgravante;
 	private String tipoAtencionInterna;
-	private Contacto contacto;
-	private Suministro suministro;
+	private Contacto contactoJoin;
+	private Suministro suministroJoin;
 	private String direccionSuministro;
 	private String comuna;
 	private String numeroMedidor;
-	private Direccion direccion;
-	private Cuenta cuenta;	
+	private Direccion direccionJoin;
+	private Cuenta cuentaJoin;	
 	private String cuerpoMail;
 	private String respuestaCliente;
 	private String estado;
 	private String subEstado;
 	private String canalOrigen;	//origin
 	private String unidad;	//call_center
-	private String casoPrincipal;	//parent
+	private String parentid;	//parent
 	private String asunto;	//subject
 	private String descripcion;
 	private String tipoAtencionSEC;
@@ -47,13 +47,23 @@ public class Caso {
 	private String telefonoContacto;
 	private String emailNotificacion;
 	private String peticion;
-	
-	private String idFacebook;
+	private String description;
+	private String facebook;
 	private String twitter;
-	private boolean actualizarDatosContancto;
+	private boolean actDatosContacto;
 	private String ani;
 	private String favorabilidadCaso;
+	private String type;
+	private String respuestaAlCliente;
+	private String favorabilidadDelCaso;
+	private String suministro;
+	private String direccion;
+	/*Joins caso*/
 	private PickListsVO estadoPickList;
+	private PickListsVO subestadoPickList;
+	private PickListsVO submotivoPickList;
+	private PickListsVO canalOrigenPickList;
+	/**/
 	
 	public Integer getId() {
 		return id;
@@ -91,11 +101,11 @@ public class Caso {
 	public void setFechaApertura(Date fechaApertura) {
 		this.fechaApertura = fechaApertura;
 	}
-	public Date getFechaEstimadoNormalizacion() {
-		return fechaEstimadoNormalizacion;
+	public Date getFechaEstimadaCierre() {
+		return fechaEstimadaCierre;
 	}
-	public void setFechaEstimadoNormalizacion(Date fechaEstimadoNormalizacion) {
-		this.fechaEstimadoNormalizacion = fechaEstimadoNormalizacion;
+	public void setFechaEstimadaCierre(Date fechaEstimadaCierre) {
+		this.fechaEstimadaCierre = fechaEstimadaCierre;
 	}
 	public String getPropietarioCaso() {
 		return propietarioCaso;
@@ -127,17 +137,18 @@ public class Caso {
 	public void setTipoAtencionInterna(String tipoAtencionInterna) {
 		this.tipoAtencionInterna = tipoAtencionInterna;
 	}
-	public Contacto getContacto() {
-		return contacto;
+	
+	public Contacto getContactoJoin() {
+		return contactoJoin;
 	}
-	public void setContacto(Contacto contacto) {
-		this.contacto = contacto;
+	public void setContactoJoin(Contacto contactoJoin) {
+		this.contactoJoin = contactoJoin;
 	}
-	public Suministro getSuministro() {
-		return suministro;
+	public Suministro getSuministroJoin() {
+		return suministroJoin;
 	}
-	public void setSuministro(Suministro suministro) {
-		this.suministro = suministro;
+	public void setSuministroJoin(Suministro suministroJoin) {
+		this.suministroJoin = suministroJoin;
 	}
 	public String getDireccionSuministro() {
 		return direccionSuministro;
@@ -157,17 +168,18 @@ public class Caso {
 	public void setNumeroMedidor(String numeroMedidor) {
 		this.numeroMedidor = numeroMedidor;
 	}
-	public Direccion getDireccion() {
-		return direccion;
+	
+	public Direccion getDireccionJoin() {
+		return direccionJoin;
 	}
-	public void setDireccion(Direccion direccion) {
-		this.direccion = direccion;
+	public void setDireccionJoin(Direccion direccionJoin) {
+		this.direccionJoin = direccionJoin;
 	}
-	public Cuenta getCuenta() {
-		return cuenta;
+	public Cuenta getCuentaJoin() {
+		return cuentaJoin;
 	}
-	public void setCuenta(Cuenta cuenta) {
-		this.cuenta = cuenta;
+	public void setCuentaJoin(Cuenta cuentaJoin) {
+		this.cuentaJoin = cuentaJoin;
 	}
 	public String getCuerpoMail() {
 		return cuerpoMail;
@@ -205,11 +217,12 @@ public class Caso {
 	public void setUnidad(String unidad) {
 		this.unidad = unidad;
 	}
-	public String getCasoPrincipal() {
-		return casoPrincipal;
+
+	public String getParentid() {
+		return parentid;
 	}
-	public void setCasoPrincipal(String casoPrincipal) {
-		this.casoPrincipal = casoPrincipal;
+	public void setParentid(String parentid) {
+		this.parentid = parentid;
 	}
 	public String getAsunto() {
 		return asunto;
@@ -247,11 +260,11 @@ public class Caso {
 	public void setEmailNotificacion(String emailNotificacion) {
 		this.emailNotificacion = emailNotificacion;
 	}
-	public String getIdFacebook() {
-		return idFacebook;
+	public String getFacebook() {
+		return facebook;
 	}
-	public void setIdFacebook(String idFacebook) {
-		this.idFacebook = idFacebook;
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
 	}
 	public String getTwitter() {
 		return twitter;
@@ -271,11 +284,12 @@ public class Caso {
 	public void setFavorabilidadCaso(String favorabilidadCaso) {
 		this.favorabilidadCaso = favorabilidadCaso;
 	}
-	public boolean isActualizarDatosContancto() {
-		return actualizarDatosContancto;
+
+	public boolean isActDatosContacto() {
+		return actDatosContacto;
 	}
-	public void setActualizarDatosContancto(boolean actualizarDatosContancto) {
-		this.actualizarDatosContancto = actualizarDatosContancto;
+	public void setActDatosContacto(boolean actDatosContacto) {
+		this.actDatosContacto = actDatosContacto;
 	}
 	public String getPeticion() {
 		return peticion;
@@ -283,10 +297,68 @@ public class Caso {
 	public void setPeticion(String peticion) {
 		this.peticion = peticion;
 	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	public String getRespuestaAlCliente() {
+		return respuestaAlCliente;
+	}
+	public void setRespuestaAlCliente(String respuestaAlCliente) {
+		this.respuestaAlCliente = respuestaAlCliente;
+	}
+	public String getFavorabilidadDelCaso() {
+		return favorabilidadDelCaso;
+	}
+	public void setFavorabilidadDelCaso(String favorabilidadDelCaso) {
+		this.favorabilidadDelCaso = favorabilidadDelCaso;
+	}
+	
+	public String getSuministro() {
+		return suministro;
+	}
+	public void setSuministro(String suministro) {
+		this.suministro = suministro;
+	}
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+	/*Joins pickList caso*/
 	public PickListsVO getEstadoPickList() {
 		return estadoPickList;
 	}
 	public void setEstadoPickList(PickListsVO estadoPickList) {
 		this.estadoPickList = estadoPickList;
 	}
+	public PickListsVO getSubestadoPickList() {
+		return subestadoPickList;
+	}
+	public void setSubestadoPickList(PickListsVO subestadoPickList) {
+		this.subestadoPickList = subestadoPickList;
+	}
+	public PickListsVO getSubmotivoPickList() {
+		return submotivoPickList;
+	}
+	public void setSubmotivoPickList(PickListsVO submotivoPickList) {
+		this.submotivoPickList = submotivoPickList;
+	}
+	public PickListsVO getCanalOrigenPickList() {
+		return canalOrigenPickList;
+	}
+	public void setCanalOrigenPickList(PickListsVO canalOrigenPickList) {
+		this.canalOrigenPickList = canalOrigenPickList;
+	}
+	/**/
 }

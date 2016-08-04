@@ -1,19 +1,26 @@
 package com.casosemergencias.dao;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.FetchProfile;
+import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.Where;
+import org.hibernate.annotations.WhereJoinTable;
 
 
 @Entity
@@ -348,12 +355,17 @@ public class CaseVO implements Serializable{
 	@Column(name = "condici_n_agravante__c")
 	private String condicionAgravante;
 	
-   @OneToOne
-   @JoinColumn(name="status", referencedColumnName="codigo", insertable =false, updatable=false)
-   @Where(clause = "campo ='Status' and objeto='Case'")
+   @ManyToOne(fetch=FetchType.LAZY)
+   @JoinColumn(name="status", referencedColumnName="codigo", insertable = false, updatable=false)
+   @WhereJoinTable(clause = "campo ='Status' and objeto='Case'")
    private PickListsVO estadoPickList;
-   
-
+//	NO va@ManyToMany
+//    @JoinTable(name="salesforce.case", joinColumns=@JoinColumn(name="status"), inverseJoinColumns=@JoinColumn(name="codigo"))
+//	@WhereJoinTable (clause = "campo ='Status' and objeto='Case'")
+//	
+//	private Set<PickListsVO> estadoPickList;
+	
+	
 	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
 			Date createdDate, String subject, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
 			String flagSec, String lastmodifiedbyid, String productid, Boolean validarElectrodependiente,
@@ -1356,4 +1368,5 @@ public class CaseVO implements Serializable{
 	public void setEstadoPickList(PickListsVO estadoPickList) {
 		this.estadoPickList = estadoPickList;
 	}
+	
 }

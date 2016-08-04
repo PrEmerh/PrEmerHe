@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.DireccionView;
 import com.casosemergencias.logic.DireccionService;
+import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Direccion;
 import com.casosemergencias.util.ParserModelVO;
 
@@ -44,6 +47,24 @@ public class DireccionController {
 
 		return model;
 	}
+	
+	@RequestMapping(value = "/private/entidadDireccion", method = RequestMethod.GET)
+	public ModelAndView getDireccionData(@RequestParam String sfid) {
+		System.out.println("Ejecutar consulta");
+		ModelAndView model = new ModelAndView();		
+		model.addObject("sfid", sfid);
+
+		DireccionView direccionView = new DireccionView();		
+		Direccion direccionBBDD = direccionService.readDireccionBySfid(sfid);
+		if (direccionBBDD != null){
+			ParserModelVO.parseDataModelVO(direccionBBDD, direccionView);
+		}
+		model.setViewName("private/entidadDireccionPage");
+		model.addObject("direccion", direccionView);
+		
+		return model;
+	}
+	
 	
 
 }

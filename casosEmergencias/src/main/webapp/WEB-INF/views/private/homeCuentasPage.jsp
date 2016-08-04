@@ -17,6 +17,7 @@
 		
 	</head>
 	<body>
+		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_cuentas"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		 
 		<form name='formListadoCasos' action="listar" method='POST'>

@@ -17,6 +17,7 @@
 		
 	</head>
 	<body>
+		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_contact"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		 
 		<form name='formListadoCasos' action="listar" method='POST'>
@@ -39,7 +40,7 @@
 	        	<tbody>
 	        		<c:forEach items="${listaContactos}" var="datosContacto">
 						<tr>
-							<td>${datosContacto.name}</td>						
+							<td><a href="../private/entidadContacto?sfid=${datosContacto.sfid}">${datosContacto.name}</a></td>						
 							<td>${datosContacto.accountRun}</td>
 							<td>${datosContacto.phone}</td>
 							<td>${datosContacto.email}</td>

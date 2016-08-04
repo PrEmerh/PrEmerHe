@@ -7,14 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.AccountView;
-import com.casosemergencias.controller.views.ContactView;
-import com.casosemergencias.dao.ContactVO;
 import com.casosemergencias.logic.AccountService;
-import com.casosemergencias.logic.ContactService;
-import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.util.ParserModelVO;
 
@@ -48,6 +45,27 @@ public class AccountController {
 		return model;
 	}
 	
-	
+	/**
+	 * Método que obtiene los datos de una cuenta, a partir de su id., y los devuelve a la página.
+	 * @param sfid Identificador de la cuenta.
+	 * @return ModelAndView Datos de la cuenta a mostrar en la página.
+	 */
+	@RequestMapping(value = "/private/entidadCuenta", method = RequestMethod.GET)
+	public ModelAndView getAccountData(@RequestParam String sfid) {
+		logger.trace("Detalle de cuenta");
+		ModelAndView model = new ModelAndView();
+		model.addObject("sfid", sfid);
+		
+		AccountView cuentaView = new AccountView();
+		Cuenta cuentaBBDD = accountService.getAccountBySfid(sfid);
+		if (cuentaBBDD != null) {
+			ParserModelVO.parseDataModelVO(cuentaBBDD, cuentaView);
+		}
+		
+		model.setViewName("private/entidadCuentaPage");
+		// TODO: Hay que añadir recuperación de label de los picklists si no sale el código solo
+		model.addObject("cuenta", cuentaView);
+		return model;
+	}
 
 }

@@ -30,7 +30,7 @@
 					<thead>
 			            <tr>
 			            <!-- <th data-orderable="false"> -->
-			            	<a href=""><th width="20%"><s:message code="homeSuministros_table_head_nombreSuministro"/></th></a>
+			            	<th width="20%"><s:message code="homeSuministros_table_head_nombreSuministro"/></th>
 			                <th width="20%"><s:message code="homeSuministros_table_head_estadoConexion"/></th>
 			                <th width="20%"><s:message code="homeSuministros_table_head_estadoSuministro"/></th>
 			                <th width="20%"><s:message code="homeSuministros_table_head_direccion"/></th>
@@ -41,7 +41,7 @@
 		        	<tbody>
 		        		<c:forEach items="${suministros}" var="datosSuministro">
 							<tr>
-								<td>${datosSuministro.name}</td>
+								<a href="entidadSuministro?sfid=${datosSuministro.sfid}"><td>${datosSuministro.name}</td></a>
 								<td>${datosSuministro.estadoConexion}</td>
 								<td>${datosSuministro.estadoSuministro}</td>
 								<td>${datosSuministro.direccion}</td>

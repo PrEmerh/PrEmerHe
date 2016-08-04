@@ -7,6 +7,6 @@ public interface AccountService {
 
 	public List<Cuenta> listOfAccountsTable();
 
-	
+	public Cuenta getAccountBySfid(String sfid);
 
 }

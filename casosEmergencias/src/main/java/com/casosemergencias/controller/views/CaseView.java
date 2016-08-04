@@ -1,8 +1,10 @@
 package com.casosemergencias.controller.views;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.casosemergencias.dao.PickListsVO;
 
@@ -182,7 +184,7 @@ public class CaseView {
 
 	public String getLabelEstadoPickList(){
 		String result = this.getEstado();
-		if (this.getEstadoPickList() != null ){
+		if (this.getEstadoPickList() != null){
 			result=this.getEstadoPickList().getValor();
 		}
 		return result; 
