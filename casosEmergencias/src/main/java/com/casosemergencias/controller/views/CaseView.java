@@ -61,7 +61,7 @@ public class CaseView {
 	private String ani;
 	
 	/*Joins con picklist*/
-	private PickListsVO estadoPickList;
+	private String labelEstadoPickList;
 	private PickListsVO subestadoPickList;
 	private PickListsVO submotivoPickList;
 	private PickListsVO canalOrigenPickList;
@@ -382,21 +382,15 @@ public class CaseView {
 		this.ani = ani;
 	}
 	/*Joins con picklist*/
-	public PickListsVO getEstadoPickList() {
-		return estadoPickList;
-	}
-	public void setEstadoPickList(PickListsVO estadoPickList) {
-		this.estadoPickList = estadoPickList;
-	}
-	public String getLabelEstadoPickList(){
-		String result = this.getEstado();
-		if (this.getEstadoPickList() != null ){
-			result=this.getEstadoPickList().getValor();
-		}
-		return result; 
-	}
+	
 	public PickListsVO getSubestadoPickList() {
 		return subestadoPickList;
+	}
+	public String getLabelEstadoPickList() {
+		return labelEstadoPickList;
+	}
+	public void setLabelEstadoPickList(String labelEstadoPickList) {
+		this.labelEstadoPickList = labelEstadoPickList;
 	}
 	public void setSubestadoPickList(PickListsVO subestadoPickList) {
 		this.subestadoPickList = subestadoPickList;

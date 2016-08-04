@@ -58,7 +58,7 @@ public class Caso {
 	private String suministro;
 	private String direccion;
 	/*Joins caso*/
-	private PickListsVO estadoPickList;
+	private String labelEstadoPickList;
 	private PickListsVO subestadoPickList;
 	private PickListsVO submotivoPickList;
 	private PickListsVO canalOrigenPickList;
@@ -335,11 +335,12 @@ public class Caso {
 		this.direccion = direccion;
 	}
 	/*Joins pickList caso*/
-	public PickListsVO getEstadoPickList() {
-		return estadoPickList;
+	
+	public String getLabelEstadoPickList() {
+		return labelEstadoPickList;
 	}
-	public void setEstadoPickList(PickListsVO estadoPickList) {
-		this.estadoPickList = estadoPickList;
+	public void setLabelEstadoPickList(String labelEstadoPickList) {
+		this.labelEstadoPickList = labelEstadoPickList;
 	}
 	public PickListsVO getSubestadoPickList() {
 		return subestadoPickList;

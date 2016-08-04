@@ -66,7 +66,7 @@ public class CaseDAO{
 			
 			
 			//Query query = session.createQuery("from CaseVO caso");
-			Query query = session.createQuery("from CaseVO caso left join fetch caso.estadoPickList estado");
+			Query query = session.createQuery("from CaseVO caso left join fetch caso.estadoPickList estado left join fetch caso.submotivoPickList submotivo");
 
 			
 			List<CaseVO> casoList = query.list();

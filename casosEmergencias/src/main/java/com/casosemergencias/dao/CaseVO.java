@@ -361,8 +361,8 @@ public class CaseVO implements Serializable{
 	//	
 //		private Set<PickListsVO> estadoPickList;
 	
-	@OneToOne
-   	@JoinColumn(name="motivo_empresa__c", referencedColumnName="codigo", insertable =false, updatable=false)
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="status", referencedColumnName="codigo", insertable = false, updatable=false)
    	@Where(clause = "campo ='Motivo_Empresa__c' and objeto='Case'")
 	private PickListsVO submotivoPickList;
 	
@@ -1369,6 +1369,14 @@ public class CaseVO implements Serializable{
 
 	public void setEstadoPickList(PickListsVO estadoPickList) {
 		this.estadoPickList = estadoPickList;
+	}
+	
+	public String getLabelEstadoPickList(){
+		String result = this.getEstado();
+		if (this.getEstadoPickList() != null ){
+			result=this.getEstadoPickList().getValor();
+		}
+		return result; 
 	}
 	
 }
