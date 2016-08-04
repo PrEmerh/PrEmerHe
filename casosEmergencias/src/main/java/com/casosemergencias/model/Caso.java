@@ -1,7 +1,6 @@
 package com.casosemergencias.model;
 
 import java.util.Date;
-import java.util.Set;
 
 import com.casosemergencias.dao.PickListsVO;
 
@@ -53,6 +52,12 @@ public class Caso {
 	private boolean actDatosContacto;
 	private String ani;
 	private String favorabilidadCaso;
+	private String type;
+	private String respuestaAlCliente;
+	private String favorabilidadDelCaso;
+	private String suministro;
+	private String direccion;
+	/*Joins caso*/
 	private String type;
 	private String respuestaAlCliente;
 	private String favorabilidadDelCaso;

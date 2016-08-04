@@ -355,16 +355,15 @@ public class CaseVO implements Serializable{
 	@Column(name = "condici_n_agravante__c")
 	private String condicionAgravante;
 	
-   @ManyToOne(fetch=FetchType.LAZY)
-   @JoinColumn(name="status", referencedColumnName="codigo", insertable = false, updatable=false)
-   @WhereJoinTable(clause = "campo ='Status' and objeto='Case'")
-   private PickListsVO estadoPickList;
-//	NO va@ManyToMany
-//    @JoinTable(name="salesforce.case", joinColumns=@JoinColumn(name="status"), inverseJoinColumns=@JoinColumn(name="codigo"))
-//	@WhereJoinTable (clause = "campo ='Status' and objeto='Case'")
-//	
-//	private Set<PickListsVO> estadoPickList;
+	@OneToOne
+   	@JoinColumn(name="status", referencedColumnName="codigo", insertable =false, updatable=false)
+   	@Where(clause = "campo ='Status' and objeto='Case'")
+   	private PickListsVO estadoPickList;
 	
+	@OneToOne
+   	@JoinColumn(name="motivo_empresa__c", referencedColumnName="codigo", insertable =false, updatable=false)
+   	@Where(clause = "campo ='Motivo_Empresa__c' and objeto='Case'")
+	private PickListsVO submotivoPickList;
 	
 	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
 			Date createdDate, String subject, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
@@ -389,7 +388,8 @@ public class CaseVO implements Serializable{
 			Date horaAsignado, String milestoneStatus, String contactId, Date horaPredespacho, Date horaEnruta,
 			String reason, String idEmpresa, Date horaProgramado, Double numeroSeguidoresDel, String literalCategorias,
 			String recordtypeId, String comunaF, String prioridad, String valorSubestadoins,
-			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante, PickListsVO estadoPickList) {
+			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante, PickListsVO estadoPickList,
+			PickListsVO submotivoPickList) {
 		super();
 		this.isdeleted = isdeleted;
 		this.systemmodstamp = systemmodstamp;
@@ -498,7 +498,8 @@ public class CaseVO implements Serializable{
 		this.controlElectrodependiente = controlElectrodependiente;
 		this.cancelar = cancelar;
 		this.condicionAgravante = condicionAgravante;
-		this.estadoPickList = estadoPickList;
+		this.estadoPickList = estadoPickList;		
+		this.submotivoPickList = submotivoPickList;
 	}
 
 	public CaseVO() {
