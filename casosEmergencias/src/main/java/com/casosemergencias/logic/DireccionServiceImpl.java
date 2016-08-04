@@ -7,8 +7,10 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.casosemergencias.dao.AccountDAO;
 import com.casosemergencias.dao.AccountVO;
+import com.casosemergencias.dao.CaseVO;
 import com.casosemergencias.dao.DireccionDAO;
 import com.casosemergencias.dao.DireccionVO;
+import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.model.Direccion;
 import com.casosemergencias.util.ParserModelVO;
@@ -45,6 +47,16 @@ public class DireccionServiceImpl implements DireccionService{
 					
 		}		
 		return listOfDireccionesTable;		
+	}
+	
+	@Override
+	public Direccion readDireccionBySfid(String sfid){
+		Direccion returnDireccion = new Direccion();
+		DireccionVO direccionVO = direccionDao.readDireccionBySfid(sfid);
+		if (direccionVO != null){
+			ParserModelVO.parseDataModelVO(direccionVO, returnDireccion);
+		}
+		return returnDireccion;
 	}
 
 

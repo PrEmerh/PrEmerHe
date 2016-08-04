@@ -17,7 +17,7 @@
 		
 	</head>
 	<body>
-		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
+		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_suministro"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		 
 		<form name='formListadoCasos' action="homeCasosAction" method='POST'>
@@ -30,7 +30,7 @@
 					<thead>
 			            <tr>
 			            <!-- <th data-orderable="false"> -->
-			            	<a href=""><th width="20%"><s:message code="homeSuministros_table_head_nombreSuministro"/></th></a>
+			            	<th width="20%"><s:message code="homeSuministros_table_head_nombreSuministro"/></th>
 			                <th width="20%"><s:message code="homeSuministros_table_head_estadoConexion"/></th>
 			                <th width="20%"><s:message code="homeSuministros_table_head_estadoSuministro"/></th>
 			                <th width="20%"><s:message code="homeSuministros_table_head_direccion"/></th>
@@ -41,7 +41,7 @@
 		        	<tbody>
 		        		<c:forEach items="${suministros}" var="datosSuministro">
 							<tr>
-								<td>${datosSuministro.name}</td>
+								<td><a href="../private/entidadSuministro?sfid=${datosSuministro.sfid}">${datosSuministro.name}</a></td>
 								<td>${datosSuministro.estadoConexion}</td>
 								<td>${datosSuministro.estadoSuministro}</td>
 								<td>${datosSuministro.direccion}</td>

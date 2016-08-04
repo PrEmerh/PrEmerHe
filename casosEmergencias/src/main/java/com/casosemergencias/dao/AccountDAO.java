@@ -90,10 +90,10 @@ public class AccountDAO {
 	
 	
 	/**
-	 * Devuelve el Account que tiene como sfid el pasado por parametro al metodo
+	 * Devuelve una cuenta que tiene como id. el pasado por parámetro al método.
 	 * 
-	 * @param sfid - id de un Account
-	 * @return
+	 * @param sfid Id. de la cuenta.
+	 * @return AccountVO Datos de la cuenta.
 	 */
 	public AccountVO readAccountBySfid(String sfid){
 		

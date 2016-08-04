@@ -1,6 +1,7 @@
 package com.casosemergencias.model;
 
 import java.util.Date;
+import java.util.List;
 
 //Objeto que tiene el modelo de una cuenta, se utiliza en el Servicio
 
@@ -21,6 +22,11 @@ public class Cuenta {
 	/*Dirección*/        					private String direccion;
 	/*Cuenta principal*/ 					private String accountsource;
 	/*Id Empresa*/							private String idEmpresa;
+	/*Suministros asociados*/				private List<Suministro> suministros;
+	/*Contactos asociados*/					private List<Contacto> contactos;
+	
+	
+	
 	//Tipo de registro de cuenta
 	
 	
@@ -117,13 +123,16 @@ public class Cuenta {
 	public void setIdEmpresa(String idEmpresa) {
 		this.idEmpresa = idEmpresa;
 	}
-	
-	
-	
-	
-	
-	
-	
-
-
+	public List<Suministro> getSuministros() {
+		return suministros;
+	}
+	public void setSuministros(List<Suministro> suministros) {
+		this.suministros = suministros;
+	}
+	public List<Contacto> getContactos() {
+		return contactos;
+	}
+	public void setContactos(List<Contacto> contactos) {
+		this.contactos = contactos;
+	}
 }

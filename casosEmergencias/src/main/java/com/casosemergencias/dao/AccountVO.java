@@ -1,12 +1,16 @@
 package com.casosemergencias.dao;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -79,13 +83,29 @@ public class AccountVO implements Serializable{
 		@Column(name = "id_empresa__c")
 		private String idEmpresa;
 		
-		//Tipo de registro de cuenta
+		/*
+		 * SELECT account.sfid, account.name, suministro__c.sfid, suministro__c.name, contact.sfid, contact.name
+		 *   FROM salesforce.account
+		 *   LEFT JOIN salesforce.suministro__c
+		 *     ON account.sfid = suministro__c.cuenta__c
+		 *   LEFT JOIN salesforce.contact
+		 *     ON account.sfid = contact.accountid
+         *  ORDER BY account.sfid;
+         */
 		
-
+		@OneToMany(fetch = FetchType.LAZY)
+		@JoinColumn(name = "cuenta__c", referencedColumnName = "sfid", insertable = false, updatable = false)
+		private List<SuministroVO> suministros;
+		
+		@OneToMany(fetch = FetchType.LAZY)
+		@JoinColumn(name = "accountid", referencedColumnName = "sfid", insertable = false, updatable = false)
+		private List<ContactVO> contactos;
+		
+		//Tipo de registro de cuenta
 		public AccountVO(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
 				String name, String apellidoPaterno, String apellidoMaterno, String tipoIdentidad, String accountRun,
 				Date fechaNacimiento, String phone, String telefonoSecundario, String email, String emailSecundario,
-				String direccion, String accountsource, String idEmpresa) {
+				String direccion, String accountsource, String idEmpresa, List<SuministroVO> suministros, List<ContactVO> contactos) {
 			super();
 			this.isDeleted = isDeleted;
 			this.systemDate = systemDate;
@@ -101,11 +121,13 @@ public class AccountVO implements Serializable{
 			this.fechaNacimiento = fechaNacimiento;
 			this.phone = phone;
 			this.telefonoSecundario = telefonoSecundario;
-			this.emailPrincipal = emailPrincipal;
+			this.emailPrincipal = email;
 			this.emailSecundario = emailSecundario;
 			this.direccion = direccion;
 			this.accountsource = accountsource;
 			this.idEmpresa = idEmpresa;
+			this.suministros = suministros;
+			this.contactos = contactos;
 		}
 
 		public AccountVO() {
@@ -267,8 +289,20 @@ public class AccountVO implements Serializable{
 		public static long getSerialversionuid() {
 			return serialVersionUID;
 		}
-
-
-	
 		
+		public List<SuministroVO> getSuministros() {
+			return suministros;
+		}
+		
+		public void setSuministros(List<SuministroVO> suministros) {
+			this.suministros = suministros;
+		}
+
+		public List<ContactVO> getContactos() {
+			return contactos;
+		}
+		
+		public void setContactos(List<ContactVO> contactos) {
+			this.contactos = contactos;
+		}
 }

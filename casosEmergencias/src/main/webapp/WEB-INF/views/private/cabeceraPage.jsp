@@ -32,7 +32,7 @@
 					<a href="homeSuministros"><s:message code="cabeceraPage_list_suministro"/></a>
 				</div>
 				<div class="menuListado" onclick="javascript:cambiarLabel('Direcciones');window.location.href='homeDirecciones'">
-					<a href="homeDirecciones"  ><s:message code="cabeceraPage_list_direccion"/></a>
+					<a href="homeDirecciones"><s:message code="cabeceraPage_list_direccion"/></a>
 				</div>
 				<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_cuentas"/>');window.location.href='homeCuentas'">
 					<a href="homeCuentas" ><s:message code="cabeceraPage_list_cuentas"/></a>

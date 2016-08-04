@@ -6,8 +6,10 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.casosemergencias.dao.ContactVO;
+import com.casosemergencias.dao.DireccionVO;
 import com.casosemergencias.dao.ContactDAO;
 import com.casosemergencias.model.Contacto;
+import com.casosemergencias.model.Direccion;
 import com.casosemergencias.util.ParserModelVO;
 
 
@@ -43,6 +45,17 @@ public class ContactServiceImpl implements ContactService{
 		}		
 		return listOfContactsTable;		
 	}
+	
+	@Override
+	public Contacto readContactoBySfid(String sfid){
+		Contacto returnContacto = new Contacto();
+		ContactVO contactoVO = contactDao.readContactBySfid(sfid);
+		if (contactoVO != null){
+			ParserModelVO.parseDataModelVO(contactoVO, returnContacto);
+		}
+		return returnContacto;
+	}
+	
 
 
 

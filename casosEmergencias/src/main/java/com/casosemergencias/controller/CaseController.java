@@ -1,6 +1,7 @@
 package com.casosemergencias.controller;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -91,16 +92,16 @@ public class CaseController {
 	private PickListsService pickListsService;
 	
 	@RequestMapping(value = "/private/entidadCaso", method = RequestMethod.GET)
-	public ModelAndView getCaseData(@RequestParam String sfid, @RequestParam String editMode) {
+	public ModelAndView getCaseData(@RequestParam Integer id, @RequestParam String editMode) {
 		System.out.println("Ejecutar consulta");
 		ModelAndView model = new ModelAndView();
-		model.addObject("sfid", sfid);
+		model.addObject("id", id);
 		model.addObject("editMode", editMode);
 		
 		//List<CaseView> listCaseView = new ArrayList<CaseView>();
 		CaseView casoView = new CaseView();
 		
-		Caso casoBBDD = casoService.readCaseBySfid(sfid);
+		Caso casoBBDD = casoService.readCaseById(id);
 		if (casoBBDD != null){
 			ParserModelVO.parseDataModelVO(casoBBDD, casoView);
 		}
@@ -114,8 +115,9 @@ public class CaseController {
 	private Map<String, String> getPickListPorCampo(Map<String, Map<String, String>> mapaGeneral, String campo, Boolean anniadirDefault){
 		Map<String, String> returnMap = null;
 		if (mapaGeneral != null && !mapaGeneral.isEmpty() && mapaGeneral.containsKey(campo)){
-			returnMap = mapaGeneral.get(campo);
+			returnMap = new LinkedHashMap<String, String>();
 			if(anniadirDefault){returnMap.put(Constantes.PICKLIST_CASO_DEFAULT, "");}
+			returnMap.putAll(mapaGeneral.get(campo));
 		}
 		return returnMap;
 	}
@@ -151,6 +153,8 @@ public class CaseController {
 		}
 		casoView.setMapSubMotivo(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_SUBMOTIVO, true));
 		casoView.setMapCondicionAgravante(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CONDICION_AGRAVANTE, true));
+		casoView.setMapCanalNotificacion(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CANAL_NOTIFICACION, true));
+		casoView.setMapFavorabilidadCaso(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_FAVORABILIDAD, true));
 		
 		model.addObject("caso", casoView);
 		//casoView.setMapOrigin(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_ORIGIN));

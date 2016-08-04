@@ -25,7 +25,7 @@ public class Caso {
 	private String subMotivo;
 	private String condicionAgravante;
 	private String tipoAtencionInterna;
-	private Contacto contacto;
+	private Contacto contactoJoin;
 	private Suministro suministroJoin;
 	private String direccionSuministro;
 	private String comuna;
@@ -136,11 +136,12 @@ public class Caso {
 	public void setTipoAtencionInterna(String tipoAtencionInterna) {
 		this.tipoAtencionInterna = tipoAtencionInterna;
 	}
-	public Contacto getContacto() {
-		return contacto;
+	
+	public Contacto getContactoJoin() {
+		return contactoJoin;
 	}
-	public void setContacto(Contacto contacto) {
-		this.contacto = contacto;
+	public void setContactoJoin(Contacto contactoJoin) {
+		this.contactoJoin = contactoJoin;
 	}
 	public Suministro getSuministroJoin() {
 		return suministroJoin;
@@ -358,6 +359,5 @@ public class Caso {
 	public void setCanalOrigenPickList(PickListsVO canalOrigenPickList) {
 		this.canalOrigenPickList = canalOrigenPickList;
 	}
-	
 	/**/
 }

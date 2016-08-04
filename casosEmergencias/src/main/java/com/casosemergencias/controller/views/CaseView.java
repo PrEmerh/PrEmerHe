@@ -4,6 +4,10 @@ import java.util.Date;
 import java.util.Map;
 
 import com.casosemergencias.dao.PickListsVO;
+import com.casosemergencias.model.Contacto;
+import com.casosemergencias.model.Cuenta;
+import com.casosemergencias.model.Direccion;
+import com.casosemergencias.model.Suministro;
 
 public class CaseView {
 
@@ -43,6 +47,18 @@ public class CaseView {
 	private String favorabilidadDelCaso;
 	private Date fechaEstimadaCierre;
 	private String parentid;
+	private String propietarioCaso;	//owner
+	private Date fechaCierre;
+	private String tipoAtencionInterna;
+	private Contacto contactoJoin;
+	private String numeroMedidor;
+	private Direccion direccionJoin;
+	private Cuenta cuentaJoin;
+	private Suministro suministroJoin;
+	private String cuerpoMail;	
+	private String asunto;	//subject
+	private String tipoAtencionSEC;
+	private String ani;
 	
 	/*Joins con picklist*/
 	private PickListsVO estadoPickList;
@@ -140,12 +156,6 @@ public class CaseView {
 	public void setNombreCuenta(String nombreCuenta) {
 		this.nombreCuenta = nombreCuenta;
 	}
-	/*public String getSuministro() {
-		return suministro;
-	}
-	public void setSuministro(String suministro) {
-		this.suministro = suministro;
-	}*/
 	public String getEstadoSuministro() {
 		return estadoSuministro;
 	}
@@ -297,6 +307,79 @@ public class CaseView {
 	}
 	public void setParentid(String parentid) {
 		this.parentid = parentid;
+	}
+	
+	public String getPropietarioCaso() {
+		return propietarioCaso;
+	}
+	public void setPropietarioCaso(String propietarioCaso) {
+		this.propietarioCaso = propietarioCaso;
+	}
+	public Date getFechaCierre() {
+		return fechaCierre;
+	}
+	public void setFechaCierre(Date fechaCierre) {
+		this.fechaCierre = fechaCierre;
+	}
+	public String getTipoAtencionInterna() {
+		return tipoAtencionInterna;
+	}
+	public void setTipoAtencionInterna(String tipoAtencionInterna) {
+		this.tipoAtencionInterna = tipoAtencionInterna;
+	}
+	public Contacto getContactoJoin() {
+		return contactoJoin;
+	}
+	public void setContactoJoin(Contacto contactoJoin) {
+		this.contactoJoin = contactoJoin;
+	}
+	public String getNumeroMedidor() {
+		return numeroMedidor;
+	}
+	public void setNumeroMedidor(String numeroMedidor) {
+		this.numeroMedidor = numeroMedidor;
+	}
+	public Direccion getDireccionJoin() {
+		return direccionJoin;
+	}
+	public void setDireccionJoin(Direccion direccionJoin) {
+		this.direccionJoin = direccionJoin;
+	}
+	public Cuenta getCuentaJoin() {
+		return cuentaJoin;
+	}
+	public void setCuentaJoin(Cuenta cuentaJoin) {
+		this.cuentaJoin = cuentaJoin;
+	}
+	public Suministro getSuministroJoin() {
+		return suministroJoin;
+	}
+	public void setSuministroJoin(Suministro suministroJoin) {
+		this.suministroJoin = suministroJoin;
+	}
+	public String getCuerpoMail() {
+		return cuerpoMail;
+	}
+	public void setCuerpoMail(String cuerpoMail) {
+		this.cuerpoMail = cuerpoMail;
+	}
+	public String getAsunto() {
+		return asunto;
+	}
+	public void setAsunto(String asunto) {
+		this.asunto = asunto;
+	}
+	public String getTipoAtencionSEC() {
+		return tipoAtencionSEC;
+	}
+	public void setTipoAtencionSEC(String tipoAtencionSEC) {
+		this.tipoAtencionSEC = tipoAtencionSEC;
+	}
+	public String getAni() {
+		return ani;
+	}
+	public void setAni(String ani) {
+		this.ani = ani;
 	}
 	/*Joins con picklist*/
 	public PickListsVO getEstadoPickList() {

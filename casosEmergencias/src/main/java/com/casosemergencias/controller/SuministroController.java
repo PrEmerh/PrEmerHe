@@ -43,14 +43,14 @@ public class SuministroController {
 	}
 	
 	@RequestMapping(value = "/private/entidadSuministro", method = RequestMethod.GET)
-	public ModelAndView getSuministroData(@RequestParam String id) {
+	public ModelAndView getSuministroData(@RequestParam String sfid) {
 		System.out.println("Ejecutar consulta");
 		ModelAndView model = new ModelAndView();		
-		model.addObject("id", id);
+		model.addObject("sfid", sfid);
 		
 		SuministroView suministroView = new SuministroView();
 		
-		Suministro suministroBBDD = suministroService.readSuministroById(id);
+		Suministro suministroBBDD = suministroService.readSuministroBySfid(sfid);
 		if (suministroBBDD != null){
 			ParserModelVO.parseDataModelVO(suministroBBDD, suministroView);
 		}

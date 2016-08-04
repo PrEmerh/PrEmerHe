@@ -163,7 +163,7 @@ public class PickListsDAO {
 			if(pickListVo.getValor()!= null){
 				result.setString("valor", pickListVo.getValor());
 			}
-			
+			query.append(" order by campo, valor");
 			List<PickListsVO> pickList = result.list(); 	 
 			
 			logger.debug("--- Fin -- readPickListsUser ---");
