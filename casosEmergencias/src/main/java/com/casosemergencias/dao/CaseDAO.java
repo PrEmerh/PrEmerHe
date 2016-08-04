@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.casosemergencias.dao.vo.CaseVO;
+
 @Repository
 public class CaseDAO{
 
@@ -105,7 +107,7 @@ public class CaseDAO{
 			
 			List<CaseVO> casoList = query.list(); 
 
-			if(casoList != null){
+			if(casoList != null && !casoList.isEmpty()){
 				return casoList.get(0);
 			}			
 			
@@ -141,7 +143,7 @@ public class CaseDAO{
 			
 			List<CaseVO> casoList = query.list(); 
 
-			if(casoList != null){
+			if(casoList != null && !casoList.isEmpty()) {
 				return casoList.get(0);
 			}			
 			

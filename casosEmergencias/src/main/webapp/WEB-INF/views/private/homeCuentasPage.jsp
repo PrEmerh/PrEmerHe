@@ -13,8 +13,6 @@
 
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>
-		
-		
 	</head>
 	<body>
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_cuentas"/>';</script>
@@ -40,7 +38,7 @@
 	        	<tbody>
 	        		<c:forEach items="${listaCuentas}" var="datosCuenta">
 						<tr>
-							<td>${datosCuenta.name}</td>						
+							<td><a href="../private/entidadCuenta?sfid=${datosCuenta.sfid}">${datosCuenta.name}</a></td>
 							<td>${datosCuenta.emailPrincipal}</td>
 							<td>${datosCuenta.phone}</td>
 							<%-- <td>${datosCuenta.tiporgistrocuenta}</td> --%>

@@ -5,13 +5,14 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.casosemergencias.dao.vo.HerokuUserVO;
 
 
 @Repository
@@ -72,7 +73,7 @@ public class HerokuUserDAO {
 			
 			List<HerokuUserVO> userList = query.list(); 
 
-			if(userList != null){
+			if(userList != null && !userList.isEmpty()){
 				return userList.get(0);
 			}			
 			
@@ -108,7 +109,7 @@ public class HerokuUserDAO {
 			
 			List<HerokuUserVO> userList = query.list(); 
 
-			if(userList != null){
+			if(userList != null && !userList.isEmpty()){
 				return userList.get(0);
 			}			
 			

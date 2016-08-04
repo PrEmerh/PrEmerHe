@@ -1,7 +1,6 @@
-package com.casosemergencias.dao;
+package com.casosemergencias.dao.vo;
 import java.io.Serializable;
 import java.util.Date;
-
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,17 +10,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
-import org.hibernate.annotations.WhereJoinTable;
 
+import com.casosemergencias.model.Caso;
 
 
 @Entity
 @Table(name="salesforce.case")
-public class CaseVO implements Serializable{
+public class CaseVO extends ObjectVO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -358,7 +356,7 @@ public class CaseVO implements Serializable{
 //		NO va@ManyToMany
 //	    @JoinTable(name="salesforce.case", joinColumns=@JoinColumn(name="status"), inverseJoinColumns=@JoinColumn(name="codigo"))
 //		@WhereJoinTable (clause = "campo ='Status' and objeto='Case'")
-	//	
+//	
 //		private Set<PickListsVO> estadoPickList;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -1379,4 +1377,9 @@ public class CaseVO implements Serializable{
 		return result; 
 	}
 	
+	@Override
+	public Object instantiateTargetLogic() {
+		Caso caso = new Caso();
+		return caso;
+	}
 }

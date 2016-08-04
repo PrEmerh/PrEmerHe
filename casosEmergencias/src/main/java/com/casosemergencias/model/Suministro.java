@@ -1,90 +1,56 @@
 package com.casosemergencias.model;
+
 import java.util.Date;
 
-public class Suministro {
+import com.casosemergencias.controller.views.SuministroView;
+import com.casosemergencias.dao.vo.SuministroVO;
+
+public class Suministro extends ObjectLogic {
 
 	private Integer id;
-	
 	private String sfid;
-	
 	private String name;
-	
 	private String fullElectric;
-	
 	private Boolean casosAbiertos;
-	
 	private String tipoTransformador;
-	
 	private Boolean cortePorDeuda;
-	
 	private String tipoLectura;
-	
 	private String estadoConexion;
-	
 	private String tipoMedida;
-	
 	private String comunaReparto;
-	
 	private String comuna;
-	
 	private String numeroMedidor;
-	
 	private String modeloMedidor;
-	
 	private String numeroSuministro;
-	
 	private String numeroTransformador;
-	
 	private String estadoSuministro;
-	
 	private String marcaMedidor;
-	
 	private Date fechaCorte;
-	
 	private String propiedadMedidor;
-	
 	private String idEmpresa;
-	
 	private String direccion;
-	
 	private String runRut;
-	
 	private Boolean pagoEnProceso;
-	
 	private String nombreDuenoBoleta;
-	
 	private String bloque;
-	
 	private String tipoConexion;
-	
 	private String direccionCliente;
-	
 	private String electrodependiente;
-	
 	private String medidaDisciplina;
-	
 	private String horarioRacionamiento;
-	
 	private Double casosReiterados;
-	
 	private String tarifa;
-	
 	private String alimentador;
-	
 	private String direccionBoleta;
-	
 	private String cuenta;
-	
 	private String subestacionElectricaConexion;
-	
 	private String ruta;
-	
 	private String tipoCuenta;
-	
 	private String tipoSegmento;
 
-	public Suministro(){}
-	
+	public Suministro() {
+	}
+
 	public Suministro(Integer id, String sfid, String name, String fullElectric, Boolean casosAbiertos,
 			String tipoTransformador, Boolean cortePorDeuda, String tipoLectura, String estadoConexion,
 			String tipoMedida, String comunaReparto, String comuna, String numeroMedidor, String modeloMedidor,
@@ -456,5 +422,16 @@ public class Suministro {
 	public void setTipoSegmento(String tipoSegmento) {
 		this.tipoSegmento = tipoSegmento;
 	}
+
+	@Override
+	public Object instantiateTargetView() {
+		SuministroView suministro = new SuministroView();
+		return suministro;
+	}
 	
+	@Override
+	public Object instantiateTargetVO() {
+		SuministroVO suministro = new SuministroVO();
+		return suministro;
+	}
 }

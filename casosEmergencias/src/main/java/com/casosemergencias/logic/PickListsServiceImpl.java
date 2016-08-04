@@ -9,7 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.PickListsDAO;
-import com.casosemergencias.dao.PickListsVO;
+import com.casosemergencias.dao.vo.PickListsVO;
 
 public class PickListsServiceImpl implements PickListsService{
 

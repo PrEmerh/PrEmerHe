@@ -1,4 +1,4 @@
-package com.casosemergencias.dao;
+package com.casosemergencias.dao.vo;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,10 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.casosemergencias.model.Direccion;
+
 
 @Entity
 @Table(name="salesforce.direccion__c")
-public class DireccionVO implements Serializable{
+public class DireccionVO extends ObjectVO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -227,10 +229,9 @@ public class DireccionVO implements Serializable{
 		return serialVersionUID;
 	}
 
-	
-	
-	
-
-	
+	@Override
+	public Object instantiateTargetLogic() {
+		Direccion direccion = new Direccion();
+		return direccion;
+	}	
 }
-	

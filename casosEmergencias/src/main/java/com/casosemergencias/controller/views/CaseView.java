@@ -3,13 +3,14 @@ package com.casosemergencias.controller.views;
 import java.util.Date;
 import java.util.Map;
 
-import com.casosemergencias.dao.PickListsVO;
+import com.casosemergencias.dao.vo.PickListsVO;
+import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.model.Direccion;
 import com.casosemergencias.model.Suministro;
 
-public class CaseView {
+public class CaseView extends ObjectView {
 
 	private Integer id;
 	private String sfid;
@@ -508,6 +509,10 @@ public class CaseView {
 		}
 		return sortedMap;
 	}*/
-
-
+	
+	@Override
+	public Object instantiateTargetLogic() {
+		Caso caso = new Caso();
+		return caso;
+	}
 }

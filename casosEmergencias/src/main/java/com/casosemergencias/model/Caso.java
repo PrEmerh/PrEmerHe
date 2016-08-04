@@ -2,7 +2,9 @@ package com.casosemergencias.model;
 
 import java.util.Date;
 
-import com.casosemergencias.dao.PickListsVO;
+import com.casosemergencias.controller.views.CaseView;
+import com.casosemergencias.dao.vo.CaseVO;
+import com.casosemergencias.dao.vo.PickListsVO;
 
 /**
  * @author MPC
@@ -10,11 +12,10 @@ import com.casosemergencias.dao.PickListsVO;
  * Clase que contiene el modelo de un caso. Esta clase es la que utilizaremos en el Servicio.
  *
  */
-public class Caso {
+public class Caso extends ObjectLogic {
 
 	private Integer id;
 	private String sfid;
-	
 	private String motivo;  
 	private String numeroCaso; 	 
 	private String numeroInservice;
@@ -308,7 +309,6 @@ public class Caso {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
 	public String getRespuestaAlCliente() {
 		return respuestaAlCliente;
 	}
@@ -321,7 +321,6 @@ public class Caso {
 	public void setFavorabilidadDelCaso(String favorabilidadDelCaso) {
 		this.favorabilidadDelCaso = favorabilidadDelCaso;
 	}
-	
 	public String getSuministro() {
 		return suministro;
 	}
@@ -335,7 +334,6 @@ public class Caso {
 		this.direccion = direccion;
 	}
 	/*Joins pickList caso*/
-	
 	public String getLabelEstadoPickList() {
 		return labelEstadoPickList;
 	}
@@ -361,4 +359,15 @@ public class Caso {
 		this.canalOrigenPickList = canalOrigenPickList;
 	}
 	/**/
+	@Override
+	public Object instantiateTargetView() {
+		CaseView caso = new CaseView();
+		return caso;
+	}
+	
+	@Override
+	public Object instantiateTargetVO() {
+		CaseVO caso = new CaseVO();
+		return caso;
+	}
 }

@@ -8,7 +8,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.SuministroDAO;
-import com.casosemergencias.dao.SuministroVO;
+import com.casosemergencias.dao.vo.SuministroVO;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 

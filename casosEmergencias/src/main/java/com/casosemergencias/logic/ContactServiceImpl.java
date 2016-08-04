@@ -5,11 +5,9 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.casosemergencias.dao.ContactVO;
-import com.casosemergencias.dao.DireccionVO;
 import com.casosemergencias.dao.ContactDAO;
+import com.casosemergencias.dao.vo.ContactVO;
 import com.casosemergencias.model.Contacto;
-import com.casosemergencias.model.Direccion;
 import com.casosemergencias.util.ParserModelVO;
 
 

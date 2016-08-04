@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.casosemergencias.dao.vo.DireccionVO;
+
 @Repository
 public class DireccionDAO {
 
@@ -70,7 +72,7 @@ public class DireccionDAO {
 			
 			List<DireccionVO> direccionList = query.list(); 
 
-			if(direccionList != null){
+			if(direccionList != null && !direccionList.isEmpty()){
 				return direccionList.get(0);
 			}			
 			
@@ -107,7 +109,7 @@ public class DireccionDAO {
 			
 			List<DireccionVO> direccionList = query.list(); 
 
-			if(direccionList != null){
+			if(direccionList != null && !direccionList.isEmpty()){
 				return direccionList.get(0);
 			}			
 			
