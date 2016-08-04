@@ -58,12 +58,6 @@ public class Caso {
 	private String suministro;
 	private String direccion;
 	/*Joins caso*/
-	private String type;
-	private String respuestaAlCliente;
-	private String favorabilidadDelCaso;
-	private String suministro;
-	private String direccion;
-	/*Joins caso*/
 	private PickListsVO estadoPickList;
 	private PickListsVO subestadoPickList;
 	private PickListsVO submotivoPickList;

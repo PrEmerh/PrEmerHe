@@ -10,17 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.FetchMode;
-import org.hibernate.annotations.FetchProfile;
-import org.hibernate.annotations.ManyToAny;
 import org.hibernate.annotations.Where;
 import org.hibernate.annotations.WhereJoinTable;
+
 
 
 @Entity
@@ -355,10 +351,15 @@ public class CaseVO implements Serializable{
 	@Column(name = "condici_n_agravante__c")
 	private String condicionAgravante;
 	
-	@OneToOne
-   	@JoinColumn(name="status", referencedColumnName="codigo", insertable =false, updatable=false)
-   	@Where(clause = "campo ='Status' and objeto='Case'")
-   	private PickListsVO estadoPickList;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="status", referencedColumnName="codigo", insertable = false, updatable=false)
+	@Where(clause = "campo ='Status' and objeto='Case'")
+	private PickListsVO estadoPickList;
+//		NO va@ManyToMany
+//	    @JoinTable(name="salesforce.case", joinColumns=@JoinColumn(name="status"), inverseJoinColumns=@JoinColumn(name="codigo"))
+//		@WhereJoinTable (clause = "campo ='Status' and objeto='Case'")
+	//	
+//		private Set<PickListsVO> estadoPickList;
 	
 	@OneToOne
    	@JoinColumn(name="motivo_empresa__c", referencedColumnName="codigo", insertable =false, updatable=false)
