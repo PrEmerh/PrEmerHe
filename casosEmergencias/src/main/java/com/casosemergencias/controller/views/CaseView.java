@@ -1,18 +1,13 @@
 package com.casosemergencias.controller.views;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 import com.casosemergencias.dao.PickListsVO;
 
 public class CaseView {
 
+	private Integer id;
 	private String sfid;
 	private String numeroCaso;
 	private String estado;
@@ -28,20 +23,34 @@ public class CaseView {
 	private String canalOrigenLabel;
 	private String nombreCuenta;
 	private String suministro;
+	private String direccion;
 	private String estadoSuministro;
 	private String peticion;
 	private String peticionLabel;
 	private String callCenter;
 	private String editMode;
-<<<<<<< HEAD
 	private String type;
 	private String typeLabel;
 	private String description;
 	private String condicionAgravante;
-=======
->>>>>>> refs/remotes/origin/branch01
-	private PickListsVO estadoPickList;
+	private String canalNotificacion;
+	private String telefonoContacto;
+	private String emailNotificacion;
+	private String facebook;
+	private String twitter;
+	private boolean actDatosContacto;
+	private String respuestaAlCliente;
+	private String favorabilidadDelCaso;
+	private Date fechaEstimadaCierre;
+	private String parentid;
 	
+	/*Joins con picklist*/
+	private PickListsVO estadoPickList;
+	private PickListsVO subestadoPickList;
+	private PickListsVO submotivoPickList;
+	private PickListsVO canalOrigenPickList;
+	/**/
+	/*Mapas para mostrar los combos de caso*/
 	private Map<String, String> mapStatus;
 	private Map<String, String> mapSubStatus;
 	private Map<String, String> mapPeticion;
@@ -49,11 +58,19 @@ public class CaseView {
 	private Map<String, String> mapCallCenter;
 	private Map<String, String> mapSubMotivo;
 	private Map<String, String> mapCondicionAgravante;
-	
-	
+	private Map<String, String> mapCanalNotificacion;
+	private Map<String, String> mapFavorabilidadCaso;
+	/**/
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getNumeroCaso() {
 		return numeroCaso;
 	}
+
 	public void setNumeroCaso(String numeroCaso) {
 		this.numeroCaso = numeroCaso;
 	}
@@ -123,12 +140,12 @@ public class CaseView {
 	public void setNombreCuenta(String nombreCuenta) {
 		this.nombreCuenta = nombreCuenta;
 	}
-	public String getSuministro() {
+	/*public String getSuministro() {
 		return suministro;
 	}
 	public void setSuministro(String suministro) {
 		this.suministro = suministro;
-	}
+	}*/
 	public String getEstadoSuministro() {
 		return estadoSuministro;
 	}
@@ -147,54 +164,20 @@ public class CaseView {
 	public void setPeticion(String peticion) {
 		this.peticion = peticion;
 	}
-	public Map<String, String> getMapStatus() {
-		return this.ordenarMapa(mapStatus);
-	}
-	public void setMapStatus(Map<String, String> mapStatus) {
-		this.mapStatus = mapStatus;
-	}
-	public Map<String, String> getMapSubStatus() {
-		return mapSubStatus;
-	}
-	public void setMapSubStatus(Map<String, String> mapSubStatus) {
-		this.mapSubStatus = mapSubStatus;
-	}
-	public Map<String, String> getMapPeticion() {
-		return mapPeticion;
-	}
-	public void setMapPeticion(Map<String, String> mapPeticion) {
-		this.mapPeticion = mapPeticion;
-	}
-	public Map<String, String> getMapOrigin() {
-		return mapOrigin;
-	}
-	public void setMapOrigin(Map<String, String> mapOrigin) {
-		this.mapOrigin = mapOrigin;
-	}
 	public String getCallCenter() {
 		return callCenter;
 	}
 	public void setCallCenter(String callCenter) {
 		this.callCenter = callCenter;
 	}
-	public Map<String, String> getMapCallCenter() {
-		return mapCallCenter;
-	}
-	public void setMapCallCenter(Map<String, String> mapCallCenter) {
-		this.mapCallCenter = mapCallCenter;
-	}
+
 	public String getEditMode() {
 		return editMode;
 	}
 	public void setEditMode(String editMode) {
 		this.editMode = editMode;
 	}
-	public PickListsVO getEstadoPickList() {
-		return estadoPickList;
-	}
-	public void setEstadoPickList(PickListsVO estadoPickList) {
-		this.estadoPickList = estadoPickList;
-	}
+	
 	public String getPeticionLabel() {
 		return peticionLabel;
 	}
@@ -223,18 +206,6 @@ public class CaseView {
 		this.typeLabel = typeLabel;
 	}
 	
-	public Map<String, String> getMapSubMotivo() {
-		return this.ordenarMapa(mapSubMotivo);
-	}
-	public void setMapSubMotivo(Map<String, String> mapSubMotivo) {
-		this.mapSubMotivo = mapSubMotivo;
-	}
-	public Map<String, String> getMapCondicionAgravante() {
-		return this.ordenarMapa(mapCondicionAgravante);
-	}
-	public void setMapCondicionAgravante(Map<String, String> mapCondicionAgravante) {
-		this.mapCondicionAgravante = mapCondicionAgravante;
-	}
 	public String getDescription() {
 		return description;
 	}
@@ -248,6 +219,92 @@ public class CaseView {
 	public void setCondicionAgravante(String condicionAgravante) {
 		this.condicionAgravante = condicionAgravante;
 	}
+	
+	public String getCanalNotificacion() {
+		return canalNotificacion;
+	}
+	public void setCanalNotificacion(String canalNotificacion) {
+		this.canalNotificacion = canalNotificacion;
+	}
+	
+	public String getTelefonoContacto() {
+		return telefonoContacto;
+	}
+	public void setTelefonoContacto(String telefonoContacto) {
+		this.telefonoContacto = telefonoContacto;
+	}
+	
+	public String getEmailNotificacion() {
+		return emailNotificacion;
+	}
+	public void setEmailNotificacion(String emailNotificacion) {
+		this.emailNotificacion = emailNotificacion;
+	}
+	public String getTwitter() {
+		return twitter;
+	}
+	public void setTwitter(String twitter) {
+		this.twitter = twitter;
+	}
+	public String getFacebook() {
+		return facebook;
+	}
+	public void setFacebook(String facebook) {
+		this.facebook = facebook;
+	}
+	
+	public boolean isActDatosContacto() {
+		return actDatosContacto;
+	}
+	public void setActDatosContacto(boolean actDatosContacto) {
+		this.actDatosContacto = actDatosContacto;
+	}
+	
+	public String getSuministro() {
+		return suministro;
+	}
+	public void setSuministro(String suministro) {
+		this.suministro = suministro;
+	}
+	public String getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+	public String getRespuestaAlCliente() {
+		return respuestaAlCliente;
+	}
+	public void setRespuestaAlCliente(String respuestaAlCliente) {
+		this.respuestaAlCliente = respuestaAlCliente;
+	}
+	public String getFavorabilidadDelCaso() {
+		return favorabilidadDelCaso;
+	}
+	public void setFavorabilidadDelCaso(String favorabilidadDelCaso) {
+		this.favorabilidadDelCaso = favorabilidadDelCaso;
+	}
+	
+	public Date getFechaEstimadaCierre() {
+		return fechaEstimadaCierre;
+	}
+	public void setFechaEstimadaCierre(Date fechaEstimadaCierre) {
+		this.fechaEstimadaCierre = fechaEstimadaCierre;
+	}
+	
+	public String getParentid() {
+		return parentid;
+	}
+	public void setParentid(String parentid) {
+		this.parentid = parentid;
+	}
+	/*Joins con picklist*/
+	public PickListsVO getEstadoPickList() {
+		return estadoPickList;
+	}
+	public void setEstadoPickList(PickListsVO estadoPickList) {
+		this.estadoPickList = estadoPickList;
+	}
 	public String getLabelEstadoPickList(){
 		String result = this.getEstado();
 		if (this.getEstadoPickList() != null ){
@@ -255,8 +312,104 @@ public class CaseView {
 		}
 		return result; 
 	}
-	
-	private Map<String, String> ordenarMapa(Map<String, String> mapa) {
+	public PickListsVO getSubestadoPickList() {
+		return subestadoPickList;
+	}
+	public void setSubestadoPickList(PickListsVO subestadoPickList) {
+		this.subestadoPickList = subestadoPickList;
+	}
+	public String getLabelSubestadoPickList(){
+		String result = this.getSubestado();
+		if (this.getSubestadoPickList() != null ){
+			result=this.getSubestadoPickList().getValor();
+		}
+		return result; 
+	}
+	public PickListsVO getSubmotivoPickList() {
+		return submotivoPickList;
+	}
+	public void setSubmotivoPickList(PickListsVO submotivoPickList) {
+		this.submotivoPickList = submotivoPickList;
+	}
+	public String getLabeSubmotivoPickList(){
+		String result = this.getSubmotivo();
+		if (this.getSubmotivoPickList() != null ){
+			result=this.getSubmotivoPickList().getValor();
+		}
+		return result; 
+	}
+	public PickListsVO getCanalOrigenPickList() {
+		return canalOrigenPickList;
+	}
+	public void setCanalOrigenPickList(PickListsVO canalOrigenPickList) {
+		this.canalOrigenPickList = canalOrigenPickList;
+	}
+	public String getLabelCanalOrigenPickList(){
+		String result = this.getCanalOrigen();
+		if (this.getCanalOrigenPickList() != null ){
+			result=this.getCanalOrigenPickList().getValor();
+		}
+		return result; 
+	}
+
+/**/
+	/*Mapas combos*/
+	public Map<String, String> getMapStatus() {
+		return mapStatus;
+	}
+	public void setMapStatus(Map<String, String> mapStatus) {
+		this.mapStatus = mapStatus;
+	}
+	public Map<String, String> getMapSubStatus() {
+		return mapSubStatus;
+	}
+	public void setMapSubStatus(Map<String, String> mapSubStatus) {
+		this.mapSubStatus = mapSubStatus;
+	}
+	public Map<String, String> getMapPeticion() {
+		return mapPeticion;
+	}
+	public void setMapPeticion(Map<String, String> mapPeticion) {
+		this.mapPeticion = mapPeticion;
+	}
+	public Map<String, String> getMapOrigin() {
+		return mapOrigin;
+	}
+	public void setMapOrigin(Map<String, String> mapOrigin) {
+		this.mapOrigin = mapOrigin;
+	}
+	public Map<String, String> getMapCallCenter() {
+		return mapCallCenter;
+	}
+	public void setMapCallCenter(Map<String, String> mapCallCenter) {
+		this.mapCallCenter = mapCallCenter;
+	}
+	public Map<String, String> getMapSubMotivo() {
+		return mapSubMotivo;
+	}
+	public void setMapSubMotivo(Map<String, String> mapSubMotivo) {
+		this.mapSubMotivo = mapSubMotivo;
+	}
+	public Map<String, String> getMapCondicionAgravante() {
+		return mapCondicionAgravante;
+	}
+	public void setMapCondicionAgravante(Map<String, String> mapCondicionAgravante) {
+		this.mapCondicionAgravante = mapCondicionAgravante;
+	}
+	public Map<String, String> getMapCanalNotificacion() {
+		return mapCanalNotificacion;
+	}
+	public void setMapCanalNotificacion(Map<String, String> mapCanalNotificacion) {
+		this.mapCanalNotificacion = mapCanalNotificacion;
+	}
+	public Map<String, String> getMapFavorabilidadCaso() {
+		return mapFavorabilidadCaso;
+	}
+	public void setMapFavorabilidadCaso(Map<String, String> mapFavorabilidadCaso) {
+		this.mapFavorabilidadCaso = mapFavorabilidadCaso;
+	}
+	/**/
+	/*private Map<String, String> ordenarMapa(Map<String, String> mapa) {
 		Map<String, String> sortedMap = null;
 		if (mapa != null && !mapa.isEmpty()){
 			//Convertir el mapa a lista
@@ -277,7 +430,7 @@ public class CaseView {
 			}
 		}
 		return sortedMap;
-	}
+	}*/
 
 
 }

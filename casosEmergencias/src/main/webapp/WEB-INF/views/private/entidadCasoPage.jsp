@@ -17,7 +17,7 @@
 	<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
 	<jsp:include page="cabeceraPage.jsp"/>
 	<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
-		<form:hidden path="sfid"/>
+		<form:hidden path="id"/>
 		<form:hidden path="editMode"/>
 		
 		<div class="divCabeceraEntidad">
@@ -86,6 +86,20 @@
 				</div>
 				<div>
 					<label>${caso.callCenter}</label>
+				</div>
+			</div>
+			<div>
+				<div class="divLabel">
+					<label><s:message code="entidadCaso_table_label_tiempoestimadonorma"/></label>
+				</div>
+				<div>
+					<label>${caso.fechaEstimadaCierre}</label>
+				</div>
+				<div class="divLabel">
+					<label><s:message code="entidadCaso_table_label_casoprincipal"/></label>
+				</div>
+				<div>
+					<label>${caso.parentid}</label>
 				</div>
 			</div>
 		</div>	
