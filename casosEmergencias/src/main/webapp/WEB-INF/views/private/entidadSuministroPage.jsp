@@ -317,6 +317,8 @@
 		</div>
 	</form:form>
 	
+	<!-- Mostrar y esconder contenido de las pestañas -->
+	
 	<script type="text/javascript">
 			function showHideCabeceras(idDiv,idArrow){
  				var div =document.getElementById(idDiv);

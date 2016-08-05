@@ -47,7 +47,7 @@ public class CaseView extends ObjectView {
 	private String respuestaAlCliente;
 	private String favorabilidadDelCaso;
 	private Date fechaEstimadaCierre;
-	private String parentid;
+	private String parent;
 	private String propietarioCaso;	//owner
 	private Date fechaCierre;
 	private String tipoAtencionInterna;
@@ -303,11 +303,11 @@ public class CaseView extends ObjectView {
 		this.fechaEstimadaCierre = fechaEstimadaCierre;
 	}
 	
-	public String getParentid() {
-		return parentid;
+	public String getParent() {
+		return parent;
 	}
-	public void setParentid(String parentid) {
-		this.parentid = parentid;
+	public void setParent(String parent) {
+		this.parent = parent;
 	}
 	
 	public String getPropietarioCaso() {

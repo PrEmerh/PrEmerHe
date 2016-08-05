@@ -6,8 +6,9 @@
 		<link href="resources/css/styles.css" rel="stylesheet">
 		<title>Login Page</title>
 	</head>
-	<body style="background-color:#99CCFF;">
-		<center><img src="resources/images/heroku.png"  /></center>
+	<body style="background-color:white">
+		<center><img src="resources/images/enel-logo-arbol.jpg" width="150" /></center>
+		<center><img src="resources/images/Enel-logo-new.jpg" width="200" /></center>
 		<center><h1><s:message code="login_label_title"/></h1></center>
 	   	<center><h3><s:message code="login_label_text"/>:</h3></center>  
 	    
