@@ -37,9 +37,15 @@ public class Caso extends ObjectLogic {
 	private String respuestaCliente;
 	private String estado;
 	private String subEstado;
+<<<<<<< HEAD
+	private String canalOrigen;	//origin
+	private String unidad;	//call_center
+	private String parent;	//parent
+=======
 	private String canalOrigen;
 	private String callCenter;	//call_center
 	private String parentid;	//parent
+>>>>>>> refs/remotes/origin/branch01
 	private String asunto;	//subject
 	private String descripcion;
 	private String tipoAtencionSEC;
@@ -218,11 +224,11 @@ public class Caso extends ObjectLogic {
 		this.callCenter = callCenter;
 	}
 
-	public String getParentid() {
-		return parentid;
+	public String getParent() {
+		return parent;
 	}
-	public void setParentid(String parentid) {
-		this.parentid = parentid;
+	public void setParent(String parent) {
+		this.parent = parent;
 	}
 	public String getAsunto() {
 		return asunto;

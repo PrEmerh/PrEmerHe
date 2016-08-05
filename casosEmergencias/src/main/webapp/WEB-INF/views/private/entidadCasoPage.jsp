@@ -94,7 +94,7 @@
 					<label><s:message code="entidadCaso_table_label_casoPrincipal"/></label>
 				</div>
 				<div>
-					<label>${caso.parentid}</label>
+					<label>${caso.parent}</label>
 				</div>
 				<div class="divLabel">
 					<label><s:message code="entidadCaso_table_label_propietarioCaso"/></label>
@@ -241,13 +241,22 @@
 					<label><s:message code="entidadCaso_table_label_comuna"/></label>
 				</div>
 				<div>
-					<label>${caso.comuna}</label>
+					<label>${caso.comuna}</label>					
 				</div>
 				<div class="divLabel">
 					<label><s:message code="entidadCaso_table_label_actualizarDatosContacto"/></label>
 				</div>
-				<div>
-					<label>${caso.actDatosContacto}</label>
+				<div>							
+					<c:if test="${caso.actDatosContactos}">
+				    <label> 
+					<input type="checkbox" id="checkbox" value="true" checked="checked" disabled  />
+					</label> 					
+					</c:if> 
+					<c:if test="${caso.actDatosContacto == 'false'}">
+					<label> 
+					<input type="checkbox" id="checkbox" value="true" disabled  />
+					</label>	
+					</c:if> 
 				</div>
 			</div>
 			<div>
@@ -317,6 +326,9 @@
 			</div>
 		</div>
 	</form:form>
+	
+	<!-- Mostrar y esconder contenido de las pestañas -->
+	
 	<script type="text/javascript">
 	function showHideCabeceras(idDiv,idArrow){
 			var div =document.getElementById(idDiv);

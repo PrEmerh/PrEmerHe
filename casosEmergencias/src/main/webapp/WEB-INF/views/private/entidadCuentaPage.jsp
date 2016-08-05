@@ -19,7 +19,8 @@
 		<jsp:include page="cabeceraPage.jsp" />
 		<div class="divCabeceraCuenta">
 			<div class="divTituloCuenta">
-				<label><s:message code="entidadCuenta_title_label_person_data_detail" /></label>
+				<input id="arrowEntidadCuenta" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('divEntidadCuenta','arrowEntidadCuenta'); return false;"/>			
+				<b><label><s:message code="entidadCuenta_title_label_person_data_detail" /></label></b>
 			</div>
 		</div>
 		<div id="divEntidadCuenta" class="divEntidad">
@@ -129,6 +130,7 @@
 		</div>
 		<div id="divEntidadCuentaSuministros" class="divEntidad">
 			<div class="divTituloCuentaSuministros">
+				<input id="arrowTablaCuentaSuministros" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('tablaCuentaSuministros','arrowTablaCuentaSuministros'); return false;"/>			
 				<label><s:message code="entidadCuenta_title_label_supply_data_detail" /></label>
 			</div>
 			<div>
@@ -160,6 +162,7 @@
 		</div>
 		<div id="divEntidadCuentaContactos" class="divEntidad">
 			<div class="divTituloCuentaContactoss">
+				<input id="arrowTablaCuentaContactos" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('tablaCuentaContactos','arrowTablaCuentaContactos'); return false;"/>							
 				<label><s:message code="entidadCuenta_title_label_contact_data_detail" /></label>
 			</div>
 			<table id="tablaCuentaContactos" class="basicTable">
@@ -179,5 +182,21 @@
 				</c:forEach>
 			</table>
 		</div>
+		
+	<!-- Mostrar y esconder contenido de las pestañas -->
+	
+	<script type="text/javascript">
+		function showHideCabeceras(idDiv,idArrow){
+ 			var div =document.getElementById(idDiv);
+ 			var arrow = document.getElementById(idArrow); 				
+ 				if(div.style.visibility=='')  {
+ 					div.style.visibility='hidden';
+					arrow.src="../resources/images/Arrowright.PNG";
+ 				}else{
+						div.style.visibility='';
+ 						arrow.src="../resources/images/Arrowdown.PNG";
+ 				}					
+		}
+	</script> 				
 	</body>
 </html>

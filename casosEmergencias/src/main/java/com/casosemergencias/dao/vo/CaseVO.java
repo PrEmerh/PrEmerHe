@@ -47,10 +47,10 @@ public class CaseVO extends ObjectVO implements Serializable {
 	private String sfid;
 	
 	@Column(name = "createddate")
-	private Date createdDate;
+	private Date fechaApertura;
 	
 	@Column(name = "subject")
-	private String subject;
+	private String asunto;
 	
 	@Column(name = "fecha_estimada_de_cierre__c")
 	private Date fechaEstimadaCierre;
@@ -77,7 +77,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	private String sf4twitterTwitterUsername;
 	
 	@Column(name = "ownerid")
-	private String ownerid;
+	private String propietarioCaso;
 	
 	@Column(name = "slastartdate")
 	private Date slastartdate;
@@ -224,7 +224,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	private	Boolean isSelfserviceClosed;
 	
 	@Column(name = "parentid")
-	private String parentid;
+	private String parent;
 	
 	@Column(name = "ui__c")
 	private Boolean ui;
@@ -365,9 +365,9 @@ public class CaseVO extends ObjectVO implements Serializable {
 	private PickListsVO submotivoPickList;
 	
 	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
-			Date createdDate, String subject, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
+			Date createdDate, String asunto, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
 			String flagSec, String lastmodifiedbyid, String productid, Boolean validarElectrodependiente,
-			String sf4twitterTwitterUsername, String ownerid, Date slastartdate, String motivoEmpresa,
+			String sf4twitterTwitterUsername, String propietarioCaso, Date slastartdate, String motivoEmpresa,
 			String callCenter, Boolean falloEnvioValidacion, String literalComuna, Boolean actDatosContacto,
 			String falloCreacionObservacion, Boolean estadoPreingreso, String emailNotificacion, Double horaap,
 			String numeroInservice, String suppliedphone, String numeroMedidor, Boolean isstopped, String cuerpoMail,
@@ -378,7 +378,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 			Boolean isvisibleinselfservice, String tipoAtencionInterna, Date horaSec,
 			Boolean pendienteValidacionCondagr, String ejecutivoAnterior, String entitlementid, String assetid,
 			Date stopstartDate, String suppliedCompany, Boolean isClosedonCreate, String estadoCondicionAgravante,
-			Date horaCancelado, String suministro, Boolean isSelfserviceClosed, String parentid, Boolean ui,
+			Date horaCancelado, String suministro, Boolean isSelfserviceClosed, String parent, Boolean ui,
 			String numSum, String twitter, String suppliedName, Date closedDate, Boolean falloEnvioInservice,
 			String description, Date horaArribado, Date slaexitDate, String canalOrigen, String descripcionEstado,
 			String businessHoursId, String sf4twitterAuthorExternalId, Boolean hasCommentSunReadByOwner,
@@ -396,8 +396,8 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this._hc_err = _hc_err;
 		this.id = id;
 		this.sfid = sfid;
-		this.createdDate = createdDate;
-		this.subject = subject;
+		this.fechaApertura = createdDate;
+		this.asunto = asunto;
 		this.fechaEstimadaCierre = fechaEstimadaCierre;
 		this.accountid = accountid;
 		this.favorabilidadDelCaso = favorabilidadDelCaso;
@@ -406,7 +406,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.productid = productid;
 		this.validarElectrodependiente = validarElectrodependiente;
 		this.sf4twitterTwitterUsername = sf4twitterTwitterUsername;
-		this.ownerid = ownerid;
+		this.propietarioCaso = propietarioCaso;
 		this.slastartdate = slastartdate;
 		this.motivoEmpresa = motivoEmpresa;
 		this.callCenter = callCenter;
@@ -455,7 +455,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.horaCancelado = horaCancelado;
 		this.suministro = suministro;
 		this.isSelfserviceClosed = isSelfserviceClosed;
-		this.parentid = parentid;
+		this.parent = parent;
 		this.ui = ui;
 		this.numSum = numSum;
 		this.twitter = twitter;
@@ -553,20 +553,20 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.sfid = sfid;
 	}
 
-	public Date getCreatedDate() {
-		return createdDate;
+	public Date getFechaApertura() {
+		return fechaApertura;
 	}
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+	public void setFechaApertura(Date fechaApertura) {
+		this.fechaApertura = fechaApertura;
 	}
 
-	public String getSubject() {
-		return subject;
+	public String getAsunto() {
+		return asunto;
 	}
 
-	public void setSubject(String subject) {
-		this.subject = subject;
+	public void setAsunto(String asunto) {
+		this.asunto = asunto;
 	}
 
 	public Date getFechaEstimadaCierre() {
@@ -633,12 +633,12 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.sf4twitterTwitterUsername = sf4twitterTwitterUsername;
 	}
 
-	public String getOwnerid() {
-		return ownerid;
+	public String getPropietarioCaso() {
+		return propietarioCaso;
 	}
 
-	public void setOwnerid(String ownerid) {
-		this.ownerid = ownerid;
+	public void setPropietarioCaso(String propietarioCaso) {
+		this.propietarioCaso = propietarioCaso;
 	}
 
 	public Date getSlastartdate() {
@@ -1025,12 +1025,12 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.isSelfserviceClosed = isSelfserviceClosed;
 	}
 
-	public String getParentid() {
-		return parentid;
+	public String getParent() {
+		return parent;
 	}
 
-	public void setParentid(String parentid) {
-		this.parentid = parentid;
+	public void setParent(String parent) {
+		this.parent = parent;
 	}
 
 	public Boolean getUi() {
