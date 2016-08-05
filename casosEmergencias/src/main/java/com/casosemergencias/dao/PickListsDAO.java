@@ -7,10 +7,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+
+import com.casosemergencias.dao.vo.PickListsVO;
 
 @Repository
 public class PickListsDAO {
@@ -69,7 +69,7 @@ public class PickListsDAO {
 			
 			List<PickListsVO> pickList = query.list(); 
 
-			if(pickList != null){
+			if(pickList != null && !pickList.isEmpty()){
 				return pickList.get(0);
 			}			
 			
@@ -163,7 +163,7 @@ public class PickListsDAO {
 			if(pickListVo.getValor()!= null){
 				result.setString("valor", pickListVo.getValor());
 			}
-			
+			query.append(" order by campo, valor");
 			List<PickListsVO> pickList = result.list(); 	 
 			
 			logger.debug("--- Fin -- readPickListsUser ---");

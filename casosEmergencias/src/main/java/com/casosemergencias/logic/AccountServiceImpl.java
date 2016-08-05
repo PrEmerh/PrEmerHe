@@ -7,7 +7,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.AccountDAO;
-import com.casosemergencias.dao.AccountVO;
+import com.casosemergencias.dao.vo.AccountVO;
 import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.util.ParserModelVO;
 

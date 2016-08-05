@@ -46,7 +46,18 @@ $(document).ready(function() {
         "deferRender": true, 
   
 	});
+	
+	$('#search').on('click', function(){
+		var radioButton = $("input[name='radios']:checked").val(); 
+		var allCase = false;
+		if(radioButton == 'rd2'){
+			allCase = true;
+		}
+		
+		table.search($('#col0_filter').val(),allCase).draw();
+	});
 });
+
 
 function createUrl(){
 	var miUrl = window.location.protocol + "//" + window.location.host;

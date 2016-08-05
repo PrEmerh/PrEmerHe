@@ -1,6 +1,6 @@
 package com.casosemergencias.logic;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.PickListsDAO;
-import com.casosemergencias.dao.PickListsVO;
+import com.casosemergencias.dao.vo.PickListsVO;
 
 public class PickListsServiceImpl implements PickListsService{
 
@@ -35,11 +35,11 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 			for(int i=0; i<listaPickList.size();i++){
 				ob = listaPickList.get(i);
 				if (datosRetorno == null){
-					 datosRetorno = new HashMap<String, Map<String, String>>();
+					 datosRetorno = new LinkedHashMap<String, Map<String, String>>();
 				}
 				
 				if (!datosRetorno.containsKey(ob.getCampo())){
-					mapAux = new HashMap<String, String>();
+					mapAux = new LinkedHashMap<String, String>();
 				}else{
 					mapAux = datosRetorno.get(ob.getCampo());
 				}
@@ -63,7 +63,7 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 			for(int i=0; i<listaPickList.size();i++){
 				ob = listaPickList.get(i);
 				if (datosRetorno == null){
-					 datosRetorno = new HashMap<String, String>();
+					 datosRetorno = new LinkedHashMap<String, String>();
 				}
 				datosRetorno.put(ob.getCodigo(), ob.getValor());
 			}

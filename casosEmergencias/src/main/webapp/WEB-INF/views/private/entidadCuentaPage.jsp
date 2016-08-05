@@ -9,6 +9,7 @@
 		<title>Emergencias App</title>
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
 		<link href="../resources/css/body.css" rel="stylesheet" />
+		<link href="../resources/css/styles.css" rel="stylesheet" />
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 	</head>
 	<body>
@@ -130,11 +131,53 @@
 			<div class="divTituloCuentaSuministros">
 				<label><s:message code="entidadCuenta_title_label_supply_data_detail" /></label>
 			</div>
+			<div>
+				<table id="tablaCuentaSuministros" class="basicTable">
+					<tr>
+						<th><s:message code="entidadCuenta_title_label_supply_number" /></th>
+					    <th><s:message code="entidadCuenta_title_label_supply_company_id" /></th>
+					    <th><s:message code="entidadCuenta_title_label_supply_connection_status" /></th>
+					    <th><s:message code="entidadCuenta_title_label_supply_supply_status" /></th>
+					    <th><s:message code="entidadCuenta_title_label_supply_electrodependent" /></th>
+					    <th><s:message code="entidadCuenta_title_label_supply_powercut_date" /></th>
+					    <th><s:message code="entidadCuenta_title_label_supply_supply_address" /></th>
+					    <th><s:message code="entidadCuenta_title_label_supply_commune" /></th>
+					</tr>
+					<c:forEach items="${cuenta.suministros}" var="suministro">
+						<tr>
+							<td>${suministro.name}</td>
+							<td>${suministro.idEmpresa}</td>
+							<td>${suministro.estadoConexion}</td>
+							<td>${suministro.estadoSuministro}</td>
+							<td>${suministro.electrodependiente}</td>
+							<td>${suministro.fechaCorte}</td>
+							<td>${suministro.direccion}</td>
+							<td>${suministro.comuna}</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
 		</div>
 		<div id="divEntidadCuentaContactos" class="divEntidad">
 			<div class="divTituloCuentaContactoss">
-				<label><s:message code="entidadCuenta_title_label_contacts_data_detail" /></label>
+				<label><s:message code="entidadCuenta_title_label_contact_data_detail" /></label>
 			</div>
+			<table id="tablaCuentaContactos" class="basicTable">
+				<tr>
+					<th><s:message code="entidadCuenta_title_label_contact_name" /></th>
+				    <th><s:message code="entidadCuenta_title_label_contact_run" /></th>
+				    <th><s:message code="entidadCuenta_title_label_contact_main_telephone" /></th>
+				    <th><s:message code="entidadCuenta_title_label_contact_main_email" /></th>
+				</tr>
+				<c:forEach items="${cuenta.contactos}" var="contacto">
+					<tr>
+						<td>${contacto.name}</td>
+						<td>${contacto.accountRun}</td>
+						<td>${contacto.phone}</td>
+						<td>${contacto.email}</td>
+					</tr>
+				</c:forEach>
+			</table>
 		</div>
 	</body>
 </html>

@@ -1,7 +1,9 @@
 package com.casosemergencias.controller.views;
 
+import com.casosemergencias.model.User;
+
 //Datos de un usuario que se necesitan en la vista, y datos de ayuda en la pantalla
-public class UserView {
+public class UserView extends ObjectView {
 
 	private Integer id;
 	private String sfid;
@@ -9,12 +11,8 @@ public class UserView {
 	private String user;
 	private String pass;
 	private String email;
-	
 	private String mensajeError;
 	private String mensaje;
-	
-
-	
 	
 	public Integer getId() {
 		return id;
@@ -65,5 +63,9 @@ public class UserView {
 		this.mensaje = mensaje;
 	}
 
-	
+	@Override
+	public Object instantiateTargetLogic() {
+		User usuario = new User();
+		return usuario;
+	}
 }

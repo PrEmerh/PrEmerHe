@@ -17,6 +17,8 @@ public class DataTableProperties {
     private String orderColumnName;
     private int orderColumnNumber;
     private String orderDirec;
+    private String valueSearch;
+    private boolean allColumnSearch;
 
 
     public int getDraw() {
@@ -54,6 +56,18 @@ public class DataTableProperties {
 	}
 	public void setOrderDirec(String orderDirec) {
 		this.orderDirec = orderDirec;
+	}
+	public String getValueSearch() {
+		return valueSearch;
+	}
+	public void setValueSearch(String valueSearch) {
+		this.valueSearch = valueSearch;
+	}
+	public boolean isAllColumnSearch() {
+		return allColumnSearch;
+	}
+	public void setAllColumnSearch(boolean allColumnSearch) {
+		this.allColumnSearch = allColumnSearch;
 	}
     
 

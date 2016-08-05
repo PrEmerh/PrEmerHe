@@ -28,6 +28,8 @@ public class Constantes {
 	public static final String PICKLIST_CASO_PETICION_EMERGENCIA_NAME = "Emergencia";
 	public static final String PICKLIST_CASO_SUBMOTIVO = "Motivo_Empresa__c";
 	public static final String PICKLIST_CASO_CONDICION_AGRAVANTE = "Condici_n_agravante__c";
+	public static final String PICKLIST_CASO_CANAL_NOTIFICACION = "Canal_de_notificaciOn__c";
+	public static final String PICKLIST_CASO_FAVORABILIDAD = "Favorabilidad_del_Caso__c";
 	
 	//
 	//Case Object

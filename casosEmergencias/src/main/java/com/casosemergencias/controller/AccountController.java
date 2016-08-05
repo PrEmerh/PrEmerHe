@@ -46,24 +46,26 @@ public class AccountController {
 	}
 	
 	/**
-	 * Método que obtiene los datos de una cuenta, a partir de su id., y los devuelve a la página.
-	 * @param sfid Identificador de la cuenta.
+	 * Método que obtiene los datos de una cuenta a partir de su id. y los
+	 * devuelve a la página.
+	 * 
+	 * @param sfid
+	 *            Identificador de la cuenta.
 	 * @return ModelAndView Datos de la cuenta a mostrar en la página.
 	 */
 	@RequestMapping(value = "/private/entidadCuenta", method = RequestMethod.GET)
 	public ModelAndView getAccountData(@RequestParam String sfid) {
 		logger.trace("Detalle de cuenta");
-		ModelAndView model = new ModelAndView();
-		model.addObject("sfid", sfid);
-		
 		AccountView cuentaView = new AccountView();
+		ModelAndView model = new ModelAndView();
 		Cuenta cuentaBBDD = accountService.getAccountBySfid(sfid);
+		
 		if (cuentaBBDD != null) {
 			ParserModelVO.parseDataModelVO(cuentaBBDD, cuentaView);
 		}
 		
+		model.addObject("sfid", sfid);
 		model.setViewName("private/entidadCuentaPage");
-		// TODO: Hay que añadir recuperación de label de los picklists si no sale el código solo
 		model.addObject("cuenta", cuentaView);
 		return model;
 	}

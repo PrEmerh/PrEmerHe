@@ -52,15 +52,13 @@
 		  <property name="dataSource" ref="dataSource" />
 		  <property name="annotatedClasses">  
 	            <list>  
-	                
-	                <value>com.casosemergencias.dao.AccountVO</value> 
-	                <value>com.casosemergencias.dao.CaseVO</value>
-	                <value>com.casosemergencias.dao.ContactVO</value>
-	                <value>com.casosemergencias.dao.DireccionVO</value>
-	                <value>com.casosemergencias.dao.HerokuUserVO</value> 
-	                <value>com.casosemergencias.dao.SuministroVO</value>
-	                <value>com.casosemergencias.dao.PickListsVO</value>
-	                
+	                <value>com.casosemergencias.dao.vo.AccountVO</value> 
+	                <value>com.casosemergencias.dao.vo.CaseVO</value>
+	                <value>com.casosemergencias.dao.vo.ContactVO</value>
+	                <value>com.casosemergencias.dao.vo.DireccionVO</value>
+	                <value>com.casosemergencias.dao.vo.HerokuUserVO</value> 
+	                <value>com.casosemergencias.dao.vo.SuministroVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsVO</value>
 	            </list>  
 		  </property> 
 		  <property name="hibernateProperties">

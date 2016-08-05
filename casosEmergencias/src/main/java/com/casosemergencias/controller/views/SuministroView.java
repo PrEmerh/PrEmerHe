@@ -1,7 +1,9 @@
 package com.casosemergencias.controller.views;
 import java.util.Date;
 
-public class SuministroView {
+import com.casosemergencias.model.Suministro;
+
+public class SuministroView extends ObjectView {
 
 	private Integer id;
 	
@@ -457,4 +459,9 @@ public class SuministroView {
 		this.tipoSegmento = tipoSegmento;
 	}
 	
+	@Override
+	public Object instantiateTargetLogic() {
+		Suministro suministro = new Suministro();
+		return suministro;
+	}
 }

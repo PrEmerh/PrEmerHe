@@ -17,12 +17,13 @@
 	<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
 	<jsp:include page="cabeceraPage.jsp"/>
 	<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
-		<form:hidden path="sfid"/>
+		<form:hidden path="id"/>
 		<form:hidden path="editMode"/>
 		
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
-					<b><label><s:message code="entidadCaso_title_label_detalle_caso"/></label></b>
+					<input id="arrowDetalleCaso" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('detalleCaso','arrowDetalleCaso'); return false;"/>				
+					<label><s:message code="entidadCaso_title_label_detalle_caso"/></label>
 			</div>
 			<div class="botoneraEntidad">
 				<ul>
@@ -31,13 +32,13 @@
 				</ul>
 			</div>
 		</div>
-		<div id="divEntidadCaso" class="divEntidad">
+		<div id="detalleCaso" class="divEntidad">
 			<div>
 				<div class="divLabel">
 					<label><s:message code="entidadCaso_table_label_motivo"/></label>
 				</div>
 				<div>
-					<label>${caso.motivo}</label>
+					<label>${caso.peticion}</label>
 				</div>
 				<div class="divLabel">
 					<label><s:message code="entidadCaso_table_label_estado"/></label>
@@ -85,7 +86,7 @@
 					<label><s:message code="entidadCaso_table_label_tiempoNormalizacion"/></label>
 				</div>
 				<div>
-					<label>${caso.fechaEstimadoNormalizacion}</label>
+					<label>${caso.fechaEstimadaCierre}</label>
 				</div>
 			</div>
 			<div>
@@ -93,7 +94,7 @@
 					<label><s:message code="entidadCaso_table_label_casoPrincipal"/></label>
 				</div>
 				<div>
-					<label>${caso.casoPrincipal}</label>
+					<label>${caso.parentid}</label>
 				</div>
 				<div class="divLabel">
 					<label><s:message code="entidadCaso_table_label_propietarioCaso"/></label>
@@ -116,10 +117,11 @@
 		</div>	
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
+				<input id="arrowDatosEmergencia" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('datosEmergencia','arrowDatosEmergencia'); return false;"/>				
 				<b><label><s:message code="entidadCaso_title_label_datos_emergencia"/></label></b>
 			</div>
 		</div>
-		<div id="divEntidadContacto" class="divEntidad">
+		<div id="datosEmergencia" class="divEntidad">
 			<div>	
 				<div >					
 				</div>
@@ -135,7 +137,7 @@
 					<label><s:message code="entidadCaso_table_label_submotivo"/></label>
 				</div>
 				<div>
-					<label>${caso.subMotivo}</label>
+					<label>${caso.submotivo}</label>
 				</div>
 			</div>
 			<div>
@@ -155,10 +157,11 @@
 		</div>
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
+			<input id="arrowIdentificacion" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('Identificacion','arrowIdentificacion'); return false;"/>			
 			<b><label><s:message code="entidadCaso_title_label_identificacion"/></label></b>
 			</div>
 		</div>	
-		<div id="divEntidadContacto" class="divEntidad">	
+		<div id="Identificacion" class="divEntidad">	
 			<div>
 			    <div >					
 				</div>
@@ -168,7 +171,7 @@
 					<label><s:message code="entidadCaso_table_label_nombreContacto"/></label>
 				</div>
 				<div>
-					<label>${caso.contacto}</label>
+					<label>${caso.contactoJoin.name}</label>
 				</div>
 				<div class="divLabel">
 					<label><s:message code="entidadCaso_table_label_canalNotificacion"/></label>
@@ -182,7 +185,7 @@
 					<label><s:message code="entidadCaso_table_label_suministro"/></label>
 				</div>
 				<div>
-					<label>${caso.suministro}</label>
+					<label>${caso.suministroJoin.numeroSuministro}</label>
 				</div>
 				<div class="divLabel">
 					<label><s:message code="entidadCaso_table_label_telefonoContacto"/></label>
@@ -196,7 +199,7 @@
 					<label><s:message code="entidadCaso_table_label_detalleDireccion"/></label>
 				</div>
 				<div>
-					<label>${caso.direccion}</label>
+					<label>${caso.direccionJoin.name}</label>
 				</div>
 				<div class="divLabel">
 					<label><s:message code="entidadCaso_table_label_emailNotificacion"/></label>
@@ -210,13 +213,13 @@
 					<label><s:message code="entidadCaso_table_label_nombreCuenta"/></label>
 				</div>
 				<div>
-					<label>${caso.cuenta}</label>
+					<label>${caso.cuentaJoin.name}</label>
 				</div>
 				<div class="divLabel">
 					<label><s:message code="entidadCaso_table_label_idFacebook"/></label>
 				</div>
 				<div>
-					<label>${caso.idFacebook}</label>
+					<label>${caso.facebook}</label>
 				</div>
 			</div>
 			<div>
@@ -244,7 +247,7 @@
 					<label><s:message code="entidadCaso_table_label_actualizarDatosContacto"/></label>
 				</div>
 				<div>
-					<label>${caso.actualizarDatosContancto}</label>
+					<label>${caso.actDatosContacto}</label>
 				</div>
 			</div>
 			<div>
@@ -266,10 +269,11 @@
 
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
+			<input id="arrowCuerpoMail" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('cuerpoMail','arrowCuerpoMail'); return false;"/>
 			<b><label><s:message code="entidadCaso_title_label_cuerpoMail"/></label></b>
 			</div>
 		</div>
-		<div id="divEntidadContacto" class="divEntidad">
+		<div id="cuerpoMail" class="divEntidad">
 			<div>
 				<div >					
 				</div>
@@ -288,10 +292,11 @@
 		</div>		
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
+				<input id="arrowSolucion" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('Solucion','arrowSolucion'); return false;"/>			
 				<b><label><s:message code="entidadCaso_title_label_solucion"/></label></b>
 			</div>
 		</div>
-		<div id="divEntidadContacto" class="divEntidad">
+		<div id="Solucion" class="divEntidad">
 			<div>
 				<div >					
 				</div>
@@ -301,16 +306,29 @@
 					<label><s:message code="entidadCaso_title_label_respuestaCliente"/></label>
 				</div>
 				<div>
-					<label>${caso.respuestaCliente}</label>
+					<label>${caso.respuestaAlCliente}</label>
 				</div>
 				<div class="divLabel">
 					<label><s:message code="entidadCaso_title_label_favoravilidadCaso"/></label>
 				</div>
 				<div>
-					<label>${caso.favorabilidadCaso}</label>
+					<label>${caso.favorabilidadDelCaso}</label>
 				</div>
 			</div>
 		</div>
 	</form:form>
-</body>
+	<script type="text/javascript">
+	function showHideCabeceras(idDiv,idArrow){
+			var div =document.getElementById(idDiv);
+			var arrow = document.getElementById(idArrow); 				
+				if(div.style.visibility=='')  {
+					div.style.visibility='hidden';
+				arrow.src="../resources/images/Arrowright.PNG";
+				}else{
+				div.style.visibility='';
+					arrow.src="../resources/images/Arrowdown.PNG";
+				}					
+	}
+	</script>
+  </body>
 </html>

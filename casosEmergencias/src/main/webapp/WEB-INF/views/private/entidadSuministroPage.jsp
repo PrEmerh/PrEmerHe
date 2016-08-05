@@ -22,10 +22,11 @@
 		
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
+					<input id="arrowDetalleSuministro" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('detalleSuministro','arrowDetalleSuministro'); return false;"/>
 					<b><label><s:message code="entidadSuministro_title_label_detalle_suministro"/></label></b>
 			</div>
 		</div>
-		<div id="divEntidadSuministro" class="divEntidad">
+		<div id="detalleSuministro" class="divEntidad">
 			<div>
 				<div >					
 				</div>
@@ -94,10 +95,11 @@
 		</div> --%>
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
-				<b><label><s:message code="entidadSuministro_title_label_cuenta_relacionada"/></label></b>
+				<input id="arrowCuentaRelacionada" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('cuentaRelacionada','arrowCuentaRelacionada'); return false;"/>
+				<b><label><s:message code="entidadSuministro_title_label_cuenta_relacionada"/></label></b>								
 			</div>
 		</div>
-		<div id="divEntidadContacto" class="divEntidad">
+		<div id="cuentaRelacionada" class="divEntidad">
 			<div>	
 				<div >					
 				</div>
@@ -129,10 +131,11 @@
 		</div>
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
+			<input id="arrowDatosSuministro" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('datosSuministro','arrowDatosSuministro'); return false;"/>
 			<b><label><s:message code="entidadSuministro_title_label_datos_suministro"/></label></b>
 			</div>
 		</div>	
-		<div id="divEntidadContacto" class="divEntidad">	
+		<div id="datosSuministro" class="divEntidad">	
 			<div>
 			    <div >					
 				</div>
@@ -170,10 +173,11 @@
 
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
+			<input id="arrowDatosComerciales" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('datosComerciales','arrowDatosComerciales'); return false;"/>
 			<b><label><s:message code="entidadSuministro_title_label_datos_comerciales"/></label></b>
 			</div>
 		</div>
-		<div id="divEntidadContacto" class="divEntidad">
+		<div id="datosComerciales" class="divEntidad">
 			<div>	
 				<div >					
 				</div>
@@ -209,10 +213,11 @@
 		</div>		
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
+				<input id="arrowDatosTecnicos" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('datosTecnicos','arrowDatosTecnicos'); return false;"/>			
 				<b><label><s:message code="entidadSuministro_title_label_datos_tecnicos"/></label></b>
 			</div>
 		</div>
-		<div id="divEntidadContacto" class="divEntidad">
+		<div id="datosTecnicos" class="divEntidad">
 			<div>
 				<div >					
 				</div>
@@ -311,7 +316,19 @@
 			</div>
 		</div>
 	</form:form>
-</body>
-</html>
-</body>
+	
+	<script type="text/javascript">
+			function showHideCabeceras(idDiv,idArrow){
+ 				var div =document.getElementById(idDiv);
+ 				var arrow = document.getElementById(idArrow); 				
+ 					if(div.style.visibility=='')  {
+ 						div.style.visibility='hidden';
+						arrow.src="../resources/images/Arrowright.PNG";
+ 					}else{
+						div.style.visibility='';
+ 						arrow.src="../resources/images/Arrowdown.PNG";
+ 					}					
+			}
+	</script> 			
+  </body>
 </html>

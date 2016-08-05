@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.casosemergencias.dao.vo.SuministroVO;
+
 @Repository
 public class SuministroDAO {
 
@@ -70,7 +72,7 @@ public class SuministroDAO {
 			
 			List<SuministroVO> suministroList = query.list(); 
 
-			if(suministroList != null){
+			if(suministroList != null && !suministroList.isEmpty()){
 				return suministroList.get(0);
 			}			
 			
@@ -106,7 +108,7 @@ public class SuministroDAO {
 			
 			List<SuministroVO> suministroList = query.list(); 
 
-			if(suministroList != null){
+			if(suministroList != null && !suministroList.isEmpty()){
 				return suministroList.get(0);
 			}			
 			

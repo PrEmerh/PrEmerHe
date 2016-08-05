@@ -42,7 +42,7 @@ public class ParseBodyDataTable {
 			
 			//Montamos el objeto con las propiedades del datatable
 			Integer numColOrder = Integer.parseInt(mapProperties.get("order[0][column]"));
-			String nameColumn = "columns[" + numColOrder+ "][data]"; //variable para recuperar el nombre de la columna, es de la forma 'columns[0][data]'
+			String nameColumn = "columns[" + numColOrder+ "][data]"; //variable para recuperar el nombre de la columna, es de la forma 'columns[0][data]'			
 			
 			dataTable.setStart(Integer.parseInt(mapProperties.get("start")));
 			dataTable.setDraw(Integer.parseInt(mapProperties.get("draw")));
@@ -50,6 +50,8 @@ public class ParseBodyDataTable {
 			dataTable.setOrderColumnNumber(numColOrder);
 			dataTable.setOrderDirec(mapProperties.get("order[0][dir]"));
 			dataTable.setOrderColumnName(mapProperties.get(nameColumn));
+			dataTable.setValueSearch(mapProperties.get("search[value]"));
+			dataTable.setAllColumnSearch(Boolean.parseBoolean(mapProperties.get("search[regex]"))); //Por defecto viene a false
 			
 			return dataTable;
 			

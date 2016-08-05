@@ -1,4 +1,4 @@
-package com.casosemergencias.dao;
+package com.casosemergencias.dao.vo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,11 +10,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.casosemergencias.model.User;
+
 
 
 @Entity
 @Table(name="salesforce.herokuuser__c")
-public class HerokuUserVO implements Serializable{
+public class HerokuUserVO extends ObjectVO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -193,4 +195,9 @@ public class HerokuUserVO implements Serializable{
 		this.createdDate = createdDate;
 	}	
 	
+	@Override
+	public Object instantiateTargetLogic() {
+		User usuario = new User();
+		return usuario;
+	}
 }

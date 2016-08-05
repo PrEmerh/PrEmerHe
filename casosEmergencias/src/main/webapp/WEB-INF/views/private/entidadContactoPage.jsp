@@ -22,11 +22,12 @@
 			
 			<div class="divCabeceraEntidad">
 				<div class="divTituloEntidad">
+						<input id="arrowInformacionPersonal" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('informacionPersonal','arrowInformacionPersonal'); return false;"/>										
 						<b><label><s:message code="entidadContacto_title_label_informacion_personal"/></label></b>
 				</div>
 			</div>
 			
-			<div id="divEntidadContacto" class="divEntidad">
+			<div id="informacionPersonal" class="divEntidad">
 				<div>
 					<div >					
 					</div>
@@ -100,10 +101,11 @@
 			
 			<div class="divCabeceraEntidad">
 				<div class="divTituloEntidad">
+						<input id="arrowInformacionSecundaria" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('informacionSecundaria','arrowInformacionSecundaria'); return false;"/>							
 						<b><label><s:message code="entidadContacto_title_label_informacion_secundaria"/></label></b>
 				</div>
 			</div>
-			<div id="divEntidadContacto" class="divEntidad">
+			<div id="informacionSecundaria" class="divEntidad">
 				<div>
 					<div >					
 					</div>
@@ -140,10 +142,12 @@
 			
 			<div class="divCabeceraEntidad">
 				<div class="divTituloEntidad">
+				
+						<input id="arrowDatosRSS" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('datosRSS','arrowDatosRSS'); return false;"/>					
 						<b><label><s:message code="entidadContacto_title_label_datos_rrss"/></label></b>
 				</div>
 			</div>
-			<div id="divEntidadContacto" class="divEntidad">
+			<div id="datosRSS" class="divEntidad">
 				<div>
 					<div >					
 					</div>
@@ -202,6 +206,19 @@
 				</div>				
 			</div>				
 
-		</form:form>			
+		</form:form>	
+		<script type="text/javascript">
+		function showHideCabeceras(idDiv,idArrow){
+				var div =document.getElementById(idDiv);
+				var arrow = document.getElementById(idArrow); 				
+					if(div.style.visibility=='')  {
+						div.style.visibility='hidden';
+					arrow.src="../resources/images/Arrowright.PNG";
+					}else{
+					div.style.visibility='';
+						arrow.src="../resources/images/Arrowdown.PNG";
+					}					
+		}
+	</script> 			
 	</body>
 </html>
