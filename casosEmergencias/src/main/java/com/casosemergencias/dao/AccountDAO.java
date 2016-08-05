@@ -12,6 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.casosemergencias.dao.vo.AccountVO;
+import com.casosemergencias.dao.vo.ContactVO;
+import com.casosemergencias.dao.vo.SuministroVO;
+
 @Repository
 public class AccountDAO {
 
@@ -27,14 +31,11 @@ public class AccountDAO {
 	 * @return
 	 */
 	public List<AccountVO> readAllAccount(){
-				
 		logger.debug("--- Inicio -- readAllAccount ---");
-		
 		Session session = sessionFactory.openSession();
 				
-		try{
+		try {
 			Query query = session.createQuery("from AccountVO");
-			
 			List<AccountVO> accountList = query.list(); 
 
 			logger.debug("--- Fin -- readAllAccount ---");
@@ -63,14 +64,14 @@ public class AccountDAO {
 		logger.debug("--- Inicio -- readAccountById ---");
 		
 		Session session = sessionFactory.openSession();
-				
+			
 		try{
 			Query query = session.createQuery("from AccountVO as account WHERE account.id = :id");
 			query.setInteger("id", id);
 			
 			List<AccountVO> accountList = query.list(); 
 
-			if(accountList != null){
+			if(accountList != null && !accountList.isEmpty()){
 				return accountList.get(0);
 			}			
 			
@@ -96,19 +97,32 @@ public class AccountDAO {
 	 * @return AccountVO Datos de la cuenta.
 	 */
 	public AccountVO readAccountBySfid(String sfid){
-		
 		logger.debug("--- Inicio -- readAccountBySfid ---");
-		
 		Session session = sessionFactory.openSession();
-				
-		try{
-			Query query = session.createQuery("from AccountVO as account WHERE account.sfid = :sfid");
+		AccountVO account;
+		
+		try {
+			Query query = session.createQuery("from AccountVO account WHERE account.sfid = :sfid ");
 			query.setString("sfid", sfid);
-			
 			List<AccountVO> accountList = query.list(); 
-
-			if(accountList != null){
-				return accountList.get(0);
+			
+			Query suppliesQuery = session.createQuery("select suministros from AccountVO as account WHERE account.sfid = :sfid "); 
+			suppliesQuery.setString("sfid", sfid);
+			List<SuministroVO> accountSuppliesList = suppliesQuery.list();
+			
+			Query contactsQuery = session.createQuery("select contactos from AccountVO as account WHERE account.sfid = :sfid "); 
+			contactsQuery.setString("sfid", sfid);
+			List<ContactVO> accountContactsList = contactsQuery.list();
+			
+			if (accountList != null && !accountList.isEmpty()) {
+				account = accountList.get(0);
+				if (accountSuppliesList != null && !accountSuppliesList.isEmpty()) {
+					account.setSuministros(accountSuppliesList);
+				}
+				if (accountContactsList != null && !accountContactsList.isEmpty()) {
+					account.setContactos(accountContactsList);
+				}
+				return account;
 			}			
 			
 			logger.debug("--- Fin -- readAccountBySfid ---");

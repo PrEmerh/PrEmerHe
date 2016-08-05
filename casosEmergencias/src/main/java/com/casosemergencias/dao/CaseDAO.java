@@ -12,6 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.casosemergencias.util.DataTableProperties;
+
+import com.casosemergencias.dao.vo.CaseVO;
+
 @Repository
 public class CaseDAO{
 
@@ -33,7 +37,7 @@ public class CaseDAO{
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from Case");
+			Query query = session.createQuery("from CaseVO");
 			
 			List<CaseVO> casoList = query.list(); 
 
@@ -52,6 +56,49 @@ public class CaseDAO{
 	}
 	
 	/**
+	 * Devuelve una lista de casos utilizando los parametros del datatable
+	 * 
+	 * @return
+	 */
+	public List<CaseVO> readCaseDataTable(DataTableProperties propDatatable){
+				
+		logger.debug("--- Inicio -- readCaseDataTable ---");
+		
+		Session session = sessionFactory.openSession();
+		String order = propDatatable.getOrderColumnName();
+		String dirOrder = propDatatable.getOrderDirec();
+		int numStart = propDatatable.getStart();
+		int numLength = propDatatable.getLength();
+		String searchValue = propDatatable.getValueSearch();
+		
+		try{
+			StringBuilder query = new StringBuilder("from CaseVO ");
+			if(searchValue != null && !"".equals(searchValue)){
+				query.append(" WHERE numeroCaso LIKE '%" + searchValue +"%'");
+			}
+			
+			if(order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)){
+				query.append("ORDER BY " + order + " " + dirOrder);
+			}
+			
+			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);
+			List<CaseVO> casoList = result.list();
+
+			logger.debug("--- Fin -- readAllCase ---");
+			
+			return casoList;
+			
+	    }catch (HibernateException e) {
+	    	logger.error("--- readCaseDataTable "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- readCaseDataTable ---");
+	    }finally {
+	    	session.close(); 
+	    }
+	      return null;
+	}
+	
+	/**
 	 * Devuelve una lista con todos los Case de BBDD pero en los campos que son picklist, le pone la descripcion en vez del codigo
 	 * 
 	 * @return
@@ -63,17 +110,12 @@ public class CaseDAO{
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from CaseVO caso");
-			//Query query = session.createQuery("from CaseVO caso left join fetch caso.estadoPickList estado ");
+			
+			
+			//Query query = session.createQuery("from CaseVO caso");
+			Query query = session.createQuery("from CaseVO caso left join fetch caso.estadoPickList estado left join fetch caso.submotivoPickList submotivo");
 
 			
-			//Query query = em.createQuery("SELECT q FROM Question q LEFT JOIN FETCH q.answers");
-//			select CaseNumber, Status, Motivo_Empresa__c, sub_estado__c, estado.valor descripcionStatus, motivo.valor descripcionMotivo, subestado.valor descripcionSubestado
-//			from salesforce.Case 
-//			left join salesforce.picklists estado on (estado.codigo=status and estado.campo ='Status' and estado.objeto='Case') 
-//			left join salesforce.picklists motivo on (motivo.codigo=Motivo_Empresa__c and motivo.campo ='Motivo_Empresa__c' and motivo.objeto='Case') 
-//			left join salesforce.picklists subestado on (subestado.codigo=sub_estado__c and subestado.campo ='Sub_estado__c' and subestado.objeto='Case')
-
 			List<CaseVO> casoList = query.list();
 			logger.debug("Casos: " + casoList);
 			
@@ -110,7 +152,7 @@ public class CaseDAO{
 			
 			List<CaseVO> casoList = query.list(); 
 
-			if(casoList != null){
+			if(casoList != null && !casoList.isEmpty()){
 				return casoList.get(0);
 			}			
 			
@@ -146,7 +188,7 @@ public class CaseDAO{
 			
 			List<CaseVO> casoList = query.list(); 
 
-			if(casoList != null){
+			if(casoList != null && !casoList.isEmpty()) {
 				return casoList.get(0);
 			}			
 			
@@ -755,12 +797,12 @@ public class CaseDAO{
 					query.append(" AND caso.slaexitDate = :slaexitDate");
 				}
 			}
-			if(caso.getOrigin()!= null){
+			if(caso.getCanalOrigen()!= null){
 				if(isFirst){
-					query.append(" WHERE caso.origin = :origin");
+					query.append(" WHERE caso.canalOrigen = :canalOrigen");
 					isFirst = false;
 				}else{
-					query.append(" AND caso.origin = :origin");
+					query.append(" AND caso.canalOrigen = :canalOrigen");
 				}
 			}
 			if(caso.getDescripcionEstado()!= null){
@@ -1242,8 +1284,8 @@ public class CaseDAO{
 			if(caso.getSlaexitDate()!= null){
 				result.setDate("slaexitDate", caso.getSlaexitDate());
 			}
-			if(caso.getOrigin()!= null){
-				result.setString("origin", caso.getOrigin());
+			if(caso.getCanalOrigen()!= null){
+				result.setString("canalOrigen", caso.getCanalOrigen());
 			}
 			if(caso.getDescripcionEstado()!= null){
 				result.setString("descripcionEstado", caso.getDescripcionEstado());
@@ -1396,5 +1438,34 @@ public class CaseDAO{
 	    }
 
     }
+	/**
+	 * Devuelve el numero de casos que hay en la tala Case
+	 * 
+	 * @return
+	 */
+	public Integer countCase(){
+				
+		logger.debug("--- Inicio -- countCase ---");
+		
+		Session session = sessionFactory.openSession();
+				
+		try{
+			Query query = session.createQuery("select count(id) from CaseVO");
+			
+			Long count = (Long) query.uniqueResult();
+
+			logger.debug("--- Fin -- readAllCase ---");
+			
+			return count.intValue();
+			
+	    }catch (HibernateException e) {
+	    	logger.error("--- countCase "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- countCase ---");
+	    }finally {
+	    	session.close(); 
+	    }
+	      return 0;
+	}
 	
 }

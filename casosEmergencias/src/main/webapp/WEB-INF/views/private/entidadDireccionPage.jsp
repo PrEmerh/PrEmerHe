@@ -3,15 +3,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
 
+
 <html>
 	<head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Emergencias App</title>		
 	
+	<title>Emergencias App</title>		
+	<link href="../resources/css/styles.css" rel="stylesheet">
 	<link href="../resources/css/cabecera.css" rel="stylesheet" />
 	<link href="../resources/css/body.css" rel="stylesheet" />	
 
 	<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
+	<script src="../resources/js/entidadPages.js" lang=""></script>
 	</head>
 	<body>
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_direccion"/>';</script>
@@ -22,11 +25,11 @@
 			
 			<div class="divCabeceraEntidad">
 				<div class="divTituloEntidad">
+						<input id="arrowDetalleDireccion" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('detalleDireccion','arrowDetalleDireccion'); return false;"/>
 						<b><label><s:message code="entidadDireccion_title_label_detalle_direccion"/></label></b>
 				</div>
-			</div>
-			
-			<div id="divEntidadDireccion" class="divEntidad">
+			</div>			
+			<div id="detalleDireccion" class="divEntidad">
 			<div>
 			<br/>
 			</div>
@@ -88,5 +91,19 @@
 				</div>
 			</div>	
 		</form:form>
+		 					    
+		<script type="text/javascript">
+			function showHideCabeceras(idDiv,idArrow){
+ 				var div =document.getElementById(idDiv);
+ 				var arrow = document.getElementById(idArrow); 				
+ 					if(div.style.visibility=='')  {
+ 						div.style.visibility='hidden';
+						arrow.src="../resources/images/Arrowright.PNG";
+ 					}else{
+						div.style.visibility='';
+ 						arrow.src="../resources/images/Arrowdown.PNG";
+ 					}					
+			}
+		</script> 		
 	</body>
 </html>

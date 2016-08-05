@@ -14,6 +14,7 @@
 
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>
+		<script src="../resources/js/casos.js"></script>
 		
 		
 	</head>
@@ -28,7 +29,14 @@
 				</ul>
 			</div>
 			<div>
-				<table id="tablaCasos" class="display" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
+
+				<input class="column_filter" id="col0_filter" type="text" value="">
+				<input class="column_filter" id="search" type="button" value="Buscar">
+				<input type="radio" name="radios" value="rd1" checked>Numero Casos        
+            	<input type="radio" name="radios" value="rd2"> Todos
+				
+			
+				<table id="tablaCasos" class="display" style="width: 100%;"> 
 					<thead>
 			            <tr>
 			            <!-- <th data-orderable="false"> -->
@@ -38,32 +46,13 @@
 			                <th width="16%"><s:message code="homeCasos_table_head_estado"/></th>
 			                <th width="16%"><s:message code="homeCasos_table_head_subestado"/></th>
 			                <th width="16%"><s:message code="homeCasos_table_head_submotivo"/></th>
+			                <th width="1%" hidden="true">sfid</th>
 			            </tr>
 		        	</thead>
-		        	<tbody>
-		        		<c:forEach items="${listaCasos}" var="datosCaso">
-							<tr>
-								<td><a href="../private/entidadCaso?id=${datosCaso.id}&editMode=<%=Constantes.EDIT_MODE_VIEW%>">${datosCaso.numeroCaso}</a></td>
-								<td>${datosCaso.numeroInservice}</td>
-								<td>${datosCaso.canalOrigen}</td>
-								<td>${datosCaso.labelEstadoPickList}</td>
-								<td>${datosCaso.subestado}</td>
-								<td>${datosCaso.labeSubmotivoPickList}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
+
 				</table>
 			</div>
 		</form>
-		
-		<script type="text/javascript" charset="utf-8">
-			$(document).ready(function() {
-			    $('#tablaCasos').DataTable( {
-			        "scrollY":        "250px",
-			        "scrollCollapse": true,
-			        "paging":         true
-			    } );			    
-			});
-		</script>
+
 	</body>
 </html>

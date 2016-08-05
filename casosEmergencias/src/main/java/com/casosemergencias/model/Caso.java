@@ -2,7 +2,9 @@ package com.casosemergencias.model;
 
 import java.util.Date;
 
-import com.casosemergencias.dao.PickListsVO;
+import com.casosemergencias.controller.views.CaseView;
+import com.casosemergencias.dao.vo.CaseVO;
+import com.casosemergencias.dao.vo.PickListsVO;
 
 /**
  * @author MPC
@@ -10,11 +12,10 @@ import com.casosemergencias.dao.PickListsVO;
  * Clase que contiene el modelo de un caso. Esta clase es la que utilizaremos en el Servicio.
  *
  */
-public class Caso {
+public class Caso extends ObjectLogic {
 
 	private Integer id;
 	private String sfid;
-	
 	private String motivo;  
 	private String numeroCaso; 	 
 	private String numeroInservice;
@@ -36,8 +37,8 @@ public class Caso {
 	private String respuestaCliente;
 	private String estado;
 	private String subEstado;
-	private String canalOrigen;	//origin
-	private String unidad;	//call_center
+	private String canalOrigen;
+	private String callCenter;	//call_center
 	private String parentid;	//parent
 	private String asunto;	//subject
 	private String descripcion;
@@ -58,7 +59,7 @@ public class Caso {
 	private String suministro;
 	private String direccion;
 	/*Joins caso*/
-	private PickListsVO estadoPickList;
+	private String labelEstadoPickList;
 	private PickListsVO subestadoPickList;
 	private PickListsVO submotivoPickList;
 	private PickListsVO canalOrigenPickList;
@@ -210,11 +211,11 @@ public class Caso {
 	public void setCanalOrigen(String canalOrigen) {
 		this.canalOrigen = canalOrigen;
 	}
-	public String getUnidad() {
-		return unidad;
+	public String getCallCenter() {
+		return callCenter;
 	}
-	public void setUnidad(String unidad) {
-		this.unidad = unidad;
+	public void setCallCenter(String callCenter) {
+		this.callCenter = callCenter;
 	}
 
 	public String getParentid() {
@@ -308,7 +309,6 @@ public class Caso {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
 	public String getRespuestaAlCliente() {
 		return respuestaAlCliente;
 	}
@@ -321,7 +321,6 @@ public class Caso {
 	public void setFavorabilidadDelCaso(String favorabilidadDelCaso) {
 		this.favorabilidadDelCaso = favorabilidadDelCaso;
 	}
-	
 	public String getSuministro() {
 		return suministro;
 	}
@@ -335,11 +334,11 @@ public class Caso {
 		this.direccion = direccion;
 	}
 	/*Joins pickList caso*/
-	public PickListsVO getEstadoPickList() {
-		return estadoPickList;
+	public String getLabelEstadoPickList() {
+		return labelEstadoPickList;
 	}
-	public void setEstadoPickList(PickListsVO estadoPickList) {
-		this.estadoPickList = estadoPickList;
+	public void setLabelEstadoPickList(String labelEstadoPickList) {
+		this.labelEstadoPickList = labelEstadoPickList;
 	}
 	public PickListsVO getSubestadoPickList() {
 		return subestadoPickList;
@@ -360,4 +359,15 @@ public class Caso {
 		this.canalOrigenPickList = canalOrigenPickList;
 	}
 	/**/
+	@Override
+	public Object instantiateTargetView() {
+		CaseView caso = new CaseView();
+		return caso;
+	}
+	
+	@Override
+	public Object instantiateTargetVO() {
+		CaseVO caso = new CaseVO();
+		return caso;
+	}
 }

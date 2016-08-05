@@ -3,9 +3,9 @@ package com.casosemergencias.controller.views;
 import java.util.Date;
 import java.util.List;
 
-public class AccountView {
-	
-	
+import com.casosemergencias.model.Cuenta;
+
+public class AccountView extends ObjectView {
 	/*ID*/                                  private Integer id;
 	/*SFID*/                                private String sfid;
 	/*Nombre de la cuenta*/                 private String name;
@@ -130,5 +130,11 @@ public class AccountView {
 	}
 	public void setContactos(List<ContactView> contactos) {
 		this.contactos = contactos;
+	}
+	
+	@Override
+	public Object instantiateTargetLogic() {
+		Cuenta cuenta = new Cuenta();
+		return cuenta;
 	}
 }

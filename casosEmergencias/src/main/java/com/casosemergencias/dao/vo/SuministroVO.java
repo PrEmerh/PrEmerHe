@@ -1,4 +1,4 @@
-package com.casosemergencias.dao;
+package com.casosemergencias.dao.vo;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,10 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.casosemergencias.model.Suministro;
+
 
 @Entity
 @Table(name="salesforce.suministro__c")
-public class SuministroVO implements Serializable{
+public class SuministroVO extends ObjectVO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -564,5 +566,9 @@ public class SuministroVO implements Serializable{
 		this.tipoSegmento = tipoSegmento;
 	}
 
-
+	@Override
+	public Object instantiateTargetLogic() {
+		Suministro suministro = new Suministro();
+		return suministro;
+	}
 }

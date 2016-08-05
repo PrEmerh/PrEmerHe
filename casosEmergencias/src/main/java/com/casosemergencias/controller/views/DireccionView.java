@@ -1,8 +1,8 @@
 package com.casosemergencias.controller.views;
 
-import java.util.Date;
+import com.casosemergencias.model.Direccion;
 
-public class DireccionView {
+public class DireccionView extends ObjectView {
 
 	/*ID*/                                  private Integer id;
 	/*SFID*/                              	private String sfid;
@@ -86,9 +86,9 @@ public class DireccionView {
 		this.esquina = esquina;
 	}
 
-
-	
-	
-	
-	
+	@Override
+	public Object instantiateTargetLogic() {
+		Direccion direccion = new Direccion();
+		return direccion;
+	}
 }

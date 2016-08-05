@@ -8,12 +8,13 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.CaseDAO;
-import com.casosemergencias.dao.CaseVO;
+import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.model.Direccion;
 import com.casosemergencias.model.Suministro;
+import com.casosemergencias.util.DataTableProperties;
 import com.casosemergencias.util.ParserModelVO;
 
 public class CaseServiceImpl implements CaseService{
@@ -32,13 +33,13 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 	 * @return
 	 */
 	@Override
-	public List<Caso> readAllCase() {
+	public List<Caso> readAllCase(DataTableProperties propDatatable) {
 		
 		logger.debug("--- Inicio -- readAllCase ---");
 		
 		List<Caso> listCaso = new ArrayList<>();
 		
-		List<CaseVO> listCasosVO = caseDao.readAllCaseDescriptionPick();
+		List<CaseVO> listCasosVO = caseDao.readCaseDataTable(propDatatable);
 		logger.debug("--- Inicio -- readAllCase tamano : " + listCasosVO.size() + " ---");
 		
 		for(CaseVO casoVO : listCasosVO){
@@ -56,10 +57,10 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 			caso.setSubMotivo(casoVO.getMotivoEmpresa());
 			caso.setCondicionAgravante(casoVO.getCondicionAgravante());
 			caso.setTipoAtencionInterna(casoVO.getTipoAtencionInterna());
-caso.setContacto(new Contacto()); //Añadir los datos del contacto
-caso.setSuministro(new Suministro()); //añadir los datos del suministro
-caso.setDireccion(new Direccion()); //añadir los datos de la direccion
-caso.setCuenta(new Cuenta()); //añadir los datos de la cuenta
+			caso.setContacto(new Contacto()); //Añadir los datos del contacto
+			caso.setSuministro(new Suministro()); //añadir los datos del suministro
+			caso.setDireccion(new Direccion()); //añadir los datos de la direccion
+			caso.setCuenta(new Cuenta()); //añadir los datos de la cuenta
 			caso.setDireccionSuministro(casoVO.getDireccionSuministro());
 			caso.setComuna(casoVO.getComunaF());
 			caso.setNumeroMedidor(casoVO.getNumeroMedidor());
@@ -69,7 +70,7 @@ caso.setCuenta(new Cuenta()); //añadir los datos de la cuenta
 			caso.setSubEstado(casoVO.getSubEstado());
 			caso.setCanalOrigen(casoVO.getOrigin());
 			caso.setUnidad(casoVO.getCallCenter());
-caso.setCasoPrincipal(casoVO.getParentid()); //buscar el nombre de este
+			caso.setCasoPrincipal(casoVO.getParentid()); //buscar el nombre de este
 			caso.setAsunto(casoVO.getSubject());
 			caso.setDescripcion(casoVO.getDescription());
 			caso.setTipoAtencionSEC(casoVO.getTipoAtencionSec());
@@ -121,4 +122,10 @@ caso.setCasoPrincipal(casoVO.getParentid()); //buscar el nombre de este
 		return returnCase;
 	}
 
+	
+	public Integer getNumCasos(){
+		logger.debug("--- getNumCasos ---");
+		return caseDao.countCase();
+		
+	}
 }

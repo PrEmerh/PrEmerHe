@@ -22,6 +22,7 @@
 		
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
+					<input id="arrowDetalleCaso" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('detalleCaso','arrowDetalleCaso'); return false;"/>				
 					<label><s:message code="entidadCaso_title_label_detalle_caso"/></label>
 			</div>
 			<div class="botoneraEntidad">
@@ -31,7 +32,7 @@
 				</ul>
 			</div>
 		</div>
-		<div id="divEntidadCaso" class="divEntidad">
+		<div id="detalleCaso" class="divEntidad">
 			<div>
 				<div class="divLabel">
 					<label><s:message code="entidadCaso_table_label_motivo"/></label>
@@ -116,10 +117,11 @@
 		</div>	
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
+				<input id="arrowDatosEmergencia" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('datosEmergencia','arrowDatosEmergencia'); return false;"/>				
 				<b><label><s:message code="entidadCaso_title_label_datos_emergencia"/></label></b>
 			</div>
 		</div>
-		<div id="divEntidadContacto" class="divEntidad">
+		<div id="datosEmergencia" class="divEntidad">
 			<div>	
 				<div >					
 				</div>
@@ -155,10 +157,11 @@
 		</div>
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
+			<input id="arrowIdentificacion" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('Identificacion','arrowIdentificacion'); return false;"/>			
 			<b><label><s:message code="entidadCaso_title_label_identificacion"/></label></b>
 			</div>
 		</div>	
-		<div id="divEntidadContacto" class="divEntidad">	
+		<div id="Identificacion" class="divEntidad">	
 			<div>
 			    <div >					
 				</div>
@@ -266,10 +269,11 @@
 
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
+			<input id="arrowCuerpoMail" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('cuerpoMail','arrowCuerpoMail'); return false;"/>
 			<b><label><s:message code="entidadCaso_title_label_cuerpoMail"/></label></b>
 			</div>
 		</div>
-		<div id="divEntidadContacto" class="divEntidad">
+		<div id="cuerpoMail" class="divEntidad">
 			<div>
 				<div >					
 				</div>
@@ -288,10 +292,11 @@
 		</div>		
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
+				<input id="arrowSolucion" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('Solucion','arrowSolucion'); return false;"/>			
 				<b><label><s:message code="entidadCaso_title_label_solucion"/></label></b>
 			</div>
 		</div>
-		<div id="divEntidadContacto" class="divEntidad">
+		<div id="Solucion" class="divEntidad">
 			<div>
 				<div >					
 				</div>
@@ -312,5 +317,18 @@
 			</div>
 		</div>
 	</form:form>
-</body>
+	<script type="text/javascript">
+	function showHideCabeceras(idDiv,idArrow){
+			var div =document.getElementById(idDiv);
+			var arrow = document.getElementById(idArrow); 				
+				if(div.style.visibility=='')  {
+					div.style.visibility='hidden';
+				arrow.src="../resources/images/Arrowright.PNG";
+				}else{
+				div.style.visibility='';
+					arrow.src="../resources/images/Arrowdown.PNG";
+				}					
+	}
+	</script>
+  </body>
 </html>

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.UserView;
-import com.casosemergencias.logic.ContactService;
 import com.casosemergencias.logic.UserService;
 import com.casosemergencias.model.User;
 import com.casosemergencias.util.Constantes;
@@ -63,11 +62,6 @@ public class LoginController {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("user", user);			
 
-//			model.setViewName("redirect: private/homeCasosPage");
-
-//			model.addObject("title", "Heroku Hello World");
-//			model.addObject("name",  user.getName());
-//			model.setViewName("private/hello");
 			model.setViewName("redirect: private/homeCasos");
 
 		}else{

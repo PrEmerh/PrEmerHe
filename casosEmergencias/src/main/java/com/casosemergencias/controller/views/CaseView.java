@@ -3,13 +3,14 @@ package com.casosemergencias.controller.views;
 import java.util.Date;
 import java.util.Map;
 
-import com.casosemergencias.dao.PickListsVO;
+import com.casosemergencias.dao.vo.PickListsVO;
+import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.model.Direccion;
 import com.casosemergencias.model.Suministro;
 
-public class CaseView {
+public class CaseView extends ObjectView {
 
 	private Integer id;
 	private String sfid;
@@ -61,10 +62,10 @@ public class CaseView {
 	private String ani;
 	
 	/*Joins con picklist*/
-	private PickListsVO estadoPickList;
+	private String labelEstadoPickList;
 	private PickListsVO subestadoPickList;
 	private PickListsVO submotivoPickList;
-	private PickListsVO canalOrigenPickList;
+	private PickListsVO canalOrigenPickList;//no existe
 	/**/
 	/*Mapas para mostrar los combos de caso*/
 	private Map<String, String> mapStatus;
@@ -382,21 +383,15 @@ public class CaseView {
 		this.ani = ani;
 	}
 	/*Joins con picklist*/
-	public PickListsVO getEstadoPickList() {
-		return estadoPickList;
-	}
-	public void setEstadoPickList(PickListsVO estadoPickList) {
-		this.estadoPickList = estadoPickList;
-	}
-	public String getLabelEstadoPickList(){
-		String result = this.getEstado();
-		if (this.getEstadoPickList() != null ){
-			result=this.getEstadoPickList().getValor();
-		}
-		return result; 
-	}
+	
 	public PickListsVO getSubestadoPickList() {
 		return subestadoPickList;
+	}
+	public String getLabelEstadoPickList() {
+		return labelEstadoPickList;
+	}
+	public void setLabelEstadoPickList(String labelEstadoPickList) {
+		this.labelEstadoPickList = labelEstadoPickList;
 	}
 	public void setSubestadoPickList(PickListsVO subestadoPickList) {
 		this.subestadoPickList = subestadoPickList;
@@ -514,6 +509,10 @@ public class CaseView {
 		}
 		return sortedMap;
 	}*/
-
-
+	
+	@Override
+	public Object instantiateTargetLogic() {
+		Caso caso = new Caso();
+		return caso;
+	}
 }

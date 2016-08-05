@@ -1,24 +1,25 @@
-package com.casosemergencias.dao;
+package com.casosemergencias.dao.vo;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
 
+import com.casosemergencias.model.Caso;
+
 
 @Entity
 @Table(name="salesforce.case")
-public class CaseVO implements Serializable{
+public class CaseVO extends ObjectVO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -253,7 +254,7 @@ public class CaseVO implements Serializable{
 	private Date slaexitDate;
 	
 	@Column(name = "origin")
-	private String origin;
+	private String canalOrigen;
 	
 	@Column(name = "descripcion_estado__c")
 	private String descripcionEstado;
@@ -348,16 +349,21 @@ public class CaseVO implements Serializable{
 	@Column(name = "condici_n_agravante__c")
 	private String condicionAgravante;
 	
-	@OneToOne
-   	@JoinColumn(name="status", referencedColumnName="codigo", insertable =false, updatable=false)
-   	@Where(clause = "campo ='Status' and objeto='Case'")
-   	private PickListsVO estadoPickList;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="status", referencedColumnName="codigo", insertable = false, updatable=false)
+	@Where(clause = "campo ='Status' and objeto='Case'")
+	private PickListsVO estadoPickList;
+//		NO va@ManyToMany
+//	    @JoinTable(name="salesforce.case", joinColumns=@JoinColumn(name="status"), inverseJoinColumns=@JoinColumn(name="codigo"))
+//		@WhereJoinTable (clause = "campo ='Status' and objeto='Case'")
+//	
+//		private Set<PickListsVO> estadoPickList;
 	
-	@OneToOne
-   	@JoinColumn(name="motivo_empresa__c", referencedColumnName="codigo", insertable =false, updatable=false)
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="status", referencedColumnName="codigo", insertable = false, updatable=false)
    	@Where(clause = "campo ='Motivo_Empresa__c' and objeto='Case'")
 	private PickListsVO submotivoPickList;
-
+	
 	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
 			Date createdDate, String subject, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
 			String flagSec, String lastmodifiedbyid, String productid, Boolean validarElectrodependiente,
@@ -374,7 +380,7 @@ public class CaseVO implements Serializable{
 			Date stopstartDate, String suppliedCompany, Boolean isClosedonCreate, String estadoCondicionAgravante,
 			Date horaCancelado, String suministro, Boolean isSelfserviceClosed, String parentid, Boolean ui,
 			String numSum, String twitter, String suppliedName, Date closedDate, Boolean falloEnvioInservice,
-			String description, Date horaArribado, Date slaexitDate, String origin, String descripcionEstado,
+			String description, Date horaArribado, Date slaexitDate, String canalOrigen, String descripcionEstado,
 			String businessHoursId, String sf4twitterAuthorExternalId, Boolean hasCommentSunReadByOwner,
 			Date horaCerrado, String literalCondicionAgravante, String type, String direccionSuministro,
 			Date horaPendiente, String ani, String facebook, String peticion, String communityId, String direccion,
@@ -459,7 +465,7 @@ public class CaseVO implements Serializable{
 		this.description = description;
 		this.horaArribado = horaArribado;
 		this.slaexitDate = slaexitDate;
-		this.origin = origin;
+		this.canalOrigen = canalOrigen;
 		this.descripcionEstado = descripcionEstado;
 		this.businessHoursId = businessHoursId;
 		this.sf4twitterAuthorExternalId = sf4twitterAuthorExternalId;
@@ -1099,12 +1105,12 @@ public class CaseVO implements Serializable{
 		this.slaexitDate = slaexitDate;
 	}
 
-	public String getOrigin() {
-		return origin;
+	public String getCanalOrigen() {
+		return canalOrigen;
 	}
 
-	public void setOrigin(String origin) {
-		this.origin = origin;
+	public void setCanalOrigen(String canalOrigen) {
+		this.canalOrigen = canalOrigen;
 	}
 
 	public String getDescripcionEstado() {
@@ -1362,13 +1368,18 @@ public class CaseVO implements Serializable{
 	public void setEstadoPickList(PickListsVO estadoPickList) {
 		this.estadoPickList = estadoPickList;
 	}
-
-	public PickListsVO getSubmotivoPickList() {
-		return submotivoPickList;
-	}
-
-	public void setSubmotivoPickList(PickListsVO submotivoPickList) {
-		this.submotivoPickList = submotivoPickList;
+	
+	public String getLabelEstadoPickList(){
+		String result = this.getEstado();
+		if (this.getEstadoPickList() != null ){
+			result=this.getEstadoPickList().getValor();
+		}
+		return result; 
 	}
 	
+	@Override
+	public Object instantiateTargetLogic() {
+		Caso caso = new Caso();
+		return caso;
+	}
 }

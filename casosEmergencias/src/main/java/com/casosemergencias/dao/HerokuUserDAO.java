@@ -5,13 +5,14 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
-import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.casosemergencias.dao.vo.HerokuUserVO;
 
 
 @Repository
@@ -72,7 +73,7 @@ public class HerokuUserDAO {
 			
 			List<HerokuUserVO> userList = query.list(); 
 
-			if(userList != null){
+			if(userList != null && !userList.isEmpty()){
 				return userList.get(0);
 			}			
 			
@@ -108,7 +109,7 @@ public class HerokuUserDAO {
 			
 			List<HerokuUserVO> userList = query.list(); 
 
-			if(userList != null){
+			if(userList != null && !userList.isEmpty()){
 				return userList.get(0);
 			}			
 			
@@ -346,13 +347,11 @@ public class HerokuUserDAO {
 	 * @param herokuUser
 	 * @return
 	 */
-	public int insertHerokuUser(HerokuUserVO herokuUser, Session session){
+	public int insertHerokuUser(HerokuUserVO herokuUser, Session session2){
 		logger.debug("updateHerokuUser -- inicio");
 		
-//		Session session = sessionFactory.openSession();
-		Session session2 =sessionFactory.getCurrentSession();
-		System.out.println(session);
-		System.out.println(session2);
+		Session session = sessionFactory.openSession();
+
 		int numModif = 0;
 //		session.setAutocommit(false); 
 //		StringBuilder query = new StringBuilder("INSERT INTO HerokuUser(name, createddate, password, envioMail, username, activo,  email) VALUES("); 
@@ -372,7 +371,7 @@ public class HerokuUserDAO {
 
 //		numModif = result.executeUpdate();
 		session.save(herokuUser);
-		    
+		session.flush();		    
 		
 		
 		return numModif;

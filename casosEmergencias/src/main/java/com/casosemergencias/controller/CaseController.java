@@ -6,12 +6,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.json.JsonArray;
+
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.CaseView;
@@ -19,6 +25,8 @@ import com.casosemergencias.logic.CaseService;
 import com.casosemergencias.logic.PickListsService;
 import com.casosemergencias.model.Caso;
 import com.casosemergencias.util.Constantes;
+import com.casosemergencias.util.DataTableProperties;
+import com.casosemergencias.util.ParseBodyDataTable;
 import com.casosemergencias.util.ParserModelVO;
 
 
@@ -37,47 +45,23 @@ public class CaseController {
 	@Autowired
 	private CaseService casoService;
 	
+	@Autowired
+	private PickListsService pickListsService;
+	
+
 	/**
 	 * Metodo que recupera una lista con todos los casos que hay creados en BBDD y los muestra en la pantalla homeCasosPage.jsp
 	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/private/homeCasos", method = RequestMethod.GET)
-	public ModelAndView listadoCasosHome() {
+	public ModelAndView goHomeCasos() {
 		
 		logger.info("--- Inicio -- listadoCasos ---");
 
-		List<CaseView> listCaseView = new ArrayList<CaseView>();
-		List<Caso> listCasos = new ArrayList<Caso>();
-		
 		ModelAndView model = new ModelAndView();
 		model.setViewName("private/homeCasosPage");
-		
-		logger.info("--- Llamamos al servicio -- listadoCasos ---");
-		
-		listCasos = casoService.readAllCase();
-		for(Caso caso : listCasos){
-			CaseView caseView = new CaseView();
-			/*caseView.setSfid(caso.getSfid());
-			caseView.setNumeroCaso(caso.getNumeroCaso());
-			caseView.setNumeroInservice(caso.getNumeroInservice());
-			caseView.setSubmotivo(caso.getSubMotivo());
-			caseView.setFechaApertura(caso.getFechaApertura());
-			caseView.setEstado(caso.getEstado());
-			caseView.setSubestado(caso.getSubEstado());
-			caseView.setNombreContacto("Nombre del contacto - añadir");
-			caseView.setDireccionSuministro(caso.getDireccionSuministro());
-			caseView.setComuna(caso.getComuna());
-			caseView.setTiempoEstimacion("Tiempo estimado");
-			caseView.setCanalOrigen(caso.getCanalOrigen());
-			caseView.setEstadoPickList(caso.getEstadoPickList());*/
-			ParserModelVO.parseDataModelVO(caso, caseView);
-			listCaseView.add(caseView);
-		}
-		
-		model.addObject("listaCasos", listCaseView);
-		
-
+	
 		logger.info("--- Fin -- listadoCasos ---");
 		
 		return model;
@@ -88,20 +72,20 @@ public class CaseController {
 		return "redirect:entidadCasoAlta";
 	}
 	
-	@Autowired
-	private PickListsService pickListsService;
 	
 	@RequestMapping(value = "/private/entidadCaso", method = RequestMethod.GET)
-	public ModelAndView getCaseData(@RequestParam Integer id, @RequestParam String editMode) {
-		System.out.println("Ejecutar consulta");
-		ModelAndView model = new ModelAndView();
-		model.addObject("id", id);
+	public ModelAndView getCaseData(@RequestParam String sfid, @RequestParam String editMode) {
+		
+		logger.info("--- Inicio -- getCaseData ---");
+		
+		ModelAndView model = new ModelAndView();		
+		model.addObject("sfid", sfid);
 		model.addObject("editMode", editMode);
 		
 		//List<CaseView> listCaseView = new ArrayList<CaseView>();
 		CaseView casoView = new CaseView();
 		
-		Caso casoBBDD = casoService.readCaseById(id);
+		Caso casoBBDD = casoService.readCaseBySfid(sfid);
 		if (casoBBDD != null){
 			ParserModelVO.parseDataModelVO(casoBBDD, casoView);
 		}
@@ -109,25 +93,28 @@ public class CaseController {
 		/*Hay que añadir recuperación de label de los picklists si no sale el código solo*/
 		model.addObject("caso", casoView);
 		
+		logger.info("--- Fin -- getCaseData ---");
 		return model;
 	}
 	
 	private Map<String, String> getPickListPorCampo(Map<String, Map<String, String>> mapaGeneral, String campo, Boolean anniadirDefault){
 		Map<String, String> returnMap = null;
 		if (mapaGeneral != null && !mapaGeneral.isEmpty() && mapaGeneral.containsKey(campo)){
-			returnMap = new LinkedHashMap<String, String>();
+			returnMap = mapaGeneral.get(campo);
 			if(anniadirDefault){returnMap.put(Constantes.PICKLIST_CASO_DEFAULT, "");}
-			returnMap.putAll(mapaGeneral.get(campo));
 		}
 		return returnMap;
 	}
 	
 	@RequestMapping(value = "/private/entidadCasoAlta", method = RequestMethod.GET)
 	public ModelAndView altaCaso() {
-		System.out.println("Ejecutar consulta");
-		ModelAndView model = new ModelAndView();		
-		model.addObject("editMode", Constantes.EDIT_MODE_INSERT);
+		
+		logger.info("--- Inicio -- altaCaso ---");
+		
+		ModelAndView model = new ModelAndView();	
 		CaseView casoView = new CaseView();
+		
+		model.addObject("editMode", Constantes.EDIT_MODE_INSERT);
 		model.setViewName("private/entidadCasoAltaPage");
 		//Setteo de datos fijos
 		casoView.setCanalOrigen(Constantes.COD_CASO_ORIGEN_WEB);
@@ -153,8 +140,6 @@ public class CaseController {
 		}
 		casoView.setMapSubMotivo(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_SUBMOTIVO, true));
 		casoView.setMapCondicionAgravante(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CONDICION_AGRAVANTE, true));
-		casoView.setMapCanalNotificacion(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CANAL_NOTIFICACION, true));
-		casoView.setMapFavorabilidadCaso(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_FAVORABILIDAD, true));
 		
 		model.addObject("caso", casoView);
 		//casoView.setMapOrigin(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_ORIGIN));
@@ -165,4 +150,48 @@ public class CaseController {
 		return model;
 	}
 	
+	/**
+	 * Metodo invocado por la tabla de homeCasosPage. Se recoge del body las propiedades de la tabla, le recupera la liasta con todos los 
+	 * casos utilizando estas propiedades y se envian a la tabla en un JSON
+	 * 
+	 * @param body
+	 * @return
+	 */
+	@RequestMapping(value = "/listarCasos", method = RequestMethod.POST)
+	public @ResponseBody String listadoCasosHome(@RequestBody String body){
+		
+		logger.info("--- Inicio -- listadoCasosHome ---");
+		
+		DataTableProperties propDataTable = ParseBodyDataTable.parseBodyToDataTable(body);
+		List<Caso> listCasos = new ArrayList<Caso>();
+		
+		JSONObject jsonResult = new JSONObject();
+		JSONArray array = new JSONArray();
+		
+		listCasos = casoService.readAllCase(propDataTable);
+		for(Caso caso : listCasos){
+			jsonResult = new JSONObject();
+			jsonResult.put("numeroCaso", caso.getNumeroCaso());
+			jsonResult.put("numeroInservice", caso.getNumeroInservice());
+			jsonResult.put("canalOrigen", caso.getCanalOrigen());
+			jsonResult.put("estado", caso.getEstado());
+			jsonResult.put("subestado", caso.getSubEstado());
+			jsonResult.put("submotivo", caso.getSubMotivo());
+			jsonResult.put("sfid", caso.getSfid());
+
+			array.put(jsonResult);
+		}
+		
+		Integer numCasos = casoService.getNumCasos();
+		
+		JSONObject json = new JSONObject();
+		json.put("iTotalRecords", numCasos); 
+		json.put("iTotalDisplayRecords", numCasos); 
+		json.put("data", array);
+		
+		logger.info("--- Inicio -- listadoCasosHome ---");
+		
+		return json.toString();
+		
+	}
 }

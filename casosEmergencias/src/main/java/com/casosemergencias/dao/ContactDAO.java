@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.casosemergencias.dao.vo.ContactVO;
+
 @Repository
 public class ContactDAO {
 
@@ -70,7 +72,7 @@ public class ContactDAO {
 			
 			List<ContactVO> contactList = query.list(); 
 
-			if(contactList != null){
+			if(contactList != null && !contactList.isEmpty()){
 				return contactList.get(0);
 			}			
 			
@@ -107,7 +109,7 @@ public class ContactDAO {
 			
 			List<ContactVO> contactList = query.list(); 
 
-			if(contactList != null){
+			if(contactList != null && !contactList.isEmpty()){
 				return contactList.get(0);
 			}			
 			

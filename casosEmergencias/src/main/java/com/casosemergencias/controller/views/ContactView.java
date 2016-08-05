@@ -2,7 +2,9 @@ package com.casosemergencias.controller.views;
 
 import java.util.Date;
 
-public class ContactView {
+import com.casosemergencias.model.Contacto;
+
+public class ContactView extends ObjectView {
 	
 	
 	/*ID*/                                  private Integer id;
@@ -163,5 +165,9 @@ public class ContactView {
 		this.tipoCuentaAsociado = tipoCuentaAsociado;
 	}
 
-
+	@Override
+	public Object instantiateTargetLogic() {
+		Contacto contacto = new Contacto();
+		return contacto;
+	}
 }

@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.SuministroService;
-import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 
