@@ -58,11 +58,11 @@ public class Caso extends ObjectLogic {
 	private String favorabilidadDelCaso;
 	private String suministro;
 	private String direccion;
+	private String descripcionEstado;
 	/*Joins caso*/
-	private String labelEstadoPickList;
-	private PickListsVO subestadoPickList;
-	private PickListsVO submotivoPickList;
-	private PickListsVO canalOrigenPickList;
+	private String labelSubestadoPickList;
+	private String labelSubmotivoPickList;
+	private String labelCanalorigenPickList;
 	/**/
 	
 	public Integer getId() {
@@ -333,30 +333,31 @@ public class Caso extends ObjectLogic {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+	public String getDescripcionEstado() {
+		return descripcionEstado;
+	}
+	public void setDescripcionEstado(String descripcionEstado) {
+		this.descripcionEstado = descripcionEstado;
+	}
 	/*Joins pickList caso*/
-	public String getLabelEstadoPickList() {
-		return labelEstadoPickList;
+	public String getLabelSubestadoPickList() {
+		return labelSubestadoPickList;
 	}
-	public void setLabelEstadoPickList(String labelEstadoPickList) {
-		this.labelEstadoPickList = labelEstadoPickList;
+	public void setLabelSubestadoPickList(String labelSubestadoPickList) {
+		this.labelSubestadoPickList = labelSubestadoPickList;
 	}
-	public PickListsVO getSubestadoPickList() {
-		return subestadoPickList;
+	/*Joins pickList caso*/
+	public String getLabelSubmotivoPickList() {
+		return labelSubmotivoPickList;
 	}
-	public void setSubestadoPickList(PickListsVO subestadoPickList) {
-		this.subestadoPickList = subestadoPickList;
+	public void setLabelSubmotivoPickList(String labelSubmotivoPickList) {
+		this.labelSubmotivoPickList = labelSubmotivoPickList;
 	}
-	public PickListsVO getSubmotivoPickList() {
-		return submotivoPickList;
+	public String getLabelCanalorigenPickList() {
+		return labelCanalorigenPickList;
 	}
-	public void setSubmotivoPickList(PickListsVO submotivoPickList) {
-		this.submotivoPickList = submotivoPickList;
-	}
-	public PickListsVO getCanalOrigenPickList() {
-		return canalOrigenPickList;
-	}
-	public void setCanalOrigenPickList(PickListsVO canalOrigenPickList) {
-		this.canalOrigenPickList = canalOrigenPickList;
+	public void setLabelCanalorigenPickList(String labelCanalorigenPickList) {
+		this.labelCanalorigenPickList = labelCanalorigenPickList;
 	}
 	/**/
 	@Override

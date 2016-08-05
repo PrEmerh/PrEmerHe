@@ -60,12 +60,12 @@ public class CaseView extends ObjectView {
 	private String asunto;	//subject
 	private String tipoAtencionSEC;
 	private String ani;
+	private String descripcionEstado;
 	
 	/*Joins con picklist*/
-	private String labelEstadoPickList;
-	private PickListsVO subestadoPickList;
-	private PickListsVO submotivoPickList;
-	private PickListsVO canalOrigenPickList;//no existe
+	private String labelSubestadoPickList;
+	private String labelSubmotivoPickList;
+	private String labelCanalorigenPickList;//no existe
 	/**/
 	/*Mapas para mostrar los combos de caso*/
 	private Map<String, String> mapStatus;
@@ -382,55 +382,32 @@ public class CaseView extends ObjectView {
 	public void setAni(String ani) {
 		this.ani = ani;
 	}
-	/*Joins con picklist*/
+	public String getDescripcionEstado() {
+		return descripcionEstado;
+	}
+	public void setDescripcionEstado(String descripcionEstado) {
+		this.descripcionEstado = descripcionEstado;
+	}
 	
-	public PickListsVO getSubestadoPickList() {
-		return subestadoPickList;
+	/*Joins con picklist*/	
+	public String getLabelSubmotivoPickList() {
+		return labelSubmotivoPickList;
 	}
-	public String getLabelEstadoPickList() {
-		return labelEstadoPickList;
+	public String getLabelSubestadoPickList() {
+		return labelSubestadoPickList;
 	}
-	public void setLabelEstadoPickList(String labelEstadoPickList) {
-		this.labelEstadoPickList = labelEstadoPickList;
+	public void setLabelSubestadoPickList(String labelSubestadoPickList) {
+		this.labelSubestadoPickList = labelSubestadoPickList;
 	}
-	public void setSubestadoPickList(PickListsVO subestadoPickList) {
-		this.subestadoPickList = subestadoPickList;
+	public void setLabelSubmotivoPickList(String labelSubmotivoPickList) {
+		this.labelSubmotivoPickList = labelSubmotivoPickList;
+	}	
+	public String getLabelCanalorigenPickList() {
+		return labelCanalorigenPickList;
 	}
-	public String getLabelSubestadoPickList(){
-		String result = this.getSubestado();
-		if (this.getSubestadoPickList() != null ){
-			result=this.getSubestadoPickList().getValor();
-		}
-		return result; 
+	public void setLabelCanalorigenPickList(String labelCanalorigenPickList) {
+		this.labelCanalorigenPickList = labelCanalorigenPickList;
 	}
-	public PickListsVO getSubmotivoPickList() {
-		return submotivoPickList;
-	}
-	public void setSubmotivoPickList(PickListsVO submotivoPickList) {
-		this.submotivoPickList = submotivoPickList;
-	}
-	public String getLabeSubmotivoPickList(){
-		String result = this.getSubmotivo();
-		if (this.getSubmotivoPickList() != null ){
-			result=this.getSubmotivoPickList().getValor();
-		}
-		return result; 
-	}
-	public PickListsVO getCanalOrigenPickList() {
-		return canalOrigenPickList;
-	}
-	public void setCanalOrigenPickList(PickListsVO canalOrigenPickList) {
-		this.canalOrigenPickList = canalOrigenPickList;
-	}
-	public String getLabelCanalOrigenPickList(){
-		String result = this.getCanalOrigen();
-		if (this.getCanalOrigenPickList() != null ){
-			result=this.getCanalOrigenPickList().getValor();
-		}
-		return result; 
-	}
-
-/**/
 	/*Mapas combos*/
 	public Map<String, String> getMapStatus() {
 		return mapStatus;

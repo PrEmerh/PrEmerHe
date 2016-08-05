@@ -30,12 +30,6 @@
 			</div>
 			<div>
 
-				<input class="column_filter" id="col0_filter" type="text" value="">
-				<input class="column_filter" id="search" type="button" value="Buscar">
-				<input type="radio" name="radios" value="rd1" checked>Numero Casos        
-            	<input type="radio" name="radios" value="rd2"> Todos
-				
-			
 				<table id="tablaCasos" class="display" style="width: 100%;"> 
 					<thead>
 			            <tr>

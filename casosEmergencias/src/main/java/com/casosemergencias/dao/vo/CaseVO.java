@@ -350,9 +350,9 @@ public class CaseVO extends ObjectVO implements Serializable {
 	private String condicionAgravante;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="status", referencedColumnName="codigo", insertable = false, updatable=false)
-	@Where(clause = "campo ='Status' and objeto='Case'")
-	private PickListsVO estadoPickList;
+	@JoinColumn(name="subEstado", referencedColumnName="codigo", insertable = false, updatable=false)
+	@Where(clause = "campo ='Sub_Estado__c' and objeto='Case'")
+	private PickListsVO subestadoPickList;
 //		NO va@ManyToMany
 //	    @JoinTable(name="salesforce.case", joinColumns=@JoinColumn(name="status"), inverseJoinColumns=@JoinColumn(name="codigo"))
 //		@WhereJoinTable (clause = "campo ='Status' and objeto='Case'")
@@ -360,9 +360,15 @@ public class CaseVO extends ObjectVO implements Serializable {
 //		private Set<PickListsVO> estadoPickList;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="status", referencedColumnName="codigo", insertable = false, updatable=false)
+	@JoinColumn(name="motivoEmpresa", referencedColumnName="codigo", insertable = false, updatable=false)
    	@Where(clause = "campo ='Motivo_Empresa__c' and objeto='Case'")
 	private PickListsVO submotivoPickList;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="canalOrigen", referencedColumnName="codigo", insertable = false, updatable=false)
+   	@Where(clause = "campo ='Origin' and objeto='Case'")
+	private PickListsVO canalorigenPickList;
+
 	
 	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
 			Date createdDate, String subject, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
@@ -387,7 +393,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 			Date horaAsignado, String milestoneStatus, String contactId, Date horaPredespacho, Date horaEnruta,
 			String reason, String idEmpresa, Date horaProgramado, Double numeroSeguidoresDel, String literalCategorias,
 			String recordtypeId, String comunaF, String prioridad, String valorSubestadoins,
-			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante, PickListsVO estadoPickList,
+			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante, PickListsVO subestadoPickList,
 			PickListsVO submotivoPickList) {
 		super();
 		this.isdeleted = isdeleted;
@@ -497,7 +503,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.controlElectrodependiente = controlElectrodependiente;
 		this.cancelar = cancelar;
 		this.condicionAgravante = condicionAgravante;
-		this.estadoPickList = estadoPickList;		
+		this.subestadoPickList = subestadoPickList;		
 		this.submotivoPickList = submotivoPickList;
 	}
 
@@ -1361,22 +1367,54 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.condicionAgravante = condicionAgravante;
 	}
 
-	public PickListsVO getEstadoPickList() {
-		return estadoPickList;
+	public PickListsVO getSubestadoPickList() {
+		return subestadoPickList;
 	}
 
-	public void setEstadoPickList(PickListsVO estadoPickList) {
-		this.estadoPickList = estadoPickList;
+	public void setSubestadoPickList(PickListsVO subestadoPickList) {
+		this.subestadoPickList = subestadoPickList;
 	}
 	
-	public String getLabelEstadoPickList(){
+	public String getLabelSubestadoPickList(){
 		String result = this.getEstado();
-		if (this.getEstadoPickList() != null ){
-			result=this.getEstadoPickList().getValor();
+		if (this.getSubestadoPickList() != null ){
+			result=this.getSubestadoPickList().getValor();
 		}
 		return result; 
 	}
 	
+	public PickListsVO getSubmotivoPickList() {
+		return submotivoPickList;
+	}
+
+	public void setSubmotivoPickList(PickListsVO submotivoPickList) {
+		this.submotivoPickList = submotivoPickList;
+	}
+	
+	public String getLabelSubmotivoPickList(){
+		String result = this.getMotivoEmpresa();
+		if (this.getSubmotivoPickList() != null ){
+			result=this.getSubmotivoPickList().getValor();
+		}
+		return result; 
+	}
+
+	public PickListsVO getCanalorigenPickList() {
+		return canalorigenPickList;
+	}
+
+	public void setCanalorigenPickList(PickListsVO canalorigenPickList) {
+		this.canalorigenPickList = canalorigenPickList;
+	}
+	
+	public String getLabelCanalorigenPickList(){
+		String result = this.getCanalOrigen();
+		if (this.getCanalorigenPickList() != null ){
+			result=this.getCanalorigenPickList().getValor();
+		}
+		return result; 
+	}
+
 	@Override
 	public Object instantiateTargetLogic() {
 		Caso caso = new Caso();
