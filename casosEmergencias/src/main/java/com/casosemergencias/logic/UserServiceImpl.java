@@ -200,7 +200,7 @@ public class UserServiceImpl implements UserService{
 			herokuUser2.setEmail("user2@email.com");
 			herokuUserDao.insertHerokuUser(herokuUser1, null);
 			herokuUserDao.insertHerokuUser(herokuUser2, null);
-			herokuUserDao.insertHerokuUser2(null, null);
+//			herokuUserDao.insertHerokuUser2(null, null);
 			
 			//tx.commit();
 
