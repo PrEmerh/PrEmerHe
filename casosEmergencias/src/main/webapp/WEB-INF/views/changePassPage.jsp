@@ -6,7 +6,7 @@
 		<link href="resources/css/styles.css" rel="stylesheet">
 		<title>Change Password Page</title>
 	</head>
-	<body style="background-color:#99CCFF;">
+	<body style="background-color:white;">
 	 	<!-- <center><img src="resources/images/heroku.png"  /></center> -->
 		  	<center><h1><s:message code="changePass_label_title"/>:</h1></center> 
 		  	 	    
