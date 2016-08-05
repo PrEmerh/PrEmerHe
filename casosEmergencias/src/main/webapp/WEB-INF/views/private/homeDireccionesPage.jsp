@@ -16,6 +16,7 @@
 	
 	</head>
 	<body>
+		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_direccion"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		
 		 

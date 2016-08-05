@@ -14,6 +14,7 @@
 
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>
+		<script src="../resources/js/casos.js"></script>
 		
 		
 	</head>
@@ -28,7 +29,7 @@
 				</ul>
 			</div>
 			<div>
-				<table id="tablaCasos" class="display" data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]">
+				<table id="tablaCasos" class="display" style="width: 100%;"> <!--  data-page-length="25" data-order="[[ 1, &quot;asc&quot; ]]" -->
 					<thead>
 			            <tr>
 			            <!-- <th data-orderable="false"> -->
@@ -38,9 +39,10 @@
 			                <th width="16%"><s:message code="homeCasos_table_head_estado"/></th>
 			                <th width="16%"><s:message code="homeCasos_table_head_subestado"/></th>
 			                <th width="16%"><s:message code="homeCasos_table_head_submotivo"/></th>
+			                <th width="1%" hidden="true">sfid</th>
 			            </tr>
 		        	</thead>
-		        	<tbody>
+		        	<%-- <tbody>
 		        		<c:forEach items="${listaCasos}" var="datosCaso">
 							<tr>
 								<td><a href="../private/entidadCaso?sfid=${datosCaso.sfid}&editMode=<%=Constantes.EDIT_MODE_VIEW%>">${datosCaso.numeroCaso}</a></td>
@@ -51,12 +53,12 @@
 								<td>${datosCaso.submotivo}</td>
 							</tr>
 						</c:forEach>
-					</tbody>
+					</tbody> --%>
 				</table>
 			</div>
 		</form>
 		
-		<script type="text/javascript" charset="utf-8">
+		<%-- <script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
 			    $('#tablaCasos').DataTable( {
 			        "scrollY":        "250px",
@@ -64,6 +66,6 @@
 			        "paging":         true
 			    } );			    
 			});
-		</script>
+		</script> --%>
 	</body>
 </html>

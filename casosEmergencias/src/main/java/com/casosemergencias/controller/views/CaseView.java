@@ -10,6 +10,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.casosemergencias.dao.PickListsVO;
+import com.casosemergencias.model.Contacto;
+import com.casosemergencias.model.Cuenta;
+import com.casosemergencias.model.Direccion;
+import com.casosemergencias.model.Suministro;
 
 public class CaseView {
 
@@ -37,7 +41,33 @@ public class CaseView {
 	private String typeLabel;
 	private String description;
 	private String condicionAgravante;
-	private PickListsVO estadoPickList;
+	private PickListsVO estadoPickList;	
+	private String motivo;  
+	private Date fechaEstimadoNormalizacion;
+	private String propietarioCaso;	//owner
+	private Date fechaCierre;
+	private String subMotivo;
+	private String tipoAtencionInterna;
+	private Contacto contacto;
+	private String numeroMedidor;
+	private Direccion direccion;
+	private Cuenta cuenta;	
+	private String cuerpoMail;
+	private String respuestaCliente;
+	private String subEstado;
+	private String unidad;	//call_center
+	private String casoPrincipal;	//parent
+	private String asunto;	//subject
+	private String descripcion;
+	private String tipoAtencionSEC;
+	private String canalNotificacion;
+	private String telefonoContacto;
+	private String emailNotificacion;
+	private String idFacebook;
+	private String twitter;
+	private boolean actualizarDatosContancto;
+	private String ani;
+	private String favorabilidadCaso;
 	
 	private Map<String, String> mapStatus;
 	private Map<String, String> mapSubStatus;
@@ -48,6 +78,164 @@ public class CaseView {
 	private Map<String, String> mapCondicionAgravante;
 	
 	
+	
+	
+	public String getMotivo() {
+		return motivo;
+	}
+	public void setMotivo(String motivo) {
+		this.motivo = motivo;
+	}
+	public Date getFechaEstimadoNormalizacion() {
+		return fechaEstimadoNormalizacion;
+	}
+	public void setFechaEstimadoNormalizacion(Date fechaEstimadoNormalizacion) {
+		this.fechaEstimadoNormalizacion = fechaEstimadoNormalizacion;
+	}
+	public String getPropietarioCaso() {
+		return propietarioCaso;
+	}
+	public void setPropietarioCaso(String propietarioCaso) {
+		this.propietarioCaso = propietarioCaso;
+	}
+	public Date getFechaCierre() {
+		return fechaCierre;
+	}
+	public void setFechaCierre(Date fechaCierre) {
+		this.fechaCierre = fechaCierre;
+	}
+	public String getSubMotivo() {
+		return subMotivo;
+	}
+	public void setSubMotivo(String subMotivo) {
+		this.subMotivo = subMotivo;
+	}
+	public String getTipoAtencionInterna() {
+		return tipoAtencionInterna;
+	}
+	public void setTipoAtencionInterna(String tipoAtencionInterna) {
+		this.tipoAtencionInterna = tipoAtencionInterna;
+	}
+	public Contacto getContacto() {
+		return contacto;
+	}
+	public void setContacto(Contacto contacto) {
+		this.contacto = contacto;
+	}
+	public String getNumeroMedidor() {
+		return numeroMedidor;
+	}
+	public void setNumeroMedidor(String numeroMedidor) {
+		this.numeroMedidor = numeroMedidor;
+	}
+	public Direccion getDireccion() {
+		return direccion;
+	}
+	public void setDireccion(Direccion direccion) {
+		this.direccion = direccion;
+	}
+	public Cuenta getCuenta() {
+		return cuenta;
+	}
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
+	}
+	public String getCuerpoMail() {
+		return cuerpoMail;
+	}
+	public void setCuerpoMail(String cuerpoMail) {
+		this.cuerpoMail = cuerpoMail;
+	}
+	public String getRespuestaCliente() {
+		return respuestaCliente;
+	}
+	public void setRespuestaCliente(String respuestaCliente) {
+		this.respuestaCliente = respuestaCliente;
+	}
+	public String getSubEstado() {
+		return subEstado;
+	}
+	public void setSubEstado(String subEstado) {
+		this.subEstado = subEstado;
+	}
+	public String getUnidad() {
+		return unidad;
+	}
+	public void setUnidad(String unidad) {
+		this.unidad = unidad;
+	}
+	public String getCasoPrincipal() {
+		return casoPrincipal;
+	}
+	public void setCasoPrincipal(String casoPrincipal) {
+		this.casoPrincipal = casoPrincipal;
+	}
+	public String getAsunto() {
+		return asunto;
+	}
+	public void setAsunto(String asunto) {
+		this.asunto = asunto;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public String getTipoAtencionSEC() {
+		return tipoAtencionSEC;
+	}
+	public void setTipoAtencionSEC(String tipoAtencionSEC) {
+		this.tipoAtencionSEC = tipoAtencionSEC;
+	}
+	public String getCanalNotificacion() {
+		return canalNotificacion;
+	}
+	public void setCanalNotificacion(String canalNotificacion) {
+		this.canalNotificacion = canalNotificacion;
+	}
+	public String getTelefonoContacto() {
+		return telefonoContacto;
+	}
+	public void setTelefonoContacto(String telefonoContacto) {
+		this.telefonoContacto = telefonoContacto;
+	}
+	public String getEmailNotificacion() {
+		return emailNotificacion;
+	}
+	public void setEmailNotificacion(String emailNotificacion) {
+		this.emailNotificacion = emailNotificacion;
+	}
+	public String getIdFacebook() {
+		return idFacebook;
+	}
+	public void setIdFacebook(String idFacebook) {
+		this.idFacebook = idFacebook;
+	}
+	public String getTwitter() {
+		return twitter;
+	}
+	public void setTwitter(String twitter) {
+		this.twitter = twitter;
+	}
+	public boolean isActualizarDatosContancto() {
+		return actualizarDatosContancto;
+	}
+	public void setActualizarDatosContancto(boolean actualizarDatosContancto) {
+		this.actualizarDatosContancto = actualizarDatosContancto;
+	}
+	public String getAni() {
+		return ani;
+	}
+	public void setAni(String ani) {
+		this.ani = ani;
+	}
+	public String getFavorabilidadCaso() {
+		return favorabilidadCaso;
+	}
+	public void setFavorabilidadCaso(String favorabilidadCaso) {
+		this.favorabilidadCaso = favorabilidadCaso;
+	}
 	public String getNumeroCaso() {
 		return numeroCaso;
 	}

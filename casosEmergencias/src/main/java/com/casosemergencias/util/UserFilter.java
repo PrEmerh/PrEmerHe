@@ -39,9 +39,15 @@ public class UserFilter implements Filter{
 	         
 	        if (user == null){
 	        	logger.debug("UserFilter -- usuario NO esta en sesion");
-//	            RequestDispatcher rd = req.getRequestDispatcher("/");
-//	            rd.forward(request, response);
-	        	resp.sendRedirect("/casosEmergencias");
+
+	        	//Si la url contiene /casosEmergencias, estamos trabajando en local. En caso contrario estamos trabajando en Heroku y no tenemos el path
+	    		StringBuffer url = req.getRequestURL();
+	    		if(url.indexOf("/casosEmergencias")>0){
+	    			resp.sendRedirect("/casosEmergencias");
+	    		}else{
+	    			resp.sendRedirect("/");
+	    		}
+	    		
 	        }else{
 	        	logger.debug("UserFilter -- usuario esta en sesion");
 	        	chain.doFilter(request, response);

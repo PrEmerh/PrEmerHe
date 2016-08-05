@@ -14,7 +14,7 @@ import com.casosemergencias.model.Suministro;
 public class ParserModelVO {
 	
 	
-	final static Logger logger = Logger.getLogger(LoginController.class);
+	final static Logger logger = Logger.getLogger(ParserModelVO.class);
 	
 	//Metodo que dado dos objetos, se pasa la información de objectWithData y se vuelca en objectToFill
 	//Para que funcione se deben llamar igual los campos que queremos informar,

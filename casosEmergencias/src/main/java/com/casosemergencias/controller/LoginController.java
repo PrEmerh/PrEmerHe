@@ -63,11 +63,6 @@ public class LoginController {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("user", user);			
 
-//			model.setViewName("redirect: private/homeCasosPage");
-
-//			model.addObject("title", "Heroku Hello World");
-//			model.addObject("name",  user.getName());
-//			model.setViewName("private/hello");
 			model.setViewName("redirect: private/homeCasos");
 
 		}else{

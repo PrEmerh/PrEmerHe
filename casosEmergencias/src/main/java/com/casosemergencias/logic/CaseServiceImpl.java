@@ -14,6 +14,7 @@ import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.model.Direccion;
 import com.casosemergencias.model.Suministro;
+import com.casosemergencias.util.DataTableProperties;
 import com.casosemergencias.util.ParserModelVO;
 
 public class CaseServiceImpl implements CaseService{
@@ -32,13 +33,13 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 	 * @return
 	 */
 	@Override
-	public List<Caso> readAllCase() {
+	public List<Caso> readAllCase(DataTableProperties propDatatable) {
 		
 		logger.debug("--- Inicio -- readAllCase ---");
 		
 		List<Caso> listCaso = new ArrayList<>();
 		
-		List<CaseVO> listCasosVO = caseDao.readAllCaseDescriptionPick();
+		List<CaseVO> listCasosVO = caseDao.readCaseDataTable(propDatatable);
 		logger.debug("--- Inicio -- readAllCase tamano : " + listCasosVO.size() + " ---");
 		
 		for(CaseVO casoVO : listCasosVO){
@@ -105,4 +106,10 @@ caso.setCasoPrincipal(casoVO.getParentid()); //buscar el nombre de este
 		return returnCase;
 	}
 
+	
+	public Integer getNumCasos(){
+		logger.debug("--- getNumCasos ---");
+		return caseDao.countCase();
+		
+	}
 }

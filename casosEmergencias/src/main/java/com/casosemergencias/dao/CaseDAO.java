@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.casosemergencias.util.DataTableProperties;
+
 @Repository
 public class CaseDAO{
 
@@ -33,7 +35,7 @@ public class CaseDAO{
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from Case");
+			Query query = session.createQuery("from CaseVO");
 			
 			List<CaseVO> casoList = query.list(); 
 
@@ -45,6 +47,45 @@ public class CaseDAO{
 	    	logger.error("--- readAllCase "+ e.getMessage() +"---");
 	    	logger.error(e.getStackTrace()); 
 	    	logger.error("--- Fin -- readAllCase ---");
+	    }finally {
+	    	session.close(); 
+	    }
+	      return null;
+	}
+	
+	/**
+	 * Devuelve una lista de casos utilizando los parametros del datatable
+	 * 
+	 * @return
+	 */
+	public List<CaseVO> readCaseDataTable(DataTableProperties propDatatable){
+				
+		logger.debug("--- Inicio -- readCaseDataTable ---");
+		
+		Session session = sessionFactory.openSession();
+		String order = propDatatable.getOrderColumnName();
+		String dirOrder = propDatatable.getOrderDirec();
+		int numStart = propDatatable.getStart();
+		int numLength = propDatatable.getLength();
+		
+		try{
+			StringBuilder query = new StringBuilder("from CaseVO ");
+//			Query query = session.createQuery
+			if(order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)){
+				query.append("ORDER BY " + order + " " + dirOrder);
+			}
+			
+			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);
+			List<CaseVO> casoList = result.list();
+
+			logger.debug("--- Fin -- readAllCase ---");
+			
+			return casoList;
+			
+	    }catch (HibernateException e) {
+	    	logger.error("--- readCaseDataTable "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- readCaseDataTable ---");
 	    }finally {
 	    	session.close(); 
 	    }
@@ -1395,6 +1436,36 @@ public class CaseDAO{
 	    	session.close(); 
 	    }
 
+		
     }
+	/**
+	 * Devuelve el numero de casos que hay en la tala Case
+	 * 
+	 * @return
+	 */
+	public Integer countCase(){
+				
+		logger.debug("--- Inicio -- countCase ---");
+		
+		Session session = sessionFactory.openSession();
+				
+		try{
+			Query query = session.createQuery("select count(id) from CaseVO");
+			
+			Long count = (Long) query.uniqueResult();
+
+			logger.debug("--- Fin -- readAllCase ---");
+			
+			return count.intValue();
+			
+	    }catch (HibernateException e) {
+	    	logger.error("--- countCase "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- countCase ---");
+	    }finally {
+	    	session.close(); 
+	    }
+	      return 0;
+	}
 	
 }

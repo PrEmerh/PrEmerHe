@@ -178,37 +178,38 @@ public class UserServiceImpl implements UserService{
 	@Transactional
 	@Override
 	public void insertUser() {
-		Session session = sessionFactory.openSession();
-		Transaction tx = session.beginTransaction();
+	//	Session session = sessionFactory.openSession();
+		//Transaction tx = session.beginTransaction();
 		
 		try{
 			HerokuUserVO herokuUser1 = new HerokuUserVO();
-			herokuUser1.setName("User3");
-			herokuUser1.setPassword("User3");
+			herokuUser1.setName("User5");
+			herokuUser1.setPassword("User5");
 			herokuUser1.setEnvioMail(false);
-			herokuUser1.setUsername("User3");
+			herokuUser1.setUsername("User5");
 			herokuUser1.setActivo(false);
 			herokuUser1.setEmail("user1@email.com");
 			herokuUser1.setCreatedDate(new Date());
 			
 			HerokuUserVO herokuUser2 = new HerokuUserVO();
-			herokuUser2.setName("User4");
-			herokuUser2.setPassword("User4");
+			herokuUser2.setName("User6");
+			herokuUser2.setPassword("User6");
 			herokuUser2.setEnvioMail(false);
-			herokuUser2.setUsername("User4");
+			herokuUser2.setUsername("User6");
 			herokuUser2.setActivo(true);
 			herokuUser2.setEmail("user2@email.com");
-			herokuUserDao.insertHerokuUser(herokuUser1, session);
-			herokuUserDao.insertHerokuUser(herokuUser2, session);
+			herokuUserDao.insertHerokuUser(herokuUser1, null);
+			herokuUserDao.insertHerokuUser(herokuUser2, null);
+			herokuUserDao.insertHerokuUser2(null, null);
 			
-			tx.commit();
+			//tx.commit();
 
 	 	}catch (Exception e) {
 	    	logger.error("readHerokuUser "+ e.getMessage());
 	    	logger.error(e.getStackTrace()); 
-	    	tx.rollback();
+//	    	tx.rollback();
 	    }finally {
-	    	session.close(); 
+	    	//session.close(); 
 	    }
 	
 	}
