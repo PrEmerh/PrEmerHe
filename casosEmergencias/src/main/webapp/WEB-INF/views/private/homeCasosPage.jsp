@@ -15,21 +15,22 @@
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>
 		<script src="../resources/js/casos.js"></script>
-		
-		
 	</head>
 	<body>
-		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
+		<script type="text/javascript">var objetoSeleccionado="<s:message code="cabeceraPage_list_case"/>";</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		 
-		<form name='formListadoCasos' action="homeCasosAction" method='POST'>
+		<form name="formListadoCasos" action="homeCasosAction" method="POST">
 			<div class="botoneraListado">
 				<ul>
 					<li><input type="submit" name="goCrearCaso" value="<s:message code="homeCasos_button_nuevocaso"/>" /></li>
 				</ul>
 			</div>
 			<div>
-
+				<input class="column_filter" id="col0_filter" type="text" value="">
+				<input class="column_filter" id="search" type="button" value="Buscar">
+				<input type="radio" name="radios" value="rd1" checked>Numero Casos        
+            	<input type="radio" name="radios" value="rd2"> Todos
 				<table id="tablaCasos" class="display" style="width: 100%;"> 
 					<thead>
 			            <tr>
@@ -47,6 +48,5 @@
 				</table>
 			</div>
 		</form>
-
 	</body>
 </html>

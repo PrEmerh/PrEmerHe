@@ -21,7 +21,7 @@ $(document).ready(function() {
        	            {"data": "numeroCaso","width" : "20%","defaultContent": ""}, 
        	            {"data": "numeroInservice", "width":"16%", "defaultContent": ""},
        	            {"data": "canalOrigen", "width":"16%", "defaultContent": ""},
-       	            {"data": "descripcionEstado", "width":"16%", "defaultContent": ""},
+       	            {"data": "estado", "width":"16%", "defaultContent": ""},
        	            {"data": "subestado", "width":"16%", "defaultContent": ""},
        	            {"data": "submotivo", "width":"16%", "defaultContent": ""},
        	            {"data": "sfid", "width":"1%", "visible": false, "defaultContent": ""}
@@ -42,9 +42,19 @@ $(document).ready(function() {
 	    	   		}
 	    	   		],
 		"lengthMenu": [[2, 3, 5, -1], [2, 100, 200, "All"]],
-		"order": [[0, 'asc']],      
+		"order": [[1, 'asc']],
         "deferRender": true, 
   
+	});
+	
+	$('#search').on('click', function(){
+		var radioButton = $("input[name='radios']:checked").val(); 
+		var allCase = false;
+		if(radioButton == 'rd2'){
+			allCase = true;
+		}
+		
+		table.search($('#col0_filter').val(),allCase).draw();
 	});
 });
 

@@ -246,12 +246,14 @@ table.dataTable,table.dataTable th,table.dataTable td{
 	clear:both;float:left;
 	padding-top:0.755em;
 	font-size: 11px;
+	font-family:Helvetica,Arial,sans-serif;
 }
 .dataTables_wrapper .dataTables_paginate{
 	float:right;
 	text-align:right;
 	padding-top:0.25em;
 	font-size: 11px;
+	font-family:Helvetica,Arial,sans-serif;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button{
 	box-sizing:border-box;
@@ -372,35 +374,90 @@ table.dataTable,table.dataTable th,table.dataTable td{
 }
 /*-------------------------------- DATATABLE STYLES --------------------------------------- */
 
-.buttontext
-{
-color:blue;
-font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica, sans-serif;
+/*-------------------------------- ESTILOS DE LOGIN --------------------------------------- */
+#logo-section {
+	margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+	justify-content: center;
+	font-family: Helvetica, Arial, sans-serif;  
+}
 
-}
-.button
-{
-    width:105px;
-    height: 20px;
-    weight:10;
-    line-height: 20px;
-    padding-bottom: 2px;
-    midlle-align: bottom;
-    font-family: "Lucida Grande", Geneva, Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    font-weight: bold; 
-}
-#box-page {
-	width: 250px;
-	padding: 40px;
-	margin: 40px auto;
-	background-color: #ff8000;  
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 20px;
-	border:medium;
+#box-login {
+	width: 350px;
+	padding: 20px;
+	margin: 20px auto;
 	border: 2px solid #000;
 	opacity: 0.65;
+	font-family: Helvetica1, Arial, sans-serif;
 }
+
+#login-text {
+	font-family: Helvetica1, Arial, sans-serif;
+	font-size: 28px;
+    font-weight: bold;
+    margin: 10px auto;
+}
+
+#login-user-table {
+	font-family: Helvetica1, Arial, sans-serif;
+	color: #000000;
+	justify-content: center;
+}
+
+#login-user-table tr td {
+	padding: 10px;
+}
+
+#login-user-table tr td label {
+	display: inline-block;
+	text-align: right;
+	color: black;
+}
+
+#login-user-table tr td a {
+	text-decoration: none;
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    color: #006cb5;
+}
+
+#login-user-table tr td a:visited {
+	text-decoration: none;
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    color: #006cb5;
+}
+
+#login-user-table input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    margin: 2px 0;
+    display: inline;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#login-user-table input[type="password"] {
+    width: 100%;
+    padding: 5px;
+    margin: 2px 0;
+    display: inlinek;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#login-user-table input[type="submit"] {
+    padding: 10px;
+    margin: 2px;
+    display: inline;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    align: center;
+}
+
+/*-------------------------------- ESTILOS DE LOGIN --------------------------------------- */
 
 /*-------------------------------- ESTILOS DE TABLAS --------------------------------------- */
 

@@ -8,6 +8,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Emergencias App</title>		
 	
+	<link rel="icon" type="image/png" href="../resources/images/favicon.png">
+	
 	<link href="../resources/css/cabecera.css" rel="stylesheet" />
 	<link href="../resources/css/body.css" rel="stylesheet" />	
 
@@ -18,15 +20,12 @@
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadContacto" action="actualizarContacto" modelAttribute="contacto" method="POST">
 			<form:hidden path="sfid"/>
-	
-			
 			<div class="divCabeceraEntidad">
 				<div class="divTituloEntidad">
 						<input id="arrowInformacionPersonal" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('informacionPersonal','arrowInformacionPersonal'); return false;"/>										
 						<b><label><s:message code="entidadContacto_title_label_informacion_personal"/></label></b>
 				</div>
 			</div>
-			
 			<div id="informacionPersonal" class="divEntidad">
 				<div>
 					<div >					

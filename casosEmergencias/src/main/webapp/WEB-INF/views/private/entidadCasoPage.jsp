@@ -357,12 +357,6 @@
 		cancelar.hidden=true;	
 		descriptionRead.style.display='';
 		descriptionEdit.style.display='none'; 
-}
-
-	
-	
-	
-	
-	
+	}
 	</script>
 </html>

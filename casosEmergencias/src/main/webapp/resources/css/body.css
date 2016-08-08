@@ -26,18 +26,15 @@ body {
 	font-size: 12.5px;
 	font-weight: normal;
 	padding: 5px 10px;
-	background: #e8e8e9 url('../../resources/images/btn_sprite.png') repeat-x right top;
+	/*background: #e8e8e9 url('../../resources/images/btn_sprite.png') repeat-x right top;*/
+	border-color: #4a90e2;
+    background-color: #0070d2;
+    color: #fff;
+    background-image: none;
 	border-radius: 3px;
 	cursor:pointer;
     align-items: flex-start;
     text-align: center;    
-}
-
-.botoneraListado li:first-child input {
-    border-color: #4a90e2;
-    background-color: #0070d2;
-    color: #fff;
-    background-image: none;
 }
 
 .divEntidad{
@@ -68,6 +65,8 @@ body {
 }
 .divEntidad div .divLabel{	
 	width:20%;	
+	font-size: 12px;
+	font-weight: bolder;
 	text-align: right;
 }
 .divEntidad div .divLabel label{
@@ -77,6 +76,43 @@ body {
 .divEntidad div .divAnchoEspecial{	
 	width:80%;
 }
+
+/**/
+.divEntidad .divSubEntidad div {
+	width:100%;
+	padding-top:2px; 
+	padding-bottom:4px;	
+}
+
+.divEntidad .divSubEntidad div .divLabel {	
+	width:20%;	
+	text-align: right;
+	font-size: 12px;
+	font-weight: bolder;
+}
+
+
+.divEntidad .divSubEntidad div .divLabel label {
+	padding-right:10px;
+}
+
+.divEntidad .divSubEntidad div div {
+	float:left;	
+	width:30%;
+	font-family: Helvetica,Arial,sans-serif;
+	font-size: 91%;
+	height:20px;
+}
+
+.divEntidad .divSubEntidad div div .divObligatorio {
+	width:3px;
+	float:left;
+	height:15px;
+	background-color:red;
+	margin-right:4px;
+}
+/**/
+
 .divEntidad .subtittlePrincipalAltaEntidad .subtittlePrincipalAltaEntidadDivInfo{
 	width:80%;
 	height: 15px;
@@ -84,6 +120,7 @@ body {
 	background-color:#f5f4f3;
 	float:left;
 	padding-left:4px;
+	font-weight: bolder;
 }
 .divEntidad .subtittlePrincipalAltaEntidad .subtittlePrincipalAltaEntidadDivOblig{
 	width:19%;
@@ -104,14 +141,16 @@ body {
 	height: 10px;
 	margin:0px;
 	float:left;
+	font-weight: bolder;
 }
 
-.divEntidad .subtittleAltaEntidad div{
+.divEntidad .subtitleAltaEntidad div{
 	width:100%;
 	height: 15px;
 	margin-top:20px;
 	background-color:#f5f4f3;
 	padding-left:4px;
+	font-weight: bolder;
 }
 
 .divCabeceraEntidad{
@@ -149,6 +188,7 @@ body {
     text-align: center;    
 }
 .divTituloEntidad{
+	padding-top: 10px;
 	float:left;
 	width:35%;
 }

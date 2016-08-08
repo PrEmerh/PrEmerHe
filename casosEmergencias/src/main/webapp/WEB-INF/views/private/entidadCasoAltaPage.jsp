@@ -69,7 +69,7 @@
 					<label>${caso.canalOrigenLabel}</label>
 				</div>
 			</div>
-			<div class="subtittleAltaEntidad">
+			<div class="subtitleAltaEntidad">
 				<div><label><s:message code="entidadCasoAlta_table_title_label_datosemergencia"/></label></div>
 			</div>
 			<div>
@@ -100,7 +100,7 @@
 					<form:select path="condicionAgravante" items="${caso.mapCondicionAgravante}"/>
 				</div>
 			</div>
-			<div class="subtittleAltaEntidad">
+			<div class="subtitleAltaEntidad">
 				<div><label><s:message code="entidadCasoAlta_table_title_label_identificacion"/></label></div>
 			</div>
 			<div>
@@ -165,7 +165,7 @@
 					<form:checkbox path="actDatosContacto"/>
 				</div>
 			</div>
-			<div class="subtittleAltaEntidad">
+			<div class="subtitleAltaEntidad">
 				<div><label><s:message code="entidadCasoAlta_table_title_label_solucion"/></label></div>
 			</div>
 			<div>

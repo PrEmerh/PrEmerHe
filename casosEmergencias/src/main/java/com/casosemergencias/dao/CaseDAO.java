@@ -231,12 +231,12 @@ public class CaseDAO{
 					query.append(" AND caso.id = :id");
 				}
 			}
-			if(caso.getSubject()!= null){
+			if(caso.getAsunto()!= null){
 				if(isFirst){
-					query.append(" WHERE caso.subject = :subject");
+					query.append(" WHERE caso.asunto = :asunto");
 					isFirst = false;
 				}else{
-					query.append(" AND caso.subject = :subject");
+					query.append(" AND caso.asunto = :asunto");
 				}
 			}			
 			//Campo username no es caso sensitive, lo convertimos a mayusculas para la condicion
@@ -335,12 +335,12 @@ public class CaseDAO{
 					query.append(" AND caso.sf4twitterTwitterUsername = :sf4twitterTwitterUsername");
 				}
 			}
-			if(caso.getOwnerid()!= null){
+			if(caso.getParent()!= null){
 				if(isFirst){
-					query.append(" WHERE caso.ownerid = :ownerid");
+					query.append(" WHERE caso.parent = :parent");
 					isFirst = false;
 				}else{
-					query.append(" AND caso.ownerid = :ownerid");
+					query.append(" AND caso.parent = :parent");
 				}
 			}if(caso.getSlastartdate()!= null){
 				if(isFirst){
@@ -1047,10 +1047,10 @@ public class CaseDAO{
 			}
 			if(caso.getSystemmodstamp()!= null){
 				if(isFirst){
-					query.append(" WHERE caso.createdDate = :createdDate");
+					query.append(" WHERE caso.fechaApertura = :fechaApertura");
 					isFirst = false;
 				}else{
-					query.append(" AND caso.createdDate = :createdDate");
+					query.append(" AND caso.fechaApertura = :fechaApertura");
 				}
 			}
 			if(caso.getSystemmodstamp()!= null){
@@ -1068,8 +1068,8 @@ public class CaseDAO{
 			if(caso.getId()!= null){
 				result.setInteger("id", caso.getId());
 			}
-			if(caso.getSubject()!= null){
-				result.setString("subject", caso.getSubject());
+			if(caso.getAsunto()!= null){
+				result.setString("asunto", caso.getAsunto());
 			}
 			if(caso.getFechaEstimadaCierre()!= null){
 				result.setDate("fechaEstimadaCierre", caso.getFechaEstimadaCierre());
@@ -1104,8 +1104,8 @@ public class CaseDAO{
 			if(caso.getSf4twitterTwitterUsername()!= null){
 				result.setString("sf4twitterTwitterUsername", caso.getSf4twitterTwitterUsername());
 			}
-			if(caso.getOwnerid()!= null){
-				result.setString("ownerid", caso.getOwnerid());
+			if(caso.getParent()!= null){
+				result.setString("parent", caso.getParent());
 			}
 			if(caso.getSlastartdate()!= null){
 				result.setDate("slastartdate", caso.getSlastartdate());
@@ -1254,8 +1254,8 @@ public class CaseDAO{
 			if(caso.getIsSelfserviceClosed()!= null){
 				result.setBoolean("isSelfserviceClosed", caso.getIsSelfserviceClosed());
 			}
-			if(caso.getParentid()!= null){
-				result.setString("parentid", caso.getParentid());
+			if(caso.getParent()!= null){
+				result.setString("parent", caso.getParent());
 			}
 			if(caso.getUi()!= null){
 				result.setBoolean("ui", caso.getUi());
@@ -1380,8 +1380,8 @@ public class CaseDAO{
 			if(caso.getCondicionAgravante()!= null){
 				result.setString("condicionAgravante", caso.getCondicionAgravante());
 			}			
-			if(caso.getCreatedDate()!= null){
-				result.setDate("createdDate", caso.getCreatedDate());
+			if(caso.getFechaApertura()!= null){
+				result.setDate("fechaApertura", caso.getFechaApertura());
 			}
 			if(caso.getSystemmodstamp()!= null){
 				result.setDate("systemmodstamp", caso.getSystemmodstamp());
