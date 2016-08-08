@@ -1,12 +1,9 @@
 package com.casosemergencias.controller;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import javax.json.JsonArray;
 
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
@@ -173,10 +170,10 @@ public class CaseController {
 			jsonResult = new JSONObject();
 			jsonResult.put("numeroCaso", caso.getNumeroCaso());
 			jsonResult.put("numeroInservice", caso.getNumeroInservice());
-			jsonResult.put("canalOrigen", caso.getLabelCanalorigenPickList());
-			jsonResult.put("descripcionEstado", caso.getDescripcionEstado());
-			jsonResult.put("subestado", caso.getLabelSubestadoPickList());
-			jsonResult.put("submotivo", caso.getLabelSubmotivoPickList());
+			jsonResult.put("canalOrigen", caso.getCanalOrigenPickList());
+			jsonResult.put("descripcionEstado", caso.getEstado());
+			jsonResult.put("subestado", caso.getSubestadoPickList());
+			jsonResult.put("submotivo", caso.getSubmotivoPickList());
 			jsonResult.put("sfid", caso.getSfid());
 
 			array.put(jsonResult);
