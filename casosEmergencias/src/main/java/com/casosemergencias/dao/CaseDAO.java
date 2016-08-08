@@ -56,7 +56,7 @@ public class CaseDAO{
 	}
 	
 	/**
-	 * Devuelve una lista de casos utilizando los parametros del datatable
+	 * Devuelve una lista de casos utilizando los parametros del datatable y con las descripciones de los picklist
 	 * 
 	 * @return
 	 */
@@ -72,13 +72,13 @@ public class CaseDAO{
 		String searchValue = propDatatable.getValueSearch();
 		
 		try{
-			StringBuilder query = new StringBuilder("from CaseVO ");
+			StringBuilder query = new StringBuilder("from CaseVO caso left join fetch caso.subestadoPickList subest left join fetch caso.submotivoPickList submotivv left join fetch caso.canalorigenPickList canalorigen");
 			if(searchValue != null && !"".equals(searchValue)){
-				query.append(" WHERE numeroCaso LIKE '%" + searchValue +"%'");
+				query.append(" WHERE caso.numeroCaso LIKE '%" + searchValue +"%'");
 			}
 			
 			if(order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)){
-				query.append("ORDER BY " + order + " " + dirOrder);
+				query.append(" ORDER BY caso." + order + " " + dirOrder);
 			}
 			
 			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);

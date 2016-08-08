@@ -173,10 +173,10 @@ public class CaseController {
 			jsonResult = new JSONObject();
 			jsonResult.put("numeroCaso", caso.getNumeroCaso());
 			jsonResult.put("numeroInservice", caso.getNumeroInservice());
-			jsonResult.put("canalOrigen", caso.getCanalOrigen());
-			jsonResult.put("estado", caso.getEstado());
-			jsonResult.put("subestado", caso.getSubEstado());
-			jsonResult.put("submotivo", caso.getSubMotivo());
+			jsonResult.put("canalOrigen", caso.getLabelCanalorigenPickList());
+			jsonResult.put("descripcionEstado", caso.getDescripcionEstado());
+			jsonResult.put("subestado", caso.getLabelSubestadoPickList());
+			jsonResult.put("submotivo", caso.getLabelSubmotivoPickList());
 			jsonResult.put("sfid", caso.getSfid());
 
 			array.put(jsonResult);
@@ -185,8 +185,8 @@ public class CaseController {
 		Integer numCasos = casoService.getNumCasos();
 		
 		JSONObject json = new JSONObject();
-		json.put("iTotalRecords", numCasos); 
-		json.put("iTotalDisplayRecords", numCasos); 
+		json.put("iTotalRecords", numCasos);  //Numero de registros totales en BBDD
+		json.put("iTotalDisplayRecords", numCasos); //numero de registros totales filtrados en BBDD -- este numero lo utiliza el datatable para calcular el numero de paginas
 		json.put("data", array);
 		
 		logger.info("--- Inicio -- listadoCasosHome ---");

@@ -45,44 +45,6 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 		for(CaseVO casoVO : listCasosVO){
 			Caso caso = new Caso();
 			ParserModelVO.parseDataModelVO(casoVO, caso);
-			/*caso.setId(casoVO.getId());
-			caso.setSfid(casoVO.getSfid());
-			caso.setMotivo(casoVO.getPeticion());
-			caso.setNumeroCaso(casoVO.getNumeroCaso());
-			caso.setNumeroInservice(casoVO.getNumeroInservice());
-			caso.setFechaApertura(casoVO.getCreatedDate());
-			caso.setFechaEstimadoNormalizacion(casoVO.getFechaEstimadaCierre());
-			caso.setPropietarioCaso(casoVO.getOwnerid());
-			caso.setFechaCierre(casoVO.getClosedDate());
-			caso.setSubMotivo(casoVO.getMotivoEmpresa());
-			caso.setCondicionAgravante(casoVO.getCondicionAgravante());
-			caso.setTipoAtencionInterna(casoVO.getTipoAtencionInterna());
-			caso.setContacto(new Contacto()); //Añadir los datos del contacto
-			caso.setSuministro(new Suministro()); //añadir los datos del suministro
-			caso.setDireccion(new Direccion()); //añadir los datos de la direccion
-			caso.setCuenta(new Cuenta()); //añadir los datos de la cuenta
-			caso.setDireccionSuministro(casoVO.getDireccionSuministro());
-			caso.setComuna(casoVO.getComunaF());
-			caso.setNumeroMedidor(casoVO.getNumeroMedidor());
-			caso.setCuerpoMail(casoVO.getCuerpoMail());
-			caso.setRespuestaCliente(casoVO.getRespuestaAlCliente());
-			caso.setEstado(casoVO.getEstado());
-			caso.setSubEstado(casoVO.getSubEstado());
-			caso.setCanalOrigen(casoVO.getOrigin());
-			caso.setUnidad(casoVO.getCallCenter());
-			caso.setCasoPrincipal(casoVO.getParentid()); //buscar el nombre de este
-			caso.setAsunto(casoVO.getSubject());
-			caso.setDescripcion(casoVO.getDescription());
-			caso.setTipoAtencionSEC(casoVO.getTipoAtencionSec());
-			caso.setCanalNotificacion(casoVO.getCanalNotificacion());
-			caso.setTelefonoContacto(casoVO.getTelefonoContacto());
-			caso.setEmailNotificacion(casoVO.getEmailNotificacion());
-			caso.setIdFacebook(casoVO.getFacebook());
-			caso.setTwitter(casoVO.getTwitter());
-//			caso.setActualizarDatosContancto(casoVO.getActDatosContacto());
-			caso.setAni(casoVO.getAni());
-			caso.setFavorabilidadCaso(casoVO.getFavorabilidadDelCaso());
-			caso.setEstadoPickList(casoVO.getEstadoPickList());*/
 			listCaso.add(caso);
 			
 		}

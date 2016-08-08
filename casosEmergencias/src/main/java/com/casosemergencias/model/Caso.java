@@ -37,15 +37,9 @@ public class Caso extends ObjectLogic {
 	private String respuestaCliente;
 	private String estado;
 	private String subEstado;
-<<<<<<< HEAD
 	private String canalOrigen;	//origin
-	private String unidad;	//call_center
 	private String parent;	//parent
-=======
-	private String canalOrigen;
 	private String callCenter;	//call_center
-	private String parentid;	//parent
->>>>>>> refs/remotes/origin/branch01
 	private String asunto;	//subject
 	private String descripcion;
 	private String tipoAtencionSEC;
