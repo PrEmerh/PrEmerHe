@@ -7,14 +7,14 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Emergencias App</title>		
 		
+		<link rel="icon" type="image/png" href="../resources/images/favicon.jpg">
+		
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
 		<link href="../resources/css/body.css" rel="stylesheet" />
 		<link href="../resources/css/jQueryDatatable.css" rel="stylesheet" />	
 
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>
-		
-		
 	</head>
 	<body>
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_contact"/>';</script>

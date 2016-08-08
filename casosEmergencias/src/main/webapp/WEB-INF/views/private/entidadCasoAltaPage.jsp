@@ -5,13 +5,16 @@
 
 <html>
 	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Emergencias App</title>		
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Emergencias App</title>		
+		
+		<link rel="icon" type="image/png" href="../resources/images/favicon.jpg">
+		
+		<link href="../resources/css/cabecera.css" rel="stylesheet" />
+		<link href="../resources/css/body.css" rel="stylesheet" />	
 	
-	<link href="../resources/css/cabecera.css" rel="stylesheet" />
-	<link href="../resources/css/body.css" rel="stylesheet" />	
-
-	<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
+		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
+		<script src="../resources/js/utils.js" lang=""></script>
 	</head>
 <body>
 	<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
@@ -22,7 +25,7 @@
 			<div class="divTituloEntidad">
 					<label><s:message code="entidadCasoAlta_title_label_detalle_caso"/></label>
 			</div>
-			<div class="botoneraEntidad">
+			<div class="botoneraListado">
 				<ul>
 				<li><input type="submit" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" /></li>
 				<li><input type="submit" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" /></li>
@@ -183,7 +186,7 @@
 		</div>
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">&nbsp;</div>
-			<div class="botoneraEntidad botoneraBottom">
+			<div class="botoneraListado botoneraBottom">
 				<ul>
 					<li><input type="submit" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" /></li>
 					<li><input type="submit" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" /></li>
@@ -192,28 +195,5 @@
 			</div>
 		</div>
 	</form:form>
-	<script type="text/javascript" charset="utf-8">
-			function validaDatos(){
-		    	if (document.getElementById('suministro') && document.getElementById('suministro').value==''
-		    		&& document.getElementById('direccion') && document.getElementById('direccion').value==''){
-		    		document.getElementById('errorMessage').innerHTML= '<s:message code="entidadCasoAlta_error_sumiodire"/>';		    		
-		    		document.getElementById('divError').style.display= 'block';
-		    		return false;
-		    	}
-				return true;
-			}
-			function limpiarDireccion(){
-				if (document.getElementById('direccion') && document.getElementById('direccion').value!=''){
-					document.getElementById('direccion').value = '';
-					document.getElementById('textDireccion').value = '';
-				}
-			}
-			function limpiarSuministro(){
-				if (document.getElementById('suministro') && document.getElementById('suministro').value!=''){
-					document.getElementById('suministro').value = '';
-					document.getElementById('textSuministro').value = '';
-				}
-			}
-	</script>
 </body>
 </html>

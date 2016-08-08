@@ -183,7 +183,7 @@ public class CaseDAO{
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from CaseVO as caso WHERE caso.sfid = :sfid");
+			Query query = session.createQuery("from CaseVO as caso left join fetch caso.canalorigenPickList origen WHERE caso.sfid = :sfid");
 			query.setString("sfid", sfid);
 			
 			List<CaseVO> casoList = query.list(); 

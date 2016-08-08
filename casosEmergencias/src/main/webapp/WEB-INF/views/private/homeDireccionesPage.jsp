@@ -7,6 +7,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Emergencias App</title>		
 		
+		<link rel="icon" type="image/png" href="../resources/images/favicon.jpg">
+		
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
 		<link href="../resources/css/body.css" rel="stylesheet" />
 		<link href="../resources/css/jQueryDatatable.css" rel="stylesheet" />	

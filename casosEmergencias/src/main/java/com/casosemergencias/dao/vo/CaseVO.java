@@ -350,25 +350,19 @@ public class CaseVO extends ObjectVO implements Serializable {
 	private String condicionAgravante;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="subEstado", referencedColumnName="codigo", insertable = false, updatable=false)
-	@Where(clause = "campo ='Sub_Estado__c' and objeto='Case'")
+	@JoinColumn(name="sub_estado__c", referencedColumnName="codigo", insertable = false, updatable=false)
+	@Where(clause = "campo ='sub_estado__c' and objeto = 'Case'")
 	private PickListsVO subestadoPickList;
-//		NO va@ManyToMany
-//	    @JoinTable(name="salesforce.case", joinColumns=@JoinColumn(name="status"), inverseJoinColumns=@JoinColumn(name="codigo"))
-//		@WhereJoinTable (clause = "campo ='Status' and objeto='Case'")
-//	
-//		private Set<PickListsVO> estadoPickList;
-	
+
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="motivoEmpresa", referencedColumnName="codigo", insertable = false, updatable=false)
-   	@Where(clause = "campo ='Motivo_Empresa__c' and objeto='Case'")
+	@JoinColumn(name="motivo_empresa__c", referencedColumnName="codigo", insertable = false, updatable=false)
+   	@Where(clause = "campo ='motivo_empresa__c' and objeto = 'Case'")
 	private PickListsVO submotivoPickList;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="canalOrigen", referencedColumnName="codigo", insertable = false, updatable=false)
-   	@Where(clause = "campo ='Origin' and objeto='Case'")
+	@JoinColumn(name="origin", referencedColumnName="codigo", insertable = false, updatable=false)
+   	@Where(clause = "campo ='origin' and objeto = 'Case'")
 	private PickListsVO canalorigenPickList;
-
 	
 	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
 			Date createdDate, String asunto, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,

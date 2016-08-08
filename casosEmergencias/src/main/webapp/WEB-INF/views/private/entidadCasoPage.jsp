@@ -8,7 +8,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Emergencias App</title>		
 		
-		<link rel="icon" type="image/png" href="../resources/images/favicon.png">
+		<link rel="icon" type="image/png" href="../resources/images/favicon.jpg">
 			
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
 		<link href="../resources/css/body.css" rel="stylesheet" />	
@@ -25,8 +25,8 @@
 			<div class="botoneraListado">
 				<ul>
 					<li><input id="Modificar" type="button" name="Modificar" value="Modificar"  onclick="modificarButton();" /></li>
-					<li><input id="Guardar" type="submit" name="Cancelar" value="Guardar" hidden=true/></li>
-					<li><input id="Cancelar" type="button" name="Cancelar" value="Cancelar" hidden=true  onclick="cancelarButton();"/></li>
+					<li><input id="Guardar" type="submit" name="Cancelar" value="Guardar" hidden="true"/></li>
+					<li><input id="Cancelar" type="button" name="Cancelar" value="Cancelar" hidden="true"  onclick="cancelarButton();"/></li>
 				</ul>
 			</div>
 			<div class="divEntidad">
@@ -136,8 +136,8 @@
 						<label><s:message code="entidadCaso_table_label_description"/></label>
 					</div>
 					<div>
-						<label>${caso.description}</label>
-					<label id="fieldEdit" style="display:none;"><input type='text' name='description' value="${caso.description}" class="buttontext" ></label>
+						<label id="fieldRead">${caso.description}</label>
+						<label id="fieldEdit" style="display:none;"><input type='text' name='description' value="${caso.description}" class="buttontext"></label>
 					</div>		
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_submotivo"/></label>
@@ -252,7 +252,7 @@
 						<label><s:message code="entidadCaso_table_label_actualizarDatosContacto"/></label>
 					</div>
 					<div>
-						<c:if test="${caso.actDatosContactos}">
+						<c:if test="${caso.actDatosContacto}">
 						    <label><input type="checkbox" id="checkbox" value="true" checked="checked" disabled/>
 							</label> 					
 						</c:if> 
@@ -325,38 +325,4 @@
 			</div>
 		</form:form>
   	</body>
-	<script type="text/javascript">
-  	// Modo edición
-	
-	function modificarButton(){
-		
-			var modificar =document.getElementById('Modificar');
-			var guardar =document.getElementById('Guardar');
-			var cancelar =document.getElementById('Cancelar');
-			var descriptionEdit =document.getElementById('fieldEdit');
-			var descriptionRead =document.getElementById('fieldRead');
-			
-			modificar.hidden=true;
-			guardar.hidden=false;
-			cancelar.hidden=false;		
-			descriptionRead.style.display='none'; 
-			descriptionEdit.style.display=''; 
-	}
-	
-	
-	function cancelarButton(){
-		
-		var modificar =document.getElementById('Modificar');
-		var guardar =document.getElementById('Guardar');
-		var cancelar =document.getElementById('Cancelar');
-		var descriptionEdit =document.getElementById('fieldEdit');
-		var descriptionRead =document.getElementById('fieldRead');
-		
-		modificar.hidden=false;
-		guardar.hidden=true;
-		cancelar.hidden=true;	
-		descriptionRead.style.display='';
-		descriptionEdit.style.display='none'; 
-	}
-	</script>
 </html>
