@@ -8,30 +8,29 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Emergencias App</title>		
 	
-	<link rel="icon" type="image/png" href="../resources/images/favicon.png">
+	<link rel="icon" type="image/png" href="../resources/images/favicon.jpg">
 	
 	<link href="../resources/css/cabecera.css" rel="stylesheet" />
 	<link href="../resources/css/body.css" rel="stylesheet" />	
 
 	<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
+	<script src="../resources/js/utils.js" lang=""></script>
 	</head>
 	<body>
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_contact"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadContacto" action="actualizarContacto" modelAttribute="contacto" method="POST">
 			<form:hidden path="sfid"/>
-			<div class="divCabeceraEntidad">
-				<div class="divTituloEntidad">
+			<div class="divEntidad">
+				<div class="subtitleAltaEntidad">
+					<div>
 						<input id="arrowInformacionPersonal" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('informacionPersonal','arrowInformacionPersonal'); return false;"/>										
 						<b><label><s:message code="entidadContacto_title_label_informacion_personal"/></label></b>
+					</div>
 				</div>
 			</div>
 			<div id="informacionPersonal" class="divEntidad">
 				<div>
-					<div >					
-					</div>
-					<div>						
-					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadContacto_table_label_nombre"/></label>
 					</div>
@@ -97,19 +96,16 @@
 					</div>
 				</div>
 			</div>	
-			
-			<div class="divCabeceraEntidad">
-				<div class="divTituloEntidad">
+			<div class="divEntidad">
+				<div class="subtitleAltaEntidad">
+					<div>
 						<input id="arrowInformacionSecundaria" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('informacionSecundaria','arrowInformacionSecundaria'); return false;"/>							
 						<b><label><s:message code="entidadContacto_title_label_informacion_secundaria"/></label></b>
+					</div>
 				</div>
 			</div>
 			<div id="informacionSecundaria" class="divEntidad">
 				<div>
-					<div >					
-					</div>
-					<div>						
-					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadContacto_table_label_fechaNacimiento"/></label>
 					</div>
@@ -138,20 +134,16 @@
 					</div>
 				</div>				
 			</div>
-			
-			<div class="divCabeceraEntidad">
-				<div class="divTituloEntidad">
-				
+			<div class="divEntidad">
+				<div class="subtitleAltaEntidad">
+					<div>
 						<input id="arrowDatosRSS" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('datosRSS','arrowDatosRSS'); return false;"/>					
 						<b><label><s:message code="entidadContacto_title_label_datos_rrss"/></label></b>
+					</div>
 				</div>
 			</div>
 			<div id="datosRSS" class="divEntidad">
 				<div>
-					<div >					
-					</div>
-					<div>						
-					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadContacto_table_label_nombreUsuarioTwitter"/></label>
 					</div>
@@ -203,24 +195,7 @@
 						<label>${contacto.sf4twitterFcbkUserId}</label>
 					</div>
 				</div>				
-			</div>				
-
-		</form:form>	
-		
-		<!-- Mostrar y esconder contenido de las pestañas -->
-		
-		<script type="text/javascript">
-		function showHideCabeceras(idDiv,idArrow){
-				var div =document.getElementById(idDiv);
-				var arrow = document.getElementById(idArrow); 				
-					if(div.style.visibility=='')  {
-						div.style.visibility='hidden';
-					arrow.src="../resources/images/Arrowright.PNG";
-					}else{
-					div.style.visibility='';
-						arrow.src="../resources/images/Arrowdown.PNG";
-					}					
-		}
-	</script> 			
+			</div>
+		</form:form> 			
 	</body>
 </html>

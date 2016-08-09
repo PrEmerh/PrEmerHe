@@ -170,10 +170,10 @@ public class CaseController {
 			jsonResult = new JSONObject();
 			jsonResult.put("numeroCaso", caso.getNumeroCaso());
 			jsonResult.put("numeroInservice", caso.getNumeroInservice());
-			jsonResult.put("canalOrigen", caso.getCanalOrigenPickList());
-			jsonResult.put("descripcionEstado", caso.getEstado());
-			jsonResult.put("subestado", caso.getSubestadoPickList());
-			jsonResult.put("submotivo", caso.getSubmotivoPickList());
+			jsonResult.put("canalOrigen", caso.getLabelCanalorigenPickList());
+			jsonResult.put("estado", caso.getDescripcionEstado());
+			jsonResult.put("subestado", caso.getLabelSubestadoPickList());
+			jsonResult.put("submotivo", caso.getLabelSubmotivoPickList());
 			jsonResult.put("sfid", caso.getSfid());
 
 			array.put(jsonResult);

@@ -8,6 +8,8 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Emergencias App</title>		
 		
+		<link rel="icon" type="image/png" href="../resources/images/favicon.jpg">
+		
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
 		<link href="../resources/css/body.css" rel="stylesheet" />
 		<link href="../resources/css/jQueryDatatable.css" rel="stylesheet" />	
@@ -31,7 +33,7 @@
 				<input class="column_filter" id="search" type="button" value="Buscar">
 				<input type="radio" name="radios" value="rd1" checked>Numero Casos        
             	<input type="radio" name="radios" value="rd2"> Todos
-				<table id="tablaCasos" class="display" style="width: 100%;"> 
+            	<table id="tablaCasos" class="display" style="width: 100%;"> 
 					<thead>
 			            <tr>
 			            <!-- <th data-orderable="false"> -->
@@ -44,7 +46,6 @@
 			                <th width="1%" hidden="true">sfid</th>
 			            </tr>
 		        	</thead>
-
 				</table>
 			</div>
 		</form>
