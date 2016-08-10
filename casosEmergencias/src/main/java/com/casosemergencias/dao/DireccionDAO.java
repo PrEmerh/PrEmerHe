@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.casosemergencias.dao.vo.DireccionVO;
+import com.casosemergencias.util.DataTableProperties;
 
 @Repository
 public class DireccionDAO {
@@ -244,7 +245,7 @@ public class DireccionDAO {
 			}
 			
 
-			//añadimos los valores por los que filtrara la query
+			//a�adimos los valores por los que filtrara la query
 			
 			Query result = session.createQuery(query.toString());
 			if(direccion.getSfid()!= null){
@@ -364,16 +365,81 @@ public class DireccionDAO {
 		return numModif;
 	}	
 	
+	/*Añadido Alvaro*/
+	/**
+	 * Devuelve una lista de direcciones utilizando los parametros del datatable
+	 * 
+	 * @return
+	 */
+	public List<DireccionVO> readDireccionDataTable(DataTableProperties propDatatable){
+				
+		logger.debug("--- Inicio -- readDireccionDataTable ---");
+		
+		Session session = sessionFactory.openSession();
+		String order = propDatatable.getOrderColumnName();
+		String dirOrder = propDatatable.getOrderDirec();
+		int numStart = propDatatable.getStart();
+		int numLength = propDatatable.getLength();
+		String searchValue = propDatatable.getValueSearch();
+		
+		try{
+			StringBuilder query = new StringBuilder("from DireccionVO ");
+			if(searchValue != null && !"".equals(searchValue)){
+				query.append(" WHERE name LIKE '%" + searchValue +"%'");
+			}
+			
+			if(order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)){
+				query.append("ORDER BY " + order + " " + dirOrder);
+			}
+			
+			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);
+			List<DireccionVO> direccionList = result.list();
+
+			logger.debug("--- Fin -- readDireccionDataTable ---");
+			
+			return direccionList;
+			
+	    }catch (HibernateException e) {
+	    	logger.error("--- readDireccionDataTable "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- readDireccionDataTable ---");
+	    }finally {
+	    	session.close(); 
+	    }
+	      return null;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * Devuelve el numero de direcciones utilizando los parametros del datatable
+	 * 
+	 * @return
+	 */
+	public Integer countDireccion(DataTableProperties propDatatable){
+				
+		logger.debug("--- Inicio -- countDireccion ---");
+		
+		Session session = sessionFactory.openSession();
+		String searchValue = propDatatable.getValueSearch();
+		
+		try{
+			StringBuilder sqlQuery = new StringBuilder("select count(id) from DireccionVO ");
+			if(searchValue != null && !"".equals(searchValue)){
+				sqlQuery.append(" WHERE name LIKE '%" + searchValue +"%'");
+			}
+			Query query = session.createQuery(sqlQuery.toString());
+			Long count = (Long) query.uniqueResult();
+			
+			logger.debug("--- Fin -- countDireccion ---");
+			
+			return count.intValue();
+			
+	    }catch (HibernateException e) {
+	    	logger.error("--- countDireccion "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- countDireccion ---");
+	    }finally {
+	    	session.close(); 
+	    }
+	      return null;
+	}
 }

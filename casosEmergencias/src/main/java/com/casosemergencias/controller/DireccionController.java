@@ -4,18 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.DireccionView;
 import com.casosemergencias.logic.DireccionService;
-import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Direccion;
+import com.casosemergencias.util.DataTableProperties;
+import com.casosemergencias.util.ParseBodyDataTable;
 import com.casosemergencias.util.ParserModelVO;
 
 @Controller
@@ -65,6 +69,45 @@ public class DireccionController {
 		return model;
 	}
 	
-	
+	/**
+	 * Método para recuperar los datos de la ventana modal de suministros
+	 * 
+	 * @param body
+	 * @return
+	 */
+	@RequestMapping(value = "/listarDirecciones", method = RequestMethod.POST)
+	public @ResponseBody String listadoDireccionesHome(@RequestBody String body){
+		
+		logger.info("--- Inicio -- listadoDireccionesHome ---");
+		
+		DataTableProperties propDataTable = ParseBodyDataTable.parseBodyToDataTable(body);
+		List<Direccion> listDirecciones = new ArrayList<Direccion>();
+		
+		JSONObject jsonResult = new JSONObject();
+		JSONArray array = new JSONArray();
+		
+		listDirecciones = direccionService.readAllDirecciones(propDataTable);
 
+		for(Direccion direccion : listDirecciones) {
+			jsonResult = new JSONObject();
+			jsonResult.put("name", direccion.getName());
+			jsonResult.put("numero", direccion.getNumero());
+			jsonResult.put("comuna", direccion.getComuna());
+			jsonResult.put("calle", direccion.getDireccionConcatenada());
+			jsonResult.put("departamento", direccion.getDepartamento());
+			jsonResult.put("sfid", direccion.getSfid());
+			array.put(jsonResult);
+		}
+		
+		Integer numCasos = direccionService.getNumDirecciones(propDataTable);
+		
+		JSONObject json = new JSONObject();
+		json.put("iTotalRecords", numCasos); 
+		json.put("iTotalDisplayRecords", numCasos); 
+		json.put("data", array);
+		
+		logger.info("--- Fin -- listadoDireccionesHome ---");
+		
+		return json.toString();	
+	}
 }

@@ -41,26 +41,68 @@ function cancelarButton() {
 	descriptionEdit.style.display = 'none'; 
 }
 
-function validaDatos(){
-	if (document.getElementById('suministro') && document.getElementById('suministro').value==''
-		&& document.getElementById('direccion') && document.getElementById('direccion').value==''){
+function validaDatos() {
+	if (document.getElementById('suministro') && document.getElementById('suministro').value == ''
+			&& document.getElementById('direccion') && document.getElementById('direccion').value == '') {
 		document.getElementById('errorMessage').innerHTML= '<s:message code="entidadCasoAlta_error_sumiodire"/>';		    		
 		document.getElementById('divError').style.display= 'block';
-		return false;
+		//return false;
 	}
 	return true;
 }
-
-function limpiarDireccion(){
-	if (document.getElementById('direccion') && document.getElementById('direccion').value!=''){
+function limpiarDireccion() {
+	if (document.getElementById('direccion') && document.getElementById('direccion').value != '') {
 		document.getElementById('direccion').value = '';
-		document.getElementById('textDireccion').value = '';
+		document.getElementById('dirRecuperada').value = '';
+	}
+}
+function limpiarSuministro() {
+	if (document.getElementById('suministro') && document.getElementById('suministro').value != '') {
+		document.getElementById('suministro').value = '';
+		document.getElementById('numSumiRecuperado').value = '';
 	}
 }
 
-function limpiarSuministro(){
-	if (document.getElementById('suministro') && document.getElementById('suministro').value!=''){
-		document.getElementById('suministro').value = '';
-		document.getElementById('textSuministro').value = '';
-	}
+$(document).ready(function() {
+	$( '#dialogSuministro' ).dialog({
+		autoOpen : false, 
+		modal : true, 
+		show : "blind", 
+		hide : "blind", 
+		height: "400",
+		width: "750",
+		resizable: false,
+		create: function (event) {$(event.target).parent().css('position', 'fixed');}
+	});
+	
+	$( '#dialogDireccion' ).dialog({
+		autoOpen : false, 
+		modal : true, 
+		show : "blind", 
+		hide : "blind", 
+		height: "400",
+		width: "750",
+		resizable: false,
+		create: function (event) { $(event.target).parent().css('position', 'fixed');}
+	});			    
+});
+
+function abrirDialogSuministro() {
+	$("#dialogSuministro").dialog('open');
+}
+
+function abrirDialogDireccion() {
+	$("#dialogDireccion").dialog('open');
+}
+
+function establecerSuministro(sfid, name) {
+	document.getElementById('suministro').value = sfid;
+	document.getElementById('numSumiRecuperado').value = name;
+	$('#dialogSuministro').dialog('close');
+}
+
+function establecerDireccion(sfid, name) {
+	document.getElementById('direccion').value = sfid;
+	document.getElementById('dirRecuperada').value = name;
+	$('#dialogDireccion').dialog('close');
 }

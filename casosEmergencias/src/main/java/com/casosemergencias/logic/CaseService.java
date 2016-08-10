@@ -8,9 +8,12 @@ import com.casosemergencias.util.DataTableProperties;
 public interface CaseService {
 	
 	public List<Caso> readAllCase(DataTableProperties propDatatable);
+
 	public Caso readCaseBySfid(String sfid);
+
 	public Integer getNumCasos();
 	
 	public Caso readCaseById(Integer id);
 
+	public Integer insertCase(Caso caso);
 }
