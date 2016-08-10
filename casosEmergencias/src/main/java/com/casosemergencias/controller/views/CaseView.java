@@ -3,7 +3,6 @@ package com.casosemergencias.controller.views;
 import java.util.Date;
 import java.util.Map;
 
-import com.casosemergencias.dao.vo.PickListsVO;
 import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Cuenta;
@@ -63,9 +62,9 @@ public class CaseView extends ObjectView {
 	private String descripcionEstado;
 	
 	/*Joins con picklist*/
-	private String labelSubestadoPickList;
 	private String labelSubmotivoPickList;
-	private String labelCanalorigenPickList;//no existe
+	private String labelSubestadoPickList;
+	private String labelCanalorigenPickList;
 	/**/
 	/*Mapas para mostrar los combos de caso*/
 	private Map<String, String> mapStatus;

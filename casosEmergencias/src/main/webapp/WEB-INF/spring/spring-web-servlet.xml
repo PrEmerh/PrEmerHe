@@ -59,6 +59,7 @@
 	                <value>com.casosemergencias.dao.vo.HerokuUserVO</value> 
 	                <value>com.casosemergencias.dao.vo.SuministroVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsCaseVO</value>
 	            </list>  
 		  </property> 
 		  <property name="hibernateProperties">

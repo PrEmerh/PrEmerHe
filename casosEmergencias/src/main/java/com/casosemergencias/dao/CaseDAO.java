@@ -596,12 +596,12 @@ public class CaseDAO{
 					query.append(" AND caso.interaccion = :interaccion");
 				}
 			}
-			if(caso.getTipoAtencionSec()!= null){
+			if(caso.getTipoAtencionSEC()!= null){
 				if(isFirst){
-					query.append(" WHERE caso.tipoAtencionSec = :tipoAtencionSec");
+					query.append(" WHERE caso.tipoAtencionSEC = :tipoAtencionSEC");
 					isFirst = false;
 				}else{
-					query.append(" AND caso.tipoAtencionSec = :tipoAtencionSec");
+					query.append(" AND caso.tipoAtencionSEC = :tipoAtencionSEC");
 				}
 			}
 			if(caso.getSubEstado()!= null){
@@ -996,12 +996,12 @@ public class CaseDAO{
 					query.append(" AND caso.literalCategorias = :literalCategorias");
 				}
 			}
-			if(caso.getComunaF()!= null){
+			if(caso.getComuna()!= null){
 				if(isFirst){
-					query.append(" WHERE caso.comunaF = :comunaF");
+					query.append(" WHERE caso.comuna = :comuna");
 					isFirst = false;
 				}else{
-					query.append(" AND caso.comunaF = :comunaF");
+					query.append(" AND caso.comuna = :comuna");
 				}
 			}
 			if(caso.getPrioridad()!= null){
@@ -1205,8 +1205,8 @@ public class CaseDAO{
 			if(caso.getInteraccion()!= null){
 				result.setString("interaccion", caso.getInteraccion());
 			}
-			if(caso.getTipoAtencionSec()!= null){
-				result.setString("tipoAtencionSec", caso.getTipoAtencionSec());
+			if(caso.getTipoAtencionSEC()!= null){
+				result.setString("tipoAtencionSec", caso.getTipoAtencionSEC());
 			}
 			if(caso.getSubEstado()!= null){
 				result.setString("subEstado", caso.getSubEstado());
@@ -1361,8 +1361,8 @@ public class CaseDAO{
 			if(caso.getRecordtypeId()!= null){
 				result.setString("recordtypeId", caso.getRecordtypeId());
 			}
-			if(caso.getComunaF()!= null){
-				result.setString("comunaF", caso.getComunaF());
+			if(caso.getComuna()!= null){
+				result.setString("comuna", caso.getComuna());
 			}
 			if(caso.getPrioridad()!= null){
 				result.setString("prioridad", caso.getPrioridad());

@@ -9,10 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.WhereJoinTable;
 
 import com.casosemergencias.model.Caso;
 
@@ -176,7 +176,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	private String interaccion;
 	
 	@Column(name = "tipo_atencion_sec__c")
-	private String tipoAtencionSec;
+	private String tipoAtencionSEC;
 	
 	@Column(name = "sub_estado__c")
 	private String subEstado;
@@ -332,7 +332,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	private String recordtypeId;
 	
 	@Column(name = "comuna_f__c")
-	private String comunaF;
+	private String comuna;
 	
 	@Column(name = "prioridad__c")
 	private String prioridad;
@@ -349,20 +349,20 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "condici_n_agravante__c")
 	private String condicionAgravante;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="sub_estado__c", referencedColumnName="codigo", insertable = false, updatable=false)
-	@Where(clause = "campo ='sub_estado__c' and objeto = 'Case'")
-	private PickListsVO subestadoPickList;
+	@WhereJoinTable(clause = "campo ='Sub_Estado__c' and objeto='Case'")
+	private PickListsCaseVO subestadoPickList;
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.LAZY, optional= true)
 	@JoinColumn(name="motivo_empresa__c", referencedColumnName="codigo", insertable = false, updatable=false)
-   	@Where(clause = "campo ='motivo_empresa__c' and objeto = 'Case'")
-	private PickListsVO submotivoPickList;
+	@WhereJoinTable(clause = "campo ='Motivo_Empresa__c' and objeto='Case'")
+	private PickListsCaseVO submotivoPickList;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="origin", referencedColumnName="codigo", insertable = false, updatable=false)
-   	@Where(clause = "campo ='origin' and objeto = 'Case'")
-	private PickListsVO canalorigenPickList;
+	@OneToOne(fetch=FetchType.LAZY, optional= true)
+	@JoinColumn(name="origin", referencedColumnName="codigo", insertable = false, updatable=false )
+   	@WhereJoinTable(clause = "campo ='Origin' and objeto='Case'")
+	private PickListsCaseVO canalorigenPickList;
 	
 	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
 			Date createdDate, String asunto, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
@@ -374,7 +374,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 			String telefonoContacto, String questionid, Boolean hasselfservicecomments, String trazaFalloInservice,
 			String canalNotificacion, String createdbyid, String categoria, String flag, String observaciones,
 			String casenumber, String url, String status, String sf4twitterTwitterid, String respuestaAlCliente,
-			String numeroCasoAp, Boolean isescalated, String interaccion, String tipoAtencionSec, String subEstado,
+			String numeroCasoAp, Boolean isescalated, String interaccion, String tipoAtencionSEC, String subEstado,
 			Boolean isvisibleinselfservice, String tipoAtencionInterna, Date horaSec,
 			Boolean pendienteValidacionCondagr, String ejecutivoAnterior, String entitlementid, String assetid,
 			Date stopstartDate, String suppliedCompany, Boolean isClosedonCreate, String estadoCondicionAgravante,
@@ -386,9 +386,9 @@ public class CaseVO extends ObjectVO implements Serializable {
 			Date horaPendiente, String ani, String facebook, String peticion, String communityId, String direccion,
 			Date horaAsignado, String milestoneStatus, String contactId, Date horaPredespacho, Date horaEnruta,
 			String reason, String idEmpresa, Date horaProgramado, Double numeroSeguidoresDel, String literalCategorias,
-			String recordtypeId, String comunaF, String prioridad, String valorSubestadoins,
-			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante, PickListsVO subestadoPickList,
-			PickListsVO submotivoPickList) {
+			String recordtypeId, String comuna, String prioridad, String valorSubestadoins,
+			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante, PickListsCaseVO subestadoPickList,
+			PickListsCaseVO submotivoPickList) {
 		super();
 		this.isdeleted = isdeleted;
 		this.systemmodstamp = systemmodstamp;
@@ -439,7 +439,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.numeroCasoAp = numeroCasoAp;
 		this.isescalated = isescalated;
 		this.interaccion = interaccion;
-		this.tipoAtencionSec = tipoAtencionSec;
+		this.tipoAtencionSEC = tipoAtencionSEC;
 		this.subEstado = subEstado;
 		this.isvisibleinselfservice = isvisibleinselfservice;
 		this.tipoAtencionInterna = tipoAtencionInterna;
@@ -491,7 +491,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.numeroSeguidoresDel = numeroSeguidoresDel;
 		this.literalCategorias = literalCategorias;
 		this.recordtypeId = recordtypeId;
-		this.comunaF = comunaF;
+		this.comuna = comuna;
 		this.prioridad = prioridad;
 		this.valorSubestadoins = valorSubestadoins;
 		this.controlElectrodependiente = controlElectrodependiente;
@@ -897,12 +897,12 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.interaccion = interaccion;
 	}
 
-	public String getTipoAtencionSec() {
-		return tipoAtencionSec;
+	public String getTipoAtencionSEC() {
+		return tipoAtencionSEC;
 	}
 
-	public void setTipoAtencionSec(String tipoAtencionSec) {
-		this.tipoAtencionSec = tipoAtencionSec;
+	public void setTipoAtencionSEC(String tipoAtencionSEC) {
+		this.tipoAtencionSEC = tipoAtencionSEC;
 	}
 
 	public String getSubEstado() {
@@ -1313,12 +1313,12 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.recordtypeId = recordtypeId;
 	}
 
-	public String getComunaF() {
-		return comunaF;
+	public String getComuna() {
+		return comuna;
 	}
 
-	public void setComunaF(String comunaF) {
-		this.comunaF = comunaF;
+	public void setComuna(String comuna) {
+		this.comuna = comuna;
 	}
 
 	public String getPrioridad() {
@@ -1361,28 +1361,35 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.condicionAgravante = condicionAgravante;
 	}
 
-	public PickListsVO getSubestadoPickList() {
+	public PickListsCaseVO getSubestadoPickList() {
 		return subestadoPickList;
 	}
 
-	public void setSubestadoPickList(PickListsVO subestadoPickList) {
+	public void setSubestadoPickList(PickListsCaseVO subestadoPickList) {
 		this.subestadoPickList = subestadoPickList;
 	}
 	
-	public String getLabelSubestadoPickList(){
-		String result = this.getEstado();
-		if (this.getSubestadoPickList() != null ){
-			result=this.getSubestadoPickList().getValor();
-		}
-		return result; 
-	}
 	
-	public PickListsVO getSubmotivoPickList() {
+	public PickListsCaseVO getSubmotivoPickList() {
 		return submotivoPickList;
 	}
 
-	public void setSubmotivoPickList(PickListsVO submotivoPickList) {
+	public void setSubmotivoPickList(PickListsCaseVO submotivoPickList) {
 		this.submotivoPickList = submotivoPickList;
+	}
+	
+	public PickListsCaseVO getCanalorigenPickList() {
+		return canalorigenPickList;
+	}
+
+	public void setCanalorigenPickList(PickListsCaseVO canalorigenPickList) {
+		this.canalorigenPickList = canalorigenPickList;
+	}
+	
+	@Override
+	public Object instantiateTargetLogic() {
+		Caso caso = new Caso();
+		return caso;
 	}
 	
 	public String getLabelSubmotivoPickList(){
@@ -1392,15 +1399,14 @@ public class CaseVO extends ObjectVO implements Serializable {
 		}
 		return result; 
 	}
-
-	public PickListsVO getCanalorigenPickList() {
-		return canalorigenPickList;
-	}
-
-	public void setCanalorigenPickList(PickListsVO canalorigenPickList) {
-		this.canalorigenPickList = canalorigenPickList;
-	}
 	
+	public String getLabelSubestadoPickList(){
+		String result = this.getSubEstado();
+		if (this.getSubestadoPickList() != null ){
+			result=this.getSubestadoPickList().getValor();
+		}
+		return result; 
+	}
 	public String getLabelCanalorigenPickList(){
 		String result = this.getCanalOrigen();
 		if (this.getCanalorigenPickList() != null ){
@@ -1409,9 +1415,5 @@ public class CaseVO extends ObjectVO implements Serializable {
 		return result; 
 	}
 
-	@Override
-	public Object instantiateTargetLogic() {
-		Caso caso = new Caso();
-		return caso;
-	}
+	
 }
