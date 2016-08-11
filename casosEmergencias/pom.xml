@@ -14,11 +14,31 @@
 		<springframework.version>4.0.6.RELEASE</springframework.version>
 		<jstl.version>1.2</jstl.version>
 		<javax.servlet>3.1.0</javax.servlet>
+		<javax.servlet-api.version>2.5</javax.servlet-api.version>
+		<javaee-web-api.version>7.0</javaee-web-api.version>
 		<hibernate.version>4.3.11.Final</hibernate.version>
 		<log.version>1.2.17</log.version>
 		<postgresql.version>9.4-1201-jdbc4</postgresql.version>
 		<json.version>20160212</json.version>
+		<commons-dbcp.version>1.2.2</commons-dbcp.version>
+		<httpcomponents.version>4.5.2</httpcomponents.version>
+		<commons-httpclient.version>3.1</commons-httpclient.version>
+		<quartz.version>2.2.3</quartz.version>
+		<quartz-jobs.version>2.2.3</quartz-jobs.version>
+		<force-rest-api.version>0.0.23</force-rest-api.version>
+		<force-oauth.version>22.0.8-BETA</force-oauth.version>
 	</properties>
+	<repositories>
+		<repository>
+			<id>force-rest-api</id>
+			<name>force-rest-api repository on GitHub</name>
+			<url>http://jesperfj.github.com/force-rest-api/repository/</url>
+		</repository>
+		<repository>
+			<id>webjars</id>
+			<url>http://webjars.github.com/m2</url>
+		</repository>
+	</repositories>
 	<dependencies>
 		<!-- Spring MVC -->
 		<dependency>
@@ -67,12 +87,12 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
+			<version>${javax.servlet-api.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-web-api</artifactId>
-			<version>7.0</version>
+			<version>${javaee-web-api.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<!-- BBDD -->
@@ -96,7 +116,17 @@
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
-			<version>1.2.2</version>
+			<version>${commons-dbcp.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpcomponents.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>${commons-httpclient.version}</version>
 		</dependency>
 		<!-- Log4j -->
 		<dependency>
@@ -109,6 +139,28 @@
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>${json.version}</version>
+		</dependency>
+		<!-- Quartz -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>${quartz.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz-jobs</artifactId>
+			<version>${quartz-jobs.version}</version>
+		</dependency>
+		<!-- SalesForce -->
+		<dependency>
+			<groupId>com.force.api</groupId>
+			<artifactId>force-rest-api</artifactId>
+			<version>${force-rest-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.force.sdk</groupId>
+			<artifactId>force-oauth</artifactId>
+			<version>${force-oauth.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -176,6 +228,5 @@
 				</configuration>
 			</plugin>
 		</plugins>
-
 	</build>
 </project>

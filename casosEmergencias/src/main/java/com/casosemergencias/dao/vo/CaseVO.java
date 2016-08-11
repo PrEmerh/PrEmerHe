@@ -343,6 +343,13 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "control_electrodependiente__c")
 	private Boolean controlElectrodependiente;
 	
+	public ContactVO getContactoJoin() {
+		return contactoJoin;
+	}
+
+	public void setContactoJoin(ContactVO contactoJoin) {
+		this.contactoJoin = contactoJoin;
+	}
 	@Column(name = "cancelar__c")
 	private Boolean cancelar;
 	
@@ -364,8 +371,31 @@ public class CaseVO extends ObjectVO implements Serializable {
    	@WhereJoinTable(clause = "campo ='Origin' and objeto='Case'")
 	private PickListsCaseVO canalorigenPickList;
 	
-	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
-			Date createdDate, String asunto, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
+	//vamos a recuperar los datos de acount, contact
+	//@Column(name = "contactid")
+	//private String contactId;
+//	@Column(name = "accountid")
+//	private String accountid;
+//	@Column(name = "suministro__c")
+//	private String suministro;
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="contactid", referencedColumnName="sfid", insertable = false, updatable=false)
+	private ContactVO contactoJoin;
+	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="accountid", referencedColumnName="sfid", insertable = false, updatable=false)
+	private AccountVO cuentaJoin;
+	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="suministro__c", referencedColumnName="sfid", insertable = false, updatable=false)
+	private SuministroVO suministroJoin;
+	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="direccion__c", referencedColumnName="sfid", insertable = false, updatable=false)
+	private DireccionVO direccionJoin;
+	
+		public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
+			Date fechaApertura, String asunto, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
 			String flagSec, String lastmodifiedbyid, String productid, Boolean validarElectrodependiente,
 			String sf4twitterTwitterUsername, String propietarioCaso, Date slastartdate, String motivoEmpresa,
 			String callCenter, Boolean falloEnvioValidacion, String literalComuna, Boolean actDatosContacto,
@@ -373,7 +403,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 			String numeroInservice, String suppliedphone, String numeroMedidor, Boolean isstopped, String cuerpoMail,
 			String telefonoContacto, String questionid, Boolean hasselfservicecomments, String trazaFalloInservice,
 			String canalNotificacion, String createdbyid, String categoria, String flag, String observaciones,
-			String casenumber, String url, String status, String sf4twitterTwitterid, String respuestaAlCliente,
+			String numeroCaso, String url, String estado, String sf4twitterTwitterid, String respuestaAlCliente,
 			String numeroCasoAp, Boolean isescalated, String interaccion, String tipoAtencionSEC, String subEstado,
 			Boolean isvisibleinselfservice, String tipoAtencionInterna, Date horaSec,
 			Boolean pendienteValidacionCondagr, String ejecutivoAnterior, String entitlementid, String assetid,
@@ -387,8 +417,9 @@ public class CaseVO extends ObjectVO implements Serializable {
 			Date horaAsignado, String milestoneStatus, String contactId, Date horaPredespacho, Date horaEnruta,
 			String reason, String idEmpresa, Date horaProgramado, Double numeroSeguidoresDel, String literalCategorias,
 			String recordtypeId, String comuna, String prioridad, String valorSubestadoins,
-			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante, PickListsCaseVO subestadoPickList,
-			PickListsCaseVO submotivoPickList) {
+			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante,
+			PickListsCaseVO subestadoPickList, PickListsCaseVO submotivoPickList, PickListsCaseVO canalorigenPickList,
+			ContactVO contactoJoin, AccountVO cuentaJoin, SuministroVO suministroJoin, DireccionVO direccionJoin) {
 		super();
 		this.isdeleted = isdeleted;
 		this.systemmodstamp = systemmodstamp;
@@ -396,7 +427,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this._hc_err = _hc_err;
 		this.id = id;
 		this.sfid = sfid;
-		this.fechaApertura = createdDate;
+		this.fechaApertura = fechaApertura;
 		this.asunto = asunto;
 		this.fechaEstimadaCierre = fechaEstimadaCierre;
 		this.accountid = accountid;
@@ -431,9 +462,9 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.categoria = categoria;
 		this.flag = flag;
 		this.observaciones = observaciones;
-		this.numeroCaso = casenumber;
+		this.numeroCaso = numeroCaso;
 		this.url = url;
-		this.estado = status;
+		this.estado = estado;
 		this.sf4twitterTwitterid = sf4twitterTwitterid;
 		this.respuestaAlCliente = respuestaAlCliente;
 		this.numeroCasoAp = numeroCasoAp;
@@ -497,8 +528,13 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.controlElectrodependiente = controlElectrodependiente;
 		this.cancelar = cancelar;
 		this.condicionAgravante = condicionAgravante;
-		this.subestadoPickList = subestadoPickList;		
+		this.subestadoPickList = subestadoPickList;
 		this.submotivoPickList = submotivoPickList;
+		this.canalorigenPickList = canalorigenPickList;
+		this.contactoJoin = contactoJoin;
+		this.cuentaJoin = cuentaJoin;
+		this.suministroJoin = suministroJoin;
+		this.direccionJoin = direccionJoin;
 	}
 
 	public CaseVO() {
@@ -1413,6 +1449,30 @@ public class CaseVO extends ObjectVO implements Serializable {
 			result=this.getCanalorigenPickList().getValor();
 		}
 		return result; 
+	}
+
+	public AccountVO getCuentaJoin() {
+		return cuentaJoin;
+	}
+
+	public void setCuentaJoin(AccountVO cuentaJoin) {
+		this.cuentaJoin = cuentaJoin;
+	}
+
+	public SuministroVO getSuministroJoin() {
+		return suministroJoin;
+	}
+
+	public void setSuministroJoin(SuministroVO suministroJoin) {
+		this.suministroJoin = suministroJoin;
+	}
+
+	public DireccionVO getDireccionJoin() {
+		return direccionJoin;
+	}
+
+	public void setDireccionJoin(DireccionVO direccionJoin) {
+		this.direccionJoin = direccionJoin;
 	}
 
 	

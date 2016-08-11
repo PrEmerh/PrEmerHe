@@ -85,6 +85,8 @@ public class SuministroView extends ObjectView {
 	
 	private String tipoSegmento;
 	
+	private String relacionActivo;
+	
 	private String direccionConcatenada;
 
 	public SuministroView(){}
@@ -474,5 +476,13 @@ public class SuministroView extends ObjectView {
 	public Object instantiateTargetLogic() {
 		Suministro suministro = new Suministro();
 		return suministro;
+	}
+
+	public String getRelacionActivo() {
+		return relacionActivo;
+	}
+
+	public void setRelacionActivo(String relacionActivo) {
+		this.relacionActivo = relacionActivo;
 	}
 }

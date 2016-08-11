@@ -1,6 +1,7 @@
 package com.casosemergencias.controller.views;
 
 import java.util.Date;
+import java.util.List;
 
 import com.casosemergencias.model.Contacto;
 
@@ -33,7 +34,8 @@ public class ContactView extends ObjectView {
 	/*Tipo de contacto*/                    private String tipoContacto;
 	/*Casos reiterados*/                    private Boolean casosReiterados;
 	/*Tipo cuenta asociadas*/               private String tipoCuentaAsociado;
-	
+
+	private List<SuministroView> suministros;
 	
 	
 	/* Getters y Setters */
@@ -169,5 +171,11 @@ public class ContactView extends ObjectView {
 	public Object instantiateTargetLogic() {
 		Contacto contacto = new Contacto();
 		return contacto;
+	}
+	public List<SuministroView> getSuministros() {
+		return suministros;
+	}
+	public void setSuministros(List<SuministroView> suministros) {
+		this.suministros = suministros;
 	}
 }

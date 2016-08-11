@@ -176,7 +176,7 @@
 						<label><s:message code="entidadCaso_table_label_nombreContacto"/></label>
 					</div>
 					<div>
-						<label>${caso.contactoJoin.name}</label>
+						<label><a href="../private/entidadContacto?sfid=${caso.contactoJoin.sfid}">${caso.contactoJoin.name}</a></label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_canalNotificacion"/></label>
@@ -190,7 +190,7 @@
 						<label><s:message code="entidadCaso_table_label_suministro"/></label>
 					</div>
 					<div>
-						<label>${caso.suministroJoin.numeroSuministro}</label>
+						<label><a href="../private/entidadSuministro?sfid=${caso.suministroJoin.sfid}">${caso.suministroJoin.name}</a></label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_telefonoContacto"/></label>
@@ -204,7 +204,7 @@
 						<label><s:message code="entidadCaso_table_label_detalleDireccion"/></label>
 					</div>
 					<div>
-						<label>${caso.direccionJoin.name}</label>
+						<label><a href="../private/entidadDireccion?sfid=${caso.direccionJoin.sfid}">${caso.direccionJoin.name}</a></label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_emailNotificacion"/></label>
@@ -218,7 +218,7 @@
 						<label><s:message code="entidadCaso_table_label_nombreCuenta"/></label>
 					</div>
 					<div>
-						<label>${caso.cuentaJoin.name}</label>
+						<label><a href="../private/entidadCuenta?sfid=${caso.cuentaJoin.sfid}">${caso.cuentaJoin.name}</a></label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_idFacebook"/></label>

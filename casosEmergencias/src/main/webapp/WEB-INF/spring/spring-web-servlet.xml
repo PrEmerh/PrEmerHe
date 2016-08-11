@@ -60,6 +60,9 @@
 	                <value>com.casosemergencias.dao.vo.SuministroVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsCaseVO</value>
+	                <value>com.casosemergencias.dao.vo.RelacionActivoContactoVO</value>
+	                <value>com.casosemergencias.dao.vo.AssetVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsRelacionActivoVO</value>
 	            </list>  
 		  </property> 
 		  <property name="hibernateProperties">
@@ -86,6 +89,7 @@
 	<bean id="suministroService" class="com.casosemergencias.logic.SuministroServiceImpl"/>
 	<bean id="accountService" class="com.casosemergencias.logic.AccountServiceImpl"/>
 	<bean id="pickListsService" class="com.casosemergencias.logic.PickListsServiceImpl"/>
+	<bean id="batchService" class="com.casosemergencias.logic.BatchServiceImpl"/>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/"/> 
 	

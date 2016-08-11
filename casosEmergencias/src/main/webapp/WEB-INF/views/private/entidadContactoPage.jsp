@@ -21,6 +21,51 @@
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadContacto" action="actualizarContacto" modelAttribute="contacto" method="POST">
 			<form:hidden path="sfid"/>
+			
+			
+			
+			
+			
+			
+			<div id="divEntidadContactoSuministros" class="divEntidad">
+			<div class="subtitleAltaEntidad">
+				<div>
+					<input id="arrowTablaContactoSuministros" type="image" src="../resources/images/Arrowdown.PNG"  
+						height="15" onclick="showHideCabeceras('tablaContactoSuministros','arrowTablaContactoSuministros'); return false;"/>			
+					<label><s:message code="entidadCuenta_title_label_supply_data_detail" /></label>
+				</div>
+			</div>
+			<div id="tablaContactoSuministros">
+				<table class="basicTable">
+					<tr>
+					    <th><s:message code="entidadContacto_title_label_suministro_empresa" /></th>
+					    <th><s:message code="entidadContacto_title_label_suministro_suministro" /></th>
+					    <th><s:message code="entidadContacto_title_label_suministro_direccion" /></th>
+					    <th><s:message code="entidadContacto_title_label_suministro_comuna" /></th>
+					    <th><s:message code="entidadContacto_title_label_suministro_connection_status" /></th>
+					    <th><s:message code="entidadContacto_title_label_suministro_supply_status" /></th>
+					    <th><s:message code="entidadContacto_title_label_suministro_segmento" /></th>
+					    <th><s:message code="entidadContacto_title_label_suministro_relacion" /></th>
+					</tr>
+					<c:forEach items="${contacto.suministros}" var="suministro">
+						<tr>
+						    <td>${suministro.idEmpresa}</td>
+							<td>${suministro.name}</td>
+							<td>${suministro.direccion}</td>
+							<td>${suministro.comuna}</td>
+							<td>${suministro.estadoConexion}</td>
+							<td>${suministro.estadoSuministro}</td>
+							<td>${suministro.tipoSegmento}</td>
+							<td>${suministro.relacionActivo}</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+		</div>
+		
+		
+		
+		
 			<div class="divEntidad">
 				<div class="subtitleAltaEntidad">
 					<div>

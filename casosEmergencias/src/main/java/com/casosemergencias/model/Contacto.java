@@ -1,6 +1,7 @@
 package com.casosemergencias.model;
 
 import java.util.Date;
+import java.util.List;
 
 import com.casosemergencias.controller.views.ContactView;
 import com.casosemergencias.dao.vo.ContactVO;
@@ -36,6 +37,9 @@ public class Contacto extends ObjectLogic {
 	/*Tipo de contacto*/                    private String tipoContacto;
 	/*Casos reiterados*/                    private Boolean casosReiterados;
 	/*Tipo cuenta asociadas*/               private String tipoCuentaAsociado;
+	
+	/*Lista de suministros relacionados, se obtienend e una consulta extra a relacion activo contacto*/
+											private List<Suministro> suministros;
 	
 	/* Getters y Setters */
 	public Integer getId() {
@@ -216,5 +220,13 @@ public class Contacto extends ObjectLogic {
 	public Object instantiateTargetVO() {
 		ContactVO contacto = new ContactVO();
 		return contacto;
+	}
+
+	public List<Suministro> getSuministros() {
+		return suministros;
+	}
+
+	public void setSuministros(List<Suministro> suministros) {
+		this.suministros = suministros;
 	}
 }

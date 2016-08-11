@@ -48,10 +48,10 @@ $(document).ready(function() {
 	  
 		});
 	
-	$('#searchSuministro').on('click', function(){
+	$('#searchSuministro').on('click', function() {
 		var allCase = true;
 		first = false;
-		tableSuministro.search($('#txtNumeroSuministro').val(),allCase).draw();
+		tableSuministro.column(0).search($('#txtNumeroSuministro').val(), allCase).column(2).search($('#txtComuna').val(), allCase).draw();
 	});
 	
 	tableDireccion= $('#tablaDireccionesPopUp').DataTable( {
