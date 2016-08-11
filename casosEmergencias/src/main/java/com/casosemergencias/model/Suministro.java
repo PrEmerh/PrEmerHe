@@ -47,7 +47,9 @@ public class Suministro extends ObjectLogic {
 	private String ruta;
 	private String tipoCuenta;
 	private String tipoSegmento;
+
 	private String relacionActivo;
+
 	private String direccionConcatenada;
 
 	public Suministro() {

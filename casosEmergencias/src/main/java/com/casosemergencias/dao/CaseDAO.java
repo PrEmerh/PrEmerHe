@@ -12,9 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.casosemergencias.util.DataTableProperties;
-
 import com.casosemergencias.dao.vo.CaseVO;
+import com.casosemergencias.util.DataTableProperties;
 
 @Repository
 public class CaseDAO{
@@ -1438,11 +1437,41 @@ public class CaseDAO{
 	    }
 
     }
+	
 	/**
-	 * Devuelve el numero de casos que hay en la tala Case
+	 * Inserta un caso en BBDD. 
 	 * 
+	 * @param Case
 	 * @return
 	 */
+	@Transactional
+    public Integer insertCase(CaseVO caso){
+		
+		logger.debug("--- Inicio -- insert ---");
+		
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		try{
+			
+			session.save(caso);
+			tx.commit();
+			
+			logger.debug("--- Fin -- insert ---");
+			return caso.getId();
+		}catch (HibernateException e) {
+			
+	    	tx.rollback();
+			logger.error("--- insertCase "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- updateCase ---");
+	    	return 0;
+	    	
+	    }finally {
+	    	session.close(); 
+	    }
+
+    }
+
 	public Integer countCase(){
 				
 		logger.debug("--- Inicio -- countCase ---");
