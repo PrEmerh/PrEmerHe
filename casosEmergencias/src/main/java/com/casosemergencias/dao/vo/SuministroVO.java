@@ -154,7 +154,10 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	
 	@Column(name = "tipo_de_segmento__c")
 	private String tipoSegmento;
-
+	
+	@Column(name = "DireccionConcatenada__c")
+	private String direccionConcatenada;
+	
 	public SuministroVO(){}
 	
 	public SuministroVO(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
@@ -166,7 +169,7 @@ public class SuministroVO extends ObjectVO implements Serializable {
 			String tipoConexion, String direccionCliente, String electrodependiente, String medidaDisciplina,
 			String horarioRacionamiento, Double casosReiterados, String tarifa, String alimentador,
 			String direccionBoleta, String cuenta, String subestacionElectricaConexion, String ruta, String tipoCuenta,
-			String tipoSegmento) {
+			String tipoSegmento, String direccionConcatenada) {
 		super();
 		this.isDeleted = isDeleted;
 		this.systemDate = systemDate;
@@ -212,6 +215,7 @@ public class SuministroVO extends ObjectVO implements Serializable {
 		this.ruta = ruta;
 		this.tipoCuenta = tipoCuenta;
 		this.tipoSegmento = tipoSegmento;
+		this.direccionConcatenada = direccionConcatenada;
 	}
 
 	public Boolean getIsDeleted() {
@@ -564,6 +568,14 @@ public class SuministroVO extends ObjectVO implements Serializable {
 
 	public void setTipoSegmento(String tipoSegmento) {
 		this.tipoSegmento = tipoSegmento;
+	}
+	
+	public String getDireccionConcatenada() {
+		return direccionConcatenada;
+	}
+	
+	public void setDireccionConcatenada(String direccionConcatenada) {
+		this.direccionConcatenada = direccionConcatenada;
 	}
 
 	@Override

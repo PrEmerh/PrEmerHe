@@ -47,6 +47,8 @@ public class Suministro extends ObjectLogic {
 	private String ruta;
 	private String tipoCuenta;
 	private String tipoSegmento;
+	private String relacionActivo;
+	private String direccionConcatenada;
 
 	public Suministro() {
 	}
@@ -59,7 +61,7 @@ public class Suministro extends ObjectLogic {
 			Boolean pagoEnProceso, String nombreDuenoBoleta, String bloque, String tipoConexion,
 			String direccionCliente, String electrodependiente, String medidaDisciplina, String horarioRacionamiento,
 			Double casosReiterados, String tarifa, String alimentador, String direccionBoleta, String cuenta,
-			String subestacionElectricaConexion, String ruta, String tipoCuenta, String tipoSegmento) {
+			String subestacionElectricaConexion, String ruta, String tipoCuenta, String tipoSegmento, String direccionConcatenada) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -101,6 +103,7 @@ public class Suministro extends ObjectLogic {
 		this.ruta = ruta;
 		this.tipoCuenta = tipoCuenta;
 		this.tipoSegmento = tipoSegmento;
+		this.direccionConcatenada = direccionConcatenada;
 	}
 
 	public Integer getId() {
@@ -422,6 +425,14 @@ public class Suministro extends ObjectLogic {
 	public void setTipoSegmento(String tipoSegmento) {
 		this.tipoSegmento = tipoSegmento;
 	}
+	
+	public String getDireccionConcatenada() {
+		return direccionConcatenada;
+	}
+	
+	public void setDireccionConcatenada(String direccionConcatenada) {
+		this.direccionConcatenada = direccionConcatenada;
+	}
 
 	@Override
 	public Object instantiateTargetView() {
@@ -433,5 +444,13 @@ public class Suministro extends ObjectLogic {
 	public Object instantiateTargetVO() {
 		SuministroVO suministro = new SuministroVO();
 		return suministro;
+	}
+
+	public String getRelacionActivo() {
+		return relacionActivo;
+	}
+
+	public void setRelacionActivo(String relacionActivo) {
+		this.relacionActivo = relacionActivo;
 	}
 }

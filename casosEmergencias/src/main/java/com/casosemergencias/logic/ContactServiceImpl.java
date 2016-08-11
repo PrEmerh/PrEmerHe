@@ -6,8 +6,12 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.casosemergencias.dao.ContactDAO;
+import com.casosemergencias.dao.RelacionActivoContactoDAO;
 import com.casosemergencias.dao.vo.ContactVO;
+import com.casosemergencias.dao.vo.RelacionActivoContactoVO;
+import com.casosemergencias.dao.vo.SuministroVO;
 import com.casosemergencias.model.Contacto;
+import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 
 
@@ -18,6 +22,9 @@ public class ContactServiceImpl implements ContactService{
 	
 	@Autowired
 	private ContactDAO contactDao;
+	
+	@Autowired
+	private RelacionActivoContactoDAO relacionDAO;
 		
 	/**
 	 * Metodo que devuelve una lista de todos los contactos a mostrar en la tabla de nuestra app.
@@ -48,10 +55,37 @@ public class ContactServiceImpl implements ContactService{
 	public Contacto readContactoBySfid(String sfid){
 		Contacto returnContacto = new Contacto();
 		ContactVO contactoVO = contactDao.readContactBySfid(sfid);
+		
 		if (contactoVO != null){
 			ParserModelVO.parseDataModelVO(contactoVO, returnContacto);
 		}
+		
+		List<RelacionActivoContactoVO> listaRelacionVO = relacionDAO.getSuministrosRelacionesPorContacto(sfid);
+		List<Suministro> listaSuministro = parseaListaSuministros(listaRelacionVO);
+		returnContacto.setSuministros(listaSuministro);
+		
 		return returnContacto;
+	}
+
+	private List<Suministro> parseaListaSuministros(List<RelacionActivoContactoVO> listaRelacionVO) {
+		if(listaRelacionVO!=null && !listaRelacionVO.isEmpty()){
+			List<Suministro> retorno = new ArrayList<Suministro>();
+			
+	
+			for(RelacionActivoContactoVO relacion: listaRelacionVO){
+				if(relacion.getActivo()!=null && relacion.getActivo().getSuministroJoin()!=null){
+					SuministroVO sumConRelacion = relacion.getActivo().getSuministroJoin();
+					Suministro sumRelacionado = new Suministro();
+					ParserModelVO.parseDataModelVO(sumConRelacion, sumRelacionado);
+					if(relacion.getTipoRelacionActivo()!=null)
+						sumRelacionado.setRelacionActivo(relacion.getTipoRelacionActivo().getValor());
+					retorno.add(sumRelacionado);
+				}
+			}
+			
+			return retorno;
+		}
+		return null;
 	}
 	
 

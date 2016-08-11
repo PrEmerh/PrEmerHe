@@ -50,11 +50,11 @@ public class CaseView extends ObjectView {
 	private String propietarioCaso;	//owner
 	private Date fechaCierre;
 	private String tipoAtencionInterna;
-	private Contacto contactoJoin;
+	private ContactView contactoJoin;
 	private String numeroMedidor;
-	private Direccion direccionJoin;
-	private Cuenta cuentaJoin;
-	private Suministro suministroJoin;
+	private DireccionView direccionJoin;
+	private AccountView cuentaJoin;
+	private SuministroView suministroJoin;
 	private String cuerpoMail;	
 	private String asunto;	//subject
 	private String tipoAtencionSEC;
@@ -327,10 +327,10 @@ public class CaseView extends ObjectView {
 	public void setTipoAtencionInterna(String tipoAtencionInterna) {
 		this.tipoAtencionInterna = tipoAtencionInterna;
 	}
-	public Contacto getContactoJoin() {
+	public ContactView getContactoJoin() {
 		return contactoJoin;
 	}
-	public void setContactoJoin(Contacto contactoJoin) {
+	public void setContactoJoin(ContactView contactoJoin) {
 		this.contactoJoin = contactoJoin;
 	}
 	public String getNumeroMedidor() {
@@ -339,22 +339,22 @@ public class CaseView extends ObjectView {
 	public void setNumeroMedidor(String numeroMedidor) {
 		this.numeroMedidor = numeroMedidor;
 	}
-	public Direccion getDireccionJoin() {
+	public DireccionView getDireccionJoin() {
 		return direccionJoin;
 	}
-	public void setDireccionJoin(Direccion direccionJoin) {
+	public void setDireccionJoin(DireccionView direccionJoin) {
 		this.direccionJoin = direccionJoin;
 	}
-	public Cuenta getCuentaJoin() {
+	public AccountView getCuentaJoin() {
 		return cuentaJoin;
 	}
-	public void setCuentaJoin(Cuenta cuentaJoin) {
+	public void setCuentaJoin(AccountView cuentaJoin) {
 		this.cuentaJoin = cuentaJoin;
 	}
-	public Suministro getSuministroJoin() {
+	public SuministroView getSuministroJoin() {
 		return suministroJoin;
 	}
-	public void setSuministroJoin(Suministro suministroJoin) {
+	public void setSuministroJoin(SuministroView suministroJoin) {
 		this.suministroJoin = suministroJoin;
 	}
 	public String getCuerpoMail() {
