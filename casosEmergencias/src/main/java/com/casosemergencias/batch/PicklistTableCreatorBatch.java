@@ -209,8 +209,7 @@ public class PicklistTableCreatorBatch {
 			// connection =
 			// DriverManager.getConnection("jdbc:postgresql://ec2-23-21-102-155.compute-1.amazonaws.com:5432/d5418fkq019rpl","dhtsyocojobsrd",
 			// "cjB0mRnKEn8XeK2RBwkjAipxoJ");
-			connection = DriverManager.getConnection(ConstantesBatch.HEROKU_DATABASE_URL + ConstantesBatch.HEROKU_DATABASE_SID
-					, ConstantesBatch.HEROKU_DATABASE_USER_NAME, ConstantesBatch.HEROKU_DATABASE_PASSWORD);
+			connection = DriverManager.getConnection( System.getenv("DATABASE_URL_JAVA"), System.getenv("DATABASE_USER"), System.getenv("DATABASE_PASSWORD"));
 			connection.setAutoCommit(false);
 			logger.debug("Conectado correctamente");
 			stmt = connection.createStatement();

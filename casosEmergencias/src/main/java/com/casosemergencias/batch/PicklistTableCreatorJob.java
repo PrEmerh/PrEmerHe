@@ -16,4 +16,5 @@ public class PicklistTableCreatorJob implements Job {
 		PicklistTableCreatorBatch.fillHerokuPicklistTable();
 		logger.info("Carga de tabla de picklists completada con fecha " + new Date());
 	}
+
 }

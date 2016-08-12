@@ -24,10 +24,12 @@ public class ConstantesBatch {
 	public static final String PICKLIST_PROPERTIES_ARCHIVE_NAME = "picklist.properties";
 	public static final String PICKLIST_PROPERTIES_INVOLVED_PICKLISTS_PROPERTY = "pickList.implicados";
 	
-	/** Datos de conexión a la base de datos de Heroku. */
-	public static final String HEROKU_DATABASE_DRIVER_CLASS = "org.postgresql.Driver";
+	/** Datos de conexión a la base de datos de Heroku. 
+	LAs tenemos que recuperar de las variables de entorno
+	
 	public static final String HEROKU_DATABASE_URL = "jdbc:postgresql://localhost:5432/";
 	public static final String HEROKU_DATABASE_SID = "enel";
 	public static final String HEROKU_DATABASE_USER_NAME = "postgres";
-	public static final String HEROKU_DATABASE_PASSWORD = "deloitte12";
+	public static final String HEROKU_DATABASE_PASSWORD = "deloitte12";*/
+	public static final String HEROKU_DATABASE_DRIVER_CLASS = "org.postgresql.Driver";
 }

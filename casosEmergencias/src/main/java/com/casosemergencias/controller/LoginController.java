@@ -62,7 +62,7 @@ public class LoginController {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("user", user);			
 
-			model.setViewName("redirect: private/homeCasos");
+			model.setViewName("redirect:private/homeCasos");
 
 		}else{
 			logger.info("No existe el usuario");
