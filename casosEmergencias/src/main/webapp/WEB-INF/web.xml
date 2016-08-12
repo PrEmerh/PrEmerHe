@@ -45,4 +45,21 @@
 		<filter-name>UserFilter</filter-name>
 		<url-pattern>/private/*</url-pattern>
 	</filter-mapping>
+	
+	<!-- Configuracion de Quartz -->
+	<context-param>
+		<param-name>quartz:shutdown-on-unload</param-name>
+		<param-value>true</param-value>
+	</context-param>
+		<context-param>
+			<param-name>quartz:wait-on-shutdown</param-name>
+			<param-value>false</param-value>
+		</context-param>
+		<context-param>
+			<param-name>quartz:start-scheduler-on-load</param-name>
+			<param-value>true</param-value>
+		</context-param>
+		<listener>
+			<listener-class>com.casosemergencias.listener.BatchListener</listener-class>
+		</listener>
 </web-app>
