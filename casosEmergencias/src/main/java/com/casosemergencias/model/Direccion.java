@@ -16,7 +16,10 @@ public class Direccion extends ObjectLogic {
 	/*Código de Dirección*/                 private String name;
 	/*Dirección concatenada*/               private String direccionConcatenada;
 	/*Esquina*/                     		private String esquina;
+	/*Descripcion de la comuna*/  			private String literalComuna;
 	
+
+
 	/* Getters y Setters */
 	public Integer getId() {
 		return id;
@@ -104,6 +107,14 @@ public class Direccion extends ObjectLogic {
 
 	public void setEsquina(String esquina) {
 		this.esquina = esquina;
+	}
+	
+	public String getLiteralComuna() {
+		return literalComuna;
+	}
+
+	public void setLiteralComuna(String literalComuna) {
+		this.literalComuna = literalComuna;
 	}
 	
 	@Override

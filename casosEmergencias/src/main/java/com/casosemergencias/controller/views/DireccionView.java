@@ -15,6 +15,7 @@ public class DireccionView extends ObjectView {
 	/*Código de Dirección*/                 private String name;
 	/*Dirección concatenada*/               private String direccionConcatenada;
 	/*Esquina*/                     		private String esquina;
+	/*Descripcion de la comuna*/  			private String literalComuna;
 	
 	
 	/* Getters y Setters */
@@ -90,5 +91,11 @@ public class DireccionView extends ObjectView {
 	public Object instantiateTargetLogic() {
 		Direccion direccion = new Direccion();
 		return direccion;
+	}
+	public String getLiteralComuna() {
+		return literalComuna;
+	}
+	public void setLiteralComuna(String literalComuna) {
+		this.literalComuna = literalComuna;
 	}
 }
