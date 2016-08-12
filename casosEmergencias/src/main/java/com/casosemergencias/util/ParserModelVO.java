@@ -22,6 +22,7 @@ public class ParserModelVO {
 	//LIMITACIÓN: No admite tipos de datos, solo clases. NO se pasará el metodo con parametros de entrada int, boolean...
 	@SuppressWarnings("unchecked")
 	public static void parseDataModelVO(Object objectWithData, Object objectToFill) {
+	System.out.println("objectWithData:"+objectWithData.getClass()+":objectToFill:"+objectToFill.getClass());
 		// Array de getters del objeto origen
 		Method[] methodsGets = objectWithData.getClass().getMethods();
 		// Array de setters del objeto destino

@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import com.casosemergencias.controller.views.ContactView;
+import com.casosemergencias.dao.vo.AccountVO;
+import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.dao.vo.ContactVO;
 
 //Objeto que tiene el modelo de un contacto, se utiliza en el Servicio
@@ -40,6 +42,10 @@ public class Contacto extends ObjectLogic {
 	
 	/*Lista de suministros relacionados, se obtienend e una consulta extra a relacion activo contacto*/
 											private List<Suministro> suministros;
+											
+											private Cuenta cuentaJoin;
+											
+											private List<Caso> casos;
 	
 	/* Getters y Setters */
 	public Integer getId() {
@@ -228,5 +234,21 @@ public class Contacto extends ObjectLogic {
 
 	public void setSuministros(List<Suministro> suministros) {
 		this.suministros = suministros;
+	}
+
+	public Cuenta getCuentaJoin() {
+		return cuentaJoin;
+	}
+
+	public void setCuentaJoin(Cuenta cuentaJoin) {
+		this.cuentaJoin = cuentaJoin;
+	}
+
+	public List<Caso> getCasos() {
+		return casos;
+	}
+
+	public void setCasos(List<Caso> casos) {
+		this.casos = casos;
 	}
 }

@@ -88,9 +88,14 @@ public class SuministroView extends ObjectView {
 	private String relacionActivo;
 	
 	private String direccionConcatenada;
+	
+	private String labelEmpresaPickList;
+	private String labelEstadoConexionPickList;
+	private String labelEstadoSuministroPickList;
 
 	public SuministroView(){}
 	
+
 	public SuministroView(Integer id, String sfid, String name, String fullElectric, Boolean casosAbiertos,
 			String tipoTransformador, Boolean cortePorDeuda, String tipoLectura, String estadoConexion,
 			String tipoMedida, String comunaReparto, String comuna, String numeroMedidor, String modeloMedidor,
@@ -99,7 +104,9 @@ public class SuministroView extends ObjectView {
 			Boolean pagoEnProceso, String nombreDuenoBoleta, String bloque, String tipoConexion,
 			String direccionCliente, String electrodependiente, String medidaDisciplina, String horarioRacionamiento,
 			Double casosReiterados, String tarifa, String alimentador, String direccionBoleta, String cuenta,
-			String subestacionElectricaConexion, String ruta, String tipoCuenta, String tipoSegmento, String direccionConcatenada) {
+			String subestacionElectricaConexion, String ruta, String tipoCuenta, String tipoSegmento,
+			String relacionActivo, String direccionConcatenada, String labelEmpresaPickList,
+			String labelEstadoConexionPickList, String labelEstadoSuministroPickList) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -141,8 +148,14 @@ public class SuministroView extends ObjectView {
 		this.ruta = ruta;
 		this.tipoCuenta = tipoCuenta;
 		this.tipoSegmento = tipoSegmento;
+		this.relacionActivo = relacionActivo;
 		this.direccionConcatenada = direccionConcatenada;
+		this.labelEmpresaPickList = labelEmpresaPickList;
+		this.labelEstadoConexionPickList = labelEstadoConexionPickList;
+		this.labelEstadoSuministroPickList = labelEstadoSuministroPickList;
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -484,5 +497,35 @@ public class SuministroView extends ObjectView {
 
 	public void setRelacionActivo(String relacionActivo) {
 		this.relacionActivo = relacionActivo;
+	}
+
+
+	public String getLabelEmpresaPickList() {
+		return labelEmpresaPickList;
+	}
+
+
+	public void setLabelEmpresaPickList(String labelEmpresaPickList) {
+		this.labelEmpresaPickList = labelEmpresaPickList;
+	}
+
+
+	public String getLabelEstadoConexionPickList() {
+		return labelEstadoConexionPickList;
+	}
+
+
+	public void setLabelEstadoConexionPickList(String labelEstadoConexionPickList) {
+		this.labelEstadoConexionPickList = labelEstadoConexionPickList;
+	}
+
+
+	public String getLabelEstadoSuministroPickList() {
+		return labelEstadoSuministroPickList;
+	}
+
+
+	public void setLabelEstadoSuministroPickList(String labelEstadoSuministroPickList) {
+		this.labelEstadoSuministroPickList = labelEstadoSuministroPickList;
 	}
 }

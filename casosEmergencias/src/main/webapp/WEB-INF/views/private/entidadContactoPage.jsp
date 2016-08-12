@@ -49,12 +49,12 @@
 					</tr>
 					<c:forEach items="${contacto.suministros}" var="suministro">
 						<tr>
-						    <td>${suministro.idEmpresa}</td>
-							<td>${suministro.name}</td>
-							<td>${suministro.direccion}</td>
+						    <td>${suministro.labelEmpresaPickList}</td>
+							<td><a href="../private/entidadSuministro?sfid=${suministro.sfid}">${suministro.name}</a></td>
+							<td>${suministro.direccionConcatenada}</td>
 							<td>${suministro.comuna}</td>
-							<td>${suministro.estadoConexion}</td>
-							<td>${suministro.estadoSuministro}</td>
+							<td>${suministro.labelEstadoConexionPickList}</td>
+							<td>${suministro.labelEstadoSuministroPickList}</td>
 							<td>${suministro.tipoSegmento}</td>
 							<td>${suministro.relacionActivo}</td>
 						</tr>
@@ -161,7 +161,7 @@
 						<label><s:message code="entidadContacto_table_label_nombreCuenta"/></label>
 					</div>
 					<div>
-						<label><%-- ${contacto.nombrecuenta} --%></label>
+						<label><a href="../private/entidadCuenta?sfid=${contacto.cuentaJoin.sfid}">${contacto.cuentaJoin.name}</a></label>
 					</div>  
 				</div>
 				<div>
@@ -240,6 +240,37 @@
 						<label>${contacto.sf4twitterFcbkUserId}</label>
 					</div>
 				</div>				
+			</div>
+			<div id="divEntidadContactoCasos" class="divEntidad">
+				<div class="subtitleAltaEntidad">
+					<div>
+						<input id="arrowTablaContactoCasos" type="image" src="../resources/images/Arrowdown.PNG"  
+							height="15" onclick="showHideCabeceras('tablaContactoCasos','arrowTablaContactoCasos'); return false;"/>			
+						<label><s:message code="entidadCuenta_title_label_supply_data_detail" /></label>
+					</div>
+				</div>
+				<div id="tablaContactoCasos">
+					<table class="basicTable">
+						<tr>
+							<th><s:message code="entidadContacto_title_label_caso_caso" /></th>
+						    <th><s:message code="entidadContacto_title_label_caso_estado" /></th>
+						    <th><s:message code="entidadContacto_title_label_caso_fechaApertura" /></th>
+						    <th><s:message code="entidadContacto_title_label_caso_submotivo" /></th>
+						    <th><s:message code="entidadContacto_title_label_caso_tiempoEstimado" /></th>
+						    <th><s:message code="entidadContacto_title_label_caso_canalOrigen" /></th>
+						</tr>
+						<c:forEach items="${contacto.casos}" var="caso">
+							<tr>
+								<td><a href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
+								<td>${caso.descripcionEstado}</td>
+								<td>${caso.fechaApertura}</td>
+								<td>${caso.labelSubmotivoPickList}</td>
+								<td>${caso.tiempoEstimacion}</td>
+								<td>${caso.labelCanalorigenPickList}</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
 			</div>
 		</form:form> 			
 	</body>

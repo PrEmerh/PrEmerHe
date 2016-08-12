@@ -3,7 +3,9 @@ package com.casosemergencias.controller.views;
 import java.util.Date;
 import java.util.List;
 
+import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
+import com.casosemergencias.model.Cuenta;
 
 public class ContactView extends ObjectView {
 	
@@ -37,6 +39,9 @@ public class ContactView extends ObjectView {
 
 	private List<SuministroView> suministros;
 	
+	private AccountView cuentaJoin;
+	
+	private List<CaseView> casos;
 	
 	/* Getters y Setters */
 	
@@ -177,5 +182,17 @@ public class ContactView extends ObjectView {
 	}
 	public void setSuministros(List<SuministroView> suministros) {
 		this.suministros = suministros;
+	}
+	public AccountView getCuentaJoin() {
+		return cuentaJoin;
+	}
+	public void setCuentaJoin(AccountView cuentaJoin) {
+		this.cuentaJoin = cuentaJoin;
+	}
+	public List<CaseView> getCasos() {
+		return casos;
+	}
+	public void setCasos(List<CaseView> casos) {
+		this.casos = casos;
 	}
 }
