@@ -41,12 +41,19 @@ function cancelarButton() {
 	descriptionEdit.style.display = 'none'; 
 }
 
+function checkUpdates() {
+	if ($('#editMode').val() == 'UPDATED_OK') {
+		$('#divOk').show();
+	} else if ($('#editMode').val() == 'UPDATED_ERROR') {
+		$('#divError').show();
+	}
+}
+
 function validaDatos() {
 	if (document.getElementById('suministro') && document.getElementById('suministro').value == ''
 			&& document.getElementById('direccion') && document.getElementById('direccion').value == '') {
 		document.getElementById('errorMessage').innerHTML= '<s:message code="entidadCasoAlta_error_sumiodire"/>';		    		
 		document.getElementById('divError').style.display= 'block';
-		//return false;
 	}
 	return true;
 }
@@ -63,32 +70,34 @@ function limpiarSuministro() {
 	}
 }
 
-$(document).ready(function() {
-	$( '#dialogSuministro' ).dialog({
-		autoOpen : false, 
-		modal : true, 
-		show : "blind", 
-		hide : "blind", 
+function cargarDialogSuministro() {
+	$('#dialogSuministro').dialog({
+		autoOpen: false, 
+		modal: true, 
+		show: "blind", 
+		hide: "blind", 
 		height: "400",
 		width: "750",
 		resizable: false,
 		create: function (event) {$(event.target).parent().css('position', 'fixed');}
 	});
-	
-	$( '#dialogDireccion' ).dialog({
-		autoOpen : false, 
-		modal : true, 
-		show : "blind", 
-		hide : "blind", 
+}
+
+function cargarDialogDireccion() {
+	$('#dialogDireccion').dialog({
+		autoOpen: false, 
+		modal: true, 
+		show: "blind", 
+		hide: "blind", 
 		height: "400",
 		width: "750",
 		resizable: false,
 		create: function (event) { $(event.target).parent().css('position', 'fixed');}
-	});			    
-});
+	});
+}
 
 function abrirDialogSuministro() {
-	$("#dialogSuministro").dialog('open');
+	$("#dialogSuministro").dialog('open');	
 }
 
 function abrirDialogDireccion() {
@@ -105,4 +114,12 @@ function establecerDireccion(sfid, name) {
 	document.getElementById('direccion').value = sfid;
 	document.getElementById('dirRecuperada').value = name;
 	$('#dialogDireccion').dialog('close');
+}
+
+function createUrl() {
+	var miUrl = window.location.protocol + "//" + window.location.host;
+	if(window.location.pathname.includes("/casosEmergencias/")){
+		miUrl = miUrl + "/casosEmergencias";
+	}
+	return miUrl;
 }

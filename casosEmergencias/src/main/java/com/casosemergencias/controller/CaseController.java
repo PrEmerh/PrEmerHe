@@ -69,7 +69,6 @@ public class CaseController {
 		return "redirect:entidadCasoAlta";
 	}
 	
-	
 	@RequestMapping(value = "/private/entidadCaso", method = RequestMethod.GET)
 	public ModelAndView getCaseData(@RequestParam String sfid, @RequestParam String editMode) {
 		
@@ -144,7 +143,7 @@ public class CaseController {
 		casoView.setMapFavorabilidadCaso(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_FAVORABILIDAD, true));
 		
 		model.addObject("caso", casoView);
-				
+		
 		return model;
 	}
 
@@ -227,7 +226,6 @@ public class CaseController {
 			jsonResult.put("subestado", caso.getLabelSubestadoPickList());
 			jsonResult.put("submotivo", caso.getLabelSubmotivoPickList());
 			jsonResult.put("sfid", caso.getSfid());
-
 			array.put(jsonResult);
 		}
 		
@@ -241,6 +239,18 @@ public class CaseController {
 		logger.info("--- Inicio -- listadoCasosHome ---");
 		
 		return json.toString();
+	}
+	
+	@RequestMapping(value = "/private/actualizarCaso", method = RequestMethod.POST)
+	public String actualizarCaso(CaseView casoRequest) {
+		logger.info("--- Inicio -- actualizarCaso ---");
 		
+		Caso caso = new Caso();
+		ParserModelVO.parseDataModelVO(casoRequest, caso);
+		int updatedCase = casoService.updateCase(caso);
+		
+		logger.info("--- Fin -- actualizarCaso ---");
+		
+		return "redirect:entidadCaso?sfid=" + caso.getSfid() + "&editMode=" + (updatedCase == 1 ? Constantes.EDIT_MODE_UPDATED_OK : Constantes.EDIT_MODE_UPDATED_ERROR);
 	}
 }

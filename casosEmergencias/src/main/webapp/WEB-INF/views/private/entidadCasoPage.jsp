@@ -16,18 +16,29 @@
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
 	</head>
-	<body>
+	<body onload="checkUpdates();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
 			<form:hidden path="id"/>
-			<form:hidden path="editMode"/>
+			<form:hidden path="editMode" value="${editMode}"/>
+			<form:hidden path="sfid"/>
 			<div class="botoneraListado">
 				<ul>
 					<li><input id="Modificar" type="button" name="Modificar" value="Modificar"  onclick="modificarButton();" /></li>
 					<li><input id="Guardar" type="submit" name="Cancelar" value="Guardar" hidden="true"/></li>
 					<li><input id="Cancelar" type="button" name="Cancelar" value="Cancelar" hidden="true"  onclick="cancelarButton();"/></li>
 				</ul>
+			</div>
+			<div id="divError" class="divError">
+				<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
+				<br>
+				<label><s:message code="entidadCasoAlta_error_revisemensajes"/></label>
+				<br>
+				<label id="errorMessage"></label>
+			</div>
+			<div id="divOk" class="divOk">
+				<label>Los datos se han modificado correctamente</label>
 			</div>
 			<div class="divEntidad">
 				<div class="subtitleAltaEntidad">
@@ -137,8 +148,8 @@
 					</div>
 					<div>
 						<label id="fieldRead">${caso.description}</label>
-						<label id="fieldEdit" style="display:none;"><input type='text' name='description' value="${caso.description}" class="buttontext"></label>
-					</div>		
+						<label id="fieldEdit" style="display:none;"><form:input type="text" path="description" class="buttontext" value="${caso.description}"/></label>
+					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_submotivo"/></label>
 					</div>

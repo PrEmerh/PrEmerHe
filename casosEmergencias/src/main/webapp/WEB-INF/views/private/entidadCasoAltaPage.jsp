@@ -22,7 +22,7 @@
   		<script src="../resources/js/popupsTable.js"></script>
 		<script src="../resources/js/utils.js" lang=""></script>
 	</head>
-<body>
+<body onload="cargarDialogSuministro(); cargarDialogDireccion();">
 	<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
 	<jsp:include page="cabeceraPage.jsp"/>
 	<form:form name="formEntidadCasoAlta" action="altaCaso" modelAttribute="caso" method="POST" onsubmit="javascript:return validaDatos();">

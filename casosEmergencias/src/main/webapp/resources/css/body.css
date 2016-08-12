@@ -243,13 +243,27 @@ body label{
 	display:inline;
 	font-size:11px;
 }
+
 .divError{
 	width:100%;	
 	display:none;
 	text-align:center;
 	font-size:11px;
-	color:#c00;
+	color:#ff0000;
 	font-weight:bold;
+}
+
+.divOk{
+	width:90%;	
+	display:none;
+	border: 1px solid #298d07;
+	background-color: #dffdd5;
+	text-align: left;
+	font-size:11px;
+	color:#298d07;
+	font-size: 14px;
+	font-weight:bold;
+	padding: 20px;
 }
 
 .divBusquedaDialog{
