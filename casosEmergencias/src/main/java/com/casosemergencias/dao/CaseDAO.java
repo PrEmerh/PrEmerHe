@@ -190,6 +190,67 @@ public class CaseDAO{
 		}
 		
 	
+	//Lo buscamos para el detalle de contactos:
+	public List<CaseVO> readCaseOfContact(String contactId){
+		
+		logger.debug("--- Inicio -- readCaseOfContact ---"+contactId);
+		Session session = sessionFactory.openSession();
+		try{
+			StringBuilder query = new StringBuilder("from CaseVO caso left join fetch caso.submotivoPickList submotivv left join fetch caso.canalorigenPickList canalorigen");
+			query.append(" WHERE caso.contactId = '" + contactId +"'");
+			
+			Query result = session.createQuery(query.toString());
+			List<CaseVO> casoList = result.list();
+			if(casoList !=null && !casoList.isEmpty()){//como lo vamos a meter en Contacto, hay que anular el contacto para no entrar en bucle
+				for(CaseVO caso : casoList){
+					caso.setContactoJoin(null);
+				}
+			}
+			logger.debug("--- Fin -- readCaseOfContact ---");
+			
+			return casoList;
+			
+	    }catch (HibernateException e) {
+	    	logger.error("--- readCaseOfContact "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- readCaseOfContact ---");
+	    }finally {
+	    	session.close(); 
+	    }
+	      return null;
+	}
+	
+	//Lo buscamos para el detalle de contactos:
+		public List<CaseVO> readCaseOfSuministro(String suministroId){
+			
+			logger.debug("--- Inicio -- readCaseOfSuministro ---"+suministroId);
+			Session session = sessionFactory.openSession();
+			try{
+				StringBuilder query = new StringBuilder("from CaseVO caso left join fetch caso.submotivoPickList submotivv left join fetch caso.canalorigenPickList canalorigen");
+				query.append(" WHERE caso.suministro = '" + suministroId +"'");
+				
+				Query result = session.createQuery(query.toString());
+				List<CaseVO> casoList = result.list();
+				if(casoList !=null && !casoList.isEmpty()){//como lo vamos a meter en Contacto, hay que anular el contacto para no entrar en bucle
+					for(CaseVO caso : casoList){
+						caso.setSuministroJoin(null);
+					}
+				}
+				logger.debug("--- Fin -- readCaseOfSuministro ---");
+				
+				return casoList;
+				
+		    }catch (HibernateException e) {
+		    	logger.error("--- readCaseOfSuministro "+ e.getMessage() +"---");
+		    	logger.error(e.getStackTrace()); 
+		    	logger.error("--- Fin -- readCaseOfSuministro ---");
+		    }finally {
+		    	session.close(); 
+		    }
+		      return null;
+		}
+		
+	
 	
 	/**
 	 * Devuelve el Case que tiene como id el pasado por parametro al metodo
