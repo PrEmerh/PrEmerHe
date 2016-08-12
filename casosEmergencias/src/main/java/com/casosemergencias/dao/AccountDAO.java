@@ -106,20 +106,26 @@ public class AccountDAO {
 			query.setString("sfid", sfid);
 			List<AccountVO> accountList = query.list(); 
 			
-			Query suppliesQuery = session.createQuery("select suministros from AccountVO as account WHERE account.sfid = :sfid "); 
+			Query suppliesQuery = session.createQuery("from SuministroVO as suministro WHERE suministro.cuenta = :sfid "); 
 			suppliesQuery.setString("sfid", sfid);
 			List<SuministroVO> accountSuppliesList = suppliesQuery.list();
 			
-			Query contactsQuery = session.createQuery("select contactos from AccountVO as account WHERE account.sfid = :sfid "); 
+			Query contactsQuery = session.createQuery("from ContactVO as contacto WHERE contacto.accountid = :sfid "); 
 			contactsQuery.setString("sfid", sfid);
 			List<ContactVO> accountContactsList = contactsQuery.list();
-			
+			//MEtemos las listas en los objetos, ya que al estar a lazy no les devolvería
 			if (accountList != null && !accountList.isEmpty()) {
 				account = accountList.get(0);
 				if (accountSuppliesList != null && !accountSuppliesList.isEmpty()) {
+					for(SuministroVO sum: accountSuppliesList){//Anulamos la cuenta para que no entre en bucle.
+						sum.setCuentaJoin(null);
+					}
 					account.setSuministros(accountSuppliesList);
 				}
 				if (accountContactsList != null && !accountContactsList.isEmpty()) {
+					for(ContactVO cont: accountContactsList){//Anulamos la cuenta para que no entre en bucle.
+						cont.setCuentaJoin(null);
+					}
 					account.setContactos(accountContactsList);
 				}
 				return account;

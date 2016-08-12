@@ -63,6 +63,9 @@
 	                <value>com.casosemergencias.dao.vo.RelacionActivoContactoVO</value>
 	                <value>com.casosemergencias.dao.vo.AssetVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsRelacionActivoVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsSumEstadoConVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsSumEstadoSumVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsSumEmpresaVO</value>
 	            </list>  
 		  </property> 
 		  <property name="hibernateProperties">

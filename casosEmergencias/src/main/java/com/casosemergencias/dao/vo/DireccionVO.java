@@ -70,6 +70,9 @@ public class DireccionVO extends ObjectVO implements Serializable {
 	
 	@Column(name = "esquina__c")
 	private String esquina;
+	
+	@Column(name = "literalcomuna__c")
+	private String literalComuna;	
 
 	public DireccionVO(Boolean isdeleted, Date systemmodstamp, String hcLastop, String hcError, Integer id, String sfid,
 			Date createddate, String region, String comuna, String tipoCalle, String calle, String numero,
@@ -233,5 +236,13 @@ public class DireccionVO extends ObjectVO implements Serializable {
 	public Object instantiateTargetLogic() {
 		Direccion direccion = new Direccion();
 		return direccion;
+	}
+
+	public String getLiteralComuna() {
+		return literalComuna;
+	}
+
+	public void setLiteralComuna(String literalComuna) {
+		this.literalComuna = literalComuna;
 	}	
 }

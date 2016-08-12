@@ -5,11 +5,15 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.casosemergencias.dao.CaseDAO;
 import com.casosemergencias.dao.ContactDAO;
 import com.casosemergencias.dao.RelacionActivoContactoDAO;
+import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.dao.vo.ContactVO;
 import com.casosemergencias.dao.vo.RelacionActivoContactoVO;
 import com.casosemergencias.dao.vo.SuministroVO;
+import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
@@ -25,6 +29,9 @@ public class ContactServiceImpl implements ContactService{
 	
 	@Autowired
 	private RelacionActivoContactoDAO relacionDAO;
+	
+	@Autowired
+	private CaseDAO casoDAO;
 		
 	/**
 	 * Metodo que devuelve una lista de todos los contactos a mostrar en la tabla de nuestra app.
@@ -64,7 +71,24 @@ public class ContactServiceImpl implements ContactService{
 		List<Suministro> listaSuministro = parseaListaSuministros(listaRelacionVO);
 		returnContacto.setSuministros(listaSuministro);
 		
+		List<CaseVO> listacasosVO = casoDAO.readCaseOfContact(sfid);
+		List<Caso> casoRelacionado = parseaListaCasos(listacasosVO);
+		returnContacto.setCasos(casoRelacionado);
+		
 		return returnContacto;
+	}
+
+	private List<Caso> parseaListaCasos(List<CaseVO> listacasosVO) {
+		if(listacasosVO!=null && !listacasosVO.isEmpty()){
+			List<Caso> retorno = new ArrayList<Caso>();
+			for(CaseVO casoVO: listacasosVO){
+				Caso casoRelacionado = new Caso();
+				ParserModelVO.parseDataModelVO(casoVO, casoRelacionado);
+				retorno.add(casoRelacionado);
+			}
+			return retorno;
+		}
+		return null;
 	}
 
 	private List<Suministro> parseaListaSuministros(List<RelacionActivoContactoVO> listaRelacionVO) {

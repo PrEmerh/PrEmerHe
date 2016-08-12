@@ -1,12 +1,17 @@
 package com.casosemergencias.dao.vo;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.casosemergencias.model.Contacto;
@@ -99,18 +104,31 @@ public class ContactVO extends ObjectVO implements Serializable {
 	@Column(name = "apellido_paterno__c")
 	private String apellidoPaterno;
 	
-	/*Nombre de la cuenta/*
+	@Column(name = "accountid")
+	private String accountid;
+	
+	@OneToOne(fetch=FetchType.LAZY, optional=true)
+	@JoinColumn(name="accountid", referencedColumnName="sfid", insertable = false, updatable=false)
+	private AccountVO cuentaJoin;
+	
+	
 	/*Recuento de seguidores de Twitter*/ 
 	/*Influencer*/
 	/*Influencer Tipo*/
 	/*Biografía de Twitter*/
+
+	
+
+	public ContactVO() {
+		super();
+	}
 
 	public ContactVO(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
 			String name, Date fechaNacimiento, String canalPreferenteContacto, String tipoCuentaAsociado,
 			String apellidoMaterno, String tipoIdentidad, String telefonoSecundario, String emailSecundario,
 			String sf4twitterFcbkUsername, Boolean casosReiterados, String email, String accountRun, String dirContacto,
 			String sf4twitterTwitterUserId, String sf4twitterFcbkUserId, String sf4twitterTwitterUsername,
-			String tipoContacto, String phone, String apellidoPaterno) {
+			String tipoContacto, String phone, String apellidoPaterno, String accountid, AccountVO cuentaJoin) {
 		super();
 		this.isDeleted = isDeleted;
 		this.systemDate = systemDate;
@@ -137,10 +155,8 @@ public class ContactVO extends ObjectVO implements Serializable {
 		this.tipoContacto = tipoContacto;
 		this.phone = phone;
 		this.apellidoPaterno = apellidoPaterno;
-	}
-
-	public ContactVO() {
-		super();
+		this.accountid = accountid;
+		this.cuentaJoin = cuentaJoin;
 	}
 
 	public Boolean getIsDeleted() {
@@ -352,4 +368,21 @@ public class ContactVO extends ObjectVO implements Serializable {
 		Contacto contacto = new Contacto();
 		return contacto;
 	}
+
+	public String getAccountid() {
+		return accountid;
+	}
+
+	public void setAccountid(String accountid) {
+		this.accountid = accountid;
+	}
+
+	public AccountVO getCuentaJoin() {
+		return cuentaJoin;
+	}
+
+	public void setCuentaJoin(AccountVO cuentaJoin) {
+		this.cuentaJoin = cuentaJoin;
+	}
+
 }

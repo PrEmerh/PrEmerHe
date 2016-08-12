@@ -45,8 +45,7 @@ public class CaseDAO{
 			return casoList;
 			
 	    }catch (HibernateException e) {
-	    	logger.error("--- readAllCase "+ e.getMessage() +"---");
-	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Error en readAllCase: ", e);
 	    	logger.error("--- Fin -- readAllCase ---");
 	    }finally {
 	    	session.close(); 
@@ -88,8 +87,7 @@ public class CaseDAO{
 			return casoList;
 			
 	    }catch (HibernateException e) {
-	    	logger.error("--- readCaseDataTable "+ e.getMessage() +"---");
-	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Error en readCaseDataTable: ", e);
 	    	logger.error("--- Fin -- readCaseDataTable ---");
 	    }finally {
 	    	session.close(); 
@@ -123,14 +121,74 @@ public class CaseDAO{
 			return casoList;
 			
 	    }catch (HibernateException e) {
-	    	logger.error("--- readAllCaseDescriptionPick "+ e.getMessage() +"---");
-	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Error en readAllCaseDescriptionPick: ", e);
 	    	logger.error("--- Fin -- readAllCaseDescriptionPick ---");
 	    }finally {
 	    	session.close(); 
 	    }
 	      return null;
 	}
+	
+	//Lo buscamos para el detalle de contactos:
+	public List<CaseVO> readCaseOfContact(String contactId){
+		
+		logger.debug("--- Inicio -- readCaseOfContact ---"+contactId);
+		Session session = sessionFactory.openSession();
+		try{
+			StringBuilder query = new StringBuilder("from CaseVO caso left join fetch caso.submotivoPickList submotivv left join fetch caso.canalorigenPickList canalorigen");
+			query.append(" WHERE caso.contactId = '" + contactId +"'");
+			
+			Query result = session.createQuery(query.toString());
+			List<CaseVO> casoList = result.list();
+			if(casoList !=null && !casoList.isEmpty()){//como lo vamos a meter en Contacto, hay que anular el contacto para no entrar en bucle
+				for(CaseVO caso : casoList){
+					caso.setContactoJoin(null);
+				}
+			}
+			logger.debug("--- Fin -- readCaseOfContact ---");
+			
+			return casoList;
+			
+	    }catch (HibernateException e) {
+	    	logger.error("--- readCaseOfContact "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- readCaseOfContact ---");
+	    }finally {
+	    	session.close(); 
+	    }
+	      return null;
+	}
+	
+	//Lo buscamos para el detalle de contactos:
+		public List<CaseVO> readCaseOfSuministro(String suministroId){
+			
+			logger.debug("--- Inicio -- readCaseOfSuministro ---"+suministroId);
+			Session session = sessionFactory.openSession();
+			try{
+				StringBuilder query = new StringBuilder("from CaseVO caso left join fetch caso.submotivoPickList submotivv left join fetch caso.canalorigenPickList canalorigen");
+				query.append(" WHERE caso.suministro = '" + suministroId +"'");
+				
+				Query result = session.createQuery(query.toString());
+				List<CaseVO> casoList = result.list();
+				if(casoList !=null && !casoList.isEmpty()){//como lo vamos a meter en Contacto, hay que anular el contacto para no entrar en bucle
+					for(CaseVO caso : casoList){
+						caso.setSuministroJoin(null);
+					}
+				}
+				logger.debug("--- Fin -- readCaseOfSuministro ---");
+				
+				return casoList;
+				
+		    }catch (HibernateException e) {
+		    	logger.error("--- readCaseOfSuministro "+ e.getMessage() +"---");
+		    	logger.error(e.getStackTrace()); 
+		    	logger.error("--- Fin -- readCaseOfSuministro ---");
+		    }finally {
+		    	session.close(); 
+		    }
+		      return null;
+		}
+		
 	
 	
 	/**
@@ -158,8 +216,7 @@ public class CaseDAO{
 			logger.debug("--- Fin -- readCaseById ---");
 			
 	    }catch (HibernateException e) {
-	    	logger.error("--- readCaseById "+ e.getMessage() +"---");
-	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Error en readCaseById: ", e);
 	    	logger.error("--- Fin -- readCaseById ---");
 	    }finally {
 	    	session.close(); 
@@ -194,8 +251,7 @@ public class CaseDAO{
 			logger.debug("--- Fin -- readCaseBySfid ---");
 			
 	    }catch (HibernateException e) {
-	    	logger.error("--- readCaseBySfid "+ e.getMessage() +"---");
-	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Error en readCaseBySfid: ", e);
 	    	logger.error("--- Fin -- readCaseBySfid ---");
 	    }finally {
 	    	session.close(); 
@@ -1393,8 +1449,7 @@ public class CaseDAO{
 			return casosList;
 
 	    }catch (HibernateException e) {
-	    	logger.error("--- readCase "+ e.getMessage() +"---");
-	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Error en readCase: ", e);
 	    	logger.error("--- Fin -- readCase ---"); 
 	    }finally {
 	    	session.close(); 
@@ -1427,8 +1482,7 @@ public class CaseDAO{
 		}catch (HibernateException e) {
 			
 	    	tx.rollback();
-			logger.error("--- updateCase "+ e.getMessage() +"---");
-	    	logger.error(e.getStackTrace()); 
+			logger.error("--- Error en updateCase: ", e);
 	    	logger.error("--- Fin -- updateCase ---");
 	    	return 0;
 	    	
@@ -1461,8 +1515,7 @@ public class CaseDAO{
 		}catch (HibernateException e) {
 			
 	    	tx.rollback();
-			logger.error("--- insertCase "+ e.getMessage() +"---");
-	    	logger.error(e.getStackTrace()); 
+			logger.error("--- Error en insertCase: ", e);
 	    	logger.error("--- Fin -- updateCase ---");
 	    	return 0;
 	    	
@@ -1488,8 +1541,7 @@ public class CaseDAO{
 			return count.intValue();
 			
 	    }catch (HibernateException e) {
-	    	logger.error("--- countCase "+ e.getMessage() +"---");
-	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Error en countCase: ", e);
 	    	logger.error("--- Fin -- countCase ---");
 	    }finally {
 	    	session.close(); 

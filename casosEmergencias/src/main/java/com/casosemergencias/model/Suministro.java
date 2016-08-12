@@ -1,8 +1,10 @@
 package com.casosemergencias.model;
 
 import java.util.Date;
+import java.util.List;
 
 import com.casosemergencias.controller.views.SuministroView;
+import com.casosemergencias.dao.vo.AccountVO;
 import com.casosemergencias.dao.vo.SuministroVO;
 
 public class Suministro extends ObjectLogic {
@@ -47,13 +49,22 @@ public class Suministro extends ObjectLogic {
 	private String ruta;
 	private String tipoCuenta;
 	private String tipoSegmento;
+	private String labelEmpresaPickList;
+	private String labelEstadoConexionPickList;
+	private String labelEstadoSuministroPickList;
 
 	private String relacionActivo;
 
 	private String direccionConcatenada;
+	
+	private List<Caso> casos;
+	
+	private Cuenta cuentaJoin;
 
 	public Suministro() {
 	}
+
+	
 
 	public Suministro(Integer id, String sfid, String name, String fullElectric, Boolean casosAbiertos,
 			String tipoTransformador, Boolean cortePorDeuda, String tipoLectura, String estadoConexion,
@@ -63,7 +74,9 @@ public class Suministro extends ObjectLogic {
 			Boolean pagoEnProceso, String nombreDuenoBoleta, String bloque, String tipoConexion,
 			String direccionCliente, String electrodependiente, String medidaDisciplina, String horarioRacionamiento,
 			Double casosReiterados, String tarifa, String alimentador, String direccionBoleta, String cuenta,
-			String subestacionElectricaConexion, String ruta, String tipoCuenta, String tipoSegmento, String direccionConcatenada) {
+			String subestacionElectricaConexion, String ruta, String tipoCuenta, String tipoSegmento,
+			String labelEmpresaPickList, String labelEstadoConexionPickList, String labelEstadoSuministroPickList,
+			String relacionActivo, String direccionConcatenada) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -105,8 +118,14 @@ public class Suministro extends ObjectLogic {
 		this.ruta = ruta;
 		this.tipoCuenta = tipoCuenta;
 		this.tipoSegmento = tipoSegmento;
+		this.labelEmpresaPickList = labelEmpresaPickList;
+		this.labelEstadoConexionPickList = labelEstadoConexionPickList;
+		this.labelEstadoSuministroPickList = labelEstadoSuministroPickList;
+		this.relacionActivo = relacionActivo;
 		this.direccionConcatenada = direccionConcatenada;
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -454,5 +473,65 @@ public class Suministro extends ObjectLogic {
 
 	public void setRelacionActivo(String relacionActivo) {
 		this.relacionActivo = relacionActivo;
+	}
+
+
+
+	public String getLabelEmpresaPickList() {
+		return labelEmpresaPickList;
+	}
+
+
+
+	public void setLabelEmpresaPickList(String labelEmpresaPickList) {
+		this.labelEmpresaPickList = labelEmpresaPickList;
+	}
+
+
+
+	public String getLabelEstadoConexionPickList() {
+		return labelEstadoConexionPickList;
+	}
+
+
+
+	public void setLabelEstadoConexionPickList(String labelEstadoConexionPickList) {
+		this.labelEstadoConexionPickList = labelEstadoConexionPickList;
+	}
+
+
+
+	public String getLabelEstadoSuministroPickList() {
+		return labelEstadoSuministroPickList;
+	}
+
+
+
+	public void setLabelEstadoSuministroPickList(String labelEstadoSuministroPickList) {
+		this.labelEstadoSuministroPickList = labelEstadoSuministroPickList;
+	}
+
+
+
+	public List<Caso> getCasos() {
+		return casos;
+	}
+
+
+
+	public void setCasos(List<Caso> casos) {
+		this.casos = casos;
+	}
+
+
+
+	public Cuenta getCuentaJoin() {
+		return cuentaJoin;
+	}
+
+
+
+	public void setCuentaJoin(Cuenta cuentaJoin) {
+		this.cuentaJoin = cuentaJoin;
 	}
 }

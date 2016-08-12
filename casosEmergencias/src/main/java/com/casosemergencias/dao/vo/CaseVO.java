@@ -343,13 +343,6 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "control_electrodependiente__c")
 	private Boolean controlElectrodependiente;
 	
-	public ContactVO getContactoJoin() {
-		return contactoJoin;
-	}
-
-	public void setContactoJoin(ContactVO contactoJoin) {
-		this.contactoJoin = contactoJoin;
-	}
 	@Column(name = "cancelar__c")
 	private Boolean cancelar;
 	
@@ -378,19 +371,19 @@ public class CaseVO extends ObjectVO implements Serializable {
 //	private String accountid;
 //	@Column(name = "suministro__c")
 //	private String suministro;
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="contactid", referencedColumnName="sfid", insertable = false, updatable=false)
 	private ContactVO contactoJoin;
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="accountid", referencedColumnName="sfid", insertable = false, updatable=false)
 	private AccountVO cuentaJoin;
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="suministro__c", referencedColumnName="sfid", insertable = false, updatable=false)
 	private SuministroVO suministroJoin;
 	
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="direccion__c", referencedColumnName="sfid", insertable = false, updatable=false)
 	private DireccionVO direccionJoin;
 	
@@ -1474,6 +1467,12 @@ public class CaseVO extends ObjectVO implements Serializable {
 	public void setDireccionJoin(DireccionVO direccionJoin) {
 		this.direccionJoin = direccionJoin;
 	}
+	public ContactVO getContactoJoin() {
+		return contactoJoin;
+	}
 
+	public void setContactoJoin(ContactVO contactoJoin) {
+		this.contactoJoin = contactoJoin;
+	}
 	
 }

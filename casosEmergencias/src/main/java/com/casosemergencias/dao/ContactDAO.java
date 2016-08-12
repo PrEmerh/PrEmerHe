@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.dao.vo.ContactVO;
 
 @Repository
@@ -67,7 +68,7 @@ public class ContactDAO {
 		Session session = sessionFactory.openSession();
 				
 		try{
-			Query query = session.createQuery("from ContactVO as contact WHERE contact.id = :id");
+			Query query = session.createQuery("from ContactVO as contact left join fetch contact.cuentaJoin cuenta WHERE contact.id = :id");
 			query.setInteger("id", id);
 			
 			List<ContactVO> contactList = query.list(); 
@@ -111,6 +112,13 @@ public class ContactDAO {
 
 			if(contactList != null && !contactList.isEmpty()){
 				return contactList.get(0);
+//				ContactVO contactoARetornar = contactList.get(0);
+//				List<CaseVO> listaCasos = contactoARetornar.getCasos();
+//				if(listaCasos != null && !listaCasos.isEmpty()){//Vamos a anular el contacto de los casos para no entrar en bucle.
+//					for(CaseVO caso: listaCasos)
+//						caso.setContactoJoin(null);
+//				}
+//				return contactoARetornar;
 			}			
 			
 			logger.debug("--- Fin -- readContactBySfid ---");

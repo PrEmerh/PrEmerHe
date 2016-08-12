@@ -7,8 +7,11 @@ import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.casosemergencias.dao.CaseDAO;
 import com.casosemergencias.dao.SuministroDAO;
+import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.dao.vo.SuministroVO;
+import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.DataTableProperties;
 import com.casosemergencias.util.ParserModelVO;
@@ -23,6 +26,9 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 	
 	@Autowired
 	private SuministroDAO suministroDao;
+	
+	@Autowired
+	private CaseDAO casoDAO;
 	
 	/**
 	 * Metodo que devuelve una lista con todos los suministros que hay en BBDD
@@ -54,15 +60,31 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 	
 	public Suministro readSuministroBySfid(String sfid){
 		SuministroVO suministroVO = suministroDao.readSuministroBySfid(sfid);
+		Suministro suministro = new Suministro();
 		//Si nos devuelve null, devolvemos null, si no, devolvemos el objeto relleno con los datos que nos devuelve BBDD
 		if(suministroVO!=null){
-			Suministro suministro = new Suministro();
 			ParserModelVO.parseDataModelVO(suministroVO, suministro);
+			List<CaseVO> listacasosVO = casoDAO.readCaseOfSuministro(sfid);
+			List<Caso> casoRelacionado = parseaListaCasos(listacasosVO);
+			suministro.setCasos(casoRelacionado);
 			return suministro;
 		}
 		return null;
 	}
 	
+	private List<Caso> parseaListaCasos(List<CaseVO> listacasosVO) {
+		if(listacasosVO!=null && !listacasosVO.isEmpty()){
+			List<Caso> retorno = new ArrayList<Caso>();
+			for(CaseVO casoVO: listacasosVO){
+				Caso casoRelacionado = new Caso();
+				ParserModelVO.parseDataModelVO(casoVO, casoRelacionado);
+				retorno.add(casoRelacionado);
+			}
+			return retorno;
+		}
+		return null;
+	}
+
 	public Integer getNumSuministros(DataTableProperties propDatatable){
 		return suministroDao.countSuministro(propDatatable);
 	}

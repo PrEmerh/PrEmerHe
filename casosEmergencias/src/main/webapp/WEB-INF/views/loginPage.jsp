@@ -34,9 +34,6 @@
 					<tr>
 						<td colspan="2" align="center"><input name="submit" type="submit" class="" value="<s:message code="login_form_button_submit"/>"/></td>
 					</tr>
-					<tr>
-						<td colspan="2" align="center"><a href="resetPass"><s:message code="reset_label_title"/></a></td>
-					</tr>
 				</table>
 			</form>
 		</div>

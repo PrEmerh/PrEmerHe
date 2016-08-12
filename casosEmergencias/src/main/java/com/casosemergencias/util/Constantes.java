@@ -15,6 +15,8 @@ public class Constantes {
 	//Modo edición
 	public static final String EDIT_MODE_INSERT = "INSERT";
 	public static final String EDIT_MODE_UPDATE = "UPDATE";
+	public static final String EDIT_MODE_UPDATED_OK = "UPDATED_OK";
+	public static final String EDIT_MODE_UPDATED_ERROR = "UPDATED_ERROR";
 	public static final String EDIT_MODE_VIEW = "VIEW";
 	
 	//PcikLists

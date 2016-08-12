@@ -4,9 +4,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.casosemergencias.model.Suministro;
@@ -158,6 +161,23 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	@Column(name = "DireccionConcatenada__c")
 	private String direccionConcatenada;
 	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="id_empresa__c", referencedColumnName="codigo", insertable = false, updatable=false)
+	private PickListsSumEmpresaVO empresaPickList;
+	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="estado_de_conexi_n__c", referencedColumnName="codigo", insertable = false, updatable=false)
+	private PickListsSumEstadoConVO estadoConexionPickList;
+	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="estado_del_suministro__c", referencedColumnName="codigo", insertable = false, updatable=false)
+	private PickListsSumEstadoSumVO estadoSuministroPickList;
+	
+	@OneToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="cuenta__c", referencedColumnName="sfid", insertable = false, updatable=false)
+	private AccountVO cuentaJoin;
+	
+	
 	public SuministroVO(){}
 	
 	public SuministroVO(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
@@ -169,7 +189,8 @@ public class SuministroVO extends ObjectVO implements Serializable {
 			String tipoConexion, String direccionCliente, String electrodependiente, String medidaDisciplina,
 			String horarioRacionamiento, Double casosReiterados, String tarifa, String alimentador,
 			String direccionBoleta, String cuenta, String subestacionElectricaConexion, String ruta, String tipoCuenta,
-			String tipoSegmento, String direccionConcatenada) {
+			String tipoSegmento, String direccionConcatenada, PickListsSumEmpresaVO empresaPickList,
+			PickListsSumEstadoConVO estadoConexionPickList, PickListsSumEstadoSumVO estadoSuministroPickList) {
 		super();
 		this.isDeleted = isDeleted;
 		this.systemDate = systemDate;
@@ -216,7 +237,12 @@ public class SuministroVO extends ObjectVO implements Serializable {
 		this.tipoCuenta = tipoCuenta;
 		this.tipoSegmento = tipoSegmento;
 		this.direccionConcatenada = direccionConcatenada;
+		this.empresaPickList = empresaPickList;
+		this.estadoConexionPickList = estadoConexionPickList;
+		this.estadoSuministroPickList = estadoSuministroPickList;
 	}
+
+
 
 	public Boolean getIsDeleted() {
 		return isDeleted;
@@ -577,10 +603,76 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	public void setDireccionConcatenada(String direccionConcatenada) {
 		this.direccionConcatenada = direccionConcatenada;
 	}
+	public PickListsSumEmpresaVO getEmpresaPickList() {
+		return empresaPickList;
+	}
+
+
+
+	public void setEmpresaPickList(PickListsSumEmpresaVO empresaPickList) {
+		this.empresaPickList = empresaPickList;
+	}
+
+
+
+	public PickListsSumEstadoConVO getEstadoConexionPickList() {
+		return estadoConexionPickList;
+	}
+
+
+
+	public void setEstadoConexionPickList(PickListsSumEstadoConVO estadoConexionPickList) {
+		this.estadoConexionPickList = estadoConexionPickList;
+	}
+
+
+
+	public PickListsSumEstadoSumVO getEstadoSuministroPickList() {
+		return estadoSuministroPickList;
+	}
+
+
+
+	public void setEstadoSuministroPickList(PickListsSumEstadoSumVO estadoSuministroPickList) {
+		this.estadoSuministroPickList = estadoSuministroPickList;
+	}
+	
+	public String getLabelEmpresaPickList(){
+		String result = this.getIdEmpresa();
+		if (this.getEmpresaPickList() != null ){
+			result=this.getEmpresaPickList().getValor();
+		}
+		return result; 
+	}
+	
+	public String getLabelEstadoConexionPickList(){
+		String result = this.getEstadoConexion();
+		if (this.getEstadoConexionPickList() != null ){
+			result=this.getEstadoConexionPickList().getValor();
+		}
+		return result; 
+	}
+	
+	public String getLabelEstadoSuministroPickList(){
+		String result = this.getEstadoSuministro();
+		if (this.getEstadoSuministroPickList() != null ){
+			result=this.getEstadoSuministroPickList().getValor();
+		}
+		return result; 
+	}
+
 
 	@Override
 	public Object instantiateTargetLogic() {
 		Suministro suministro = new Suministro();
 		return suministro;
+	}
+
+	public AccountVO getCuentaJoin() {
+		return cuentaJoin;
+	}
+
+	public void setCuentaJoin(AccountVO cuentaJoin) {
+		this.cuentaJoin = cuentaJoin;
 	}
 }

@@ -42,7 +42,7 @@
 						<label><s:message code="entidadSuministro_title_label_detalleDireccion"/></label>
 					</div>
 					<div>
-						<label>${suministro.direccion}</label>
+						<label>${suministro.direccionConcatenada}</label>
 					</div>
 				</div>
 				<div>
@@ -78,7 +78,7 @@
 						<label><s:message code="entidadSuministro_title_label_estadoSuministro"/></label>
 					</div>	
 					<div>
-						<label>${suministro.estadoSuministro}</label>
+						<label>${suministro.labelEstadoSuministroPickList}</label>
 					</div>
 				</div>	
 			</div>	
@@ -97,7 +97,7 @@
 						<label><s:message code="entidadSuministro_title_label_cuenta"/></label>
 					</div>
 					<div>
-						<label>${suministro.cuenta}</label>
+						<label><a href="../private/entidadCuenta?sfid=${suministro.cuentaJoin.sfid}">${suministro.cuentaJoin.name}</a></label>
 					</div>		
 					<div class="divLabel">
 						<label><s:message code="entidadSuministro_title_label_tipoCuenta"/></label>
@@ -130,7 +130,7 @@
 						<label><s:message code="entidadSuministro_title_label_idEmpresa"/></label>
 					</div>
 					<div>
-						<label>${suministro.idEmpresa}</label>
+						<label>${suministro.labelEmpresaPickList}</label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadSuministro_title_label_tarifa"/></label>
@@ -294,6 +294,37 @@
 					<div>
 						<label>${suministro.horarioRacionamiento}</label>
 					</div>
+				</div>
+			</div>
+			<div id="divEntidadSuministroCasos" class="divEntidad">
+				<div class="subtitleAltaEntidad">
+					<div>
+						<input id="arrowTablaContactoCasos" type="image" src="../resources/images/Arrowdown.PNG"  
+							height="15" onclick="showHideCabeceras('tablaSuministroCasos','arrowTablaSuministroCasos'); return false;"/>			
+						<label><s:message code="entidadCuenta_title_label_supply_data_detail" /></label>
+					</div>
+				</div>
+				<div id="tablaSuministroCasos">
+					<table class="basicTable">
+						<tr>
+							<th><s:message code="entidadSuministro_title_label_caso_caso" /></th>
+						    <th><s:message code="entidadSuministro_title_label_caso_estado" /></th>
+						    <th><s:message code="entidadSuministro_title_label_caso_fechaApertura" /></th>
+						    <th><s:message code="entidadSuministro_title_label_caso_submotivo" /></th>
+						    <th><s:message code="entidadSuministro_title_label_caso_tiempoEstimado" /></th>
+						    <th><s:message code="entidadSuministro_title_label_caso_canalOrigen" /></th>
+						</tr>
+						<c:forEach items="${suministro.casos}" var="caso">
+							<tr>
+								<td><a href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
+								<td>${caso.descripcionEstado}</td>
+								<td>${caso.fechaApertura}</td>
+								<td>${caso.labelSubmotivoPickList}</td>
+								<td>${caso.tiempoEstimacion}</td>
+								<td>${caso.labelCanalorigenPickList}</td>
+							</tr>
+						</c:forEach>
+					</table>
 				</div>
 			</div>
 		</form:form>			

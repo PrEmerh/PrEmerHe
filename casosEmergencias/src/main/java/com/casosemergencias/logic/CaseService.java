@@ -16,4 +16,6 @@ public interface CaseService {
 	public Caso readCaseById(Integer id);
 
 	public Integer insertCase(Caso caso);
+	
+	public Integer updateCase(Caso caso);
 }

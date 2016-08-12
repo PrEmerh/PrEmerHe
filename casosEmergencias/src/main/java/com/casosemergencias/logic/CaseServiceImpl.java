@@ -10,10 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.casosemergencias.dao.CaseDAO;
 import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.model.Caso;
-import com.casosemergencias.model.Contacto;
-import com.casosemergencias.model.Cuenta;
-import com.casosemergencias.model.Direccion;
-import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.DataTableProperties;
 import com.casosemergencias.util.ParserModelVO;
 
@@ -95,6 +91,16 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 		CaseVO casoVO = new CaseVO();
 		ParserModelVO.parseDataModelVO(caso, casoVO);
 		Integer id = caseDao.insertCase(casoVO);
+		return id;
+	}
+
+	@Override
+	public Integer updateCase(Caso caso) {
+		CaseVO casoVO = new CaseVO();
+		casoVO = caseDao.readCaseBySfid(caso.getSfid());
+		
+		casoVO.setDescription(caso.getDescription());
+		Integer id = caseDao.updateCase(casoVO);
 		return id;
 	}
 }
