@@ -158,13 +158,13 @@
 					</tr>
 					<c:forEach items="${cuenta.suministros}" var="suministro">
 						<tr>
-							<td>${suministro.name}</td>
-							<td>${suministro.idEmpresa}</td>
-							<td>${suministro.estadoConexion}</td>
-							<td>${suministro.estadoSuministro}</td>
+							<td><a href="../private/entidadSuministro?sfid=${suministro.sfid}">${suministro.name}</a></td>
+							<td>${suministro.labelEmpresaPickList}</td>
+							<td>${suministro.labelEstadoConexionPickList}</td>
+							<td>${suministro.labelEstadoSuministroPickList}</td>
 							<td>${suministro.electrodependiente}</td>
 							<td>${suministro.fechaCorte}</td>
-							<td>${suministro.direccion}</td>
+							<td>${suministro.direccionConcatenada}</td>
 							<td>${suministro.comuna}</td>
 						</tr>
 					</c:forEach>
@@ -189,7 +189,7 @@
 					</tr>
 					<c:forEach items="${cuenta.contactos}" var="contacto">
 						<tr>
-							<td>${contacto.name}</td>
+							<td><a href="../private/entidadContacto?sfid=${contacto.sfid}">${contacto.name}</a></td>
 							<td>${contacto.accountRun}</td>
 							<td>${contacto.phone}</td>
 							<td>${contacto.email}</td>

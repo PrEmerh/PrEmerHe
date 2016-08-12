@@ -1,6 +1,8 @@
 package com.casosemergencias.controller.views;
 import java.util.Date;
+import java.util.List;
 
+import com.casosemergencias.dao.vo.AccountVO;
 import com.casosemergencias.model.Suministro;
 
 public class SuministroView extends ObjectView {
@@ -92,7 +94,11 @@ public class SuministroView extends ObjectView {
 	private String labelEmpresaPickList;
 	private String labelEstadoConexionPickList;
 	private String labelEstadoSuministroPickList;
+	
+	private AccountView cuentaJoin;
 
+	private List<CaseView> casos;
+	
 	public SuministroView(){}
 	
 
@@ -527,5 +533,25 @@ public class SuministroView extends ObjectView {
 
 	public void setLabelEstadoSuministroPickList(String labelEstadoSuministroPickList) {
 		this.labelEstadoSuministroPickList = labelEstadoSuministroPickList;
+	}
+
+
+	public List<CaseView> getCasos() {
+		return casos;
+	}
+
+
+	public void setCasos(List<CaseView> casos) {
+		this.casos = casos;
+	}
+
+
+	public AccountView getCuentaJoin() {
+		return cuentaJoin;
+	}
+
+
+	public void setCuentaJoin(AccountView cuentaJoin) {
+		this.cuentaJoin = cuentaJoin;
 	}
 }

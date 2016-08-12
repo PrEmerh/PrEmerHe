@@ -1,8 +1,10 @@
 package com.casosemergencias.model;
 
 import java.util.Date;
+import java.util.List;
 
 import com.casosemergencias.controller.views.SuministroView;
+import com.casosemergencias.dao.vo.AccountVO;
 import com.casosemergencias.dao.vo.SuministroVO;
 
 public class Suministro extends ObjectLogic {
@@ -54,6 +56,10 @@ public class Suministro extends ObjectLogic {
 	private String relacionActivo;
 
 	private String direccionConcatenada;
+	
+	private List<Caso> casos;
+	
+	private Cuenta cuentaJoin;
 
 	public Suministro() {
 	}
@@ -503,5 +509,29 @@ public class Suministro extends ObjectLogic {
 
 	public void setLabelEstadoSuministroPickList(String labelEstadoSuministroPickList) {
 		this.labelEstadoSuministroPickList = labelEstadoSuministroPickList;
+	}
+
+
+
+	public List<Caso> getCasos() {
+		return casos;
+	}
+
+
+
+	public void setCasos(List<Caso> casos) {
+		this.casos = casos;
+	}
+
+
+
+	public Cuenta getCuentaJoin() {
+		return cuentaJoin;
+	}
+
+
+
+	public void setCuentaJoin(Cuenta cuentaJoin) {
+		this.cuentaJoin = cuentaJoin;
 	}
 }

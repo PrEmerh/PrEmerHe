@@ -45,7 +45,7 @@
 						<label><s:message code="entidadDireccion_table_label_comuna"/></label>
 					</div>
 					<div>
-						<label>${direccion.comuna}</label>
+						<label>${direccion.literalComuna}</label>
 					</div>
 				</div>
 				<div>

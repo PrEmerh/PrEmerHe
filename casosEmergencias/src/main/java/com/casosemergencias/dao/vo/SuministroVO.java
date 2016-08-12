@@ -173,6 +173,11 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	@JoinColumn(name="estado_del_suministro__c", referencedColumnName="codigo", insertable = false, updatable=false)
 	private PickListsSumEstadoSumVO estadoSuministroPickList;
 	
+	@OneToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="cuenta__c", referencedColumnName="sfid", insertable = false, updatable=false)
+	private AccountVO cuentaJoin;
+	
+	
 	public SuministroVO(){}
 	
 	public SuministroVO(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
@@ -661,5 +666,13 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	public Object instantiateTargetLogic() {
 		Suministro suministro = new Suministro();
 		return suministro;
+	}
+
+	public AccountVO getCuentaJoin() {
+		return cuentaJoin;
+	}
+
+	public void setCuentaJoin(AccountVO cuentaJoin) {
+		this.cuentaJoin = cuentaJoin;
 	}
 }

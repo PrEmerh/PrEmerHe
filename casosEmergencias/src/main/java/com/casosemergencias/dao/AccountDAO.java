@@ -117,6 +117,9 @@ public class AccountDAO {
 			if (accountList != null && !accountList.isEmpty()) {
 				account = accountList.get(0);
 				if (accountSuppliesList != null && !accountSuppliesList.isEmpty()) {
+					for(SuministroVO sum: accountSuppliesList){//Anulamos la cuenta para que no entre en bucle.
+						sum.setCuentaJoin(null);
+					}
 					account.setSuministros(accountSuppliesList);
 				}
 				if (accountContactsList != null && !accountContactsList.isEmpty()) {
