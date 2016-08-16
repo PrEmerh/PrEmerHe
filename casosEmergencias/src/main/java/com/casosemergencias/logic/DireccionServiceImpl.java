@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.casosemergencias.dao.DireccionDAO;
 import com.casosemergencias.dao.vo.DireccionVO;
 import com.casosemergencias.model.Direccion;
-import com.casosemergencias.util.DataTableProperties;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.datatables.DataTableProperties;
 
 
 //las transacciones se abren y cierran aqui

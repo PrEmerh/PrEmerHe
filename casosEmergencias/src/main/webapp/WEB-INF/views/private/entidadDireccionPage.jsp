@@ -17,9 +17,10 @@
 		<link href="../resources/css/body.css" rel="stylesheet" />	
 	
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
+		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
 	</head>
-	<body>
+	<body onload="initHeader();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_direccion"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadDireccion" action="actualizarDireccion" modelAttribute="direccion" method="POST">
@@ -29,7 +30,7 @@
 					<div>
 						<input id="arrowDetalleDireccion" type="image" src="../resources/images/Arrowdown.PNG"  
 							height="15" onclick="showHideCabeceras('detalleDireccion','arrowDetalleDireccion'); return false;"/>
-						<b><label><s:message code="entidadDireccion_title_label_detalle_direccion"/></label></b>
+						<label class="divLabel"><s:message code="entidadDireccion_title_label_detalle_direccion"/></label>
 					</div>
 				</div>
 			</div>			

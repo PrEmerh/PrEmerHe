@@ -3,7 +3,7 @@ package com.casosemergencias.logic;
 import java.util.List;
 
 import com.casosemergencias.model.Direccion;
-import com.casosemergencias.util.DataTableProperties;
+import com.casosemergencias.util.datatables.DataTableProperties;
 
 public interface DireccionService {
 	public List<Direccion> listOfDireccionesTable();

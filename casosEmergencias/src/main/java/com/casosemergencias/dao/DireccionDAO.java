@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.casosemergencias.dao.vo.DireccionVO;
-import com.casosemergencias.util.DataTableProperties;
+import com.casosemergencias.util.datatables.DataTableProperties;
 
 @Repository
 public class DireccionDAO {
@@ -245,7 +245,7 @@ public class DireccionDAO {
 			}
 			
 
-			//añadimos los valores por los que filtrara la query
+			//aï¿½adimos los valores por los que filtrara la query
 			
 			Query result = session.createQuery(query.toString());
 			if(direccion.getSfid()!= null){

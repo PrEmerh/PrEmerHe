@@ -11,12 +11,14 @@
 		<link rel="icon" type="image/png" href="../resources/images/favicon.jpg">
 		
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
-		<link href="../resources/css/body.css" rel="stylesheet" />	
+		<link href="../resources/css/body.css" rel="stylesheet" />
+		<link href="../resources/css/styles.css" rel="stylesheet" />	
 	
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
+		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
 	</head>
-	<body>
+	<body onload="initHeader();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_suministro"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadSuministro" action="actualizarSuministro" modelAttribute="suministro" method="POST">
@@ -26,7 +28,7 @@
 					<div>
 						<input id="arrowDetalleSuministro" type="image" src="../resources/images/Arrowdown.PNG"  
 							height="15" onclick="showHideCabeceras('detalleSuministro','arrowDetalleSuministro'); return false;"/>
-						<b><label><s:message code="entidadSuministro_title_label_detalle_suministro"/></label></b>
+						<label class="divLabel"><s:message code="entidadSuministro_title_label_detalle_suministro"/></label>
 					</div>
 				</div>
 			</div>
@@ -87,7 +89,7 @@
 					<div>
 						<input id="arrowCuentaRelacionada" type="image" src="../resources/images/Arrowdown.PNG"  
 							height="15" onclick="showHideCabeceras('cuentaRelacionada','arrowCuentaRelacionada'); return false;"/>
-						<b><label><s:message code="entidadSuministro_title_label_cuenta_relacionada"/></label></b>								
+						<label class="divLabel"><s:message code="entidadSuministro_title_label_cuenta_relacionada"/></label>								
 					</div>
 				</div>			
 			</div>
@@ -97,7 +99,7 @@
 						<label><s:message code="entidadSuministro_title_label_cuenta"/></label>
 					</div>
 					<div>
-						<label><a href="../private/entidadCuenta?sfid=${suministro.cuentaJoin.sfid}">${suministro.cuentaJoin.name}</a></label>
+						<label><a class="link" href="../private/entidadCuenta?sfid=${suministro.cuentaJoin.sfid}">${suministro.cuentaJoin.name}</a></label>
 					</div>		
 					<div class="divLabel">
 						<label><s:message code="entidadSuministro_title_label_tipoCuenta"/></label>
@@ -120,7 +122,7 @@
 					<div>
 						<input id="arrowDatosSuministro" type="image" src="../resources/images/Arrowdown.PNG"  
 							height="15" onclick="showHideCabeceras('datosSuministro','arrowDatosSuministro'); return false;"/>
-						<b><label><s:message code="entidadSuministro_title_label_datos_suministro"/></label></b>
+						<label class="divLabel"><s:message code="entidadSuministro_title_label_datos_suministro"/></label>
 					</div>
 				</div>
 			</div>	
@@ -159,7 +161,7 @@
 					<div>
 						<input id="arrowDatosComerciales" type="image" src="../resources/images/Arrowdown.PNG"  
 							height="15" onclick="showHideCabeceras('datosComerciales','arrowDatosComerciales'); return false;"/>
-						<b><label><s:message code="entidadSuministro_title_label_datos_comerciales"/></label></b>
+						<label class="divLabel"><s:message code="entidadSuministro_title_label_datos_comerciales"/></label>
 					</div>
 				</div>
 			</div>
@@ -198,7 +200,7 @@
 					<div>	
 						<input id="arrowDatosTecnicos" type="image" src="../resources/images/Arrowdown.PNG"  
 							height="15" onclick="showHideCabeceras('datosTecnicos','arrowDatosTecnicos'); return false;"/>			
-						<b><label><s:message code="entidadSuministro_title_label_datos_tecnicos"/></label></b>
+						<label class="divLabel"><s:message code="entidadSuministro_title_label_datos_tecnicos"/></label>
 					</div>
 				</div>
 			</div>
@@ -299,9 +301,9 @@
 			<div id="divEntidadSuministroCasos" class="divEntidad">
 				<div class="subtitleAltaEntidad">
 					<div>
-						<input id="arrowTablaContactoCasos" type="image" src="../resources/images/Arrowdown.PNG"  
+						<input id="arrowTablaSuministroCasos" type="image" src="../resources/images/Arrowdown.PNG"  
 							height="15" onclick="showHideCabeceras('tablaSuministroCasos','arrowTablaSuministroCasos'); return false;"/>			
-						<label><s:message code="entidadCuenta_title_label_supply_data_detail" /></label>
+						<label class="divLabel"><s:message code="cabeceraPage_list_case" /></label>
 					</div>
 				</div>
 				<div id="tablaSuministroCasos">
@@ -316,7 +318,7 @@
 						</tr>
 						<c:forEach items="${suministro.casos}" var="caso">
 							<tr>
-								<td><a href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
+								<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
 								<td>${caso.descripcionEstado}</td>
 								<td>${caso.fechaApertura}</td>
 								<td>${caso.labelSubmotivoPickList}</td>

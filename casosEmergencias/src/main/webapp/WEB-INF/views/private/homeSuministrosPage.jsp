@@ -15,10 +15,10 @@
 
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>
-		
+		<script src="../resources/js/header.js"></script>
 		
 	</head>
-	<body>
+	<body onload="initHeader();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_suministro"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		 

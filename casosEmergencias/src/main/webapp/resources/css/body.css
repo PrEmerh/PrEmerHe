@@ -1,294 +1,333 @@
-body {	
+body {
 	background-color: #FFFFFF;
-	padding:0px;
-	margin:3px;	
+	padding: 0px;
+	margin: 3px;
 }
 
-body input[type="button"]{
-	font-family: Helvetica,Arial,sans-serif;
+body input[type="button"] {
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 11px;
 	font-weight: normal;
 }
 
-body input[type="text"]{	
-	height:20px;
-	font-family: Helvetica,Arial,sans-serif;
+body input[type="text"] {
+	height: 20px;
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 11px;
 	font-weight: normal;
 }
 
-body input[type="submit"]{	
-	height:25px;
-	font-family: Helvetica,Arial,sans-serif;
+body input[type="submit"] {
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 11px;
 	font-weight: normal;
 }
 
-body label{	
-	font-family: Helvetica,Arial,sans-serif;
+body label {
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 11px;
 	font-weight: normal;
 }
 
-.botoneraListado{
-	width:100%;	
+.botoneraListado {
+	width: 100%;
 	margin: 8px 2px 15px 2px;
 }
 
 .botoneraListado ul {
-	margin:0px;
-	padding:0px;
+	margin: 0px;
+	padding: 0px;
 }
+
 .botoneraListado li {
 	display: inline;
 	list-style-type: none;
-	margin:0px;
-	padding:0px;
+	margin: 0px;
+	padding: 0px;
 }
-	
+
 .botoneraListado li input {
-	font-family: Helvetica,Arial,sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 12.5px;
 	font-weight: normal;
 	padding: 5px 10px;
 	border-color: #4a90e2;
-    background-color: #0070d2;
-    color: #fff;
-    background-image: none;
+	background-color: #0070d2;
+	color: #fff;
+	background-image: none;
 	border-radius: 3px;
-	cursor:pointer;
-    align-items: flex-start;
-    text-align: center;    
+	cursor: pointer;
+	align-items: flex-start;
+	text-align: center;
 }
 
-.divEntidad{
-	width:98%;	
+.divEntidad {
+	width: 98%;
 	margin-left: 5px;
 }
 
-.divEntidad div{
-	width:100%;
-	padding-top:2px; 
-	padding-bottom:4px;
-	
-}
-.divEntidad div div{
-	float:left;	
-	width:30%;
-	font-family: Helvetica,Arial,sans-serif;
-	border-bottom:1px solid #ececec;
-	font-size: 91%;
-	height:20px;
-}
-.divEntidad div div .divObligatorio{
-	width:3px;
-	float:left;
-	height:15px;
-	background-color:red;
-	margin-right:4px;
-}
-.divEntidad div .divLabel{	
-	width:20%;	
-	font-size: 12px;
-	font-weight: bolder;
-	text-align: right;
-}
-.divEntidad div .divLabel label{
-	padding-right:10px;
+.divEntidad div {
+	width: 100%;
+	padding-top: 2px;
+	padding-bottom: 4px;
 }
 
-.divEntidad div .divAnchoEspecial{	
-	width:80%;
+.divEntidad div div {
+	float: left;
+	width: 30%;
+	font-family: Helvetica, Arial, sans-serif;
+	border-bottom: 1px solid #ececec;
+	font-size: 91%;
+	height: 20px;
+}
+
+.divEntidad div div .divObligatorio {
+	width: 3px;
+	float: left;
+	height: 15px;
+	background-color: red;
+	margin-right: 4px;
+}
+
+.divEntidad div .divLabel {
+	width: 20%;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: right;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.divEntidad div .divLabel label {
+	padding-right: 10px;
+	font-weight: bold;
+}
+
+.divEntidad div .divAnchoEspecial {
+	width: 80%;
 }
 
 /* Estilos de DIV añadidos para páginas con distinta estructura */
 .divEntidad .divSubEntidad div {
-	width:100%;
-	padding-top:2px; 
-	padding-bottom:4px;	
+	width: 100%;
+	padding-top: 2px;
+	padding-bottom: 4px;
 }
 
-.divEntidad .divSubEntidad div .divLabel {	
-	width:20%;	
+.divEntidad .divSubEntidad div .divLabel {
+	width: 20%;
 	text-align: right;
 	font-size: 12px;
-	font-weight: bolder;
+	font-weight: bold;
 }
 
-
 .divEntidad .divSubEntidad div .divLabel label {
-	padding-right:10px;
+	padding-right: 10px;
+	font-weight: bold;
 }
 
 .divEntidad .divSubEntidad div div {
-	float:left;	
-	width:30%;
-	font-family: Helvetica,Arial,sans-serif;
-	font-size: 91%;
-	height:20px;
+	float: left;
+	width: 30%;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	height: 20px;
 }
 
 .divEntidad .divSubEntidad div div .divObligatorio {
-	width:3px;
-	float:left;
-	height:15px;
-	background-color:red;
-	margin-right:4px;
+	width: 3px;
+	float: left;
+	height: 15px;
+	background-color: red;
+	margin-right: 4px;
 }
 /* --------------------------------------------------------- */
+.divEntidad .subtittlePrincipalAltaEntidad .subtittlePrincipalAltaEntidadDivInfo
+	{
+	width: 80%;
+	height: 15px;
+	margin-top: 10px;
+	background-color: #f5f4f3;
+	float: left;
+	padding-left: 4px;
+	font-weight: bold;
+}
 
-.divEntidad .subtittlePrincipalAltaEntidad .subtittlePrincipalAltaEntidadDivInfo{
-	width:80%;
+.divEntidad .subtittlePrincipalAltaEntidad .subtittlePrincipalAltaEntidadDivOblig
+	{
+	width: 19%;
 	height: 15px;
-	margin-top:10px;
-	background-color:#f5f4f3;
-	float:left;
-	padding-left:4px;
-	font-weight: bolder;
+	margin-top: 10px;
+	background-color: #f5f4f3;
+	float: left;
 }
-.divEntidad .subtittlePrincipalAltaEntidad .subtittlePrincipalAltaEntidadDivOblig{
-	width:19%;
-	height: 15px;
-	margin-top:10px;
-	background-color:#f5f4f3;
-	float:left;
+
+.divEntidad .subtittlePrincipalAltaEntidad .subtittlePrincipalAltaEntidadDivOblig label
+	{
+	padding-left: 4px;
+	font-size: 11px;
 }
-.divEntidad .subtittlePrincipalAltaEntidad .subtittlePrincipalAltaEntidadDivOblig label{
-	padding-left:4px;
-	font-size:11px;
-}
-.divEntidad .subtittlePrincipalAltaEntidad .tittleObligatorio{
-	width:3px;
-	margin-right:6px;
-	background-color:red;
-	float:left;
+
+.divEntidad .subtittlePrincipalAltaEntidad .tittleObligatorio {
+	width: 3px;
+	margin-right: 6px;
+	background-color: red;
+	float: left;
 	height: 10px;
-	margin:0px;
-	float:left;
-	font-weight: bolder;
+	margin: 0px;
+	float: left;
+	font-weight: bold;
 }
 
-.divEntidad .subtitleAltaEntidad div{
-	width:100%;
+.divEntidad .subtitleAltaEntidad div {
+	width: 100%;
 	height: 15px;
-	margin-top:20px;
-	background-color:#f5f4f3;
-	padding-left:4px;
-	font-weight: bolder;
+	margin-top: 20px;
+	background-color: #f5f4f3;
+	padding-left: 4px;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Helvetica, Arial, sans-serif;
 }
 
-.divCabeceraEntidad{
-	width:100%;
-	margin:15px 0 10px 0px;	
+.divCabeceraEntidad {
+	width: 100%;
+	margin: 15px 0 10px 0px;
 }
 
-.botoneraEntidad{
-	float:left;
-	width:65%;	
+.botoneraEntidad {
+	float: left;
+	width: 65%;
 }
 
 .botoneraBottom {
-	margin:25px 0 15px 0px;	
+	margin: 25px 0 15px 0px;
 }
 
 .botoneraEntidad ul {
-	margin:0px 0px 10px 0px;
-	padding:0px;
+	margin: 0px 0px 10px 0px;
+	padding: 0px;
 }
+
 .botoneraEntidad li {
 	display: inline;
 	list-style-type: none;
-	margin:0px;
-	padding:0px;
+	margin: 0px;
+	padding: 0px;
 }
+
 .botoneraEntidad li input {
-	font-family: Helvetica,Arial,sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 11px;
 	font-weight: normal;
 	padding: 5px 10px;
-	background: #e8e8e9 url('../../resources/images/btn_sprite.png') repeat-x right top;
+	background: #e8e8e9 url('../../resources/images/btn_sprite.png')
+		repeat-x right top;
 	border-radius: 3px;
-	cursor:pointer;
-    align-items: flex-start;
-    text-align: center;    
-}
-.divTituloEntidad{
-	padding-top: 10px;
-	float:left;
-	width:35%;
+	cursor: pointer;
+	align-items: flex-start;
+	text-align: center;
 }
 
-.divTituloEntidad label{
-	padding-left:10px;
-	font-family: Helvetica,Arial,sans-serif;
+.divTituloEntidad {
+	padding-top: 10px;
+	float: left;
+	width: 35%;
+}
+
+.divTituloEntidad label {
+	padding-left: 10px;
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 18px;
 	font-weight: bold;
 }
 
-.lupa{
+.lupa {
 	background: url('../../resources/images/lupa.png') repeat-x right top;
-	cursor:pointer;
+	cursor: pointer;
 	border: solid 0px #000000;
-	width:20px;
-	height:15px;
-	display:inline;
-	margin-left:3px;
+	width: 20px;
+	height: 15px;
+	display: inline;
+	margin-left: 3px;
 }
-.limpiarCampo{
-	cursor:pointer;
-	text-decoration:underline;
-	color:blue;
+
+.limpiarCampo {
+	cursor: pointer;
+	text-decoration: underline;
+	color: blue;
 	border: solid 0px #000000;
 	background: none;
-	display:inline;
-	font-size:11px;
+	display: inline;
+	font-size: 11px;
 }
 
-.divError{
-	width:100%;	
-	display:none;
-	text-align:center;
-	font-size:11px;
-	color:#ff0000;
-	font-weight:bold;
+.divError {
+	width: 100%;
+	display: none;
+	text-align: center;
+	font-size: 11px;
+	color: #ff0000;
+	font-weight: bold;
 }
 
-.divOk{
-	width:90%;	
-	display:none;
+.divOk {
+	width: 90%;
+	display: none;
 	border: 1px solid #298d07;
 	background-color: #dffdd5;
 	text-align: left;
-	font-size:11px;
-	color:#298d07;
+	font-size: 11px;
+	color: #298d07;
 	font-size: 14px;
-	font-weight:bold;
+	font-weight: bold;
 	padding: 20px;
 }
 
-.divBusquedaDialog{
-	margin:5px 0px 16px 0px;
+.divBusquedaDialog {
+	margin: 5px 0px 16px 0px;
 }
 
-.divBusquedaDialog input{
+.divBusquedaDialog input {
 	display: inline;
-	margin:5px 12px 3px 0px;
+	margin: 5px 12px 3px 0px;
 }
 
-.divBusquedaDialog input[type="button"]{
-	background: #e8e8e9 url('../../resources/images/btn_sprite.png') repeat-x right top;
+.divBusquedaDialog input[type="button"] {
+	background: #e8e8e9 url('../../resources/images/btn_sprite.png')
+		repeat-x right top;
 }
 
-.divBusquedaDialog label{
-	font-family: Helvetica,Arial,sans-serif;
+.divBusquedaDialog label {
+	font-family: Helvetica, Arial, sans-serif;
 	font-size: 9px;
 	font-weight: normal;
 }
 
-.buttonLink{
-	cursor:pointer;
-	text-decoration:underline;
-	color:blue;
+.buttonLink {
+	cursor: pointer;
+	text-decoration: underline;
+	color: blue;
 	border: solid 0px #000000;
 	background: none;
+}
+
+.link {
+	text-decoration: none;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	color: #006cb5;
+}
+
+.link:hover {
+	text-decoration: none;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	color: #006cb5;
+}
+
+.link:visited {
+	text-decoration: none;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	color: #006cb5;
 }

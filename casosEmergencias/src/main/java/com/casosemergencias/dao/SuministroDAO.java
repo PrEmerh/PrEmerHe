@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.casosemergencias.dao.vo.SuministroVO;
-import com.casosemergencias.util.DataTableProperties;
+import com.casosemergencias.util.datatables.DataTableProperties;
 
 @Repository
 public class SuministroDAO {

@@ -224,7 +224,7 @@
 				<artifactId>heroku-maven-plugin</artifactId>
 				<version>1.0.3</version>
 				<configuration>
-					<appName>herokuProject</appName>
+					<appName>chile-en-dev</appName>
 				</configuration>
 			</plugin>
 		</plugins>

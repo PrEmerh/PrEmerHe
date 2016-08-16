@@ -18,9 +18,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.casosemergencias.controller.views.DireccionView;
 import com.casosemergencias.logic.DireccionService;
 import com.casosemergencias.model.Direccion;
-import com.casosemergencias.util.DataTableProperties;
-import com.casosemergencias.util.ParseBodyDataTable;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.datatables.DataTableProperties;
+import com.casosemergencias.util.datatables.ParseBodyDataTable;
 
 @Controller
 public class DireccionController {
@@ -70,7 +70,7 @@ public class DireccionController {
 	}
 	
 	/**
-	 * Método para recuperar los datos de la ventana modal de suministros
+	 * Mï¿½todo para recuperar los datos de la ventana modal de suministros
 	 * 
 	 * @param body
 	 * @return

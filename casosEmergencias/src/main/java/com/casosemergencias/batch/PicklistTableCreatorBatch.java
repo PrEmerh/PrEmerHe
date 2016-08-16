@@ -23,7 +23,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import com.casosemergencias.batch.bean.PickList;
-import com.casosemergencias.util.ConstantesBatch;
+import com.casosemergencias.util.constants.ConstantesBatch;
 import com.force.api.ApiSession;
 import com.force.api.DescribeSObject;
 import com.force.api.DescribeSObject.Field;

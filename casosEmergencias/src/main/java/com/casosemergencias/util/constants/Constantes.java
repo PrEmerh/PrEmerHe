@@ -1,4 +1,4 @@
-package com.casosemergencias.util;
+package com.casosemergencias.util.constants;
 
 public class Constantes {
 

@@ -22,10 +22,11 @@ import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.logic.CaseService;
 import com.casosemergencias.logic.PickListsService;
 import com.casosemergencias.model.Caso;
-import com.casosemergencias.util.Constantes;
-import com.casosemergencias.util.DataTableProperties;
-import com.casosemergencias.util.ParseBodyDataTable;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.constants.Constantes;
+import com.casosemergencias.util.datatables.DataTableProperties;
+import com.casosemergencias.util.datatables.DataTableRemappedProperties;
+import com.casosemergencias.util.datatables.ParseBodyDataTable;
 
 /**
  * @author mcasas
@@ -210,15 +211,15 @@ public class CaseController {
 		
 		logger.info("--- Inicio -- listadoCasosHome ---");
 		
-		DataTableProperties propDataTable = ParseBodyDataTable.parseBodyToDataTable(body);
+		DataTableProperties dataTableProperties = ParseBodyDataTable.parseBodyToDataTable(body);
+		
 		List<Caso> listCasos = new ArrayList<Caso>();
 		
 		JSONObject jsonResult = new JSONObject();
 		JSONArray array = new JSONArray();
 		
-		listCasos = casoService.readAllCase(propDataTable);
-		for(Caso caso : listCasos){
-			jsonResult = new JSONObject();
+		listCasos = casoService.readAllCase(dataTableProperties);
+		for (Caso caso : listCasos) {
 			jsonResult.put("numeroCaso", caso.getNumeroCaso());
 			jsonResult.put("numeroInservice", caso.getNumeroInservice());
 			jsonResult.put("canalOrigen", caso.getLabelCanalorigenPickList());
@@ -230,7 +231,7 @@ public class CaseController {
 		}
 		
 		Integer numCasos = casoService.getNumCasos();
-		
+
 		JSONObject json = new JSONObject();
 		json.put("iTotalRecords", numCasos);  //Numero de registros totales en BBDD
 		json.put("iTotalDisplayRecords", numCasos); //numero de registros totales filtrados en BBDD -- este numero lo utiliza el datatable para calcular el numero de paginas

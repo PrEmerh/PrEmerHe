@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.casosemergencias.util.Constantes" %>
+<%@ page import="com.casosemergencias.util.constants.Constantes" %>
 
 <html>
 	<head>
@@ -16,10 +16,11 @@
 
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>
+		<script src="../resources/js/header.js"></script>
 		<script src="../resources/js/casos.js"></script>
 	</head>
-	<body>
-		<script type="text/javascript">var objetoSeleccionado="<s:message code="cabeceraPage_list_case"/>";</script>
+	<body onload="initHeader();">
+		<script type="text/javascript">var objetoSeleccionado="<s:message code='cabeceraPage_list_case'/>";</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		 
 		<form name="formListadoCasos" action="homeCasosAction" method="POST">
@@ -33,7 +34,7 @@
 				<input class="column_filter" id="search" type="button" value="Buscar">
 				<input type="radio" name="radios" value="rd1" checked>Numero Casos        
             	<input type="radio" name="radios" value="rd2"> Todos
-            	<table id="tablaCasos" class="display" style="width: 100%;"> 
+				<table id="tablaCasos" class="display" style="width: 100%;"> 
 					<thead>
 			            <tr>
 			            <!-- <th data-orderable="false"> -->

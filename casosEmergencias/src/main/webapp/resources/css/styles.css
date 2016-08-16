@@ -462,7 +462,8 @@ table.dataTable,table.dataTable th,table.dataTable td{
 /*-------------------------------- ESTILOS DE TABLAS --------------------------------------- */
 
 table.basicTable {
-	width: 100%;
+	width: 98%;
+	margin-left: 5px;
 	margin: 0 auto;
 	clear: both;
 	border-collapse: separate;

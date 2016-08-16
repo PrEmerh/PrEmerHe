@@ -17,9 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.Suministro;
-import com.casosemergencias.util.DataTableProperties;
-import com.casosemergencias.util.ParseBodyDataTable;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.datatables.DataTableProperties;
+import com.casosemergencias.util.datatables.ParseBodyDataTable;
 
 @Controller
 public class SuministroController {
@@ -37,6 +37,23 @@ public class SuministroController {
 		model.setViewName("private/homeSuministrosPage");
 	
 		logger.info("--- Fin -- listadoSuministros ---");
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "/private/homeSuministrosInicio", method = RequestMethod.GET)
+	public ModelAndView detalleSuministroInicio() {
+		List<SuministroView> listaAMostrar = new ArrayList<SuministroView>(); 
+		List<Suministro> listSuministros = suministroService.readAllSuministros();
+		SuministroView suministroView=null;
+		for(Suministro sum:listSuministros){
+			suministroView = new SuministroView();	
+			ParserModelVO.parseDataModelVO(sum, suministroView);
+			listaAMostrar.add(suministroView);
+		}
+		ModelAndView model = new ModelAndView();
+		model.addObject("suministros", listaAMostrar);
+		model.setViewName("private/homeSuministrosPage");
 		
 		return model;
 	}
@@ -60,7 +77,7 @@ public class SuministroController {
 	}
 
 	/**
-	 * Método para recuperar los datos de la ventana modal de suministros
+	 * Mï¿½todo para recuperar los datos de la ventana modal de suministros
 	 * 
 	 * @param body
 	 * @return

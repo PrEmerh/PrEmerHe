@@ -13,8 +13,8 @@ import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.dao.vo.SuministroVO;
 import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Suministro;
-import com.casosemergencias.util.DataTableProperties;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.datatables.DataTableProperties;
 
 
 public class SuministroServiceImpl implements SuministroService{
@@ -29,6 +29,28 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 	
 	@Autowired
 	private CaseDAO casoDAO;
+	
+	@Override
+	public List<Suministro> readAllSuministros() {
+		
+		logger.debug("--- Inicio -- readAllSuministros ---");
+		
+		List<Suministro> listSuministro = new ArrayList<>();
+		
+		List<SuministroVO> listSuministroVO = suministroDao.readAllSuministro();
+		logger.debug("--- Inicio -- readAllSuministros cantidad : " + listSuministroVO.size() + " ---");
+		
+		for(SuministroVO suministroVO : listSuministroVO){
+			Suministro suministro = new Suministro();
+			ParserModelVO.parseDataModelVO(suministroVO, suministro);
+			listSuministro.add(suministro);
+			
+		}
+		
+		logger.debug("--- Fin -- readAllSuministros ---:"+listSuministro.size());
+		
+		return listSuministro;
+	}
 	
 	/**
 	 * Metodo que devuelve una lista con todos los suministros que hay en BBDD
