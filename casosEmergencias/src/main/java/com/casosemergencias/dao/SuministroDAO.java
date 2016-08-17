@@ -721,16 +721,16 @@ public class SuministroDAO {
 	 * 
 	 * @return
 	 */
-	public List<SuministroVO> readSuministroDataTable(DataTableProperties propDatatable){
+	public List<SuministroVO> readSuministroDataTable(DataTableProperties dataTableProperties){
 				
 		logger.debug("--- Inicio -- readSuministroDataTable ---");
 		
 		Session session = sessionFactory.openSession();
-		String order = propDatatable.getOrderColumnName();
-		String dirOrder = propDatatable.getOrderDirec();
-		int numStart = propDatatable.getStart();
-		int numLength = propDatatable.getLength();
-		String searchValue = propDatatable.getValueSearch();
+		String order = (String) dataTableProperties.getTableOrdering().get("orderingColumnName");
+		String dirOrder = (String) dataTableProperties.getTableOrdering().get("orderingDirection");
+		int numStart = dataTableProperties.getStart();
+		int numLength = dataTableProperties.getLength();
+		String searchValue = (String) dataTableProperties.getGenericSearching().get("searchValue");
 		
 		try{
 			StringBuilder query = new StringBuilder("from SuministroVO ");
@@ -764,12 +764,12 @@ public class SuministroDAO {
 	 * 
 	 * @return
 	 */
-	public Integer countSuministro(DataTableProperties propDatatable){
+	public Integer countSuministro(DataTableProperties dataTableProperties){
 				
 		logger.debug("--- Inicio -- countSuministro ---");
 		
 		Session session = sessionFactory.openSession();
-		String searchValue = propDatatable.getValueSearch();
+		String searchValue = (String) dataTableProperties.getGenericSearching().get("searchValue");
 		
 		try{
 			StringBuilder sqlQuery = new StringBuilder("select count(id) from SuministroVO ");

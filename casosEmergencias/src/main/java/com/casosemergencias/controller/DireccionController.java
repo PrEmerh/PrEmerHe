@@ -20,7 +20,7 @@ import com.casosemergencias.logic.DireccionService;
 import com.casosemergencias.model.Direccion;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.datatables.DataTableProperties;
-import com.casosemergencias.util.datatables.ParseBodyDataTable;
+import com.casosemergencias.util.datatables.DataTableParser;
 
 @Controller
 public class DireccionController {
@@ -80,7 +80,7 @@ public class DireccionController {
 		
 		logger.info("--- Inicio -- listadoDireccionesHome ---");
 		
-		DataTableProperties propDataTable = ParseBodyDataTable.parseBodyToDataTable(body);
+		DataTableProperties propDataTable = DataTableParser.parseBodyToDataTable(body);
 		List<Direccion> listDirecciones = new ArrayList<Direccion>();
 		
 		JSONObject jsonResult = new JSONObject();

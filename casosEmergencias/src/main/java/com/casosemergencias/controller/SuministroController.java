@@ -19,7 +19,7 @@ import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.datatables.DataTableProperties;
-import com.casosemergencias.util.datatables.ParseBodyDataTable;
+import com.casosemergencias.util.datatables.DataTableParser;
 
 @Controller
 public class SuministroController {
@@ -87,7 +87,7 @@ public class SuministroController {
 		
 		logger.info("--- Inicio -- listadoSuministrosHome ---");
 		
-		DataTableProperties propDataTable = ParseBodyDataTable.parseBodyToDataTable(body);
+		DataTableProperties propDataTable = DataTableParser.parseBodyToDataTable(body);
 		List<Suministro> listSuministros = new ArrayList<Suministro>();
 		
 		JSONObject jsonResult = new JSONObject();

@@ -2,20 +2,18 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
-
-
 <html>
 	<head>
 		<title>Emergencias App</title>
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
+		
 		<link rel="icon" type="image/png" href="../resources/images/favicon.jpg">
-				
+		
 		<link href="../resources/css/styles.css" rel="stylesheet">
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
 		<link href="../resources/css/body.css" rel="stylesheet" />	
-	
+		
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>

@@ -9,44 +9,12 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-public class ParseBodyDataTable {
+public class DataTableParser {
 	
-	final static Logger logger = Logger.getLogger(ParseBodyDataTable.class);
+	final static Logger logger = Logger.getLogger(DataTableParser.class);
 	
-	/**
-	 * Metodo que transforma el body en un DataTableProperties, clase que contiene propiedades de los DataTables 
-	 * 
-	 * @param body -- body recuperado del DataTable con el formato "prop1=valor&prop2=valor&prop3=valor"
-	 * @return
-	 */
 	public static DataTableProperties parseBodyToDataTable(String body) {
-		//body tiene formato propiedad=valor&propiedad=valor
-		try {
-			body = URLDecoder.decode(body, "UTF-8");
-			DataTableProperties dataTable = new DataTableProperties();
-			Map<String, String> mapProperties = mapDataTableProperties(body);
-			
-			//Montamos el objeto con las propiedades del datatable
-			Integer numColOrder = Integer.parseInt(mapProperties.get("order[0][column]"));
-			String nameColumn = "columns[" + numColOrder+ "][data]"; //variable para recuperar el nombre de la columna, es de la forma 'columns[0][data]'			
-			
-			dataTable.setStart(Integer.parseInt(mapProperties.get("start")));
-			dataTable.setDraw(Integer.parseInt(mapProperties.get("draw")));
-			dataTable.setLength(Integer.parseInt(mapProperties.get("length")));
-			dataTable.setOrderColumnNumber(numColOrder);
-			dataTable.setOrderDirec(mapProperties.get("order[0][dir]"));
-			dataTable.setOrderColumnName(mapProperties.get(nameColumn));
-			dataTable.setValueSearch(mapProperties.get("search[value]"));
-			dataTable.setAllColumnSearch(Boolean.parseBoolean(mapProperties.get("search[regex]"))); //Por defecto viene a false
-			return dataTable;	
-		} catch (UnsupportedEncodingException e) {
-			logger.error(e);
-			return null;
-		}
-	}
-
-	public static DataTableRemappedProperties parseBodyToRemappedDataTable(String body) {
-		DataTableRemappedProperties dataTableProperties = new DataTableRemappedProperties();
+		DataTableProperties dataTableProperties = new DataTableProperties();
 		try {
 			body = URLDecoder.decode(body, "UTF-8");
 			Map<String, String> mappedPropertiesFromBody = mapDataTableProperties(body);

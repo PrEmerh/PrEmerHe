@@ -361,8 +361,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	
 	@OneToOne(fetch=FetchType.LAZY, optional= true)
 	@JoinColumn(name="origin", referencedColumnName="codigo", insertable = false, updatable=false )
-   	@WhereJoinTable(clause = "campo ='Origin' and objeto='Case'")
-	private PickListsCaseVO canalorigenPickList;
+   	private PickListsCaseOriginVO canalorigenPickList;
 	
 	//vamos a recuperar los datos de acount, contact
 	//@Column(name = "contactid")
@@ -411,7 +410,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 			String reason, String idEmpresa, Date horaProgramado, Double numeroSeguidoresDel, String literalCategorias,
 			String recordtypeId, String comuna, String prioridad, String valorSubestadoins,
 			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante,
-			PickListsCaseVO subestadoPickList, PickListsCaseVO submotivoPickList, PickListsCaseVO canalorigenPickList,
+			PickListsCaseVO subestadoPickList, PickListsCaseVO submotivoPickList, PickListsCaseOriginVO canalorigenPickList,
 			ContactVO contactoJoin, AccountVO cuentaJoin, SuministroVO suministroJoin, DireccionVO direccionJoin) {
 		super();
 		this.isdeleted = isdeleted;
@@ -1407,11 +1406,11 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.submotivoPickList = submotivoPickList;
 	}
 	
-	public PickListsCaseVO getCanalorigenPickList() {
+	public PickListsCaseOriginVO getCanalorigenPickList() {
 		return canalorigenPickList;
 	}
 
-	public void setCanalorigenPickList(PickListsCaseVO canalorigenPickList) {
+	public void setCanalorigenPickList(PickListsCaseOriginVO canalorigenPickList) {
 		this.canalorigenPickList = canalorigenPickList;
 	}
 	
@@ -1474,5 +1473,4 @@ public class CaseVO extends ObjectVO implements Serializable {
 	public void setContactoJoin(ContactVO contactoJoin) {
 		this.contactoJoin = contactoJoin;
 	}
-	
 }

@@ -1,21 +1,28 @@
 package com.casosemergencias.util.datatables;
 
-/**
- * @author mcasas
- * 
- *         Clase que guarda propiedades de los DataTables. Estas propiedades se
- *         utilizarán para paginar y para ordenar
- *
- */
+import java.util.List;
+import java.util.Map;
+
 public class DataTableProperties {
 	private int draw;
 	private int start;
 	private int length;
-	private String orderColumnName;
-	private int orderColumnNumber;
-	private String orderDirec;
-	private String valueSearch;
-	private boolean allColumnSearch;
+	
+	/* 
+	 * Claves del mapa de búsqueda genérica: 
+	 * - searchValue
+	 * - searchRegEx
+	 */
+	private Map<String, Object> genericSearching;
+	
+	/* 
+	 * Claves del mapa de ordenación: 
+	 * - orderingColumnNumber
+	 * - orderingColumnName
+	 * - orderingDirection 
+	 */
+	private Map<String, Object> tableOrdering;
+	private List<DataTableColumnInfo> columnsInfo;
 
 	public int getDraw() {
 		return draw;
@@ -41,43 +48,27 @@ public class DataTableProperties {
 		this.length = length;
 	}
 
-	public String getOrderColumnName() {
-		return orderColumnName;
+	public Map<String, Object> getGenericSearching() {
+		return genericSearching;
 	}
 
-	public void setOrderColumnName(String orderColumnName) {
-		this.orderColumnName = orderColumnName;
+	public void setGenericSearching(Map<String, Object> genericSearching) {
+		this.genericSearching = genericSearching;
 	}
 
-	public int getOrderColumnNumber() {
-		return orderColumnNumber;
+	public Map<String, Object> getTableOrdering() {
+		return tableOrdering;
 	}
 
-	public void setOrderColumnNumber(int orderColumnNumber) {
-		this.orderColumnNumber = orderColumnNumber;
+	public void setTableOrdering(Map<String, Object> tableOrdering) {
+		this.tableOrdering = tableOrdering;
 	}
 
-	public String getOrderDirec() {
-		return orderDirec;
+	public List<DataTableColumnInfo> getColumsInfo() {
+		return columnsInfo;
 	}
 
-	public void setOrderDirec(String orderDirec) {
-		this.orderDirec = orderDirec;
-	}
-
-	public String getValueSearch() {
-		return valueSearch;
-	}
-
-	public void setValueSearch(String valueSearch) {
-		this.valueSearch = valueSearch;
-	}
-
-	public boolean isAllColumnSearch() {
-		return allColumnSearch;
-	}
-
-	public void setAllColumnSearch(boolean allColumnSearch) {
-		this.allColumnSearch = allColumnSearch;
+	public void setColumsInfo(List<DataTableColumnInfo> columnsInfo) {
+		this.columnsInfo = columnsInfo;
 	}
 }

@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.util.datatables.DataTableColumnInfo;
 import com.casosemergencias.util.datatables.DataTableProperties;
-import com.casosemergencias.util.datatables.DataTableRemappedProperties;
 
 @Repository
 public class CaseDAO {
@@ -59,24 +58,34 @@ public class CaseDAO {
 	 * 
 	 * @return
 	 */
-	public List<CaseVO> readCaseDataTable(DataTableProperties propDatatable){
-				
+	public List<CaseVO> readCaseDataTable(DataTableProperties dataTableProperties) {
+		
 		logger.debug("--- Inicio -- readCaseDataTable ---");
 		
 		Session session = sessionFactory.openSession();
-		String order = propDatatable.getOrderColumnName();
-		String dirOrder = propDatatable.getOrderDirec();
-		int numStart = propDatatable.getStart();
-		int numLength = propDatatable.getLength();
-		String searchValue = propDatatable.getValueSearch();
-		
-		try{
-			StringBuilder query = new StringBuilder("from CaseVO caso left join fetch caso.subestadoPickList subest left join fetch caso.submotivoPickList submotivv left join fetch caso.canalorigenPickList canalorigen");
-			if(searchValue != null && !"".equals(searchValue)){
-				query.append(" WHERE caso.numeroCaso LIKE '%" + searchValue +"%'");
+		String order = (String) dataTableProperties.getTableOrdering().get("orderingColumnName");
+		String dirOrder = (String) dataTableProperties.getTableOrdering().get("orderingDirection");
+		int numStart = dataTableProperties.getStart();
+		int numLength = dataTableProperties.getLength();
+		String searchValue = null;
+				
+		try {
+			StringBuilder query = new StringBuilder("FROM CaseVO caso "
+					+ "LEFT JOIN FETCH caso.subestadoPickList subest "
+					+ "LEFT JOIN FETCH caso.submotivoPickList submotivo "
+					+ "LEFT JOIN FETCH caso.canalorigenPickList canalorigen");
+			
+			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
+				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
+					if ("numeroCaso".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							query.append(" WHERE caso." + columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+						}
+					}
+				}
 			}
 			
-			if(order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)){
+			if (order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)) {
 				query.append(" ORDER BY caso." + order + " " + dirOrder);
 			}
 			

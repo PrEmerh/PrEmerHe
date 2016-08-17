@@ -371,16 +371,16 @@ public class DireccionDAO {
 	 * 
 	 * @return
 	 */
-	public List<DireccionVO> readDireccionDataTable(DataTableProperties propDatatable){
+	public List<DireccionVO> readDireccionDataTable(DataTableProperties dataTableProperties){
 				
 		logger.debug("--- Inicio -- readDireccionDataTable ---");
 		
 		Session session = sessionFactory.openSession();
-		String order = propDatatable.getOrderColumnName();
-		String dirOrder = propDatatable.getOrderDirec();
-		int numStart = propDatatable.getStart();
-		int numLength = propDatatable.getLength();
-		String searchValue = propDatatable.getValueSearch();
+		String order = (String) dataTableProperties.getTableOrdering().get("orderingColumnName");
+		String dirOrder = (String) dataTableProperties.getTableOrdering().get("orderingDirection");
+		int numStart = dataTableProperties.getStart();
+		int numLength = dataTableProperties.getLength();
+		String searchValue = (String) dataTableProperties.getGenericSearching().get("searchValue");
 		
 		try{
 			StringBuilder query = new StringBuilder("from DireccionVO ");
@@ -414,12 +414,12 @@ public class DireccionDAO {
 	 * 
 	 * @return
 	 */
-	public Integer countDireccion(DataTableProperties propDatatable){
+	public Integer countDireccion(DataTableProperties dataTableProperties){
 				
 		logger.debug("--- Inicio -- countDireccion ---");
 		
 		Session session = sessionFactory.openSession();
-		String searchValue = propDatatable.getValueSearch();
+		String searchValue = (String) dataTableProperties.getGenericSearching().get("searchValue");
 		
 		try{
 			StringBuilder sqlQuery = new StringBuilder("select count(id) from DireccionVO ");
