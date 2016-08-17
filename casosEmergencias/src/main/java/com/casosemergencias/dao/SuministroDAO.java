@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.casosemergencias.dao.vo.SuministroVO;
+import com.casosemergencias.util.datatables.DataTableColumnInfo;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
 @Repository
@@ -722,7 +723,7 @@ public class SuministroDAO {
 	 * @return
 	 */
 	public List<SuministroVO> readSuministroDataTable(DataTableProperties dataTableProperties){
-				
+		
 		logger.debug("--- Inicio -- readSuministroDataTable ---");
 		
 		Session session = sessionFactory.openSession();
@@ -730,16 +731,49 @@ public class SuministroDAO {
 		String dirOrder = (String) dataTableProperties.getTableOrdering().get("orderingDirection");
 		int numStart = dataTableProperties.getStart();
 		int numLength = dataTableProperties.getLength();
-		String searchValue = (String) dataTableProperties.getGenericSearching().get("searchValue");
+		int searchParamsCounter = 0;
+		String searchValue = null;
 		
-		try{
-			StringBuilder query = new StringBuilder("from SuministroVO ");
-			if(searchValue != null && !"".equals(searchValue)){
-				query.append(" WHERE name LIKE '%" + searchValue +"%'");
+		try {
+			StringBuilder query = new StringBuilder("FROM SuministroVO ");
+			
+			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
+				query.append(" WHERE ");
+				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
+					if ("name".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							query.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							query.append(" AND ");
+							searchParamsCounter++;
+						}
+					}
+					
+					if ("n_mero_medidor__c".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							query.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							query.append(" AND ");
+							searchParamsCounter++;
+						}
+					}
+					
+					if ("ruta__c".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							query.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							query.append(" AND ");
+							searchParamsCounter++;
+						}
+					}
+				}
 			}
 			
-			if(order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)){
-				query.append("ORDER BY " + order + " " + dirOrder);
+			if (searchParamsCounter == 0) {
+				query.setLength(query.length()-7);
+			} else {
+				query.setLength(query.length()-5);
+			}
+			
+			if (order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)) {
+				query.append(" ORDER BY " + order + " " + dirOrder);
 			}
 			
 			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);
@@ -749,11 +783,11 @@ public class SuministroDAO {
 			
 			return suminsitroList;
 			
-	    }catch (HibernateException e) {
+	    } catch (HibernateException e) {
 	    	logger.error("--- readSuministroDataTable "+ e.getMessage() +"---");
 	    	logger.error(e.getStackTrace()); 
 	    	logger.error("--- Fin -- readSuministroDataTable ---");
-	    }finally {
+	    } finally {
 	    	session.close(); 
 	    }
 	      return null;

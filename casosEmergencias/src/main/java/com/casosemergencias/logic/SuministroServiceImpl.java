@@ -61,22 +61,18 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 	public List<Suministro> readAllSuministros(DataTableProperties propDatatable) {
 		
 		logger.debug("--- Inicio -- readAllSuministros ---");
-		
 		List<Suministro> listSuministro = new ArrayList<>();
 		
-		//List<SuministroVO> listSuministroVO = suministroDao.readAllSuministro();
 		List<SuministroVO> listSuministroVO = suministroDao.readSuministroDataTable(propDatatable);
-		logger.debug("--- Inicio -- readAllSuministros tamano : " + listSuministroVO.size() + " ---");
+		logger.debug("--- Inicio -- readAllSuministros cantidad: " + listSuministroVO.size() + " ---");
 		
-		for(SuministroVO suministroVO : listSuministroVO){
+		for (SuministroVO suministroVO : listSuministroVO) {
 			Suministro suministro = new Suministro();
 			ParserModelVO.parseDataModelVO(suministroVO, suministro);
 			listSuministro.add(suministro);
-			
 		}
 		
 		logger.debug("--- Fin -- readAllSuministros ---:"+listSuministro.size());
-		
 		return listSuministro;
 	}
 	

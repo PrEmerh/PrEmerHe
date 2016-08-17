@@ -261,27 +261,31 @@ body label {
 	font-size: 11px;
 }
 
+/* >>>>> ESTILOS PARA MENSAJES DE ACTUALIZACIÓN DE CASOS */
 .divError {
 	width: 100%;
 	display: none;
-	text-align: center;
-	font-size: 11px;
-	color: #ff0000;
-	font-weight: bold;
-}
-
-.divOk {
-	width: 90%;
-	display: none;
-	border: 1px solid #298d07;
-	background-color: #dffdd5;
+	border: 1px solid #DF0000;
+	background-color: #FFCECE;
 	text-align: left;
-	font-size: 11px;
-	color: #298d07;
+	color: #DF0000;
 	font-size: 14px;
 	font-weight: bold;
 	padding: 20px;
 }
+
+.divOk {
+	width: 100%;
+	display: none;
+	border: 1px solid #298D07;
+	background-color: #DFFDD5;
+	text-align: left;
+	color: #298D07;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 20px;
+}
+/* <<<<< ESTILOS PARA MENSAJES DE ACTUALIZACIÓN DE CASOS */
 
 .divBusquedaDialog {
 	margin: 5px 0px 16px 0px;
@@ -311,23 +315,70 @@ body label {
 	background: none;
 }
 
+/* >>>>> ESTILOS PARA ENLACES */
 .link {
 	text-decoration: none;
 	font-family: Helvetica, Arial, sans-serif;
-	font-size: 12px;
+	font-size: 11px;
 	color: #006cb5;
 }
 
 .link:hover {
 	text-decoration: none;
 	font-family: Helvetica, Arial, sans-serif;
-	font-size: 12px;
+	font-size: 11px;
 	color: #006cb5;
 }
 
 .link:visited {
 	text-decoration: none;
 	font-family: Helvetica, Arial, sans-serif;
-	font-size: 12px;
+	font-size: 11px;
 	color: #006cb5;
 }
+/* <<<<< ESTILOS PARA ENLACES */
+
+/* >>>>> ESTILOS PARA FORMULARIOS DE BÚSQUEDA */
+.formBusqueda {
+	width: 98%;
+	background: #F3F3F3;
+	border: solid 1px #959599;
+	margin-left: 5px;
+	margin-bottom: 20px;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+.tablaBusqueda {	
+	width: 98%;
+	margin: 10px;
+}
+
+.tablaBusquedaTitulo {
+	font-weight: bold;
+	font-size: 12px;
+	padding-bottom: 15px;
+}
+
+.tablaBusquedaEtiquetas {
+	text-align: right;
+	width: 8%;
+	padding: 10px;
+}
+
+.tablaBusquedaTextos {
+	text-align: left;
+	width: 92%;
+}
+
+.tablaBusquedaTextos input[type="text"] {
+	width: 200px;
+}
+
+.tablaBusquedaBotonera {
+	text-align: left;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+/* <<<<< ESTILOS PARA FORMULARIOS DE BÚSQUEDA */

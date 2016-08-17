@@ -31,7 +31,7 @@
 						<label class="divLabel"><s:message code="entidadDireccion_title_label_detalle_direccion"/></label>
 					</div>
 				</div>
-			</div>			
+			</div>
 			<div id="detalleDireccion" class="divEntidad">
 				<div>
 					<div class="divLabel">

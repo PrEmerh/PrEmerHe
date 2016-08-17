@@ -96,10 +96,10 @@ public class CaseDAO {
 			
 			return casoList;
 			
-	    }catch (HibernateException e) {
+	    } catch (HibernateException e) {
 	    	logger.error("--- Error en readCaseDataTable: ", e);
 	    	logger.error("--- Fin -- readCaseDataTable ---");
-	    }finally {
+	    } finally {
 	    	session.close(); 
 	    }
 	      return null;
