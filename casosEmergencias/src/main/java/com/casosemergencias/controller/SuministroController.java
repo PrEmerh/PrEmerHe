@@ -117,7 +117,7 @@ public class SuministroController {
 	}
 	
 	/**
-	 * M&eacute;todo para recuperar los datos de la ventana modal de suministros.
+	 * M&eacute;todo para recuperar los datos del listado de suministros.
 	 * 
 	 * @param body
 	 * @return
@@ -159,6 +159,5 @@ public class SuministroController {
 		logger.info("--- Fin -- listadoSuministrosHome ---");
 		
 		return jsonObject.toString();
-		
 	}
 }

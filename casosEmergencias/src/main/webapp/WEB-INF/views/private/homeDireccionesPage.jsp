@@ -68,11 +68,13 @@
 				<table id="tablaDirecciones" class="display" style="width: 100%;">
 					<thead>
 			            <tr>
-			           		<th width="20%"><s:message code="homeDirecciones_table_head_codigoDireccion"/></th>
-				            <th width="16%"><s:message code="homeDirecciones_table_head_calle"/></th>
-				            <th width="16%"><s:message code="homeDirecciones_table_head_numero"/></th>
-				            <th width="16%"><s:message code="homeDirecciones_table_head_comuna"/></th>
-				            <th width="16%"><s:message code="homeDirecciones_table_head_direccionConcatenada"/></th>
+			           		<th width="15%"><s:message code="homeDirecciones_table_head_codigoDireccion"/></th>
+				            <th width="20%"><s:message code="homeDirecciones_table_head_calle"/></th>
+				            <th width="15%"><s:message code="homeDirecciones_table_head_numero"/></th>
+				            <th width="20%"><s:message code="homeDirecciones_table_head_comuna"/></th>
+				            <th width="28%"><s:message code="homeDirecciones_table_head_direccionConcatenada"/></th>
+				            <th width="1%" hidden="true">comuna__c</th>
+			                <th width="1%" hidden="true">sfid</th>
 		            	</tr>
 	        		</thead>
 				</table>

@@ -435,13 +435,38 @@ public class DireccionDAO {
 		logger.debug("--- Inicio -- countDireccion ---");
 		
 		Session session = sessionFactory.openSession();
-		String searchValue = (String) dataTableProperties.getGenericSearching().get("searchValue");
+		int searchParamsCounter = 0;
 		
 		try {
-			StringBuilder sqlQuery = new StringBuilder("select count(id) from DireccionVO ");
-			if (searchValue != null && !"".equals(searchValue)) {
-				sqlQuery.append(" WHERE name LIKE '%" + searchValue +"%'");
+			StringBuilder sqlQuery = new StringBuilder("SELECT COUNT(id) FROM DireccionVO ");
+			
+			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
+				sqlQuery.append(" WHERE ");
+				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
+					if ("comuna__c".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							sqlQuery.append(" AND ");
+							searchParamsCounter++;
+						}
+					}
+					
+					if ("calle__c".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							sqlQuery.append(" AND ");
+							searchParamsCounter++;
+						}
+					}
+				}
 			}
+						
+			if (searchParamsCounter == 0) {
+				sqlQuery.setLength(sqlQuery.length() - 7);
+			} else {
+				sqlQuery.setLength(sqlQuery.length() - 5);
+			}
+
 			Query query = session.createQuery(sqlQuery.toString());
 			Long count = (Long) query.uniqueResult();
 			

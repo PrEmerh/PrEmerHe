@@ -11,7 +11,7 @@ public interface CaseService {
 	
 	public Caso readCaseBySfid(String sfid);
 
-	public Integer getNumCasos();
+	public Integer getNumCasos(DataTableProperties propDatatable);
 	
 	public Caso readCaseById(Integer id);
 

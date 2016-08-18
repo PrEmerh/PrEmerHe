@@ -2,7 +2,7 @@ var table;
 var urlTable = createUrl();
 
 $(document).ready(function() {
-	table = $('#tablaDirecciones').DataTable({
+	table = $('#tablaCuentas').DataTable({
        	"scrollY": "250px",
 		"scrollX": true,
 		"scrollCollapse": true,
@@ -11,19 +11,17 @@ $(document).ready(function() {
 		"processing": true, 
 		"ajax": { 
         	"type": "POST", 
-        	 "url": urlTable +'/listarDireccionesHome', 	        	
+        	 "url": urlTable +'/listarCuentas', 	        	
         	 "contentType": 'application/json; charset=utf-8' ,
         	 "error": function(data) {
         		 alert('error');
         	 }
        	},
        	"columns": [
-       	            {"data": "name", 					"width": "15%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
-       	            {"data": "calle__c", 				"width": "20%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true}, 
-       	            {"data": "altura__c",				"width": "15%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
-       	            {"data": "literalcomuna__c",		"width": "20%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
-       	            {"data": "direccionconcatenada__c", "width": "28%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
-       	            {"data": "comuna__c", 				"width": "1%",  "defaultContent": "", "searchable": true, 	"orderable": false,	"visible": false},
+       	            {"data": "name", 					"width": "33%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
+       	            {"data": "tel_fono_principal__c",	"width": "32%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
+       	            {"data": "email_principal__c",		"width": "33%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
+       	            {"data": "masterrecord__run__c", 	"width": "1%",  "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": false},
        	            {"data": "sfid", 					"width": "1%", 	"defaultContent": "", "searchable": false, 	"orderable": false,	"visible": false}
 		],
 		"columnDefs": [
@@ -37,7 +35,7 @@ $(document).ready(function() {
                     	 if (data != null) {
                     		 txtColumn = data;
                     	 }
-                    	 return '<a href="../private/entidadDireccion?sfid=' + sfid + '">' + txtColumn + '</a>';
+                    	 return '<a href="../private/entidadCuenta?sfid=' + sfid + '">' + txtColumn + '</a>';
                     }
         }],
         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
@@ -47,8 +45,10 @@ $(document).ready(function() {
 	
 	$('#search').on('click', function() {
 		table
-			.columns(1).search($('#filtroCalle').val())
-			.columns(5).search($('#filtroComuna').val())
+			.columns(0).search($('#filtroRazonSocial').val())
+			.columns(1).search($('#filtroTelefono').val())
+			.columns(2).search($('#filtroEmail').val())
+			.columns(3).search($('#filtroRunRut').val())
 			.draw();
 	});
 });

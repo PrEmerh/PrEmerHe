@@ -86,10 +86,12 @@
 				<table id="tablaContactos" class="display" style="width: 100%;">
 					<thead>
 			            <tr>
-			           		<th width="20%"><s:message code="homeContacts_table_head_name"/></th>
-				            <th width="16%"><s:message code="homeContacts_table_head_accountRun"/></th>
-				            <th width="16%"><s:message code="homeContacts_table_head_phone"/></th>
-				            <th width="16%"><s:message code="homeContacts_table_head_email"/></th>                               
+			           		<th width="25%"><s:message code="homeContacts_table_head_name"/></th>
+				            <th width="23%"><s:message code="homeContacts_table_head_accountRun"/></th>
+				            <th width="25%"><s:message code="homeContacts_table_head_phone"/></th>
+				            <th width="25%"><s:message code="homeContacts_table_head_email"/></th>
+				            <th width="1%" hidden="true">sf4twitter__twitter_username__c</th>
+				            <th width="1%" hidden="true">sfid</th>
 		            	</tr>
 	        		</thead>
 				</table>

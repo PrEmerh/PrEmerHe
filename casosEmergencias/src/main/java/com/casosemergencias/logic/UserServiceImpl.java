@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,9 +17,6 @@ import com.casosemergencias.model.User;
 public class UserServiceImpl implements UserService{
 	
 	final static Logger logger = Logger.getLogger(UserService.class);
-	
-	@Autowired
-	private SessionFactory sessionFactory;
 	
 	@Autowired
 	private HerokuUserDAO herokuUserDao;

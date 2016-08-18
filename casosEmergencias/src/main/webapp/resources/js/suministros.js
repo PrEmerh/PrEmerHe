@@ -47,7 +47,11 @@ $(document).ready(function() {
 	});
 	
 	$('#search').on('click', function() {
-		table.columns(0).search($('#filtroNumSuministro').val()).columns(5).search($('#filtroNumMedidor').val()).columns(6).search($('#filtroRutaLectura').val()).draw();
+		table
+			.columns(0).search($('#filtroNumSuministro').val())
+			.columns(5).search($('#filtroNumMedidor').val())
+			.columns(6).search($('#filtroRutaLectura').val())
+			.draw();
 	});
 });
 

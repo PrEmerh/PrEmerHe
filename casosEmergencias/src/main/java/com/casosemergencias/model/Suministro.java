@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.casosemergencias.controller.views.SuministroView;
-import com.casosemergencias.dao.vo.AccountVO;
 import com.casosemergencias.dao.vo.SuministroVO;
 
 public class Suministro extends ObjectLogic {

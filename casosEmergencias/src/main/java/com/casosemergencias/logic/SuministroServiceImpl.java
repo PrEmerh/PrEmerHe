@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.CaseDAO;
@@ -20,9 +19,6 @@ import com.casosemergencias.util.datatables.DataTableProperties;
 public class SuministroServiceImpl implements SuministroService{
 
 final static Logger logger = Logger.getLogger(SuministroService.class);
-	
-	@Autowired
-	private SessionFactory sessionFactory;
 	
 	@Autowired
 	private SuministroDAO suministroDao;
@@ -61,7 +57,7 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 	public List<Suministro> readAllSuministros(DataTableProperties propDatatable) {
 		
 		logger.debug("--- Inicio -- readAllSuministros ---");
-		List<Suministro> listSuministro = new ArrayList<>();
+		List<Suministro> listSuministro = new ArrayList<Suministro>();
 		
 		List<SuministroVO> listSuministroVO = suministroDao.readSuministroDataTable(propDatatable);
 		logger.debug("--- Inicio -- readAllSuministros cantidad: " + listSuministroVO.size() + " ---");

@@ -1,8 +1,8 @@
 package com.casosemergencias.controller.views;
+
 import java.util.Date;
 import java.util.List;
 
-import com.casosemergencias.dao.vo.AccountVO;
 import com.casosemergencias.model.Suministro;
 
 public class SuministroView extends ObjectView {

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.CaseDAO;
@@ -16,9 +15,6 @@ import com.casosemergencias.util.datatables.DataTableProperties;
 public class CaseServiceImpl implements CaseService{
 
 final static Logger logger = Logger.getLogger(CaseService.class);
-	
-	@Autowired
-	private SessionFactory sessionFactory;
 	
 	@Autowired
 	private CaseDAO caseDao;
@@ -79,10 +75,9 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 	}
 
 	
-	public Integer getNumCasos(){
+	public Integer getNumCasos(DataTableProperties propDatatable){
 		logger.debug("--- getNumCasos ---");
-		return caseDao.countCase();
-		
+		return caseDao.getNumCasos(propDatatable);
 	}
 	
 	public Integer insertCase(Caso caso){

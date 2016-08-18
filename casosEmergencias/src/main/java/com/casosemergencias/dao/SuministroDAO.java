@@ -828,18 +828,18 @@ public class SuministroDAO {
 			}
 			
 			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);
-			List<SuministroVO> suminsitroList = result.list();
+			List<SuministroVO> suministroList = result.list();
 
 			logger.debug("--- Fin -- readSuministroDataTable ---");
 			
-			return suminsitroList;
+			return suministroList;
 	    } catch (HibernateException e) {
 	    	logger.error("--- readSuministroDataTable ", e); 
 	    	logger.error("--- Fin -- readSuministroDataTable ---");
 	    } finally {
 	    	session.close(); 
 	    }
-	      return null;
+	    return null;
 	}
 	
 	/**
@@ -851,13 +851,46 @@ public class SuministroDAO {
 		logger.debug("--- Inicio -- countSuministro ---");
 		
 		Session session = sessionFactory.openSession();
-		String searchValue = (String) dataTableProperties.getGenericSearching().get("searchValue");
+		int searchParamsCounter = 0;
 		
 		try {
-			StringBuilder sqlQuery = new StringBuilder("select count(id) from SuministroVO ");
-			if (searchValue != null && !"".equals(searchValue)) {
-				sqlQuery.append(" WHERE name LIKE '%" + searchValue +"%'");
+			StringBuilder sqlQuery = new StringBuilder("SELECT COUNT(id) FROM SuministroVO ");
+			
+			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
+				sqlQuery.append(" WHERE ");
+				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
+					if ("name".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							sqlQuery.append(" AND ");
+							searchParamsCounter++;
+						}
+					}
+					
+					if ("n_mero_medidor__c".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							sqlQuery.append(" AND ");
+							searchParamsCounter++;
+						}
+					}
+					
+					if ("ruta__c".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							sqlQuery.append(" AND ");
+							searchParamsCounter++;
+						}
+					}
+				}
 			}
+			
+			if (searchParamsCounter == 0) {
+				sqlQuery.setLength(sqlQuery.length() - 7);
+			} else {
+				sqlQuery.setLength(sqlQuery.length() - 5);
+			}
+			
 			Query query = session.createQuery(sqlQuery.toString());
 			Long count = (Long) query.uniqueResult();
 			

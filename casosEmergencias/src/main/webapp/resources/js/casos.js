@@ -46,7 +46,9 @@ $(document).ready(function() {
 	});
 	
 	$('#search').on('click', function() {
-		table.columns(0).search($('#filtroNumCaso').val()).draw();
+		table
+			.columns(0).search($('#filtroNumCaso').val())
+			.draw();
 	});
 });
 

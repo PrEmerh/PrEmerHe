@@ -231,7 +231,7 @@ public class CaseController {
 			jsonArray.put(jsonResult);
 		}
 		
-		Integer numCasos = casoService.getNumCasos();
+		Integer numCasos = casoService.getNumCasos(dataTableProperties);
 
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("iTotalRecords", numCasos);  //Numero de registros totales en BBDD

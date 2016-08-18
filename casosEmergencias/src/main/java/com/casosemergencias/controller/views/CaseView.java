@@ -4,13 +4,8 @@ import java.util.Date;
 import java.util.Map;
 
 import com.casosemergencias.model.Caso;
-import com.casosemergencias.model.Contacto;
-import com.casosemergencias.model.Cuenta;
-import com.casosemergencias.model.Direccion;
-import com.casosemergencias.model.Suministro;
 
 public class CaseView extends ObjectView {
-
 	private Integer id;
 	private String sfid;
 	private String numeroCaso;

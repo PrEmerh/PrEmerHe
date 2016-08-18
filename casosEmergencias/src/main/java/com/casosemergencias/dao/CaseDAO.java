@@ -102,7 +102,7 @@ public class CaseDAO {
 	    } finally {
 	    	session.close(); 
 	    }
-	      return null;
+	    return null;
 	}
 
 	/**
@@ -266,9 +266,7 @@ public class CaseDAO {
 		} finally {
 			session.close();
 		}
-
 		return null;
-
 	}
 
 	/**
@@ -1737,24 +1735,34 @@ public class CaseDAO {
 
 	}
 
-	public Integer countCase() {
-
-		logger.debug("--- Inicio -- countCase ---");
+	public Integer getNumCasos(DataTableProperties dataTableProperties) {
+		logger.debug("--- Inicio -- getNumCasos ---");
 
 		Session session = sessionFactory.openSession();
 
 		try {
-			Query query = session.createQuery("select count(id) from CaseVO");
+			StringBuilder sqlQuery = new StringBuilder("SELECT COUNT(id) FROM CaseVO ");
 
+			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
+				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
+					if ("numeroCaso".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							sqlQuery.append(" WHERE caso." + columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+						}
+					}
+				}
+			}
+			
+			Query query = session.createQuery(sqlQuery.toString());
 			Long count = (Long) query.uniqueResult();
 
-			logger.debug("--- Fin -- readAllCase ---");
+			logger.debug("--- Fin -- getNumCasos ---");
 
 			return count.intValue();
 
 		} catch (HibernateException e) {
-			logger.error("--- Error en countCase: ", e);
-			logger.error("--- Fin -- countCase ---");
+			logger.error("--- Error en getNumCasos: ", e);
+			logger.error("--- Fin -- getNumCasos ---");
 		} finally {
 			session.close();
 		}
