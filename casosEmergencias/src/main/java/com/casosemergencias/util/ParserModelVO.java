@@ -9,17 +9,30 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
-import com.casosemergencias.controller.LoginController;
 import com.casosemergencias.controller.views.ObjectView;
 import com.casosemergencias.dao.vo.ObjectVO;
 import com.casosemergencias.model.ObjectLogic;
 
 public class ParserModelVO {
 	final static Logger logger = Logger.getLogger(ParserModelVO.class);
-	//Metodo que dado dos objetos, se pasa la información de objectWithData y se vuelca en objectToFill
-	//Para que funcione se deben llamar igual los campos que queremos informar,
-	//es decir, si queremos que se pase la información de name, necesitamos tener un getName y en el objeto que recibe la información el metodo setName
-	//LIMITACIÓN: No admite tipos de datos, solo clases. NO se pasará el metodo con parametros de entrada int, boolean...
+	
+	/**
+	 * M&eacute;todo que dado dos objetos, se pasa la informaci&oacute;n de un
+	 * objeto y se vuelca en otro. Para que la conversi&oacute;n funcione
+	 * correctamentem, se deben llamar igual los campos que queremos informar,
+	 * es decir, si queremos que se pase la informaci&oacute;n de name,
+	 * necesitamos tener un getName y en el objeto que recibe las información el
+	 * metodo setName.
+	 * 
+	 * LIMITACI&Oacute;N: No admite tipos de datos primitivos, solo referencias.
+	 * No se pasar&aacute; el m&eacutetodo con par&aacute;metros de entrada int,
+	 * boolean...
+	 * 
+	 * @param objectWithData
+	 *            Objeto a convertir.
+	 * @param objectToFill
+	 *            Objeto convertido.
+	 */
 	@SuppressWarnings("unchecked")
 	public static void parseDataModelVO(Object objectWithData, Object objectToFill) {
 	System.out.println("objectWithData:"+objectWithData.getClass()+":objectToFill:"+objectToFill.getClass());
@@ -95,7 +108,7 @@ public class ParserModelVO {
 	 * @param objectWithData
 	 *            Objeto origen que contiene la lista.
 	 * @param objectToFill
-	 *            Objeto destino donde irá la lista modificada.
+	 *            Objeto destino donde ir&aacute; la lista modificada.
 	 * @param valueToSet
 	 *            Lista a modificar.
 	 * @return List<Object> Lista modificada.
@@ -145,12 +158,12 @@ public class ParserModelVO {
 	}
 
 	/**
-	 * Método que devuelve un mapa con el nombre del campo como clave y su
-	 * correspondiente método set como valor.
+	 * M&eacute;todo que devuelve un mapa con el nombre del campo como clave y su
+	 * correspondiente m&eacute;todo set como valor.
 	 * 
 	 * @param methodsSets
-	 *            Array de métodos set.
-	 * @return Map<String, Method> Mapa de campos y sus métodos set
+	 *            Array de m&eacute;todos set.
+	 * @return Map<String, Method> Mapa de campos y sus m&eacute;todos set
 	 *         correspondientes.
 	 */
 	private static Map<String, Method> getMapOfSetFields(Method[] methodsSets) {
@@ -163,5 +176,26 @@ public class ParserModelVO {
 			}
 		}
 		return mapToReturn;
+	}
+	
+	/**
+	 * M&eacute;todo que dadas dos listas de objetos, se pasa la informaci&oacute;n de cada
+	 * objeto de la lista y se vuelca en otra.
+	 * 
+	 * LIMITACI&Oacute;N: No admite tipos de datos primitivos, solo referencias.
+	 * No se pasar&aacute; el m&eacutetodo con par&aacute;metros de entrada int,
+	 * boolean...
+	 * 
+	 * @param objectListWithData
+	 *            Lista de objetos a convertir.
+	 * @param objectListToFill
+	 *            Lista de objetos convertidos.
+	 */
+	public static void parseListDataModelVO(List<Object> objectListWithData, List<Object> objectListToFill) {
+		for (Object objectWithData : objectListWithData) {
+			Object objectToFill = new Object();
+			ParserModelVO.parseDataModelVO(objectWithData, objectToFill);
+			objectListToFill.add(objectToFill);
+		}
 	}
 }

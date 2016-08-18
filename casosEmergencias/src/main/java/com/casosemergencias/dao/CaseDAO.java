@@ -29,6 +29,7 @@ public class CaseDAO {
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public List<CaseVO> readAllCase() {
 
 		logger.debug("--- Inicio -- readAllCase ---");
@@ -58,8 +59,8 @@ public class CaseDAO {
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public List<CaseVO> readCaseDataTable(DataTableProperties dataTableProperties) {
-		
 		logger.debug("--- Inicio -- readCaseDataTable ---");
 		
 		Session session = sessionFactory.openSession();
@@ -67,8 +68,7 @@ public class CaseDAO {
 		String dirOrder = (String) dataTableProperties.getTableOrdering().get("orderingDirection");
 		int numStart = dataTableProperties.getStart();
 		int numLength = dataTableProperties.getLength();
-		String searchValue = null;
-				
+
 		try {
 			StringBuilder query = new StringBuilder("FROM CaseVO caso "
 					+ "LEFT JOIN FETCH caso.subestadoPickList subest "
@@ -111,6 +111,7 @@ public class CaseDAO {
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public List<CaseVO> readAllCaseDescriptionPick() {
 
 		logger.debug("--- Inicio -- readAllCaseDescriptionPick ---");
@@ -118,10 +119,7 @@ public class CaseDAO {
 		Session session = sessionFactory.openSession();
 
 		try {
-
-			// Query query = session.createQuery("from CaseVO caso");
-			Query query = session.createQuery(
-					"from CaseVO caso left join fetch caso.estadoPickList estado left join fetch caso.submotivoPickList submotivo");
+			Query query = session.createQuery("from CaseVO caso left join fetch caso.estadoPickList estado left join fetch caso.submotivoPickList submotivo");
 
 			List<CaseVO> casoList = query.list();
 			logger.debug("Casos: " + casoList);
@@ -129,7 +127,6 @@ public class CaseDAO {
 			logger.debug("--- Fin -- readAllCaseDescriptionPick ---");
 
 			return casoList;
-
 		} catch (HibernateException e) {
 			logger.error("--- Error en readAllCaseDescriptionPick: ", e);
 			logger.error("--- Fin -- readAllCaseDescriptionPick ---");
@@ -140,24 +137,19 @@ public class CaseDAO {
 	}
 
 	// Lo buscamos para el detalle de contactos:
+	@SuppressWarnings("unchecked")
 	public List<CaseVO> readCaseOfContact(String contactId) {
-
 		logger.debug("--- Inicio -- readCaseOfContact ---" + contactId);
 		Session session = sessionFactory.openSession();
 		try {
-			StringBuilder query = new StringBuilder(
-					"from CaseVO caso left join fetch caso.submotivoPickList submotivv left join fetch caso.canalorigenPickList canalorigen");
+			StringBuilder query = new StringBuilder("from CaseVO caso left join fetch caso.submotivoPickList submotivv left join fetch caso.canalorigenPickList canalorigen");
 			query.append(" WHERE caso.contactId = '" + contactId + "'");
 
 			Query result = session.createQuery(query.toString());
 			List<CaseVO> casoList = result.list();
-			if (casoList != null && !casoList.isEmpty()) {// como lo vamos a
-															// meter en
-															// Contacto, hay que
-															// anular el
-															// contacto para no
-															// entrar en bucle
+			if (casoList != null && !casoList.isEmpty()) {
 				for (CaseVO caso : casoList) {
+					// como lo vamos a meter en Contacto, hay que anular el contacto para no entrar en bucle
 					caso.setContactoJoin(null);
 				}
 			}
@@ -166,8 +158,7 @@ public class CaseDAO {
 			return casoList;
 
 		} catch (HibernateException e) {
-			logger.error("--- readCaseOfContact " + e.getMessage() + "---");
-			logger.error(e.getStackTrace());
+			logger.error("--- readCaseOfContact ", e);
 			logger.error("--- Fin -- readCaseOfContact ---");
 		} finally {
 			session.close();
@@ -176,6 +167,7 @@ public class CaseDAO {
 	}
 
 	// Lo buscamos para el detalle de contactos:
+	@SuppressWarnings("unchecked")
 	public List<CaseVO> readCaseOfSuministro(String suministroId) {
 
 		logger.debug("--- Inicio -- readCaseOfSuministro ---" + suministroId);
@@ -187,23 +179,17 @@ public class CaseDAO {
 
 			Query result = session.createQuery(query.toString());
 			List<CaseVO> casoList = result.list();
-			if (casoList != null && !casoList.isEmpty()) {// como lo vamos a
-															// meter en
-															// Contacto, hay que
-															// anular el
-															// contacto para no
-															// entrar en bucle
+			if (casoList != null && !casoList.isEmpty()) {
 				for (CaseVO caso : casoList) {
+					// como lo vamos a meter en Contacto, hay que anular el contacto para no entrar en bucle
 					caso.setSuministroJoin(null);
 				}
 			}
 			logger.debug("--- Fin -- readCaseOfSuministro ---");
 
 			return casoList;
-
 		} catch (HibernateException e) {
-			logger.error("--- readCaseOfSuministro " + e.getMessage() + "---");
-			logger.error(e.getStackTrace());
+			logger.error("--- readCaseOfSuministro ", e);
 			logger.error("--- Fin -- readCaseOfSuministro ---");
 		} finally {
 			session.close();
@@ -218,6 +204,7 @@ public class CaseDAO {
 	 *            - id de un Case
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public CaseVO readCaseById(Integer id) {
 
 		logger.debug("--- Inicio -- readCaseById ---");
@@ -254,6 +241,7 @@ public class CaseDAO {
 	 *            - id de un Case
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public CaseVO readCaseBySfid(String sfid) {
 
 		logger.debug("--- Inicio -- readCaseBySfid ---");
@@ -261,8 +249,7 @@ public class CaseDAO {
 		Session session = sessionFactory.openSession();
 
 		try {
-			Query query = session.createQuery(
-					"from CaseVO as caso left join fetch caso.canalorigenPickList origen WHERE caso.sfid = :sfid");
+			Query query = session.createQuery("from CaseVO as caso left join fetch caso.canalorigenPickList origen WHERE caso.sfid = :sfid");
 			query.setString("sfid", sfid);
 
 			List<CaseVO> casoList = query.list();
@@ -290,6 +277,7 @@ public class CaseDAO {
 	 * @param Case
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public List<CaseVO> readCase(CaseVO caso) {
 
 		logger.debug("--- Inicio -- readCase ---");
@@ -308,6 +296,7 @@ public class CaseDAO {
 					query.append(" AND caso.id = :id");
 				}
 			}
+			
 			if (caso.getAsunto() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.asunto = :asunto");
@@ -316,6 +305,7 @@ public class CaseDAO {
 					query.append(" AND caso.asunto = :asunto");
 				}
 			}
+			
 			// Campo username no es caso sensitive, lo convertimos a mayusculas
 			// para la condicion
 			if (caso.getFechaEstimadaCierre() != null) {
@@ -334,6 +324,7 @@ public class CaseDAO {
 					query.append(" AND caso.accountid = :accountid");
 				}
 			}
+			
 			if (caso.getFavorabilidadDelCaso() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.favorabilidadDelCaso = :favorabilidadDelCaso");
@@ -342,6 +333,7 @@ public class CaseDAO {
 					query.append(" AND caso.favorabilidadDelCaso = :favorabilidadDelCaso");
 				}
 			}
+			
 			if (caso.getFlagSec() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.flagSec = :flagSec");
@@ -350,6 +342,7 @@ public class CaseDAO {
 					query.append(" AND caso.flagSec = :flagSec");
 				}
 			}
+			
 			if (caso.getLastmodifiedbyid() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.lastmodifiedbyid = :lastmodifiedbyid");
@@ -358,6 +351,7 @@ public class CaseDAO {
 					query.append(" AND caso.lastmodifiedbyid = :lastmodifiedbyid");
 				}
 			}
+			
 			if (caso.getSfid() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.sfid = :sfid");
@@ -366,6 +360,7 @@ public class CaseDAO {
 					query.append(" AND caso.sfid = :sfid");
 				}
 			}
+			
 			if (caso.get_hc_err() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso._hc_err = :hcError");
@@ -374,6 +369,7 @@ public class CaseDAO {
 					query.append(" AND caso._hc_err = :hcError");
 				}
 			}
+			
 			if (caso.get_hc_lastop() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso._hc_lastop = :hcLastop");
@@ -382,6 +378,7 @@ public class CaseDAO {
 					query.append(" AND caso._hc_lastop = :hcLastop");
 				}
 			}
+			
 			if (caso.getIsdeleted() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.isdeleted = :isDeleted");
@@ -398,6 +395,7 @@ public class CaseDAO {
 					query.append(" AND caso.productid = :productid");
 				}
 			}
+			
 			if (caso.getValidarElectrodependiente() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.validarElectrodependiente = :validarElectrodependiente");
@@ -406,6 +404,7 @@ public class CaseDAO {
 					query.append(" AND caso.validarElectrodependiente = :validarElectrodependiente");
 				}
 			}
+			
 			if (caso.getSf4twitterTwitterUsername() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.sf4twitterTwitterUsername = :sf4twitterTwitterUsername");
@@ -414,6 +413,7 @@ public class CaseDAO {
 					query.append(" AND caso.sf4twitterTwitterUsername = :sf4twitterTwitterUsername");
 				}
 			}
+			
 			if (caso.getParent() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.parent = :parent");
@@ -422,6 +422,7 @@ public class CaseDAO {
 					query.append(" AND caso.parent = :parent");
 				}
 			}
+			
 			if (caso.getSlastartdate() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.slastartdate = :slastartdate");
@@ -430,6 +431,7 @@ public class CaseDAO {
 					query.append(" AND caso.slastartdate = :slastartdate");
 				}
 			}
+			
 			if (caso.getMotivoEmpresa() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.motivoEmpresa = :motivoEmpresa");
@@ -438,6 +440,7 @@ public class CaseDAO {
 					query.append(" AND caso.motivoEmpresa = :motivoEmpresa");
 				}
 			}
+			
 			if (caso.getCallCenter() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.callCenter = :callCenter");
@@ -446,6 +449,7 @@ public class CaseDAO {
 					query.append(" AND caso.callCenter = :callCenter");
 				}
 			}
+			
 			if (caso.getFalloEnvioValidacion() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.falloEnvioValidacion = :falloEnvioValidacion");
@@ -454,6 +458,7 @@ public class CaseDAO {
 					query.append(" AND caso.falloEnvioValidacion = :falloEnvioValidacion");
 				}
 			}
+			
 			if (caso.getLiteralComuna() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.literalComuna = :literalComuna");
@@ -462,6 +467,7 @@ public class CaseDAO {
 					query.append(" AND caso.literalComuna = :literalComuna");
 				}
 			}
+			
 			if (caso.getActDatosContacto() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.actDatosContacto = :actDatosContacto");
@@ -470,6 +476,7 @@ public class CaseDAO {
 					query.append(" AND caso.actDatosContacto = :actDatosContacto");
 				}
 			}
+			
 			if (caso.getFalloCreacionObservacion() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.falloCreacionObservacion = :falloCreacionObservacion");
@@ -478,6 +485,7 @@ public class CaseDAO {
 					query.append(" AND caso.falloCreacionObservacion = :falloCreacionObservacion");
 				}
 			}
+			
 			if (caso.getEstadoPreingreso() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.estadoPreingreso = :estadoPreingreso");
@@ -486,6 +494,7 @@ public class CaseDAO {
 					query.append(" AND caso.estadoPreingreso = :estadoPreingreso");
 				}
 			}
+			
 			if (caso.getEmailNotificacion() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.emailNotificacion = :emailNotificacion");
@@ -494,6 +503,7 @@ public class CaseDAO {
 					query.append(" AND caso.emailNotificacion = :emailNotificacion");
 				}
 			}
+			
 			if (caso.getHoraap() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.horaap = :horaap");
@@ -502,6 +512,7 @@ public class CaseDAO {
 					query.append(" AND caso.horaap = :horaap");
 				}
 			}
+			
 			if (caso.getNumeroInservice() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.numeroInservice = :numeroInservice");
@@ -510,6 +521,7 @@ public class CaseDAO {
 					query.append(" AND caso.numeroInservice = :numeroInservice");
 				}
 			}
+			
 			if (caso.getSuppliedphone() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.suppliedphone = :suppliedphone");
@@ -518,6 +530,7 @@ public class CaseDAO {
 					query.append(" AND caso.suppliedphone = :suppliedphone");
 				}
 			}
+			
 			if (caso.getNumeroMedidor() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.numeroMedidor = :numeroMedidor");
@@ -526,6 +539,7 @@ public class CaseDAO {
 					query.append(" AND caso.numeroMedidor = :numeroMedidor");
 				}
 			}
+			
 			if (caso.getIsstopped() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.isstopped = :isstopped");
@@ -534,6 +548,7 @@ public class CaseDAO {
 					query.append(" AND caso.isstopped = :isstopped");
 				}
 			}
+			
 			if (caso.getCuerpoMail() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.cuerpoMail = :cuerpoMail");
@@ -542,6 +557,7 @@ public class CaseDAO {
 					query.append(" AND caso.cuerpoMail = :cuerpoMail");
 				}
 			}
+			
 			if (caso.getTelefonoContacto() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.telefonoContacto = :telefonoContacto");
@@ -550,6 +566,7 @@ public class CaseDAO {
 					query.append(" AND caso.telefonoContacto = :telefonoContacto");
 				}
 			}
+			
 			if (caso.getQuestionid() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.questionid = :questionid");
@@ -558,6 +575,7 @@ public class CaseDAO {
 					query.append(" AND caso.questionid = :questionid");
 				}
 			}
+			
 			if (caso.getHasselfservicecomments() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.hasselfservicecomments = :hasselfservicecomments");
@@ -566,6 +584,7 @@ public class CaseDAO {
 					query.append(" AND caso.hasselfservicecomments = :hasselfservicecomments");
 				}
 			}
+			
 			if (caso.getTrazaFalloInservice() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.trazaFalloInservice = :trazaFalloInservice");
@@ -574,6 +593,7 @@ public class CaseDAO {
 					query.append(" AND caso.trazaFalloInservice = :trazaFalloInservice");
 				}
 			}
+			
 			if (caso.getCanalNotificacion() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.canalNotificacion = :canalNotificacion");
@@ -582,6 +602,7 @@ public class CaseDAO {
 					query.append(" AND caso.canalNotificacion = :canalNotificacion");
 				}
 			}
+			
 			if (caso.getCreatedbyid() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.createdbyid = :createdbyid");
@@ -590,6 +611,7 @@ public class CaseDAO {
 					query.append(" AND caso.createdbyid = :createdbyid");
 				}
 			}
+			
 			if (caso.getCategoria() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.categoria = :categoria");
@@ -598,6 +620,7 @@ public class CaseDAO {
 					query.append(" AND caso.categoria = :categoria");
 				}
 			}
+			
 			if (caso.getFlag() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.flag = :flag");
@@ -606,6 +629,7 @@ public class CaseDAO {
 					query.append(" AND caso.flag = :flag");
 				}
 			}
+			
 			if (caso.getObservaciones() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.observaciones = :observaciones");
@@ -614,6 +638,7 @@ public class CaseDAO {
 					query.append(" AND caso.observaciones = :observaciones");
 				}
 			}
+			
 			if (caso.getNumeroCaso() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.casenumber = :casenumber");
@@ -622,6 +647,7 @@ public class CaseDAO {
 					query.append(" AND caso.casenumber = :casenumber");
 				}
 			}
+			
 			if (caso.getUrl() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.url = :url");
@@ -630,6 +656,7 @@ public class CaseDAO {
 					query.append(" AND caso.url = :url");
 				}
 			}
+			
 			if (caso.getEstado() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.status = :status");
@@ -638,6 +665,7 @@ public class CaseDAO {
 					query.append(" AND caso.status = :status");
 				}
 			}
+			
 			if (caso.getSf4twitterTwitterid() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.sf4twitterTwitterid = :sf4twitterTwitterid");
@@ -646,6 +674,7 @@ public class CaseDAO {
 					query.append(" AND caso.sf4twitterTwitterid = :sf4twitterTwitterid");
 				}
 			}
+			
 			if (caso.getRespuestaAlCliente() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.respuestaAlCliente = :respuestaAlCliente");
@@ -654,6 +683,7 @@ public class CaseDAO {
 					query.append(" AND caso.respuestaAlCliente = :respuestaAlCliente");
 				}
 			}
+			
 			if (caso.getNumeroCasoAp() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.numeroCasoAp = :numeroCasoAp");
@@ -662,6 +692,7 @@ public class CaseDAO {
 					query.append(" AND caso.numeroCasoAp = :numeroCasoAp");
 				}
 			}
+			
 			if (caso.getIsescalated() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.isescalated = :isescalated");
@@ -670,6 +701,7 @@ public class CaseDAO {
 					query.append(" AND caso.isescalated = :isescalated");
 				}
 			}
+			
 			if (caso.getInteraccion() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.interaccion = :interaccion");
@@ -678,6 +710,7 @@ public class CaseDAO {
 					query.append(" AND caso.interaccion = :interaccion");
 				}
 			}
+			
 			if (caso.getTipoAtencionSEC() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.tipoAtencionSEC = :tipoAtencionSEC");
@@ -686,6 +719,7 @@ public class CaseDAO {
 					query.append(" AND caso.tipoAtencionSEC = :tipoAtencionSEC");
 				}
 			}
+			
 			if (caso.getSubEstado() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.subEstado = :subEstado");
@@ -694,6 +728,7 @@ public class CaseDAO {
 					query.append(" AND caso.subEstado = :subEstado");
 				}
 			}
+			
 			if (caso.getIsvisibleinselfservice() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.isvisibleinselfservice = :isvisibleinselfservice");
@@ -702,6 +737,7 @@ public class CaseDAO {
 					query.append(" AND caso.isvisibleinselfservice = :isvisibleinselfservice");
 				}
 			}
+			
 			if (caso.getTipoAtencionInterna() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.tipoAtencionInterna = :tipoAtencionInterna");
@@ -710,6 +746,7 @@ public class CaseDAO {
 					query.append(" AND caso.tipoAtencionInterna = :tipoAtencionInterna");
 				}
 			}
+			
 			if (caso.getHoraSec() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.horaSec = :horaSec");
@@ -718,6 +755,7 @@ public class CaseDAO {
 					query.append(" AND caso.horaSec = :horaSec");
 				}
 			}
+			
 			if (caso.getPendienteValidacionCondagr() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.pendienteValidacionCondagr = :pendienteValidacionCondagr");
@@ -726,6 +764,7 @@ public class CaseDAO {
 					query.append(" AND caso.pendienteValidacionCondagr = :pendienteValidacionCondagr");
 				}
 			}
+			
 			if (caso.getEjecutivoAnterior() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.ejecutivoAnterior = :ejecutivoAnterior");
@@ -734,6 +773,7 @@ public class CaseDAO {
 					query.append(" AND caso.ejecutivoAnterior = :ejecutivoAnterior");
 				}
 			}
+			
 			if (caso.getEntitlementid() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.entitlementid = :entitlementid");
@@ -742,6 +782,7 @@ public class CaseDAO {
 					query.append(" AND caso.entitlementid = :entitlementid");
 				}
 			}
+			
 			if (caso.getAssetid() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.assetid = :assetid");
@@ -750,6 +791,7 @@ public class CaseDAO {
 					query.append(" AND caso.assetid = :assetid");
 				}
 			}
+			
 			if (caso.getStopstartDate() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.stopstartDate = :stopstartDate");
@@ -758,6 +800,7 @@ public class CaseDAO {
 					query.append(" AND caso.stopstartDate = :stopstartDate");
 				}
 			}
+			
 			if (caso.getSuppliedCompany() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.suppliedCompany = :suppliedCompany");
@@ -766,6 +809,7 @@ public class CaseDAO {
 					query.append(" AND caso.suppliedCompany = :suppliedCompany");
 				}
 			}
+			
 			if (caso.getIsClosedonCreate() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.isClosedonCreate = :isClosedonCreate");
@@ -774,6 +818,7 @@ public class CaseDAO {
 					query.append(" AND caso.isClosedonCreate = :isClosedonCreate");
 				}
 			}
+			
 			if (caso.getEstadoCondicionAgravante() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.estadoCondicionAgravante = :estadoCondicionAgravante");
@@ -782,6 +827,7 @@ public class CaseDAO {
 					query.append(" AND caso.estadoCondicionAgravante = :estadoCondicionAgravante");
 				}
 			}
+			
 			if (caso.getHoraCancelado() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.horaCancelado = :horaCancelado");
@@ -790,6 +836,7 @@ public class CaseDAO {
 					query.append(" AND caso.horaCancelado = :horaCancelado");
 				}
 			}
+			
 			if (caso.getSuministro() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.suministro = :suministro");
@@ -798,6 +845,7 @@ public class CaseDAO {
 					query.append(" AND caso.suministro = :suministro");
 				}
 			}
+			
 			if (caso.getIsSelfserviceClosed() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.isSelfserviceClosed = :isSelfserviceClosed");
@@ -806,6 +854,7 @@ public class CaseDAO {
 					query.append(" AND caso.isSelfserviceClosed = :isSelfserviceClosed");
 				}
 			}
+			
 			if (caso.getUi() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.ui = :ui");
@@ -814,6 +863,7 @@ public class CaseDAO {
 					query.append(" AND caso.ui = :ui");
 				}
 			}
+			
 			if (caso.getNumSum() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.numSum = :numSum");
@@ -822,6 +872,7 @@ public class CaseDAO {
 					query.append(" AND caso.numSum = :numSum");
 				}
 			}
+			
 			if (caso.getTwitter() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.twitter = :twitter");
@@ -830,6 +881,7 @@ public class CaseDAO {
 					query.append(" AND caso.twitter = :twitter");
 				}
 			}
+			
 			if (caso.getSuppliedName() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.suppliedName = :suppliedName");
@@ -838,6 +890,7 @@ public class CaseDAO {
 					query.append(" AND caso.suppliedName = :suppliedName");
 				}
 			}
+			
 			if (caso.getClosedDate() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.closedDate = :closedDate");
@@ -846,6 +899,7 @@ public class CaseDAO {
 					query.append(" AND caso.closedDate = :closedDate");
 				}
 			}
+			
 			if (caso.getFalloEnvioInservice() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.falloEnvioInservice = :falloEnvioInservice");
@@ -854,6 +908,7 @@ public class CaseDAO {
 					query.append(" AND caso.falloEnvioInservice = :falloEnvioInservice");
 				}
 			}
+			
 			if (caso.getDescription() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.description = :description");
@@ -862,6 +917,7 @@ public class CaseDAO {
 					query.append(" AND caso.description = :description");
 				}
 			}
+			
 			if (caso.getHoraArribado() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.horaArribado = :horaArribado");
@@ -870,6 +926,7 @@ public class CaseDAO {
 					query.append(" AND caso.horaArribado = :horaArribado");
 				}
 			}
+			
 			if (caso.getSlaexitDate() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.slaexitDate = :slaexitDate");
@@ -878,6 +935,7 @@ public class CaseDAO {
 					query.append(" AND caso.slaexitDate = :slaexitDate");
 				}
 			}
+			
 			if (caso.getCanalOrigen() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.canalOrigen = :canalOrigen");
@@ -886,6 +944,7 @@ public class CaseDAO {
 					query.append(" AND caso.canalOrigen = :canalOrigen");
 				}
 			}
+			
 			if (caso.getDescripcionEstado() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.descripcionEstado = :descripcionEstado");
@@ -894,6 +953,7 @@ public class CaseDAO {
 					query.append(" AND caso.descripcionEstado = :descripcionEstado");
 				}
 			}
+			
 			if (caso.getBusinessHoursId() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.businessHoursId = :businessHoursId");
@@ -902,6 +962,7 @@ public class CaseDAO {
 					query.append(" AND caso.businessHoursId = :businessHoursId");
 				}
 			}
+			
 			if (caso.getSf4twitterAuthorExternalId() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.sf4twitterAuthorExternalId = :sf4twitterAuthorExternalId");
@@ -910,6 +971,7 @@ public class CaseDAO {
 					query.append(" AND caso.sf4twitterAuthorExternalId = :sf4twitterAuthorExternalId");
 				}
 			}
+			
 			if (caso.getHasCommentSunReadByOwner() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.hasCommentSunReadByOwner = :hasCommentSunReadByOwner");
@@ -918,6 +980,7 @@ public class CaseDAO {
 					query.append(" AND caso.hasCommentSunReadByOwner = :hasCommentSunReadByOwner");
 				}
 			}
+			
 			if (caso.getHoraCerrado() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.horaCerrado = :horaCerrado");
@@ -926,6 +989,7 @@ public class CaseDAO {
 					query.append(" AND caso.horaCerrado = :horaCerrado");
 				}
 			}
+			
 			if (caso.getLiteralCondicionAgravante() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.literalCondicionAgravante = :literalCondicionAgravante");
@@ -934,6 +998,7 @@ public class CaseDAO {
 					query.append(" AND caso.literalCondicionAgravante = :literalCondicionAgravante");
 				}
 			}
+			
 			if (caso.getType() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.type = :type");
@@ -942,6 +1007,7 @@ public class CaseDAO {
 					query.append(" AND caso.type = :type");
 				}
 			}
+			
 			if (caso.getDireccionSuministro() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.direccionSuministro = :direccionSuministro");
@@ -950,6 +1016,7 @@ public class CaseDAO {
 					query.append(" AND caso.direccionSuministro = :direccionSuministro");
 				}
 			}
+			
 			if (caso.getHoraPendiente() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.horaPendiente = :horaPendiente");
@@ -958,6 +1025,7 @@ public class CaseDAO {
 					query.append(" AND caso.horaPendiente = :horaPendiente");
 				}
 			}
+			
 			if (caso.getAni() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.ani = :ani");
@@ -966,6 +1034,7 @@ public class CaseDAO {
 					query.append(" AND caso.ani = :ani");
 				}
 			}
+			
 			if (caso.getFacebook() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.facebook = :facebook");
@@ -974,6 +1043,7 @@ public class CaseDAO {
 					query.append(" AND caso.facebook = :facebook");
 				}
 			}
+			
 			if (caso.getPeticion() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.peticion = :peticion");
@@ -982,6 +1052,7 @@ public class CaseDAO {
 					query.append(" AND caso.peticion = :peticion");
 				}
 			}
+			
 			if (caso.getCommunityId() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.communityId = :communityId");
@@ -990,6 +1061,7 @@ public class CaseDAO {
 					query.append(" AND caso.communityId = :communityId");
 				}
 			}
+			
 			if (caso.getDireccion() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.direccion = :direccion");
@@ -998,6 +1070,7 @@ public class CaseDAO {
 					query.append(" AND caso.direccion = :direccion");
 				}
 			}
+			
 			if (caso.getHoraAsignado() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.horaAsignado = :horaAsignado");
@@ -1006,6 +1079,7 @@ public class CaseDAO {
 					query.append(" AND caso.horaAsignado = :horaAsignado");
 				}
 			}
+			
 			if (caso.getMilestoneStatus() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.milestoneStatus = :milestoneStatus");
@@ -1014,6 +1088,7 @@ public class CaseDAO {
 					query.append(" AND caso.milestoneStatus = :milestoneStatus");
 				}
 			}
+			
 			if (caso.getContactId() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.contactId = :contactId");
@@ -1022,6 +1097,7 @@ public class CaseDAO {
 					query.append(" AND caso.contactId = :contactId");
 				}
 			}
+			
 			if (caso.getHoraPredespacho() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.horaPredespacho = :horaPredespacho");
@@ -1030,6 +1106,7 @@ public class CaseDAO {
 					query.append(" AND caso.horaPredespacho = :horaPredespacho");
 				}
 			}
+			
 			if (caso.getHoraEnruta() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.horaEnruta = :horaEnruta");
@@ -1038,6 +1115,7 @@ public class CaseDAO {
 					query.append(" AND caso.horaEnruta = :horaEnruta");
 				}
 			}
+			
 			if (caso.getReason() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.reason = :reason");
@@ -1046,6 +1124,7 @@ public class CaseDAO {
 					query.append(" AND caso.reason = :reason");
 				}
 			}
+			
 			if (caso.getIdEmpresa() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.idEmpresa = :idEmpresa");
@@ -1054,6 +1133,7 @@ public class CaseDAO {
 					query.append(" AND caso.idEmpresa = :idEmpresa");
 				}
 			}
+			
 			if (caso.getHoraProgramado() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.horaProgramado = :horaProgramado");
@@ -1062,6 +1142,7 @@ public class CaseDAO {
 					query.append(" AND caso.horaProgramado = :horaProgramado");
 				}
 			}
+			
 			if (caso.getNumeroSeguidoresDel() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.numeroSeguidoresDel = :numeroSeguidoresDel");
@@ -1070,6 +1151,7 @@ public class CaseDAO {
 					query.append(" AND caso.numeroSeguidoresDel = :numeroSeguidoresDel");
 				}
 			}
+			
 			if (caso.getLiteralCategorias() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.literalCategorias = :literalCategorias");
@@ -1078,6 +1160,7 @@ public class CaseDAO {
 					query.append(" AND caso.literalCategorias = :literalCategorias");
 				}
 			}
+			
 			if (caso.getComuna() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.comuna = :comuna");
@@ -1086,6 +1169,7 @@ public class CaseDAO {
 					query.append(" AND caso.comuna = :comuna");
 				}
 			}
+			
 			if (caso.getPrioridad() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.prioridad = :prioridad");
@@ -1094,6 +1178,7 @@ public class CaseDAO {
 					query.append(" AND caso.prioridad = :prioridad");
 				}
 			}
+			
 			if (caso.getValorSubestadoins() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.valorSubestadoins = :valorSubestadoins");
@@ -1102,6 +1187,7 @@ public class CaseDAO {
 					query.append(" AND caso.valorSubestadoins = :valorSubestadoins");
 				}
 			}
+			
 			if (caso.getControlElectrodependiente() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.controlElectrodependiente = :controlElectrodependiente");
@@ -1110,6 +1196,7 @@ public class CaseDAO {
 					query.append(" AND caso.controlElectrodependiente = :controlElectrodependiente");
 				}
 			}
+			
 			if (caso.getCancelar() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.cancelar = :cancelar");
@@ -1118,6 +1205,7 @@ public class CaseDAO {
 					query.append(" AND caso.cancelar = :cancelar");
 				}
 			}
+			
 			if (caso.getCondicionAgravante() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.condicionAgravante = :condicionAgravante");
@@ -1126,6 +1214,7 @@ public class CaseDAO {
 					query.append(" AND caso.condicionAgravante = :condicionAgravante");
 				}
 			}
+			
 			if (caso.getSystemmodstamp() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.fechaApertura = :fechaApertura");
@@ -1134,6 +1223,7 @@ public class CaseDAO {
 					query.append(" AND caso.fechaApertura = :fechaApertura");
 				}
 			}
+			
 			if (caso.getSystemmodstamp() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.systemmodstamp = :systemmodstamp");
@@ -1149,321 +1239,427 @@ public class CaseDAO {
 			if (caso.getId() != null) {
 				result.setInteger("id", caso.getId());
 			}
+			
 			if (caso.getAsunto() != null) {
 				result.setString("asunto", caso.getAsunto());
 			}
+			
 			if (caso.getFechaEstimadaCierre() != null) {
 				result.setDate("fechaEstimadaCierre", caso.getFechaEstimadaCierre());
 			}
+			
 			if (caso.getAccountid() != null) {
 				result.setString("accountid", caso.getAccountid());
 			}
+			
 			if (caso.getFavorabilidadDelCaso() != null) {
 				result.setString("favorabilidadDelCaso", caso.getFavorabilidadDelCaso());
 			}
+			
 			if (caso.getFlagSec() != null) {
 				result.setString("flagSec", caso.getFlagSec());
 			}
+			
 			if (caso.getSfid() != null) {
 				result.setString("sfid", caso.getSfid());
 			}
+			
 			if (caso.get_hc_err() != null) {
 				result.setString("hcError", caso.get_hc_err());
 			}
+			
 			if (caso.get_hc_lastop() != null) {
 				result.setString("hcLastop", caso.get_hc_lastop());
 			}
+			
 			if (caso.getIsdeleted() != null) {
 				result.setBoolean("isDeleted", caso.getIsdeleted());
 			}
+			
 			if (caso.getProductid() != null) {
 				result.setString("productid", caso.getProductid());
 			}
+			
 			if (caso.getValidarElectrodependiente() != null) {
 				result.setBoolean("validarElectrodependiente", caso.getValidarElectrodependiente());
 			}
+			
 			if (caso.getSf4twitterTwitterUsername() != null) {
 				result.setString("sf4twitterTwitterUsername", caso.getSf4twitterTwitterUsername());
 			}
+			
 			if (caso.getParent() != null) {
 				result.setString("parent", caso.getParent());
 			}
+			
 			if (caso.getSlastartdate() != null) {
 				result.setDate("slastartdate", caso.getSlastartdate());
 			}
+			
 			if (caso.getMotivoEmpresa() != null) {
 				result.setString("motivoEmpresa", caso.getMotivoEmpresa());
 			}
+			
 			if (caso.getCallCenter() != null) {
 				result.setString("callCenter", caso.getCallCenter());
 			}
+			
 			if (caso.getNumeroMedidor() != null) {
 				result.setString("numeroMedidor", caso.getNumeroMedidor());
 			}
+			
 			if (caso.getFalloEnvioValidacion() != null) {
 				result.setBoolean("falloEnvioValidacion", caso.getFalloEnvioValidacion());
 			}
+			
 			if (caso.getLiteralComuna() != null) {
 				result.setString("literalComuna", caso.getLiteralComuna());
 			}
+			
 			if (caso.getActDatosContacto() != null) {
 				result.setBoolean("actDatosContacto", caso.getActDatosContacto());
 			}
+			
 			if (caso.getFalloCreacionObservacion() != null) {
 				result.setString("falloCreacionObservacion", caso.getFalloCreacionObservacion());
 			}
+			
 			if (caso.getEstadoPreingreso() != null) {
 				result.setBoolean("sfidestadoPreingreso", caso.getEstadoPreingreso());
 			}
+			
 			if (caso.getEmailNotificacion() != null) {
 				result.setString("emailNotificacion", caso.getEmailNotificacion());
 			}
+			
 			if (caso.getHoraap() != null) {
 				result.setDouble("horaap", caso.getHoraap());
 			}
+			
 			if (caso.getNumeroInservice() != null) {
 				result.setString("numeroInservice", caso.getNumeroInservice());
 			}
+			
 			if (caso.getSuppliedphone() != null) {
 				result.setString("suppliedphone", caso.getSuppliedphone());
 			}
+			
 			if (caso.getNumeroMedidor() != null) {
 				result.setString("numeroMedidor", caso.getNumeroMedidor());
 			}
+			
 			if (caso.getIsstopped() != null) {
 				result.setBoolean("isstopped", caso.getIsstopped());
 			}
+			
 			if (caso.getCuerpoMail() != null) {
 				result.setString("cuerpoMail", caso.getCuerpoMail());
 			}
+			
 			if (caso.getTelefonoContacto() != null) {
 				result.setString("telefonoContacto", caso.getTelefonoContacto());
 			}
+			
 			if (caso.getQuestionid() != null) {
 				result.setString("questionid", caso.getQuestionid());
 			}
+			
 			if (caso.getHasselfservicecomments() != null) {
 				result.setBoolean("hasselfservicecomments", caso.getHasselfservicecomments());
 			}
+			
 			if (caso.getTrazaFalloInservice() != null) {
 				result.setString("trazaFalloInservice", caso.getTrazaFalloInservice());
 			}
+			
 			if (caso.getCanalNotificacion() != null) {
 				result.setString("canalNotificacion", caso.getCanalNotificacion());
 			}
+			
 			if (caso.getCreatedbyid() != null) {
 				result.setString("createdbyid", caso.getCreatedbyid());
 			}
+			
 			if (caso.getCategoria() != null) {
 				result.setString("categoria", caso.getCategoria());
 			}
+			
 			if (caso.getFlag() != null) {
 				result.setString("flag", caso.getFlag());
 			}
+			
 			if (caso.getObservaciones() != null) {
 				result.setString("observaciones", caso.getObservaciones());
 			}
+			
 			if (caso.getNumeroCaso() != null) {
 				result.setString("casenumber", caso.getNumeroCaso());
 			}
+			
 			if (caso.getUrl() != null) {
 				result.setString("url", caso.getUrl());
 			}
+			
 			if (caso.getEstado() != null) {
 				result.setString("status", caso.getEstado());
 			}
+			
 			if (caso.getSf4twitterTwitterid() != null) {
 				result.setString("sf4twitterTwitterid", caso.getSf4twitterTwitterid());
 			}
+			
 			if (caso.getRespuestaAlCliente() != null) {
 				result.setString("respuestaAlCliente", caso.getRespuestaAlCliente());
 			}
+			
 			if (caso.getNumeroCasoAp() != null) {
 				result.setString("numeroCasoAp", caso.getNumeroCasoAp());
 			}
+			
 			if (caso.getIsescalated() != null) {
 				result.setBoolean("isescalated", caso.getIsescalated());
 			}
+			
 			if (caso.getInteraccion() != null) {
 				result.setString("interaccion", caso.getInteraccion());
 			}
+			
 			if (caso.getTipoAtencionSEC() != null) {
 				result.setString("tipoAtencionSec", caso.getTipoAtencionSEC());
 			}
+			
 			if (caso.getSubEstado() != null) {
 				result.setString("subEstado", caso.getSubEstado());
 			}
+			
 			if (caso.getIsvisibleinselfservice() != null) {
 				result.setBoolean("isvisibleinselfservice", caso.getIsvisibleinselfservice());
 			}
+			
 			if (caso.getTipoAtencionInterna() != null) {
 				result.setString("tipoAtencionInterna", caso.getTipoAtencionInterna());
 			}
+			
 			if (caso.getHoraSec() != null) {
 				result.setDate("horaSec", caso.getHoraSec());
 			}
+			
 			if (caso.getPendienteValidacionCondagr() != null) {
 				result.setBoolean("pendienteValidacionCondagr", caso.getPendienteValidacionCondagr());
 			}
+			
 			if (caso.getEjecutivoAnterior() != null) {
 				result.setString("ejecutivoAnterior", caso.getEjecutivoAnterior());
 			}
+			
 			if (caso.getEntitlementid() != null) {
 				result.setString("entitlementid", caso.getEntitlementid());
 			}
+			
 			if (caso.getAssetid() != null) {
 				result.setString("assetid", caso.getAssetid());
 			}
+			
 			if (caso.getStopstartDate() != null) {
 				result.setDate("stopstartDate", caso.getStopstartDate());
 			}
+			
 			if (caso.getSuppliedCompany() != null) {
 				result.setString("suppliedCompany", caso.getSuppliedCompany());
 			}
+			
 			if (caso.getIsClosedonCreate() != null) {
 				result.setBoolean("isClosedonCreate", caso.getIsClosedonCreate());
 			}
+			
 			if (caso.getEstadoCondicionAgravante() != null) {
 				result.setString("estadoCondicionAgravante", caso.getEstadoCondicionAgravante());
 			}
+			
 			if (caso.getHoraCancelado() != null) {
 				result.setDate("horaCancelado", caso.getHoraCancelado());
 			}
+			
 			if (caso.getSuministro() != null) {
 				result.setString("suministro", caso.getSuministro());
 			}
+			
 			if (caso.getIsSelfserviceClosed() != null) {
 				result.setBoolean("isSelfserviceClosed", caso.getIsSelfserviceClosed());
 			}
+			
 			if (caso.getParent() != null) {
 				result.setString("parent", caso.getParent());
 			}
+			
 			if (caso.getUi() != null) {
 				result.setBoolean("ui", caso.getUi());
 			}
+			
 			if (caso.getNumSum() != null) {
 				result.setString("numSum", caso.getNumSum());
 			}
+			
 			if (caso.getTwitter() != null) {
 				result.setString("twitter", caso.getTwitter());
 			}
+			
 			if (caso.getSuppliedName() != null) {
 				result.setString("suppliedName", caso.getSuppliedName());
 			}
+			
 			if (caso.getClosedDate() != null) {
 				result.setDate("closedDate", caso.getClosedDate());
 			}
+			
 			if (caso.getFalloEnvioInservice() != null) {
 				result.setBoolean("falloEnvioInservice", caso.getFalloEnvioInservice());
 			}
+			
 			if (caso.getDescription() != null) {
 				result.setString("description", caso.getDescription());
 			}
+			
 			if (caso.getHoraArribado() != null) {
 				result.setDate("horaArribado", caso.getHoraArribado());
 			}
+			
 			if (caso.getSlaexitDate() != null) {
 				result.setDate("slaexitDate", caso.getSlaexitDate());
 			}
+			
 			if (caso.getCanalOrigen() != null) {
 				result.setString("canalOrigen", caso.getCanalOrigen());
 			}
+			
 			if (caso.getDescripcionEstado() != null) {
 				result.setString("descripcionEstado", caso.getDescripcionEstado());
 			}
+			
 			if (caso.getBusinessHoursId() != null) {
 				result.setString("businessHoursId", caso.getBusinessHoursId());
 			}
+			
 			if (caso.getSf4twitterAuthorExternalId() != null) {
 				result.setString("sf4twitterAuthorExternalId", caso.getSf4twitterAuthorExternalId());
 			}
+			
 			if (caso.getHasCommentSunReadByOwner() != null) {
 				result.setBoolean("hasCommentSunReadByOwner", caso.getHasCommentSunReadByOwner());
 			}
+			
 			if (caso.getHoraCerrado() != null) {
 				result.setDate("horaCerrado", caso.getHoraCerrado());
 			}
+			
 			if (caso.getLiteralCondicionAgravante() != null) {
 				result.setString("literalCondicionAgravante", caso.getLiteralCondicionAgravante());
 			}
+			
 			if (caso.getType() != null) {
 				result.setString("type", caso.getType());
 			}
+			
 			if (caso.getDireccionSuministro() != null) {
 				result.setString("direccionSuministro", caso.getDireccionSuministro());
 			}
+			
 			if (caso.getHoraPendiente() != null) {
 				result.setDate("horaPendiente", caso.getHoraPendiente());
 			}
+			
 			if (caso.getAni() != null) {
 				result.setString("ani", caso.getAni());
 			}
+			
 			if (caso.getFacebook() != null) {
 				result.setString("facebook", caso.getFacebook());
 			}
+			
 			if (caso.getPeticion() != null) {
 				result.setString("peticion", caso.getPeticion());
 			}
+			
 			if (caso.getCommunityId() != null) {
 				result.setString("communityId", caso.getCommunityId());
 			}
+			
 			if (caso.getDireccion() != null) {
 				result.setString("direccion", caso.getDireccion());
 			}
+			
 			if (caso.getHoraAsignado() != null) {
 				result.setDate("horaAsignado", caso.getHoraAsignado());
 			}
+			
 			if (caso.getMilestoneStatus() != null) {
 				result.setString("milestoneStatus", caso.getMilestoneStatus());
 			}
+			
 			if (caso.getContactId() != null) {
 				result.setString("contactId", caso.getContactId());
 			}
+			
 			if (caso.getHoraPredespacho() != null) {
 				result.setDate("horaPredespacho", caso.getHoraPredespacho());
 			}
+			
 			if (caso.getHoraEnruta() != null) {
 				result.setDate("horaEnruta", caso.getHoraEnruta());
 			}
+			
 			if (caso.getReason() != null) {
 				result.setString("reason", caso.getReason());
 			}
+			
 			if (caso.getIdEmpresa() != null) {
 				result.setString("idEmpresa", caso.getIdEmpresa());
 			}
+			
 			if (caso.getHoraProgramado() != null) {
 				result.setDate("horaProgramado", caso.getHoraProgramado());
 			}
+			
 			if (caso.getNumeroSeguidoresDel() != null) {
 				result.setDouble("numeroSeguidoresDel", caso.getNumeroSeguidoresDel());
 			}
+			
 			if (caso.getLiteralCategorias() != null) {
 				result.setString("literalCategorias", caso.getLiteralCategorias());
 			}
+			
 			if (caso.getRecordtypeId() != null) {
 				result.setString("recordtypeId", caso.getRecordtypeId());
 			}
+			
 			if (caso.getComuna() != null) {
 				result.setString("comuna", caso.getComuna());
 			}
+			
 			if (caso.getPrioridad() != null) {
 				result.setString("prioridad", caso.getPrioridad());
 			}
+			
 			if (caso.getValorSubestadoins() != null) {
 				result.setString("valorSubestadoins", caso.getValorSubestadoins());
 			}
+			
 			if (caso.getControlElectrodependiente() != null) {
 				result.setBoolean("controlElectrodependiente", caso.getControlElectrodependiente());
 			}
+			
 			if (caso.getCancelar() != null) {
 				result.setBoolean("cancelar", caso.getCancelar());
 			}
+			
 			if (caso.getCondicionAgravante() != null) {
 				result.setString("condicionAgravante", caso.getCondicionAgravante());
 			}
+			
 			if (caso.getFechaApertura() != null) {
 				result.setDate("fechaApertura", caso.getFechaApertura());
 			}
+			
 			if (caso.getSystemmodstamp() != null) {
 				result.setDate("systemmodstamp", caso.getSystemmodstamp());
 			}
@@ -1473,7 +1669,6 @@ public class CaseDAO {
 			logger.debug("--- Fin -- readCase ---");
 
 			return casosList;
-
 		} catch (HibernateException e) {
 			logger.error("--- Error en readCase: ", e);
 			logger.error("--- Fin -- readCase ---");
@@ -1498,20 +1693,15 @@ public class CaseDAO {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		try {
-
 			session.update(Case);
 			tx.commit();
-
 			logger.debug("--- Fin -- updateCase ---");
 			return 1;
-
 		} catch (HibernateException e) {
-
 			tx.rollback();
 			logger.error("--- Error en updateCase: ", e);
 			logger.error("--- Fin -- updateCase ---");
 			return 0;
-
 		} finally {
 			session.close();
 		}
@@ -1532,19 +1722,15 @@ public class CaseDAO {
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		try {
-
 			session.save(caso);
 			tx.commit();
-
 			logger.debug("--- Fin -- insert ---");
 			return caso.getId();
 		} catch (HibernateException e) {
-
 			tx.rollback();
 			logger.error("--- Error en insertCase: ", e);
 			logger.error("--- Fin -- updateCase ---");
 			return 0;
-
 		} finally {
 			session.close();
 		}

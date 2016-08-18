@@ -24,9 +24,8 @@ import com.casosemergencias.logic.PickListsService;
 import com.casosemergencias.model.Caso;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.constants.Constantes;
-import com.casosemergencias.util.datatables.DataTableProperties;
-import com.casosemergencias.util.datatables.DataTableProperties;
 import com.casosemergencias.util.datatables.DataTableParser;
+import com.casosemergencias.util.datatables.DataTableProperties;
 
 /**
  * @author mcasas

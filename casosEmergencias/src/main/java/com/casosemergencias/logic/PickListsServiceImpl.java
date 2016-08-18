@@ -1,23 +1,22 @@
 package com.casosemergencias.logic;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.PickListsDAO;
 import com.casosemergencias.dao.vo.PickListsVO;
+import com.casosemergencias.model.PickList;
+import com.casosemergencias.util.ParserModelVO;
 
 public class PickListsServiceImpl implements PickListsService{
 
 final static Logger logger = Logger.getLogger(CaseService.class);
 	
-	@Autowired
-	private SessionFactory sessionFactory;
-
 	@Autowired
 	private PickListsDAO pickListDao;
 	
@@ -69,5 +68,19 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 			}
 		}
 		return datosRetorno;
+	}
+
+	@Override
+	public List<PickList> getPickListPorObjetoYCampo(String objeto, String campo) {
+		List<PickList> picklistsLogic = new ArrayList<PickList>();
+		List<PickListsVO> picklistsVO = pickListDao.readPickListsByObjetoAndCampo(objeto, campo);
+		if (picklistsVO != null && !picklistsVO.isEmpty()) {
+			for (PickListsVO picklistVO : picklistsVO) {
+				PickList picklistLogic = new PickList();
+				ParserModelVO.parseDataModelVO(picklistVO, picklistLogic);
+				picklistsLogic.add(picklistLogic);
+			}
+		}
+		return picklistsLogic;
 	}
 }

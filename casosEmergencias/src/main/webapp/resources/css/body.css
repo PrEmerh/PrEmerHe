@@ -23,6 +23,13 @@ body input[type="submit"] {
 	font-weight: normal;
 }
 
+body select {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	padding: 2px;
+}
+
 body label {
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 11px;
@@ -374,6 +381,11 @@ body label {
 
 .tablaBusquedaTextos input[type="text"] {
 	width: 200px;
+}
+
+.tablaBusquedaTextos select {
+    width: 200px;
+    
 }
 
 .tablaBusquedaBotonera {

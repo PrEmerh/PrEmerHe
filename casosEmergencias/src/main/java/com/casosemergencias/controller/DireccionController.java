@@ -16,11 +16,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.DireccionView;
+import com.casosemergencias.controller.views.PickListView;
 import com.casosemergencias.logic.DireccionService;
+import com.casosemergencias.logic.PickListsService;
 import com.casosemergencias.model.Direccion;
+import com.casosemergencias.model.PickList;
 import com.casosemergencias.util.ParserModelVO;
-import com.casosemergencias.util.datatables.DataTableProperties;
 import com.casosemergencias.util.datatables.DataTableParser;
+import com.casosemergencias.util.datatables.DataTableProperties;
 
 @Controller
 public class DireccionController {
@@ -30,25 +33,35 @@ public class DireccionController {
 	@Autowired
 	private DireccionService direccionService;
 	
+	@Autowired
+	private PickListsService picklistService;
+	
 	@RequestMapping(value = "/private/homeDirecciones", method = RequestMethod.GET)
 	public ModelAndView listadoDirecciones() {
-		
-		List<DireccionView> listOfDireccionHome= new ArrayList<DireccionView>();
-		List<Direccion> listOfDireccionesTable= direccionService.listOfDireccionesTable();
-		DireccionView direccionview=null;
-		
-			for(Direccion dir:listOfDireccionesTable){
-				
-				direccionview=new DireccionView();				
-				ParserModelVO.parseDataModelVO(dir,direccionview );	
-				listOfDireccionHome.add(direccionview);
-				
-			}
-		
-		ModelAndView model = new ModelAndView();
-		model.addObject("listaDirecciones", listOfDireccionHome);
-		model.setViewName("private/homeDireccionesPage");
+		logger.info("--- Inicio -- listadoDirecciones ---");
 
+		ModelAndView model = new ModelAndView();
+		
+		List<PickListView> picklistsComuna = new ArrayList<PickListView>();
+		
+		String objetoPicklistComuna = "Direccion__c";
+		String campoPicklistComuna = "Comuna__c";
+		
+		List<PickList> picklistsLogic = picklistService.getPickListPorObjetoYCampo(objetoPicklistComuna, campoPicklistComuna);
+		
+		if (picklistsLogic != null && !picklistsLogic.isEmpty()) {
+			for (PickList picklistLogic : picklistsLogic) {
+				PickListView picklistComuna = new PickListView();
+				ParserModelVO.parseDataModelVO(picklistLogic, picklistComuna);
+				picklistsComuna.add(picklistComuna);
+			}
+		}
+		
+		model.addObject("picklistsComuna", picklistsComuna);
+		model.setViewName("private/homeDireccionesPage");
+	
+		logger.info("--- Fin -- listadoDirecciones ---");
+		
 		return model;
 	}
 	
@@ -70,15 +83,57 @@ public class DireccionController {
 	}
 	
 	/**
-	 * M�todo para recuperar los datos de la ventana modal de suministros
+	 * M&eacute;todo para recuperar los datos del listado principal de direcciones.
 	 * 
 	 * @param body
 	 * @return
 	 */
-	@RequestMapping(value = "/listarDirecciones", method = RequestMethod.POST)
+	@RequestMapping(value = "/listarDireccionesHome", method = RequestMethod.POST)
 	public @ResponseBody String listadoDireccionesHome(@RequestBody String body){
 		
 		logger.info("--- Inicio -- listadoDireccionesHome ---");
+		
+		DataTableProperties propDataTable = DataTableParser.parseBodyToDataTable(body);
+		List<Direccion> listDirecciones = new ArrayList<Direccion>();
+		
+		JSONObject jsonResult = new JSONObject();
+		JSONArray array = new JSONArray();
+		
+		listDirecciones = direccionService.readAllDirecciones(propDataTable);
+
+		for (Direccion direccion : listDirecciones) {
+			jsonResult = new JSONObject();
+			jsonResult.put("name", direccion.getName());
+			jsonResult.put("calle__c", direccion.getCalle());
+			jsonResult.put("altura__c", direccion.getNumero());
+			jsonResult.put("literalcomuna__c", direccion.getLiteralComuna());
+			jsonResult.put("direccionconcatenada__c", direccion.getDireccionConcatenada());
+			jsonResult.put("sfid", direccion.getSfid());
+			array.put(jsonResult);
+		}
+		
+		Integer numDirecciones = direccionService.getNumDirecciones(propDataTable);
+		
+		JSONObject json = new JSONObject();
+		json.put("iTotalRecords", numDirecciones); 
+		json.put("iTotalDisplayRecords", numDirecciones); 
+		json.put("data", array);
+		
+		logger.info("--- Fin -- listadoDireccionesHome ---");
+		
+		return json.toString();	
+	}
+	
+	/**
+	 * M&eacute;todo para recuperar los datos de la ventana modal de direcciones.
+	 * 
+	 * @param body
+	 * @return
+	 */
+	@RequestMapping(value = "/listarDireccionesPopUp", method = RequestMethod.POST)
+	public @ResponseBody String listadoDireccionesPopUp(@RequestBody String body){
+		
+		logger.info("--- Inicio -- listadoDireccionesPopUp ---");
 		
 		DataTableProperties propDataTable = DataTableParser.parseBodyToDataTable(body);
 		List<Direccion> listDirecciones = new ArrayList<Direccion>();
@@ -106,7 +161,7 @@ public class DireccionController {
 		json.put("iTotalDisplayRecords", numCasos); 
 		json.put("data", array);
 		
-		logger.info("--- Fin -- listadoDireccionesHome ---");
+		logger.info("--- Fin -- listadoDireccionesPopUp ---");
 		
 		return json.toString();	
 	}

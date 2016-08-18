@@ -66,8 +66,6 @@
 					</tr>
 				</table>
 			</div>
-			
-			
 			<div>
 				<table id="tablaSuministros" class="display" style="width: 100%;">
 					<thead>

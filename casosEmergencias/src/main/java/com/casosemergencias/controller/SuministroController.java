@@ -77,7 +77,7 @@ public class SuministroController {
 	}
 
 	/**
-	 * M�todo para recuperar los datos de la ventana modal de suministros
+	 * M&eacute;todo para recuperar los datos de la ventana modal de suministros.
 	 * 
 	 * @param body
 	 * @return
@@ -117,7 +117,7 @@ public class SuministroController {
 	}
 	
 	/**
-	 * M�todo para recuperar los datos de la ventana modal de suministros
+	 * M&eacute;todo para recuperar los datos de la ventana modal de suministros.
 	 * 
 	 * @param body
 	 * @return
@@ -134,7 +134,8 @@ public class SuministroController {
 		JSONArray array = new JSONArray();
 		
 		listSuministros = suministroService.readAllSuministros(propDataTable);
-		for(Suministro suministro : listSuministros){
+
+		for (Suministro suministro : listSuministros) {
 			jsonResult = new JSONObject();
 			jsonResult.put("name", suministro.getName());
 			jsonResult.put("estadoConexion", suministro.getLabelEstadoConexionPickList());
@@ -147,16 +148,17 @@ public class SuministroController {
 			array.put(jsonResult);
 		}
 		
-		Integer numCasos = suministroService.getNumSuministros(propDataTable);
+		Integer numSuministros = suministroService.getNumSuministros(propDataTable);
 		
-		JSONObject json = new JSONObject();
-		json.put("iTotalRecords", numCasos); 
-		json.put("iTotalDisplayRecords", numCasos); 
-		json.put("data", array);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("iTotalRecords", numSuministros); 
+		jsonObject.put("iTotalDisplayRecords", numSuministros); 
+		jsonObject.put("data", array);
+		jsonObject.put("draw", propDataTable.getDraw());
 		
 		logger.info("--- Fin -- listadoSuministrosHome ---");
 		
-		return json.toString();
+		return jsonObject.toString();
 		
 	}
 }

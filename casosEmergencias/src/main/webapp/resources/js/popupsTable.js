@@ -64,7 +64,7 @@ $(document).ready(function() {
 		"processing": true, 
 		"ajax": { 
         	"type": "POST", 
-        	 "url": urlTable +'/listarDirecciones', 	        	
+        	 "url": urlTable +'/listarDireccionesPopUp', 	        	
         	 "contentType": 'application/json; charset=utf-8' ,
         	 "error": function(data){
         		 alert('error');

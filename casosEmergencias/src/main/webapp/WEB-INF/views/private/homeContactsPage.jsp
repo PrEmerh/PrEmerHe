@@ -16,6 +16,7 @@
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>
 		<script src="../resources/js/header.js"></script>
+		<script src="../resources/js/contactos.js"></script>
 	</head>
 	<body onload="initHeader();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_contact"/>';</script>
@@ -27,39 +28,72 @@
 					<li><input type="submit" name="goCrearCaso" value="<s:message code="homeCasos_button_nuevocaso"/>" /></li>
 				</ul>
 			</div>
+			<div class="formBusqueda">
+				<table class="tablaBusqueda">
+					<tr>
+						<td class="tablaBusquedaTitulo" colspan="2">
+							<s:message code="search_form_title_contacto"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="tablaBusquedaEtiquetas">
+							<label for="filtroRunRut"><s:message code="search_form_input_contacto_runrut"/></label>
+						</td>
+						<td class="tablaBusquedaTextos">
+							<input type="text" id="filtroRunRut" name="filtroRunRut" class="column_filter" value="">
+						</td>
+					</tr>
+					<tr>
+						<td class="tablaBusquedaEtiquetas">
+							<label for="filtroNombreApellidos"><s:message code="search_form_input_contacto_nombre_apellidos"/></label>
+						</td>
+						<td class="tablaBusquedaTextos">
+							<input type="text" id="filtroNombreApellidos" name="filtroNombreApellidos" class="column_filter" value="">
+						</td>
+					</tr>
+					<tr>
+						<td class="tablaBusquedaEtiquetas">
+							<label for="filtroTelefono"><s:message code="search_form_input_contacto_telefono"/></label>
+						</td>
+						<td class="tablaBusquedaTextos">
+							<input type="text" id="filtroTelefono" name="filtroTelefono" class="column_filter" value="">
+						</td>
+					</tr>
+					<tr>
+						<td class="tablaBusquedaEtiquetas">
+							<label for="filtroEmail"><s:message code="search_form_input_contacto_email"/></label>
+						</td>
+						<td class="tablaBusquedaTextos">
+							<input type="text" id="filtroEmail" name="filtroEmail" class="column_filter" value="">
+						</td>
+					</tr>
+					<tr>
+						<td class="tablaBusquedaEtiquetas">
+							<label for="filtroTwitter"><s:message code="search_form_input_contacto_twitter"/></label>
+						</td>
+						<td class="tablaBusquedaTextos">
+							<input type="text" id="filtroTwitter" name="filtroTwitter" class="column_filter" value="">
+						</td>
+					</tr>
+					<tr>
+						<td class="tablaBusquedaBotonera" colspan="2">
+							<input type="button" id="search" name="searchButton" class="column_filter" value="Buscar">	
+						</td>
+					</tr>
+				</table>
+			</div>
 			<div>
-				<table id="tablaContactos" class="display" data-page-length="10" data-order="[[ 1, &quot;asc&quot; ]]">
+				<table id="tablaContactos" class="display" style="width: 100%;">
 					<thead>
 			            <tr>
-		            <!-- <th data-orderable="false"> -->
-		           		<th width="20%"><s:message code="homeContacts_table_head_name"/></th>
-			            <th width="16%"><s:message code="homeContacts_table_head_accountRun"/></th>
-			            <th width="16%"><s:message code="homeContacts_table_head_phone"/></th>
-			            <th width="16%"><s:message code="homeContacts_table_head_email"/></th>                               
+			           		<th width="20%"><s:message code="homeContacts_table_head_name"/></th>
+				            <th width="16%"><s:message code="homeContacts_table_head_accountRun"/></th>
+				            <th width="16%"><s:message code="homeContacts_table_head_phone"/></th>
+				            <th width="16%"><s:message code="homeContacts_table_head_email"/></th>                               
 		            	</tr>
 	        		</thead>
-	        	<tbody>
-	        		<c:forEach items="${listaContactos}" var="datosContacto">
-						<tr>
-							<td><a href="../private/entidadContacto?sfid=${datosContacto.sfid}">${datosContacto.name}</a></td>						
-							<td>${datosContacto.accountRun}</td>
-							<td>${datosContacto.phone}</td>
-							<td>${datosContacto.email}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-	</form>
-	
-    <script type="text/javascript" charset="utf-8">
-    $(document).ready(function() {
-		$('#tablaContactos').DataTable({
-        "scrollY":        "250px",
-        "scrollCollapse": true,
-        "paging":         true
-		});
-	});
-	</script>
-</body>
+				</table>
+			</div>
+		</form>
+	</body>
 </html>
