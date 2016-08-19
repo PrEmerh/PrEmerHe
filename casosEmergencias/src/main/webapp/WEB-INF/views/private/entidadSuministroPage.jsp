@@ -19,7 +19,7 @@
 		<script src="../resources/js/utils.js" lang=""></script>
 	</head>
 	<body onload="initHeader();">
-		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_suministro"/>';</script>
+		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadSuministro_title_label_detalle_suministro"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadSuministro" action="actualizarSuministro" modelAttribute="suministro" method="POST">
 			<form:hidden path="sfid"/>
@@ -35,7 +35,7 @@
 			<div id="detalleSuministro" class="divEntidad">
 				<div>
 					<div class="divLabel">
-						<label><s:message code="entidadSuministro_title_label_numeroSuministro"/></label>
+						<label><s:message code="entidadSuministro_title_label_identificadorSuministro"/></label>
 					</div>
 					<div>
 						<label>${suministro.numeroSuministro}</label>
@@ -82,8 +82,16 @@
 					<div>
 						<label>${suministro.labelEstadoSuministroPickList}</label>
 					</div>
+				</div>
+				<div>		
+					<div class="divLabel">
+						<label><s:message code="entidadSuministro_title_label_numeroSuministro"/></label>
+					</div>	
+					<div>
+						<label>${suministro.numeroSuministro}</label>
+					</div>
 				</div>	
-			</div>	
+			</div>
 			<div class="divEntidad">
 				<div class="subtitleAltaEntidad">
 					<div>
@@ -102,18 +110,18 @@
 						<label><a class="link" href="../private/entidadCuenta?sfid=${suministro.cuentaJoin.sfid}">${suministro.cuentaJoin.name}</a></label>
 					</div>		
 					<div class="divLabel">
-						<label><s:message code="entidadSuministro_title_label_tipoCuenta"/></label>
-					</div>
-					<div>
-						<label>${suministro.tipoCuenta}</label>
-					</div>
-				</div>
-				<div>
-					<div class="divLabel">
 						<label><s:message code="entidadSuministro_title_label_runRut"/></label>
 					</div>
 					<div>
 						<label>${suministro.runRut}</label>
+					</div>
+				</div>
+				<div>
+					<div class="divLabel">
+						<label><s:message code="entidadSuministro_title_label_tipoCuenta"/></label>
+					</div>
+					<div>
+						<label>${suministro.tipoCuenta}</label>
 					</div>
 				</div>	
 			</div>
@@ -213,48 +221,6 @@
 						<label>${suministro.propiedadMedidor}</label>
 					</div>
 					<div class="divLabel">
-						<label><s:message code="entidadSuministro_title_label_modeloMedidor"/></label>
-					</div>
-					<div>
-						<label>${suministro.modeloMedidor}</label>
-					</div>
-				</div>
-				<div>
-					<div class="divLabel">
-						<label><s:message code="entidadSuministro_title_label_marcaMedidor"/></label>
-					</div>
-					<div>
-						<label>${suministro.marcaMedidor}</label>
-					</div>
-					<div class="divLabel">
-						<label><s:message code="entidadSuministro_title_label_numeroMedidor"/></label>
-					</div>
-					<div>
-						<label>${suministro.numeroMedidor}</label>
-					</div>
-				</div>
-				<div>
-					<div class="divLabel">
-						<label><s:message code="entidadSuministro_title_label_numeroTransformador"/></label>
-					</div>
-					<div>
-						<label>${suministro.numeroTransformador}</label>
-					</div>
-					<div class="divLabel">
-						<label><s:message code="entidadSuministro_title_label_tipoTransformador"/></label>
-					</div>
-					<div>
-						<label>${suministro.tipoTransformador}</label>
-					</div>
-			    </div>
-				<div>
-					<div class="divLabel">
-						<label><s:message code="entidadSuministro_title_label_tipoConexion"/></label>
-					</div>
-					<div>
-						<label>${suministro.tipoConexion}</label>
-					</div>
-					<div class="divLabel">
 						<label><s:message code="entidadSuministro_title_label_subestacionElectricaConexion"/></label>
 					</div>
 					<div>
@@ -263,10 +229,10 @@
 				</div>
 				<div>
 					<div class="divLabel">
-						<label><s:message code="entidadSuministro_title_label_tipoMedida"/></label>
+						<label><s:message code="entidadSuministro_title_label_modeloMedidor"/></label>
 					</div>
 					<div>
-						<label>${suministro.tipoMedida}</label>
+						<label>${suministro.modeloMedidor}</label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadSuministro_title_label_numeroAlimentador"/></label>
@@ -277,10 +243,66 @@
 				</div>
 				<div>
 					<div class="divLabel">
+						<label><s:message code="entidadSuministro_title_label_marcaMedidor"/></label>
+					</div>
+					<div>
+						<label>${suministro.marcaMedidor}</label>
+					</div>
+					<div class="divLabel">
+						<label><s:message code="entidadSuministro_title_label_numeroTransformador"/></label>
+					</div>
+					<div>
+						<label>${suministro.numeroTransformador}</label>
+					</div>
+				</div>
+				<div>
+					<div class="divLabel">
+						<label><s:message code="entidadSuministro_title_label_numeroMedidor"/></label>
+					</div>
+					<div>
+						<label>${suministro.numeroMedidor}</label>
+					</div>
+					<div class="divLabel">
+						<label><s:message code="entidadSuministro_title_label_tipoConexion"/></label>
+					</div>
+					<div>
+						<label>${suministro.tipoConexion}</label>
+					</div>
+				</div>
+				<div>
+					<div class="divLabel">
+						<label><s:message code="entidadSuministro_title_label_procesoLectura"/></label>
+					</div>
+					<div>
+						<label>${suministro.procesoLectura}</label>
+					</div>
+					<div class="divLabel">
+						<label><s:message code="entidadSuministro_title_label_tipoMedida"/></label>
+					</div>
+					<div>
+						<label>${suministro.tipoMedida}</label>
+					</div>
+				</div>
+				<div>
+					<div class="divLabel">
+						<label><s:message code="entidadSuministro_title_label_medidaDisciplina"/></label>
+					</div>
+					<div>
+						<label>${suministro.medidaDisciplina}</label>
+					</div>
+					<div class="divLabel">
 						<label><s:message code="entidadSuministro_title_label_tipoLectura"/></label>
 					</div>
 					<div>
 						<label>${suministro.tipoLectura}</label>
+					</div>
+				</div>
+				<div>
+					<div class="divLabel">
+						<label><s:message code="entidadSuministro_title_label_tipoTransformador"/></label>
+					</div>
+					<div>
+						<label>${suministro.tipoTransformador}</label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadSuministro_title_label_bloque"/></label>
@@ -290,6 +312,12 @@
 				    </div>
 				</div>
 				<div>
+					<div class="divLabel">
+						<label>&nbsp;</label>
+					</div>
+					<div>
+						<label>&nbsp;</label>
+					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadSuministro_title_label_horarioRacionamientio"/></label>
 					</div>
@@ -316,16 +344,27 @@
 						    <th><s:message code="entidadSuministro_title_label_caso_tiempoEstimado" /></th>
 						    <th><s:message code="entidadSuministro_title_label_caso_canalOrigen" /></th>
 						</tr>
-						<c:forEach items="${suministro.casos}" var="caso">
-							<tr>
-								<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
-								<td>${caso.descripcionEstado}</td>
-								<td>${caso.fechaApertura}</td>
-								<td>${caso.labelSubmotivoPickList}</td>
-								<td>${caso.tiempoEstimacion}</td>
-								<td>${caso.labelCanalorigenPickList}</td>
-							</tr>
-						</c:forEach>
+						<c:choose>
+							<c:when test="${not empty suministro.casos}">
+								<c:forEach items="${suministro.casos}" var="caso">
+									<tr>
+										<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
+										<td>${caso.descripcionEstado}</td>
+										<td>${caso.fechaApertura}</td>
+										<td>${caso.labelSubmotivoPickList}</td>
+										<td>${caso.tiempoEstimacion}</td>
+										<td>${caso.labelCanalorigenPickList}</td>
+									</tr>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="6" class="tablaVacia">
+										<s:message code="entidades_empty_case_table" />
+									</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
 					</table>
 				</div>
 			</div>

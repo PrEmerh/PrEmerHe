@@ -40,7 +40,7 @@
 							<label for="filtroNumCaso"><s:message code="search_form_input_caso_numero"/></label>
 						</td>
 						<td class="tablaBusquedaTextos">
-							<input type="text" id="filtroNumCaso" name="filtroNumCaso" class="column_filter" value="">
+							<input type="text" id="filtroNumCaso" name="filtroNumCaso" class="column_filter" value=""  maxlength="50">
 						</td>
 					</tr>
 					<tr>

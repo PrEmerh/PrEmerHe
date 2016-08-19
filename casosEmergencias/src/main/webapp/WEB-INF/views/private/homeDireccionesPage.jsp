@@ -54,7 +54,7 @@
 							<label for="filtroCalle"><s:message code="search_form_input_direccion_calle"/></label>
 						</td>
 						<td class="tablaBusquedaTextos">
-							<input type="text" id="filtroCalle" name="filtroCalle" class="column_filter" value="">
+							<input type="text" id="filtroCalle" name="filtroCalle" class="column_filter" value="" maxlength="50">
 						</td>
 					</tr>
 					<tr>

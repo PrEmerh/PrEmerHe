@@ -40,7 +40,7 @@
 							<label for="filtroNumSuministro"><s:message code="search_form_input_suministro_numero"/></label>
 						</td>
 						<td class="tablaBusquedaTextos">
-							<input type="text" id="filtroNumSuministro" name="filtroNumSuministro" class="column_filter" value="">
+							<input type="text" id="filtroNumSuministro" name="filtroNumSuministro" class="column_filter" value="" maxlength="50">
 						</td>
 					</tr>
 					<tr>
@@ -48,7 +48,7 @@
 							<label for="filtroRutaLectura"><s:message code="search_form_input_suministro_ruta_lectura"/></label>
 						</td>
 						<td class="tablaBusquedaTextos">
-							<input type="text" id="filtroRutaLectura" name="filtroRutaLectura" class="column_filter" value="">
+							<input type="text" id="filtroRutaLectura" name="filtroRutaLectura" class="column_filter" value="" maxlength="50">
 						</td>
 					</tr>
 					<tr>
@@ -56,7 +56,7 @@
 							<label for="filtroNumMedidor"><s:message code="search_form_input_suministro_numero_medidor"/></label>
 						</td>
 						<td class="tablaBusquedaTextos">
-							<input type="text" id="filtroNumMedidor" name="filtroNumMedidor" class="column_filter" value="">
+							<input type="text" id="filtroNumMedidor" name="filtroNumMedidor" class="column_filter" value="" maxlength="50">
 						</td>
 					</tr>
 					<tr>

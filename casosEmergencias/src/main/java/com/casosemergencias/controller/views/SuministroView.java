@@ -23,6 +23,8 @@ public class SuministroView extends ObjectView {
 	
 	private String tipoLectura;
 	
+	private String procesoLectura;
+	
 	private String estadoConexion;
 	
 	private String tipoMedida;
@@ -226,6 +228,16 @@ public class SuministroView extends ObjectView {
 	public void setTipoLectura(String tipoLectura) {
 		this.tipoLectura = tipoLectura;
 	}
+
+	public String getProcesoLectura() {
+		return procesoLectura;
+	}
+
+
+	public void setProcesoLectura(String procesoLectura) {
+		this.procesoLectura = procesoLectura;
+	}
+
 
 	public String getEstadoConexion() {
 		return estadoConexion;

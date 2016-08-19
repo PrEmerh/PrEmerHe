@@ -19,7 +19,7 @@
 	<script src="../resources/js/utils.js" lang=""></script>
 	</head>
 	<body onload="initHeader();">
-		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_contact"/>';</script>
+		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadContacto_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadContacto" action="actualizarContacto" modelAttribute="contacto" method="POST">
 			<form:hidden path="sfid"/>
@@ -43,18 +43,29 @@
 						    <th><s:message code="entidadContacto_title_label_suministro_segmento" /></th>
 						    <th><s:message code="entidadContacto_title_label_suministro_relacion" /></th>
 						</tr>
-						<c:forEach items="${contacto.suministros}" var="suministro">
-							<tr>
-							    <td>${suministro.labelEmpresaPickList}</td>
-								<td><a class="link" href="../private/entidadSuministro?sfid=${suministro.sfid}">${suministro.name}</a></td>
-								<td>${suministro.direccionConcatenada}</td>
-								<td>${suministro.comuna}</td>
-								<td>${suministro.labelEstadoConexionPickList}</td>
-								<td>${suministro.labelEstadoSuministroPickList}</td>
-								<td>${suministro.tipoSegmento}</td>
-								<td>${suministro.relacionActivo}</td>
-							</tr>
-						</c:forEach>
+						<c:choose>
+							<c:when test="${not empty contacto.suministros}">
+								<c:forEach items="${contacto.suministros}" var="suministro">
+									<tr>
+									    <td>${suministro.labelEmpresaPickList}</td>
+										<td><a class="link" href="../private/entidadSuministro?sfid=${suministro.sfid}">${suministro.name}</a></td>
+										<td>${suministro.direccionConcatenada}</td>
+										<td>${suministro.comuna}</td>
+										<td>${suministro.labelEstadoConexionPickList}</td>
+										<td>${suministro.labelEstadoSuministroPickList}</td>
+										<td>${suministro.tipoSegmento}</td>
+										<td>${suministro.relacionActivo}</td>
+									</tr>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="6" class="tablaVacia">
+										<s:message code="entidades_empty_case_table" />
+									</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
 					</table>
 				</div>
 			</div>
@@ -238,7 +249,7 @@
 					<div>
 						<input id="arrowTablaContactoCasos" type="image" src="../resources/images/Arrowdown.PNG"  
 							height="15" onclick="showHideCabeceras('tablaContactoCasos','arrowTablaContactoCasos'); return false;"/>			
-						<label class="divLabel"><s:message code="entidadCuenta_title_label_contact_data_detail" /></label>
+						<label class="divLabel"><s:message code="entidadContacto_title_label_caso_titulo" /></label>
 					</div>
 				</div>
 				<div id="tablaContactoCasos">
@@ -251,16 +262,27 @@
 						    <th><s:message code="entidadContacto_title_label_caso_tiempoEstimado" /></th>
 						    <th><s:message code="entidadContacto_title_label_caso_canalOrigen" /></th>
 						</tr>
-						<c:forEach items="${contacto.casos}" var="caso">
-							<tr>
-								<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
-								<td>${caso.descripcionEstado}</td>
-								<td>${caso.fechaApertura}</td>
-								<td>${caso.labelSubmotivoPickList}</td>
-								<td>${caso.tiempoEstimacion}</td>
-								<td>${caso.labelCanalorigenPickList}</td>
-							</tr>
-						</c:forEach>
+						<c:choose>
+							<c:when test="${not empty contacto.casos}">
+								<c:forEach items="${contacto.casos}" var="caso">
+									<tr>
+										<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
+										<td>${caso.descripcionEstado}</td>
+										<td>${caso.fechaApertura}</td>
+										<td>${caso.labelSubmotivoPickList}</td>
+										<td>${caso.tiempoEstimacion}</td>
+										<td>${caso.labelCanalorigenPickList}</td>
+									</tr>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="6" class="tablaVacia">
+										<s:message code="entidades_empty_case_table" />
+									</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
 					</table>
 				</div>
 			</div>

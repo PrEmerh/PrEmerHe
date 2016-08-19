@@ -19,7 +19,7 @@
 		<script src="../resources/js/utils.js" lang=""></script>
 	</head>
 	<body onload="initHeader();">
-		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_direccion"/>';</script>
+		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadDireccion_title_label_detalle_direccion"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadDireccion" action="actualizarDireccion" modelAttribute="direccion" method="POST">
 			<form:hidden path="sfid"/>

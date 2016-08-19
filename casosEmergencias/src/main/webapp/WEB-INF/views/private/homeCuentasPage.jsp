@@ -40,7 +40,7 @@
 							<label for="filtroRunRut"><s:message code="search_form_input_cuenta_runrut"/></label>
 						</td>
 						<td class="tablaBusquedaTextos">
-							<input type="text" id="filtroRunRut" name="filtroRunRut" class="column_filter" value="">
+							<input type="text" id="filtroRunRut" name="filtroRunRut" class="column_filter" value="" maxlength="50">
 						</td>
 					</tr>
 					<tr>
@@ -48,7 +48,7 @@
 							<label for="filtroRazonSocial"><s:message code="search_form_input_cuenta_razon_social"/></label>
 						</td>
 						<td class="tablaBusquedaTextos">
-							<input type="text" id="filtroRazonSocial" name="filtroRazonSocial" class="column_filter" value="">
+							<input type="text" id="filtroRazonSocial" name="filtroRazonSocial" class="column_filter" value="" maxlength="50">
 						</td>
 					</tr>
 					<tr>
@@ -56,7 +56,7 @@
 							<label for="filtroTelefono"><s:message code="search_form_input_cuenta_telefono"/></label>
 						</td>
 						<td class="tablaBusquedaTextos">
-							<input type="text" id="filtroTelefono" name="filtroTelefono" class="column_filter" value="">
+							<input type="tel" id="filtroTelefono" name="filtroTelefono" class="column_filter" value="" maxlength="20">
 						</td>
 					</tr>
 					<tr>
@@ -64,7 +64,7 @@
 							<label for="filtroEmail"><s:message code="search_form_input_cuenta_email"/></label>
 						</td>
 						<td class="tablaBusquedaTextos">
-							<input type="text" id="filtroEmail" name="filtroEmail" class="column_filter" value="">
+							<input type="email" id="filtroEmail" name="filtroEmail" class="column_filter" value="" maxlength="50">
 						</td>
 					</tr>
 					<tr>

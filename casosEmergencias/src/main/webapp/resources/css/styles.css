@@ -261,9 +261,10 @@ table.dataTable th.dt-left, table.dataTable td.dt-left {
 	text-align: left;
 }
 
-table.dataTable th.dt-center, table.dataTable td.dt-center, table.dataTable td.dataTables_empty
-	{
+table.dataTable th.dt-center, table.dataTable td.dt-center, table.dataTable td.dataTables_empty {
 	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
 }
 
 table.dataTable th.dt-right, table.dataTable td.dt-right {
@@ -674,4 +675,10 @@ table.basicTable td {
 	color: #16325c;
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 11px;
+}
+
+table.basicTable td.tablaVacia {
+	text-align: center;
+	font-weight: bold;
+	font-size: 14px;
 }

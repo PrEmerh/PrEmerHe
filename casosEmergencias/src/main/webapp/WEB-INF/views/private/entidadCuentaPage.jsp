@@ -157,18 +157,29 @@
 					    <th><s:message code="entidadCuenta_title_label_supply_supply_address" /></th>
 					    <th><s:message code="entidadCuenta_title_label_supply_commune" /></th>
 					</tr>
-					<c:forEach items="${cuenta.suministros}" var="suministro">
-						<tr>
-							<td><a class="link" href="../private/entidadSuministro?sfid=${suministro.sfid}">${suministro.name}</a></td>
-							<td>${suministro.labelEmpresaPickList}</td>
-							<td>${suministro.labelEstadoConexionPickList}</td>
-							<td>${suministro.labelEstadoSuministroPickList}</td>
-							<td>${suministro.electrodependiente}</td>
-							<td>${suministro.fechaCorte}</td>
-							<td>${suministro.direccionConcatenada}</td>
-							<td>${suministro.comuna}</td>
-						</tr>
-					</c:forEach>
+					<c:choose>
+						<c:when test="${not empty cuenta.suministros}">
+							<c:forEach items="${cuenta.suministros}" var="suministro">
+								<tr>
+									<td><a class="link" href="../private/entidadSuministro?sfid=${suministro.sfid}">${suministro.name}</a></td>
+									<td>${suministro.labelEmpresaPickList}</td>
+									<td>${suministro.labelEstadoConexionPickList}</td>
+									<td>${suministro.labelEstadoSuministroPickList}</td>
+									<td>${suministro.electrodependiente}</td>
+									<td>${suministro.fechaCorte}</td>
+									<td>${suministro.direccionConcatenada}</td>
+									<td>${suministro.comuna}</td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td colspan="6" class="tablaVacia">
+									<s:message code="entidades_empty_case_table" />
+								</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</table>
 			</div>
 		</div>
@@ -188,14 +199,25 @@
 					    <th><s:message code="entidadCuenta_title_label_contact_main_telephone" /></th>
 					    <th><s:message code="entidadCuenta_title_label_contact_main_email" /></th>
 					</tr>
-					<c:forEach items="${cuenta.contactos}" var="contacto">
-						<tr>
-							<td><a class="link" href="../private/entidadContacto?sfid=${contacto.sfid}">${contacto.name}</a></td>
-							<td>${contacto.accountRun}</td>
-							<td>${contacto.phone}</td>
-							<td>${contacto.email}</td>
-						</tr>
-					</c:forEach>
+					<c:choose>
+						<c:when test="${not empty cuenta.contactos}">
+							<c:forEach items="${cuenta.contactos}" var="contacto">
+								<tr>
+									<td><a class="link" href="../private/entidadContacto?sfid=${contacto.sfid}">${contacto.name}</a></td>
+									<td>${contacto.accountRun}</td>
+									<td>${contacto.phone}</td>
+									<td>${contacto.email}</td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td colspan="6" class="tablaVacia">
+									<s:message code="entidades_empty_case_table" />
+								</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</table>
 			</div>
 		</div>

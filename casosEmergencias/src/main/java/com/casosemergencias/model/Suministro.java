@@ -16,6 +16,7 @@ public class Suministro extends ObjectLogic {
 	private String tipoTransformador;
 	private Boolean cortePorDeuda;
 	private String tipoLectura;
+	private String procesoLectura;
 	private String estadoConexion;
 	private String tipoMedida;
 	private String comunaReparto;
@@ -189,6 +190,18 @@ public class Suministro extends ObjectLogic {
 	public void setTipoLectura(String tipoLectura) {
 		this.tipoLectura = tipoLectura;
 	}
+
+	public String getProcesoLectura() {
+		return procesoLectura;
+	}
+
+
+
+	public void setProcesoLectura(String procesoLectura) {
+		this.procesoLectura = procesoLectura;
+	}
+
+
 
 	public String getEstadoConexion() {
 		return estadoConexion;

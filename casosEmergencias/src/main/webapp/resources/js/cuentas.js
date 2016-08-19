@@ -44,12 +44,19 @@ $(document).ready(function() {
 	});
 	
 	$('#search').on('click', function() {
-		table
-			.columns(0).search($('#filtroRazonSocial').val())
-			.columns(1).search($('#filtroTelefono').val())
-			.columns(2).search($('#filtroEmail').val())
-			.columns(3).search($('#filtroRunRut').val())
-			.draw();
+		if (validateEmail($("#filtroEmail").val())) {
+			table
+				.columns(0).search($('#filtroRazonSocial').val())
+				.columns(1).search($('#filtroTelefono').val())
+				.columns(2).search($('#filtroEmail').val())
+				.columns(3).search($('#filtroRunRut').val())
+				.draw();
+		} else {
+			alert("Introduzca un email válido");
+			$("#filtroEmail").val("");
+			$("#filtroEmail").focus();
+			return false;
+		}
 	});
 });
 
@@ -59,4 +66,13 @@ function createUrl() {
 		miUrl = miUrl + "/casosEmergencias";
 	}
 	return miUrl;
+}
+
+function validateEmail(email) {
+    var emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    var validated = true;
+    if (email != "") {
+    	validated =  emailRegex.test(email);
+    }
+    return validated;
 }

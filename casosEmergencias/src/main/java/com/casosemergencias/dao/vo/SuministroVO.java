@@ -62,6 +62,9 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	@Column(name = "tipo_lectura__c")
 	private String tipoLectura;
 	
+	@Column(name = "proceso_de_lectura__c")
+	private String procesoLectura;
+	
 	@Column(name = "estado_de_conexi_n__c")
 	private String estadoConexion;
 	
@@ -182,7 +185,7 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	
 	public SuministroVO(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
 			String name, String fullElectric, Boolean casosAbiertos, String tipoTransformador, Boolean cortePorDeuda,
-			String tipoLectura, String estadoConexion, String tipoMedida, String comunaReparto, String comuna,
+			String tipoLectura, String procesoLectura, String estadoConexion, String tipoMedida, String comunaReparto, String comuna,
 			String numeroMedidor, String modeloMedidor, String numeroSuministro, String numeroTransformador,
 			String estadoSuministro, String marcaMedidor, Date fechaCorte, String propiedadMedidor, String idEmpresa,
 			String direccion, String runRut, Boolean pagoEnProceso, String nombreDuenoBoleta, String bloque,
@@ -204,6 +207,7 @@ public class SuministroVO extends ObjectVO implements Serializable {
 		this.tipoTransformador = tipoTransformador;
 		this.cortePorDeuda = cortePorDeuda;
 		this.tipoLectura = tipoLectura;
+		this.procesoLectura = procesoLectura;
 		this.estadoConexion = estadoConexion;
 		this.tipoMedida = tipoMedida;
 		this.comunaReparto = comunaReparto;
@@ -241,8 +245,6 @@ public class SuministroVO extends ObjectVO implements Serializable {
 		this.estadoConexionPickList = estadoConexionPickList;
 		this.estadoSuministroPickList = estadoSuministroPickList;
 	}
-
-
 
 	public Boolean getIsDeleted() {
 		return isDeleted;
@@ -338,6 +340,14 @@ public class SuministroVO extends ObjectVO implements Serializable {
 
 	public void setTipoLectura(String tipoLectura) {
 		this.tipoLectura = tipoLectura;
+	}
+
+	public String getProcesoLectura() {
+		return procesoLectura;
+	}
+
+	public void setProcesoLectura(String procesoLectura) {
+		this.procesoLectura = procesoLectura;
 	}
 
 	public String getEstadoConexion() {
