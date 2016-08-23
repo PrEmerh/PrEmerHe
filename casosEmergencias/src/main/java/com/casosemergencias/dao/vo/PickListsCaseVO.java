@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
-import org.hibernate.annotations.WhereJoinTable;
 
 @Entity
 @Table(name = "salesforce.picklists")

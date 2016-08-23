@@ -15,9 +15,10 @@
 		<link href="../resources/css/styles.css" rel="stylesheet" />
 		
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
+		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
 	</head>
-	<body>
+	<body onload="initHeader();">
 		<script type="text/javascript">
 			var objetoSeleccionado = '<s:message code="entidadCuenta_title_label_account_detail"/>';
 		</script>
@@ -27,7 +28,7 @@
 				<div>
 					<input id="arrowEntidadCuenta" type="image" src="../resources/images/Arrowdown.PNG"  
 						height="15" onclick="showHideCabeceras('tablaDatosPersona','arrowEntidadCuenta'); return false;"/>			
-					<label><s:message code="entidadCuenta_title_label_person_data_detail" /></label>
+					<label class="divLabel"><s:message code="entidadCuenta_title_label_person_data_detail" /></label>
 				</div>
 			</div>
 			<div id="tablaDatosPersona" class="divSubEntidad">
@@ -141,7 +142,7 @@
 				<div>
 					<input id="arrowTablaCuentaSuministros" type="image" src="../resources/images/Arrowdown.PNG"  
 						height="15" onclick="showHideCabeceras('tablaCuentaSuministros','arrowTablaCuentaSuministros'); return false;"/>			
-					<label><s:message code="entidadCuenta_title_label_supply_data_detail" /></label>
+					<label class="divLabel"><s:message code="entidadCuenta_title_label_supply_data_detail" /></label>
 				</div>
 			</div>
 			<div id="tablaCuentaSuministros">
@@ -156,18 +157,29 @@
 					    <th><s:message code="entidadCuenta_title_label_supply_supply_address" /></th>
 					    <th><s:message code="entidadCuenta_title_label_supply_commune" /></th>
 					</tr>
-					<c:forEach items="${cuenta.suministros}" var="suministro">
-						<tr>
-							<td><a href="../private/entidadSuministro?sfid=${suministro.sfid}">${suministro.name}</a></td>
-							<td>${suministro.labelEmpresaPickList}</td>
-							<td>${suministro.labelEstadoConexionPickList}</td>
-							<td>${suministro.labelEstadoSuministroPickList}</td>
-							<td>${suministro.electrodependiente}</td>
-							<td>${suministro.fechaCorte}</td>
-							<td>${suministro.direccionConcatenada}</td>
-							<td>${suministro.comuna}</td>
-						</tr>
-					</c:forEach>
+					<c:choose>
+						<c:when test="${not empty cuenta.suministros}">
+							<c:forEach items="${cuenta.suministros}" var="suministro">
+								<tr>
+									<td><a class="link" href="../private/entidadSuministro?sfid=${suministro.sfid}">${suministro.name}</a></td>
+									<td>${suministro.labelEmpresaPickList}</td>
+									<td>${suministro.labelEstadoConexionPickList}</td>
+									<td>${suministro.labelEstadoSuministroPickList}</td>
+									<td>${suministro.electrodependiente}</td>
+									<td>${suministro.fechaCorte}</td>
+									<td>${suministro.direccionConcatenada}</td>
+									<td>${suministro.comuna}</td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td colspan="6" class="tablaVacia">
+									<s:message code="entidades_empty_case_table" />
+								</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</table>
 			</div>
 		</div>
@@ -176,7 +188,7 @@
 				<div>
 					<input id="arrowTablaCuentaContactos" type="image" src="../resources/images/Arrowdown.PNG" 
 						height="15" onclick="showHideCabeceras('tablaCuentaContactos','arrowTablaCuentaContactos'); return false;"/>							
-					<label><s:message code="entidadCuenta_title_label_contact_data_detail" /></label>
+					<label class="divLabel"><s:message code="entidadCuenta_title_label_contact_data_detail" /></label>
 				</div>
 			</div>
 			<div id="tablaCuentaContactos">
@@ -187,14 +199,25 @@
 					    <th><s:message code="entidadCuenta_title_label_contact_main_telephone" /></th>
 					    <th><s:message code="entidadCuenta_title_label_contact_main_email" /></th>
 					</tr>
-					<c:forEach items="${cuenta.contactos}" var="contacto">
-						<tr>
-							<td><a href="../private/entidadContacto?sfid=${contacto.sfid}">${contacto.name}</a></td>
-							<td>${contacto.accountRun}</td>
-							<td>${contacto.phone}</td>
-							<td>${contacto.email}</td>
-						</tr>
-					</c:forEach>
+					<c:choose>
+						<c:when test="${not empty cuenta.contactos}">
+							<c:forEach items="${cuenta.contactos}" var="contacto">
+								<tr>
+									<td><a class="link" href="../private/entidadContacto?sfid=${contacto.sfid}">${contacto.name}</a></td>
+									<td>${contacto.accountRun}</td>
+									<td>${contacto.phone}</td>
+									<td>${contacto.email}</td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td colspan="6" class="tablaVacia">
+									<s:message code="entidades_empty_case_table" />
+								</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</table>
 			</div>
 		</div>

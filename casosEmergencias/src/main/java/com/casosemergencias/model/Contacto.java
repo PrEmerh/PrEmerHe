@@ -4,8 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.casosemergencias.controller.views.ContactView;
-import com.casosemergencias.dao.vo.AccountVO;
-import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.dao.vo.ContactVO;
 
 //Objeto que tiene el modelo de un contacto, se utiliza en el Servicio

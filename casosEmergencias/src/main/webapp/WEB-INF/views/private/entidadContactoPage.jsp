@@ -11,66 +11,69 @@
 	<link rel="icon" type="image/png" href="../resources/images/favicon.jpg">
 	
 	<link href="../resources/css/cabecera.css" rel="stylesheet" />
-	<link href="../resources/css/body.css" rel="stylesheet" />	
+	<link href="../resources/css/body.css" rel="stylesheet" />
+	<link href="../resources/css/styles.css" rel="stylesheet" />	
 
 	<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
+	<script src="../resources/js/header.js" lang=""></script>
 	<script src="../resources/js/utils.js" lang=""></script>
 	</head>
-	<body>
-		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_contact"/>';</script>
+	<body onload="initHeader();">
+		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadContacto_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadContacto" action="actualizarContacto" modelAttribute="contacto" method="POST">
 			<form:hidden path="sfid"/>
-			
-			
-			
-			
-			
-			
 			<div id="divEntidadContactoSuministros" class="divEntidad">
-			<div class="subtitleAltaEntidad">
-				<div>
-					<input id="arrowTablaContactoSuministros" type="image" src="../resources/images/Arrowdown.PNG"  
-						height="15" onclick="showHideCabeceras('tablaContactoSuministros','arrowTablaContactoSuministros'); return false;"/>			
-					<label><s:message code="entidadCuenta_title_label_supply_data_detail" /></label>
+				<div class="subtitleAltaEntidad">
+					<div>
+						<input id="arrowTablaContactoSuministros" type="image" src="../resources/images/Arrowdown.PNG"  
+							height="15" onclick="showHideCabeceras('tablaContactoSuministros','arrowTablaContactoSuministros'); return false;"/>			
+						<label class="divLabel"><s:message code="entidadCuenta_title_label_supply_data_detail" /></label>
+					</div>
+				</div>
+				<div id="tablaContactoSuministros">
+					<table class="basicTable">
+						<tr>
+						    <th><s:message code="entidadContacto_title_label_suministro_empresa" /></th>
+						    <th><s:message code="entidadContacto_title_label_suministro_suministro" /></th>
+						    <th><s:message code="entidadContacto_title_label_suministro_direccion" /></th>
+						    <th><s:message code="entidadContacto_title_label_suministro_comuna" /></th>
+						    <th><s:message code="entidadContacto_title_label_suministro_connection_status" /></th>
+						    <th><s:message code="entidadContacto_title_label_suministro_supply_status" /></th>
+						    <th><s:message code="entidadContacto_title_label_suministro_segmento" /></th>
+						    <th><s:message code="entidadContacto_title_label_suministro_relacion" /></th>
+						</tr>
+						<c:choose>
+							<c:when test="${not empty contacto.suministros}">
+								<c:forEach items="${contacto.suministros}" var="suministro">
+									<tr>
+									    <td>${suministro.labelEmpresaPickList}</td>
+										<td><a class="link" href="../private/entidadSuministro?sfid=${suministro.sfid}">${suministro.name}</a></td>
+										<td>${suministro.direccionConcatenada}</td>
+										<td>${suministro.comuna}</td>
+										<td>${suministro.labelEstadoConexionPickList}</td>
+										<td>${suministro.labelEstadoSuministroPickList}</td>
+										<td>${suministro.tipoSegmento}</td>
+										<td>${suministro.relacionActivo}</td>
+									</tr>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="6" class="tablaVacia">
+										<s:message code="entidades_empty_case_table" />
+									</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+					</table>
 				</div>
 			</div>
-			<div id="tablaContactoSuministros">
-				<table class="basicTable">
-					<tr>
-					    <th><s:message code="entidadContacto_title_label_suministro_empresa" /></th>
-					    <th><s:message code="entidadContacto_title_label_suministro_suministro" /></th>
-					    <th><s:message code="entidadContacto_title_label_suministro_direccion" /></th>
-					    <th><s:message code="entidadContacto_title_label_suministro_comuna" /></th>
-					    <th><s:message code="entidadContacto_title_label_suministro_connection_status" /></th>
-					    <th><s:message code="entidadContacto_title_label_suministro_supply_status" /></th>
-					    <th><s:message code="entidadContacto_title_label_suministro_segmento" /></th>
-					    <th><s:message code="entidadContacto_title_label_suministro_relacion" /></th>
-					</tr>
-					<c:forEach items="${contacto.suministros}" var="suministro">
-						<tr>
-						    <td>${suministro.labelEmpresaPickList}</td>
-							<td><a href="../private/entidadSuministro?sfid=${suministro.sfid}">${suministro.name}</a></td>
-							<td>${suministro.direccionConcatenada}</td>
-							<td>${suministro.comuna}</td>
-							<td>${suministro.labelEstadoConexionPickList}</td>
-							<td>${suministro.labelEstadoSuministroPickList}</td>
-							<td>${suministro.tipoSegmento}</td>
-							<td>${suministro.relacionActivo}</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
-		</div>
-		
-		
-		
-		
 			<div class="divEntidad">
 				<div class="subtitleAltaEntidad">
 					<div>
 						<input id="arrowInformacionPersonal" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('informacionPersonal','arrowInformacionPersonal'); return false;"/>										
-						<b><label><s:message code="entidadContacto_title_label_informacion_personal"/></label></b>
+						<label class="divLabel"><s:message code="entidadContacto_title_label_informacion_personal"/></label>
 					</div>
 				</div>
 			</div>
@@ -145,7 +148,7 @@
 				<div class="subtitleAltaEntidad">
 					<div>
 						<input id="arrowInformacionSecundaria" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('informacionSecundaria','arrowInformacionSecundaria'); return false;"/>							
-						<b><label><s:message code="entidadContacto_title_label_informacion_secundaria"/></label></b>
+						<label class="divLabel"><s:message code="entidadContacto_title_label_informacion_secundaria"/></label>
 					</div>
 				</div>
 			</div>
@@ -161,7 +164,7 @@
 						<label><s:message code="entidadContacto_table_label_nombreCuenta"/></label>
 					</div>
 					<div>
-						<label><a href="../private/entidadCuenta?sfid=${contacto.cuentaJoin.sfid}">${contacto.cuentaJoin.name}</a></label>
+						<label><a class="link" href="../private/entidadCuenta?sfid=${contacto.cuentaJoin.sfid}">${contacto.cuentaJoin.name}</a></label>
 					</div>  
 				</div>
 				<div>
@@ -183,7 +186,7 @@
 				<div class="subtitleAltaEntidad">
 					<div>
 						<input id="arrowDatosRSS" type="image" src="../resources/images/Arrowdown.PNG"  height="15" onclick="showHideCabeceras('datosRSS','arrowDatosRSS'); return false;"/>					
-						<b><label><s:message code="entidadContacto_title_label_datos_rrss"/></label></b>
+						<label class="divLabel"><s:message code="entidadContacto_title_label_datos_rrss"/></label>
 					</div>
 				</div>
 			</div>
@@ -246,7 +249,7 @@
 					<div>
 						<input id="arrowTablaContactoCasos" type="image" src="../resources/images/Arrowdown.PNG"  
 							height="15" onclick="showHideCabeceras('tablaContactoCasos','arrowTablaContactoCasos'); return false;"/>			
-						<label><s:message code="entidadCuenta_title_label_supply_data_detail" /></label>
+						<label class="divLabel"><s:message code="entidadContacto_title_label_caso_titulo" /></label>
 					</div>
 				</div>
 				<div id="tablaContactoCasos">
@@ -259,16 +262,27 @@
 						    <th><s:message code="entidadContacto_title_label_caso_tiempoEstimado" /></th>
 						    <th><s:message code="entidadContacto_title_label_caso_canalOrigen" /></th>
 						</tr>
-						<c:forEach items="${contacto.casos}" var="caso">
-							<tr>
-								<td><a href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
-								<td>${caso.descripcionEstado}</td>
-								<td>${caso.fechaApertura}</td>
-								<td>${caso.labelSubmotivoPickList}</td>
-								<td>${caso.tiempoEstimacion}</td>
-								<td>${caso.labelCanalorigenPickList}</td>
-							</tr>
-						</c:forEach>
+						<c:choose>
+							<c:when test="${not empty contacto.casos}">
+								<c:forEach items="${contacto.casos}" var="caso">
+									<tr>
+										<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
+										<td>${caso.descripcionEstado}</td>
+										<td>${caso.fechaApertura}</td>
+										<td>${caso.labelSubmotivoPickList}</td>
+										<td>${caso.tiempoEstimacion}</td>
+										<td>${caso.labelCanalorigenPickList}</td>
+									</tr>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="6" class="tablaVacia">
+										<s:message code="entidades_empty_case_table" />
+									</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
 					</table>
 				</div>
 			</div>

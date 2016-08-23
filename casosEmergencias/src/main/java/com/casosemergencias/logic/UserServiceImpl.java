@@ -5,9 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,9 +17,6 @@ import com.casosemergencias.model.User;
 public class UserServiceImpl implements UserService{
 	
 	final static Logger logger = Logger.getLogger(UserService.class);
-	
-	@Autowired
-	private SessionFactory sessionFactory;
 	
 	@Autowired
 	private HerokuUserDAO herokuUserDao;
@@ -114,64 +108,8 @@ public class UserServiceImpl implements UserService{
 			logger.info("--- Fin -- readUser -- No existe usuario y password ---");
 			return null;
 		}
-
 	}
-	
-	 /**
-	 * Pone a true el campo envioEmail de HerokuUser. Le pasamos un User del que utilizaremos el id para recuperar los datos del HerokuUser que modificaremos
-	 * 
-	 * @param userChangEmail
-	 * @return
-	 */
-	@Override
-	public boolean changeEnvioEmail(User userChangEmail){
-		logger.info("--- Inicio -- changeEnvioEmail ---");
 		
-		//Creamos un HerokuUser con ide de userChangEmail para que en el update sepa que usuario modificar y enviaoEmail = true
-		HerokuUserVO herokuUser = new HerokuUserVO();
-		herokuUser = herokuUserDao.readHerokuUserById(userChangEmail.getId());
-		herokuUser.setEnvioMail(true);
-		
-		int row = this.herokuUserDao.updateHerokuUser(herokuUser);
-		if(row>0){
-			logger.info("--- Fin -- changeEnvioEmail ---");
-			return true;
-		}else{
-			logger.info("--- Fin -- changeEnvioEmail ---");
-			return false;
-		}
-		
-	}
-	
-	 /**
-	 * Recupera el herokuUser con sfid pasado por parametro y le modifica la password 
-	 * 
-	 * @param newpass
-	 * @param sfid
-	 * @return
-	 */
-	@Override
-	public boolean changePassHerokuUser (String newpass, String sfid){
-		
-		logger.info("--- Inicio -- changePassHerokuUser ---");
-		
-		//Creamos un HerokuUser con ide de userChangEmail para que en el update sepa que usuario modificar y enviaoEmail = true
-		HerokuUserVO herokuUser = new HerokuUserVO();
-		herokuUser = herokuUserDao.readHerokuUserBySfid(sfid);
-		herokuUser.setPassword(newpass);
-		
-		int row =  this.herokuUserDao.updateHerokuUser(herokuUser);
-		if(row>0){
-			logger.info("--- Fin -- changePassHerokuUser ---");
-			return true;
-		}else{
-			logger.info("--- Fin -- changePassHerokuUser ---");
-			return false;
-		}
-			
-	}
-	
-	
 	@Transactional
 	@Override
 	public void insertUser() {

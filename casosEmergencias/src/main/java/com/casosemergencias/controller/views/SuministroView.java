@@ -1,8 +1,8 @@
 package com.casosemergencias.controller.views;
+
 import java.util.Date;
 import java.util.List;
 
-import com.casosemergencias.dao.vo.AccountVO;
 import com.casosemergencias.model.Suministro;
 
 public class SuministroView extends ObjectView {
@@ -22,6 +22,8 @@ public class SuministroView extends ObjectView {
 	private Boolean cortePorDeuda;
 	
 	private String tipoLectura;
+	
+	private String procesoLectura;
 	
 	private String estadoConexion;
 	
@@ -226,6 +228,16 @@ public class SuministroView extends ObjectView {
 	public void setTipoLectura(String tipoLectura) {
 		this.tipoLectura = tipoLectura;
 	}
+
+	public String getProcesoLectura() {
+		return procesoLectura;
+	}
+
+
+	public void setProcesoLectura(String procesoLectura) {
+		this.procesoLectura = procesoLectura;
+	}
+
 
 	public String getEstadoConexion() {
 		return estadoConexion;

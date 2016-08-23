@@ -2,25 +2,24 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
-
-
 <html>
 	<head>
 		<title>Emergencias App</title>
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
+		
 		<link rel="icon" type="image/png" href="../resources/images/favicon.jpg">
-				
+		
 		<link href="../resources/css/styles.css" rel="stylesheet">
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
 		<link href="../resources/css/body.css" rel="stylesheet" />	
-	
+		
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
+		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
 	</head>
-	<body>
-		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_direccion"/>';</script>
+	<body onload="initHeader();">
+		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadDireccion_title_label_detalle_direccion"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadDireccion" action="actualizarDireccion" modelAttribute="direccion" method="POST">
 			<form:hidden path="sfid"/>
@@ -29,10 +28,10 @@
 					<div>
 						<input id="arrowDetalleDireccion" type="image" src="../resources/images/Arrowdown.PNG"  
 							height="15" onclick="showHideCabeceras('detalleDireccion','arrowDetalleDireccion'); return false;"/>
-						<b><label><s:message code="entidadDireccion_title_label_detalle_direccion"/></label></b>
+						<label class="divLabel"><s:message code="entidadDireccion_title_label_detalle_direccion"/></label>
 					</div>
 				</div>
-			</div>			
+			</div>
 			<div id="detalleDireccion" class="divEntidad">
 				<div>
 					<div class="divLabel">

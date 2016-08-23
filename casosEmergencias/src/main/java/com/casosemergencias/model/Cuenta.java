@@ -16,9 +16,11 @@ public class Cuenta extends ObjectLogic {
 	/*Apellido Paterno*/                    private String apellidoPaterno;
 	/*Apellido Materno*/                    private String apellidoMaterno;
 	/*Tipo de Identidad*/                   private String tipoIdentidad;
-//	/*RUN*/                                 private String accountRun;
+	/*RUT empresa*/							private String parentRutEmpresa;
+	/*RUN*/                                 private String accountRun;
 	/*Fecha nacimiento*/       			    private Date fechaNacimiento;
-	/*Teléfono Principal*/                  private String phone;
+	/*Teléfono*/		                    private String phone;
+	/*Teléfono principal*/					private String telefonoPrincipal;
 	/*Teléfono Secundario*/                 private String telefonoSecundario;
 	/*Email Principal*/                     private String emailPrincipal;
 	/*Email secundario*/                    private String emailSecundario;
@@ -76,15 +78,23 @@ public class Cuenta extends ObjectLogic {
 	public void setTipoIdentidad(String tipoIdentidad) {
 		this.tipoIdentidad = tipoIdentidad;
 	}
-
-//	public String getAccountRun() {
-//		return accountRun;
-//	}
-//	
-//	public void setAccountRun(String accountRun) {
-//		this.accountRun = accountRun;
-//	}
 	
+	public String getParentRutEmpresa() {
+		return parentRutEmpresa;
+	}
+
+	public void setParentRutEmpresa(String parentRutEmpresa) {
+		this.parentRutEmpresa = parentRutEmpresa;
+	}
+
+	public String getAccountRun() {
+		return accountRun;
+	}
+
+	public void setAccountRun(String accountRun) {
+		this.accountRun = accountRun;
+	}
+
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
@@ -99,6 +109,14 @@ public class Cuenta extends ObjectLogic {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public String getTelefonoPrincipal() {
+		return telefonoPrincipal;
+	}
+
+	public void setTelefonoPrincipal(String telefonoPrincipal) {
+		this.telefonoPrincipal = telefonoPrincipal;
 	}
 
 	public String getTelefonoSecundario() {

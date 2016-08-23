@@ -9,11 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.sforce.soap.metadata.Picklist;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "salesforce.picklists")
-public class PickListsVO extends ObjectVO implements Serializable {
+@Where(clause = "objeto='Case' and campo ='Origin'")
+public class PickListsCaseOriginVO extends ObjectVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -76,7 +77,7 @@ public class PickListsVO extends ObjectVO implements Serializable {
 
 	@Override
 	public Object instantiateTargetLogic() {
-		Picklist picklist = new Picklist();
+		Object picklist = new Object();
 		return picklist;
 	}
 }

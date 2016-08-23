@@ -15,14 +15,15 @@
 		<link href="../resources/css/jquery-ui.css" rel="stylesheet" />
 		<link href="../resources/css/jQueryDatatable.css" rel="stylesheet" />
 
-	
+		
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>	
   		<script src="../resources/js/jquery-ui.js"></script>
   		<script src="../resources/js/popupsTable.js"></script>
+		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
 	</head>
-<body onload="cargarDialogSuministro(); cargarDialogDireccion();">
+<body onload="initHeader(); cargarDialogSuministro(); cargarDialogDireccion();">
 	<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
 	<jsp:include page="cabeceraPage.jsp"/>
 	<form:form name="formEntidadCasoAlta" action="altaCaso" modelAttribute="caso" method="POST" onsubmit="javascript:return validaDatos();">

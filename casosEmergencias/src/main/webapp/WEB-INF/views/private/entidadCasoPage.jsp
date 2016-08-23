@@ -14,10 +14,11 @@
 		<link href="../resources/css/body.css" rel="stylesheet" />	
 	
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
+		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
 	</head>
-	<body onload="checkUpdates();">
-		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
+	<body onload="initHeader(); checkUpdates();">
+		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
 			<form:hidden path="id"/>
@@ -45,7 +46,7 @@
 					<div>
 						<input id="arrowDetalleCaso" type="image" src="../resources/images/Arrowdown.PNG" 
 							height="15" onclick="showHideCabeceras('detalleCaso','arrowDetalleCaso'); return false;"/>				
-						<label><s:message code="entidadCaso_title_label_detalle_caso"/></label>
+						<label class="divLabel"><s:message code="entidadCaso_title_label_detalle_caso"/></label>
 					</div>
 				</div>
 			</div>
@@ -137,7 +138,7 @@
 					<div>
 						<input id="arrowDatosEmergencia" type="image" src="../resources/images/Arrowdown.PNG"  
 							height="15" onclick="showHideCabeceras('datosEmergencia','arrowDatosEmergencia'); return false;"/>				
-						<label><s:message code="entidadCaso_title_label_datos_emergencia"/></label>
+						<label class="divLabel"><s:message code="entidadCaso_title_label_datos_emergencia"/></label>
 					</div>
 				</div>
 			</div>
@@ -177,7 +178,7 @@
 					<div>
 						<input id="arrowIdentificacion" type="image" src="../resources/images/Arrowdown.PNG"  
 							height="15" onclick="showHideCabeceras('identificacion','arrowIdentificacion'); return false;"/>			
-						<label><s:message code="entidadCaso_title_label_identificacion"/></label>
+						<label class="divLabel"><s:message code="entidadCaso_title_label_identificacion"/></label>
 					</div>
 				</div>
 			</div>	
@@ -187,7 +188,7 @@
 						<label><s:message code="entidadCaso_table_label_nombreContacto"/></label>
 					</div>
 					<div>
-						<label><a href="../private/entidadContacto?sfid=${caso.contactoJoin.sfid}">${caso.contactoJoin.name}</a></label>
+						<label><a class="link" href="../private/entidadContacto?sfid=${caso.contactoJoin.sfid}">${caso.contactoJoin.name}</a></label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_canalNotificacion"/></label>
@@ -201,7 +202,7 @@
 						<label><s:message code="entidadCaso_table_label_suministro"/></label>
 					</div>
 					<div>
-						<label><a href="../private/entidadSuministro?sfid=${caso.suministroJoin.sfid}">${caso.suministroJoin.name}</a></label>
+						<label><a class="link" href="../private/entidadSuministro?sfid=${caso.suministroJoin.sfid}">${caso.suministroJoin.name}</a></label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_telefonoContacto"/></label>
@@ -215,7 +216,7 @@
 						<label><s:message code="entidadCaso_table_label_detalleDireccion"/></label>
 					</div>
 					<div>
-						<label><a href="../private/entidadDireccion?sfid=${caso.direccionJoin.sfid}">${caso.direccionJoin.name}</a></label>
+						<label><a class="link" href="../private/entidadDireccion?sfid=${caso.direccionJoin.sfid}">${caso.direccionJoin.name}</a></label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_emailNotificacion"/></label>
@@ -229,7 +230,7 @@
 						<label><s:message code="entidadCaso_table_label_nombreCuenta"/></label>
 					</div>
 					<div>
-						<label><a href="../private/entidadCuenta?sfid=${caso.cuentaJoin.sfid}">${caso.cuentaJoin.name}</a></label>
+						<label><a class="link" href="../private/entidadCuenta?sfid=${caso.cuentaJoin.sfid}">${caso.cuentaJoin.name}</a></label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_idFacebook"/></label>
@@ -292,7 +293,7 @@
 					<div>
 						<input id="arrowCuerpoMail" type="image" src="../resources/images/Arrowdown.PNG"  
 							height="15" onclick="showHideCabeceras('cuerpoMail','arrowCuerpoMail'); return false;"/>
-						<label><s:message code="entidadCaso_title_label_cuerpoMail"/></label>
+						<label class="divLabel"><s:message code="entidadCaso_title_label_cuerpoMail"/></label>
 					</div>
 				</div>
 			</div>
@@ -314,7 +315,7 @@
 					<div>
 						<input id="arrowSolucion" type="image" src="../resources/images/Arrowdown.PNG"  
 							height="15" onclick="showHideCabeceras('solucion','arrowSolucion'); return false;"/>			
-						<label><s:message code="entidadCaso_title_label_solucion"/></label>
+						<label class="divLabel"><s:message code="entidadCaso_title_label_solucion"/></label>
 					</div>
 				</div>
 			</div>

@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.casosemergencias.controller.views.UserView;
 import com.casosemergencias.logic.UserService;
 import com.casosemergencias.model.User;
-import com.casosemergencias.util.Constantes;
+import com.casosemergencias.util.constants.Constantes;
 
 
 /**
@@ -47,7 +47,7 @@ public class LoginController {
 	@RequestMapping(value = { "/login" }, method = RequestMethod.POST)
 	public ModelAndView loginOk(@ModelAttribute("userView") UserView userView, HttpServletRequest request, HttpServletResponse response) {
 
-		logger.info("--- Inicio -- loginOk -- user: " +userView.getUser() +" password: " + userView.getPass() + " ---");
+		logger.info("--- Inicio -- loginOk -- user: " +userView.getUser() + " ---");
 		
 		ModelAndView model = new ModelAndView();
 		
@@ -88,5 +88,20 @@ public class LoginController {
 		model.setViewName("loginPage");
 		return model;
 		
+	}
+	
+	@RequestMapping(value = { "/logout" }, method = RequestMethod.GET)
+	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) {
+		logger.info("--- Inicio -- logout ---");
+		
+		ModelAndView model = new ModelAndView();
+		HttpSession session = request.getSession(true);		
+		session.setAttribute("user", null);			
+		session.invalidate();
+		
+		model.setViewName("loginPage");
+		
+		logger.info("--- Fin -- logout ---");
+		return model;
 	}
 }

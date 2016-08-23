@@ -3,9 +3,7 @@ package com.casosemergencias.controller.views;
 import java.util.Date;
 import java.util.List;
 
-import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
-import com.casosemergencias.model.Cuenta;
 
 public class ContactView extends ObjectView {
 	

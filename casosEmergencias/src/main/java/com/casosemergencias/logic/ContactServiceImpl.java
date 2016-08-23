@@ -17,6 +17,7 @@ import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.datatables.DataTableProperties;
 
 
 //las transacciones se abren y cierran aqui
@@ -78,6 +79,29 @@ public class ContactServiceImpl implements ContactService{
 		return returnContacto;
 	}
 
+	@Override
+	public List<Contacto> readAllContactos(DataTableProperties propDatatable) {
+		logger.debug("--- Inicio -- readAllContactos ---");
+		List<Contacto> listContactos = new ArrayList<Contacto>();
+
+		List<ContactVO> listContactosVO = contactDao.readContactosDataTable(propDatatable);
+		logger.debug("--- Inicio -- readAllContactos cantidad: " + listContactosVO.size() + " ---");
+
+		for (ContactVO contactoVO : listContactosVO) {
+			Contacto contacto = new Contacto();
+			ParserModelVO.parseDataModelVO(contactoVO, contacto);
+			listContactos.add(contacto);
+		}
+
+		logger.debug("--- Fin -- readAllContactos ---:" + listContactos.size());
+		return listContactos;
+	}
+
+	@Override
+	public Integer getNumContactos(DataTableProperties propDatatable) {
+		return contactDao.countContactos(propDatatable);
+	}
+	
 	private List<Caso> parseaListaCasos(List<CaseVO> listacasosVO) {
 		if(listacasosVO!=null && !listacasosVO.isEmpty()){
 			List<Caso> retorno = new ArrayList<Caso>();
@@ -94,8 +118,6 @@ public class ContactServiceImpl implements ContactService{
 	private List<Suministro> parseaListaSuministros(List<RelacionActivoContactoVO> listaRelacionVO) {
 		if(listaRelacionVO!=null && !listaRelacionVO.isEmpty()){
 			List<Suministro> retorno = new ArrayList<Suministro>();
-			
-	
 			for(RelacionActivoContactoVO relacion: listaRelacionVO){
 				if(relacion.getActivo()!=null && relacion.getActivo().getSuministroJoin()!=null){
 					SuministroVO sumConRelacion = relacion.getActivo().getSuministroJoin();
@@ -111,9 +133,4 @@ public class ContactServiceImpl implements ContactService{
 		}
 		return null;
 	}
-	
-
-
-
-
 }

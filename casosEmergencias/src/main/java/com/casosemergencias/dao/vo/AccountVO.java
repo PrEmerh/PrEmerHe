@@ -61,8 +61,11 @@ public class AccountVO extends ObjectVO implements Serializable {
 	@Column(name = "tipo_de_identidad__c")
 	private String tipoIdentidad;
 
-	// @Column(name = "account__run__c")
-	// private String accountRun;
+	@Column(name = "parent__rut_empresa__c")
+	private String parentRutEmpresa;
+
+	@Column(name = "masterrecord__run__c")
+	private String accountRun;
 
 	@Column(name = "fecha_nacimiento__c")
 	private Date fechaNacimiento;
@@ -70,6 +73,9 @@ public class AccountVO extends ObjectVO implements Serializable {
 	@Column(name = "phone")
 	private String phone;
 
+	@Column(name = "tel_fono_principal__c")
+	private String telefonoPrincipal;
+	
 	@Column(name = "tel_fono_secundario__c")
 	private String telefonoSecundario;
 
@@ -98,10 +104,10 @@ public class AccountVO extends ObjectVO implements Serializable {
 
 	// Tipo de registro de cuenta
 	public AccountVO(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
-			String name, String apellidoPaterno, String apellidoMaterno, String tipoIdentidad, String accountRun,
-			Date fechaNacimiento, String phone, String telefonoSecundario, String email, String emailSecundario,
-			String direccion, String accountsource, String idEmpresa, List<SuministroVO> suministros,
-			List<ContactVO> contactos) {
+			String name, String apellidoPaterno, String apellidoMaterno, String tipoIdentidad, String parentRutEmpresa,
+			String accountRun, Date fechaNacimiento, String phone, String telefonoPrincipal, String telefonoSecundario,
+			String email, String emailSecundario, String direccion, String accountsource, String idEmpresa,
+			List<SuministroVO> suministros, List<ContactVO> contactos) {
 		super();
 		this.isDeleted = isDeleted;
 		this.systemDate = systemDate;
@@ -113,9 +119,11 @@ public class AccountVO extends ObjectVO implements Serializable {
 		this.apellidoPaterno = apellidoPaterno;
 		this.apellidoMaterno = apellidoMaterno;
 		this.tipoIdentidad = tipoIdentidad;
-		// this.accountRun = accountRun;
+		this.parentRutEmpresa = parentRutEmpresa;
+		this.accountRun = accountRun;
 		this.fechaNacimiento = fechaNacimiento;
 		this.phone = phone;
+		this.telefonoPrincipal = telefonoPrincipal;
 		this.telefonoSecundario = telefonoSecundario;
 		this.emailPrincipal = email;
 		this.emailSecundario = emailSecundario;
@@ -210,13 +218,21 @@ public class AccountVO extends ObjectVO implements Serializable {
 		this.tipoIdentidad = tipoIdentidad;
 	}
 
-	// public String getAccountRun() {
-	// return accountRun;
-	// }
-	//
-	// public void setAccountRun(String accountRun) {
-	// this.accountRun = accountRun;
-	// }
+	public String getParentRutEmpresa() {
+		return parentRutEmpresa;
+	}
+
+	public void setParentRutEmpresa(String parentRutEmpresa) {
+		this.parentRutEmpresa = parentRutEmpresa;
+	}
+
+	public String getAccountRun() {
+		return accountRun;
+	}
+
+	public void setAccountRun(String accountRun) {
+		this.accountRun = accountRun;
+	}
 
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;
@@ -234,6 +250,14 @@ public class AccountVO extends ObjectVO implements Serializable {
 		this.phone = phone;
 	}
 
+	public String getTelefonoPrincipal() {
+		return telefonoPrincipal;
+	}
+
+	public void setTelefonoPrincipal(String telefonoPrincipal) {
+		this.telefonoPrincipal = telefonoPrincipal;
+	}
+	
 	public String getTelefonoSecundario() {
 		return telefonoSecundario;
 	}

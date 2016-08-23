@@ -4,21 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.CaseDAO;
 import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.model.Caso;
-import com.casosemergencias.util.DataTableProperties;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.datatables.DataTableProperties;
 
 public class CaseServiceImpl implements CaseService{
 
 final static Logger logger = Logger.getLogger(CaseService.class);
-	
-	@Autowired
-	private SessionFactory sessionFactory;
 	
 	@Autowired
 	private CaseDAO caseDao;
@@ -34,19 +30,17 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 		logger.debug("--- Inicio -- readAllCase ---");
 		
 		List<Caso> listCaso = new ArrayList<>();
-		
 		List<CaseVO> listCasosVO = caseDao.readCaseDataTable(propDatatable);
-		logger.debug("--- Inicio -- readAllCase tamano : " + listCasosVO.size() + " ---");
+
+		logger.debug("--- Inicio -- readAllCase casos en la lista: " + listCasosVO.size() + " ---");
 		
-		for(CaseVO casoVO : listCasosVO){
+		for (CaseVO casoVO : listCasosVO) {
 			Caso caso = new Caso();
 			ParserModelVO.parseDataModelVO(casoVO, caso);
 			listCaso.add(caso);
-			
 		}
 		
 		logger.debug("--- Fin -- readAllCase ---");
-		
 		return listCaso;
 	}
 	
@@ -81,10 +75,9 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 	}
 
 	
-	public Integer getNumCasos(){
+	public Integer getNumCasos(DataTableProperties propDatatable){
 		logger.debug("--- getNumCasos ---");
-		return caseDao.countCase();
-		
+		return caseDao.getNumCasos(propDatatable);
 	}
 	
 	public Integer insertCase(Caso caso){

@@ -17,9 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.Suministro;
-import com.casosemergencias.util.DataTableProperties;
-import com.casosemergencias.util.ParseBodyDataTable;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.datatables.DataTableProperties;
+import com.casosemergencias.util.datatables.DataTableParser;
 
 @Controller
 public class SuministroController {
@@ -37,6 +37,23 @@ public class SuministroController {
 		model.setViewName("private/homeSuministrosPage");
 	
 		logger.info("--- Fin -- listadoSuministros ---");
+		
+		return model;
+	}
+	
+	@RequestMapping(value = "/private/homeSuministrosInicio", method = RequestMethod.GET)
+	public ModelAndView detalleSuministroInicio() {
+		List<SuministroView> listaAMostrar = new ArrayList<SuministroView>(); 
+		List<Suministro> listSuministros = suministroService.readAllSuministros();
+		SuministroView suministroView=null;
+		for(Suministro sum:listSuministros){
+			suministroView = new SuministroView();	
+			ParserModelVO.parseDataModelVO(sum, suministroView);
+			listaAMostrar.add(suministroView);
+		}
+		ModelAndView model = new ModelAndView();
+		model.addObject("suministros", listaAMostrar);
+		model.setViewName("private/homeSuministrosPage");
 		
 		return model;
 	}
@@ -60,17 +77,17 @@ public class SuministroController {
 	}
 
 	/**
-	 * Método para recuperar los datos de la ventana modal de suministros
+	 * M&eacute;todo para recuperar los datos de la ventana modal de suministros.
 	 * 
 	 * @param body
 	 * @return
 	 */
-	@RequestMapping(value = "/listarSuministros", method = RequestMethod.POST)
-	public @ResponseBody String listadoSuministrosHome(@RequestBody String body){
+	@RequestMapping(value = "/listarSuministrosPopUp", method = RequestMethod.POST)
+	public @ResponseBody String listadoSuministrosPopUp(@RequestBody String body){
 		
-		logger.info("--- Inicio -- listadoSuministrosHome ---");
+		logger.info("--- Inicio -- listadoSuministrosPopUp ---");
 		
-		DataTableProperties propDataTable = ParseBodyDataTable.parseBodyToDataTable(body);
+		DataTableProperties propDataTable = DataTableParser.parseBodyToDataTable(body);
 		List<Suministro> listSuministros = new ArrayList<Suministro>();
 		
 		JSONObject jsonResult = new JSONObject();
@@ -94,9 +111,53 @@ public class SuministroController {
 		json.put("iTotalDisplayRecords", numCasos); 
 		json.put("data", array);
 		
-		logger.info("--- Inicio -- listadoSuministrosHome ---");
+		logger.info("--- Fin -- listadoSuministrosPopUp ---");
 		
 		return json.toString();
+	}
+	
+	/**
+	 * M&eacute;todo para recuperar los datos del listado de suministros.
+	 * 
+	 * @param body
+	 * @return
+	 */
+	@RequestMapping(value = "/listarSuministros", method = RequestMethod.POST)
+	public @ResponseBody String listadoSuministros(@RequestBody String body){
 		
+		logger.info("--- Inicio -- listadoSuministrosHome ---");
+		
+		DataTableProperties propDataTable = DataTableParser.parseBodyToDataTable(body);
+		List<Suministro> listSuministros = new ArrayList<Suministro>();
+		
+		JSONObject jsonResult = new JSONObject();
+		JSONArray array = new JSONArray();
+		
+		listSuministros = suministroService.readAllSuministros(propDataTable);
+
+		for (Suministro suministro : listSuministros) {
+			jsonResult = new JSONObject();
+			jsonResult.put("name", suministro.getName());
+			jsonResult.put("estadoConexion", suministro.getLabelEstadoConexionPickList());
+			jsonResult.put("estadoSuministro", suministro.getLabelEstadoSuministroPickList());
+			jsonResult.put("direccion", suministro.getDireccionConcatenada());
+			jsonResult.put("comuna", suministro.getComuna());
+			jsonResult.put("n_mero_medidor__c", suministro.getNumeroMedidor());
+			jsonResult.put("ruta__c", suministro.getRuta());
+			jsonResult.put("sfid", suministro.getSfid());
+			array.put(jsonResult);
+		}
+		
+		Integer numSuministros = suministroService.getNumSuministros(propDataTable);
+		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("iTotalRecords", numSuministros); 
+		jsonObject.put("iTotalDisplayRecords", numSuministros); 
+		jsonObject.put("data", array);
+		jsonObject.put("draw", propDataTable.getDraw());
+		
+		logger.info("--- Fin -- listadoSuministrosHome ---");
+		
+		return jsonObject.toString();
 	}
 }

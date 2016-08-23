@@ -25,13 +25,14 @@ public class RelacionActivoContactoDAO {
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public List<RelacionActivoContactoVO> getSuministrosRelacionesPorContacto(String idContacto){
 				
 		logger.debug("--- Inicio -- getRelacionesPorContacto ---");
 		
 		Session session = sessionFactory.openSession();
 				
-		try{
+		try {
 			Query query = session.createQuery("from RelacionActivoContactoVO rel where rel.contactoId = :idContacto");
 			query.setString("idContacto", idContacto);
 
@@ -40,14 +41,12 @@ public class RelacionActivoContactoDAO {
 			logger.debug("--- Fin -- getRelacionesPorContacto ---");
 			return relacionList;
 			
-	    }catch (HibernateException e) {
-	    	logger.error("--- getRelacionesPorContacto "+ e.getMessage() +"---");
-	    	logger.error(e.getStackTrace()); 
+	    } catch (HibernateException e) {
+	    	logger.error("--- getRelacionesPorContacto ", e); 
 	    	logger.error("--- Fin -- getRelacionesPorContacto ---");
-	    }finally {
+	    } finally {
 	    	session.close(); 
 	    }
-	      return null;
+	    return null;
 	}
-
 }

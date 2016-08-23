@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.casosemergencias.util.Constantes" %>
 
 <html>
 	<head>
@@ -16,10 +15,11 @@
 
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>
+		<script src="../resources/js/header.js"></script>
 		<script src="../resources/js/casos.js"></script>
 	</head>
-	<body>
-		<script type="text/javascript">var objetoSeleccionado="<s:message code="cabeceraPage_list_case"/>";</script>
+	<body onload="initHeader();">
+		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		 
 		<form name="formListadoCasos" action="homeCasosAction" method="POST">
@@ -28,15 +28,32 @@
 					<li><input type="submit" name="goCrearCaso" value="<s:message code="homeCasos_button_nuevocaso"/>" /></li>
 				</ul>
 			</div>
+			<div class="formBusqueda">
+				<table class="tablaBusqueda">
+					<tr>
+						<td class="tablaBusquedaTitulo" colspan="2">
+							<s:message code="search_form_title_caso"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="tablaBusquedaEtiquetas">
+							<label for="filtroNumCaso"><s:message code="search_form_input_caso_numero"/></label>
+						</td>
+						<td class="tablaBusquedaTextos">
+							<input type="text" id="filtroNumCaso" name="filtroNumCaso" class="column_filter" value=""  maxlength="50">
+						</td>
+					</tr>
+					<tr>
+						<td class="tablaBusquedaBotonera" colspan="2">
+							<input type="button" id="search" name="searchButton" class="column_filter" value="Buscar">	
+						</td>
+					</tr>
+				</table>
+			</div>
 			<div>
-				<input class="column_filter" id="col0_filter" type="text" value="">
-				<input class="column_filter" id="search" type="button" value="Buscar">
-				<input type="radio" name="radios" value="rd1" checked>Numero Casos        
-            	<input type="radio" name="radios" value="rd2"> Todos
-            	<table id="tablaCasos" class="display" style="width: 100%;"> 
+				<table id="tablaCasos" class="display" style="width: 100%;"> 
 					<thead>
 			            <tr>
-			            <!-- <th data-orderable="false"> -->
 			                <th width="20%"><s:message code="homeCasos_table_head_numCasos"/></th>
 			                <th width="16%"><s:message code="homeCasos_table_head_numInservice"/></th>
 			                <th width="16%"><s:message code="homeCasos_table_head_canalOrigen"/></th>

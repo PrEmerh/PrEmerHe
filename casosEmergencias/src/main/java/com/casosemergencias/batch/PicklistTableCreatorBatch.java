@@ -22,8 +22,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import com.casosemergencias.batch.bean.PickList;
-import com.casosemergencias.util.ConstantesBatch;
+import com.casosemergencias.batch.bean.PickListBatch;
+import com.casosemergencias.util.constants.ConstantesBatch;
 import com.force.api.ApiSession;
 import com.force.api.DescribeSObject;
 import com.force.api.DescribeSObject.Field;
@@ -41,7 +41,7 @@ public class PicklistTableCreatorBatch {
 	public static void fillHerokuPicklistTable() {
 		logger.trace("Comienzo del proceso de carga de los picklists de SalesForce a la base de datos de Heroku");
 		
-		List<PickList> listaRecuperadaSF;
+		List<PickListBatch> listaRecuperadaSF;
 		
 		try {
 			salesForceLoginRequest();
@@ -119,9 +119,9 @@ public class PicklistTableCreatorBatch {
 	 * 
 	 * @return
 	 */
-	private static List<PickList> getPicklistList(ForceApi api) {
+	private static List<PickListBatch> getPicklistList(ForceApi api) {
 		logger.trace("Se van a recuperar las listas de la api");
-		List<PickList> listaDatos = null;
+		List<PickListBatch> listaDatos = null;
 		if (api != null) {
 			// Recuperar objetos de fichero de configuracion
 			Properties props = new Properties();
@@ -131,8 +131,8 @@ public class PicklistTableCreatorBatch {
 					String objetos = props.getProperty(ConstantesBatch.PICKLIST_PROPERTIES_INVOLVED_PICKLISTS_PROPERTY);
 					if (objetos != null) {
 						String[] objCreacion = objetos.split(",");
-						listaDatos = new ArrayList<PickList>();
-						List<PickList> listAux = null;
+						listaDatos = new ArrayList<PickListBatch>();
+						List<PickListBatch> listAux = null;
 						for (Integer i = 0; i < objCreacion.length; i++) {
 							listAux = getDescribeData(api, objCreacion[i]);
 							if (listAux != null && !listAux.isEmpty()) {
@@ -155,9 +155,9 @@ public class PicklistTableCreatorBatch {
 	 * @param objetoSalesforce
 	 * @return
 	 */
-	private static List<PickList> getDescribeData(ForceApi force, String objetoSalesforce) {
-		List<PickList> listaPickList = null;
-		PickList objPickList = null;
+	private static List<PickListBatch> getDescribeData(ForceApi force, String objetoSalesforce) {
+		List<PickListBatch> listaPickList = null;
+		PickListBatch objPickList = null;
 		DescribeSObject objDescribe = force.describeSObject(objetoSalesforce);
 		logger.trace("Recuperando objeto DescribeSObject");
 		if (objDescribe != null) {
@@ -175,9 +175,9 @@ public class PicklistTableCreatorBatch {
 						if (picklistValues != null && !picklistValues.isEmpty()) {
 							for (int j = 0; j < picklistValues.size(); j++) {
 								if (listaPickList == null) {
-									listaPickList = new ArrayList<PickList>();
+									listaPickList = new ArrayList<PickListBatch>();
 								}
-								objPickList = new PickList();
+								objPickList = new PickListBatch();
 								objPickList.setObjeto(objetoSalesforce);
 								objPickList.setCampo(field.getName());
 								objPickList.setCodigo(picklistValues.get(j).getValue());
@@ -197,7 +197,7 @@ public class PicklistTableCreatorBatch {
 	 * 
 	 * @param picklistList
 	 */
-	private static void loadHerokuData(List<PickList> picklistList) {
+	private static void loadHerokuData(List<PickListBatch> picklistList) {
 		Connection connection = null;
 		Statement stmt = null;
 		PreparedStatement pstmt = null;
@@ -237,7 +237,7 @@ public class PicklistTableCreatorBatch {
 			logger.debug("Inicio actualizacion de datos.");
 			pstmt = connection.prepareStatement(
 					"INSERT INTO salesforce.picklists (id, objeto, campo, codigo, valor) VALUES (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-			PickList obkPickList = null;
+			PickListBatch obkPickList = null;
 			for (Integer i = 0; i < picklistList.size(); i++) {
 				obkPickList = picklistList.get(i);
 				pstmt.setInt(1, i);
