@@ -416,3 +416,110 @@ body label {
 	padding-bottom: 10px;
 }
 /* <<<<< ESTILOS PARA FORMULARIOS DE BÚSQUEDA */
+
+/* >>>>> ESTILOS PARA TABLA DE SERVICIOS DE SUMINISTROS */
+.divEntidadDatos {
+	width: 80%;
+	position: relative;
+	float: left;
+	vertical-align: middle;
+}
+
+.divEntidadIndicadores {
+	width: 20%;
+	position: relative;
+	float: left;
+	vertical-align: middle;
+}
+
+.divIndicadoresEventos {
+	margin-top: 20px;
+	padding: 5px 10px 10px 10px;
+	background-color: #F3F3F3;
+	border-top: 2px solid #000000;
+	border-left: 1px solid #EAEAEA;
+	border-right: 1px solid #EAEAEA;
+	border-bottom: 1px solid #EAEAEA;
+		
+	-webkit-border-radius: 5px;
+	-webkit-border-bottom-right-radius: 2px;
+	-webkit-border-bottom-left-radius: 2px;
+	-moz-border-radius: 5px;
+	-moz-border-radius-bottomright: 2px;
+	-moz-border-radius-bottomleft: 2px;
+	border-radius: 5px;
+	border-bottom-right-radius: 2px;
+	border-bottom-left-radius: 2px;
+}
+
+.divSuministrosIndicadoresTitulo {
+	margin-top: 5px;
+	background-color: #995905;
+}
+
+.divSuministrosIndicadoresTitulo div .divLabel {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.divContactosIndicadoresTitulo {
+	margin-top: 5px;
+	background-color: #8370C2;
+}
+
+.divContactosIndicadoresTitulo div .divLabel {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+table.servicesTable {
+	width: 98%;
+	margin: 0 auto;
+	clear: both;
+	border-collapse: separate;
+	border-spacing: 0;
+	text-align: left;
+}
+
+table.servicesTable td {
+	padding: 5px;
+}
+
+table.servicesTable td.filaLiteral {
+	width: 45%;
+	border-bottom: 1px solid #DDDDDD;
+	text-align: left;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+table.servicesTable td.filaImagen {
+	width: 15%;
+	border-bottom: 1px solid #DDDDDD;
+	text-align: left;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 11px;
+}
+
+table.servicesTable td.filaValor {
+	width: 40%;
+	border-bottom: 1px solid #DDDDDD;
+	text-align: left;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 11px;
+}
+
+table.servicesTable td.filaVacia {
+	width: 100%;
+	border-bottom: 1px solid #DDDDDD;
+	text-align: center;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 11px;
+}
+
+/* <<<<< ESTILOS PARA TABLA DE SERVICIOS DE SUMINISTROS */

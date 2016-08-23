@@ -26,7 +26,7 @@
 			<div class="divEntidad">
 				<div class="subtitleAltaEntidad">
 					<div>
-						<input id="arrowDetalleDireccion" type="image" src="../resources/images/Arrowdown.PNG"  
+						<input id="arrowDetalleDireccion" type="image" src="../resources/images/arrow-down-black.png"  
 							height="15" onclick="showHideCabeceras('detalleDireccion','arrowDetalleDireccion'); return false;"/>
 						<label class="divLabel"><s:message code="entidadDireccion_title_label_detalle_direccion"/></label>
 					</div>

@@ -1,13 +1,25 @@
 // Mostrar y esconder contenido de las pestañas
-function showHideCabeceras(idDiv,idArrow) {
+function showHideCabeceras(idDiv, idArrow) {
 	var div = document.getElementById(idDiv);
 	var arrow = document.getElementById(idArrow); 				
 	if (div.style.display == '')  {
 		div.style.display = 'none';
-		arrow.src="../resources/images/Arrowright.PNG";
+		arrow.src="../resources/images/arrow-right-black.png";
 	} else {
 		div.style.display = '';
-		arrow.src="../resources/images/Arrowdown.PNG";
+		arrow.src="../resources/images/arrow-down-black.png";
+	}
+}
+
+function showHideCabecerasServicios(idDiv, idArrow) {
+	var div = document.getElementById(idDiv);
+	var arrow = document.getElementById(idArrow); 				
+	if (div.style.display == '')  {
+		div.style.display = 'none';
+		arrow.src="../resources/images/arrow-right-white.png";
+	} else {
+		div.style.display = '';
+		arrow.src="../resources/images/arrow-down-white.png";
 	}
 }
 

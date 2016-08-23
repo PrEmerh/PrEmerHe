@@ -26,7 +26,7 @@
 		<div id="divEntidadCuenta" class="divEntidad">
 			<div class="subtitleAltaEntidad">
 				<div>
-					<input id="arrowEntidadCuenta" type="image" src="../resources/images/Arrowdown.PNG"  
+					<input id="arrowEntidadCuenta" type="image" src="../resources/images/arrow-down-black.png"  
 						height="15" onclick="showHideCabeceras('tablaDatosPersona','arrowEntidadCuenta'); return false;"/>			
 					<label class="divLabel"><s:message code="entidadCuenta_title_label_person_data_detail" /></label>
 				</div>
@@ -140,7 +140,7 @@
 		<div id="divEntidadCuentaSuministros" class="divEntidad">
 			<div class="subtitleAltaEntidad">
 				<div>
-					<input id="arrowTablaCuentaSuministros" type="image" src="../resources/images/Arrowdown.PNG"  
+					<input id="arrowTablaCuentaSuministros" type="image" src="../resources/images/arrow-down-black.png"  
 						height="15" onclick="showHideCabeceras('tablaCuentaSuministros','arrowTablaCuentaSuministros'); return false;"/>			
 					<label class="divLabel"><s:message code="entidadCuenta_title_label_supply_data_detail" /></label>
 				</div>
@@ -186,7 +186,7 @@
 		<div id="divEntidadCuentaContactos" class="divEntidad">
 			<div class="subtitleAltaEntidad">
 				<div>
-					<input id="arrowTablaCuentaContactos" type="image" src="../resources/images/Arrowdown.PNG" 
+					<input id="arrowTablaCuentaContactos" type="image" src="../resources/images/arrow-down-black.png" 
 						height="15" onclick="showHideCabeceras('tablaCuentaContactos','arrowTablaCuentaContactos'); return false;"/>							
 					<label class="divLabel"><s:message code="entidadCuenta_title_label_contact_data_detail" /></label>
 				</div>

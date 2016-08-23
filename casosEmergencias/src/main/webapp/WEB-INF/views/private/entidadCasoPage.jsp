@@ -44,7 +44,7 @@
 			<div class="divEntidad">
 				<div class="subtitleAltaEntidad">
 					<div>
-						<input id="arrowDetalleCaso" type="image" src="../resources/images/Arrowdown.PNG" 
+						<input id="arrowDetalleCaso" type="image" src="../resources/images/arrow-down-black.png" 
 							height="15" onclick="showHideCabeceras('detalleCaso','arrowDetalleCaso'); return false;"/>				
 						<label class="divLabel"><s:message code="entidadCaso_title_label_detalle_caso"/></label>
 					</div>
@@ -136,7 +136,7 @@
 			<div class="divEntidad">
 				<div class="subtitleAltaEntidad">
 					<div>
-						<input id="arrowDatosEmergencia" type="image" src="../resources/images/Arrowdown.PNG"  
+						<input id="arrowDatosEmergencia" type="image" src="../resources/images/arrow-down-black.png"  
 							height="15" onclick="showHideCabeceras('datosEmergencia','arrowDatosEmergencia'); return false;"/>				
 						<label class="divLabel"><s:message code="entidadCaso_title_label_datos_emergencia"/></label>
 					</div>
@@ -176,7 +176,7 @@
 			<div class="divEntidad">
 				<div class="subtitleAltaEntidad">
 					<div>
-						<input id="arrowIdentificacion" type="image" src="../resources/images/Arrowdown.PNG"  
+						<input id="arrowIdentificacion" type="image" src="../resources/images/arrow-down-black.png"  
 							height="15" onclick="showHideCabeceras('identificacion','arrowIdentificacion'); return false;"/>			
 						<label class="divLabel"><s:message code="entidadCaso_title_label_identificacion"/></label>
 					</div>
@@ -291,7 +291,7 @@
 			<div class="divEntidad">
 				<div class="subtitleAltaEntidad">
 					<div>
-						<input id="arrowCuerpoMail" type="image" src="../resources/images/Arrowdown.PNG"  
+						<input id="arrowCuerpoMail" type="image" src="../resources/images/arrow-down-black.png"  
 							height="15" onclick="showHideCabeceras('cuerpoMail','arrowCuerpoMail'); return false;"/>
 						<label class="divLabel"><s:message code="entidadCaso_title_label_cuerpoMail"/></label>
 					</div>
@@ -313,7 +313,7 @@
 			<div class="divEntidad">
 				<div class="subtitleAltaEntidad">
 					<div>
-						<input id="arrowSolucion" type="image" src="../resources/images/Arrowdown.PNG"  
+						<input id="arrowSolucion" type="image" src="../resources/images/arrow-down-black.png"  
 							height="15" onclick="showHideCabeceras('solucion','arrowSolucion'); return false;"/>			
 						<label class="divLabel"><s:message code="entidadCaso_title_label_solucion"/></label>
 					</div>
