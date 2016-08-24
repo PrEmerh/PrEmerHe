@@ -28,13 +28,38 @@ public class RelacionActivoContactoDAO {
 	@SuppressWarnings("unchecked")
 	public List<RelacionActivoContactoVO> getSuministrosRelacionesPorContacto(String idContacto){
 				
-		logger.debug("--- Inicio -- getRelacionesPorContacto ---");
+		logger.debug("--- Inicio -- getSuministrosRelacionesPorContacto ---");
 		
 		Session session = sessionFactory.openSession();
 				
 		try {
 			Query query = session.createQuery("from RelacionActivoContactoVO rel where rel.contactoId = :idContacto");
 			query.setString("idContacto", idContacto);
+
+			List<RelacionActivoContactoVO> relacionList = query.list(); 
+
+			logger.debug("--- Fin -- getSuministrosRelacionesPorContacto ---");
+			return relacionList;
+			
+	    } catch (HibernateException e) {
+	    	logger.error("--- getSuministrosRelacionesPorContacto ", e); 
+	    	logger.error("--- Fin -- getSuministrosRelacionesPorContacto ---");
+	    } finally {
+	    	session.close(); 
+	    }
+	    return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<RelacionActivoContactoVO> getContactosRelacionadosPorSuministro(String idSuministro){
+				
+		logger.debug("--- Inicio -- getContactosRelacionadosPorSuministro ---");
+		
+		Session session = sessionFactory.openSession();
+				
+		try {
+			Query query = session.createQuery("from RelacionActivoContactoVO rel where rel.activo.suministroid = :idSuministro");
+			query.setString("idSuministro", idSuministro);
 
 			List<RelacionActivoContactoVO> relacionList = query.list(); 
 

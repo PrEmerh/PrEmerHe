@@ -41,6 +41,10 @@ public class ContactView extends ObjectView {
 	
 	private List<CaseView> casos;
 	
+	//Tipo relacion que viene de la Relación activo contacto
+	private String relacionActivo;
+	private Boolean principal;
+	
 	/* Getters y Setters */
 	
 	public Integer getId() {
@@ -192,5 +196,17 @@ public class ContactView extends ObjectView {
 	}
 	public void setCasos(List<CaseView> casos) {
 		this.casos = casos;
+	}
+	public String getRelacionActivo() {
+		return relacionActivo;
+	}
+	public void setRelacionActivo(String relacionActivo) {
+		this.relacionActivo = relacionActivo;
+	}
+	public Boolean getPrincipal() {
+		return principal;
+	}
+	public void setPrincipal(Boolean principal) {
+		this.principal = principal;
 	}
 }

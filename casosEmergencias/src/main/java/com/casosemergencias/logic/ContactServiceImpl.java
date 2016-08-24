@@ -69,7 +69,7 @@ public class ContactServiceImpl implements ContactService{
 		}
 		
 		List<RelacionActivoContactoVO> listaRelacionVO = relacionDAO.getSuministrosRelacionesPorContacto(sfid);
-		List<Suministro> listaSuministro = parseaListaSuministros(listaRelacionVO);
+		List<Suministro> listaSuministro = parseaListaSuministrosRel(listaRelacionVO);
 		returnContacto.setSuministros(listaSuministro);
 		
 		List<CaseVO> listacasosVO = casoDAO.readCaseOfContact(sfid);
@@ -115,7 +115,7 @@ public class ContactServiceImpl implements ContactService{
 		return null;
 	}
 
-	private List<Suministro> parseaListaSuministros(List<RelacionActivoContactoVO> listaRelacionVO) {
+	private List<Suministro> parseaListaSuministrosRel(List<RelacionActivoContactoVO> listaRelacionVO) {
 		if(listaRelacionVO!=null && !listaRelacionVO.isEmpty()){
 			List<Suministro> retorno = new ArrayList<Suministro>();
 			for(RelacionActivoContactoVO relacion: listaRelacionVO){

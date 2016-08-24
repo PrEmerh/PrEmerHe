@@ -50,7 +50,14 @@ public class AssetVO implements Serializable {
 		
 		@Column(name = "contactid")
 		private String contactid;
+		
+		@Column(name = "suministro__c")
+		private String suministroid;
 
+		@OneToOne(fetch=FetchType.EAGER)
+		@JoinColumn(name="contactid", referencedColumnName="sfid", insertable = false, updatable=false)
+		private ContactVO contactoJoin;
+		
 		@OneToOne(fetch=FetchType.EAGER)
 		@JoinColumn(name="suministro__c", referencedColumnName="sfid", insertable = false, updatable=false)
 		private SuministroVO suministroJoin;
