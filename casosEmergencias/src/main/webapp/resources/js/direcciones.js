@@ -52,12 +52,3 @@ $(document).ready(function() {
 			.draw();
 	});
 });
-
-function createUrl() {
-	var miUrl = window.location.protocol + "//" + window.location.host;
-	//if (window.location.pathname.includes("/casosEmergencias/")) {
-	if (window.location.hash.indexOf("/casosEmergencias/")) {
-		miUrl = miUrl + "/casosEmergencias";
-	}
-	return miUrl;
-}

@@ -8,101 +8,105 @@ import com.casosemergencias.model.Suministro;
 public class SuministroView extends ObjectView {
 
 	private Integer id;
-	
+
 	private String sfid;
-	
+
 	private String name;
-	
+
 	private String fullElectric;
-	
+
 	private Boolean casosAbiertos;
-	
+
 	private String tipoTransformador;
-	
+
 	private Boolean cortePorDeuda;
-	
+
 	private String tipoLectura;
-	
+
 	private String procesoLectura;
-	
+
 	private String estadoConexion;
-	
+
 	private String tipoMedida;
-	
+
 	private String comunaReparto;
-	
+
 	private String comuna;
-	
+
 	private String numeroMedidor;
-	
+
 	private String modeloMedidor;
-	
+
 	private String numeroSuministro;
-	
+
 	private String numeroTransformador;
-	
+
 	private String estadoSuministro;
-	
+
 	private String marcaMedidor;
-	
+
 	private Date fechaCorte;
-	
+
 	private String propiedadMedidor;
-	
+
 	private String idEmpresa;
-	
+
 	private String direccion;
-	
+
 	private String runRut;
-	
+
 	private Boolean pagoEnProceso;
-	
+
 	private String nombreDuenoBoleta;
-	
+
 	private String bloque;
-	
+
 	private String tipoConexion;
-	
+
 	private String direccionCliente;
-	
+
 	private String electrodependiente;
-	
+
 	private String medidaDisciplina;
-	
+
 	private String horarioRacionamiento;
-	
+
 	private Double casosReiterados;
-	
+
 	private String tarifa;
-	
+
 	private String alimentador;
-	
+
 	private String direccionBoleta;
-	
+
 	private String cuenta;
-	
+
 	private String subestacionElectricaConexion;
-	
+
 	private String ruta;
-	
+
 	private String tipoCuenta;
-	
+
 	private String tipoSegmento;
-	
+
 	private String relacionActivo;
-	
+
 	private String direccionConcatenada;
-	
+
 	private String labelEmpresaPickList;
 	private String labelEstadoConexionPickList;
 	private String labelEstadoSuministroPickList;
-	
+
+	private String tipoEvento;
+
+	private Boolean suministroAfectado;
+
 	private AccountView cuentaJoin;
 
 	private List<CaseView> casos;
-	
-	public SuministroView(){}
-	
+
+	public SuministroView() {
+	}
 
 	public SuministroView(Integer id, String sfid, String name, String fullElectric, Boolean casosAbiertos,
 			String tipoTransformador, Boolean cortePorDeuda, String tipoLectura, String estadoConexion,
@@ -114,7 +118,8 @@ public class SuministroView extends ObjectView {
 			Double casosReiterados, String tarifa, String alimentador, String direccionBoleta, String cuenta,
 			String subestacionElectricaConexion, String ruta, String tipoCuenta, String tipoSegmento,
 			String relacionActivo, String direccionConcatenada, String labelEmpresaPickList,
-			String labelEstadoConexionPickList, String labelEstadoSuministroPickList) {
+			String labelEstadoConexionPickList, String labelEstadoSuministroPickList, String tipoEvento,
+			Boolean suministroAfectado) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -161,9 +166,9 @@ public class SuministroView extends ObjectView {
 		this.labelEmpresaPickList = labelEmpresaPickList;
 		this.labelEstadoConexionPickList = labelEstadoConexionPickList;
 		this.labelEstadoSuministroPickList = labelEstadoSuministroPickList;
+		this.tipoEvento = tipoEvento;
+		this.suministroAfectado = suministroAfectado;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -233,11 +238,9 @@ public class SuministroView extends ObjectView {
 		return procesoLectura;
 	}
 
-
 	public void setProcesoLectura(String procesoLectura) {
 		this.procesoLectura = procesoLectura;
 	}
-
 
 	public String getEstadoConexion() {
 		return estadoConexion;
@@ -494,11 +497,11 @@ public class SuministroView extends ObjectView {
 	public void setTipoSegmento(String tipoSegmento) {
 		this.tipoSegmento = tipoSegmento;
 	}
-	
+
 	public String getDireccionConcatenada() {
 		return direccionConcatenada;
 	}
-	
+
 	public void setDireccionConcatenada(String direccionConcatenada) {
 		this.direccionConcatenada = direccionConcatenada;
 	}
@@ -517,53 +520,59 @@ public class SuministroView extends ObjectView {
 		this.relacionActivo = relacionActivo;
 	}
 
-
 	public String getLabelEmpresaPickList() {
 		return labelEmpresaPickList;
 	}
-
 
 	public void setLabelEmpresaPickList(String labelEmpresaPickList) {
 		this.labelEmpresaPickList = labelEmpresaPickList;
 	}
 
-
 	public String getLabelEstadoConexionPickList() {
 		return labelEstadoConexionPickList;
 	}
-
 
 	public void setLabelEstadoConexionPickList(String labelEstadoConexionPickList) {
 		this.labelEstadoConexionPickList = labelEstadoConexionPickList;
 	}
 
-
 	public String getLabelEstadoSuministroPickList() {
 		return labelEstadoSuministroPickList;
 	}
-
 
 	public void setLabelEstadoSuministroPickList(String labelEstadoSuministroPickList) {
 		this.labelEstadoSuministroPickList = labelEstadoSuministroPickList;
 	}
 
-
 	public List<CaseView> getCasos() {
 		return casos;
 	}
-
 
 	public void setCasos(List<CaseView> casos) {
 		this.casos = casos;
 	}
 
-
 	public AccountView getCuentaJoin() {
 		return cuentaJoin;
 	}
 
-
 	public void setCuentaJoin(AccountView cuentaJoin) {
 		this.cuentaJoin = cuentaJoin;
+	}
+
+	public String getTipoEvento() {
+		return tipoEvento;
+	}
+
+	public void setTipoEvento(String tipoEvento) {
+		this.tipoEvento = tipoEvento;
+	}
+
+	public Boolean getSuministroAfectado() {
+		return suministroAfectado;
+	}
+
+	public void setSuministroAfectado(Boolean suministroAfectado) {
+		this.suministroAfectado = suministroAfectado;
 	}
 }

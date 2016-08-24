@@ -56,15 +56,16 @@ public class Suministro extends ObjectLogic {
 	private String relacionActivo;
 
 	private String direccionConcatenada;
-	
+
+	private String tipoEvento;
+	private Boolean suministroAfectado;
+
 	private List<Caso> casos;
-	
+
 	private Cuenta cuentaJoin;
 
 	public Suministro() {
 	}
-
-	
 
 	public Suministro(Integer id, String sfid, String name, String fullElectric, Boolean casosAbiertos,
 			String tipoTransformador, Boolean cortePorDeuda, String tipoLectura, String estadoConexion,
@@ -76,7 +77,7 @@ public class Suministro extends ObjectLogic {
 			Double casosReiterados, String tarifa, String alimentador, String direccionBoleta, String cuenta,
 			String subestacionElectricaConexion, String ruta, String tipoCuenta, String tipoSegmento,
 			String labelEmpresaPickList, String labelEstadoConexionPickList, String labelEstadoSuministroPickList,
-			String relacionActivo, String direccionConcatenada) {
+			String relacionActivo, String direccionConcatenada, String tipoEvento, Boolean suministroAfectado) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -123,9 +124,9 @@ public class Suministro extends ObjectLogic {
 		this.labelEstadoSuministroPickList = labelEstadoSuministroPickList;
 		this.relacionActivo = relacionActivo;
 		this.direccionConcatenada = direccionConcatenada;
+		this.tipoEvento = tipoEvento;
+		this.suministroAfectado = suministroAfectado;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -195,13 +196,9 @@ public class Suministro extends ObjectLogic {
 		return procesoLectura;
 	}
 
-
-
 	public void setProcesoLectura(String procesoLectura) {
 		this.procesoLectura = procesoLectura;
 	}
-
-
 
 	public String getEstadoConexion() {
 		return estadoConexion;
@@ -458,11 +455,11 @@ public class Suministro extends ObjectLogic {
 	public void setTipoSegmento(String tipoSegmento) {
 		this.tipoSegmento = tipoSegmento;
 	}
-	
+
 	public String getDireccionConcatenada() {
 		return direccionConcatenada;
 	}
-	
+
 	public void setDireccionConcatenada(String direccionConcatenada) {
 		this.direccionConcatenada = direccionConcatenada;
 	}
@@ -472,7 +469,7 @@ public class Suministro extends ObjectLogic {
 		SuministroView suministro = new SuministroView();
 		return suministro;
 	}
-	
+
 	@Override
 	public Object instantiateTargetVO() {
 		SuministroVO suministro = new SuministroVO();
@@ -487,63 +484,59 @@ public class Suministro extends ObjectLogic {
 		this.relacionActivo = relacionActivo;
 	}
 
-
-
 	public String getLabelEmpresaPickList() {
 		return labelEmpresaPickList;
 	}
-
-
 
 	public void setLabelEmpresaPickList(String labelEmpresaPickList) {
 		this.labelEmpresaPickList = labelEmpresaPickList;
 	}
 
-
-
 	public String getLabelEstadoConexionPickList() {
 		return labelEstadoConexionPickList;
 	}
-
-
 
 	public void setLabelEstadoConexionPickList(String labelEstadoConexionPickList) {
 		this.labelEstadoConexionPickList = labelEstadoConexionPickList;
 	}
 
-
-
 	public String getLabelEstadoSuministroPickList() {
 		return labelEstadoSuministroPickList;
 	}
-
-
 
 	public void setLabelEstadoSuministroPickList(String labelEstadoSuministroPickList) {
 		this.labelEstadoSuministroPickList = labelEstadoSuministroPickList;
 	}
 
-
-
 	public List<Caso> getCasos() {
 		return casos;
 	}
-
-
 
 	public void setCasos(List<Caso> casos) {
 		this.casos = casos;
 	}
 
-
-
 	public Cuenta getCuentaJoin() {
 		return cuentaJoin;
 	}
 
-
-
 	public void setCuentaJoin(Cuenta cuentaJoin) {
 		this.cuentaJoin = cuentaJoin;
+	}
+
+	public String getTipoEvento() {
+		return tipoEvento;
+	}
+
+	public void setTipoEvento(String tipoEvento) {
+		this.tipoEvento = tipoEvento;
+	}
+
+	public Boolean getSuministroAfectado() {
+		return suministroAfectado;
+	}
+
+	public void setSuministroAfectado(Boolean suministroAfectado) {
+		this.suministroAfectado = suministroAfectado;
 	}
 }

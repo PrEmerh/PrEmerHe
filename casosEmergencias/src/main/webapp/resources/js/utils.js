@@ -130,8 +130,17 @@ function establecerDireccion(sfid, name) {
 
 function createUrl() {
 	var miUrl = window.location.protocol + "//" + window.location.host;
-	if(window.location.pathname.includes("/casosEmergencias/")){
+	if (window.location.pathname.indexOf("/casosEmergencias/") != -1) {
 		miUrl = miUrl + "/casosEmergencias";
 	}
 	return miUrl;
+}
+
+function validateEmail(email) {
+    var emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    var validated = true;
+    if (email != "") {
+    	validated =  emailRegex.test(email);
+    }
+    return validated;
 }

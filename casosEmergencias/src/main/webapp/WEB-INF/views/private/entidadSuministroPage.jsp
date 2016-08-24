@@ -398,8 +398,10 @@
 									<tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_falla_sector"/></td>
 										<c:choose>
-											<c:when test="${not empty suministro}">
-												<td class="filaValor" colspan="2">NO</td>
+											<c:when test="${not empty suministro.suministroAfectado && not empty suministro.tipoEvento 
+													&& suministro.suministroAfectado && suministro.tipoEvento == '2'}">
+												<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
+												<td class="filaValor">SI</td>
 											</c:when>
 											<c:otherwise>
 												<td class="filaValor" colspan="2">NO</td>
@@ -409,8 +411,10 @@
 									<tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_corte_programado"/></td>
 										<c:choose>
-											<c:when test="${not empty suministro}">
-												<td class="filaValor" colspan="2">NO</td>
+											<c:when test="${not empty suministro.suministroAfectado && not empty suministro.tipoEvento 
+													&& suministro.suministroAfectado && suministro.tipoEvento == '1'}">
+												<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
+												<td class="filaValor">SI</td>
 											</c:when>
 											<c:otherwise>
 												<td class="filaValor" colspan="2">NO</td>
