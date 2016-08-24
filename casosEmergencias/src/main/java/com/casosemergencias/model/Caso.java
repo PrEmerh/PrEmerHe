@@ -58,9 +58,10 @@ public class Caso extends ObjectLogic {
 	private String estadoSuministro;
 	/*Joins caso*/
 	private String labelSubmotivoPickList;
+	private String labelEstadoPickList;
 	private String labelSubestadoPickList;
-	private String labelCanalorigenPickList;
-
+	private String labelCanalOrigenPickList;
+	private String labelPeticionPickList;
 	
 	public Integer getId() {
 		return id;
@@ -333,12 +334,26 @@ public class Caso extends ObjectLogic {
 	public void setLabelSubestadoPickList(String labelSubestadoPickList) {
 		this.labelSubestadoPickList = labelSubestadoPickList;
 	}
-	public String getLabelCanalorigenPickList() {
-		return labelCanalorigenPickList;
+	public String getLabelCanalOrigenPickList() {
+		return labelCanalOrigenPickList;
 	}
-	public void setLabelCanalorigenPickList(String labelCanalorigenPickList) {
-		this.labelCanalorigenPickList = labelCanalorigenPickList;
+	public void setLabelCanalOrigenPickList(String labelCanalOrigenPickList) {
+		this.labelCanalOrigenPickList = labelCanalOrigenPickList;
 	}
+	
+	public String getLabelPeticionPickList() {
+		return labelPeticionPickList;
+	}
+	public void setLabelPeticionPickList(String labelPeticionPickList) {
+		this.labelPeticionPickList = labelPeticionPickList;
+	}
+	public String getLabelEstadoPickList() {
+		return labelEstadoPickList;
+	}
+	public void setLabelEstadoPickList(String labelEstadoPickList) {
+		this.labelEstadoPickList = labelEstadoPickList;
+	}
+	
 	/**/
 	@Override
 	public Object instantiateTargetView() {

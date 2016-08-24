@@ -223,7 +223,7 @@ public class CaseController {
 			jsonResult = new JSONObject();
 			jsonResult.put("numeroCaso", caso.getNumeroCaso());
 			jsonResult.put("numeroInservice", caso.getNumeroInservice());
-			jsonResult.put("canalOrigen", caso.getLabelCanalorigenPickList());
+			jsonResult.put("canalOrigen", caso.getLabelCanalOrigenPickList());
 			jsonResult.put("estado", caso.getDescripcionEstado());
 			jsonResult.put("subestado", caso.getLabelSubestadoPickList());
 			jsonResult.put("submotivo", caso.getLabelSubmotivoPickList());

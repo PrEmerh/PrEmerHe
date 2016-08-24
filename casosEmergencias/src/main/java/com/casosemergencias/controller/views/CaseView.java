@@ -58,9 +58,11 @@ public class CaseView extends ObjectView {
 	
 	/*Joins con picklist*/
 	private String labelSubmotivoPickList;
+	private String labelEstadoPickList;
 	private String labelSubestadoPickList;
-	private String labelCanalorigenPickList;
-	/**/
+	private String labelCanalOrigenPickList;
+	private String labelPeticionPickList;
+	
 	/*Mapas para mostrar los combos de caso*/
 	private Map<String, String> mapStatus;
 	private Map<String, String> mapSubStatus;
@@ -396,11 +398,17 @@ public class CaseView extends ObjectView {
 	public void setLabelSubmotivoPickList(String labelSubmotivoPickList) {
 		this.labelSubmotivoPickList = labelSubmotivoPickList;
 	}	
-	public String getLabelCanalorigenPickList() {
-		return labelCanalorigenPickList;
+	public String getLabelEstadoPickList() {
+		return labelEstadoPickList;
 	}
-	public void setLabelCanalorigenPickList(String labelCanalorigenPickList) {
-		this.labelCanalorigenPickList = labelCanalorigenPickList;
+	public void setLabelEstadoPickList(String labelEstadoPickList) {
+		this.labelEstadoPickList = labelEstadoPickList;
+	}
+	public String getLabelCanalOrigenPickList() {
+		return labelCanalOrigenPickList;
+	}
+	public void setLabelCanalOrigenPickList(String labelCanalOrigenPickList) {
+		this.labelCanalOrigenPickList = labelCanalOrigenPickList;
 	}
 	/*Mapas combos*/
 	public Map<String, String> getMapStatus() {
@@ -457,30 +465,13 @@ public class CaseView extends ObjectView {
 	public void setMapFavorabilidadCaso(Map<String, String> mapFavorabilidadCaso) {
 		this.mapFavorabilidadCaso = mapFavorabilidadCaso;
 	}
-	/**/
-	/*private Map<String, String> ordenarMapa(Map<String, String> mapa) {
-		Map<String, String> sortedMap = null;
-		if (mapa != null && !mapa.isEmpty()){
-			//Convertir el mapa a lista
-			List<Map.Entry<String, String>> list = new LinkedList<Map.Entry<String, String>>(mapa.entrySet());
-	
-			// Ordena con el comparador
-			Collections.sort(list, new Comparator<Map.Entry<String, String>>() {
-				public int compare(Map.Entry<String, String> o1, Map.Entry<String, String> o2) {
-					return (o1.getValue()).compareTo(o2.getValue());
-				}
-			});
-			
-			// Convert sorted map back to a Map
-			sortedMap = new LinkedHashMap<String, String>();
-			for (Iterator<Map.Entry<String, String>> it = list.iterator(); it.hasNext();) {
-				Map.Entry<String, String> entry = it.next();
-				sortedMap.put(entry.getKey(), entry.getValue());
-			}
-		}
-		return sortedMap;
-	}*/
-	
+
+	public String getLabelPeticionPickList() {
+		return labelPeticionPickList;
+	}
+	public void setLabelPeticionPickList(String labelPeticionPickList) {
+		this.labelPeticionPickList = labelPeticionPickList;
+	}
 	@Override
 	public Object instantiateTargetLogic() {
 		Caso caso = new Caso();

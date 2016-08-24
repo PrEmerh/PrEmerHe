@@ -56,13 +56,13 @@
 						<label><s:message code="entidadCaso_table_label_motivo"/></label>
 					</div>
 					<div>
-						<label>${caso.peticion}</label>
+						<label>${caso.labelPeticionPickList}</label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_estado"/></label>
 					</div>
 					<div>
-						<label>${caso.estado}</label>
+						<label>${caso.labelEstadoPickList}</label>
 					</div>
 				</div>
 				<div>
@@ -76,7 +76,7 @@
 						<label><s:message code="entidadCaso_table_label_subestado"/></label>
 					</div>
 					<div>
-						<label>${caso.subestado}</label>
+						<label>${caso.labelSubestadoPickList}</label>
 					</div>
 				</div>
 				<div>
@@ -90,7 +90,7 @@
 						<label><s:message code="entidadCaso_table_label_canalorigen"/></label>
 					</div>
 					<div>
-						<label>${caso.canalOrigen}</label>
+						<label>${caso.labelCanalOrigenPickList}</label>
 					</div>
 				</div>
 				<div>
@@ -155,7 +155,7 @@
 						<label><s:message code="entidadCaso_table_label_submotivo"/></label>
 					</div>
 					<div>
-						<label>${caso.submotivo}</label>
+						<label>${caso.labelSubmotivoPickList}</label>
 					</div>
 				</div>
 				<div>

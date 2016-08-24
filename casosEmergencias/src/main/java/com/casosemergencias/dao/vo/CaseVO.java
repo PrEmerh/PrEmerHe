@@ -1,4 +1,5 @@
 package com.casosemergencias.dao.vo;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,377 +17,383 @@ import org.hibernate.annotations.WhereJoinTable;
 
 import com.casosemergencias.model.Caso;
 
-
 @Entity
-@Table(name="salesforce.case")
+@Table(name = "salesforce.case")
 public class CaseVO extends ObjectVO implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
-	//campo de Heroku
-	//Used to track the IsDeleted field from Salesforce allowing Heroku Connect to handle deletes when polling for updates
+	// campo de Heroku
+	// Used to track the IsDeleted field from Salesforce allowing Heroku Connect
+	// to handle deletes when polling for updates
 	@Column(name = "isdeleted")
 	private Boolean isdeleted;
-	//campo de Heroku
-	//Used to track the IsDeleted field from Salesforce allowing Heroku Connect to handle deletes when polling for updates
+	// campo de Heroku
+	// Used to track the IsDeleted field from Salesforce allowing Heroku Connect
+	// to handle deletes when polling for updates
 	@Column(name = "systemmodstamp")
 	private Date systemmodstamp;
-	//campo de Heroku
+	// campo de Heroku
 	@Column(name = "_hc_lastop")
 	private String _hc_lastop;
-	//campo de Heroku
+	// campo de Heroku
 	@Column(name = "_hc_err")
 	private String _hc_err;
-	
+
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(name = "sfid")
 	private String sfid;
-	
+
 	@Column(name = "createddate")
 	private Date fechaApertura;
-	
+
 	@Column(name = "subject")
 	private String asunto;
-	
+
 	@Column(name = "fecha_estimada_de_cierre__c")
 	private Date fechaEstimadaCierre;
-	
+
 	@Column(name = "accountid")
 	private String accountid;
-	
+
 	@Column(name = "favorabilidad_del_caso__c")
 	private String favorabilidadDelCaso;
-	
+
 	@Column(name = "flag_sec__c")
 	private String flagSec;
-	
+
 	@Column(name = "lastmodifiedbyid")
 	private String lastmodifiedbyid;
-	
+
 	@Column(name = "productid")
 	private String productid;
-	
+
 	@Column(name = "validar_electrodependiente__c")
 	private Boolean validarElectrodependiente;
-	
+
 	@Column(name = "sf4twitter__twitter_username__c")
 	private String sf4twitterTwitterUsername;
-	
+
 	@Column(name = "ownerid")
 	private String propietarioCaso;
-	
+
 	@Column(name = "slastartdate")
 	private Date slastartdate;
-	
+
 	@Column(name = "motivo_empresa__c")
 	private String motivoEmpresa;
-	
+
 	@Column(name = "call_center__c")
 	private String callCenter;
-	
+
 	@Column(name = "fallo_envio_validacion__c")
 	private Boolean falloEnvioValidacion;
-	
+
 	@Column(name = "literal_comuna__c")
 	private String literalComuna;
-	
+
 	@Column(name = "act_datos_contacto__c")
 	private Boolean actDatosContacto;
-	
+
 	@Column(name = "fallo_creacion_observacion__c")
 	private String falloCreacionObservacion;
-	
+
 	@Column(name = "estado_preingreso__c")
 	private Boolean estadoPreingreso;
-	
+
 	@Column(name = "email_de_notificacion__c")
 	private String emailNotificacion;
-	
+
 	@Column(name = "horaap__c")
 	private Double horaap;
-	
+
 	@Column(name = "numero_de_inservice__c")
 	private String numeroInservice;
-	
+
 	@Column(name = "suppliedphone")
 	private String suppliedphone;
-	
+
 	@Column(name = "numero_de_medidor__c")
 	private String numeroMedidor;
-	
+
 	@Column(name = "isstopped")
 	private Boolean isstopped;
-	
+
 	@Column(name = "cuerpo_mail__c")
 	private String cuerpoMail;
-	
+
 	@Column(name = "telefono_de_contacto__c")
 	private String telefonoContacto;
-	
+
 	@Column(name = "questionid")
 	private String questionid;
-	
+
 	@Column(name = "hasselfservicecomments")
 	private Boolean hasselfservicecomments;
-	
+
 	@Column(name = "traza_fallo_inservice__c")
 	private String trazaFalloInservice;
-	
+
 	@Column(name = "canal_de_notificacion__c")
 	private String canalNotificacion;
-	
+
 	@Column(name = "createdbyid")
 	private String createdbyid;
-	
+
 	@Column(name = "categor_a__c")
 	private String categoria;
-	
+
 	@Column(name = "flag__c")
 	private String flag;
-	
+
 	@Column(name = "observaciones__c")
 	private String observaciones;
-	
+
 	@Column(name = "casenumber")
 	private String numeroCaso;
-	
+
 	@Column(name = "url__c")
 	private String url;
-	
+
 	@Column(name = "status")
 	private String estado;
-	
+
 	@Column(name = "sf4twitter__twitterid__c")
 	private String sf4twitterTwitterid;
-	
+
 	@Column(name = "respuesta_al_cliente__c")
 	private String respuestaAlCliente;
-	
+
 	@Column(name = "n_mero_de_caso_ap__c")
 	private String numeroCasoAp;
-	
+
 	@Column(name = "isescalated")
 	private Boolean isescalated;
-	
+
 	@Column(name = "interaccion__c")
 	private String interaccion;
-	
+
 	@Column(name = "tipo_atencion_sec__c")
 	private String tipoAtencionSEC;
-	
+
 	@Column(name = "sub_estado__c")
 	private String subEstado;
-	
+
 	@Column(name = "isvisibleinselfservice")
 	private Boolean isvisibleinselfservice;
-	
+
 	@Column(name = "tipo_atencion_interna__c")
 	private String tipoAtencionInterna;
-	
+
 	@Column(name = "hora_sec__c")
 	private Date horaSec;
-	
+
 	@Column(name = "pendientevalidacioncondagr__c")
 	private Boolean pendienteValidacionCondagr;
-	
+
 	@Column(name = "ejecutivoanterior__c")
 	private String ejecutivoAnterior;
-	
+
 	@Column(name = "entitlementid")
 	private String entitlementid;
-	
+
 	@Column(name = "assetid")
 	private String assetid;
-	
+
 	@Column(name = "stopstartdate")
 	private Date stopstartDate;
-	
+
 	@Column(name = "suppliedcompany")
 	private String suppliedCompany;
-	
+
 	@Column(name = "isclosedoncreate")
 	private Boolean isClosedonCreate;
-	
+
 	@Column(name = "estado_condici_n_agravante__c")
 	private String estadoCondicionAgravante;
-	
+
 	@Column(name = "hora_cancelado__c")
 	private Date horaCancelado;
-	
+
 	@Column(name = "suministro__c")
 	private String suministro;
-	
+
 	@Column(name = "isselfserviceclosed")
-	private	Boolean isSelfserviceClosed;
-	
+	private Boolean isSelfserviceClosed;
+
 	@Column(name = "parentid")
 	private String parent;
-	
+
 	@Column(name = "ui__c")
 	private Boolean ui;
-	
+
 	@Column(name = "numsum__c")
 	private String numSum;
-	
+
 	@Column(name = "twitter__c")
 	private String twitter;
-	
+
 	@Column(name = "suppliedname")
 	private String suppliedName;
-	
+
 	@Column(name = "closeddate")
 	private Date closedDate;
-	
+
 	@Column(name = "fallo_envio_inservice__c")
 	private Boolean falloEnvioInservice;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "hora_arribado__c")
 	private Date horaArribado;
-	
+
 	@Column(name = "slaexitdate")
 	private Date slaexitDate;
-	
+
 	@Column(name = "origin")
 	private String canalOrigen;
-	
+
 	@Column(name = "descripcion_estado__c")
 	private String descripcionEstado;
-	
+
 	@Column(name = "businesshoursid")
 	private String businessHoursId;
-	
+
 	@Column(name = "sf4twitter__author_external_id__c")
 	private String sf4twitterAuthorExternalId;
-	
+
 	@Column(name = "hascommentsunreadbyowner")
 	private Boolean hasCommentSunReadByOwner;
-	
+
 	@Column(name = "hora_cerrado__c")
 	private Date horaCerrado;
-	
+
 	@Column(name = "literal_condici_n_agravante__c")
 	private String literalCondicionAgravante;
-	
+
 	@Column(name = "type")
 	private String type;
-	
+
 	@Column(name = "direccion_del_suministro__c")
 	private String direccionSuministro;
-	
+
 	@Column(name = "hora_pendiente__c")
 	private Date horaPendiente;
-	
+
 	@Column(name = "ani__c")
 	private String ani;
-	
+
 	@Column(name = "facebook__c")
 	private String facebook;
-	
+
 	@Column(name = "petici_n__c")
 	private String peticion;
-	
+
 	@Column(name = "communityid")
 	private String communityId;
-	
+
 	@Column(name = "direccion__c")
 	private String direccion;
-	
+
 	@Column(name = "hora_asignado__c")
 	private Date horaAsignado;
-	
+
 	@Column(name = "milestonestatus")
 	private String milestoneStatus;
-	
+
 	@Column(name = "contactid")
 	private String contactId;
-	
+
 	@Column(name = "hora_predespacho__c")
 	private Date horaPredespacho;
-	
+
 	@Column(name = "hora_enruta__c")
 	private Date horaEnruta;
-	
+
 	@Column(name = "reason")
 	private String reason;
-	
+
 	@Column(name = "id_empresa__c")
 	private String idEmpresa;
-	
+
 	@Column(name = "hora_programado__c")
 	private Date horaProgramado;
-	
+
 	@Column(name = "numero_de_seguidores_del__c")
 	private Double numeroSeguidoresDel;
-	
+
 	@Column(name = "literal_categoria__c")
 	private String literalCategorias;
-	
+
 	@Column(name = "recordtypeid")
 	private String recordtypeId;
-	
+
 	@Column(name = "comuna_f__c")
 	private String comuna;
-	
+
 	@Column(name = "prioridad__c")
 	private String prioridad;
-	
+
 	@Column(name = "valorsubestadoins__c")
 	private String valorSubestadoins;
-	
+
 	@Column(name = "control_electrodependiente__c")
 	private Boolean controlElectrodependiente;
-	
+
 	@Column(name = "cancelar__c")
 	private Boolean cancelar;
-	
+
 	@Column(name = "condici_n_agravante__c")
 	private String condicionAgravante;
+
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "petici_n__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Petici_n__c' and objeto = 'Case'")
+	private PickListsCaseVO peticionPickList;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "status", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Status' and objeto = 'Case'")
+	private PickListsCaseVO estadoPickList;
 	
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="sub_estado__c", referencedColumnName="codigo", insertable = false, updatable=false)
-	@WhereJoinTable(clause = "campo ='Sub_Estado__c' and objeto='Case'")
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "sub_estado__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Sub_Estado__c' and objeto = 'Case'")
 	private PickListsCaseVO subestadoPickList;
 
-	@OneToOne(fetch=FetchType.LAZY, optional= true)
-	@JoinColumn(name="motivo_empresa__c", referencedColumnName="codigo", insertable = false, updatable=false)
-	@WhereJoinTable(clause = "campo ='Motivo_Empresa__c' and objeto='Case'")
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "motivo_empresa__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Motivo_Empresa__c' and objeto = 'Case'")
 	private PickListsCaseVO submotivoPickList;
-	
-	@OneToOne(fetch=FetchType.LAZY, optional= true)
-	@JoinColumn(name="origin", referencedColumnName="codigo", insertable = false, updatable=false )
-   	private PickListsCaseOriginVO canalorigenPickList;
-	
-	//vamos a recuperar los datos de acount, contact
-	//@Column(name = "contactid")
-	//private String contactId;
-//	@Column(name = "accountid")
-//	private String accountid;
-//	@Column(name = "suministro__c")
-//	private String suministro;
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="contactid", referencedColumnName="sfid", insertable = false, updatable=false)
+
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "origin", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Origin' and objeto = 'Case'")
+	private PickListsCaseOriginVO canalOrigenPickList;
+
+	// vamos a recuperar los datos de acount, contact
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "contactid", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private ContactVO contactoJoin;
-	
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="accountid", referencedColumnName="sfid", insertable = false, updatable=false)
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "accountid", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private AccountVO cuentaJoin;
-	
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="suministro__c", referencedColumnName="sfid", insertable = false, updatable=false)
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "suministro__c", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private SuministroVO suministroJoin;
-	
-	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="direccion__c", referencedColumnName="sfid", insertable = false, updatable=false)
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "direccion__c", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private DireccionVO direccionJoin;
-	
-		public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
+
+	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
 			Date fechaApertura, String asunto, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
 			String flagSec, String lastmodifiedbyid, String productid, Boolean validarElectrodependiente,
 			String sf4twitterTwitterUsername, String propietarioCaso, Date slastartdate, String motivoEmpresa,
@@ -410,8 +417,9 @@ public class CaseVO extends ObjectVO implements Serializable {
 			String reason, String idEmpresa, Date horaProgramado, Double numeroSeguidoresDel, String literalCategorias,
 			String recordtypeId, String comuna, String prioridad, String valorSubestadoins,
 			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante,
-			PickListsCaseVO subestadoPickList, PickListsCaseVO submotivoPickList, PickListsCaseOriginVO canalorigenPickList,
-			ContactVO contactoJoin, AccountVO cuentaJoin, SuministroVO suministroJoin, DireccionVO direccionJoin) {
+			PickListsCaseVO subestadoPickList, PickListsCaseVO submotivoPickList, PickListsCaseVO peticionPickList,
+			PickListsCaseOriginVO canalOrigenPickList, ContactVO contactoJoin, AccountVO cuentaJoin,
+			SuministroVO suministroJoin, DireccionVO direccionJoin) {
 		super();
 		this.isdeleted = isdeleted;
 		this.systemmodstamp = systemmodstamp;
@@ -522,7 +530,8 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.condicionAgravante = condicionAgravante;
 		this.subestadoPickList = subestadoPickList;
 		this.submotivoPickList = submotivoPickList;
-		this.canalorigenPickList = canalorigenPickList;
+		this.canalOrigenPickList = canalOrigenPickList;
+		this.peticionPickList = peticionPickList;
 		this.contactoJoin = contactoJoin;
 		this.cuentaJoin = cuentaJoin;
 		this.suministroJoin = suministroJoin;
@@ -1396,8 +1405,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	public void setSubestadoPickList(PickListsCaseVO subestadoPickList) {
 		this.subestadoPickList = subestadoPickList;
 	}
-	
-	
+
 	public PickListsCaseVO getSubmotivoPickList() {
 		return submotivoPickList;
 	}
@@ -1405,42 +1413,67 @@ public class CaseVO extends ObjectVO implements Serializable {
 	public void setSubmotivoPickList(PickListsCaseVO submotivoPickList) {
 		this.submotivoPickList = submotivoPickList;
 	}
-	
-	public PickListsCaseOriginVO getCanalorigenPickList() {
-		return canalorigenPickList;
+
+	public PickListsCaseOriginVO getCanalOrigenPickList() {
+		return canalOrigenPickList;
 	}
 
-	public void setCanalorigenPickList(PickListsCaseOriginVO canalorigenPickList) {
-		this.canalorigenPickList = canalorigenPickList;
+	public void setCanalOrigenPickList(PickListsCaseOriginVO canalOrigenPickList) {
+		this.canalOrigenPickList = canalOrigenPickList;
 	}
-	
+
 	@Override
 	public Object instantiateTargetLogic() {
 		Caso caso = new Caso();
 		return caso;
 	}
-	
-	public String getLabelSubmotivoPickList(){
+
+	public String getLabelSubmotivoPickList() {
 		String result = this.getMotivoEmpresa();
-		if (this.getSubmotivoPickList() != null ){
-			result=this.getSubmotivoPickList().getValor();
+		if (this.getSubmotivoPickList() != null) {
+			result = this.getSubmotivoPickList().getValor();
 		}
-		return result; 
+		return result;
+	}
+
+	public String getLabelSubestadoPickList() {
+		String result = this.getSubEstado();
+		if (this.getSubestadoPickList() != null) {
+			result = this.getSubestadoPickList().getValor();
+		}
+		return result;
+	}
+
+	public String getLabelCanalOrigenPickList() {
+		String result = this.getCanalOrigen();
+		if (this.getCanalOrigenPickList() != null) {
+			result = this.getCanalOrigenPickList().getValor();
+		}
+		return result;
 	}
 	
-	public String getLabelSubestadoPickList(){
-		String result = this.getSubEstado();
-		if (this.getSubestadoPickList() != null ){
-			result=this.getSubestadoPickList().getValor();
+	public String getLabelEstadoPickList() {
+		String result = this.getEstado();
+		if (this.getEstadoPickList() != null) {
+			result = this.getEstadoPickList().getValor();
 		}
-		return result; 
+		return result;
 	}
-	public String getLabelCanalorigenPickList(){
-		String result = this.getCanalOrigen();
-		if (this.getCanalorigenPickList() != null ){
-			result=this.getCanalorigenPickList().getValor();
+	
+	public String getLabelPeticionPickList() {
+		String result = this.getPeticion();
+		if (this.getPeticionPickList() != null) {
+			result = this.getPeticionPickList().getValor();
 		}
-		return result; 
+		return result;
+	}
+
+	public PickListsCaseVO getPeticionPickList() {
+		return peticionPickList;
+	}
+
+	public void setPeticionPickList(PickListsCaseVO peticionPickList) {
+		this.peticionPickList = peticionPickList;
 	}
 
 	public AccountVO getCuentaJoin() {
@@ -1466,11 +1499,20 @@ public class CaseVO extends ObjectVO implements Serializable {
 	public void setDireccionJoin(DireccionVO direccionJoin) {
 		this.direccionJoin = direccionJoin;
 	}
+
 	public ContactVO getContactoJoin() {
 		return contactoJoin;
 	}
 
 	public void setContactoJoin(ContactVO contactoJoin) {
 		this.contactoJoin = contactoJoin;
+	}
+
+	public PickListsCaseVO getEstadoPickList() {
+		return estadoPickList;
+	}
+
+	public void setEstadoPickList(PickListsCaseVO estadoPickList) {
+		this.estadoPickList = estadoPickList;
 	}
 }
