@@ -104,6 +104,8 @@ public class SuministroView extends ObjectView {
 	private AccountView cuentaJoin;
 
 	private List<CaseView> casos;
+	
+	private List<ContactView> contactosRelacionados;
 
 	public SuministroView() {
 	}
@@ -558,6 +560,15 @@ public class SuministroView extends ObjectView {
 
 	public void setCuentaJoin(AccountView cuentaJoin) {
 		this.cuentaJoin = cuentaJoin;
+	}
+
+	public List<ContactView> getContactosRelacionados() {
+		return contactosRelacionados;
+	}
+
+
+	public void setContactosRelacionados(List<ContactView> contactosRelacionados) {
+		this.contactosRelacionados = contactosRelacionados;
 	}
 
 	public String getTipoEvento() {

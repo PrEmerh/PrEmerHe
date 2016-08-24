@@ -7,10 +7,14 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.CaseDAO;
+import com.casosemergencias.dao.RelacionActivoContactoDAO;
 import com.casosemergencias.dao.SuministroDAO;
 import com.casosemergencias.dao.vo.CaseVO;
+import com.casosemergencias.dao.vo.ContactVO;
+import com.casosemergencias.dao.vo.RelacionActivoContactoVO;
 import com.casosemergencias.dao.vo.SuministroVO;
 import com.casosemergencias.model.Caso;
+import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.datatables.DataTableProperties;
@@ -25,6 +29,9 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 	
 	@Autowired
 	private CaseDAO casoDAO;
+	
+	@Autowired
+	private RelacionActivoContactoDAO relacionDAO;
 	
 	@Override
 	public List<Suministro> readAllSuministros() {
@@ -81,6 +88,10 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 			List<CaseVO> listacasosVO = casoDAO.readCaseOfSuministro(sfid);
 			List<Caso> casoRelacionado = parseaListaCasos(listacasosVO);
 			suministro.setCasos(casoRelacionado);
+			List<RelacionActivoContactoVO> listaRelacionVO = relacionDAO.getContactosRelacionadosPorSuministro(sfid);
+			List<Contacto> contactosRelacionado = parseaListaContactosRel(listaRelacionVO);
+			suministro.setContactosRelacionados(contactosRelacionado);
+			
 			return suministro;
 		}
 		return null;
@@ -93,6 +104,23 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 				Caso casoRelacionado = new Caso();
 				ParserModelVO.parseDataModelVO(casoVO, casoRelacionado);
 				retorno.add(casoRelacionado);
+			}
+			return retorno;
+		}
+		return null;
+	}
+	private List<Contacto> parseaListaContactosRel(List<RelacionActivoContactoVO> listaRelacionVO) {
+		if(listaRelacionVO!=null && !listaRelacionVO.isEmpty()){
+			List<Contacto> retorno = new ArrayList<Contacto>();
+			for(RelacionActivoContactoVO relacion: listaRelacionVO){
+				if(relacion.getContacto()!=null ){
+					Contacto contactoRelacionado = new Contacto();
+					ParserModelVO.parseDataModelVO(relacion.getContacto(), contactoRelacionado);
+					if(relacion.getTipoRelacionActivo()!=null)
+						contactoRelacionado.setRelacionActivo(relacion.getTipoRelacionActivo().getValor());
+					contactoRelacionado.setPrincipal(relacion.getPrincipal());
+					retorno.add(contactoRelacionado);
+				}
 			}
 			return retorno;
 		}

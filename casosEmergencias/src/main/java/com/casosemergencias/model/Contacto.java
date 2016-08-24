@@ -44,6 +44,9 @@ public class Contacto extends ObjectLogic {
 											private Cuenta cuentaJoin;
 											
 											private List<Caso> casos;
+											//Tipo relacion que viene de la Relación activo contacto
+											private String relacionActivo;
+											private Boolean principal;
 	
 	/* Getters y Setters */
 	public Integer getId() {
@@ -248,5 +251,21 @@ public class Contacto extends ObjectLogic {
 
 	public void setCasos(List<Caso> casos) {
 		this.casos = casos;
+	}
+
+	public String getRelacionActivo() {
+		return relacionActivo;
+	}
+
+	public void setRelacionActivo(String relacionActivo) {
+		this.relacionActivo = relacionActivo;
+	}
+
+	public Boolean getPrincipal() {
+		return principal;
+	}
+
+	public void setPrincipal(Boolean principal) {
+		this.principal = principal;
 	}
 }

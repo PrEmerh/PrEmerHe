@@ -53,6 +53,9 @@ public class RelacionActivoContactoVO implements Serializable {
 	@Column(name = "contacto__c")
 	private String contactoId;
 	
+	@Column(name = "principal__c")
+	private Boolean principal;
+	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="tipo_de_relaci_n__c", referencedColumnName="codigo", insertable = false, updatable=false)
 	@WhereJoinTable(clause = "campo ='Tipo_de_Relaci_n__c' and objeto='relacion_activo_contacto__c'")
@@ -61,6 +64,10 @@ public class RelacionActivoContactoVO implements Serializable {
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="activo__c", referencedColumnName="sfid", insertable = false, updatable=false)
 	private AssetVO activo;
+	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="contacto__c", referencedColumnName="sfid", insertable = false, updatable=false)
+	private ContactVO contacto;
 
 	public Boolean getIsDeleted() {
 		return isDeleted;
@@ -148,6 +155,22 @@ public class RelacionActivoContactoVO implements Serializable {
 
 	public void setActivo(AssetVO activo) {
 		this.activo = activo;
+	}
+
+	public ContactVO getContacto() {
+		return contacto;
+	}
+
+	public void setContacto(ContactVO contacto) {
+		this.contacto = contacto;
+	}
+
+	public Boolean getPrincipal() {
+		return principal;
+	}
+
+	public void setPrincipal(Boolean principal) {
+		this.principal = principal;
 	}
 	
 

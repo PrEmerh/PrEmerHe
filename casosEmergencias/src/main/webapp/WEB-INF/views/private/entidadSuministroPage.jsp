@@ -94,6 +94,51 @@
 						</div>
 					</div>	
 				</div>
+				<div id="divEntidadSuministroCasos" class="divEntidad">
+				<div class="subtitleAltaEntidad">
+					<div>
+						<input id="arrowTablaSuministroContactos" type="image" src="../resources/images/Arrowdown.PNG"  
+							height="15" onclick="showHideCabeceras('tablaSuministroCasos','arrowTablaSuministroContactos'); return false;"/>			
+						<label class="divLabel"><s:message code="entidadSuministro_title_label_contactos_relacionados" /></label>
+					</div>
+				</div>
+				<div id="tablaSuministroCasos">
+					<table class="basicTable">
+						<tr>
+							<th><s:message code="entidadSuministro_title_label_contactos_nombre_contacto" /></th>
+						    <th><s:message code="entidadSuministro_title_label_contactos_tipo_relacion" /></th>
+						    <th><s:message code="entidadSuministro_title_label_contactos_contacto_principal" /></th>
+						    
+						</tr>
+						<c:choose>
+							<c:when test="${not empty suministro.contactosRelacionados}">
+								<c:forEach items="${suministro.contactosRelacionados}" var="contacto">
+									<tr>
+										<td><a class="link" href="../private/entidadContacto?sfid=${contacto.sfid}">${contacto.name}</a></td>
+										<td>${contacto.relacionActivo}</td>
+										<c:if test="${contacto.principal}">
+						    				<td><input type="checkbox" id="checkbox" value="true" checked="checked" disabled/></td>					
+										</c:if> 
+										<c:if test="${contacto.principal == false}">
+											<td><input type="checkbox" id="checkbox" value="true" disabled/></td>	
+										</c:if> 
+									</tr>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="6" class="tablaVacia">
+										<s:message code="entidades_empty_case_table" />
+									</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+					</table>
+				</div>
+			</div>
+				
+				
+				
 				<div class="divEntidad">
 					<div class="subtitleAltaEntidad">
 						<div>

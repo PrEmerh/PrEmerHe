@@ -63,6 +63,8 @@ public class Suministro extends ObjectLogic {
 	private List<Caso> casos;
 
 	private Cuenta cuentaJoin;
+	
+	private List<Contacto> contactosRelacionados;
 
 	public Suministro() {
 	}
@@ -539,4 +541,15 @@ public class Suministro extends ObjectLogic {
 	public void setSuministroAfectado(Boolean suministroAfectado) {
 		this.suministroAfectado = suministroAfectado;
 	}
+
+	public List<Contacto> getContactosRelacionados() {
+		return contactosRelacionados;
+	}
+
+
+
+	public void setContactosRelacionados(List<Contacto> contactosRelacionados) {
+		this.contactosRelacionados = contactosRelacionados;
+	}
+
 }
