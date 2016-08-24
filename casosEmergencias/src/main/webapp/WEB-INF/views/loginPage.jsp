@@ -9,8 +9,7 @@
 	<body>
 		<header>
 			<section id="logo-section">
-				<img src="resources/images/enel-logo-arbol.jpg" width="150" /><br/>
-				<img src="resources/images/Enel-logo-new.jpg" width="200" />
+				<img src="resources/images/enel-logo-new.jpg" width="200" />
 				<p id="login-text"><s:message code="login_label_title"/></p>
 			</section>
 		</header>

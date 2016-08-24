@@ -542,8 +542,6 @@ public class Suministro extends ObjectLogic {
 		this.suministroAfectado = suministroAfectado;
 	}
 
-
-
 	public List<Contacto> getContactosRelacionados() {
 		return contactosRelacionados;
 	}
@@ -553,4 +551,5 @@ public class Suministro extends ObjectLogic {
 	public void setContactosRelacionados(List<Contacto> contactosRelacionados) {
 		this.contactosRelacionados = contactosRelacionados;
 	}
+
 }

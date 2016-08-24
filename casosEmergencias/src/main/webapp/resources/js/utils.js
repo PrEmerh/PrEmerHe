@@ -1,13 +1,25 @@
 // Mostrar y esconder contenido de las pestañas
-function showHideCabeceras(idDiv,idArrow) {
+function showHideCabeceras(idDiv, idArrow) {
 	var div = document.getElementById(idDiv);
 	var arrow = document.getElementById(idArrow); 				
 	if (div.style.display == '')  {
 		div.style.display = 'none';
-		arrow.src="../resources/images/Arrowright.PNG";
+		arrow.src="../resources/images/arrow-right-black.png";
 	} else {
 		div.style.display = '';
-		arrow.src="../resources/images/Arrowdown.PNG";
+		arrow.src="../resources/images/arrow-down-black.png";
+	}
+}
+
+function showHideCabecerasServicios(idDiv, idArrow) {
+	var div = document.getElementById(idDiv);
+	var arrow = document.getElementById(idArrow); 				
+	if (div.style.display == '')  {
+		div.style.display = 'none';
+		arrow.src="../resources/images/arrow-right-white.png";
+	} else {
+		div.style.display = '';
+		arrow.src="../resources/images/arrow-down-white.png";
 	}
 }
 
@@ -118,8 +130,17 @@ function establecerDireccion(sfid, name) {
 
 function createUrl() {
 	var miUrl = window.location.protocol + "//" + window.location.host;
-	if(window.location.pathname.includes("/casosEmergencias/")){
+	if (window.location.pathname.indexOf("/casosEmergencias/") != -1) {
 		miUrl = miUrl + "/casosEmergencias";
 	}
 	return miUrl;
+}
+
+function validateEmail(email) {
+    var emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    var validated = true;
+    if (email != "") {
+    	validated =  emailRegex.test(email);
+    }
+    return validated;
 }

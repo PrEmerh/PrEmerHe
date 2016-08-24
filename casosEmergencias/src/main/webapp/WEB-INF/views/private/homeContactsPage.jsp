@@ -16,6 +16,7 @@
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>
 		<script src="../resources/js/header.js"></script>
+		<script src="../resources/js/utils.js"></script>
 		<script src="../resources/js/contactos.js"></script>
 	</head>
 	<body onload="initHeader();">

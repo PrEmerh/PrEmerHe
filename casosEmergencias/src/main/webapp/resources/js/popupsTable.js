@@ -108,7 +108,8 @@ $(document).ready(function() {
 
 function createUrl(){
 	var miUrl = window.location.protocol + "//" + window.location.host;
-	if(window.location.pathname.includes("/casosEmergencias/")){
+	//if (window.location.pathname.includes("/casosEmergencias/")) {
+	if (window.location.pathname.indexOf("/casosEmergencias/") != -1) {
 		miUrl = miUrl + "/casosEmergencias";
 	}
 	return miUrl;
