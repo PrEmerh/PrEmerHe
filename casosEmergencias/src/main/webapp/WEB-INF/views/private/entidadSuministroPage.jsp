@@ -60,7 +60,7 @@
 							<label><s:message code="entidadSuministro_title_label_tipoSegmento"/></label>
 						</div>
 						<div>
-							<label>${suministro.tipoSegmento}</label>
+							<label>${suministro.labelTipoSegmentoPickList}</label>
 						</div>
 					</div>
 					<div>
@@ -74,7 +74,7 @@
 							<label><s:message code="entidadSuministro_title_label_medidaDisciplina"/></label>
 						</div>
 						<div>
-							<label>${suministro.medidaDisciplina}</label>
+							<label>${suministro.labelMedidaDisciplinaPickList}</label>
 						</div>
 					</div>
 					<div>		
@@ -207,7 +207,7 @@
 							<label><s:message code="entidadSuministro_title_label_fullElectric"/></label>
 						</div>
 						<div>
-							<label>${suministro.fullElectric}</label>
+							<label>${suministro.labelFullElectricPickList}</label>
 						</div>
 					</div>			
 				</div>
@@ -246,7 +246,7 @@
 							<label><s:message code="entidadSuministro_title_label_comunaReparto"/></label>
 						</div>
 						<div>
-							<label>${suministro.comunaReparto}</label>
+							<label>${suministro.labelComunaRepartoPickList}</label>
 						</div>
 					</div>
 				</div>		
@@ -265,13 +265,13 @@
 							<label><s:message code="entidadSuministro_title_label_propiedadMedidor"/></label>
 						</div>
 						<div>
-							<label>${suministro.propiedadMedidor}</label>
+							<label>${suministro.labelPropMedidorPickList}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadSuministro_title_label_subestacionElectricaConexion"/></label>
 						</div>
 						<div>
-							<label>${suministro.subestacionElectricaConexion}</label>
+							<label>${suministro.labelSubestacionElecPickList}</label>
 						</div>
 					</div>
 					<div>
@@ -313,7 +313,7 @@
 							<label><s:message code="entidadSuministro_title_label_tipoConexion"/></label>
 						</div>
 						<div>
-							<label>${suministro.tipoConexion}</label>
+							<label>${suministro.labelTipoConexionPickList}</label>
 						</div>
 					</div>
 					<div>
@@ -321,13 +321,13 @@
 							<label><s:message code="entidadSuministro_title_label_procesoLectura"/></label>
 						</div>
 						<div>
-							<label>${suministro.procesoLectura}</label>
+							<label>${suministro.labelProcesoLecturaPickList}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadSuministro_title_label_tipoMedida"/></label>
 						</div>
 						<div>
-							<label>${suministro.tipoMedida}</label>
+							<label>${suministro.labelTipoMedidaPickList}</label>
 						</div>
 					</div>
 					<div>
@@ -335,13 +335,13 @@
 							<label><s:message code="entidadSuministro_title_label_medidaDisciplina"/></label>
 						</div>
 						<div>
-							<label>${suministro.medidaDisciplina}</label>
+							<label>${suministro.labelMedidaDisciplinaPickList}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadSuministro_title_label_tipoLectura"/></label>
 						</div>
 						<div>
-							<label>${suministro.tipoLectura}</label>
+							<label>${suministro.labelTipoLecturaPickList}</label>
 						</div>
 					</div>
 					<div>
@@ -349,7 +349,7 @@
 							<label><s:message code="entidadSuministro_title_label_tipoTransformador"/></label>
 						</div>
 						<div>
-							<label>${suministro.tipoTransformador}</label>
+							<label>${suministro.labelTipoTransformadorPickList}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadSuministro_title_label_bloque"/></label>

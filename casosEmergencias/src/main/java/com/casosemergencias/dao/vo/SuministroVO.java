@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
+
 import com.casosemergencias.model.Suministro;
 
 @Entity
@@ -130,7 +132,7 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	@Column(name = "electrodependiente__c")
 	private String electrodependiente;
 
-	@Column(name = "medida_de_disciplina__c")
+	@Column(name = "Datos_Clientes_con_Disciplina__c")//lo cambiamos por como está en SF, alli hay una variable de cada tipo, pero la que lleva información es esta.
 	private String medidaDisciplina;
 
 	@Column(name = "horario_de_racionamiento__c")
@@ -172,6 +174,52 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	@Column(name = "suministroafectado__c")
 	private Boolean suministroAfectado;
 
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "proceso_de_lectura__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@Where(clause = "objeto='suministro__c'  AND campo='Proceso_de_Lectura__c'")
+	private PickListsVO procesoLecturaPickList;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "tipo_de_medida__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@Where(clause = "objeto='suministro__c'  AND campo='Tipo_de_medida__c'")
+	private PickListsVO tipoMedidaPickList;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "tipo_de_segmento__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	private PickListsSumTipoSegmentoVO tipoSegmentoPickList;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "subestaci_n_el_ctrica_conexi_n__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	private PickListsSumSubestacionElecVO subestacionElecPickList;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "propiedad_medidor__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	private PickListsSumPropiedadMedidorVO propMedidorPickList;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "tipo_de_conexi_n__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	private PickListsSumTipoConexionVO tipoConexionPickList;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "tipo_lectura__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	private PickListsSumTipoLecturaVO tipoLecturaPickList;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "tipo_de_transformador__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	private PickListsSumTipoTransfVO tipoTransformadorPickList;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "comuna_reparto__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	private PickListsSumComunaRepartoVO comunaRepartoPickList;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "full_electric__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	private PickListsSumFullElectricVO fullElectricPickList;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "Datos_Clientes_con_Disciplina__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	private PickListsSumMedidaDisciplinaVO medidaDisciplinaPickList;
+	
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_empresa__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumEmpresaVO empresaPickList;
@@ -702,5 +750,168 @@ public class SuministroVO extends ObjectVO implements Serializable {
 
 	public void setCuentaJoin(AccountVO cuentaJoin) {
 		this.cuentaJoin = cuentaJoin;
+	}
+
+	public PickListsVO getProcesoLecturaPickList() {
+		return procesoLecturaPickList;
+	}
+	public String getLabelProcesoLecturaPickList() {
+		String result = this.getProcesoLectura();
+		if (this.getProcesoLecturaPickList() != null) {
+			result = this.getProcesoLecturaPickList().getValor();
+		}
+		return result;
+	}
+
+	public void setProcesoLecturaPickList(PickListsVO procesoLecturaPickList) {
+		this.procesoLecturaPickList = procesoLecturaPickList;
+	}
+
+	public PickListsVO getTipoMedidaPickList() {
+		return tipoMedidaPickList;
+	}
+	public String getLabelTipoMedidaPickList() {
+		String result = this.getTipoMedida();
+		if (this.getTipoMedidaPickList() != null) {
+			result = this.getTipoMedidaPickList().getValor();
+		}
+		return result;
+	}
+
+	public void setTipoMedidaPickList(PickListsVO tipoMedidaPickList) {
+		this.tipoMedidaPickList = tipoMedidaPickList;
+	}
+
+	public PickListsSumTipoSegmentoVO getTipoSegmentoPickList() {
+		return tipoSegmentoPickList;
+	}
+
+	public String getLabelTipoSegmentoPickList() {
+		String result = this.getTipoSegmento();
+		if (this.getTipoSegmentoPickList() != null) {
+			result = this.getTipoSegmentoPickList().getValor();
+		}
+		return result;
+	}
+	
+	public void setTipoSegmentoPickList(PickListsSumTipoSegmentoVO tipoSegmentoPickList) {
+		this.tipoSegmentoPickList = tipoSegmentoPickList;
+	}
+
+	public PickListsSumSubestacionElecVO getSubestacionElecPickList() {
+		return subestacionElecPickList;
+	}
+	public String getLabelSubestacionElecPickList() {
+		String result = this.getSubestacionElectricaConexion();
+		if (this.getSubestacionElecPickList() != null) {
+			result = this.getSubestacionElecPickList().getValor();
+		}
+		return result;
+	}
+	public void setSubestacionElecPickList(PickListsSumSubestacionElecVO subestacionElecPickList) {
+		this.subestacionElecPickList = subestacionElecPickList;
+	}
+
+	public PickListsSumPropiedadMedidorVO getPropMedidorPickList() {
+		return propMedidorPickList;
+	}
+
+	public String getLabelPropMedidorPickList() {
+		String result = this.getPropiedadMedidor();
+		if (this.getPropMedidorPickList() != null) {
+			result = this.getPropMedidorPickList().getValor();
+		}
+		return result;
+	}
+	
+	public void setPropMedidorPickList(PickListsSumPropiedadMedidorVO propMedidorPickList) {
+		this.propMedidorPickList = propMedidorPickList;
+	}
+
+	public PickListsSumTipoConexionVO getTipoConexionPickList() {
+		return tipoConexionPickList;
+	}
+	public String getLabelTipoConexionPickList() {
+		String result = this.getTipoConexion();
+		if (this.getTipoConexionPickList() != null) {
+			result = this.getTipoConexionPickList().getValor();
+		}
+		return result;
+	}
+	public void setTipoConexionPickList(PickListsSumTipoConexionVO tipoConexionPickList) {
+		this.tipoConexionPickList = tipoConexionPickList;
+	}
+
+	public PickListsSumTipoLecturaVO getTipoLecturaPickList() {
+		return tipoLecturaPickList;
+	}
+	public String getLabelTipoLecturaPickList() {
+		String result = this.getTipoLectura();
+		if (this.getTipoLecturaPickList() != null) {
+			result = this.getTipoLecturaPickList().getValor();
+		}
+		return result;
+	}
+
+	public void setTipoLecturaPickList(PickListsSumTipoLecturaVO tipoLecturaPickList) {
+		this.tipoLecturaPickList = tipoLecturaPickList;
+	}
+
+	public PickListsSumTipoTransfVO getTipoTransformadorPickList() {
+		return tipoTransformadorPickList;
+	}
+	public String getLabelTipoTransformadorPickList() {
+		String result = this.getTipoTransformador();
+		if (this.getTipoTransformadorPickList() != null) {
+			result = this.getTipoTransformadorPickList().getValor();
+		}
+		return result;
+	}
+	public void setTipoTransformadorPickList(PickListsSumTipoTransfVO tipoTransformadorPickList) {
+		this.tipoTransformadorPickList = tipoTransformadorPickList;
+	}
+
+	public PickListsSumComunaRepartoVO getComunaRepartoPickList() {
+		return comunaRepartoPickList;
+	}
+	public String getLabelComunaRepartoPickList() {
+		String result = this.getComunaReparto();
+		if (this.getComunaRepartoPickList() != null) {
+			result = this.getComunaRepartoPickList().getValor();
+		}
+		return result;
+	}
+	public void setComunaRepartoPickList(PickListsSumComunaRepartoVO comunaRepartoPickList) {
+		this.comunaRepartoPickList = comunaRepartoPickList;
+	}
+
+	public PickListsSumFullElectricVO getFullElectricPickList() {
+		return fullElectricPickList;
+	}
+	public String getLabelFullElectricPickList() {
+		String result = this.getFullElectric();
+		if (this.getFullElectricPickList() != null) {
+			result = this.getFullElectricPickList().getValor();
+		}
+		return result;
+	}
+	public void setFullElectricPickList(PickListsSumFullElectricVO fullElectricPickList) {
+		this.fullElectricPickList = fullElectricPickList;
+	}
+
+	public PickListsSumMedidaDisciplinaVO getMedidaDisciplinaPickList() {
+		return medidaDisciplinaPickList;
+	}
+	
+	public String getLabelMedidaDisciplinaPickList() {
+		String result = this.getMedidaDisciplina();
+		if (this.getMedidaDisciplinaPickList() != null) {
+			result = this.getMedidaDisciplinaPickList().getValor();
+		}
+		return result;
+	}
+
+	public void setMedidaDisciplinaPickList(PickListsSumMedidaDisciplinaVO medidaDisciplinaPickList) {
+		this.medidaDisciplinaPickList = medidaDisciplinaPickList;
 	}
 }

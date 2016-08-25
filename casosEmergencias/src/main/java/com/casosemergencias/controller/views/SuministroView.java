@@ -106,22 +106,50 @@ public class SuministroView extends ObjectView {
 	private List<CaseView> casos;
 	
 	private List<ContactView> contactosRelacionados;
+	
+	private String labelProcesoLecturaPickList;
+
+	private String labelTipoMedidaPickList;
+	
+	private String labelTipoSegmentoPickList;
+
+	private String labelSubestacionElecPickList;
+	
+	private String labelPropMedidorPickList;
+
+	private String labelTipoConexionPickList;
+	
+	private String labelTipoLecturaPickList;
+
+	private String labelTipoTransformadorPickList;
+	
+	private String labelComunaRepartoPickList;
+
+	private String labelFullElectricPickList;
+	
+	private String labelMedidaDisciplinaPickList;
 
 	public SuministroView() {
 	}
 
+	
+
 	public SuministroView(Integer id, String sfid, String name, String fullElectric, Boolean casosAbiertos,
-			String tipoTransformador, Boolean cortePorDeuda, String tipoLectura, String estadoConexion,
-			String tipoMedida, String comunaReparto, String comuna, String numeroMedidor, String modeloMedidor,
-			String numeroSuministro, String numeroTransformador, String estadoSuministro, String marcaMedidor,
-			Date fechaCorte, String propiedadMedidor, String idEmpresa, String direccion, String runRut,
-			Boolean pagoEnProceso, String nombreDuenoBoleta, String bloque, String tipoConexion,
+			String tipoTransformador, Boolean cortePorDeuda, String tipoLectura, String procesoLectura,
+			String estadoConexion, String tipoMedida, String comunaReparto, String comuna, String numeroMedidor,
+			String modeloMedidor, String numeroSuministro, String numeroTransformador, String estadoSuministro,
+			String marcaMedidor, Date fechaCorte, String propiedadMedidor, String idEmpresa, String direccion,
+			String runRut, Boolean pagoEnProceso, String nombreDuenoBoleta, String bloque, String tipoConexion,
 			String direccionCliente, String electrodependiente, String medidaDisciplina, String horarioRacionamiento,
 			Double casosReiterados, String tarifa, String alimentador, String direccionBoleta, String cuenta,
 			String subestacionElectricaConexion, String ruta, String tipoCuenta, String tipoSegmento,
 			String relacionActivo, String direccionConcatenada, String labelEmpresaPickList,
 			String labelEstadoConexionPickList, String labelEstadoSuministroPickList, String tipoEvento,
-			Boolean suministroAfectado) {
+			Boolean suministroAfectado, AccountView cuentaJoin, List<CaseView> casos,
+			List<ContactView> contactosRelacionados, String labelProcesoLecturaPickList, String labelTipoMedidaPickList,
+			String labelTipoSegmentoPickList, String labelSubestacionElecPickList, String labelPropMedidorPickList,
+			String labelTipoConexionPickList, String labelTipoLecturaPickList, String labelTipoTransformadorPickList,
+			String labelComunaRepartoPickList, String labelFullElectricPickList) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -131,6 +159,7 @@ public class SuministroView extends ObjectView {
 		this.tipoTransformador = tipoTransformador;
 		this.cortePorDeuda = cortePorDeuda;
 		this.tipoLectura = tipoLectura;
+		this.procesoLectura = procesoLectura;
 		this.estadoConexion = estadoConexion;
 		this.tipoMedida = tipoMedida;
 		this.comunaReparto = comunaReparto;
@@ -170,7 +199,22 @@ public class SuministroView extends ObjectView {
 		this.labelEstadoSuministroPickList = labelEstadoSuministroPickList;
 		this.tipoEvento = tipoEvento;
 		this.suministroAfectado = suministroAfectado;
+		this.cuentaJoin = cuentaJoin;
+		this.casos = casos;
+		this.contactosRelacionados = contactosRelacionados;
+		this.labelProcesoLecturaPickList = labelProcesoLecturaPickList;
+		this.labelTipoMedidaPickList = labelTipoMedidaPickList;
+		this.labelTipoSegmentoPickList = labelTipoSegmentoPickList;
+		this.labelSubestacionElecPickList = labelSubestacionElecPickList;
+		this.labelPropMedidorPickList = labelPropMedidorPickList;
+		this.labelTipoConexionPickList = labelTipoConexionPickList;
+		this.labelTipoLecturaPickList = labelTipoLecturaPickList;
+		this.labelTipoTransformadorPickList = labelTipoTransformadorPickList;
+		this.labelComunaRepartoPickList = labelComunaRepartoPickList;
+		this.labelFullElectricPickList = labelFullElectricPickList;
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -585,5 +629,97 @@ public class SuministroView extends ObjectView {
 
 	public void setSuministroAfectado(Boolean suministroAfectado) {
 		this.suministroAfectado = suministroAfectado;
+	}
+
+	public String getLabelProcesoLecturaPickList() {
+		return labelProcesoLecturaPickList;
+	}
+
+	public void setLabelProcesoLecturaPickList(String labelProcesoLecturaPickList) {
+		this.labelProcesoLecturaPickList = labelProcesoLecturaPickList;
+	}
+
+	public String getLabelTipoMedidaPickList() {
+		return labelTipoMedidaPickList;
+	}
+
+	public void setLabelTipoMedidaPickList(String labelTipoMedidaPickList) {
+		this.labelTipoMedidaPickList = labelTipoMedidaPickList;
+	}
+
+	public String getLabelTipoSegmentoPickList() {
+		return labelTipoSegmentoPickList;
+	}
+
+	public void setLabelTipoSegmentoPickList(String labelTipoSegmentoPickList) {
+		this.labelTipoSegmentoPickList = labelTipoSegmentoPickList;
+	}
+
+	public String getLabelSubestacionElecPickList() {
+		return labelSubestacionElecPickList;
+	}
+
+	public void setLabelSubestacionElecPickList(String labelSubestacionElecPickList) {
+		this.labelSubestacionElecPickList = labelSubestacionElecPickList;
+	}
+
+	public String getLabelPropMedidorPickList() {
+		return labelPropMedidorPickList;
+	}
+
+	public void setLabelPropMedidorPickList(String labelPropMedidorPickList) {
+		this.labelPropMedidorPickList = labelPropMedidorPickList;
+	}
+
+	public String getLabelTipoConexionPickList() {
+		return labelTipoConexionPickList;
+	}
+
+	public void setLabelTipoConexionPickList(String labelTipoConexionPickList) {
+		this.labelTipoConexionPickList = labelTipoConexionPickList;
+	}
+
+	public String getLabelTipoLecturaPickList() {
+		return labelTipoLecturaPickList;
+	}
+
+	public void setLabelTipoLecturaPickList(String labelTipoLecturaPickList) {
+		this.labelTipoLecturaPickList = labelTipoLecturaPickList;
+	}
+
+	public String getLabelTipoTransformadorPickList() {
+		return labelTipoTransformadorPickList;
+	}
+
+	public void setLabelTipoTransformadorPickList(String labelTipoTransformadorPickList) {
+		this.labelTipoTransformadorPickList = labelTipoTransformadorPickList;
+	}
+
+	public String getLabelComunaRepartoPickList() {
+		return labelComunaRepartoPickList;
+	}
+
+	public void setLabelComunaRepartoPickList(String labelComunaRepartoPickList) {
+		this.labelComunaRepartoPickList = labelComunaRepartoPickList;
+	}
+
+	public String getLabelFullElectricPickList() {
+		return labelFullElectricPickList;
+	}
+
+	public void setLabelFullElectricPickList(String labelFullElectricPickList) {
+		this.labelFullElectricPickList = labelFullElectricPickList;
+	}
+
+
+
+	public String getLabelMedidaDisciplinaPickList() {
+		return labelMedidaDisciplinaPickList;
+	}
+
+
+
+	public void setLabelMedidaDisciplinaPickList(String labelMedidaDisciplinaPickList) {
+		this.labelMedidaDisciplinaPickList = labelMedidaDisciplinaPickList;
 	}
 }
