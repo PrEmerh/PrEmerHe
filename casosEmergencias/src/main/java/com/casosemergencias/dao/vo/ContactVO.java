@@ -120,17 +120,17 @@ public class ContactVO extends ObjectVO implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "canal_preferente_de_contacto__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Canal_Preferente_de_Contacto__c' and objeto = 'Contact'")
-	private PickListsContactVO canalPreferenteContactoPickList;
+	private PickListsContactCanalPreferenteContactoVO canalPreferenteContactoPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "tipo_de_identidad__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Tipo_de_Identidad__c' and objeto = 'Contact'")
-	private PickListsContactVO tipoIdentidadPickList;
+	private PickListsContactTipoIdentidadVO tipoIdentidadPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "tipo_de_contacto__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Tipo_de_contacto__c' and objeto = 'Contact'")
-	private PickListsContactVO tipoContactoPickList;
+	private PickListsContactTipoContactoVO tipoContactoPickList;
 	
 	public ContactVO() {
 		super();
@@ -142,8 +142,8 @@ public class ContactVO extends ObjectVO implements Serializable {
 			String sf4twitterFcbkUsername, Boolean casosReiterados, String email, String accountRun, String dirContacto,
 			String sf4twitterTwitterUserId, String sf4twitterFcbkUserId, String sf4twitterTwitterUsername,
 			String tipoContacto, String phone, String apellidoPaterno, String accountid, AccountVO cuentaJoin,
-			PickListsContactVO canalPreferenteContactoPickList, PickListsContactVO tipoIdentidadPickList,
-			PickListsContactVO tipoContactoPickList) {
+			PickListsContactCanalPreferenteContactoVO canalPreferenteContactoPickList, PickListsContactTipoIdentidadVO tipoIdentidadPickList,
+			PickListsContactTipoContactoVO tipoContactoPickList) {
 		super();
 		this.isDeleted = isDeleted;
 		this.systemDate = systemDate;
@@ -403,27 +403,27 @@ public class ContactVO extends ObjectVO implements Serializable {
 		this.cuentaJoin = cuentaJoin;
 	}
 
-	public PickListsContactVO getCanalPreferenteContactoPickList() {
+	public PickListsContactCanalPreferenteContactoVO getCanalPreferenteContactoPickList() {
 		return canalPreferenteContactoPickList;
 	}
 
-	public void setCanalPreferenteContactoPickList(PickListsContactVO canalPreferenteContactoPickList) {
+	public void setCanalPreferenteContactoPickList(PickListsContactCanalPreferenteContactoVO canalPreferenteContactoPickList) {
 		this.canalPreferenteContactoPickList = canalPreferenteContactoPickList;
 	}
 
-	public PickListsContactVO getTipoIdentidadPickList() {
+	public PickListsContactTipoIdentidadVO getTipoIdentidadPickList() {
 		return tipoIdentidadPickList;
 	}
 
-	public void setTipoIdentidadPickList(PickListsContactVO tipoIdentidadPickList) {
+	public void setTipoIdentidadPickList(PickListsContactTipoIdentidadVO tipoIdentidadPickList) {
 		this.tipoIdentidadPickList = tipoIdentidadPickList;
 	}
 
-	public PickListsContactVO getTipoContactoPickList() {
+	public PickListsContactTipoContactoVO getTipoContactoPickList() {
 		return tipoContactoPickList;
 	}
 
-	public void setTipoContactoPickList(PickListsContactVO tipoContactoPickList) {
+	public void setTipoContactoPickList(PickListsContactTipoContactoVO tipoContactoPickList) {
 		this.tipoContactoPickList = tipoContactoPickList;
 	}
 
