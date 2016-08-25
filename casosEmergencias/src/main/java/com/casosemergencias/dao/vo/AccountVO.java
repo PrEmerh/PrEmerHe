@@ -12,8 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.WhereJoinTable;
 import org.hibernate.collection.internal.PersistentBag;
 
 import com.casosemergencias.model.Cuenta;
@@ -102,12 +104,24 @@ public class AccountVO extends ObjectVO implements Serializable {
 	@JoinColumn(name = "accountid", referencedColumnName = "sfid", insertable = false, updatable = false, nullable = true)
 	private List<ContactVO> contactos;
 
+	/*Joins con picklist*/
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "tipo_de_identidad__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Tipo_de_Identidad__c' and objeto = 'Account'")
+	private PickListsAccountTipoIdentidadVO tipoIdentidadPickList;
+	
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "tipo_de_identidad__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Tipo_de_Identidad__c' and objeto = 'Account'")
+	private PickListsAccountIdEmpresaVO idEmpresaPickList;
+	
 	// Tipo de registro de cuenta
 	public AccountVO(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
 			String name, String apellidoPaterno, String apellidoMaterno, String tipoIdentidad, String parentRutEmpresa,
 			String accountRun, Date fechaNacimiento, String phone, String telefonoPrincipal, String telefonoSecundario,
 			String email, String emailSecundario, String direccion, String accountsource, String idEmpresa,
-			List<SuministroVO> suministros, List<ContactVO> contactos) {
+			List<SuministroVO> suministros, List<ContactVO> contactos,
+			PickListsAccountTipoIdentidadVO tipoIdentidadPickList, PickListsAccountIdEmpresaVO idEmpresaPickList) {
 		super();
 		this.isDeleted = isDeleted;
 		this.systemDate = systemDate;
@@ -132,6 +146,8 @@ public class AccountVO extends ObjectVO implements Serializable {
 		this.idEmpresa = idEmpresa;
 		this.suministros = suministros;
 		this.contactos = contactos;
+		this.tipoIdentidadPickList = tipoIdentidadPickList;
+		this.idEmpresaPickList = idEmpresaPickList;
 	}
 
 	public AccountVO() {
@@ -342,5 +358,37 @@ public class AccountVO extends ObjectVO implements Serializable {
 	public Object instantiateTargetLogic() {
 		Cuenta cuenta = new Cuenta();
 		return cuenta;
+	}
+
+	public PickListsAccountTipoIdentidadVO getTipoIdentidadPickList() {
+		return tipoIdentidadPickList;
+	}
+
+	public void setTipoIdentidadPickList(PickListsAccountTipoIdentidadVO tipoIdentidadPickList) {
+		this.tipoIdentidadPickList = tipoIdentidadPickList;
+	}
+
+	public PickListsAccountIdEmpresaVO getIdEmpresaPickList() {
+		return idEmpresaPickList;
+	}
+
+	public void setIdEmpresaPickList(PickListsAccountIdEmpresaVO idEmpresaPickList) {
+		this.idEmpresaPickList = idEmpresaPickList;
+	}
+	
+	public String getLabelTipoIdentidadPickList() {
+		String result = this.getTipoIdentidad();
+		if (this.getTipoIdentidadPickList() != null) {
+			result = this.getTipoIdentidadPickList().getValor();
+		}
+		return result;
+	}
+	
+	public String getLabelIdEmpresaPickList() {
+		String result = this.getIdEmpresa();
+		if (this.getIdEmpresaPickList() != null) {
+			result = this.getIdEmpresaPickList().getValor();
+		}
+		return result;
 	}
 }

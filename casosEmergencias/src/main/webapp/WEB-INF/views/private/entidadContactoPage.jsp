@@ -107,7 +107,7 @@
 							<label><s:message code="entidadContacto_table_label_tipoIdentidad"/></label>
 						</div>
 						<div>
-							<label>${contacto.tipoIdentidad}</label>
+							<label>${contacto.labelTipoIdentidadPickList}</label>
 						</div>
 					</div>
 					<div>
@@ -121,7 +121,7 @@
 							<label><s:message code="entidadContacto_table_label_canalPreferenteContacto"/></label>
 						</div>
 						<div>
-							<label>${contacto.canalPreferenteContacto}</label>
+							<label>${contacto.labelCanalPreferenteContactoPickList}</label>
 						</div>
 					</div>
 					<div>
@@ -304,7 +304,7 @@
 						<table class="servicesTable">
 							<tr>
 								<td class="filaLiteral"><s:message code="entidadContacto_indicadores_literal_tipo_contacto"/></td>
-								<td class="filaValor" colspan="2">${contacto.tipoContacto}</td>
+								<td class="filaValor" colspan="2">${contacto.labelTipoContactoPickList}</td>
 							</tr>
 							<tr>
 								<td class="filaLiteral"><s:message code="entidadContacto_indicadores_literal_run"/></td>
@@ -312,7 +312,7 @@
 							</tr>
 							<tr>
 								<td class="filaLiteral"><s:message code="entidadContacto_indicadores_literal_canal_preferente_contacto"/></td>
-								<td class="filaValor" colspan="2">${contacto.canalPreferenteContacto}</td>
+								<td class="filaValor" colspan="2">${contacto.labelCanalPreferenteContactoPickList}</td>
 							</tr>
 							<tr>
 								<td class="filaLiteral"><s:message code="entidadContacto_indicadores_literal_casos_reiterados"/></td>

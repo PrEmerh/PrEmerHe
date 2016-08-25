@@ -104,7 +104,7 @@
 						<label><s:message code="entidadCuenta_title_label_identity_type" /></label>
 					</div>
 					<div>
-						<label>${cuenta.tipoIdentidad}</label>
+						<label>${cuenta.labelTipoIdentidadPickList}</label>
 					</div>
 					<div class="divLabel">
 					</div>
@@ -132,7 +132,7 @@
 						<label><s:message code="entidadCuenta_title_label_company_id" /></label>
 					</div>
 					<div>
-						<label>${cuenta.idEmpresa}</label>
+						<label>${cuenta.labelIdEmpresaPickList}</label>
 					</div>
 				</div>
 			</div>

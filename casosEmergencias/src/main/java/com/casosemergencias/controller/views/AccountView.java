@@ -27,8 +27,11 @@ public class AccountView extends ObjectView {
 	/* Contactos asociados */ private List<ContactView> contactos;
 	// Tipo de registro de cuenta
 
+	/*Joins con picklist*/
+	private String labelTipoIdentidadPickList;
+	private String labelIdEmpresaPickList;
+	
 	/* Getters y Setters */
-
 	public Integer getId() {
 		return id;
 	}
@@ -185,5 +188,21 @@ public class AccountView extends ObjectView {
 	public Object instantiateTargetLogic() {
 		Cuenta cuenta = new Cuenta();
 		return cuenta;
+	}
+
+	public String getLabelTipoIdentidadPickList() {
+		return labelTipoIdentidadPickList;
+	}
+
+	public void setLabelTipoIdentidadPickList(String labelTipoIdentidadPickList) {
+		this.labelTipoIdentidadPickList = labelTipoIdentidadPickList;
+	}
+
+	public String getLabelIdEmpresaPickList() {
+		return labelIdEmpresaPickList;
+	}
+
+	public void setLabelIdEmpresaPickList(String labelIdEmpresaPickList) {
+		this.labelIdEmpresaPickList = labelIdEmpresaPickList;
 	}
 }

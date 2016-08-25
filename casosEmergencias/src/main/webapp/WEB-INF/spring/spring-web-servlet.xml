@@ -58,15 +58,21 @@
 	                <value>com.casosemergencias.dao.vo.DireccionVO</value>
 	                <value>com.casosemergencias.dao.vo.HerokuUserVO</value> 
 	                <value>com.casosemergencias.dao.vo.SuministroVO</value>
-	                <value>com.casosemergencias.dao.vo.PickListsVO</value>
-	                <value>com.casosemergencias.dao.vo.PickListsCaseVO</value>
 	                <value>com.casosemergencias.dao.vo.RelacionActivoContactoVO</value>
 	                <value>com.casosemergencias.dao.vo.AssetVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsCaseVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsCaseOriginVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsContactVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsAccountVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsAccountIdEmpresaVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsAccountTipoIdentidadVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsDireccionTipoCalleVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsDireccionRegionVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsRelacionActivoVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsSumEstadoConVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsSumEstadoSumVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsSumEmpresaVO</value>
-	                <value>com.casosemergencias.dao.vo.PickListsCaseOriginVO</value>
 	            </list>  
 		  </property> 
 		  <property name="hibernateProperties">
