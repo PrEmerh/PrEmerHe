@@ -11,12 +11,10 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Where;
 
-import com.casosemergencias.model.PickList;
-
 @Entity
 @Table(name = "salesforce.picklists")
-@Where(clause = "objeto='Case'")
-public class PickListsCaseVO extends ObjectVO implements Serializable {
+@Where(clause = "objeto='Account' AND campo='Id_Empresa__c'")
+public class PickListsAccountIdEmpresaVO extends ObjectVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -79,7 +77,7 @@ public class PickListsCaseVO extends ObjectVO implements Serializable {
 
 	@Override
 	public Object instantiateTargetLogic() {
-		PickList picklist = new PickList();
+		Object picklist = new Object();
 		return picklist;
 	}
 }

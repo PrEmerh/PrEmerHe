@@ -39,15 +39,21 @@ public class Contacto extends ObjectLogic {
 	/*Tipo cuenta asociadas*/               private String tipoCuentaAsociado;
 	
 	/*Lista de suministros relacionados, se obtienend e una consulta extra a relacion activo contacto*/
-											private List<Suministro> suministros;
-											
-											private Cuenta cuentaJoin;
-											
-											private List<Caso> casos;
-											//Tipo relacion que viene de la Relación activo contacto
-											private String relacionActivo;
-											private Boolean principal;
+	private List<Suministro> suministros;
 	
+	private Cuenta cuentaJoin;
+	
+	private List<Caso> casos;
+	//Tipo relacion que viene de la Relación activo contacto
+	private String relacionActivo;
+	private Boolean principal;
+	
+	/*Joins con picklist*/
+	private String labelCanalPreferenteContactoPickList;
+	private String labelTipoIdentidadPickList;
+	private String labelTipoContactoPickList;
+											
+
 	/* Getters y Setters */
 	public Integer getId() {
 		return id;
@@ -267,5 +273,29 @@ public class Contacto extends ObjectLogic {
 
 	public void setPrincipal(Boolean principal) {
 		this.principal = principal;
+	}
+
+	public String getLabelCanalPreferenteContactoPickList() {
+		return labelCanalPreferenteContactoPickList;
+	}
+
+	public void setLabelCanalPreferenteContactoPickList(String labelCanalPreferenteContactoPickList) {
+		this.labelCanalPreferenteContactoPickList = labelCanalPreferenteContactoPickList;
+	}
+
+	public String getLabelTipoIdentidadPickList() {
+		return labelTipoIdentidadPickList;
+	}
+
+	public void setLabelTipoIdentidadPickList(String labelTipoIdentidadPickList) {
+		this.labelTipoIdentidadPickList = labelTipoIdentidadPickList;
+	}
+
+	public String getLabelTipoContactoPickList() {
+		return labelTipoContactoPickList;
+	}
+
+	public void setLabelTipoContactoPickList(String labelTipoContactoPickList) {
+		this.labelTipoContactoPickList = labelTipoContactoPickList;
 	}
 }

@@ -14,7 +14,7 @@ $(document).ready(function() {
         	 "url": urlTable +'/listarSuministros', 	        	
         	 "contentType": 'application/json; charset=utf-8' ,
         	 "error": function(data) {
-        		 alert('Se ha producido un error obteniendo la lista de casos. Repita la operación y, si el error persiste, contacte con el administrador de la plataforma.');
+        		 alert('Se ha producido un error obteniendo la lista de suministros. Repita la operación y, si el error persiste, contacte con el administrador de la plataforma.');
         	 }
        	},
        	"columns": [

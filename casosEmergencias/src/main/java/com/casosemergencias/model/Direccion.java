@@ -18,7 +18,9 @@ public class Direccion extends ObjectLogic {
 	/*Esquina*/                     		private String esquina;
 	/*Descripcion de la comuna*/  			private String literalComuna;
 	
-
+	/*Joins con picklist*/
+	private String labelTipoCallePickList;
+	private String labelRegionPickList;
 
 	/* Getters y Setters */
 	public Integer getId() {
@@ -127,5 +129,21 @@ public class Direccion extends ObjectLogic {
 	public Object instantiateTargetVO() {
 		DireccionVO direccion = new DireccionVO();
 		return direccion;
+	}
+
+	public String getLabelTipoCallePickList() {
+		return labelTipoCallePickList;
+	}
+
+	public void setLabelTipoCallePickList(String labelTipoCallePickList) {
+		this.labelTipoCallePickList = labelTipoCallePickList;
+	}
+
+	public String getLabelRegionPickList() {
+		return labelRegionPickList;
+	}
+
+	public void setLabelRegionPickList(String labelRegionPickList) {
+		this.labelRegionPickList = labelRegionPickList;
 	}
 }

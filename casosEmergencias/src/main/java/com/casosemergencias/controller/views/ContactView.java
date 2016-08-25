@@ -45,6 +45,11 @@ public class ContactView extends ObjectView {
 	private String relacionActivo;
 	private Boolean principal;
 	
+	/*Joins con picklist*/
+	private String labelCanalPreferenteContactoPickList;
+	private String labelTipoIdentidadPickList;
+	private String labelTipoContactoPickList;
+	
 	/* Getters y Setters */
 	
 	public Integer getId() {
@@ -208,5 +213,23 @@ public class ContactView extends ObjectView {
 	}
 	public void setPrincipal(Boolean principal) {
 		this.principal = principal;
+	}
+	public String getLabelCanalPreferenteContactoPickList() {
+		return labelCanalPreferenteContactoPickList;
+	}
+	public void setLabelCanalPreferenteContactoPickList(String labelCanalPreferenteContactoPickList) {
+		this.labelCanalPreferenteContactoPickList = labelCanalPreferenteContactoPickList;
+	}
+	public String getLabelTipoIdentidadPickList() {
+		return labelTipoIdentidadPickList;
+	}
+	public void setLabelTipoIdentidadPickList(String labelTipoIdentidadPickList) {
+		this.labelTipoIdentidadPickList = labelTipoIdentidadPickList;
+	}
+	public String getLabelTipoContactoPickList() {
+		return labelTipoContactoPickList;
+	}
+	public void setLabelTipoContactoPickList(String labelTipoContactoPickList) {
+		this.labelTipoContactoPickList = labelTipoContactoPickList;
 	}
 }

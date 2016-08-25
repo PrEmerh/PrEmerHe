@@ -30,6 +30,10 @@ public class Cuenta extends ObjectLogic {
 	/*Suministros asociados*/				private List<Suministro> suministros;
 	/*Contactos asociados*/					private List<Contacto> contactos;
 	
+	/*Joins con picklist*/
+	private String labelTipoIdentidadPickList;
+	private String labelIdEmpresaPickList;
+	
 	/* Getters y Setters */
 	public Integer getId() {
 		return id;
@@ -193,5 +197,21 @@ public class Cuenta extends ObjectLogic {
 	public Object instantiateTargetVO() {
 		AccountVO cuenta = new AccountVO();
 		return cuenta;
+	}
+
+	public String getLabelTipoIdentidadPickList() {
+		return labelTipoIdentidadPickList;
+	}
+
+	public void setLabelTipoIdentidadPickList(String labelTipoIdentidadPickList) {
+		this.labelTipoIdentidadPickList = labelTipoIdentidadPickList;
+	}
+
+	public String getLabelIdEmpresaPickList() {
+		return labelIdEmpresaPickList;
+	}
+
+	public void setLabelIdEmpresaPickList(String labelIdEmpresaPickList) {
+		this.labelIdEmpresaPickList = labelIdEmpresaPickList;
 	}
 }

@@ -38,7 +38,7 @@
 						<label><s:message code="entidadDireccion_table_label_region"/></label>
 					</div>
 					<div>
-						<label>${direccion.region}</label>
+						<label>${direccion.labelRegionPickList}</label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadDireccion_table_label_comuna"/></label>
@@ -52,7 +52,7 @@
 						<label><s:message code="entidadDireccion_table_label_tipoDeCalle"/></label>
 					</div>
 					<div>
-						<label>${direccion.tipoCalle}</label>
+						<label>${direccion.labelTipoCallePickList}</label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadDireccion_table_label_calle"/></label>

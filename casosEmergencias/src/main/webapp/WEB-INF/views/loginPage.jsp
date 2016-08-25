@@ -11,7 +11,7 @@
 	<body>
 		<header>
 			<section id="logo-section">
-				<img src="./resources/images/enel_logo_new.png" width="200" />
+				<img src="${pageContext.request.contextPath}/resources/images/enel_logo_new.png" width="200" />
 				<p id="login-text"><s:message code="login_label_title"/></p>
 			</section>
 		</header>

@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.WhereJoinTable;
+
 import com.casosemergencias.model.Contacto;
 
 @Entity
@@ -114,8 +116,22 @@ public class ContactVO extends ObjectVO implements Serializable {
 	/*Influencer Tipo*/
 	/*Biografía de Twitter*/
 
+	/*Joins con picklist*/
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "canal_preferente_de_contacto__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Canal_Preferente_de_Contacto__c' and objeto = 'Contact'")
+	private PickListsContactVO canalPreferenteContactoPickList;
 	
-
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "tipo_de_identidad__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Tipo_de_Identidad__c' and objeto = 'Contact'")
+	private PickListsContactVO tipoIdentidadPickList;
+	
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "tipo_de_contacto__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Tipo_de_contacto__c' and objeto = 'Contact'")
+	private PickListsContactVO tipoContactoPickList;
+	
 	public ContactVO() {
 		super();
 	}
@@ -125,7 +141,9 @@ public class ContactVO extends ObjectVO implements Serializable {
 			String apellidoMaterno, String tipoIdentidad, String telefonoSecundario, String emailSecundario,
 			String sf4twitterFcbkUsername, Boolean casosReiterados, String email, String accountRun, String dirContacto,
 			String sf4twitterTwitterUserId, String sf4twitterFcbkUserId, String sf4twitterTwitterUsername,
-			String tipoContacto, String phone, String apellidoPaterno, String accountid, AccountVO cuentaJoin) {
+			String tipoContacto, String phone, String apellidoPaterno, String accountid, AccountVO cuentaJoin,
+			PickListsContactVO canalPreferenteContactoPickList, PickListsContactVO tipoIdentidadPickList,
+			PickListsContactVO tipoContactoPickList) {
 		super();
 		this.isDeleted = isDeleted;
 		this.systemDate = systemDate;
@@ -154,6 +172,9 @@ public class ContactVO extends ObjectVO implements Serializable {
 		this.apellidoPaterno = apellidoPaterno;
 		this.accountid = accountid;
 		this.cuentaJoin = cuentaJoin;
+		this.canalPreferenteContactoPickList = canalPreferenteContactoPickList;
+		this.tipoIdentidadPickList = tipoIdentidadPickList;
+		this.tipoContactoPickList = tipoContactoPickList;
 	}
 
 	public Boolean getIsDeleted() {
@@ -382,4 +403,51 @@ public class ContactVO extends ObjectVO implements Serializable {
 		this.cuentaJoin = cuentaJoin;
 	}
 
+	public PickListsContactVO getCanalPreferenteContactoPickList() {
+		return canalPreferenteContactoPickList;
+	}
+
+	public void setCanalPreferenteContactoPickList(PickListsContactVO canalPreferenteContactoPickList) {
+		this.canalPreferenteContactoPickList = canalPreferenteContactoPickList;
+	}
+
+	public PickListsContactVO getTipoIdentidadPickList() {
+		return tipoIdentidadPickList;
+	}
+
+	public void setTipoIdentidadPickList(PickListsContactVO tipoIdentidadPickList) {
+		this.tipoIdentidadPickList = tipoIdentidadPickList;
+	}
+
+	public PickListsContactVO getTipoContactoPickList() {
+		return tipoContactoPickList;
+	}
+
+	public void setTipoContactoPickList(PickListsContactVO tipoContactoPickList) {
+		this.tipoContactoPickList = tipoContactoPickList;
+	}
+
+	public String getLabelCanalPreferenteContactoPickList() {
+		String result = this.getCanalPreferenteContacto();
+		if (this.getCanalPreferenteContactoPickList() != null) {
+			result = this.getCanalPreferenteContactoPickList().getValor();
+		}
+		return result;
+	}
+	
+	public String getLabelTipoIdentidadPickList() {
+		String result = this.getTipoIdentidad();
+		if (this.getTipoIdentidadPickList() != null) {
+			result = this.getTipoIdentidadPickList().getValor();
+		}
+		return result;
+	}
+	
+	public String getLabelTipoContactoPickList() {
+		String result = this.getTipoContacto();
+		if (this.getTipoContactoPickList() != null) {
+			result = this.getTipoContactoPickList().getValor();
+		}
+		return result;
+	}
 }
