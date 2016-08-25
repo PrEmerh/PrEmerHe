@@ -8,7 +8,7 @@
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		
-		<link rel="icon" type="image/png" href="../resources/images/favicon.jpg">
+		<link rel="icon" type="image/png" href="../resources/images/favicon.png">
 		
 		<link href="../resources/css/styles.css" rel="stylesheet">
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />

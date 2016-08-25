@@ -3,13 +3,15 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<link href="resources/css/styles.css" rel="stylesheet">
+		
 		<title>Emergencias App Login Page</title>
+		
+		<link href="resources/css/styles.css" rel="stylesheet">
 	</head>
 	<body>
 		<header>
 			<section id="logo-section">
-				<img src="resources/images/enel-logo-new.jpg" width="200" />
+				<img src="./resources/images/enel_logo_new.png" width="200" />
 				<p id="login-text"><s:message code="login_label_title"/></p>
 			</section>
 		</header>

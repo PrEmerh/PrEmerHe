@@ -9,7 +9,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Emergencias App</title>		
 		
-		<link rel="icon" type="image/png" href="../resources/images/favicon.jpg">
+		<link rel="icon" type="image/png" href="../resources/images/favicon.png">
 		
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
 		<link href="../resources/css/body.css" rel="stylesheet" />
@@ -97,7 +97,7 @@
 				<div id="divEntidadSuministroCasos" class="divEntidad">
 				<div class="subtitleAltaEntidad">
 					<div>
-						<input id="arrowTablaSuministroContactos" type="image" src="../resources/images/Arrowdown.PNG"  
+						<input id="arrowTablaSuministroContactos" type="image" src="../resources/images/arrow-down-black.png"  
 							height="15" onclick="showHideCabeceras('tablaSuministroCasos','arrowTablaSuministroContactos'); return false;"/>			
 						<label class="divLabel"><s:message code="entidadSuministro_title_label_contactos_relacionados" /></label>
 					</div>
