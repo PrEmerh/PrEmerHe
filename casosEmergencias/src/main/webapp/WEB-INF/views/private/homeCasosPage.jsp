@@ -24,11 +24,12 @@
 		<jsp:include page="cabeceraPage.jsp"/>
 		 
 		<form name="formListadoCasos" action="homeCasosAction" method="POST">
-			<div class="botoneraListado">
+<%-- 			<div class="botoneraListado">
 				<ul>
 					<li><input type="submit" name="goCrearCaso" value="<s:message code="homeCasos_button_nuevocaso"/>" /></li>
 				</ul>
-			</div>
+			</div> --%>
+			<br><br>
 			<div class="formBusqueda">
 				<table class="tablaBusqueda">
 					<tr>

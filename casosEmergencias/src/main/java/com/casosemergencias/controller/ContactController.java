@@ -3,6 +3,9 @@ package com.casosemergencias.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -19,6 +22,7 @@ import com.casosemergencias.controller.views.ContactView;
 import com.casosemergencias.logic.ContactService;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.constants.Constantes;
 import com.casosemergencias.util.datatables.DataTableParser;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -31,10 +35,16 @@ public class ContactController {
 	private ContactService contactService;
 
 	@RequestMapping(value = "/private/homeContacts", method = RequestMethod.GET)
-	public ModelAndView listadoContactos() {
+	public ModelAndView listadoContactos(HttpServletRequest request) {
 
 		logger.info("--- Inicio -- listadoContactos ---");
-
+		
+		HttpSession session = request.getSession(true);	
+		
+		session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
+		session.setAttribute(Constantes.SFID_CONTACTO, null);	
+		session.setAttribute(Constantes.SFID_CUENTA, null);	
+		
 		ModelAndView model = new ModelAndView();
 		model.setViewName("private/homeContactsPage");
 	
@@ -44,8 +54,10 @@ public class ContactController {
 	}
 
 	@RequestMapping(value = "/private/entidadContacto", method = RequestMethod.GET)
-	public ModelAndView getContactoData(@RequestParam String sfid) {
+	public ModelAndView getContactoData(@RequestParam String sfid,HttpServletRequest request) {
 		System.out.println("Ejecutar consulta");
+		HttpSession session = request.getSession(true);
+		session.setAttribute(Constantes.SFID_CONTACTO, sfid);
 		ModelAndView model = new ModelAndView();		
 		model.addObject("sfid", sfid);
 
@@ -102,4 +114,16 @@ public class ContactController {
 		
 		return jsonObject.toString();
 	}
+	
+	//Crear Caso nuevo con Contacto asociado.
+	
+	@RequestMapping(value = "/private/actualizarContacto", method = RequestMethod.POST)
+	public ModelAndView crearCasoByContacto() {
+				
+		ModelAndView model = new ModelAndView();
+		model.setViewName("redirect:entidadCasoAlta");
+		
+		return model;
+	}
+	
 }
