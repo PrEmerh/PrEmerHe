@@ -1,5 +1,6 @@
 package com.casosemergencias.model;
 
+import com.casosemergencias.controller.views.UserView;
 import com.casosemergencias.dao.vo.UserVO;
 
 //Objeto que tiene el modelo de un Usuario, se utiliza en el Servicio
@@ -34,8 +35,8 @@ public class User extends ObjectLogic{
 	@Override
 	public Object instantiateTargetView() {
 		//Cambiar el tipo de dato cuando creemos el objeto view
-		Object obj = new Object();
-		return obj;
+		UserView userview = new UserView();
+		return userview;
 	}
 	
 	

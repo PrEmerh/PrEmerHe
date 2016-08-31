@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.SuministroView;
-import com.casosemergencias.controller.views.UserView;
+import com.casosemergencias.controller.views.HerokuUserView;
 import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;

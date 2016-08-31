@@ -55,6 +55,7 @@ public class CaseView extends ObjectView {
 	private String tipoAtencionSEC;
 	private String ani;
 	private String descripcionEstado;
+	private UserView userJoin;
 	
 	/*Joins con picklist*/
 	private String labelSubmotivoPickList;
@@ -329,6 +330,12 @@ public class CaseView extends ObjectView {
 	}
 	public void setContactoJoin(ContactView contactoJoin) {
 		this.contactoJoin = contactoJoin;
+	}
+	public UserView getUserJoin() {
+		return userJoin;
+	}
+	public void setUserJoin(UserView userJoin) {
+		this.userJoin = userJoin;
 	}
 	public String getNumeroMedidor() {
 		return numeroMedidor;

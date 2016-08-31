@@ -1,6 +1,6 @@
 package com.casosemergencias.model;
 
-import com.casosemergencias.controller.views.UserView;
+import com.casosemergencias.controller.views.HerokuUserView;
 import com.casosemergencias.dao.vo.HerokuUserVO;
 
 /**
@@ -10,7 +10,7 @@ import com.casosemergencias.dao.vo.HerokuUserVO;
  *         utilizaremos en el Servicio.
  *
  */
-public class HeokuUser extends ObjectLogic {
+public class HerokuUser extends ObjectLogic {
 
 	private Integer id;
 	private String name;
@@ -78,7 +78,7 @@ public class HeokuUser extends ObjectLogic {
 
 	@Override
 	public Object instantiateTargetView() {
-		UserView usuario = new UserView();
+		HerokuUserView usuario = new HerokuUserView();
 		return usuario;
 	}
 	
