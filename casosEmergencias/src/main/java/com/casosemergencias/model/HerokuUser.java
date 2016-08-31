@@ -10,7 +10,7 @@ import com.casosemergencias.dao.vo.HerokuUserVO;
  *         utilizaremos en el Servicio.
  *
  */
-public class HeokuUser extends ObjectLogic {
+public class HerokuUser extends ObjectLogic {
 
 	private Integer id;
 	private String name;

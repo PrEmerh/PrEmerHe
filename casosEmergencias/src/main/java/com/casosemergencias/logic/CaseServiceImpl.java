@@ -6,8 +6,14 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.casosemergencias.dao.CaseCommentDAO;
 import com.casosemergencias.dao.CaseDAO;
+import com.casosemergencias.dao.CaseHistoryDAO;
+import com.casosemergencias.dao.vo.CaseCommentVO;
+import com.casosemergencias.dao.vo.CaseHistoryVO;
 import com.casosemergencias.dao.vo.CaseVO;
+import com.casosemergencias.model.CaseComment;
+import com.casosemergencias.model.CaseHistory;
 import com.casosemergencias.model.Caso;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.datatables.DataTableProperties;
@@ -18,6 +24,12 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 	
 	@Autowired
 	private CaseDAO caseDao;
+	
+	@Autowired
+	private CaseHistoryDAO caseHistoryDao;
+	
+	@Autowired
+	private CaseCommentDAO caseCommentDao;
 	
 	/**
 	 * Metodo que devuelve una lista con todos los Casos que hay en BBDD
@@ -56,6 +68,15 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 		if (casoVO != null){
 			ParserModelVO.parseDataModelVO(casoVO, returnCase);
 		}
+		
+		List<CaseHistoryVO> listaHistorialCasoVO = caseHistoryDao.readCaseHistoryByCaseId(sfid);
+		List<CaseHistory> historialCasosRelacionado = parseaListaHistorialCasos(listaHistorialCasoVO);
+		returnCase.setHistorialCaso(historialCasosRelacionado);
+		
+		List<CaseCommentVO> listaComentarioCasoVO = caseCommentDao.readCaseCommentByCaseId(sfid);
+		List<CaseComment> comentariosCasoRelacionado = parseaListaComentariosCasos(listaComentarioCasoVO);
+		returnCase.setCommentarioCaso(comentariosCasoRelacionado);
+		
 		return returnCase;
 	}
 	
@@ -95,5 +116,31 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 		casoVO.setDescription(caso.getDescription());
 		Integer id = caseDao.updateCase(casoVO);
 		return id;
+	}
+	
+	private List<CaseHistory> parseaListaHistorialCasos(List<CaseHistoryVO> listaCaseHistoryVO) {
+		if(listaCaseHistoryVO!=null && !listaCaseHistoryVO.isEmpty()){
+			List<CaseHistory> retorno = new ArrayList<CaseHistory>();
+			for(CaseHistoryVO historiaCasoVO: listaCaseHistoryVO){
+				CaseHistory casoRelacionado = new CaseHistory();
+				ParserModelVO.parseDataModelVO(historiaCasoVO, casoRelacionado);
+				retorno.add(casoRelacionado);
+			}
+			return retorno;
+		}
+		return null;
+	}
+	
+	private List<CaseComment> parseaListaComentariosCasos(List<CaseCommentVO> listaCaseCommentVO) {
+		if(listaCaseCommentVO!=null && !listaCaseCommentVO.isEmpty()){
+			List<CaseComment> retorno = new ArrayList<CaseComment>();
+			for(CaseCommentVO comentarioCasoVO: listaCaseCommentVO){
+				CaseComment casoRelacionado = new CaseComment();
+				ParserModelVO.parseDataModelVO(comentarioCasoVO, casoRelacionado);
+				retorno.add(casoRelacionado);
+			}
+			return retorno;
+		}
+		return null;
 	}
 }

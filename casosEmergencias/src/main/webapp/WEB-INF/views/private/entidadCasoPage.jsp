@@ -12,6 +12,7 @@
 			
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
 		<link href="../resources/css/body.css" rel="stylesheet" />	
+		<link href="../resources/css/styles.css" rel="stylesheet" />	
 	
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/header.js" lang=""></script>
@@ -335,6 +336,92 @@
 					</div>
 				</div>
 			</div>
+			
+			<div id="divEntidadCasosHistory" class="divEntidad">
+				<div class="subtitleAltaEntidad">
+					<div>
+						<input id="arrowTablaCasosHistory" type="image" src="../resources/images/arrow-down-black.png"  
+							height="15" onclick="showHideCabeceras('tablaCasosHistory','arrowTablaCasosHistory'); return false;"/>			
+						<label class="divLabel"><s:message code="entidadCaso_title_label_historial_titulo" /></label>
+					</div>
+				</div>
+				<div id="tablaCasosHistory">
+					<table class="basicTable">
+						<tr>
+							<th width="15%"><s:message code="entidadCaso_column_label_historia_fecha" /></th>
+						    <th width="15%"><s:message code="entidadCaso_column_label_historia_usuario" /></th>
+						    <th width="70%"><s:message code="entidadCaso_column_label_historia_accion" /></th>
+						</tr>
+						<c:choose>
+							<c:when test="${not empty caso.historialCaso}">
+								<c:forEach items="${caso.historialCaso}" var="hist">
+									<tr>
+										<td width="15%">${hist.createddate}</td>
+										<td width="15%">${hist.createdbyid}</td>
+										<td width="70%"><s:message code="entidadCaso_texto_label_historia_accion" arguments="${hist.field}, ${hist.oldvalue}, ${hist.newvalue}"/></td>
+									</tr>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="6" class="tablaVacia">
+										<s:message code="entidades_empty_case_table" />
+									</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+					</table>
+				</div>
+			</div>
+				
+			<div id="divEntidadCasosComments" class="divEntidad">
+					<div class="subtitleAltaEntidad">
+						<div>
+							<input id="arrowTablaCasosComments" type="image" src="../resources/images/arrow-down-black.png"  
+								height="15" onclick="showHideCabeceras('tablaCasosComments','arrowTablaCasosComments'); return false;"/>			
+							<label class="divLabel"><s:message code="entidadCaso_title_label_comentarios_titulo" /></label>
+						</div>
+					</div>
+					<div id="tablaCasosComments">
+						<table class="basicTable">
+							<tr>
+							    <th><s:message code="entidadCaso_column_label_comentarios_publica" /></th>
+							    <th><s:message code="entidadCaso_column_label_comentarios_comentario" /></th>
+							</tr>
+							<c:choose>
+								<c:when test="${not empty caso.commentarioCaso}">
+									<c:forEach items="${caso.commentarioCaso}" var="coment">
+										<tr>
+											<td>
+												<c:if test="${coment.ispublished}">
+												    <label><input type="checkbox" id="checkbox" value="true" checked="checked" disabled/>
+													</label> 					
+												</c:if> 
+												<c:if test="${coment.ispublished == false}">
+													<label><input type="checkbox" id="checkbox" value="true" disabled/></label>	
+												</c:if>
+											</td>
+											<td>
+												<b><s:message code="entidadCaso_texto_label_comentarios_comentario_creado" arguments="${coment.createdbyid}, ${coment.createddate}"/>
+												<c:if test="${coment.lastmodifiedbyid != null}">
+												 | <s:message code="entidadCaso_texto_label_comentarios_comentario_modificado" arguments="${coment.lastmodifiedbyid}, ${coment.lastmodifieddate}"/>
+												</c:if>
+											</b> 
+											<br>${coment.comment}</td>
+										</tr>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<tr>
+										<td colspan="6" class="tablaVacia">
+											<s:message code="entidades_empty_case_table" />
+										</td>
+									</tr>
+								</c:otherwise>
+							</c:choose>
+						</table>
+					</div>
+				</div>
 		</form:form>
   	</body>
 </html>

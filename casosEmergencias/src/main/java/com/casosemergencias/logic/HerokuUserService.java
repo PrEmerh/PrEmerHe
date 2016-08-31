@@ -1,10 +1,10 @@
 package com.casosemergencias.logic;
 
-import com.casosemergencias.model.HeokuUser;
+import com.casosemergencias.model.HerokuUser;
 
 public interface HerokuUserService {
 
-	public HeokuUser readUserPass(String user, String pass);
+	public HerokuUser readUserPass(String user, String pass);
 	public void insertUser();
-	public HeokuUser readUser(String userName);
+	public HerokuUser readUser(String userName);
 }

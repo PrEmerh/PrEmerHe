@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.casosemergencias.dao.HerokuUserDAO;
 import com.casosemergencias.dao.vo.HerokuUserVO;
-import com.casosemergencias.model.HeokuUser;
+import com.casosemergencias.model.HerokuUser;
 
 
 //las transacciones se abren y cierran aqui
@@ -30,10 +30,10 @@ public class HerokuUserServiceImpl implements HerokuUserService{
 	 * @return
 	 */
 	@Override
-	public HeokuUser readUserPass(String user, String pass) {
+	public HerokuUser readUserPass(String user, String pass) {
 
 		logger.info("--- Inicio -- readUserPass ---");
-		HeokuUser herokuUserView = new HeokuUser();
+		HerokuUser herokuUserView = new HerokuUser();
 				
 		HerokuUserVO herokuUser = new HerokuUserVO();
 		herokuUser.setUsername(user);
@@ -76,10 +76,10 @@ public class HerokuUserServiceImpl implements HerokuUserService{
 	 * @return
 	 */
 	@Override
-	public HeokuUser readUser(String userName) {
+	public HerokuUser readUser(String userName) {
 
 		logger.info("--- Inicio -- readUser ---");
-		HeokuUser herokuUserView = new HeokuUser();
+		HerokuUser herokuUserView = new HerokuUser();
 				
 		HerokuUserVO herokuUser = new HerokuUserVO();
 		herokuUser.setUsername(userName);		

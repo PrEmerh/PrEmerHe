@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.casosemergencias.model.HeokuUser;
+import com.casosemergencias.model.HerokuUser;
 
 
 
@@ -197,7 +197,7 @@ public class HerokuUserVO extends ObjectVO implements Serializable {
 	
 	@Override
 	public Object instantiateTargetLogic() {
-		HeokuUser usuario = new HeokuUser();
+		HerokuUser usuario = new HerokuUser();
 		return usuario;
 	}
 }

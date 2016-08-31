@@ -1,8 +1,10 @@
 package com.casosemergencias.controller.views;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
+import com.casosemergencias.model.CaseComment;
 import com.casosemergencias.model.Caso;
 
 public class CaseView extends ObjectView {
@@ -55,6 +57,8 @@ public class CaseView extends ObjectView {
 	private String tipoAtencionSEC;
 	private String ani;
 	private String descripcionEstado;
+	private List<CaseHistoryView> historialCaso;
+	private List<CaseCommentView> commentarioCaso;
 	
 	/*Joins con picklist*/
 	private String labelSubmotivoPickList;
@@ -471,6 +475,18 @@ public class CaseView extends ObjectView {
 	}
 	public void setLabelPeticionPickList(String labelPeticionPickList) {
 		this.labelPeticionPickList = labelPeticionPickList;
+	}	
+	public List<CaseHistoryView> getHistorialCaso() {
+		return historialCaso;
+	}
+	public void setHistorialCaso(List<CaseHistoryView> historialCaso) {
+		this.historialCaso = historialCaso;
+	}
+	public List<CaseCommentView> getCommentarioCaso() {
+		return commentarioCaso;
+	}
+	public void setCommentarioCaso(List<CaseCommentView> commentarioCaso) {
+		this.commentarioCaso = commentarioCaso;
 	}
 	@Override
 	public Object instantiateTargetLogic() {

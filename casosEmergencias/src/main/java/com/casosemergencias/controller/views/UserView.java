@@ -1,6 +1,6 @@
 package com.casosemergencias.controller.views;
 
-import com.casosemergencias.model.HeokuUser;
+import com.casosemergencias.model.HerokuUser;
 
 //Datos de un usuario que se necesitan en la vista, y datos de ayuda en la pantalla
 public class UserView extends ObjectView {
@@ -65,7 +65,7 @@ public class UserView extends ObjectView {
 
 	@Override
 	public Object instantiateTargetLogic() {
-		HeokuUser usuario = new HeokuUser();
+		HerokuUser usuario = new HerokuUser();
 		return usuario;
 	}
 }

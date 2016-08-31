@@ -1,6 +1,7 @@
 package com.casosemergencias.model;
 
 import java.util.Date;
+import java.util.List;
 
 import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.dao.vo.CaseVO;
@@ -62,6 +63,9 @@ public class Caso extends ObjectLogic {
 	private String labelSubestadoPickList;
 	private String labelCanalOrigenPickList;
 	private String labelPeticionPickList;
+	
+	private List<CaseHistory> historialCaso;
+	private List<CaseComment> commentarioCaso;
 	
 	public Integer getId() {
 		return id;
@@ -353,7 +357,19 @@ public class Caso extends ObjectLogic {
 	public void setLabelEstadoPickList(String labelEstadoPickList) {
 		this.labelEstadoPickList = labelEstadoPickList;
 	}
-	
+
+	public List<CaseHistory> getHistorialCaso() {
+		return historialCaso;
+	}
+	public void setHistorialCaso(List<CaseHistory> historialCaso) {
+		this.historialCaso = historialCaso;
+	}
+	public List<CaseComment> getCommentarioCaso() {
+		return commentarioCaso;
+	}
+	public void setCommentarioCaso(List<CaseComment> commentarioCaso) {
+		this.commentarioCaso = commentarioCaso;
+	}
 	/**/
 	@Override
 	public Object instantiateTargetView() {

@@ -60,6 +60,7 @@
 	                <value>com.casosemergencias.dao.vo.SuministroVO</value>
 	                <value>com.casosemergencias.dao.vo.RelacionActivoContactoVO</value>
 	                <value>com.casosemergencias.dao.vo.CaseHistoryVO</value>
+	                <value>com.casosemergencias.dao.vo.CaseCommentVO</value>
 	                <value>com.casosemergencias.dao.vo.UserVO</value>
 	                <value>com.casosemergencias.dao.vo.AssetVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsVO</value>
