@@ -40,4 +40,11 @@ public class Constantes {
 	public static final String COD_CASO_TYPE_RECLAMO = "TIP001";
 	public static final String COD_CASO_TYPE_RECLAMO_DESC = "Reclamo";
 	public static final String COD_CASO_STATUS_INGRESADO = "ESTA001";
+	
+	//
+	//Sesion SFID
+	
+	public static final String SFID_SUMINISTRO= "sfidSuministro";
+	public static final String SFID_CONTACTO= "sfidContacto";
+	public static final String SFID_CUENTA= "sfidCuenta";
 }

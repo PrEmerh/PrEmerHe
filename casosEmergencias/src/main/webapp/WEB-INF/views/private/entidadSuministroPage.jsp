@@ -23,6 +23,11 @@
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadSuministro_title_label_detalle_suministro"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadSuministro" action="actualizarSuministro" modelAttribute="suministro" method="POST">
+			<div class="botoneraListado">
+				<ul>
+					<li><input type="submit" name="goCrearCasoBySuministro" value="<s:message code="homeCasos_button_nuevocaso"/>" /></li>
+				</ul>
+			</div>
 			<form:hidden path="sfid"/>
 			<div class="divEntidadDatos">
 				<div class="divEntidad">
@@ -98,11 +103,11 @@
 				<div class="subtitleAltaEntidad">
 					<div>
 						<input id="arrowTablaSuministroContactos" type="image" src="../resources/images/arrow-down-black.png"  
-							height="15" onclick="showHideCabeceras('tablaSuministroCasos','arrowTablaSuministroContactos'); return false;"/>			
+							height="15" onclick="showHideCabeceras('tablaSuministroContactos','arrowTablaSuministroContactos'); return false;"/>			
 						<label class="divLabel"><s:message code="entidadSuministro_title_label_contactos_relacionados" /></label>
 					</div>
 				</div>
-				<div id="tablaSuministroCasos">
+				<div id="tablaSuministroContactos">
 					<table class="basicTable">
 						<tr>
 							<th><s:message code="entidadSuministro_title_label_contactos_nombre_contacto" /></th>

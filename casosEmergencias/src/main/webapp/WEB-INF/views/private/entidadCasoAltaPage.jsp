@@ -119,7 +119,8 @@
 				</div>
 				<div>
 					<form:hidden path="suministro"/>
-					<input type="text" id="numSumiRecuperado" disabled="disabled"/>
+					<input type="text" id="numSumiRecuperado" disabled="disabled" value="${numeroSuministro}"/>
+					${numeroSuministro}
 					<input type="button" id="botonLupaSuministro" class="lupa" onclick="abrirDialogSuministro();">					
 					<input type="button" id="textSuministro" class="limpiarCampo" onclick="limpiarSuministro();" value="<s:message code="entidadCasoAlta_table_label_limpiar"/>"/>
 				</div>

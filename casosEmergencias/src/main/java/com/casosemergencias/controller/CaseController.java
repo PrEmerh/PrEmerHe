@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -22,6 +25,7 @@ import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.logic.CaseService;
 import com.casosemergencias.logic.PickListsService;
 import com.casosemergencias.model.Caso;
+import com.casosemergencias.model.User;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.constants.Constantes;
 import com.casosemergencias.util.datatables.DataTableParser;
@@ -52,9 +56,15 @@ public class CaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/private/homeCasos", method = RequestMethod.GET)
-	public ModelAndView goHomeCasos() {
+	public ModelAndView goHomeCasos(HttpServletRequest request) {
 		
 		logger.info("--- Inicio -- listadoCasos ---");
+		
+		HttpSession session = request.getSession(true);		
+		session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
+		session.setAttribute(Constantes.SFID_CONTACTO, null);	
+		session.setAttribute(Constantes.SFID_CUENTA, null);	
+		
 
 		ModelAndView model = new ModelAndView();
 		model.setViewName("private/homeCasosPage");
@@ -65,7 +75,7 @@ public class CaseController {
 	}
 	
 	@RequestMapping(value = "/private/homeCasosAction", params="goCrearCaso", method = RequestMethod.POST)
-	public String goCrearCaso() {
+	public String goCrearCaso(){
 		return "redirect:entidadCasoAlta";
 	}
 	
@@ -106,8 +116,9 @@ public class CaseController {
 	}
 	
 	@RequestMapping(value = "/private/entidadCasoAlta", method = RequestMethod.GET)
-	public ModelAndView casoAlta() {
-		
+	public ModelAndView casoAlta(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+	 
 		logger.info("--- Inicio -- altaCaso ---");
 		
 		ModelAndView model = new ModelAndView();	
