@@ -109,11 +109,23 @@ function cargarDialogDireccion() {
 }
 
 function abrirDialogSuministro() {
+	$("#dialogSuministro").dialog( {
+		resizable: false,
+		height: "auto",
+		width: "60%"
+	});	
 	$("#dialogSuministro").dialog('open');	
+	createTableSuministro();//Funcion de popupsTable.js, crea la tabla
 }
 
 function abrirDialogDireccion() {
+	$("#dialogDireccion").dialog( {
+		resizable: false,
+		height: "auto",
+		width: "60%"
+	});	
 	$("#dialogDireccion").dialog('open');
+	createTableDireccion(); //Funcion de popupsTable.js, crea la tabla
 }
 
 function establecerSuministro(sfid, name) {

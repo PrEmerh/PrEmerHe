@@ -22,7 +22,6 @@
 	<body onload="initHeader();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_direccion"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
-		<form name='formListadoCasos' action="listar" method='POST'>
 <%-- 			<div class="botoneraListado">
 				<ul>
 					<li><input type="submit" name="goCrearCaso" value="<s:message code="homeCasos_button_nuevocaso"/>" /></li>

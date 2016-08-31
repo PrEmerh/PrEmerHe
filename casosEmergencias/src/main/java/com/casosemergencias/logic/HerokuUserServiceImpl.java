@@ -10,13 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.casosemergencias.dao.HerokuUserDAO;
 import com.casosemergencias.dao.vo.HerokuUserVO;
-import com.casosemergencias.model.User;
+import com.casosemergencias.model.HeokuUser;
 
 
 //las transacciones se abren y cierran aqui
-public class UserServiceImpl implements UserService{
+public class HerokuUserServiceImpl implements HerokuUserService{
 	
-	final static Logger logger = Logger.getLogger(UserService.class);
+	final static Logger logger = Logger.getLogger(HerokuUserService.class);
 	
 	@Autowired
 	private HerokuUserDAO herokuUserDao;
@@ -30,10 +30,10 @@ public class UserServiceImpl implements UserService{
 	 * @return
 	 */
 	@Override
-	public User readUserPass(String user, String pass) {
+	public HeokuUser readUserPass(String user, String pass) {
 
 		logger.info("--- Inicio -- readUserPass ---");
-		User userView = new User();
+		HeokuUser herokuUserView = new HeokuUser();
 				
 		HerokuUserVO herokuUser = new HerokuUserVO();
 		herokuUser.setUsername(user);
@@ -48,16 +48,16 @@ public class UserServiceImpl implements UserService{
 			herokuUser = listHerokuUser.get(0);
 			
 			//guardamos el HerokuUser en UserView
-			userView.setId(herokuUser.getId());
-			userView.setName(herokuUser.getName());
-			userView.setUser(herokuUser.getUsername());
-			userView.setPass(herokuUser.getPassword());
-			userView.setEmail(herokuUser.getEmail());
-			userView.setEnvioEmail(herokuUser.getEnvioMail());
+			herokuUserView.setId(herokuUser.getId());
+			herokuUserView.setName(herokuUser.getName());
+			herokuUserView.setUser(herokuUser.getUsername());
+			herokuUserView.setPass(herokuUser.getPassword());
+			herokuUserView.setEmail(herokuUser.getEmail());
+			herokuUserView.setEnvioEmail(herokuUser.getEnvioMail());
 			
 			logger.info("--- Fin -- readUserPass -- Existe usuario y password ---");
 			
-			return userView;
+			return herokuUserView;
 			
 		}else{
 			//si no existen datos devuelvo el usuario vacio
@@ -76,10 +76,10 @@ public class UserServiceImpl implements UserService{
 	 * @return
 	 */
 	@Override
-	public User readUser(String userName) {
+	public HeokuUser readUser(String userName) {
 
 		logger.info("--- Inicio -- readUser ---");
-		User userView = new User();
+		HeokuUser herokuUserView = new HeokuUser();
 				
 		HerokuUserVO herokuUser = new HerokuUserVO();
 		herokuUser.setUsername(userName);		
@@ -92,16 +92,16 @@ public class UserServiceImpl implements UserService{
 			herokuUser = listHerokuUser.get(0);
 			
 			//guardamos el HerokuUser en UserView
-			userView.setId(herokuUser.getId());
-			userView.setName(herokuUser.getName());
-			userView.setUser(herokuUser.getUsername());
-			userView.setPass(herokuUser.getPassword());
-			userView.setEmail(herokuUser.getEmail());
-			userView.setEnvioEmail(herokuUser.getEnvioMail());
+			herokuUserView.setId(herokuUser.getId());
+			herokuUserView.setName(herokuUser.getName());
+			herokuUserView.setUser(herokuUser.getUsername());
+			herokuUserView.setPass(herokuUser.getPassword());
+			herokuUserView.setEmail(herokuUser.getEmail());
+			herokuUserView.setEnvioEmail(herokuUser.getEnvioMail());
 			
 			logger.info("--- Fin -- readUser -- Existe usuario y password ---");
 			
-			return userView;
+			return herokuUserView;
 			
 		}else{
 			//si no existen datos devuelvo el usuario vacio

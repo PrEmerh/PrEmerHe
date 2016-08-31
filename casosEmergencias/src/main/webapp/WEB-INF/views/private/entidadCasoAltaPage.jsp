@@ -19,9 +19,9 @@
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>	
   		<script src="../resources/js/jquery-ui.js"></script>
+		<script src="../resources/js/utils.js" lang=""></script>
   		<script src="../resources/js/popupsTable.js"></script>
 		<script src="../resources/js/header.js" lang=""></script>
-		<script src="../resources/js/utils.js" lang=""></script>
 	</head>
 <body onload="initHeader(); cargarDialogSuministro(); cargarDialogDireccion();">
 	<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
@@ -212,7 +212,7 @@
 				<label><s:message code="dialog_label_busqueda_nombre"/></label>
 			</div>
 			<div>
-		  		<table id="tablaSuministrosPopUp" class="display" data-page-length="10" data-order="[[ 0, &quot;asc&quot; ]]">
+		  		<table id="tablaSuministrosPopUp" class="display" style="width: 100%;" data-page-length="10">
 						<thead>
 				            <tr>
 				            	<th width="30%"><s:message code="homeSuministros_table_head_nombreSuministro"/></th>
@@ -234,7 +234,7 @@
 				<label><s:message code="dialog_label_busqueda_nombre"/></label>
 			</div>
 			<div>
-		  		<table id="tablaDireccionesPopUp" class="display" data-page-length="10" data-order="[[ 0, &quot;asc&quot; ]]">
+		  		<table id="tablaDireccionesPopUp" class="display" style="width: 100%;" data-page-length="10">
 					<thead>
 			            <tr>
 			            	<th width="30%"><s:message code="homeDirecciones_table_head_codigoDireccion"/></th>
