@@ -799,6 +799,14 @@ public class SuministroDAO {
 						}
 					}
 					
+					if ("DireccionConcatenada__c".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							query.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							query.append(" AND ");
+							searchParamsCounter++;
+						}
+					}
+					
 					if ("n_mero_medidor__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							query.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
@@ -867,6 +875,14 @@ public class SuministroDAO {
 						}
 					}
 					
+					if ("DireccionConcatenada__c".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							sqlQuery.append(" AND ");
+							searchParamsCounter++;
+						}
+					}
+									
 					if ("n_mero_medidor__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
