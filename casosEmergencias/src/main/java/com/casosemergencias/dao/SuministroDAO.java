@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.casosemergencias.dao.vo.SuministroVO;
+import com.casosemergencias.util.DataTableProperties;
 
 @Repository
 public class SuministroDAO {
@@ -715,4 +716,82 @@ public class SuministroDAO {
 		return numModif;
 	}
 	
+	/*Alvaro Añadido*/
+	/**
+	 * Devuelve una lista de suministros utilizando los parametros del datatable
+	 * 
+	 * @return
+	 */
+	public List<SuministroVO> readSuministroDataTable(DataTableProperties propDatatable){
+				
+		logger.debug("--- Inicio -- readSuministroDataTable ---");
+		
+		Session session = sessionFactory.openSession();
+		String order = propDatatable.getOrderColumnName();
+		String dirOrder = propDatatable.getOrderDirec();
+		int numStart = propDatatable.getStart();
+		int numLength = propDatatable.getLength();
+		String searchValue = propDatatable.getValueSearch();
+		
+		try{
+			StringBuilder query = new StringBuilder("from SuministroVO ");
+			if(searchValue != null && !"".equals(searchValue)){
+				query.append(" WHERE name LIKE '%" + searchValue +"%'");
+			}
+			
+			if(order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)){
+				query.append("ORDER BY " + order + " " + dirOrder);
+			}
+			
+			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);
+			List<SuministroVO> suminsitroList = result.list();
+
+			logger.debug("--- Fin -- readSuministroDataTable ---");
+			
+			return suminsitroList;
+			
+	    }catch (HibernateException e) {
+	    	logger.error("--- readSuministroDataTable "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- readSuministroDataTable ---");
+	    }finally {
+	    	session.close(); 
+	    }
+	      return null;
+	}
+	
+	/*Alvaro Añadido*/
+	/**
+	 * Devuelve el número de direcciones utilizando los parametros del datatable
+	 * 
+	 * @return
+	 */
+	public Integer countSuministro(DataTableProperties propDatatable){
+				
+		logger.debug("--- Inicio -- countSuministro ---");
+		
+		Session session = sessionFactory.openSession();
+		String searchValue = propDatatable.getValueSearch();
+		
+		try{
+			StringBuilder sqlQuery = new StringBuilder("select count(id) from SuministroVO ");
+			if(searchValue != null && !"".equals(searchValue)){
+				sqlQuery.append(" WHERE name LIKE '%" + searchValue +"%'");
+			}
+			Query query = session.createQuery(sqlQuery.toString());
+			Long count = (Long) query.uniqueResult();
+			
+			logger.debug("--- Fin -- countSuministro ---");
+			
+			return count.intValue();
+			
+	    }catch (HibernateException e) {
+	    	logger.error("--- countSuministro "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- countSuministro ---");
+	    }finally {
+	    	session.close(); 
+	    }
+	      return null;
+	}
 }

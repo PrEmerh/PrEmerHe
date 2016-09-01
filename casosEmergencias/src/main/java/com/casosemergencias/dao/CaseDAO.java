@@ -1438,6 +1438,41 @@ public class CaseDAO{
 	    }
 
     }
+	
+	/*Añadido Alvaro*/
+	/**
+	 * Inserta un caso en BBDD. 
+	 * 
+	 * @param Case
+	 * @return
+	 */
+	@Transactional
+    public Integer insertCase(CaseVO caso){
+		
+		logger.debug("--- Inicio -- insert ---");
+		
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		try{
+			
+			session.save(caso);
+			tx.commit();
+			
+			logger.debug("--- Fin -- insert ---");
+			return caso.getId();
+		}catch (HibernateException e) {
+			
+	    	tx.rollback();
+			logger.error("--- insertCase "+ e.getMessage() +"---");
+	    	logger.error(e.getStackTrace()); 
+	    	logger.error("--- Fin -- updateCase ---");
+	    	return 0;
+	    	
+	    }finally {
+	    	session.close(); 
+	    }
+
+    }
 	/**
 	 * Devuelve el numero de casos que hay en la tala Case
 	 * 

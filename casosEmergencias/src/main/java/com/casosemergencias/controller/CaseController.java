@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.json.JsonArray;
-
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -100,14 +98,16 @@ public class CaseController {
 	private Map<String, String> getPickListPorCampo(Map<String, Map<String, String>> mapaGeneral, String campo, Boolean anniadirDefault){
 		Map<String, String> returnMap = null;
 		if (mapaGeneral != null && !mapaGeneral.isEmpty() && mapaGeneral.containsKey(campo)){
-			returnMap = mapaGeneral.get(campo);
+			returnMap = new LinkedHashMap<String, String>();
+			//Alvaro movido encima para que salga la opción default la primera 
 			if(anniadirDefault){returnMap.put(Constantes.PICKLIST_CASO_DEFAULT, "");}
+			returnMap.putAll(mapaGeneral.get(campo));
 		}
 		return returnMap;
 	}
 	
 	@RequestMapping(value = "/private/entidadCasoAlta", method = RequestMethod.GET)
-	public ModelAndView altaCaso() {
+	public ModelAndView casoAlta() {
 		
 		logger.info("--- Inicio -- altaCaso ---");
 		
@@ -140,6 +140,9 @@ public class CaseController {
 		}
 		casoView.setMapSubMotivo(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_SUBMOTIVO, true));
 		casoView.setMapCondicionAgravante(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CONDICION_AGRAVANTE, true));
+		//Alvaro añadido
+		casoView.setMapCanalNotificacion(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CANAL_NOTIFICACION, true));
+		casoView.setMapFavorabilidadCaso(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_FAVORABILIDAD, true));
 		
 		model.addObject("caso", casoView);
 		//casoView.setMapOrigin(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_ORIGIN));
@@ -149,7 +152,60 @@ public class CaseController {
 		
 		return model;
 	}
+	//Alvaro añadido método
+	@RequestMapping(value = "/private/altaCaso", params="GuardarCaso", method = RequestMethod.POST)
+	public String guardarCaso(CaseView caso){
+		//ModelAndView model = new ModelAndView();
+		String sfid = this.saveCase(caso);
+		/*Borrar y utilizar el recuperado en el alta*/
+		sfid = "5005B000000sESVQA2";
+		/**/
+		return "redirect:entidadCaso?sfid=" + sfid + "&editMode=" + Constantes.EDIT_MODE_VIEW;
+		
+	}
 	
+	//Alvaro añadido método
+	@RequestMapping(value = "/private/altaCaso", params="GuardarCasoYNuevo", method = RequestMethod.POST)
+	public String guardarCasoYNuevo(CaseView caso){
+		ModelAndView model = new ModelAndView();
+		String sfid = this.saveCase(caso);
+		return "redirect:entidadCasoAlta";
+	}
+	
+	//Alvaro añadido método
+	private void verificarPickList(CaseView caso){
+		if (caso.getSubmotivo() != null && Constantes.PICKLIST_CASO_DEFAULT.equalsIgnoreCase(caso.getSubmotivo())){
+			caso.setSubmotivo(null);
+		}
+		if (caso.getCondicionAgravante() != null && Constantes.PICKLIST_CASO_DEFAULT.equalsIgnoreCase(caso.getCondicionAgravante())){
+			caso.setCondicionAgravante(null);
+		}
+		if (caso.getCanalNotificacion() != null && Constantes.PICKLIST_CASO_DEFAULT.equalsIgnoreCase(caso.getCanalNotificacion())){
+			caso.setCanalNotificacion(null);
+		}		
+		if (caso.getFavorabilidadDelCaso() != null && Constantes.PICKLIST_CASO_DEFAULT.equalsIgnoreCase(caso.getFavorabilidadDelCaso())){
+			caso.setFavorabilidadDelCaso(null);
+		}
+	}
+	//Alvaro añadido método
+	private String saveCase(CaseView casoView){
+		String sfid = "";
+		
+		/**/
+		//Llamada a salesforce para generar el caso y recuperar su sfid y su casenumber
+		//Seteamos en el objeto caseview el sfid y el casenumber
+		/**/
+		//Parseamos los datos
+		verificarPickList(casoView);
+		Caso caso = new Caso();
+		ParserModelVO.parseDataModelVO(casoView, caso);
+		//Llamamos a al dao para insertar
+		
+		casoService.insertCase(caso);
+		
+		//Devolvemos el id de salesforce generado
+		return sfid;
+	}
 	/**
 	 * Metodo invocado por la tabla de homeCasosPage. Se recoge del body las propiedades de la tabla, le recupera la liasta con todos los 
 	 * casos utilizando estas propiedades y se envian a la tabla en un JSON

@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import com.casosemergencias.dao.DireccionDAO;
 import com.casosemergencias.dao.vo.DireccionVO;
 import com.casosemergencias.model.Direccion;
+import com.casosemergencias.util.DataTableProperties;
 import com.casosemergencias.util.ParserModelVO;
 
 
@@ -53,8 +55,32 @@ public class DireccionServiceImpl implements DireccionService{
 		}
 		return returnDireccion;
 	}
-
-
-
+	
+	/*Añadido Alvaro*/
+	public List<Direccion> readAllDirecciones(DataTableProperties propDatatable){
+		logger.debug("--- Inicio -- readAllDirecciones ---");
+		
+		List<Direccion> listDirecciones = new ArrayList<>();
+		
+		//List<SuministroVO> listSuministroVO = suministroDao.readAllSuministro();
+		List<DireccionVO> listDireccionesVO = direccionDao.readDireccionDataTable(propDatatable);
+		logger.debug("--- Inicio -- readAllDirecciones tamano : " + listDireccionesVO.size() + " ---");
+		Direccion direccion = null;
+		for(DireccionVO direccionVO : listDireccionesVO){
+			direccion = new Direccion();
+			ParserModelVO.parseDataModelVO(direccionVO, direccion);
+			listDirecciones.add(direccion);
+			
+		}
+		
+		logger.debug("--- Fin -- readAllDirecciones ---:"+listDirecciones.size());
+		
+		return listDirecciones;
+	}
+	
+	/*Añadido Alvaro*/
+	public Integer getNumDirecciones(DataTableProperties propDatatable){
+		return direccionDao.countDireccion(propDatatable);
+	}
 
 }

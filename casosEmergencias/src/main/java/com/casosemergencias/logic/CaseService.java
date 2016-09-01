@@ -12,5 +12,7 @@ public interface CaseService {
 	public Integer getNumCasos();
 	
 	public Caso readCaseById(Integer id);
+	/*Añadido Alvaro*/
+	public Integer insertCase(Caso caso);
 
 }

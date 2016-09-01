@@ -84,6 +84,8 @@ public class SuministroView extends ObjectView {
 	private String tipoCuenta;
 	
 	private String tipoSegmento;
+	/*Alvaro Añadido*/
+	private String direccionConcatenada;
 
 	public SuministroView(){}
 	
@@ -95,7 +97,7 @@ public class SuministroView extends ObjectView {
 			Boolean pagoEnProceso, String nombreDuenoBoleta, String bloque, String tipoConexion,
 			String direccionCliente, String electrodependiente, String medidaDisciplina, String horarioRacionamiento,
 			Double casosReiterados, String tarifa, String alimentador, String direccionBoleta, String cuenta,
-			String subestacionElectricaConexion, String ruta, String tipoCuenta, String tipoSegmento) {
+			String subestacionElectricaConexion, String ruta, String tipoCuenta, String tipoSegmento, /*Alvaro Añadido*/String direccionConcatenada) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -137,6 +139,8 @@ public class SuministroView extends ObjectView {
 		this.ruta = ruta;
 		this.tipoCuenta = tipoCuenta;
 		this.tipoSegmento = tipoSegmento;
+		/*Alvaro Añadido*/
+		this.direccionConcatenada = direccionConcatenada;
 	}
 
 	public Integer getId() {
@@ -458,7 +462,15 @@ public class SuministroView extends ObjectView {
 	public void setTipoSegmento(String tipoSegmento) {
 		this.tipoSegmento = tipoSegmento;
 	}
-	
+	/*Alvaro Añadido*/
+	public String getDireccionConcatenada() {
+		return direccionConcatenada;
+	}
+	/*Alvaro Añadido*/
+	public void setDireccionConcatenada(String direccionConcatenada) {
+		this.direccionConcatenada = direccionConcatenada;
+	}
+
 	@Override
 	public Object instantiateTargetLogic() {
 		Suministro suministro = new Suministro();

@@ -53,7 +53,6 @@ $(document).ready(function() {
 		if(radioButton == 'rd2'){
 			allCase = true;
 		}
-		
 		table.search($('#col0_filter').val(),allCase).draw();
 	});
 });

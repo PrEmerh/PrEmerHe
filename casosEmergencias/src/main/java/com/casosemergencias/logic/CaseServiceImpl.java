@@ -128,4 +128,11 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 		return caseDao.countCase();
 		
 	}
+	/*Añadido Alvaro*/
+	public Integer insertCase(Caso caso){
+		CaseVO casoVO = new CaseVO();
+		ParserModelVO.parseDataModelVO(caso, casoVO);
+		Integer id = caseDao.insertCase(casoVO);
+		return id;
+	}
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.casosemergencias.dao.SuministroDAO;
 import com.casosemergencias.dao.vo.SuministroVO;
 import com.casosemergencias.model.Suministro;
+import com.casosemergencias.util.DataTableProperties;
 import com.casosemergencias.util.ParserModelVO;
 
 
@@ -23,19 +24,21 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 	@Autowired
 	private SuministroDAO suministroDao;
 	
+	/*Alvaro Modificado*/
 	/**
 	 * Metodo que devuelve una lista con todos los suministros que hay en BBDD
 	 * 
 	 * @return
 	 */
 	@Override
-	public List<Suministro> readAllSuministros() {
+	public List<Suministro> readAllSuministros(DataTableProperties propDatatable) {
 		
 		logger.debug("--- Inicio -- readAllSuministros ---");
 		
 		List<Suministro> listSuministro = new ArrayList<>();
 		
-		List<SuministroVO> listSuministroVO = suministroDao.readAllSuministro();
+		//List<SuministroVO> listSuministroVO = suministroDao.readAllSuministro();
+		List<SuministroVO> listSuministroVO = suministroDao.readSuministroDataTable(propDatatable);
 		logger.debug("--- Inicio -- readAllSuministros tamano : " + listSuministroVO.size() + " ---");
 		
 		for(SuministroVO suministroVO : listSuministroVO){
@@ -61,6 +64,9 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 		return null;
 	}
 	
-	
+	/*Alvaro añadido*/
+	public Integer getNumSuministros(DataTableProperties propDatatable){
+		return suministroDao.countSuministro(propDatatable);
+	}
 
 }

@@ -1,3 +1,4 @@
+<!-- Alvaro añadir todo -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -9,24 +10,28 @@
 	<title>Emergencias App</title>		
 	
 	<link href="../resources/css/cabecera.css" rel="stylesheet" />
-	<link href="../resources/css/body.css" rel="stylesheet" />	
+	<link href="../resources/css/body.css" rel="stylesheet" />
+	<link href="../resources/css/jquery-ui.css" rel="stylesheet" />		
+	<link href="../resources/css/jQueryDatatable.css" rel="stylesheet" />
 
 	<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
+	<script src="../resources/js/jQueryDatatables.js"></script>	
+  	<script src="../resources/js/jquery-ui.js"></script>
+  	<script src="../resources/js/popupsTable.js"></script>
 	</head>
 <body>
 	<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
 	<jsp:include page="cabeceraPage.jsp"/>
 	<form:form name="formEntidadCasoAlta" action="altaCaso" modelAttribute="caso" method="POST" onsubmit="javascript:return validaDatos();">
-		<form:hidden path="sfid"/>		
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
 					<label><s:message code="entidadCasoAlta_title_label_detalle_caso"/></label>
 			</div>
 			<div class="botoneraEntidad">
 				<ul>
-				<li><input type="submit" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" /></li>
-				<li><input type="submit" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" /></li>
-				<li><input type="submit" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" /></li>
+				<li><input type="submit" name="GuardarCaso" value="<s:message code="entidadCasoAlta_button_guardar"/>" /></li>
+				<li><input type="submit" name="GuardarCasoYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" /></li>
+				<li><input type="submit" name="CancelarAltaCaso" value="<s:message code="entidadCasoAlta_button_cancelar"/>" /></li>
 				</ul>
 			</div>
 		</div>
@@ -123,10 +128,10 @@
 					<label><s:message code="entidadCaso_table_label_detalleDireccion"/></label>
 				</div>
 				<div>
-					<form:hidden path="direccion"/>
 					<input type="text" id="dirRecuperada" disabled="disabled"/>
-					<input type="button" id="botonLupaSuministro" class="lupa">
+					<input type="button" id="botonLupaDireccion" class="lupa">
 					<input type="button" id=textDireccion class="limpiarCampo" onclick="javascript:limpiarDireccion();" value="<s:message code="entidadCasoAlta_table_label_limpiar"/>" />
+					<form:hidden path="direccion"/>
 				</div>
 				<div class="divLabel"><label><s:message code="entidadCaso_table_label_telefonoContacto"/></label></div>
 				<div>
@@ -185,12 +190,57 @@
 			<div class="divTituloEntidad">&nbsp;</div>
 			<div class="botoneraEntidad botoneraBottom">
 				<ul>
-					<li><input type="submit" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" /></li>
-					<li><input type="submit" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" /></li>
-					<li><input type="submit" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" /></li>
+					<li><input type="submit" name="GuardarCaso" value="<s:message code="entidadCasoAlta_button_guardar"/>" /></li>
+					<li><input type="submit" name="GuardarCasoYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" /></li>
+					<li><input type="submit" name="CancelarCaso" value="<s:message code="entidadCasoAlta_button_cancelar"/>" /></li>
 				</ul>
 			</div>
 		</div>
+	<!-- Dialog suministro -->
+	<div id="dialogSuministro" title="<s:message code="dialog_title_suministro"/>" class="dialogLupa">
+		<div class="divBusquedaDialog">
+			<input type="text" id="txtNumeroSuministro"/>
+			<input type="button" id="searchSuministro" value="<s:message code="btn_label_boton_ir"/>"/>
+			<br>
+			<label><s:message code="dialog_label_busqueda_nombre"/></label>
+		</div>
+		<div>
+	  		<table id="tablaSuministrosPopUp" class="display" data-page-length="10" data-order="[[ 0, &quot;asc&quot; ]]">
+					<thead>
+			            <tr>
+			            	<th width="30%"><s:message code="homeSuministros_table_head_nombreSuministro"/></th>
+			            	<th width="15%"><s:message code="homeSuministros_table_head_idEmpresa"/></th>
+			            	<th width="15%"><s:message code="homeSuministros_table_head_comuna"/></th>
+			            	<th width="39%"><s:message code="homeSuministros_table_head_direccionConcat"/></th>		
+			            	<th width="1%" hidden="true">sfid</th>	            	
+			            </tr>
+		        	</thead>
+			</table>
+		</div>
+	</div>
+	<!-- Dialog direccion -->
+	<div id="dialogDireccion" title="<s:message code="dialog_title_direccion"/>" class="dialogLupa">
+		<div class="divBusquedaDialog">
+			<input type="text" id="txtNombreDireccion"/>
+			<input type="button" id="searchDireccion" value="<s:message code="btn_label_boton_ir"/>"/>
+			<br>
+			<label><s:message code="dialog_label_busqueda_nombre"/></label>
+		</div>
+		<div>
+	  		<table id="tablaDireccionesPopUp" class="display" data-page-length="10" data-order="[[ 0, &quot;asc&quot; ]]">
+				<thead>
+		            <tr>
+		            	<th width="30%"><s:message code="homeDirecciones_table_head_codigoDireccion"/></th>
+		            	<th width="10%"><s:message code="homeDirecciones_table_head_numero"/></th>
+		            	<th width="20%"><s:message code="homeDirecciones_table_head_comuna"/></th>
+		            	<th width="30%"><s:message code="homeDirecciones_table_head_calle"/></th>
+		            	<th width="9%"><s:message code="homeDirecciones_table_head_departamento"/></th>
+		            	<th width="1%" hidden="true">sfid</th>
+		            </tr>
+	        	</thead>
+			</table>
+		</div>
+	</div>
 	</form:form>
 	<script type="text/javascript" charset="utf-8">
 			function validaDatos(){
@@ -198,7 +248,7 @@
 		    		&& document.getElementById('direccion') && document.getElementById('direccion').value==''){
 		    		document.getElementById('errorMessage').innerHTML= '<s:message code="entidadCasoAlta_error_sumiodire"/>';		    		
 		    		document.getElementById('divError').style.display= 'block';
-		    		return false;
+		    		//return false;
 		    	}
 				return true;
 			}
@@ -213,6 +263,37 @@
 					document.getElementById('suministro').value = '';
 					document.getElementById('textSuministro').value = '';
 				}
+			}
+			
+			$(document).ready(function() {
+			    $( '#dialogSuministro' ).dialog({autoOpen : false, modal : true, show : "blind", hide : "blind", height: "400",
+				    width: "750",
+				    resizable: false,
+				    create: function (event) { $(event.target).parent().css('position', 'fixed');}}
+			    );
+			    $( '#dialogDireccion' ).dialog({autoOpen : false, modal : true, show : "blind", hide : "blind", height: "400",
+				    width: "750",
+				    resizable: false,
+				    create: function (event) { $(event.target).parent().css('position', 'fixed');}}
+			    );			    
+			});
+
+			$("#botonLupaSuministro").click(function () {
+			    $("#dialogSuministro").dialog('open');
+			});
+			$("#botonLupaDireccion").click(function () {
+			    $("#dialogDireccion").dialog('open');
+			});
+			
+			function establecerSuministro(sfid, name){
+				document.getElementById('suministro').value=sfid;
+				document.getElementById('numSumiRecuperado').value=name;
+				$('#dialogSuministro').dialog('close')
+			}
+			function establecerDireccion(sfid, name){
+				document.getElementById('direccion').value=sfid;
+				document.getElementById('dirRecuperada').value=name;
+				$('#dialogDireccion').dialog('close')
 			}
 	</script>
 </body>
