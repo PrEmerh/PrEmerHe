@@ -20,9 +20,9 @@
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>	
   		<script src="../resources/js/jquery-ui.js"></script>
+		<script src="../resources/js/utils.js" lang=""></script>
   		<script src="../resources/js/popupsTable.js"></script>
 		<script src="../resources/js/header.js" lang=""></script>
-		<script src="../resources/js/utils.js" lang=""></script>
 	</head>
 	<body onload="initHeader(); cargarDialogSuministro(); cargarDialogDireccion();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCasoAlta_title_label_detalle_caso"/>';</script>

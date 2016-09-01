@@ -75,7 +75,7 @@ public class CaseController {
 	}
 	
 	@RequestMapping(value = "/private/homeCasosAction", params="goCrearCaso", method = RequestMethod.POST)
-	public String goCrearCaso() {
+	public String goCrearCaso(){
 		return "redirect:entidadCasoAlta";
 	}
 	

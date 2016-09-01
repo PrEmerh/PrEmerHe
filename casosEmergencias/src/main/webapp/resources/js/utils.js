@@ -156,7 +156,3 @@ function validateEmail(email) {
     }
     return validated;
 }
-
-function cargarFechaHoy(currentDate) {
-	$('#fechaUltimaVerificacion').val(currentDate);
-}

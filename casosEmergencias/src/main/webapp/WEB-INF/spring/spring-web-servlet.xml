@@ -59,6 +59,7 @@
 	                <value>com.casosemergencias.dao.vo.HerokuUserVO</value> 
 	                <value>com.casosemergencias.dao.vo.SuministroVO</value>
 	                <value>com.casosemergencias.dao.vo.RelacionActivoContactoVO</value>
+	                <value>com.casosemergencias.dao.vo.UserVO</value>
 	                <value>com.casosemergencias.dao.vo.AssetVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsCaseVO</value>
@@ -103,7 +104,7 @@
  	<bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
 	<!-- Nombre de los Service de la aplicacion -->
-	<bean id="userService" class="com.casosemergencias.logic.UserServiceImpl"/>
+	<bean id="userService" class="com.casosemergencias.logic.HerokuUserServiceImpl"/>
 	<bean id="contactService" class="com.casosemergencias.logic.ContactServiceImpl"/>
 	<bean id="casoService" class="com.casosemergencias.logic.CaseServiceImpl"/>
 	<bean id="direccionService" class="com.casosemergencias.logic.DireccionServiceImpl"/>
