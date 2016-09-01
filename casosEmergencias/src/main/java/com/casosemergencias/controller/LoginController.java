@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.casosemergencias.controller.views.UserView;
+import com.casosemergencias.controller.views.HerokuUserView;
 import com.casosemergencias.logic.HerokuUserService;
 import com.casosemergencias.model.HerokuUser;
 import com.casosemergencias.util.constants.Constantes;
@@ -45,7 +45,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = { "/login" }, method = RequestMethod.POST)
-	public ModelAndView loginOk(@ModelAttribute("userView") UserView userView, HttpServletRequest request, HttpServletResponse response) {
+	public ModelAndView loginOk(@ModelAttribute("userView") HerokuUserView userView, HttpServletRequest request, HttpServletResponse response) {
 
 		logger.info("--- Inicio -- loginOk -- user: " +userView.getUser() + " ---");
 		

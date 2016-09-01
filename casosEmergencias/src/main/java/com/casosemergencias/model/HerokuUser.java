@@ -1,6 +1,6 @@
 package com.casosemergencias.model;
 
-import com.casosemergencias.controller.views.UserView;
+import com.casosemergencias.controller.views.HerokuUserView;
 import com.casosemergencias.dao.vo.HerokuUserVO;
 
 /**
@@ -78,7 +78,7 @@ public class HerokuUser extends ObjectLogic {
 
 	@Override
 	public Object instantiateTargetView() {
-		UserView usuario = new UserView();
+		HerokuUserView usuario = new HerokuUserView();
 		return usuario;
 	}
 	

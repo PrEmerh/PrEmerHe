@@ -405,7 +405,7 @@
 											<td>${caso.fechaApertura}</td>
 											<td>${caso.labelSubmotivoPickList}</td>
 											<td>${caso.tiempoEstimacion}</td>
-											<td>${caso.labelCanalorigenPickList}</td>
+											<td>${caso.labelCanalOrigenPickList}</td>
 										</tr>
 									</c:forEach>
 								</c:when>

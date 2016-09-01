@@ -28,6 +28,7 @@ public class Caso extends ObjectLogic {
 	private String tipoAtencionInterna;
 	private Contacto contactoJoin;
 	private Suministro suministroJoin;
+	private User userJoin;
 	private String direccionSuministro;
 	private String comuna;
 	private String numeroMedidor;
@@ -146,6 +147,12 @@ public class Caso extends ObjectLogic {
 	}
 	public void setSuministroJoin(Suministro suministroJoin) {
 		this.suministroJoin = suministroJoin;
+	}
+	public User getUserJoin() {
+		return userJoin;
+	}
+	public void setUserJoin(User userJoin) {
+		this.userJoin = userJoin;
 	}
 	public String getDireccionSuministro() {
 		return direccionSuministro;

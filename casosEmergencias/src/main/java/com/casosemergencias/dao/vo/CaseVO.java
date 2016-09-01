@@ -376,7 +376,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@WhereJoinTable(clause = "campo = 'Origin' and objeto = 'Case'")
 	private PickListsCaseOriginVO canalOrigenPickList;
 
-	// vamos a recuperar los datos de acount, contact
+	// vamos a recuperar los datos de Cuenta,Contacto,Suministro y Usuario
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "contactid", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private ContactVO contactoJoin;
@@ -392,6 +392,10 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "direccion__c", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private DireccionVO direccionJoin;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ownerid", referencedColumnName = "sfid", insertable = false, updatable = false)
+	private UserVO userJoin;
 
 	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
 			Date fechaApertura, String asunto, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
@@ -419,7 +423,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante,
 			PickListsCaseVO subestadoPickList, PickListsCaseVO submotivoPickList, PickListsCaseVO peticionPickList,
 			PickListsCaseOriginVO canalOrigenPickList, ContactVO contactoJoin, AccountVO cuentaJoin,
-			SuministroVO suministroJoin, DireccionVO direccionJoin) {
+			SuministroVO suministroJoin, DireccionVO direccionJoin,UserVO userJoin) {
 		super();
 		this.isdeleted = isdeleted;
 		this.systemmodstamp = systemmodstamp;
@@ -536,6 +540,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.cuentaJoin = cuentaJoin;
 		this.suministroJoin = suministroJoin;
 		this.direccionJoin = direccionJoin;
+		this.userJoin= userJoin;
 	}
 
 	public CaseVO() {
@@ -1495,9 +1500,17 @@ public class CaseVO extends ObjectVO implements Serializable {
 	public DireccionVO getDireccionJoin() {
 		return direccionJoin;
 	}
-
+	
 	public void setDireccionJoin(DireccionVO direccionJoin) {
 		this.direccionJoin = direccionJoin;
+	}
+	
+	public UserVO getUserJoin(){
+		return userJoin;
+	}
+	
+	public void setUserJoin(UserVO userJoin) {
+		this.userJoin = userJoin;
 	}
 
 	public ContactVO getContactoJoin() {
