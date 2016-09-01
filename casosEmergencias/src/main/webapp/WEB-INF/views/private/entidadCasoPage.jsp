@@ -120,13 +120,19 @@
 					<div>
 						<label>${caso.userJoin.name}</label>
 					</div>
-				</div>
-				<div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_fechaHoraCierre"/></label>
 					</div>
 					<div>
 						<label>${caso.fechaCierre}</label>
+					</div>
+				</div>
+				<div>
+					<div class="divLabel">
+						<label><s:message code="entidadCaso_table_label_herokuUsername"/></label>
+					</div>
+					<div>
+						<label>${caso.herokuUsername}</label>
 					</div>
 					<div>
 							

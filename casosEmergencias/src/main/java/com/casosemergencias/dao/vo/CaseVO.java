@@ -350,6 +350,9 @@ public class CaseVO extends ObjectVO implements Serializable {
 
 	@Column(name = "condici_n_agravante__c")
 	private String condicionAgravante;
+	
+	@Column(name = "herokuuser__c")
+	private String herokuUsername;
 
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "petici_n__c", referencedColumnName = "codigo", insertable = false, updatable = false)
@@ -420,7 +423,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 			Date horaAsignado, String milestoneStatus, String contactId, Date horaPredespacho, Date horaEnruta,
 			String reason, String idEmpresa, Date horaProgramado, Double numeroSeguidoresDel, String literalCategorias,
 			String recordtypeId, String comuna, String prioridad, String valorSubestadoins,
-			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante,
+			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante,String herokuUsername,
 			PickListsCaseVO subestadoPickList, PickListsCaseVO submotivoPickList, PickListsCaseVO peticionPickList,
 			PickListsCaseOriginVO canalOrigenPickList, ContactVO contactoJoin, AccountVO cuentaJoin,
 			SuministroVO suministroJoin, DireccionVO direccionJoin,UserVO userJoin) {
@@ -532,6 +535,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.controlElectrodependiente = controlElectrodependiente;
 		this.cancelar = cancelar;
 		this.condicionAgravante = condicionAgravante;
+		this.herokuUsername=herokuUsername;
 		this.subestadoPickList = subestadoPickList;
 		this.submotivoPickList = submotivoPickList;
 		this.canalOrigenPickList = canalOrigenPickList;
@@ -1401,6 +1405,14 @@ public class CaseVO extends ObjectVO implements Serializable {
 
 	public void setCondicionAgravante(String condicionAgravante) {
 		this.condicionAgravante = condicionAgravante;
+	}
+	
+	public String getHerokuUsername() {
+		return herokuUsername;
+	}
+
+	public void setHerokuUsername(String herokuUsername) {
+		this.herokuUsername = herokuUsername;
 	}
 
 	public PickListsCaseVO getSubestadoPickList() {
