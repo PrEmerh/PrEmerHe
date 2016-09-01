@@ -128,7 +128,7 @@ public class CaseController {
 		CaseView casoView = new CaseView();
 		
 		model.addObject("editMode", Constantes.EDIT_MODE_INSERT);
-		model.setViewName("/private/entidadCasoAltaPage");
+		model.setViewName("private/entidadCasoAltaPage");
 		//Setteo de datos fijos
 		casoView.setCanalOrigen(Constantes.COD_CASO_ORIGEN_WEB);
 		casoView.setCanalOrigenLabel(Constantes.COD_CASO_ORIGEN_WEB_DESC);
