@@ -82,11 +82,14 @@ public class CaseController {
 	@RequestMapping(value = "/private/entidadCaso", method = RequestMethod.GET)
 	public ModelAndView getCaseData(@RequestParam String sfid, @RequestParam String editMode) {
 		
+				
 		logger.info("--- Inicio -- getCaseData ---");
 		
 		ModelAndView model = new ModelAndView();		
 		model.addObject("sfid", sfid);
 		model.addObject("editMode", editMode);
+		
+		
 		
 		//List<CaseView> listCaseView = new ArrayList<CaseView>();
 		CaseView casoView = new CaseView();

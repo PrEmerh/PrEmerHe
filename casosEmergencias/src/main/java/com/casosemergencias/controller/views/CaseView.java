@@ -56,6 +56,7 @@ public class CaseView extends ObjectView {
 	private String ani;
 	private String descripcionEstado;
 	private UserView userJoin;
+	private String herokuUsername;
 	
 	/*Joins con picklist*/
 	private String labelSubmotivoPickList;
@@ -478,6 +479,13 @@ public class CaseView extends ObjectView {
 	}
 	public void setLabelPeticionPickList(String labelPeticionPickList) {
 		this.labelPeticionPickList = labelPeticionPickList;
+	}
+	
+	public String getHerokuUsername() {
+		return herokuUsername;
+	}
+	public void setHerokuUsername(String herokuUsername) {
+		this.herokuUsername = herokuUsername;
 	}
 	@Override
 	public Object instantiateTargetLogic() {
