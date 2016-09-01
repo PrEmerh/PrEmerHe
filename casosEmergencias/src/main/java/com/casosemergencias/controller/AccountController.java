@@ -3,6 +3,9 @@ package com.casosemergencias.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -19,6 +22,7 @@ import com.casosemergencias.controller.views.AccountView;
 import com.casosemergencias.logic.AccountService;
 import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.constants.Constantes;
 import com.casosemergencias.util.datatables.DataTableParser;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -31,9 +35,14 @@ public class AccountController {
 	private AccountService accountService;
 	
 	@RequestMapping(value = "/private/homeCuentas", method = RequestMethod.GET)
-	public ModelAndView listadoCuentas() {
+	public ModelAndView listadoCuentas(HttpServletRequest request) {
 		
 		logger.info("--- Inicio -- listadoCuentas ---");
+		
+		HttpSession session = request.getSession(true);		
+		session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
+		session.setAttribute(Constantes.SFID_CONTACTO, null);	
+		session.setAttribute(Constantes.SFID_CUENTA, null);	
 
 		ModelAndView model = new ModelAndView();
 		model.setViewName("private/homeCuentasPage");
@@ -51,8 +60,10 @@ public class AccountController {
 	 * @return ModelAndView Datos de la cuenta a mostrar en la página.
 	 */
 	@RequestMapping(value = "/private/entidadCuenta", method = RequestMethod.GET)
-	public ModelAndView getAccountData(@RequestParam String sfid) {
+	public ModelAndView getAccountData(@RequestParam String sfid,HttpServletRequest request) {
 		logger.trace("Detalle de cuenta");
+		HttpSession session = request.getSession(true);
+		session.setAttribute(Constantes.SFID_CUENTA, sfid);	
 		AccountView cuentaView = new AccountView();
 		ModelAndView model = new ModelAndView();
 		Cuenta cuentaBBDD = accountService.getAccountBySfid(sfid);

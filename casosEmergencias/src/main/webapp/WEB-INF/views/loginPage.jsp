@@ -6,7 +6,9 @@
 		
 		<title>Emergencias App Login Page</title>
 		
-		<link href="resources/css/styles.css" rel="stylesheet">
+		<link rel="icon" type="image/png" href="${pageContext.request.contextPath}/resources/images/favicon.png">
+		
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css">
 	</head>
 	<body>
 		<header>

@@ -14,10 +14,10 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
-import com.casosemergencias.model.User;
+import com.casosemergencias.model.HerokuUser;
 
 
-public class UserFilter implements Filter{
+public class UserFilter implements Filter {
 
 	final static Logger logger = Logger.getLogger(UserFilter.class);
 	
@@ -34,7 +34,7 @@ public class UserFilter implements Filter{
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
-	    User user = (User) session.getAttribute("user");
+	    HerokuUser user = (HerokuUser) session.getAttribute("user");
 	         
 	        if (user == null){
 	        	logger.debug("UserFilter -- usuario NO esta en sesion");
@@ -60,7 +60,4 @@ public class UserFilter implements Filter{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
-
 }

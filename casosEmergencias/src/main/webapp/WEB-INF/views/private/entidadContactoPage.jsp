@@ -25,6 +25,11 @@
 		<jsp:include page="cabeceraPage.jsp"/>
 		<div>
 		<form:form name="formEntidadContacto" action="actualizarContacto" modelAttribute="contacto" method="POST">
+			<div class="botoneraListado">
+				<ul>
+					<li><input type="submit" name="goCrearCasoByContacto" value="<s:message code="homeCasos_button_nuevocaso"/>" /></li>
+				</ul>
+			</div>
 			<form:hidden path="sfid"/>
 			<div class="divEntidadDatos">
 				<div id="divEntidadContactoSuministros" class="divEntidad">
@@ -275,7 +280,7 @@
 											<td>${caso.fechaApertura}</td>
 											<td>${caso.labelSubmotivoPickList}</td>
 											<td>${caso.tiempoEstimacion}</td>
-											<td>${caso.labelCanalorigenPickList}</td>
+										 	<td>${caso.labelCanalOrigenPickList}</td> 
 										</tr>
 									</c:forEach>
 								</c:when>

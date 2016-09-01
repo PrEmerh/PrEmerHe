@@ -118,7 +118,7 @@
 						<label><s:message code="entidadCaso_table_label_propietarioCaso"/></label>
 					</div>
 					<div>
-						<label>${caso.propietarioCaso}</label>
+						<label>${caso.userJoin.name}</label>
 					</div>
 				</div>
 				<div>
