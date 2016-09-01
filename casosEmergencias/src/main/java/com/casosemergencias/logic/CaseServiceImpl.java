@@ -4,25 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.CaseDAO;
 import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.model.Caso;
-import com.casosemergencias.model.Contacto;
-import com.casosemergencias.model.Cuenta;
-import com.casosemergencias.model.Direccion;
-import com.casosemergencias.model.Suministro;
-import com.casosemergencias.util.DataTableProperties;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.datatables.DataTableProperties;
 
 public class CaseServiceImpl implements CaseService{
 
 final static Logger logger = Logger.getLogger(CaseService.class);
-	
-	@Autowired
-	private SessionFactory sessionFactory;
 	
 	@Autowired
 	private CaseDAO caseDao;
@@ -38,57 +30,17 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 		logger.debug("--- Inicio -- readAllCase ---");
 		
 		List<Caso> listCaso = new ArrayList<>();
-		
 		List<CaseVO> listCasosVO = caseDao.readCaseDataTable(propDatatable);
-		logger.debug("--- Inicio -- readAllCase tamano : " + listCasosVO.size() + " ---");
+
+		logger.debug("--- Inicio -- readAllCase casos en la lista: " + listCasosVO.size() + " ---");
 		
-		for(CaseVO casoVO : listCasosVO){
+		for (CaseVO casoVO : listCasosVO) {
 			Caso caso = new Caso();
 			ParserModelVO.parseDataModelVO(casoVO, caso);
-			/*caso.setId(casoVO.getId());
-			caso.setSfid(casoVO.getSfid());
-			caso.setMotivo(casoVO.getPeticion());
-			caso.setNumeroCaso(casoVO.getNumeroCaso());
-			caso.setNumeroInservice(casoVO.getNumeroInservice());
-			caso.setFechaApertura(casoVO.getCreatedDate());
-			caso.setFechaEstimadoNormalizacion(casoVO.getFechaEstimadaCierre());
-			caso.setPropietarioCaso(casoVO.getOwnerid());
-			caso.setFechaCierre(casoVO.getClosedDate());
-			caso.setSubMotivo(casoVO.getMotivoEmpresa());
-			caso.setCondicionAgravante(casoVO.getCondicionAgravante());
-			caso.setTipoAtencionInterna(casoVO.getTipoAtencionInterna());
-			caso.setContacto(new Contacto()); //Añadir los datos del contacto
-			caso.setSuministro(new Suministro()); //añadir los datos del suministro
-			caso.setDireccion(new Direccion()); //añadir los datos de la direccion
-			caso.setCuenta(new Cuenta()); //añadir los datos de la cuenta
-			caso.setDireccionSuministro(casoVO.getDireccionSuministro());
-			caso.setComuna(casoVO.getComunaF());
-			caso.setNumeroMedidor(casoVO.getNumeroMedidor());
-			caso.setCuerpoMail(casoVO.getCuerpoMail());
-			caso.setRespuestaCliente(casoVO.getRespuestaAlCliente());
-			caso.setEstado(casoVO.getEstado());
-			caso.setSubEstado(casoVO.getSubEstado());
-			caso.setCanalOrigen(casoVO.getOrigin());
-			caso.setUnidad(casoVO.getCallCenter());
-			caso.setCasoPrincipal(casoVO.getParentid()); //buscar el nombre de este
-			caso.setAsunto(casoVO.getSubject());
-			caso.setDescripcion(casoVO.getDescription());
-			caso.setTipoAtencionSEC(casoVO.getTipoAtencionSec());
-			caso.setCanalNotificacion(casoVO.getCanalNotificacion());
-			caso.setTelefonoContacto(casoVO.getTelefonoContacto());
-			caso.setEmailNotificacion(casoVO.getEmailNotificacion());
-			caso.setIdFacebook(casoVO.getFacebook());
-			caso.setTwitter(casoVO.getTwitter());
-//			caso.setActualizarDatosContancto(casoVO.getActDatosContacto());
-			caso.setAni(casoVO.getAni());
-			caso.setFavorabilidadCaso(casoVO.getFavorabilidadDelCaso());
-			caso.setEstadoPickList(casoVO.getEstadoPickList());*/
 			listCaso.add(caso);
-			
 		}
 		
 		logger.debug("--- Fin -- readAllCase ---");
-		
 		return listCaso;
 	}
 	
@@ -123,10 +75,26 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 	}
 
 	
-	public Integer getNumCasos(){
+	public Integer getNumCasos(DataTableProperties propDatatable){
 		logger.debug("--- getNumCasos ---");
-		return caseDao.countCase();
+		return caseDao.getNumCasos(propDatatable);
+	}
+	
+	public Integer insertCase(Caso caso){
+		CaseVO casoVO = new CaseVO();
+		ParserModelVO.parseDataModelVO(caso, casoVO);
+		Integer id = caseDao.insertCase(casoVO);
+		return id;
+	}
+
+	@Override
+	public Integer updateCase(Caso caso) {
+		CaseVO casoVO = new CaseVO();
+		casoVO = caseDao.readCaseBySfid(caso.getSfid());
 		
+		casoVO.setDescription(caso.getDescription());
+		Integer id = caseDao.updateCase(casoVO);
+		return id;
 	}
 	/*Añadido Alvaro*/
 	public Integer insertCase(Caso caso){

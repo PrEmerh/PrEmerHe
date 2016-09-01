@@ -1,4 +1,4 @@
-package com.casosemergencias.util;
+package com.casosemergencias.util.constants;
 
 public class Constantes {
 
@@ -15,6 +15,8 @@ public class Constantes {
 	//Modo edición
 	public static final String EDIT_MODE_INSERT = "INSERT";
 	public static final String EDIT_MODE_UPDATE = "UPDATE";
+	public static final String EDIT_MODE_UPDATED_OK = "UPDATED_OK";
+	public static final String EDIT_MODE_UPDATED_ERROR = "UPDATED_ERROR";
 	public static final String EDIT_MODE_VIEW = "VIEW";
 	
 	//PcikLists
@@ -38,4 +40,11 @@ public class Constantes {
 	public static final String COD_CASO_TYPE_RECLAMO = "TIP001";
 	public static final String COD_CASO_TYPE_RECLAMO_DESC = "Reclamo";
 	public static final String COD_CASO_STATUS_INGRESADO = "ESTA001";
+	
+	//
+	//Sesion SFID
+	
+	public static final String SFID_SUMINISTRO= "sfidSuministro";
+	public static final String SFID_CONTACTO= "sfidContacto";
+	public static final String SFID_CUENTA= "sfidCuenta";
 }

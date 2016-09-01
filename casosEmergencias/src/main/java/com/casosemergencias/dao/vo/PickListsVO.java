@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sforce.soap.metadata.Picklist;
+
 @Entity
 @Table(name = "salesforce.picklists")
 public class PickListsVO extends ObjectVO implements Serializable {
@@ -74,7 +76,7 @@ public class PickListsVO extends ObjectVO implements Serializable {
 
 	@Override
 	public Object instantiateTargetLogic() {
-		Object picklist = new Object();
+		Picklist picklist = new Picklist();
 		return picklist;
 	}
 }

@@ -6,11 +6,38 @@
 	width:30%;	
 	float:left;
 }
-#divNoImagenEnel{
+
+#divNoImagenEnel {
 	width:70%;
 	text-align:right;
 	float:left;
+	height:50px;
+	padding-top:25px;
+	display:table-cell;
+	vertical-align:middle;
 }
+
+#divNoImagenEnel a {
+	text-decoration: none;
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    color: #006cb5;
+}
+
+#divNoImagenEnel a:hover {
+	text-decoration: none;
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    color: #006cb5;
+}
+
+#divNoImagenEnel a:visited {
+	text-decoration: none;
+    font-family: Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    color: #006cb5;
+}
+
 #logoEnel{
 	width:50px;
 	height:50px;
@@ -35,6 +62,7 @@
 #menuCabecera #desplegable{
 	display:none;
 	position:absolute;
+	z-index: 10;
 	top:16%;
 	left:5px;
 	width:20%;

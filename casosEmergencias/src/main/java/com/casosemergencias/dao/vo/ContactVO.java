@@ -1,17 +1,21 @@
 package com.casosemergencias.dao.vo;
+
 import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.WhereJoinTable;
+
 import com.casosemergencias.model.Contacto;
-
-
 
 @Entity
 @Table(name="salesforce.contact")
@@ -99,18 +103,47 @@ public class ContactVO extends ObjectVO implements Serializable {
 	@Column(name = "apellido_paterno__c")
 	private String apellidoPaterno;
 	
-	/*Nombre de la cuenta/*
+	@Column(name = "accountid")
+	private String accountid;
+	
+	@OneToOne(fetch=FetchType.LAZY, optional=true)
+	@JoinColumn(name="accountid", referencedColumnName="sfid", insertable = false, updatable=false)
+	private AccountVO cuentaJoin;
+	
+	
 	/*Recuento de seguidores de Twitter*/ 
 	/*Influencer*/
 	/*Influencer Tipo*/
 	/*Biografía de Twitter*/
+
+	/*Joins con picklist*/
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "canal_preferente_de_contacto__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Canal_Preferente_de_Contacto__c' and objeto = 'Contact'")
+	private PickListsContactCanalPreferenteContactoVO canalPreferenteContactoPickList;
+	
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "tipo_de_identidad__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Tipo_de_Identidad__c' and objeto = 'Contact'")
+	private PickListsContactTipoIdentidadVO tipoIdentidadPickList;
+	
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "tipo_de_contacto__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Tipo_de_contacto__c' and objeto = 'Contact'")
+	private PickListsContactTipoContactoVO tipoContactoPickList;
+	
+	public ContactVO() {
+		super();
+	}
 
 	public ContactVO(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
 			String name, Date fechaNacimiento, String canalPreferenteContacto, String tipoCuentaAsociado,
 			String apellidoMaterno, String tipoIdentidad, String telefonoSecundario, String emailSecundario,
 			String sf4twitterFcbkUsername, Boolean casosReiterados, String email, String accountRun, String dirContacto,
 			String sf4twitterTwitterUserId, String sf4twitterFcbkUserId, String sf4twitterTwitterUsername,
-			String tipoContacto, String phone, String apellidoPaterno) {
+			String tipoContacto, String phone, String apellidoPaterno, String accountid, AccountVO cuentaJoin,
+			PickListsContactCanalPreferenteContactoVO canalPreferenteContactoPickList, PickListsContactTipoIdentidadVO tipoIdentidadPickList,
+			PickListsContactTipoContactoVO tipoContactoPickList) {
 		super();
 		this.isDeleted = isDeleted;
 		this.systemDate = systemDate;
@@ -137,10 +170,11 @@ public class ContactVO extends ObjectVO implements Serializable {
 		this.tipoContacto = tipoContacto;
 		this.phone = phone;
 		this.apellidoPaterno = apellidoPaterno;
-	}
-
-	public ContactVO() {
-		super();
+		this.accountid = accountid;
+		this.cuentaJoin = cuentaJoin;
+		this.canalPreferenteContactoPickList = canalPreferenteContactoPickList;
+		this.tipoIdentidadPickList = tipoIdentidadPickList;
+		this.tipoContactoPickList = tipoContactoPickList;
 	}
 
 	public Boolean getIsDeleted() {
@@ -351,5 +385,69 @@ public class ContactVO extends ObjectVO implements Serializable {
 	public Object instantiateTargetLogic() {
 		Contacto contacto = new Contacto();
 		return contacto;
+	}
+
+	public String getAccountid() {
+		return accountid;
+	}
+
+	public void setAccountid(String accountid) {
+		this.accountid = accountid;
+	}
+
+	public AccountVO getCuentaJoin() {
+		return cuentaJoin;
+	}
+
+	public void setCuentaJoin(AccountVO cuentaJoin) {
+		this.cuentaJoin = cuentaJoin;
+	}
+
+	public PickListsContactCanalPreferenteContactoVO getCanalPreferenteContactoPickList() {
+		return canalPreferenteContactoPickList;
+	}
+
+	public void setCanalPreferenteContactoPickList(PickListsContactCanalPreferenteContactoVO canalPreferenteContactoPickList) {
+		this.canalPreferenteContactoPickList = canalPreferenteContactoPickList;
+	}
+
+	public PickListsContactTipoIdentidadVO getTipoIdentidadPickList() {
+		return tipoIdentidadPickList;
+	}
+
+	public void setTipoIdentidadPickList(PickListsContactTipoIdentidadVO tipoIdentidadPickList) {
+		this.tipoIdentidadPickList = tipoIdentidadPickList;
+	}
+
+	public PickListsContactTipoContactoVO getTipoContactoPickList() {
+		return tipoContactoPickList;
+	}
+
+	public void setTipoContactoPickList(PickListsContactTipoContactoVO tipoContactoPickList) {
+		this.tipoContactoPickList = tipoContactoPickList;
+	}
+
+	public String getLabelCanalPreferenteContactoPickList() {
+		String result = this.getCanalPreferenteContacto();
+		if (this.getCanalPreferenteContactoPickList() != null) {
+			result = this.getCanalPreferenteContactoPickList().getValor();
+		}
+		return result;
+	}
+	
+	public String getLabelTipoIdentidadPickList() {
+		String result = this.getTipoIdentidad();
+		if (this.getTipoIdentidadPickList() != null) {
+			result = this.getTipoIdentidadPickList().getValor();
+		}
+		return result;
+	}
+	
+	public String getLabelTipoContactoPickList() {
+		String result = this.getTipoContacto();
+		if (this.getTipoContactoPickList() != null) {
+			result = this.getTipoContactoPickList().getValor();
+		}
+		return result;
 	}
 }

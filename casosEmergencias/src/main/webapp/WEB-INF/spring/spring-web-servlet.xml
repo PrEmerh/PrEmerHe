@@ -58,7 +58,33 @@
 	                <value>com.casosemergencias.dao.vo.DireccionVO</value>
 	                <value>com.casosemergencias.dao.vo.HerokuUserVO</value> 
 	                <value>com.casosemergencias.dao.vo.SuministroVO</value>
+	                <value>com.casosemergencias.dao.vo.RelacionActivoContactoVO</value>
+	                <value>com.casosemergencias.dao.vo.UserVO</value>
+	                <value>com.casosemergencias.dao.vo.AssetVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsCaseVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsCaseOriginVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsContactCanalPreferenteContactoVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsContactTipoContactoVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsContactTipoIdentidadVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsAccountVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsAccountIdEmpresaVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsAccountTipoIdentidadVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsDireccionTipoCalleVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsDireccionRegionVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsRelacionActivoVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsSumComunaRepartoVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsSumFullElectricVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsSumMedidaDisciplinaVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsSumPropiedadMedidorVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsSumSubestacionElecVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsSumTipoConexionVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsSumTipoLecturaVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsSumTipoSegmentoVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsSumTipoTransfVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsSumEstadoConVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsSumEstadoSumVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsSumEmpresaVO</value>
 	            </list>  
 		  </property> 
 		  <property name="hibernateProperties">
@@ -78,13 +104,14 @@
  	<bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
 	<!-- Nombre de los Service de la aplicacion -->
-	<bean id="userService" class="com.casosemergencias.logic.UserServiceImpl"/>
+	<bean id="userService" class="com.casosemergencias.logic.HerokuUserServiceImpl"/>
 	<bean id="contactService" class="com.casosemergencias.logic.ContactServiceImpl"/>
 	<bean id="casoService" class="com.casosemergencias.logic.CaseServiceImpl"/>
 	<bean id="direccionService" class="com.casosemergencias.logic.DireccionServiceImpl"/>
 	<bean id="suministroService" class="com.casosemergencias.logic.SuministroServiceImpl"/>
 	<bean id="accountService" class="com.casosemergencias.logic.AccountServiceImpl"/>
 	<bean id="pickListsService" class="com.casosemergencias.logic.PickListsServiceImpl"/>
+	<bean id="batchService" class="com.casosemergencias.logic.BatchServiceImpl"/>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/"/> 
 	

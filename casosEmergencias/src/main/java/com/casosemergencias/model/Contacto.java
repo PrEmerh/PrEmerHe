@@ -1,6 +1,7 @@
 package com.casosemergencias.model;
 
 import java.util.Date;
+import java.util.List;
 
 import com.casosemergencias.controller.views.ContactView;
 import com.casosemergencias.dao.vo.ContactVO;
@@ -37,6 +38,22 @@ public class Contacto extends ObjectLogic {
 	/*Casos reiterados*/                    private Boolean casosReiterados;
 	/*Tipo cuenta asociadas*/               private String tipoCuentaAsociado;
 	
+	/*Lista de suministros relacionados, se obtienend e una consulta extra a relacion activo contacto*/
+	private List<Suministro> suministros;
+	
+	private Cuenta cuentaJoin;
+	
+	private List<Caso> casos;
+	//Tipo relacion que viene de la Relación activo contacto
+	private String relacionActivo;
+	private Boolean principal;
+	
+	/*Joins con picklist*/
+	private String labelCanalPreferenteContactoPickList;
+	private String labelTipoIdentidadPickList;
+	private String labelTipoContactoPickList;
+											
+
 	/* Getters y Setters */
 	public Integer getId() {
 		return id;
@@ -216,5 +233,69 @@ public class Contacto extends ObjectLogic {
 	public Object instantiateTargetVO() {
 		ContactVO contacto = new ContactVO();
 		return contacto;
+	}
+
+	public List<Suministro> getSuministros() {
+		return suministros;
+	}
+
+	public void setSuministros(List<Suministro> suministros) {
+		this.suministros = suministros;
+	}
+
+	public Cuenta getCuentaJoin() {
+		return cuentaJoin;
+	}
+
+	public void setCuentaJoin(Cuenta cuentaJoin) {
+		this.cuentaJoin = cuentaJoin;
+	}
+
+	public List<Caso> getCasos() {
+		return casos;
+	}
+
+	public void setCasos(List<Caso> casos) {
+		this.casos = casos;
+	}
+
+	public String getRelacionActivo() {
+		return relacionActivo;
+	}
+
+	public void setRelacionActivo(String relacionActivo) {
+		this.relacionActivo = relacionActivo;
+	}
+
+	public Boolean getPrincipal() {
+		return principal;
+	}
+
+	public void setPrincipal(Boolean principal) {
+		this.principal = principal;
+	}
+
+	public String getLabelCanalPreferenteContactoPickList() {
+		return labelCanalPreferenteContactoPickList;
+	}
+
+	public void setLabelCanalPreferenteContactoPickList(String labelCanalPreferenteContactoPickList) {
+		this.labelCanalPreferenteContactoPickList = labelCanalPreferenteContactoPickList;
+	}
+
+	public String getLabelTipoIdentidadPickList() {
+		return labelTipoIdentidadPickList;
+	}
+
+	public void setLabelTipoIdentidadPickList(String labelTipoIdentidadPickList) {
+		this.labelTipoIdentidadPickList = labelTipoIdentidadPickList;
+	}
+
+	public String getLabelTipoContactoPickList() {
+		return labelTipoContactoPickList;
+	}
+
+	public void setLabelTipoContactoPickList(String labelTipoContactoPickList) {
+		this.labelTipoContactoPickList = labelTipoContactoPickList;
 	}
 }

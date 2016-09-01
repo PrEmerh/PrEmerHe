@@ -1,6 +1,7 @@
 package com.casosemergencias.controller.views;
 
 import java.util.Date;
+import java.util.List;
 
 import com.casosemergencias.model.Contacto;
 
@@ -33,8 +34,21 @@ public class ContactView extends ObjectView {
 	/*Tipo de contacto*/                    private String tipoContacto;
 	/*Casos reiterados*/                    private Boolean casosReiterados;
 	/*Tipo cuenta asociadas*/               private String tipoCuentaAsociado;
+
+	private List<SuministroView> suministros;
 	
+	private AccountView cuentaJoin;
 	
+	private List<CaseView> casos;
+	
+	//Tipo relacion que viene de la Relación activo contacto
+	private String relacionActivo;
+	private Boolean principal;
+	
+	/*Joins con picklist*/
+	private String labelCanalPreferenteContactoPickList;
+	private String labelTipoIdentidadPickList;
+	private String labelTipoContactoPickList;
 	
 	/* Getters y Setters */
 	
@@ -169,5 +183,53 @@ public class ContactView extends ObjectView {
 	public Object instantiateTargetLogic() {
 		Contacto contacto = new Contacto();
 		return contacto;
+	}
+	public List<SuministroView> getSuministros() {
+		return suministros;
+	}
+	public void setSuministros(List<SuministroView> suministros) {
+		this.suministros = suministros;
+	}
+	public AccountView getCuentaJoin() {
+		return cuentaJoin;
+	}
+	public void setCuentaJoin(AccountView cuentaJoin) {
+		this.cuentaJoin = cuentaJoin;
+	}
+	public List<CaseView> getCasos() {
+		return casos;
+	}
+	public void setCasos(List<CaseView> casos) {
+		this.casos = casos;
+	}
+	public String getRelacionActivo() {
+		return relacionActivo;
+	}
+	public void setRelacionActivo(String relacionActivo) {
+		this.relacionActivo = relacionActivo;
+	}
+	public Boolean getPrincipal() {
+		return principal;
+	}
+	public void setPrincipal(Boolean principal) {
+		this.principal = principal;
+	}
+	public String getLabelCanalPreferenteContactoPickList() {
+		return labelCanalPreferenteContactoPickList;
+	}
+	public void setLabelCanalPreferenteContactoPickList(String labelCanalPreferenteContactoPickList) {
+		this.labelCanalPreferenteContactoPickList = labelCanalPreferenteContactoPickList;
+	}
+	public String getLabelTipoIdentidadPickList() {
+		return labelTipoIdentidadPickList;
+	}
+	public void setLabelTipoIdentidadPickList(String labelTipoIdentidadPickList) {
+		this.labelTipoIdentidadPickList = labelTipoIdentidadPickList;
+	}
+	public String getLabelTipoContactoPickList() {
+		return labelTipoContactoPickList;
+	}
+	public void setLabelTipoContactoPickList(String labelTipoContactoPickList) {
+		this.labelTipoContactoPickList = labelTipoContactoPickList;
 	}
 }

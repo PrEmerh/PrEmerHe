@@ -10,6 +10,7 @@ import com.casosemergencias.dao.AccountDAO;
 import com.casosemergencias.dao.vo.AccountVO;
 import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.datatables.DataTableProperties;
 
 //las transacciones se abren y cierran aqui
 public class AccountServiceImpl implements AccountService {
@@ -58,5 +59,28 @@ public class AccountServiceImpl implements AccountService {
 			ParserModelVO.parseDataModelVO(cuentaVO, cuenta);
 		}
 		return cuenta;
+	}
+
+	@Override
+	public List<Cuenta> readAllCuentas(DataTableProperties propDatatable) {
+		logger.debug("--- Inicio -- readAllSuministros ---");
+		List<Cuenta> listCuentas = new ArrayList<Cuenta>();
+		
+		List<AccountVO> listCuentasVO = accountDao.readCuentaDataTable(propDatatable);
+		logger.debug("--- Inicio -- readAllSuministros cantidad: " + listCuentasVO.size() + " ---");
+		
+		for (AccountVO cuentaVO : listCuentasVO) {
+			Cuenta cuenta = new Cuenta();
+			ParserModelVO.parseDataModelVO(cuentaVO, cuenta);
+			listCuentas.add(cuenta);
+		}
+		
+		logger.debug("--- Fin -- readAllSuministros ---:"+listCuentas.size());
+		return listCuentas;
+	}
+
+	@Override
+	public Integer getNumCuentas(DataTableProperties propDatatable) {
+		return accountDao.countCuentas(propDatatable);
 	}
 }

@@ -1,4 +1,5 @@
 package com.casosemergencias.dao.vo;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,376 +10,411 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Where;
+import org.hibernate.annotations.WhereJoinTable;
 
 import com.casosemergencias.model.Caso;
 
-
 @Entity
-@Table(name="salesforce.case")
+@Table(name = "salesforce.case")
 public class CaseVO extends ObjectVO implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
-	//campo de Heroku
-	//Used to track the IsDeleted field from Salesforce allowing Heroku Connect to handle deletes when polling for updates
+	// campo de Heroku
+	// Used to track the IsDeleted field from Salesforce allowing Heroku Connect
+	// to handle deletes when polling for updates
 	@Column(name = "isdeleted")
 	private Boolean isdeleted;
-	//campo de Heroku
-	//Used to track the IsDeleted field from Salesforce allowing Heroku Connect to handle deletes when polling for updates
+	// campo de Heroku
+	// Used to track the IsDeleted field from Salesforce allowing Heroku Connect
+	// to handle deletes when polling for updates
 	@Column(name = "systemmodstamp")
 	private Date systemmodstamp;
-	//campo de Heroku
+	// campo de Heroku
 	@Column(name = "_hc_lastop")
 	private String _hc_lastop;
-	//campo de Heroku
+	// campo de Heroku
 	@Column(name = "_hc_err")
 	private String _hc_err;
-	
+
 	@Id
 	@Column(name = "id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	@Column(name = "sfid")
 	private String sfid;
-	
+
 	@Column(name = "createddate")
-	private Date createdDate;
-	
+	private Date fechaApertura;
+
 	@Column(name = "subject")
-	private String subject;
-	
+	private String asunto;
+
 	@Column(name = "fecha_estimada_de_cierre__c")
 	private Date fechaEstimadaCierre;
-	
+
 	@Column(name = "accountid")
 	private String accountid;
-	
+
 	@Column(name = "favorabilidad_del_caso__c")
 	private String favorabilidadDelCaso;
-	
+
 	@Column(name = "flag_sec__c")
 	private String flagSec;
-	
+
 	@Column(name = "lastmodifiedbyid")
 	private String lastmodifiedbyid;
-	
+
 	@Column(name = "productid")
 	private String productid;
-	
+
 	@Column(name = "validar_electrodependiente__c")
 	private Boolean validarElectrodependiente;
-	
+
 	@Column(name = "sf4twitter__twitter_username__c")
 	private String sf4twitterTwitterUsername;
-	
+
 	@Column(name = "ownerid")
-	private String ownerid;
-	
+	private String propietarioCaso;
+
 	@Column(name = "slastartdate")
 	private Date slastartdate;
-	
+
 	@Column(name = "motivo_empresa__c")
 	private String motivoEmpresa;
-	
+
 	@Column(name = "call_center__c")
 	private String callCenter;
-	
+
 	@Column(name = "fallo_envio_validacion__c")
 	private Boolean falloEnvioValidacion;
-	
+
 	@Column(name = "literal_comuna__c")
 	private String literalComuna;
-	
+
 	@Column(name = "act_datos_contacto__c")
 	private Boolean actDatosContacto;
-	
+
 	@Column(name = "fallo_creacion_observacion__c")
 	private String falloCreacionObservacion;
-	
+
 	@Column(name = "estado_preingreso__c")
 	private Boolean estadoPreingreso;
-	
+
 	@Column(name = "email_de_notificacion__c")
 	private String emailNotificacion;
-	
+
 	@Column(name = "horaap__c")
 	private Double horaap;
-	
+
 	@Column(name = "numero_de_inservice__c")
 	private String numeroInservice;
-	
+
 	@Column(name = "suppliedphone")
 	private String suppliedphone;
-	
+
 	@Column(name = "numero_de_medidor__c")
 	private String numeroMedidor;
-	
+
 	@Column(name = "isstopped")
 	private Boolean isstopped;
-	
+
 	@Column(name = "cuerpo_mail__c")
 	private String cuerpoMail;
-	
+
 	@Column(name = "telefono_de_contacto__c")
 	private String telefonoContacto;
-	
+
 	@Column(name = "questionid")
 	private String questionid;
-	
+
 	@Column(name = "hasselfservicecomments")
 	private Boolean hasselfservicecomments;
-	
+
 	@Column(name = "traza_fallo_inservice__c")
 	private String trazaFalloInservice;
-	
+
 	@Column(name = "canal_de_notificacion__c")
 	private String canalNotificacion;
-	
+
 	@Column(name = "createdbyid")
 	private String createdbyid;
-	
+
 	@Column(name = "categor_a__c")
 	private String categoria;
-	
+
 	@Column(name = "flag__c")
 	private String flag;
-	
+
 	@Column(name = "observaciones__c")
 	private String observaciones;
-	
+
 	@Column(name = "casenumber")
 	private String numeroCaso;
-	
+
 	@Column(name = "url__c")
 	private String url;
-	
+
 	@Column(name = "status")
 	private String estado;
-	
+
 	@Column(name = "sf4twitter__twitterid__c")
 	private String sf4twitterTwitterid;
-	
+
 	@Column(name = "respuesta_al_cliente__c")
 	private String respuestaAlCliente;
-	
+
 	@Column(name = "n_mero_de_caso_ap__c")
 	private String numeroCasoAp;
-	
+
 	@Column(name = "isescalated")
 	private Boolean isescalated;
-	
+
 	@Column(name = "interaccion__c")
 	private String interaccion;
-	
+
 	@Column(name = "tipo_atencion_sec__c")
-	private String tipoAtencionSec;
-	
+	private String tipoAtencionSEC;
+
 	@Column(name = "sub_estado__c")
 	private String subEstado;
-	
+
 	@Column(name = "isvisibleinselfservice")
 	private Boolean isvisibleinselfservice;
-	
+
 	@Column(name = "tipo_atencion_interna__c")
 	private String tipoAtencionInterna;
-	
+
 	@Column(name = "hora_sec__c")
 	private Date horaSec;
-	
+
 	@Column(name = "pendientevalidacioncondagr__c")
 	private Boolean pendienteValidacionCondagr;
-	
+
 	@Column(name = "ejecutivoanterior__c")
 	private String ejecutivoAnterior;
-	
+
 	@Column(name = "entitlementid")
 	private String entitlementid;
-	
+
 	@Column(name = "assetid")
 	private String assetid;
-	
+
 	@Column(name = "stopstartdate")
 	private Date stopstartDate;
-	
+
 	@Column(name = "suppliedcompany")
 	private String suppliedCompany;
-	
+
 	@Column(name = "isclosedoncreate")
 	private Boolean isClosedonCreate;
-	
+
 	@Column(name = "estado_condici_n_agravante__c")
 	private String estadoCondicionAgravante;
-	
+
 	@Column(name = "hora_cancelado__c")
 	private Date horaCancelado;
-	
+
 	@Column(name = "suministro__c")
 	private String suministro;
-	
+
 	@Column(name = "isselfserviceclosed")
-	private	Boolean isSelfserviceClosed;
-	
+	private Boolean isSelfserviceClosed;
+
 	@Column(name = "parentid")
-	private String parentid;
-	
+	private String parent;
+
 	@Column(name = "ui__c")
 	private Boolean ui;
-	
+
 	@Column(name = "numsum__c")
 	private String numSum;
-	
+
 	@Column(name = "twitter__c")
 	private String twitter;
-	
+
 	@Column(name = "suppliedname")
 	private String suppliedName;
-	
+
 	@Column(name = "closeddate")
 	private Date closedDate;
-	
+
 	@Column(name = "fallo_envio_inservice__c")
 	private Boolean falloEnvioInservice;
-	
+
 	@Column(name = "description")
 	private String description;
-	
+
 	@Column(name = "hora_arribado__c")
 	private Date horaArribado;
-	
+
 	@Column(name = "slaexitdate")
 	private Date slaexitDate;
-	
+
 	@Column(name = "origin")
 	private String canalOrigen;
-	
+
 	@Column(name = "descripcion_estado__c")
 	private String descripcionEstado;
-	
+
 	@Column(name = "businesshoursid")
 	private String businessHoursId;
-	
+
 	@Column(name = "sf4twitter__author_external_id__c")
 	private String sf4twitterAuthorExternalId;
-	
+
 	@Column(name = "hascommentsunreadbyowner")
 	private Boolean hasCommentSunReadByOwner;
-	
+
 	@Column(name = "hora_cerrado__c")
 	private Date horaCerrado;
-	
+
 	@Column(name = "literal_condici_n_agravante__c")
 	private String literalCondicionAgravante;
-	
+
 	@Column(name = "type")
 	private String type;
-	
+
 	@Column(name = "direccion_del_suministro__c")
 	private String direccionSuministro;
-	
+
 	@Column(name = "hora_pendiente__c")
 	private Date horaPendiente;
-	
+
 	@Column(name = "ani__c")
 	private String ani;
-	
+
 	@Column(name = "facebook__c")
 	private String facebook;
-	
+
 	@Column(name = "petici_n__c")
 	private String peticion;
-	
+
 	@Column(name = "communityid")
 	private String communityId;
-	
+
 	@Column(name = "direccion__c")
 	private String direccion;
-	
+
 	@Column(name = "hora_asignado__c")
 	private Date horaAsignado;
-	
+
 	@Column(name = "milestonestatus")
 	private String milestoneStatus;
-	
+
 	@Column(name = "contactid")
 	private String contactId;
-	
+
 	@Column(name = "hora_predespacho__c")
 	private Date horaPredespacho;
-	
+
 	@Column(name = "hora_enruta__c")
 	private Date horaEnruta;
-	
+
 	@Column(name = "reason")
 	private String reason;
-	
+
 	@Column(name = "id_empresa__c")
 	private String idEmpresa;
-	
+
 	@Column(name = "hora_programado__c")
 	private Date horaProgramado;
-	
+
 	@Column(name = "numero_de_seguidores_del__c")
 	private Double numeroSeguidoresDel;
-	
+
 	@Column(name = "literal_categoria__c")
 	private String literalCategorias;
-	
+
 	@Column(name = "recordtypeid")
 	private String recordtypeId;
-	
+
 	@Column(name = "comuna_f__c")
-	private String comunaF;
-	
+	private String comuna;
+
 	@Column(name = "prioridad__c")
 	private String prioridad;
-	
+
 	@Column(name = "valorsubestadoins__c")
 	private String valorSubestadoins;
-	
+
 	@Column(name = "control_electrodependiente__c")
 	private Boolean controlElectrodependiente;
-	
+
 	@Column(name = "cancelar__c")
 	private Boolean cancelar;
-	
+
 	@Column(name = "condici_n_agravante__c")
 	private String condicionAgravante;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="status", referencedColumnName="codigo", insertable = false, updatable=false)
-	@Where(clause = "campo ='Status' and objeto='Case'")
-	private PickListsVO estadoPickList;
-//		NO va@ManyToMany
-//	    @JoinTable(name="salesforce.case", joinColumns=@JoinColumn(name="status"), inverseJoinColumns=@JoinColumn(name="codigo"))
-//		@WhereJoinTable (clause = "campo ='Status' and objeto='Case'")
-//	
-//		private Set<PickListsVO> estadoPickList;
+	@Column(name = "herokuuser__c")
+	private String herokuUsername;
+
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "petici_n__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Petici_n__c' and objeto = 'Case'")
+	private PickListsCaseVO peticionPickList;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "status", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Status' and objeto = 'Case'")
+	private PickListsCaseVO estadoPickList;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="status", referencedColumnName="codigo", insertable = false, updatable=false)
-   	@Where(clause = "campo ='Motivo_Empresa__c' and objeto='Case'")
-	private PickListsVO submotivoPickList;
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "sub_estado__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Sub_Estado__c' and objeto = 'Case'")
+	private PickListsCaseVO subestadoPickList;
+
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "motivo_empresa__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Motivo_Empresa__c' and objeto = 'Case'")
+	private PickListsCaseVO submotivoPickList;
+
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "origin", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Origin' and objeto = 'Case'")
+	private PickListsCaseOriginVO canalOrigenPickList;
+
+	// vamos a recuperar los datos de Cuenta,Contacto,Suministro y Usuario
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "contactid", referencedColumnName = "sfid", insertable = false, updatable = false)
+	private ContactVO contactoJoin;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "accountid", referencedColumnName = "sfid", insertable = false, updatable = false)
+	private AccountVO cuentaJoin;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "suministro__c", referencedColumnName = "sfid", insertable = false, updatable = false)
+	private SuministroVO suministroJoin;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "direccion__c", referencedColumnName = "sfid", insertable = false, updatable = false)
+	private DireccionVO direccionJoin;
 	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ownerid", referencedColumnName = "sfid", insertable = false, updatable = false)
+	private UserVO userJoin;
+
 	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
-			Date createdDate, String subject, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
+			Date fechaApertura, String asunto, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
 			String flagSec, String lastmodifiedbyid, String productid, Boolean validarElectrodependiente,
-			String sf4twitterTwitterUsername, String ownerid, Date slastartdate, String motivoEmpresa,
+			String sf4twitterTwitterUsername, String propietarioCaso, Date slastartdate, String motivoEmpresa,
 			String callCenter, Boolean falloEnvioValidacion, String literalComuna, Boolean actDatosContacto,
 			String falloCreacionObservacion, Boolean estadoPreingreso, String emailNotificacion, Double horaap,
 			String numeroInservice, String suppliedphone, String numeroMedidor, Boolean isstopped, String cuerpoMail,
 			String telefonoContacto, String questionid, Boolean hasselfservicecomments, String trazaFalloInservice,
 			String canalNotificacion, String createdbyid, String categoria, String flag, String observaciones,
-			String casenumber, String url, String status, String sf4twitterTwitterid, String respuestaAlCliente,
-			String numeroCasoAp, Boolean isescalated, String interaccion, String tipoAtencionSec, String subEstado,
+			String numeroCaso, String url, String estado, String sf4twitterTwitterid, String respuestaAlCliente,
+			String numeroCasoAp, Boolean isescalated, String interaccion, String tipoAtencionSEC, String subEstado,
 			Boolean isvisibleinselfservice, String tipoAtencionInterna, Date horaSec,
 			Boolean pendienteValidacionCondagr, String ejecutivoAnterior, String entitlementid, String assetid,
 			Date stopstartDate, String suppliedCompany, Boolean isClosedonCreate, String estadoCondicionAgravante,
-			Date horaCancelado, String suministro, Boolean isSelfserviceClosed, String parentid, Boolean ui,
+			Date horaCancelado, String suministro, Boolean isSelfserviceClosed, String parent, Boolean ui,
 			String numSum, String twitter, String suppliedName, Date closedDate, Boolean falloEnvioInservice,
 			String description, Date horaArribado, Date slaexitDate, String canalOrigen, String descripcionEstado,
 			String businessHoursId, String sf4twitterAuthorExternalId, Boolean hasCommentSunReadByOwner,
@@ -386,9 +422,11 @@ public class CaseVO extends ObjectVO implements Serializable {
 			Date horaPendiente, String ani, String facebook, String peticion, String communityId, String direccion,
 			Date horaAsignado, String milestoneStatus, String contactId, Date horaPredespacho, Date horaEnruta,
 			String reason, String idEmpresa, Date horaProgramado, Double numeroSeguidoresDel, String literalCategorias,
-			String recordtypeId, String comunaF, String prioridad, String valorSubestadoins,
-			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante, PickListsVO estadoPickList,
-			PickListsVO submotivoPickList) {
+			String recordtypeId, String comuna, String prioridad, String valorSubestadoins,
+			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante,String herokuUsername,
+			PickListsCaseVO subestadoPickList, PickListsCaseVO submotivoPickList, PickListsCaseVO peticionPickList,
+			PickListsCaseOriginVO canalOrigenPickList, ContactVO contactoJoin, AccountVO cuentaJoin,
+			SuministroVO suministroJoin, DireccionVO direccionJoin,UserVO userJoin) {
 		super();
 		this.isdeleted = isdeleted;
 		this.systemmodstamp = systemmodstamp;
@@ -396,8 +434,8 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this._hc_err = _hc_err;
 		this.id = id;
 		this.sfid = sfid;
-		this.createdDate = createdDate;
-		this.subject = subject;
+		this.fechaApertura = fechaApertura;
+		this.asunto = asunto;
 		this.fechaEstimadaCierre = fechaEstimadaCierre;
 		this.accountid = accountid;
 		this.favorabilidadDelCaso = favorabilidadDelCaso;
@@ -406,7 +444,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.productid = productid;
 		this.validarElectrodependiente = validarElectrodependiente;
 		this.sf4twitterTwitterUsername = sf4twitterTwitterUsername;
-		this.ownerid = ownerid;
+		this.propietarioCaso = propietarioCaso;
 		this.slastartdate = slastartdate;
 		this.motivoEmpresa = motivoEmpresa;
 		this.callCenter = callCenter;
@@ -431,15 +469,15 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.categoria = categoria;
 		this.flag = flag;
 		this.observaciones = observaciones;
-		this.numeroCaso = casenumber;
+		this.numeroCaso = numeroCaso;
 		this.url = url;
-		this.estado = status;
+		this.estado = estado;
 		this.sf4twitterTwitterid = sf4twitterTwitterid;
 		this.respuestaAlCliente = respuestaAlCliente;
 		this.numeroCasoAp = numeroCasoAp;
 		this.isescalated = isescalated;
 		this.interaccion = interaccion;
-		this.tipoAtencionSec = tipoAtencionSec;
+		this.tipoAtencionSEC = tipoAtencionSEC;
 		this.subEstado = subEstado;
 		this.isvisibleinselfservice = isvisibleinselfservice;
 		this.tipoAtencionInterna = tipoAtencionInterna;
@@ -455,7 +493,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.horaCancelado = horaCancelado;
 		this.suministro = suministro;
 		this.isSelfserviceClosed = isSelfserviceClosed;
-		this.parentid = parentid;
+		this.parent = parent;
 		this.ui = ui;
 		this.numSum = numSum;
 		this.twitter = twitter;
@@ -491,14 +529,22 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.numeroSeguidoresDel = numeroSeguidoresDel;
 		this.literalCategorias = literalCategorias;
 		this.recordtypeId = recordtypeId;
-		this.comunaF = comunaF;
+		this.comuna = comuna;
 		this.prioridad = prioridad;
 		this.valorSubestadoins = valorSubestadoins;
 		this.controlElectrodependiente = controlElectrodependiente;
 		this.cancelar = cancelar;
 		this.condicionAgravante = condicionAgravante;
-		this.estadoPickList = estadoPickList;		
+		this.herokuUsername=herokuUsername;
+		this.subestadoPickList = subestadoPickList;
 		this.submotivoPickList = submotivoPickList;
+		this.canalOrigenPickList = canalOrigenPickList;
+		this.peticionPickList = peticionPickList;
+		this.contactoJoin = contactoJoin;
+		this.cuentaJoin = cuentaJoin;
+		this.suministroJoin = suministroJoin;
+		this.direccionJoin = direccionJoin;
+		this.userJoin= userJoin;
 	}
 
 	public CaseVO() {
@@ -553,20 +599,20 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.sfid = sfid;
 	}
 
-	public Date getCreatedDate() {
-		return createdDate;
+	public Date getFechaApertura() {
+		return fechaApertura;
 	}
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+	public void setFechaApertura(Date fechaApertura) {
+		this.fechaApertura = fechaApertura;
 	}
 
-	public String getSubject() {
-		return subject;
+	public String getAsunto() {
+		return asunto;
 	}
 
-	public void setSubject(String subject) {
-		this.subject = subject;
+	public void setAsunto(String asunto) {
+		this.asunto = asunto;
 	}
 
 	public Date getFechaEstimadaCierre() {
@@ -633,12 +679,12 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.sf4twitterTwitterUsername = sf4twitterTwitterUsername;
 	}
 
-	public String getOwnerid() {
-		return ownerid;
+	public String getPropietarioCaso() {
+		return propietarioCaso;
 	}
 
-	public void setOwnerid(String ownerid) {
-		this.ownerid = ownerid;
+	public void setPropietarioCaso(String propietarioCaso) {
+		this.propietarioCaso = propietarioCaso;
 	}
 
 	public Date getSlastartdate() {
@@ -897,12 +943,12 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.interaccion = interaccion;
 	}
 
-	public String getTipoAtencionSec() {
-		return tipoAtencionSec;
+	public String getTipoAtencionSEC() {
+		return tipoAtencionSEC;
 	}
 
-	public void setTipoAtencionSec(String tipoAtencionSec) {
-		this.tipoAtencionSec = tipoAtencionSec;
+	public void setTipoAtencionSEC(String tipoAtencionSEC) {
+		this.tipoAtencionSEC = tipoAtencionSEC;
 	}
 
 	public String getSubEstado() {
@@ -1025,12 +1071,12 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.isSelfserviceClosed = isSelfserviceClosed;
 	}
 
-	public String getParentid() {
-		return parentid;
+	public String getParent() {
+		return parent;
 	}
 
-	public void setParentid(String parentid) {
-		this.parentid = parentid;
+	public void setParent(String parent) {
+		this.parent = parent;
 	}
 
 	public Boolean getUi() {
@@ -1313,12 +1359,12 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.recordtypeId = recordtypeId;
 	}
 
-	public String getComunaF() {
-		return comunaF;
+	public String getComuna() {
+		return comuna;
 	}
 
-	public void setComunaF(String comunaF) {
-		this.comunaF = comunaF;
+	public void setComuna(String comuna) {
+		this.comuna = comuna;
 	}
 
 	public String getPrioridad() {
@@ -1360,26 +1406,138 @@ public class CaseVO extends ObjectVO implements Serializable {
 	public void setCondicionAgravante(String condicionAgravante) {
 		this.condicionAgravante = condicionAgravante;
 	}
-
-	public PickListsVO getEstadoPickList() {
-		return estadoPickList;
-	}
-
-	public void setEstadoPickList(PickListsVO estadoPickList) {
-		this.estadoPickList = estadoPickList;
-	}
 	
-	public String getLabelEstadoPickList(){
-		String result = this.getEstado();
-		if (this.getEstadoPickList() != null ){
-			result=this.getEstadoPickList().getValor();
-		}
-		return result; 
+	public String getHerokuUsername() {
+		return herokuUsername;
 	}
-	
+
+	public void setHerokuUsername(String herokuUsername) {
+		this.herokuUsername = herokuUsername;
+	}
+
+	public PickListsCaseVO getSubestadoPickList() {
+		return subestadoPickList;
+	}
+
+	public void setSubestadoPickList(PickListsCaseVO subestadoPickList) {
+		this.subestadoPickList = subestadoPickList;
+	}
+
+	public PickListsCaseVO getSubmotivoPickList() {
+		return submotivoPickList;
+	}
+
+	public void setSubmotivoPickList(PickListsCaseVO submotivoPickList) {
+		this.submotivoPickList = submotivoPickList;
+	}
+
+	public PickListsCaseOriginVO getCanalOrigenPickList() {
+		return canalOrigenPickList;
+	}
+
+	public void setCanalOrigenPickList(PickListsCaseOriginVO canalOrigenPickList) {
+		this.canalOrigenPickList = canalOrigenPickList;
+	}
+
 	@Override
 	public Object instantiateTargetLogic() {
 		Caso caso = new Caso();
 		return caso;
+	}
+
+	public String getLabelSubmotivoPickList() {
+		String result = this.getMotivoEmpresa();
+		if (this.getSubmotivoPickList() != null) {
+			result = this.getSubmotivoPickList().getValor();
+		}
+		return result;
+	}
+
+	public String getLabelSubestadoPickList() {
+		String result = this.getSubEstado();
+		if (this.getSubestadoPickList() != null) {
+			result = this.getSubestadoPickList().getValor();
+		}
+		return result;
+	}
+
+	public String getLabelCanalOrigenPickList() {
+		String result = this.getCanalOrigen();
+		if (this.getCanalOrigenPickList() != null) {
+			result = this.getCanalOrigenPickList().getValor();
+		}
+		return result;
+	}
+	
+	public String getLabelEstadoPickList() {
+		String result = this.getEstado();
+		if (this.getEstadoPickList() != null) {
+			result = this.getEstadoPickList().getValor();
+		}
+		return result;
+	}
+	
+	public String getLabelPeticionPickList() {
+		String result = this.getPeticion();
+		if (this.getPeticionPickList() != null) {
+			result = this.getPeticionPickList().getValor();
+		}
+		return result;
+	}
+
+	public PickListsCaseVO getPeticionPickList() {
+		return peticionPickList;
+	}
+
+	public void setPeticionPickList(PickListsCaseVO peticionPickList) {
+		this.peticionPickList = peticionPickList;
+	}
+
+	public AccountVO getCuentaJoin() {
+		return cuentaJoin;
+	}
+
+	public void setCuentaJoin(AccountVO cuentaJoin) {
+		this.cuentaJoin = cuentaJoin;
+	}
+
+	public SuministroVO getSuministroJoin() {
+		return suministroJoin;
+	}
+
+	public void setSuministroJoin(SuministroVO suministroJoin) {
+		this.suministroJoin = suministroJoin;
+	}
+
+	public DireccionVO getDireccionJoin() {
+		return direccionJoin;
+	}
+	
+	public void setDireccionJoin(DireccionVO direccionJoin) {
+		this.direccionJoin = direccionJoin;
+	}
+	
+	public UserVO getUserJoin(){
+		return userJoin;
+	}
+	
+	public void setUserJoin(UserVO userJoin) {
+		this.userJoin = userJoin;
+	}
+
+	public ContactVO getContactoJoin() {
+		return contactoJoin;
+	}
+
+	public void setContactoJoin(ContactVO contactoJoin) {
+		this.contactoJoin = contactoJoin;
+	}
+
+	public PickListsCaseVO getEstadoPickList() {
+		return estadoPickList;
+	}
+
+	public void setEstadoPickList(PickListsCaseVO estadoPickList) {
+		this.estadoPickList = estadoPickList;
 	}
 }

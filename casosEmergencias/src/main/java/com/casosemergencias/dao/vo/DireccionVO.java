@@ -4,10 +4,15 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.WhereJoinTable;
 
 import com.casosemergencias.model.Direccion;
 
@@ -70,10 +75,24 @@ public class DireccionVO extends ObjectVO implements Serializable {
 	
 	@Column(name = "esquina__c")
 	private String esquina;
+	
+	@Column(name = "literalcomuna__c")
+	private String literalComuna;	
 
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "tipo_de_calle__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Tipo_de_Calle__c' and objeto = 'Direccion__c'")
+	private PickListsDireccionTipoCalleVO tipoCallePickList;
+
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "regi_n__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Regi_n__c' and objeto = 'Direccion__c'")
+	private PickListsDireccionRegionVO regionPickList;
+	
 	public DireccionVO(Boolean isdeleted, Date systemmodstamp, String hcLastop, String hcError, Integer id, String sfid,
 			Date createddate, String region, String comuna, String tipoCalle, String calle, String numero,
-			String departamento, String name, String direccionConcatenada, String esquina) {
+			String departamento, String name, String direccionConcatenada, String esquina,
+			PickListsDireccionTipoCalleVO tipoCallePickList, PickListsDireccionRegionVO regionPickList) {
 		super();
 		this.isDeleted = isdeleted;
 		this.systemmodstamp = systemmodstamp;
@@ -91,6 +110,8 @@ public class DireccionVO extends ObjectVO implements Serializable {
 		this.name = name;
 		this.direccionConcatenada = direccionConcatenada;
 		this.esquina = esquina;
+		this.tipoCallePickList = tipoCallePickList;
+		this.regionPickList = regionPickList;
 	}
 
 	public DireccionVO() {
@@ -233,5 +254,45 @@ public class DireccionVO extends ObjectVO implements Serializable {
 	public Object instantiateTargetLogic() {
 		Direccion direccion = new Direccion();
 		return direccion;
-	}	
+	}
+
+	public String getLiteralComuna() {
+		return literalComuna;
+	}
+
+	public void setLiteralComuna(String literalComuna) {
+		this.literalComuna = literalComuna;
+	}
+
+	public PickListsDireccionTipoCalleVO getTipoCallePickList() {
+		return tipoCallePickList;
+	}
+
+	public void setTipoCallePickList(PickListsDireccionTipoCalleVO tipoCallePickList) {
+		this.tipoCallePickList = tipoCallePickList;
+	}
+
+	public PickListsDireccionRegionVO getRegionPickList() {
+		return regionPickList;
+	}
+
+	public void setRegionPickList(PickListsDireccionRegionVO regionPickList) {
+		this.regionPickList = regionPickList;
+	}
+	
+	public String getLabelTipoCallePickList() {
+		String result = this.getTipoCalle();
+		if (this.getTipoCallePickList() != null) {
+			result = this.getTipoCallePickList().getValor();
+		}
+		return result;
+	}
+	
+	public String getLabelRegionPickList() {
+		String result = this.getRegion();
+		if (this.getRegionPickList() != null) {
+			result = this.getRegionPickList().getValor();
+		}
+		return result;
+	}
 }

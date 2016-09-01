@@ -4,7 +4,6 @@ import java.util.Date;
 
 import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.dao.vo.CaseVO;
-import com.casosemergencias.dao.vo.PickListsVO;
 
 /**
  * @author MPC
@@ -16,32 +15,32 @@ public class Caso extends ObjectLogic {
 
 	private Integer id;
 	private String sfid;
-	private String motivo;  
+
 	private String numeroCaso; 	 
 	private String numeroInservice;
 	private Date fechaApertura;	//createdCate
 	private Date fechaEstimadaCierre;
 	private String propietarioCaso;	//owner
 	private Date fechaCierre;
-	private String subMotivo;
+	private String submotivo;
 	private String condicionAgravante;
 	private String tipoAtencionInterna;
 	private Contacto contactoJoin;
 	private Suministro suministroJoin;
+	private User userJoin;
 	private String direccionSuministro;
 	private String comuna;
 	private String numeroMedidor;
 	private Direccion direccionJoin;
 	private Cuenta cuentaJoin;	
 	private String cuerpoMail;
-	private String respuestaCliente;
 	private String estado;
-	private String subEstado;
-	private String canalOrigen;
+	private String subestado;
+	private String canalOrigen;	//origin
+	private String parent;	//parent
 	private String callCenter;	//call_center
-	private String parentid;	//parent
 	private String asunto;	//subject
-	private String descripcion;
+	private String descripcionEstado;
 	private String tipoAtencionSEC;
 	private String canalNotificacion;
 	private String telefonoContacto;
@@ -52,18 +51,19 @@ public class Caso extends ObjectLogic {
 	private String twitter;
 	private boolean actDatosContacto;
 	private String ani;
-	private String favorabilidadCaso;
 	private String type;
 	private String respuestaAlCliente;
 	private String favorabilidadDelCaso;
 	private String suministro;
 	private String direccion;
+	private String estadoSuministro;
+	private String herokuUsername;
 	/*Joins caso*/
+	private String labelSubmotivoPickList;
 	private String labelEstadoPickList;
-	private PickListsVO subestadoPickList;
-	private PickListsVO submotivoPickList;
-	private PickListsVO canalOrigenPickList;
-	/**/
+	private String labelSubestadoPickList;
+	private String labelCanalOrigenPickList;
+	private String labelPeticionPickList;
 	
 	public Integer getId() {
 		return id;
@@ -77,12 +77,7 @@ public class Caso extends ObjectLogic {
 	public void setSfid(String sfid) {
 		this.sfid = sfid;
 	}
-	public String getMotivo() {
-		return motivo;
-	}
-	public void setMotivo(String motivo) {
-		this.motivo = motivo;
-	}
+	
 	public String getNumeroCaso() {
 		return numeroCaso;
 	}
@@ -119,11 +114,11 @@ public class Caso extends ObjectLogic {
 	public void setFechaCierre(Date fechaCierre) {
 		this.fechaCierre = fechaCierre;
 	}
-	public String getSubMotivo() {
-		return subMotivo;
+	public String getSubmotivo() {
+		return submotivo;
 	}
-	public void setSubMotivo(String subMotivo) {
-		this.subMotivo = subMotivo;
+	public void setSubmotivo(String submotivo) {
+		this.submotivo = submotivo;
 	}
 	public String getCondicionAgravante() {
 		return condicionAgravante;
@@ -149,6 +144,12 @@ public class Caso extends ObjectLogic {
 	}
 	public void setSuministroJoin(Suministro suministroJoin) {
 		this.suministroJoin = suministroJoin;
+	}
+	public User getUserJoin() {
+		return userJoin;
+	}
+	public void setUserJoin(User userJoin) {
+		this.userJoin = userJoin;
 	}
 	public String getDireccionSuministro() {
 		return direccionSuministro;
@@ -187,23 +188,18 @@ public class Caso extends ObjectLogic {
 	public void setCuerpoMail(String cuerpoMail) {
 		this.cuerpoMail = cuerpoMail;
 	}
-	public String getRespuestaCliente() {
-		return respuestaCliente;
-	}
-	public void setRespuestaCliente(String respuestaCliente) {
-		this.respuestaCliente = respuestaCliente;
-	}
+
 	public String getEstado() {
 		return estado;
 	}
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public String getSubEstado() {
-		return subEstado;
+	public String getSubestado() {
+		return subestado;
 	}
-	public void setSubEstado(String subEstado) {
-		this.subEstado = subEstado;
+	public void setSubestado(String subestado) {
+		this.subestado = subestado;
 	}
 	public String getCanalOrigen() {
 		return canalOrigen;
@@ -218,11 +214,11 @@ public class Caso extends ObjectLogic {
 		this.callCenter = callCenter;
 	}
 
-	public String getParentid() {
-		return parentid;
+	public String getParent() {
+		return parent;
 	}
-	public void setParentid(String parentid) {
-		this.parentid = parentid;
+	public void setParent(String parent) {
+		this.parent = parent;
 	}
 	public String getAsunto() {
 		return asunto;
@@ -230,11 +226,11 @@ public class Caso extends ObjectLogic {
 	public void setAsunto(String asunto) {
 		this.asunto = asunto;
 	}
-	public String getDescripcion() {
-		return descripcion;
+	public String getDescripcionEstado() {
+		return descripcionEstado;
 	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescripcionEstado(String descripcionEstado) {
+		this.descripcionEstado = descripcionEstado;
 	}
 	public String getTipoAtencionSEC() {
 		return tipoAtencionSEC;
@@ -277,12 +273,6 @@ public class Caso extends ObjectLogic {
 	}
 	public void setAni(String ani) {
 		this.ani = ani;
-	}
-	public String getFavorabilidadCaso() {
-		return favorabilidadCaso;
-	}
-	public void setFavorabilidadCaso(String favorabilidadCaso) {
-		this.favorabilidadCaso = favorabilidadCaso;
 	}
 
 	public boolean isActDatosContacto() {
@@ -333,31 +323,51 @@ public class Caso extends ObjectLogic {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	/*Joins pickList caso*/
+	
+	public String getEstadoSuministro() {
+		return estadoSuministro;
+	}
+	public void setEstadoSuministro(String estadoSuministro) {
+		this.estadoSuministro = estadoSuministro;
+	}
+	public String getLabelSubmotivoPickList() {
+		return labelSubmotivoPickList;
+	}
+	public void setLabelSubmotivoPickList(String labelSubmotivoPickList) {
+		this.labelSubmotivoPickList = labelSubmotivoPickList;
+	}
+	public String getLabelSubestadoPickList() {
+		return labelSubestadoPickList;
+	}
+	public void setLabelSubestadoPickList(String labelSubestadoPickList) {
+		this.labelSubestadoPickList = labelSubestadoPickList;
+	}
+	public String getLabelCanalOrigenPickList() {
+		return labelCanalOrigenPickList;
+	}
+	public void setLabelCanalOrigenPickList(String labelCanalOrigenPickList) {
+		this.labelCanalOrigenPickList = labelCanalOrigenPickList;
+	}
+	
+	public String getLabelPeticionPickList() {
+		return labelPeticionPickList;
+	}
+	public void setLabelPeticionPickList(String labelPeticionPickList) {
+		this.labelPeticionPickList = labelPeticionPickList;
+	}
 	public String getLabelEstadoPickList() {
 		return labelEstadoPickList;
 	}
 	public void setLabelEstadoPickList(String labelEstadoPickList) {
 		this.labelEstadoPickList = labelEstadoPickList;
 	}
-	public PickListsVO getSubestadoPickList() {
-		return subestadoPickList;
+	public String getHerokuUsername() {
+		return herokuUsername;
 	}
-	public void setSubestadoPickList(PickListsVO subestadoPickList) {
-		this.subestadoPickList = subestadoPickList;
+	public void setHerokuUsername(String herokuUsername) {
+		this.herokuUsername = herokuUsername;
 	}
-	public PickListsVO getSubmotivoPickList() {
-		return submotivoPickList;
-	}
-	public void setSubmotivoPickList(PickListsVO submotivoPickList) {
-		this.submotivoPickList = submotivoPickList;
-	}
-	public PickListsVO getCanalOrigenPickList() {
-		return canalOrigenPickList;
-	}
-	public void setCanalOrigenPickList(PickListsVO canalOrigenPickList) {
-		this.canalOrigenPickList = canalOrigenPickList;
-	}
+	
 	/**/
 	@Override
 	public Object instantiateTargetView() {

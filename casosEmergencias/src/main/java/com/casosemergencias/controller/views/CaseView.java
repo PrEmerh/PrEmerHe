@@ -3,15 +3,9 @@ package com.casosemergencias.controller.views;
 import java.util.Date;
 import java.util.Map;
 
-import com.casosemergencias.dao.vo.PickListsVO;
 import com.casosemergencias.model.Caso;
-import com.casosemergencias.model.Contacto;
-import com.casosemergencias.model.Cuenta;
-import com.casosemergencias.model.Direccion;
-import com.casosemergencias.model.Suministro;
 
 public class CaseView extends ObjectView {
-
 	private Integer id;
 	private String sfid;
 	private String numeroCaso;
@@ -47,26 +41,30 @@ public class CaseView extends ObjectView {
 	private String respuestaAlCliente;
 	private String favorabilidadDelCaso;
 	private Date fechaEstimadaCierre;
-	private String parentid;
+	private String parent;
 	private String propietarioCaso;	//owner
 	private Date fechaCierre;
 	private String tipoAtencionInterna;
-	private Contacto contactoJoin;
+	private ContactView contactoJoin;
 	private String numeroMedidor;
-	private Direccion direccionJoin;
-	private Cuenta cuentaJoin;
-	private Suministro suministroJoin;
+	private DireccionView direccionJoin;
+	private AccountView cuentaJoin;
+	private SuministroView suministroJoin;
 	private String cuerpoMail;	
 	private String asunto;	//subject
 	private String tipoAtencionSEC;
 	private String ani;
+	private String descripcionEstado;
+	private UserView userJoin;
+	private String herokuUsername;
 	
 	/*Joins con picklist*/
+	private String labelSubmotivoPickList;
 	private String labelEstadoPickList;
-	private PickListsVO subestadoPickList;
-	private PickListsVO submotivoPickList;
-	private PickListsVO canalOrigenPickList;//no existe
-	/**/
+	private String labelSubestadoPickList;
+	private String labelCanalOrigenPickList;
+	private String labelPeticionPickList;
+	
 	/*Mapas para mostrar los combos de caso*/
 	private Map<String, String> mapStatus;
 	private Map<String, String> mapSubStatus;
@@ -303,11 +301,11 @@ public class CaseView extends ObjectView {
 		this.fechaEstimadaCierre = fechaEstimadaCierre;
 	}
 	
-	public String getParentid() {
-		return parentid;
+	public String getParent() {
+		return parent;
 	}
-	public void setParentid(String parentid) {
-		this.parentid = parentid;
+	public void setParent(String parent) {
+		this.parent = parent;
 	}
 	
 	public String getPropietarioCaso() {
@@ -328,11 +326,17 @@ public class CaseView extends ObjectView {
 	public void setTipoAtencionInterna(String tipoAtencionInterna) {
 		this.tipoAtencionInterna = tipoAtencionInterna;
 	}
-	public Contacto getContactoJoin() {
+	public ContactView getContactoJoin() {
 		return contactoJoin;
 	}
-	public void setContactoJoin(Contacto contactoJoin) {
+	public void setContactoJoin(ContactView contactoJoin) {
 		this.contactoJoin = contactoJoin;
+	}
+	public UserView getUserJoin() {
+		return userJoin;
+	}
+	public void setUserJoin(UserView userJoin) {
+		this.userJoin = userJoin;
 	}
 	public String getNumeroMedidor() {
 		return numeroMedidor;
@@ -340,22 +344,22 @@ public class CaseView extends ObjectView {
 	public void setNumeroMedidor(String numeroMedidor) {
 		this.numeroMedidor = numeroMedidor;
 	}
-	public Direccion getDireccionJoin() {
+	public DireccionView getDireccionJoin() {
 		return direccionJoin;
 	}
-	public void setDireccionJoin(Direccion direccionJoin) {
+	public void setDireccionJoin(DireccionView direccionJoin) {
 		this.direccionJoin = direccionJoin;
 	}
-	public Cuenta getCuentaJoin() {
+	public AccountView getCuentaJoin() {
 		return cuentaJoin;
 	}
-	public void setCuentaJoin(Cuenta cuentaJoin) {
+	public void setCuentaJoin(AccountView cuentaJoin) {
 		this.cuentaJoin = cuentaJoin;
 	}
-	public Suministro getSuministroJoin() {
+	public SuministroView getSuministroJoin() {
 		return suministroJoin;
 	}
-	public void setSuministroJoin(Suministro suministroJoin) {
+	public void setSuministroJoin(SuministroView suministroJoin) {
 		this.suministroJoin = suministroJoin;
 	}
 	public String getCuerpoMail() {
@@ -382,55 +386,38 @@ public class CaseView extends ObjectView {
 	public void setAni(String ani) {
 		this.ani = ani;
 	}
-	/*Joins con picklist*/
-	
-	public PickListsVO getSubestadoPickList() {
-		return subestadoPickList;
+	public String getDescripcionEstado() {
+		return descripcionEstado;
 	}
+	public void setDescripcionEstado(String descripcionEstado) {
+		this.descripcionEstado = descripcionEstado;
+	}
+	
+	/*Joins con picklist*/	
+	public String getLabelSubmotivoPickList() {
+		return labelSubmotivoPickList;
+	}
+	public String getLabelSubestadoPickList() {
+		return labelSubestadoPickList;
+	}
+	public void setLabelSubestadoPickList(String labelSubestadoPickList) {
+		this.labelSubestadoPickList = labelSubestadoPickList;
+	}
+	public void setLabelSubmotivoPickList(String labelSubmotivoPickList) {
+		this.labelSubmotivoPickList = labelSubmotivoPickList;
+	}	
 	public String getLabelEstadoPickList() {
 		return labelEstadoPickList;
 	}
 	public void setLabelEstadoPickList(String labelEstadoPickList) {
 		this.labelEstadoPickList = labelEstadoPickList;
 	}
-	public void setSubestadoPickList(PickListsVO subestadoPickList) {
-		this.subestadoPickList = subestadoPickList;
+	public String getLabelCanalOrigenPickList() {
+		return labelCanalOrigenPickList;
 	}
-	public String getLabelSubestadoPickList(){
-		String result = this.getSubestado();
-		if (this.getSubestadoPickList() != null ){
-			result=this.getSubestadoPickList().getValor();
-		}
-		return result; 
+	public void setLabelCanalOrigenPickList(String labelCanalOrigenPickList) {
+		this.labelCanalOrigenPickList = labelCanalOrigenPickList;
 	}
-	public PickListsVO getSubmotivoPickList() {
-		return submotivoPickList;
-	}
-	public void setSubmotivoPickList(PickListsVO submotivoPickList) {
-		this.submotivoPickList = submotivoPickList;
-	}
-	public String getLabeSubmotivoPickList(){
-		String result = this.getSubmotivo();
-		if (this.getSubmotivoPickList() != null ){
-			result=this.getSubmotivoPickList().getValor();
-		}
-		return result; 
-	}
-	public PickListsVO getCanalOrigenPickList() {
-		return canalOrigenPickList;
-	}
-	public void setCanalOrigenPickList(PickListsVO canalOrigenPickList) {
-		this.canalOrigenPickList = canalOrigenPickList;
-	}
-	public String getLabelCanalOrigenPickList(){
-		String result = this.getCanalOrigen();
-		if (this.getCanalOrigenPickList() != null ){
-			result=this.getCanalOrigenPickList().getValor();
-		}
-		return result; 
-	}
-
-/**/
 	/*Mapas combos*/
 	public Map<String, String> getMapStatus() {
 		return mapStatus;
@@ -486,30 +473,20 @@ public class CaseView extends ObjectView {
 	public void setMapFavorabilidadCaso(Map<String, String> mapFavorabilidadCaso) {
 		this.mapFavorabilidadCaso = mapFavorabilidadCaso;
 	}
-	/**/
-	/*private Map<String, String> ordenarMapa(Map<String, String> mapa) {
-		Map<String, String> sortedMap = null;
-		if (mapa != null && !mapa.isEmpty()){
-			//Convertir el mapa a lista
-			List<Map.Entry<String, String>> list = new LinkedList<Map.Entry<String, String>>(mapa.entrySet());
+
+	public String getLabelPeticionPickList() {
+		return labelPeticionPickList;
+	}
+	public void setLabelPeticionPickList(String labelPeticionPickList) {
+		this.labelPeticionPickList = labelPeticionPickList;
+	}
 	
-			// Ordena con el comparador
-			Collections.sort(list, new Comparator<Map.Entry<String, String>>() {
-				public int compare(Map.Entry<String, String> o1, Map.Entry<String, String> o2) {
-					return (o1.getValue()).compareTo(o2.getValue());
-				}
-			});
-			
-			// Convert sorted map back to a Map
-			sortedMap = new LinkedHashMap<String, String>();
-			for (Iterator<Map.Entry<String, String>> it = list.iterator(); it.hasNext();) {
-				Map.Entry<String, String> entry = it.next();
-				sortedMap.put(entry.getKey(), entry.getValue());
-			}
-		}
-		return sortedMap;
-	}*/
-	
+	public String getHerokuUsername() {
+		return herokuUsername;
+	}
+	public void setHerokuUsername(String herokuUsername) {
+		this.herokuUsername = herokuUsername;
+	}
 	@Override
 	public Object instantiateTargetLogic() {
 		Caso caso = new Caso();
