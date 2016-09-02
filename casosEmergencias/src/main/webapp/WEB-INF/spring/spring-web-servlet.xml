@@ -114,6 +114,7 @@
 	<bean id="accountService" class="com.casosemergencias.logic.AccountServiceImpl"/>
 	<bean id="pickListsService" class="com.casosemergencias.logic.PickListsServiceImpl"/>
 	<bean id="batchService" class="com.casosemergencias.logic.BatchServiceImpl"/>
+	<bean id="caseCommentService" class="com.casosemergencias.logic.CaseCommentServiceImpl"/>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/"/> 
 	

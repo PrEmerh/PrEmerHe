@@ -78,6 +78,9 @@ public class CaseView extends ObjectView {
 	private Map<String, String> mapCondicionAgravante;
 	private Map<String, String> mapCanalNotificacion;
 	private Map<String, String> mapFavorabilidadCaso;
+	
+	
+	private String ultimoComentario; //Campo definido para la pantalla comentrioCasoPage.jsp
 	/**/
 	public Integer getId() {
 		return id;
@@ -494,6 +497,12 @@ public class CaseView extends ObjectView {
 	}
 	public void setCommentarioCaso(List<CaseCommentView> commentarioCaso) {
 		this.commentarioCaso = commentarioCaso;
+	}
+	public String getUltimoComentario() {
+		return ultimoComentario;
+	}
+	public void setUltimoComentario(String ultimoComentario) {
+		this.ultimoComentario = ultimoComentario;
 	}
 	@Override
 	public Object instantiateTargetLogic() {

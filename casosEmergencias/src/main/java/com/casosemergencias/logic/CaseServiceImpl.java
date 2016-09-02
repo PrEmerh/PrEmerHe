@@ -20,7 +20,7 @@ import com.casosemergencias.util.datatables.DataTableProperties;
 
 public class CaseServiceImpl implements CaseService{
 
-final static Logger logger = Logger.getLogger(CaseService.class);
+	final static Logger logger = Logger.getLogger(CaseService.class);
 	
 	@Autowired
 	private CaseDAO caseDao;

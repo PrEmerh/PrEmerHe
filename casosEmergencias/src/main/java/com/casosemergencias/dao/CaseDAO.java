@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.casosemergencias.dao.vo.CaseCommentVO;
 import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.util.datatables.DataTableColumnInfo;
 import com.casosemergencias.util.datatables.DataTableProperties;
@@ -24,6 +25,47 @@ public class CaseDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 
+	
+	/**
+	 * Devuelve un Case con Descripción, numero de caso y asunto (datos necesarios para crear un comentario nuevo)
+	 * 
+	 * @param id - id de un CaseComment
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public CaseVO readCaseForCommentByCaseid(String caseSfid) {
+		
+		logger.debug("--- Inicio -- readCaseForCommentByCaseid ---");
+		
+		Session session = sessionFactory.openSession();
+			
+		try {
+			Query query = session.createQuery("select numeroCaso, description, asunto from CaseVO as caso WHERE caso.sfid = :sfid");
+			query.setString("sfid", caseSfid);
+			
+			List<Object[]> casetList = query.list(); 
+			CaseVO caseVO =  new CaseVO();
+			
+			if(casetList != null && !casetList.isEmpty()){
+				Object[] ob = casetList.get(0);
+				
+				caseVO.setNumeroCaso((String)ob[0]);
+				caseVO.setDescription((String)ob[1]);
+				caseVO.setAsunto((String)ob[2]);
+				return caseVO;
+			}			
+			
+			logger.debug("--- Fin -- readCaseForCommentByCaseid ---");
+			
+	    } catch (HibernateException e) {
+	    	logger.error("--- readCaseForCommentByCaseid ", e); 
+	    	logger.error("--- Fin -- readCaseForCommentByCaseid ---");
+	    } finally {
+	    	session.close(); 
+	    }
+	    return null;
+	}
+	
 	/**
 	 * Devuelve una lista con todos los Case de BBDD
 	 * 

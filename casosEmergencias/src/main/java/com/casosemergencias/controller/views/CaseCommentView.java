@@ -1,6 +1,7 @@
 package com.casosemergencias.controller.views;
 
 import java.util.Date;
+import java.util.List;
 
 import com.casosemergencias.model.CaseComment;
 
@@ -15,6 +16,8 @@ public class CaseCommentView extends ObjectView {
 	 private Date lastmodifieddate;
 	 private String lastmodifiedbyid;
 	 private Boolean ispublished;
+	 
+	 private List<CaseCommentView> listaOldComment; //Pantalla Nuevo Comentario, lo utilizamos para listar los comentarios almacenados en BBDD
 	 
 	public Integer getId() {
 		return id;
@@ -70,6 +73,13 @@ public class CaseCommentView extends ObjectView {
 	public void setIspublished(Boolean ispublished) {
 		this.ispublished = ispublished;
 	}
+	public List<CaseCommentView> getListaOldComment() {
+		return listaOldComment;
+	}
+	public void setListaOldComment(List<CaseCommentView> listaOldComment) {
+		this.listaOldComment = listaOldComment;
+	}
+	
 	@Override
 	public Object instantiateTargetLogic() {
 		CaseComment caseComment = new CaseComment();

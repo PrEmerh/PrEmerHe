@@ -17,6 +17,7 @@
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
+		<script src="../resources/js/casos.js" lang=""></script>
 	</head>
 	<body onload="initHeader(); checkUpdates();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_detalle_caso"/>';</script>
@@ -380,6 +381,7 @@
 							<input id="arrowTablaCasosComments" type="image" src="../resources/images/arrow-down-black.png"  
 								height="15" onclick="showHideCabeceras('tablaCasosComments','arrowTablaCasosComments'); return false;"/>			
 							<label class="divLabel"><s:message code="entidadCaso_title_label_comentarios_titulo" /></label>
+							<input id="NuevoComent" type="button" name="NuvoComent" value='<s:message code="entidadCaso_button_label_comentarios_nuevo"/>' onclick="newComent('${caso.sfid}');" />
 						</div>
 					</div>
 					<div id="tablaCasosComments">

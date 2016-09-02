@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,9 +22,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.casosemergencias.controller.views.CaseCommentView;
 import com.casosemergencias.controller.views.CaseView;
+import com.casosemergencias.dao.vo.CaseCommentVO;
+import com.casosemergencias.dao.vo.CaseHistoryVO;
+import com.casosemergencias.logic.CaseCommentService;
 import com.casosemergencias.logic.CaseService;
 import com.casosemergencias.logic.PickListsService;
+import com.casosemergencias.model.CaseComment;
+import com.casosemergencias.model.CaseHistory;
 import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.User;
 import com.casosemergencias.util.ParserModelVO;
@@ -48,6 +55,9 @@ public class CaseController {
 	
 	@Autowired
 	private PickListsService pickListsService;
+	
+	@Autowired
+	private CaseCommentService caseCommentService;
 	
 
 	/**
@@ -267,4 +277,55 @@ public class CaseController {
 		
 		return "redirect:entidadCaso?sfid=" + caso.getSfid() + "&editMode=" + (updatedCase == 1 ? Constantes.EDIT_MODE_UPDATED_OK : Constantes.EDIT_MODE_UPDATED_ERROR);
 	}
+	
+	@RequestMapping(value = "/private/casoComentarioPage", method = RequestMethod.GET)
+	public ModelAndView comentarioCaso(@ModelAttribute("sfid") String sfidCase) {
+		
+		logger.info("--- Inicio -- comentarioCaso ---");
+		logger.debug("----- comentarioCaso -- sfid del caso: " + sfidCase);
+		
+		ModelAndView model = new ModelAndView();			
+		model.setViewName("private/comentarioCasePage");
+		
+		Caso caso = this.caseCommentService.obtenerDatosCasoParaComentario(sfidCase);
+		model.addObject("description", caso.getDescription());
+		model.addObject("asunto", caso.getAsunto());
+		model.addObject("numeroCaso", caso.getNumeroCaso());
+		
+		CaseCommentView caseComment = new CaseCommentView();
+		
+		List<CaseComment> listaComentariosCasos = caseCommentService.obtenerListaComentariosDeUnCaso(sfidCase);
+		List<CaseCommentView> listaComentariosCasoView = new ArrayList<>();
+		
+		if(listaComentariosCasos!=null && !listaComentariosCasos.isEmpty()){
+			for(CaseComment historiaCasoVO: listaComentariosCasos){
+				CaseCommentView casoRelacionado = new CaseCommentView();
+				ParserModelVO.parseDataModelVO(historiaCasoVO, casoRelacionado);
+				listaComentariosCasoView.add(casoRelacionado);
+			}
+		}
+		
+		caseComment.setListaOldComment(listaComentariosCasoView);
+		caseComment.setCaseid(sfidCase);
+		
+		model.addObject("caseComment", caseComment);
+		logger.info("--- Fin -- comentarioCaso ---");
+		
+		return model;
+	}
+	
+	@RequestMapping(value ="/private/saveComentarioCaso", method = RequestMethod.POST)
+	public String saveComentarioCaso(CaseCommentView casoRequest){
+		
+		logger.info("--- Inicio -- saveComentarioCaso ---");
+		logger.debug("----- saveComentarioCaso -- sfid del caso: " + casoRequest.getCaseid());
+		
+		
+		
+		
+		logger.info("--- Fin -- saveComentarioCaso ---");		
+		return "redirect:entidadCaso?sfid=" + casoRequest.getSfid() + "&editMode=" + Constantes.EDIT_MODE_UPDATED_OK;
+		
+	}
+	
 }

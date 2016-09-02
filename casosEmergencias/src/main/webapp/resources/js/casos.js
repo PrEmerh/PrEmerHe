@@ -51,3 +51,12 @@ $(document).ready(function() {
 			.draw();
 	});
 });
+
+function newComent(sfid){
+	 window.location="../private/casoComentarioPage?sfid="+sfid;
+}
+
+
+function cancelComent(sfid){
+	 window.location="../private/casoComentarioPage?sfid="+sfid;
+}
