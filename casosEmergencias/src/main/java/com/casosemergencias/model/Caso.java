@@ -58,6 +58,7 @@ public class Caso extends ObjectLogic {
 	private String suministro;
 	private String direccion;
 	private String estadoSuministro;
+	private String herokuUsername;
 	/*Joins caso*/
 	private String labelSubmotivoPickList;
 	private String labelEstadoPickList;
@@ -364,7 +365,12 @@ public class Caso extends ObjectLogic {
 	public void setLabelEstadoPickList(String labelEstadoPickList) {
 		this.labelEstadoPickList = labelEstadoPickList;
 	}
-
+	public String getHerokuUsername() {
+		return herokuUsername;
+	}
+	public void setHerokuUsername(String herokuUsername) {
+		this.herokuUsername = herokuUsername;
+	}
 	public List<CaseHistory> getHistorialCaso() {
 		return historialCaso;
 	}

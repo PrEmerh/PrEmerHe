@@ -55,3 +55,21 @@ $(document).ready(function() {
 			.draw();
 	});
 });
+
+//Limpieza campos del buscador.
+
+function limpiarCamposBuscadorSuministro() {
+	
+	if (document.getElementById('filtroNumSuministro').value != '') {
+		document.getElementById('filtroNumSuministro').value = '';
+	}
+	if (document.getElementById('filtroDireccion').value != '') {
+		document.getElementById('filtroDireccion').value = '';
+	}
+	if (document.getElementById('filtroRutaLectura').value != '') {
+		document.getElementById('filtroRutaLectura').value = '';
+	}
+	if (document.getElementById('filtroNumMedidor').value != '') {
+		document.getElementById('filtroNumMedidor').value = '';
+	}
+}

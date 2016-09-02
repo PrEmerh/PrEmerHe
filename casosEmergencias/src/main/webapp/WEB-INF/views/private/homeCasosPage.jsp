@@ -19,7 +19,7 @@
 		<script src="../resources/js/utils.js"></script>
 		<script src="../resources/js/casos.js"></script>
 	</head>
-	<body onload="initHeader();">
+	<body onload="initHeader();limpiarCamposBuscadorCasos();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		 
@@ -49,6 +49,7 @@
 						<td class="tablaBusquedaBotonera" colspan="2">
 							<input type="button" id="search" name="searchButton" class="column_filter" value="Buscar">	
 						</td>
+						
 					</tr>
 				</table>
 			</div>
