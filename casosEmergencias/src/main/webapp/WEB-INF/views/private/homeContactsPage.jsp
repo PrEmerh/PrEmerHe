@@ -19,7 +19,7 @@
 		<script src="../resources/js/utils.js"></script>
 		<script src="../resources/js/contactos.js"></script>
 	</head>
-	<body onload="initHeader();">
+	<body onload="initHeader();limpiarCamposBuscadorContactos();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_contact"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		 
@@ -49,7 +49,7 @@
 							<label for="filtroNombreApellidos"><s:message code="search_form_input_contacto_nombre_apellidos"/></label>
 						</td>
 						<td class="tablaBusquedaTextos">
-							<input type="text" id="filtroNombreApellidos" name="filtroNombreApellidos" class="column_filter" value=""  maxlength="50">
+							<input type="text" id="filtroNombreApellidos" name="filtroNombreApellidos" class="column_filter" value="" maxlength="50">
 						</td>
 					</tr>
 					<tr>

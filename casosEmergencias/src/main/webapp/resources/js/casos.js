@@ -51,3 +51,14 @@ $(document).ready(function() {
 			.draw();
 	});
 });
+
+
+//Limpieza campos del buscador.
+
+function limpiarCamposBuscadorCasos() {
+	
+	if (document.getElementById('filtroNumCaso').value != '') {
+		document.getElementById('filtroNumCaso').value = '';
+	}
+	
+}
