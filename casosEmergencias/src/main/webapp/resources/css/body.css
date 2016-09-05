@@ -336,6 +336,14 @@ body label {
 	background: none;
 }
 
+.requiredTextArea{
+    border-color: red;
+    border-width: 2px;
+    outline-color: red;
+    outline-width: 2px;
+
+}
+
 /* >>>>> ESTILOS PARA ENLACES */
 .link {
 	text-decoration: none;

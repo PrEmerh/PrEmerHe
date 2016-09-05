@@ -60,6 +60,18 @@ public class CaseCommentServiceImpl implements CaseCommentService{
 		}
 		return null;
 	}
+	
+	@Override
+	public Integer insertCaseComment(CaseComment caseComment) {
+		CaseCommentVO caseCommentVO = new CaseCommentVO();
+		
+		caseCommentVO.setComment(caseComment.getComment());
+		caseCommentVO.setIspublished(false);
+		caseCommentVO.setCaseid(caseComment.getCaseid());
+		Integer id = caseCommentDAO.insertCaseComment(caseCommentVO);
+		return id;
+	}
+	
 
 	
 

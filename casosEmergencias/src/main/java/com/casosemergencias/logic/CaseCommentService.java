@@ -10,4 +10,5 @@ public interface CaseCommentService {
 	public List<CaseComment> obtenerListaComentariosDeUnCaso(String caseSfid);
 	public Caso obtenerDatosCasoParaComentario(String caseSfid);
 	public void guardarComentarioDeUnCaso(CaseComment comentarioCaso);
+	public Integer insertCaseComment(CaseComment caseComment);
 }

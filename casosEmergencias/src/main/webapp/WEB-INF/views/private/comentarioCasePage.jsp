@@ -18,47 +18,56 @@
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
-		<script src="../resources/js/casos.js" lang=""></script>
 	</head>
 	
 	<body onload="initHeader(); checkUpdates();">
-		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_detalle_caso"/>';</script>
+		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_comentario_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		
 		<form:form name="formComentarioCaso" action="saveComentarioCaso" modelAttribute="caseComment" method="POST">
 			<form:hidden path="caseid"/>
-			
+			<h2><s:message code="comentarioCase_label_caso" arguments="${numeroCaso}"/></h2>
 			<div class="botoneraListado">
+				<div>
+				<h4><s:message code="comentarioCase_label_titulo"/></h4>
 				<ul>
-					<li><s:message code="comentarioCase_label_titulo" arguments="${numeroCaso}"/></li>
-					<li><input id="Guardar" type="submit" name="Cancelar" value='<s:message code="comentarioCase_label_button_guardar"/>'/></li>
-					<li><input id="Cancelar" type="button" name="Cancelar" value='<s:message code="comentarioCase_label_button_cancelar"/>' onclick=""/></li>
+					<li><input id="Guardar" type="submit" name="Guardar" value='<s:message code="comentarioCase_label_button_guardar"/>'/></li>
+					<li><input id="Cancelar" type="button" name="Cancelar" value='<s:message code="comentarioCase_label_button_cancelar"/>' onclick="cancelComent('${sfid}')"/></li>
 				</ul>
+				</div>
 			</div>
 			<div class="divEntidad">
-				<div class="subtitleAltaEntidad">
-					<div>	
+				<div class="subtittlePrincipalAltaEntidad">
+					<div class="subtittlePrincipalAltaEntidadDivInfo">
 						<label class="divLabel"><s:message code="comentarioCase_label_detalle_caso_title"/></label>
+					</div>
+					<div class="subtittlePrincipalAltaEntidadDivOblig">
+						<div class="tittleObligatorio"></div>
+							<label><s:message code="entidadCasoAlta_table_title_label_infoobligatorio"/></label>
 					</div>
 				</div>
 			</div>
-			<div id="detalleCaso" class="divEntidad">
-				<div>
-					<div class="divLabel">
-						<label><s:message code="comentarioCase_label_detalle_caso_asunto"/></label>
-					</div>
-					<div>
-						<label>${asunto}</label>
-					</div>					
-				</div>
-				<div>
-					<div class="divLabel">
-						<label><s:message code="comentarioCase_label_detalle_caso_descripcion"/></label>
-					</div>
-					<div>
-						<label>${description}</label>
-					</div>
-				</div>
+			<div id="detalleCaso" class="divEntidad" >
+				<div  >
+					<table style="margin-top:3%;margin-left:2%;" >				
+						<tr>
+							<td class="divLabel">
+								<label><s:message code="comentarioCase_label_detalle_caso_asunto"/></label>
+							</td>
+							<td>
+								<label>${asunto}</label>
+							</td>					
+						</tr>
+						<tr>
+							<td class="divLabel">
+								<label><s:message code="comentarioCase_label_detalle_caso_descripcion"/></label>
+							</td>
+							<td>
+								<label>${description}</label>
+							</td>
+						</tr>	
+					</table>
+				</div>		
 			</div>	
 			<div class="divEntidad">
 				<div class="subtitleAltaEntidad">
@@ -67,14 +76,18 @@
 					</div>
 				</div>
 			</div>
-			<div id="datosEmergencia" class="divEntidad" style="height: 150px;">
-				<div>	
-					<div class="divLabel">
-						<label><s:message code="comentarioCase_label_detalle_comentario_comentario"/></label>
-					</div>					
-					<div>
-						<form:textarea path="comment" rows="9" cols="65"/>
-					</div>
+			<div id="datosEmergencia" class="divEntidad" >
+				<div >	
+					<table style="margin-top:3%;">
+						<tr>
+							<td class="divLabel">
+								<label><s:message code="comentarioCase_label_detalle_comentario_comentario"/></label>
+							</td>				
+							<td>
+								<form:textarea path="comment" class="requiredTextArea"   rows="9" cols="65"/>
+							</td>
+						</tr>
+					</table>
 				</div>				
 			</div>
 			

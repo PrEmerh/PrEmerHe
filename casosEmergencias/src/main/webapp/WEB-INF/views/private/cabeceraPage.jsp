@@ -40,6 +40,7 @@
 	</td>
 	</tr>
 </table>
+<div>
 	<div id="divTabs">
 		&nbsp;
 	</div>

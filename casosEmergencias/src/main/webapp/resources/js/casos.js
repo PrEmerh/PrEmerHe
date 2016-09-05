@@ -53,21 +53,5 @@ $(document).ready(function() {
 });
 
 
-//Limpieza campos del buscador.
-
-function limpiarCamposBuscadorCasos() {
-	
-	if (document.getElementById('filtroNumCaso').value != '') {
-		document.getElementById('filtroNumCaso').value = '';
-	}
-	
-}
-
-function newComent(sfid){
-	 window.location="../private/casoComentarioPage?sfid="+sfid;
-}
 
 
-function cancelComent(sfid){
-	 window.location="../private/casoComentarioPage?sfid="+sfid;
-}

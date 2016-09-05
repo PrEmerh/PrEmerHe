@@ -7,10 +7,13 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.casosemergencias.dao.vo.CaseCommentVO;
+import com.casosemergencias.dao.vo.CaseVO;
 
 @Repository
 public class CaseCommentDAO {
@@ -140,4 +143,37 @@ public class CaseCommentDAO {
 	    }
 	    return null;
 	}
+	
+	/**
+	 * Inserta un comentario de caso en BBDD.
+	 * 
+	 * @param CaseComment
+	 * @return
+	 */
+	
+	
+	@Transactional
+	public Integer insertCaseComment(CaseCommentVO caseComment) {
+
+		logger.debug("--- Inicio -- insert ---");
+
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			session.save(caseComment);
+			tx.commit();
+			logger.debug("--- Fin -- insert ---");
+			return 1;
+		} catch (HibernateException e) {
+			tx.rollback();
+			logger.error("--- Error en insertCase: ", e);
+			logger.error("--- Fin -- updateCase ---");
+			return 0;
+		} finally {
+			session.close();
+		}
+
+	}
+	
+	
 }

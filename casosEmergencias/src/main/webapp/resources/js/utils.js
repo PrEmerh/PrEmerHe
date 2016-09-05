@@ -61,6 +61,14 @@ function checkUpdates() {
 	}
 }
 
+function checkCaseCommentCreation() {
+	if ($('#editMode').val() == 'CREATED_OK') {
+		$('#divCaseCommentCreated').show();
+	} else if ($('#editMode').val() == 'CREATED_ERROR') {
+		$('#divCaseCommentNOCreated').show();
+	}
+}
+
 function validaDatos() {
 	if (document.getElementById('suministro') && document.getElementById('suministro').value == ''
 			&& document.getElementById('direccion') && document.getElementById('direccion').value == '') {
@@ -155,4 +163,27 @@ function validateEmail(email) {
     	validated =  emailRegex.test(email);
     }
     return validated;
+}
+
+/*Inici -- funciones Guardar y Cancelar Comentario de un Caso*/
+function newComent(sfid){
+	 window.location="../private/casoComentarioPage?sfid="+sfid;
+}
+
+
+function cancelComent(sfid){
+	 window.location="../private/entidadCaso?editMode=VIEW&sfid="+sfid;
+}
+
+/*Fin -- funciones Guardar y Cancelar Comentario de un Caso*/
+
+
+//Limpieza campos del buscador.
+
+function limpiarCamposBuscadorCasos() {
+	
+	if (document.getElementById('filtroNumCaso').value != '') {
+		document.getElementById('filtroNumCaso').value = '';
+	}
+	
 }

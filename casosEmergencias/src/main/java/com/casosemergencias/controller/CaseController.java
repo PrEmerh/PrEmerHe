@@ -52,12 +52,16 @@ public class CaseController {
 	
 	@Autowired
 	private CaseService casoService;
+	private CaseCommentService casoComentarioService;
+	
 	
 	@Autowired
 	private PickListsService pickListsService;
 	
 	@Autowired
 	private CaseCommentService caseCommentService;
+
+	private int updatedCase;
 	
 
 	/**
@@ -291,6 +295,7 @@ public class CaseController {
 		model.setViewName("private/comentarioCasePage");
 		
 		Caso caso = this.caseCommentService.obtenerDatosCasoParaComentario(sfidCase);
+
 		model.addObject("description", caso.getDescription());
 		model.addObject("asunto", caso.getAsunto());
 		model.addObject("numeroCaso", caso.getNumeroCaso());
@@ -320,14 +325,36 @@ public class CaseController {
 	@RequestMapping(value ="/private/saveComentarioCaso", method = RequestMethod.POST)
 	public String saveComentarioCaso(CaseCommentView casoRequest){
 		
-		logger.info("--- Inicio -- saveComentarioCaso ---");
-		logger.debug("----- saveComentarioCaso -- sfid del caso: " + casoRequest.getCaseid());
+		
+		logger.info("--- Inicio -- actualizarCaso ---");
+		
+		CaseComment comentarioCaso = new CaseComment();
+		ParserModelVO.parseDataModelVO(casoRequest, comentarioCaso);
+		Integer insertCaseComment = caseCommentService.insertCaseComment(comentarioCaso);
+		
+		logger.info("--- Fin -- actualizarCaso ---");
+		logger.info("UPDATED CASE"+insertCaseComment);
+		
+		return "redirect:entidadCaso?sfid=" + comentarioCaso.getCaseid() + "&editMode=" + (insertCaseComment == 1 ? Constantes.CREATED_MODE_CREATED_OK : Constantes.CREATED_MODE_CREATED_ERROR);
 		
 		
 		
+//		logger.info("--- Inicio -- saveComentarioCaso ---");
+//		logger.debug("----- saveComentarioCaso -- sfid del caso: " + casoRequest.getCaseid());
+//		int updatedCase = 1;
+//		
+//		String url =  "redirect:entidadCaso?sfid=" + casoRequest.getCaseid() + "&editMode=";
+//		if(updatedCase == 1){
+//			url = url + Constantes.EDIT_MODE_UPDATED_OK;
+//		}else{
+//			url = url +  Constantes.EDIT_MODE_UPDATED_ERROR;
+//		}
+//		
+//		//String url = "redirect:entidadCaso?sfid=" + casoRequest.getCaseid() + "&editMode=" + (updatedCase == 1 ? Constantes.EDIT_MODE_UPDATED_OK : Constantes.EDIT_MODE_UPDATED_ERROR);
+//		
+//		logger.info("--- Fin -- saveComentarioCaso ---");		
+//		return url;
 		
-		logger.info("--- Fin -- saveComentarioCaso ---");		
-		return "redirect:entidadCaso?sfid=" + casoRequest.getSfid() + "&editMode=" + Constantes.EDIT_MODE_UPDATED_OK;
 		
 	}
 	
