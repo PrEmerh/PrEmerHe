@@ -64,6 +64,7 @@
 	                <value>com.casosemergencias.dao.vo.UserVO</value>
 	                <value>com.casosemergencias.dao.vo.AssetVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsCaseHistoryFieldVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsCaseVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsCaseOriginVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsContactCanalPreferenteContactoVO</value>
@@ -115,6 +116,7 @@
 	<bean id="pickListsService" class="com.casosemergencias.logic.PickListsServiceImpl"/>
 	<bean id="batchService" class="com.casosemergencias.logic.BatchServiceImpl"/>
 	<bean id="caseCommentService" class="com.casosemergencias.logic.CaseCommentServiceImpl"/>
+	<bean id="userSessionInfoService" class="com.casosemergencias.logic.UserSessionInfoServiceImpl"/>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/"/> 
 	

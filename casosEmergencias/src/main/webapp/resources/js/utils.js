@@ -1,4 +1,12 @@
-// Mostrar y esconder contenido de las pestañas
+// FUNCIONES ÚTILES PARA TODAS LAS PÁGINAS
+function createUrl() {
+	var miUrl = window.location.protocol + "//" + window.location.host;
+	if (window.location.pathname.indexOf("/casosEmergencias/") != -1) {
+		miUrl = miUrl + "/casosEmergencias";
+	}
+	return miUrl;
+}
+
 function showHideCabeceras(idDiv, idArrow) {
 	var div = document.getElementById(idDiv);
 	var arrow = document.getElementById(idArrow); 				
@@ -22,8 +30,9 @@ function showHideCabecerasServicios(idDiv, idArrow) {
 		arrow.src="../resources/images/arrow-down-white.png";
 	}
 }
+//--------------------------------------------------------------------
 
-// Mostrar botones y datos para poder modificar un caso
+// FUNCIONES PARA MODIFICAR UN CASO
 function modificarButton() {
 	var modificar = document.getElementById('Modificar');
 	var guardar = document.getElementById('Guardar');
@@ -38,7 +47,6 @@ function modificarButton() {
 	descriptionEdit.style.display = ''; 
 }
 
-// Esconder botones y datos para poder modificar un caso
 function cancelarButton() {
 	var modificar = document.getElementById('Modificar');
 	var guardar = document.getElementById('Guardar');
@@ -60,6 +68,40 @@ function checkUpdates() {
 		$('#divError').show();
 	}
 }
+// --------------------------------------------------------------------
+
+// FUNCIONES DE VALIDACIONES DE FORMULARIOS DE BÚSQUEDA
+function validateEmail(email) {
+    var emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    var validated = true;
+    if (email != "") {
+    	validated =  emailRegex.test(email);
+    }
+    return validated;
+}
+//--------------------------------------------------------------------
+
+// FUNCIONES DE PÁGINA DE ALTA DE CASOS
+function altaCaso() {
+	var validado = validaDatos();
+	if (validado) {
+		$('#formEntidadCasoAlta').submit();
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function altaCasoYNuevo() {
+	var validado = validaDatos();
+	if (validado) {
+		$('#redirectHere').val("true");
+		$('#formEntidadCasoAlta').submit();
+		return true;
+	} else {
+		return false;
+	}
+}
 
 function checkCaseCommentCreation() {
 	if ($('#editMode').val() == 'CREATED_OK') {
@@ -74,15 +116,18 @@ function validaDatos() {
 			&& document.getElementById('direccion') && document.getElementById('direccion').value == '') {
 		document.getElementById('errorMessage').innerHTML= '<s:message code="entidadCasoAlta_error_sumiodire"/>';		    		
 		document.getElementById('divError').style.display= 'block';
+		return false;
 	}
 	return true;
 }
+
 function limpiarDireccion() {
 	if (document.getElementById('direccion') && document.getElementById('direccion').value != '') {
 		document.getElementById('direccion').value = '';
 		document.getElementById('dirRecuperada').value = '';
 	}
 }
+
 function limpiarSuministro() {
 	if (document.getElementById('suministro') && document.getElementById('suministro').value != '') {
 		document.getElementById('suministro').value = '';
@@ -148,34 +193,7 @@ function establecerDireccion(sfid, name) {
 	$('#dialogDireccion').dialog('close');
 }
 
-function createUrl() {
-	var miUrl = window.location.protocol + "//" + window.location.host;
-	if (window.location.pathname.indexOf("/casosEmergencias/") != -1) {
-		miUrl = miUrl + "/casosEmergencias";
-	}
-	return miUrl;
-}
-
-function validateEmail(email) {
-    var emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    var validated = true;
-    if (email != "") {
-    	validated =  emailRegex.test(email);
-    }
-    return validated;
-}
-
-//Funcion Cancelar Alta de un Caso
-
-function cancelAltaCaso(){
-	
-	window.location="../private/cancelAltaCaso";
-	
-	
-}
-
-//Funciones Guardar y Cancelar Comentario de un Caso
-
+/*Inici -- funciones Guardar y Cancelar Comentario de un Caso*/
 function newComent(sfid){
 	 window.location="../private/casoComentarioPage?sfid="+sfid;
 }
@@ -185,15 +203,21 @@ function cancelComent(sfid){
 	 window.location="../private/entidadCaso?editMode=VIEW&sfid="+sfid;
 }
 
+/*Fin -- funciones Guardar y Cancelar Comentario de un Caso*/
 
+//Funcion Cancelar Alta de un Caso
 
+function cancelAltaCaso(){
+	
+	window.location="../private/cancelAltaCaso";
+	
+}
 
 //Limpieza campos del buscador.
 
 function limpiarCamposBuscadorCasos() {
-	
 	if (document.getElementById('filtroNumCaso').value != '') {
 		document.getElementById('filtroNumCaso').value = '';
 	}
-	
 }
+//--------------------------------------------------------------------

@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 import com.casosemergencias.model.HerokuUser;
 
 
-public class UserFilter implements Filter{
+public class UserFilter implements Filter {
 
 	final static Logger logger = Logger.getLogger(UserFilter.class);
 	
@@ -60,7 +60,4 @@ public class UserFilter implements Filter{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
-
 }

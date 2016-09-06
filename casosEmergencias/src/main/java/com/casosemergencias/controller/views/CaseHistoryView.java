@@ -1,6 +1,7 @@
 package com.casosemergencias.controller.views;
 
 import java.util.Date;
+import java.util.List;
 
 import com.casosemergencias.model.CaseHistory;
 
@@ -14,9 +15,13 @@ public class CaseHistoryView extends ObjectView {
 	private String newvalue;
 	private Date createddate;
 	private String createdbyid;
-	private String createdByName;
-	private String accion;
+	private UserView userJoin;
 	
+	//Campos que almacenan el valor de los picklist de los campos: field, oldvalue, newvalue	
+	private String labelFieldPickList;
+	private String labelNewValuePickList;
+	private String labelOldValuePickList;
+		
 	public Integer getId() {
 		return id;
 	}
@@ -65,18 +70,32 @@ public class CaseHistoryView extends ObjectView {
 	public void setCreatedbyid(String createdbyid) {
 		this.createdbyid = createdbyid;
 	}
-	public String getCreatedByName() {
-		return createdByName;
+	public UserView getUserJoin() {
+		return userJoin;
 	}
-	public void setCreatedByName(String createdByName) {
-		this.createdByName = createdByName;
+	public void setUserJoin(UserView userJoin) {
+		this.userJoin = userJoin;
 	}
-	public String getAccion() {
-		return accion;
+	public String getLabelFieldPickList() {
+		return labelFieldPickList;
 	}
-	public void setAccion(String accion) {
-		this.accion = accion;
+	public void setLabelFieldPickList(String labelFieldPickList) {
+		this.labelFieldPickList = labelFieldPickList;
 	}
+	public String getLabelNewValuePickList() {
+		return labelNewValuePickList;
+	}
+	public void setLabelNewValuePickList(String labelNewValuePickList) {
+		this.labelNewValuePickList = labelNewValuePickList;
+	}
+	public String getLabelOldValuePickList() {
+		return labelOldValuePickList;
+	}
+	public void setLabelOldValuePickList(String labelOldValuePickList) {
+		this.labelOldValuePickList = labelOldValuePickList;
+	}
+
+	
 	@Override
 	public Object instantiateTargetLogic() {
 		CaseHistory caseHistory = new CaseHistory();

@@ -6,9 +6,9 @@ import java.util.Map;
 import com.casosemergencias.model.PickList;
 
 public interface PickListsService {
-	Map<String, Map<String, String>> getPickListPorObjeto(String objeto);
+	public Map<String, Map<String, String>> getPickListPorObjeto(String objeto);
 	
-	Map<String, String> getPickListPorCampo(String objeto, String campo);
+	public Map<String, String> getPickListPorCampo(String objeto, String campo);
 	
-	List<PickList> getPickListPorObjetoYCampo(String objeto, String campo);
+	public List<PickList> getPickListPorObjetoYCampo(String objeto, String campo);
 }
