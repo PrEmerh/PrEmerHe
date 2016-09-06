@@ -21,7 +21,7 @@
 	<script src="../resources/js/utils.js" lang=""></script>
 	</head>
 	<body onload="initHeader();">
-		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadContacto_title_label_detalle_caso"/>';</script>
+		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadContacto_title_label_detalle_contacto"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<div>
 		<form:form name="formEntidadContacto" action="actualizarContacto" modelAttribute="contacto" method="POST">

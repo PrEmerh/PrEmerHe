@@ -35,18 +35,13 @@ public class AccountController {
 	private AccountService accountService;
 	
 	@RequestMapping(value = "/private/homeCuentas", method = RequestMethod.GET)
-	public ModelAndView listadoCuentas(HttpServletRequest request) {
+	public ModelAndView listadoCuentas() {
 		
 		logger.info("--- Inicio -- listadoCuentas ---");
 		
-		HttpSession session = request.getSession(true);		
-		session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
-		session.setAttribute(Constantes.SFID_CONTACTO, null);	
-		session.setAttribute(Constantes.SFID_CUENTA, null);	
-
 		ModelAndView model = new ModelAndView();
 		model.setViewName("private/homeCuentasPage");
-	
+			
 		logger.info("--- Fin -- listadoCuentas ---");
 		return model;
 	}
@@ -63,7 +58,11 @@ public class AccountController {
 	public ModelAndView getAccountData(@RequestParam String sfid,HttpServletRequest request) {
 		logger.trace("Detalle de cuenta");
 		HttpSession session = request.getSession(true);
+		
+		
 		session.setAttribute(Constantes.SFID_CUENTA, sfid);	
+		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, "CUENTA");
+		
 		AccountView cuentaView = new AccountView();
 		ModelAndView model = new ModelAndView();
 		Cuenta cuentaBBDD = accountService.getAccountBySfid(sfid);
@@ -71,6 +70,23 @@ public class AccountController {
 		if (cuentaBBDD != null) {
 			ParserModelVO.parseDataModelVO(cuentaBBDD, cuentaView);
 		}
+		
+		/*Almacenamos sfid de contactos y suministros relacionados en caso de que la cuenta seleccionado tenga uno de cada
+		
+		if(cuentaView.getContactos()!=null && cuentaView.getContactos().isEmpty()==false  && cuentaView.getContactos().size()==1 && session.getAttribute(Constantes.SFID_CONTACTO)==null){
+			session.setAttribute(Constantes.SFID_CONTACTO, cuentaView.getContactos().get(0).getSfid());					
+		}
+		
+		if(cuentaView.getSuministros()!=null && cuentaView.getSuministros().isEmpty()==false  && cuentaView.getSuministros().size()==1 && session.getAttribute(Constantes.SFID_SUMINISTRO)==null){
+			session.setAttribute(Constantes.SFID_SUMINISTRO, cuentaView.getSuministros().get(0).getSfid());					
+		}*/
+		
+		logger.info("SFID_CUENTA" + session.getAttribute(Constantes.SFID_CUENTA));
+		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));
+		logger.info("SFID_SUMINISTRO" + session.getAttribute(Constantes.SFID_SUMINISTRO));
+		logger.info("FINAL_DETAIL_PAGE" + session.getAttribute(Constantes.FINAL_DETAIL_PAGE));
+
+		
 		
 		model.addObject("sfid", sfid);
 		model.setViewName("private/entidadCuentaPage");
@@ -85,9 +101,20 @@ public class AccountController {
 	 * @return
 	 */
 	@RequestMapping(value = "/listarCuentas", method = RequestMethod.POST)
-	public @ResponseBody String listadoCuentas(@RequestBody String body){
+	public @ResponseBody String listadoCuentas(@RequestBody String body,HttpServletRequest request){
 		
 		logger.info("--- Inicio -- listadoCuentas ---");
+		
+		//Limpieza de sfid que arrastramos
+		
+		HttpSession session = request.getSession(true);	
+		
+		session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
+		session.setAttribute(Constantes.SFID_CONTACTO, null);	
+		session.setAttribute(Constantes.SFID_CUENTA, null);	
+		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, null);	
+		
+		//Limpieza de sfid que arrastramos
 		
 		DataTableProperties propDataTable = DataTableParser.parseBodyToDataTable(body);
 		List<Cuenta> listaCuentas = new ArrayList<Cuenta>();
@@ -114,6 +141,10 @@ public class AccountController {
 		jsonObject.put("iTotalDisplayRecords", numCuentas); 
 		jsonObject.put("data", jsonArray);
 		jsonObject.put("draw", propDataTable.getDraw());
+		
+		logger.info("SFID_CUENTA" + session.getAttribute(Constantes.SFID_CUENTA));
+		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));
+		logger.info("SFID_SUMINISTRO" + session.getAttribute(Constantes.SFID_SUMINISTRO));
 		
 		logger.info("--- Fin -- listadoCuentas ---");
 		

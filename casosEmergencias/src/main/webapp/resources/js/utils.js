@@ -165,7 +165,17 @@ function validateEmail(email) {
     return validated;
 }
 
-/*Inici -- funciones Guardar y Cancelar Comentario de un Caso*/
+//Funcion Cancelar Alta de un Caso
+
+function cancelAltaCaso(){
+	
+	window.location="../private/cancelAltaCaso";
+	
+	
+}
+
+//Funciones Guardar y Cancelar Comentario de un Caso
+
 function newComent(sfid){
 	 window.location="../private/casoComentarioPage?sfid="+sfid;
 }
@@ -175,7 +185,7 @@ function cancelComent(sfid){
 	 window.location="../private/entidadCaso?editMode=VIEW&sfid="+sfid;
 }
 
-/*Fin -- funciones Guardar y Cancelar Comentario de un Caso*/
+
 
 
 //Limpieza campos del buscador.

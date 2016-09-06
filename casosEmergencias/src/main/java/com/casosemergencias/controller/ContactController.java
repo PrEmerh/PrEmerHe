@@ -35,19 +35,13 @@ public class ContactController {
 	private ContactService contactService;
 
 	@RequestMapping(value = "/private/homeContacts", method = RequestMethod.GET)
-	public ModelAndView listadoContactos(HttpServletRequest request) {
+	public ModelAndView listadoContactos() {
 
 		logger.info("--- Inicio -- listadoContactos ---");
 		
-		HttpSession session = request.getSession(true);	
-		
-		session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
-		session.setAttribute(Constantes.SFID_CONTACTO, null);	
-		session.setAttribute(Constantes.SFID_CUENTA, null);	
-		
 		ModelAndView model = new ModelAndView();
 		model.setViewName("private/homeContactsPage");
-	
+			
 		logger.info("--- Fin -- listadoContactos ---");
 		
 		return model;
@@ -57,7 +51,11 @@ public class ContactController {
 	public ModelAndView getContactoData(@RequestParam String sfid,HttpServletRequest request) {
 		System.out.println("Ejecutar consulta");
 		HttpSession session = request.getSession(true);
+		
+		
 		session.setAttribute(Constantes.SFID_CONTACTO, sfid);
+		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, "CONTACTO");
+
 		ModelAndView model = new ModelAndView();		
 		model.addObject("sfid", sfid);
 
@@ -66,6 +64,19 @@ public class ContactController {
 		if (contactoBBDD != null){
 			ParserModelVO.parseDataModelVO(contactoBBDD, contactoView);
 		}
+		
+		//Almacenamos sfid de suministro relacionado en caso de que el contacto tenga solo uno asociado.
+		
+		if(contactoView.getSuministros()!=null && contactoView.getSuministros().isEmpty()==false  && contactoView.getSuministros().size()==1 && session.getAttribute(Constantes.SFID_SUMINISTRO)==null){
+			session.setAttribute(Constantes.SFID_SUMINISTRO, contactoView.getSuministros().get(0).getSfid());					
+		}
+		
+		logger.info("SFID_CUENTA" + session.getAttribute(Constantes.SFID_CUENTA));
+		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));
+		logger.info("SFID_SUMINISTRO" + session.getAttribute(Constantes.SFID_SUMINISTRO));
+		logger.info("FINAL_DETAIL_PAGE" + session.getAttribute(Constantes.FINAL_DETAIL_PAGE));
+
+		
 		model.setViewName("private/entidadContactoPage");
 		model.addObject("contacto", contactoView);
 		
@@ -79,9 +90,20 @@ public class ContactController {
 	 * @return
 	 */
 	@RequestMapping(value = "/listarContactos", method = RequestMethod.POST)
-	public @ResponseBody String listadoContactos(@RequestBody String body){
+	public @ResponseBody String listadoContactos(@RequestBody String body,HttpServletRequest request){
 		
 		logger.info("--- Inicio -- listadoSuministrosHome ---");
+		
+		//Limpieza de sfid que arrastramos
+		
+		HttpSession session = request.getSession(true);	
+		
+		session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
+		session.setAttribute(Constantes.SFID_CONTACTO, null);	
+		session.setAttribute(Constantes.SFID_CUENTA, null);	
+		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, null);	
+		
+		//Limpieza de sfid que arrastramos
 		
 		DataTableProperties propDataTable = DataTableParser.parseBodyToDataTable(body);
 		List<Contacto> listaContactos = new ArrayList<Contacto>();
@@ -110,6 +132,11 @@ public class ContactController {
 		jsonObject.put("data", jsonArray);
 		jsonObject.put("draw", propDataTable.getDraw());
 		
+		logger.info("SFID_CUENTA" + session.getAttribute(Constantes.SFID_CUENTA));
+		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));
+		logger.info("SFID_SUMINISTRO" + session.getAttribute(Constantes.SFID_SUMINISTRO));
+		
+				
 		logger.info("--- Fin -- listadoSuministrosHome ---");
 		
 		return jsonObject.toString();

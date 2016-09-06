@@ -70,21 +70,15 @@ public class CaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/private/homeCasos", method = RequestMethod.GET)
-	public ModelAndView goHomeCasos(HttpServletRequest request) {
+	public ModelAndView goHomeCasos() {
 		
 		logger.info("--- Inicio -- listadoCasos ---");
 		
-		HttpSession session = request.getSession(true);		
-		session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
-		session.setAttribute(Constantes.SFID_CONTACTO, null);	
-		session.setAttribute(Constantes.SFID_CUENTA, null);	
-		
-
 		ModelAndView model = new ModelAndView();
 		model.setViewName("private/homeCasosPage");
 	
 		logger.info("--- Fin -- listadoCasos ---");
-		
+				
 		return model;
 	}
 	
@@ -140,6 +134,7 @@ public class CaseController {
 		
 		ModelAndView model = new ModelAndView();	
 		CaseView casoView = new CaseView();
+				
 		
 		model.addObject("editMode", Constantes.EDIT_MODE_INSERT);
 		model.setViewName("private/entidadCasoAltaPage");
@@ -174,6 +169,33 @@ public class CaseController {
 		
 		return model;
 	}
+	
+	@RequestMapping(value = "/private/cancelAltaCaso",method = RequestMethod.GET)
+		
+			public String cancelAltaCaso(HttpServletRequest request){
+			
+			HttpSession session = request.getSession();
+			
+			String suministroSfid= new String();
+			String contactoSfid= new String();
+			String finalDetailPage= new String();
+	
+			suministroSfid=(String) session.getAttribute(Constantes.SFID_SUMINISTRO);
+			contactoSfid=(String) session.getAttribute(Constantes.SFID_CONTACTO);
+			finalDetailPage=(String) session.getAttribute(Constantes.FINAL_DETAIL_PAGE);
+			
+			if(finalDetailPage=="CONTACTO"){
+				return "redirect:entidadContacto?sfid=" + contactoSfid;	
+			}
+			if(finalDetailPage=="SUMINISTRO"){			
+				return "redirect:entidadSuministro?sfid=" + suministroSfid;
+				}
+			else{
+				return null;
+			}
+		}
+		
+	
 
 	@RequestMapping(value = "/private/altaCaso", params="GuardarCaso", method = RequestMethod.POST)
 	public String guardarCaso(CaseView caso){
@@ -234,9 +256,20 @@ public class CaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/listarCasos", method = RequestMethod.POST)
-	public @ResponseBody String listadoCasosHome(@RequestBody String body){
+	public @ResponseBody String listadoCasosHome(@RequestBody String body,HttpServletRequest request){
 		
 		logger.info("--- Inicio -- listadoCasosHome ---");
+		
+		//Limpieza de sfid que arrastramos
+		
+		HttpSession session = request.getSession(true);	
+		
+		session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
+		session.setAttribute(Constantes.SFID_CONTACTO, null);	
+		session.setAttribute(Constantes.SFID_CUENTA, null);	
+		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, null);	
+		
+		//Limpieza de sfid que arrastramos
 		
 		DataTableProperties dataTableProperties = DataTableParser.parseBodyToDataTable(body);
 		
@@ -267,7 +300,11 @@ public class CaseController {
 		jsonObject.put("data", jsonArray);
 		jsonObject.put("draw", dataTableProperties.getDraw());
 		
-		logger.info("--- Inicio -- listadoCasosHome ---");
+		logger.info("SFID_CUENTA" + session.getAttribute(Constantes.SFID_CUENTA));
+		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));
+		logger.info("SFID_SUMINISTRO" + session.getAttribute(Constantes.SFID_SUMINISTRO));
+		
+		logger.info("--- Fin -- listadoCasosHome ---");
 		
 		return jsonObject.toString();
 	}
@@ -336,25 +373,7 @@ public class CaseController {
 		logger.info("UPDATED CASE"+insertCaseComment);
 		
 		return "redirect:entidadCaso?sfid=" + comentarioCaso.getCaseid() + "&editMode=" + (insertCaseComment == 1 ? Constantes.CREATED_MODE_CREATED_OK : Constantes.CREATED_MODE_CREATED_ERROR);
-		
-		
-		
-//		logger.info("--- Inicio -- saveComentarioCaso ---");
-//		logger.debug("----- saveComentarioCaso -- sfid del caso: " + casoRequest.getCaseid());
-//		int updatedCase = 1;
-//		
-//		String url =  "redirect:entidadCaso?sfid=" + casoRequest.getCaseid() + "&editMode=";
-//		if(updatedCase == 1){
-//			url = url + Constantes.EDIT_MODE_UPDATED_OK;
-//		}else{
-//			url = url +  Constantes.EDIT_MODE_UPDATED_ERROR;
-//		}
-//		
-//		//String url = "redirect:entidadCaso?sfid=" + casoRequest.getCaseid() + "&editMode=" + (updatedCase == 1 ? Constantes.EDIT_MODE_UPDATED_OK : Constantes.EDIT_MODE_UPDATED_ERROR);
-//		
-//		logger.info("--- Fin -- saveComentarioCaso ---");		
-//		return url;
-		
+	
 		
 	}
 	

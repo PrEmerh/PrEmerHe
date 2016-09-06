@@ -27,7 +27,7 @@
 	<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_case"/>';</script>
 	<jsp:include page="cabeceraPage.jsp"/>
 	<form:form name="formEntidadCasoAlta" action="altaCaso" modelAttribute="caso" method="POST" onsubmit="javascript:return validaDatos();">
-		<form:hidden path="sfid"/>		
+		<form:hidden path="sfid"/>	
 		<div class="divCabeceraEntidad">
 			<div class="divTituloEntidad">
 					<label><s:message code="entidadCasoAlta_title_label_detalle_caso"/></label>
@@ -36,7 +36,7 @@
 				<ul>
 				<li><input type="submit" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" /></li>
 				<li><input type="submit" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" /></li>
-				<li><input type="submit" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" /></li>
+				<li><input type="button" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" onclick="cancelAltaCaso()" /></li>
 				</ul>
 			</div>
 		</div>
