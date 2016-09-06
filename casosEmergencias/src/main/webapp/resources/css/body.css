@@ -50,9 +50,143 @@ body label {
 	font-weight: normal;
 }
 
+.divEntidad {
+	width: 98%;
+	margin-left: 5px;
+}
+
+.divEntidad div {
+	width: 100%;
+	padding-top: 2px;
+	padding-bottom: 4px;
+}
+
+.divEntidad div div {
+	float: left;
+	width: 30%;
+	font-family: Helvetica, Arial, sans-serif;
+	border-bottom: 1px solid #ececec;
+	font-size: 91%;
+	height: 20px;
+}
+
+.divEntidad div div .divAreaTexto {
+	padding: 10px;
+}
+
+.divEntidad div div .divObligatorio {
+	width: 3px;
+	float: left;
+	height: 15px;
+	background-color: red;
+	margin-right: 4px;
+}
+
+.divEntidad div .divLabel {
+	width: 20%;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: right;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.divEntidad div .divLabel label {
+	padding-right: 10px;
+	font-weight: bold;
+}
+
+/* Estilos de DIV añadidos para páginas con distinta estructura */
+.divEntidad .divSubEntidad div {
+	width: 100%;
+	padding-top: 2px;
+	padding-bottom: 4px;
+}
+
+.divEntidad .divSubEntidad div .divLabel {
+	width: 20%;
+	text-align: right;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.divEntidad .divSubEntidad div .divLabel {
+	width: 20%;
+	height: 60px;
+	text-align: right;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.divEntidad .divSubEntidad div .divLabel label {
+	padding-right: 10px;
+	font-weight: bold;
+}
+
+.divEntidad .divSubEntidad div div {
+	float: left;
+	width: 30%;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	height: 20px;
+}
+
+.divEntidad .divSubEntidad div div .divObligatorio {
+	width: 3px;
+	float: left;
+	height: 15px;
+	background-color: red;
+	margin-right: 4px;
+}
+/* --------------------------------------------------------- */
+
+.subtitlePrincipalAltaEntidad .titleObligatorio {
+	width: 3px;
+	margin: 6px;
+	background-color: red;
+	float: left;
+	margin-right: 4px;
+	float: left;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Helvetica, Arial, sans-serif;
+	height: 15px;
+}
+
+.subtitlePrincipalAltaEntidad .titleObligatorioTexto {
+	padding: 6px 0px 6px 0px;
+	float: left;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.divEntidad .subtitleAltaEntidad div {
+	width: 100%;
+	height: 15px;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	background-color: #f5f4f3;
+	padding-left: 4px;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.divEntidad .subtitleAltaEntidad div label {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.divCabeceraEntidad {
+	margin: auto;
+    width: 50%;
+}
+
+/* >>>>> ESTILOS PARA BOTONES */
 .botoneraListado {
 	width: 100%;
-	margin: 8px 2px 15px 2px;
+	margin: 8px 2px 5px 2px;
 }
 
 .botoneraListado ul {
@@ -82,146 +216,8 @@ body label {
 	text-align: center;
 }
 
-.divEntidad {
-	width: 98%;
-	margin-left: 5px;
-}
-
-.divEntidad div {
-	width: 100%;
-	padding-top: 2px;
-	padding-bottom: 4px;
-}
-
-.divEntidad div div {
-	float: left;
-	width: 30%;
-	font-family: Helvetica, Arial, sans-serif;
-	border-bottom: 1px solid #ececec;
-	font-size: 91%;
-	height: 20px;
-}
-
-.divEntidad div div .divObligatorio {
-	width: 3px;
-	float: left;
-	height: 15px;
-	background-color: red;
-	margin-right: 4px;
-}
-
-.divEntidad div .divLabel {
-	width: 20%;
-	font-size: 12px;
-	font-weight: bold;
-	text-align: right;
-	font-family: Helvetica, Arial, sans-serif;
-}
-
-.divEntidad div .divLabel label {
-	padding-right: 10px;
-	font-weight: bold;
-}
-
-.divEntidad div .divAnchoEspecial {
-	width: 80%;
-}
-
-/* Estilos de DIV añadidos para páginas con distinta estructura */
-.divEntidad .divSubEntidad div {
-	width: 100%;
-	padding-top: 2px;
-	padding-bottom: 4px;
-}
-
-.divEntidad .divSubEntidad div .divLabel {
-	width: 20%;
-	text-align: right;
-	font-size: 12px;
-	font-weight: bold;
-}
-
-.divEntidad .divSubEntidad div .divLabel label {
-	padding-right: 10px;
-	font-weight: bold;
-}
-
-.divEntidad .divSubEntidad div div {
-	float: left;
-	width: 30%;
-	font-family: Helvetica, Arial, sans-serif;
-	font-size: 12px;
-	height: 20px;
-}
-
-.divEntidad .divSubEntidad div div .divObligatorio {
-	width: 3px;
-	float: left;
-	height: 15px;
-	background-color: red;
-	margin-right: 4px;
-}
-/* --------------------------------------------------------- */
-.divEntidad .subtittlePrincipalAltaEntidad .subtittlePrincipalAltaEntidadDivInfo
-	{
-	width: 80%;
-	height: 15px;
-	margin-top: 10px;
-	background-color: #f5f4f3;
-	float: left;
-	padding-left: 4px;
-	font-weight: bold;
-}
-
-.divEntidad .subtittlePrincipalAltaEntidad .subtittlePrincipalAltaEntidadDivOblig
-	{
-	width: 19%;
-	height: 15px;
-	margin-top: 10px;
-	background-color: #f5f4f3;
-	float: left;
-}
-
-.divEntidad .subtittlePrincipalAltaEntidad .subtittlePrincipalAltaEntidadDivOblig label
-	{
-	padding-left: 4px;
-	font-size: 11px;
-}
-
-.divEntidad .subtittlePrincipalAltaEntidad .tittleObligatorio {
-	width: 3px;
-	margin-right: 6px;
-	background-color: red;
-	float: left;
-	height: 10px;
-	margin: 0px;
-	float: left;
-	font-weight: bold;
-}
-
-.divEntidad .subtitleAltaEntidad div {
-	width: 100%;
-	height: 15px;
-	margin-top: 20px;
-	background-color: #f5f4f3;
-	padding-left: 4px;
-	font-size: 12px;
-	font-weight: bold;
-	font-family: Helvetica, Arial, sans-serif;
-}
-
-.divCabeceraEntidad {
-	width: 100%;
-	margin: 15px 0 10px 0px;
-}
-
 .botoneraEntidad {
 	float: left;
-	width: 65%;
-}
-
-.botoneraBottom {
-	margin: 25px 0 15px 0px;
 }
 
 .botoneraEntidad ul {
@@ -248,6 +244,13 @@ body label {
 	align-items: flex-start;
 	text-align: center;
 }
+
+.botoneraInferior {
+	float: left;
+	position: relative;
+	margin: 40px 0px 40px 0px;
+}
+/* <<<<< ESTILOS PARA BOTONES */
 
 .divTituloEntidad {
 	padding-top: 10px;
@@ -334,6 +337,14 @@ body label {
 	color: blue;
 	border: solid 0px #000000;
 	background: none;
+}
+
+.requiredTextArea{
+    border-color: red;
+    border-width: 2px;
+    outline-color: red;
+    outline-width: 2px;
+
 }
 
 /* >>>>> ESTILOS PARA ENLACES */

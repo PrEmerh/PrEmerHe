@@ -24,11 +24,6 @@
 		<jsp:include page="cabeceraPage.jsp"/>
 		 
 		<form name='formListadoCasos' action="homeSuministrosAction" method='POST'>
-<%-- 			<div class="botoneraListado">
-				<ul>
-					<li><input type="submit" name="goCrearCaso" value="<s:message code="homeCasos_button_nuevocaso"/>" /></li>
-				</ul>
-			</div> --%>
 			<br><br>
 			<div class="formBusqueda">
 				<table class="tablaBusqueda">
@@ -44,7 +39,15 @@
 						<td class="tablaBusquedaTextos">
 							<input type="text" id="filtroNumSuministro" name="filtroNumSuministro" class="column_filter" value="" maxlength="50">
 						</td>
-					</tr>	
+					</tr>
+					<tr>
+						<td class="tablaBusquedaEtiquetas">
+							<label for="filtroDireccion"><s:message code="search_form_input_suministro_direccion"/></label>
+						</td>
+						<td class="tablaBusquedaTextos">
+							<input type="text" id="filtroDireccion" name="filtroDireccion" class="column_filter" value="" maxlength="50">
+						</td>
+					</tr>				
 					<tr>
 						<td class="tablaBusquedaEtiquetas">
 							<label for="filtroDireccion"><s:message code="search_form_input_suministro_direccion"/></label>

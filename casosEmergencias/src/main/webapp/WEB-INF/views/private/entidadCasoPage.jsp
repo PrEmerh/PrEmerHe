@@ -17,10 +17,9 @@
 	
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/header.js" lang=""></script>
-		<script src="../resources/js/utils.js" lang=""></script>
-		<script src="../resources/js/casos.js" lang=""></script>
+        <script src="../resources/js/utils.js" lang=""></script> 
 	</head>
-	<body onload="initHeader(); checkUpdates();">
+	<body onload="initHeader(); checkUpdates();checkCaseCommentCreation();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
@@ -33,7 +32,9 @@
 					<li><input id="Guardar" type="submit" name="Cancelar" value="Guardar" hidden="true"/></li>
 					<li><input id="Cancelar" type="button" name="Cancelar" value="Cancelar" hidden="true"  onclick="cancelarButton();"/></li>
 				</ul>
-			</div>
+			</div>			
+			<!-- INICIO---Mensajes de actualización de caso -->	
+					
 			<div id="divError" class="divError">
 				<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
 				<br>
@@ -44,6 +45,20 @@
 			<div id="divOk" class="divOk">
 				<label>Los datos se han modificado correctamente</label>
 			</div>
+			
+			<!-- FIN---Mensajes de actualización de caso -->
+				
+			<!-- INICIO---Mensajes de creación de un comentario de caso -->	
+			
+			<div id="divCaseCommentNOCreated" class="divError">
+				<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
+				<label id="errorMessage"></label>
+			</div>
+			<div id="divCaseCommentCreated" class="divOk">
+				<label>El comentario se ha guardado correctamente</label>
+			</div>
+			
+			<!-- FIN---Mensajes de creación de un comentario de caso -->	
 			<div class="divEntidad">
 				<div class="subtitleAltaEntidad">
 					<div>
@@ -401,8 +416,8 @@
 						<div>
 							<input id="arrowTablaCasosComments" type="image" src="../resources/images/arrow-down-black.png"  
 								height="15" onclick="showHideCabeceras('tablaCasosComments','arrowTablaCasosComments'); return false;"/>			
-							<label class="divLabel"><s:message code="entidadCaso_title_label_comentarios_titulo" /></label>
-							<input id="NuevoComent" type="button" name="NuvoComent" value='<s:message code="entidadCaso_button_label_comentarios_nuevo"/>' onclick="newComent('${caso.sfid}');" />
+							<label class="divLabel"><s:message code="entidadCaso_title_label_comentarios_titulo" /></label>			
+							<input id="NuevoComent" type="button" name="NuevoComent" style='margin-left:8%; 'value='<s:message code="entidadCaso_button_label_comentarios_nuevo"/>' onclick="newComent('${caso.sfid}');" />
 						</div>
 					</div>
 					<div id="tablaCasosComments">

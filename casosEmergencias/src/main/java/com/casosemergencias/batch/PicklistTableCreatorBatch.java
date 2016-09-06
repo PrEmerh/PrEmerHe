@@ -82,7 +82,7 @@ public class PicklistTableCreatorBatch {
 			httpclient.executeMethod(post);
 			
 			JSONObject authResponse = new JSONObject(new JSONTokener(new InputStreamReader(post.getResponseBodyAsStream())));
-			System.out.println("Respuesta: " + authResponse.toString(2));
+			logger.info("Respuesta: " + authResponse.toString(2));
 
 			accessToken = authResponse.getString(ConstantesBatch.SF_ACCESS_TOKEN_PARAMETER);
 			instanceUrl = authResponse.getString(ConstantesBatch.SF_INSTANCE_URL_PARAMETER);
@@ -139,7 +139,6 @@ public class PicklistTableCreatorBatch {
 								listaDatos.addAll(listAux);
 							}
 						}
-
 					}
 				}
 			} catch (Exception ex) {
