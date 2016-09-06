@@ -14,6 +14,7 @@ public class ConstantesSalesforceLogin {
 	public static final String DEV_LOGIN_SALESFORCE_LOGIN_URI = "https://test.salesforce.com";
 	public static final String DEV_LOGIN_SALESFORCE_REDIRECT_URI = "https://localhost:8443/_callback";
 	public static final String DEV_LOGIN_SALESFORCE_TOKEN_PATH_URI = "/services/oauth2/token";
+	public static final String DEV_LOGIN_SALESFORCE_INSTANCE_URL = "https://cs52.salesforce.com";
 
 	public static final String DEV_LOGIN_SALESFORCE_GRANT_TYPE_VALUE = "password";
 	public static final String DEV_LOGIN_SALESFORCE_CLIENT_ID_VALUE = "3MVG9jfQT7vUue.G57q9YxkeioLB1AE02bGctQ09wjCAcxfXK1OFwgt1YXFGm8HdTaXvIRCmF1pG259r4SsTz";
