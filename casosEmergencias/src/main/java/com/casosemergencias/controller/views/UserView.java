@@ -1,6 +1,6 @@
 package com.casosemergencias.controller.views;
 
-import com.casosemergencias.model.User;
+import com.casosemergencias.model.HerokuUser;
 
 public class UserView extends ObjectView {
 	
@@ -37,8 +37,7 @@ public class UserView extends ObjectView {
 	
 	@Override
 	public Object instantiateTargetLogic() {
-		User user=new User();
-			return user;
-		}
-
+		HerokuUser usuario = new HerokuUser();
+		return usuario;
+	}
 }

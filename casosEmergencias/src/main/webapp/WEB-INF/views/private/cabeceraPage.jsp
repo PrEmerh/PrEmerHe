@@ -8,15 +8,17 @@
 		<a href="../logout"><s:message code="cabeceraPage_href_exit"/></a>
 	</div>
 </div>
-<div id="menuCabecera">
-	<div id="posicionamiento">
+
+<table id="menuCabecera">
+	<tr>
+	<td id="posicionamiento">
 		<div style="float:left;">
 		</div>
 		<div style="float:left;">
 			<label id="lblMenu"></label>
 		</div>
-	</div>
-	<div id="desplegable">
+	</td>
+	<td id="desplegable">
 		<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_label_case"/>');window.location.href='homeCasos'">
 			<a href="homeCasos" ><s:message code="cabeceraPage_list_case"/></a>
 		</div>
@@ -29,10 +31,13 @@
 		<div class="menuListado" onclick="javascript:cambiarLabel('<s:message code="cabeceraPage_list_cuentas"/>');window.location.href='homeCuentas'">
 			<a href="homeCuentas" ><s:message code="cabeceraPage_list_cuentas"/></a>
 		</div>
-	</div>
-	<div id="divBotonDesplegable">			
+	</td>
+	<td id="divBotonDesplegable">			
 		<input type="button" id="botonDesplegable" name="botonDesplegable" style="align:right;">
-	</div>
+	</td>
+	</tr>
+</table>
+<div>
 	<div id="divTabs">
 		&nbsp;
 	</div>

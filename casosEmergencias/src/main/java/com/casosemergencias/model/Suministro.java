@@ -3,23 +3,7 @@ package com.casosemergencias.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.Where;
-
 import com.casosemergencias.controller.views.SuministroView;
-import com.casosemergencias.dao.vo.PickListsSumComunaRepartoVO;
-import com.casosemergencias.dao.vo.PickListsSumFullElectricVO;
-import com.casosemergencias.dao.vo.PickListsSumMedidaDisciplinaVO;
-import com.casosemergencias.dao.vo.PickListsSumPropiedadMedidorVO;
-import com.casosemergencias.dao.vo.PickListsSumSubestacionElecVO;
-import com.casosemergencias.dao.vo.PickListsSumTipoConexionVO;
-import com.casosemergencias.dao.vo.PickListsSumTipoLecturaVO;
-import com.casosemergencias.dao.vo.PickListsSumTipoSegmentoVO;
-import com.casosemergencias.dao.vo.PickListsSumTipoTransfVO;
-import com.casosemergencias.dao.vo.PickListsVO;
 import com.casosemergencias.dao.vo.SuministroVO;
 
 public class Suministro extends ObjectLogic {
