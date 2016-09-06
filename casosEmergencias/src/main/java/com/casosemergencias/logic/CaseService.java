@@ -14,8 +14,6 @@ public interface CaseService {
 	public Integer getNumCasos(DataTableProperties propDatatable);
 	
 	public Caso readCaseById(Integer id);
-	/*Añadido Alvaro*/
-	public Integer insertCase(Caso caso);
 
 	public Integer insertCase(Caso caso);
 	

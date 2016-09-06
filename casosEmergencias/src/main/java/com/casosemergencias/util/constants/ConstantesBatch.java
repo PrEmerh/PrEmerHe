@@ -23,6 +23,8 @@ public class ConstantesBatch {
 	/** Valores de propiedades para recuperar Picklists desde SalesForce. */
 	public static final String PICKLIST_PROPERTIES_ARCHIVE_NAME = "picklist.properties";
 	public static final String PICKLIST_PROPERTIES_INVOLVED_PICKLISTS_PROPERTY = "pickList.implicados";
+	public static final String FIELD_LABEL_PROPERTIES_ARCHIVE_NAME = "fieldlabel.properties";
+	public static final String FIELD_LABEL_PROPERTIES_INVOLVED_OBJECTS_PROPERTY = "fieldLabel.implicados";
 	
 	/** Datos de conexión a la base de datos de Heroku. 
 	LAs tenemos que recuperar de las variables de entorno

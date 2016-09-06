@@ -96,11 +96,4 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 		Integer id = caseDao.updateCase(casoVO);
 		return id;
 	}
-	/*Añadido Alvaro*/
-	public Integer insertCase(Caso caso){
-		CaseVO casoVO = new CaseVO();
-		ParserModelVO.parseDataModelVO(caso, casoVO);
-		Integer id = caseDao.insertCase(casoVO);
-		return id;
-	}
 }
