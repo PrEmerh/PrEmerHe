@@ -202,12 +202,18 @@ function newComent(sfid){
 function cancelComent(sfid){
 	 window.location="../private/entidadCaso?editMode=VIEW&sfid="+sfid;
 }
-
 /*Fin -- funciones Guardar y Cancelar Comentario de un Caso*/
 
 
-//Limpieza campos del buscador.
+//Funcion Cancelar Alta de un Caso
+function cancelAltaCaso(){
+	
+	window.location="../private/cancelAltaCaso";
+	
+	
+}
 
+//Limpieza campos del buscador.
 function limpiarCamposBuscadorCasos() {
 	if (document.getElementById('filtroNumCaso').value != '') {
 		document.getElementById('filtroNumCaso').value = '';

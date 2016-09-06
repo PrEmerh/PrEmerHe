@@ -32,7 +32,7 @@
 				<h4><s:message code="comentarioCase_label_titulo"/></h4>
 				<ul>
 					<li><input id="Guardar" type="submit" name="Guardar" value='<s:message code="comentarioCase_label_button_guardar"/>'/></li>
-					<li><input id="Cancelar" type="button" name="Cancelar" value='<s:message code="comentarioCase_label_button_cancelar"/>' onclick="cancelComent('${sfid}')"/></li>
+					<li><input id="Cancelar" type="button" name="Cancelar" value='<s:message code="comentarioCase_label_button_cancelar"/>' onclick="cancelCreatedCase('${sfid}')"/></li>
 				</ul>
 				</div>
 			</div>

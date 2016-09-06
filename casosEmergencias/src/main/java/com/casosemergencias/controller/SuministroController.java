@@ -35,18 +35,13 @@ public class SuministroController {
 	private SuministroService suministroService;
 	
 	@RequestMapping(value = "/private/homeSuministros", method = RequestMethod.GET)
-	public ModelAndView detalleSuministro(HttpServletRequest request) {
+	public ModelAndView detalleSuministro() {
 		logger.info("--- Inicio -- listadoSuministros ---");
 		
-		HttpSession session = request.getSession(true);		
-		session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
-		session.setAttribute(Constantes.SFID_CONTACTO, null);	
-		session.setAttribute(Constantes.SFID_CUENTA, null);	
 		
-
 		ModelAndView model = new ModelAndView();
 		model.setViewName("private/homeSuministrosPage");
-	
+			
 		logger.info("--- Fin -- listadoSuministros ---");
 		
 		return model;
@@ -76,19 +71,34 @@ public class SuministroController {
 		
 		logger.info("Ejecutar consulta");
 		HttpSession session = request.getSession(true);
-		session.setAttribute(Constantes.SFID_SUMINISTRO, sfid);		
+		
+		session.setAttribute(Constantes.SFID_SUMINISTRO, sfid);	
+		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, "SUMINISTRO");
+
 		ModelAndView model = new ModelAndView();		
 		model.addObject("sfid", sfid);
-		
+	
 		SuministroView suministroView = new SuministroView();
 		
 		Suministro suministroBBDD = suministroService.readSuministroBySfid(sfid);
 		if (suministroBBDD != null){
 			ParserModelVO.parseDataModelVO(suministroBBDD, suministroView);
 		}
+		
+		//Almacenamos sfid de contactos relacionados en caso de que el suministro seleccionado tenga solo uno asociado.
+		
+		if(suministroView.getContactosRelacionados()!=null && !suministroView.getContactosRelacionados().isEmpty()  && suministroView.getContactosRelacionados().size()==1 && session.getAttribute(Constantes.SFID_CONTACTO)==null){
+			session.setAttribute(Constantes.SFID_CONTACTO, suministroView.getContactosRelacionados().get(0).getSfid());					
+		}
+		
+		logger.info("SFID_CUENTA" + session.getAttribute(Constantes.SFID_CUENTA));
+		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));
+		logger.info("SFID_SUMINISTRO" + session.getAttribute(Constantes.SFID_SUMINISTRO));
+		logger.info("FINAL_DETAIL_PAGE" + session.getAttribute(Constantes.FINAL_DETAIL_PAGE));
+
 		model.setViewName("private/entidadSuministroPage");
 		model.addObject("suministro", suministroView);
-		
+
 		return model;
 	}
 
@@ -139,9 +149,20 @@ public class SuministroController {
 	 * @return
 	 */
 	@RequestMapping(value = "/listarSuministros", method = RequestMethod.POST)
-	public @ResponseBody String listadoSuministros(@RequestBody String body){
+	public @ResponseBody String listadoSuministros(@RequestBody String body,HttpServletRequest request){
 		
 		logger.info("--- Inicio -- listadoSuministrosHome ---");
+				
+		//Limpieza de sfid que arrastramos
+		
+		HttpSession session = request.getSession(true);	
+		
+		session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
+		session.setAttribute(Constantes.SFID_CONTACTO, null);	
+		session.setAttribute(Constantes.SFID_CUENTA, null);
+		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, null);	
+		
+		//Limpieza de sfid que arrastramos
 		
 		DataTableProperties propDataTable = DataTableParser.parseBodyToDataTable(body);
 		List<Suministro> listSuministros = new ArrayList<Suministro>();
@@ -171,6 +192,10 @@ public class SuministroController {
 		jsonObject.put("iTotalDisplayRecords", numSuministros); 
 		jsonObject.put("data", array);
 		jsonObject.put("draw", propDataTable.getDraw());
+		
+		logger.info("SFID_CUENTA" + session.getAttribute(Constantes.SFID_CUENTA));
+		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));
+		logger.info("SFID_SUMINISTRO" + session.getAttribute(Constantes.SFID_SUMINISTRO));
 		
 		logger.info("--- Fin -- listadoSuministrosHome ---");
 		
