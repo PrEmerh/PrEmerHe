@@ -71,7 +71,7 @@ public class PicklistTableCreatorBatch {
 		PostMethod post = new PostMethod(tokenUrl);
 		post.addParameter(ConstantesBatch.SF_GRANT_TYPE_PARAMETER, ConstantesBatch.SF_GRANT_TYPE_VALUE);
 		post.addParameter(ConstantesBatch.SF_CLIENT_ID_PARAMETER, ConstantesBatch.SF_CLIENT_ID_VALUE);
-		post.addParameter(ConstantesBatch.SF_CLIENT_SECRET_PARAMETER, ConstantesBatch.SF_OAUTH_TOKEN_VALUE);
+		post.addParameter(ConstantesBatch.SF_CLIENT_SECRET_PARAMETER, ConstantesBatch.SF_CLIENT_SECRET_VALUE);
 		post.addParameter(ConstantesBatch.SF_REDIRECT_URI_PARAMETER, ConstantesBatch.SF_REDIRECT_URI_VALUE);
 		post.addParameter(ConstantesBatch.SF_USER_NAME_PARAMETER, ConstantesBatch.SF_USER_NAME_VALUE);
 		post.addParameter(ConstantesBatch.SF_PASSWORD_PARAMETER, ConstantesBatch.SF_PASSWORD_VALUE);

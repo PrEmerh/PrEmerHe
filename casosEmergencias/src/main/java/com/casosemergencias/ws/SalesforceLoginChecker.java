@@ -3,6 +3,7 @@ package com.casosemergencias.ws;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.httpclient.HttpClient;
@@ -17,7 +18,6 @@ import org.springframework.util.StringUtils;
 
 import com.casosemergencias.logic.UserSessionInfoService;
 import com.casosemergencias.model.UserSessionInfo;
-import com.casosemergencias.util.constants.ConstantesBatch;
 import com.casosemergencias.util.constants.ConstantesSalesforceLogin;
 import com.force.api.ApiSession;
 import com.force.api.ForceApi;
@@ -48,9 +48,10 @@ public class SalesforceLoginChecker {
 		userSessionInfo.setUsername(username);
 		userSessionInfo.setPassword(password);
 		userSessionInfo.setAccessToken(token);
-		userSessionInfo = userSessionInfoService.readUserSessionInfo(userSessionInfo);
+		List<UserSessionInfo> listUserSessionInfo = userSessionInfoService.readUserSessionInfo(userSessionInfo);
 		
-		if (userSessionInfo != null) {
+		if (listUserSessionInfo != null && !listUserSessionInfo.isEmpty()) {
+			userSessionInfo = listUserSessionInfo.get(0);
 			//Si el usuario existe, se comprueba si la fecha de conexión es mayor o menor de 12 horas.
 			if (!isValidToken(userSessionInfo.getLastConnection())) {
 				// Si la fecha es mayor de 12 horas, se hace login, y se actualiza la información en BBDD antes de devolver los datos del usuario.
@@ -128,7 +129,8 @@ public class SalesforceLoginChecker {
 	public ForceApi getSalesforceApi(String username, String password, String token){
 		ForceApi api = null;
 		logger.trace("Intentamos recuperar los datos o hacemos login.");
-		UserSessionInfo datosSesion = this.getUserSessionInfo(username, password, token);
+		//UserSessionInfo datosSesion = this.getUserSessionInfo(username, password, token);
+		UserSessionInfo datosSesion = this.salesforceLogin(username, password, token);
 		if (datosSesion != null && !StringUtils.isEmpty(datosSesion.getSessionId())){
 			logger.trace("Login correcto.");
 			ApiSession s = new ApiSession();

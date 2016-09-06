@@ -29,7 +29,7 @@ public class FieldLabelTableCreatorBatch {
 		List<FieldLabelBatch> listaRecuperadaSF;
 		try {
 			SalesforceLoginChecker login = new SalesforceLoginChecker();
-			ForceApi api = login.getSalesforceApi(ConstantesBatch.SF_USER_NAME_VALUE, ConstantesBatch.SF_PASSWORD_VALUE, ConstantesBatch.SF_OAUTH_TOKEN_VALUE);
+			ForceApi api = login.getSalesforceApi(ConstantesBatch.SF_USER_NAME_VALUE, ConstantesBatch.SF_PASSWORD_VALUE, ConstantesBatch.SF_USER_TOKEN_VALUE);
 			if (api != null) {
 				listaRecuperadaSF = getFieldLabelList(api);
 				if (listaRecuperadaSF != null && !listaRecuperadaSF.isEmpty()) {
@@ -136,7 +136,7 @@ public class FieldLabelTableCreatorBatch {
 			ResultSet rs = md.getTables(null, null, "%", null);
 			while (rs.next()) {
 				logger.debug("ResultSet name: " + rs.getString(3));
-				if ("picklists".equalsIgnoreCase(rs.getString(3))) {
+				if ("fieldlabel".equalsIgnoreCase(rs.getString(3))) {
 					existeTabla = true;
 					break;
 				}
