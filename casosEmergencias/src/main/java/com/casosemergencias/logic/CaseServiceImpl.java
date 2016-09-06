@@ -1,6 +1,9 @@
 package com.casosemergencias.logic;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -15,6 +18,7 @@ import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.model.CaseComment;
 import com.casosemergencias.model.CaseHistory;
 import com.casosemergencias.model.Caso;
+import com.casosemergencias.model.User;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -70,7 +74,7 @@ public class CaseServiceImpl implements CaseService{
 		}
 		
 		List<CaseHistoryVO> listaHistorialCasoVO = caseHistoryDao.readCaseHistoryByCaseId(sfid);
-		List<CaseHistory> historialCasosRelacionado = parseaListaHistorialCasos(listaHistorialCasoVO);
+		List<CaseHistory> historialCasosRelacionado = parseaYPreparaListaHistorialCasos(listaHistorialCasoVO);
 		returnCase.setHistorialCaso(historialCasosRelacionado);
 		
 		List<CaseCommentVO> listaComentarioCasoVO = caseCommentDao.readCaseCommentByCaseId(sfid);
@@ -118,12 +122,85 @@ public class CaseServiceImpl implements CaseService{
 		return id;
 	}
 	
-	private List<CaseHistory> parseaListaHistorialCasos(List<CaseHistoryVO> listaCaseHistoryVO) {
+	/*
+	 * Método que parsea una lista de CaseHistoryVO en CaseHistory.
+	 * Ademas prepara la lista con los datos listos para mostrar en pantalla:
+	 * 		-- 1.- Si 'oldvalue' y 'newvalue' son sfid (no tiene longitud 18, sin espacios ni puntos), si es un sfid no se añade a la lista que devuelve el metodo
+	 * 		-- 2.- Si 'labelOldValuePickList' y 'labelNewValuePickList' estan vacios, se almacena el valor de 'oldvalue' y 'newvalue'
+	 * 		-- 3.- Si hay varios registros con la misma Fecha, hora y minutos borramos los datos de 'createdate', 'createdbyid' y 'userJoi'n de todos, 
+	 * 				excepto el 1º registros
+	 * */
+	private List<CaseHistory> parseaYPreparaListaHistorialCasos(List<CaseHistoryVO> listaCaseHistoryVO) {
 		if(listaCaseHistoryVO!=null && !listaCaseHistoryVO.isEmpty()){
 			List<CaseHistory> retorno = new ArrayList<CaseHistory>();
+
+			//def variables auxiliares para las comprobaciones del punto 2
+			SimpleDateFormat  dateFormat  = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+			Date fechaModif = null; //guardar 'createddate' que utilizamos para comparar con la iteracion (usaremos formato 'dateFormat')
+			Date fechaIteracion; //guardar 'createddate' de cada iteracion
+			
+			
 			for(CaseHistoryVO historiaCasoVO: listaCaseHistoryVO){
 				CaseHistory casoRelacionado = new CaseHistory();
 				ParserModelVO.parseDataModelVO(historiaCasoVO, casoRelacionado);
+	
+				//Comrobacion punto 1
+				//Comprobamos si 'oldvalue' tiene un sfid
+				String value = casoRelacionado.getOldvalue();
+				if(value != null && !"".equals(value)){
+					//comprobamos 'oldvalue' que no sea sfid, es decir, si tiene 18 caracteres y no contiene espacios ni puntos
+					if(value.length()==18 && value.indexOf(" ") == -1 && value.indexOf(".") == -1){
+						//pasamos a la siguiente iteracion del for
+						continue;						
+					}					
+				}
+				//Repetimos la comprobacion con 'newvalue'
+				value = casoRelacionado.getNewvalue();
+				if(value != null && !"".equals(value)){
+					//comprobamos 'oldvalue' que no sea sfid, es decir, si tiene 18 caracteres y no contiene espacios ni puntos
+					if(value.length()==18 && value.indexOf(" ") == -1 && value.indexOf(".") == -1){
+						//pasamos a la siguiente iteracion del for
+						continue;						
+					}					
+				}
+				
+				//Comprobacion punto 2		
+				//'labelOldValuePickList' y 'labelNewValuePickList' no tienen valor, almacenamos oldvalue y newvalue en los campos.
+				String oldValuePickList = casoRelacionado.getLabelOldValuePickList();
+				if(oldValuePickList == null ||  "".equals(oldValuePickList)){
+					if(casoRelacionado.getOldvalue() != null){						
+						casoRelacionado.setLabelOldValuePickList(casoRelacionado.getOldvalue());
+					}else{
+						casoRelacionado.setLabelOldValuePickList("");
+					}
+				}
+				
+				String newValuePickList = casoRelacionado.getLabelNewValuePickList();
+				if(newValuePickList == null ||  "".equals(newValuePickList)){
+					if(casoRelacionado.getNewvalue() != null){
+						casoRelacionado.setLabelNewValuePickList(casoRelacionado.getNewvalue());
+					}else{
+						casoRelacionado.setLabelNewValuePickList("");
+					}
+				}
+				
+				//Comprobacion punto 3		
+				try {
+					fechaIteracion = dateFormat.parse(casoRelacionado.getCreateddate().toString());
+				
+					if(fechaModif != null && fechaModif.equals(fechaIteracion)){
+						casoRelacionado.setCreateddate(null);
+						casoRelacionado.setCreatedbyid(null);
+						casoRelacionado.setUserJoin(new User());
+					}else{
+						fechaModif = dateFormat.parse(casoRelacionado.getCreateddate().toString());
+					}
+				} catch (ParseException e) {
+					logger.error("--- parseaYPreparaListaHistorialCasos -- error al parsear una fecha ---");
+					logger.error(e.getMessage());					
+				}
+				
+				
 				retorno.add(casoRelacionado);
 			}
 			return retorno;

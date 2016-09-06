@@ -64,6 +64,7 @@
 	                <value>com.casosemergencias.dao.vo.UserVO</value>
 	                <value>com.casosemergencias.dao.vo.AssetVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsCaseHistoryFieldVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsCaseVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsCaseOriginVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsContactCanalPreferenteContactoVO</value>
