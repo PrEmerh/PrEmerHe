@@ -31,8 +31,8 @@
 		<div class="divCabeceraEntidad">
 			<div class="botoneraListado botoneraCentrado">
 				<ul>
-					<li><input type="submit" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" /></li>
-					<li><input type="submit" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" /></li>
+					<li><input type="submit" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" onclick="altaCaso();"/></li>
+					<li><input type="submit" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li>
 					<li><input type="submit" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" /></li>
 				</ul>
 			</div>
@@ -55,14 +55,14 @@
 			</div>
 		</div>
 		<div>
-			<form:form name="formEntidadCasoAlta" action="altaCaso" modelAttribute="caso" method="POST" onsubmit="validaDatos();">
+			<form:form name="formEntidadCasoAlta" id="formEntidadCasoAlta" action="altaCaso" modelAttribute="caso" method="POST">
+				<input type="hidden" name="redirectHere" id="redirectHere" value="false"/>
 				<form:hidden path="sfid"/>
 				<div id="divEntidadCasoAlta" class="divEntidad">
 					<!-- iNFORMACIÓN DEL CASO -->
 					<div class="subtitleAltaEntidad">
 						<div><label><s:message code="entidadCasoAlta_table_title_label_infoentidad"/></label></div>
 					</div>
-					
 					<div>
 						<div class="divLabel">
 							<label><s:message code="entidadCaso_table_label_motivo"/></label>
@@ -114,48 +114,18 @@
 							<label>${caso.propietarioCaso}</label>
 						</div>
 						<div class="divLabel">
-							<label>**** <s:message code="entidadCaso_table_label_unidad"/></label>
+							<label>&nbsp;</label>
 						</div>
 						<div>
-							<label></label>
+							<label>&nbsp;</label>
 						</div>
 					</div>
 					<div>
-						<div class="divLabel">
-							<label>**** <s:message code="entidadCaso_table_label_verificacionMasiva"/></label>
-						</div>
-						<div>
-							<label></label>
-						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadCaso_table_label_casoPrincipal"/></label>
 						</div>
 						<div>
 							<label>${caso.parent}</label>
-						</div>
-					</div>
-					<div>
-						<div class="divLabel">
-							<label>**** <s:message code="entidadCaso_table_label_numVecesVerificado"/></label>
-						</div>
-						<div>
-							<label></label>
-						</div>
-						<div class="divLabel">
-							<label>&nbsp;</label>
-						</div>
-						<div>
-							<label>&nbsp;</label>
-						</div>
-					</div>
-					<div>
-						<div class="divLabel">
-							<label>**** <s:message code="entidadCaso_table_label_ultimaVerificacion"/></label>
-						</div>
-						<div>
-							<form:input id="fechaUltimaVerificacion" name="fechaUltimaVerificacion" path="fechaEstimadaCierre"/>
-							<fmt:formatDate type="both" dateStyle="short" timeStyle="short" pattern="dd/MM/yyyy HH:mm" value="<%=new java.util.Date()%>" var="currentDate"/>
-							<label>[&nbsp;<a href="#" class="link" onclick="cargarFechaHoy('${currentDate}');return false;">${currentDate}</a>&nbsp;]</label>
 						</div>
 						<div class="divLabel">
 							<label>&nbsp;</label>
@@ -234,9 +204,16 @@
 						</div>
 						<div>
 							<form:hidden path="suministro"/>
-							<input type="text" id="numSumiRecuperado" disabled="disabled"/>
-							<input type="button" id="botonLupaSuministro" class="lupa" onclick="abrirDialogSuministro();">					
-							<input type="button" id="textSuministro" class="limpiarCampo" onclick="limpiarSuministro();" value="<s:message code="entidadCasoAlta_table_label_limpiar"/>"/>
+							<c:choose>
+								<c:when test="${not empty caso.suministroJoin}">
+									<input type="text" id="numSumiRecuperado" disabled="disabled" value="${caso.suministroJoin.name}"/>
+								</c:when>
+								<c:otherwise>
+									<input type="text" id="numSumiRecuperado" disabled="disabled"/>
+									<input type="button" id="botonLupaSuministro" class="lupa" onclick="abrirDialogSuministro();">					
+									<input type="button" id="textSuministro" class="limpiarCampo" onclick="limpiarSuministro();" value="<s:message code="entidadCasoAlta_table_label_limpiar"/>"/>
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="divLabel"><label><s:message code="entidadCaso_table_label_telefonoContacto"/></label></div>
 						<div>
@@ -249,9 +226,16 @@
 						</div>
 						<div>
 							<form:hidden path="direccion"/>
-							<input type="text" id="dirRecuperada" disabled="disabled"/>
-							<input type="button" id="botonLupaDireccion" class="lupa" onclick="abrirDialogDireccion();">
-							<input type="button" id="textDireccion" class="limpiarCampo" onclick="limpiarDireccion();" value="<s:message code="entidadCasoAlta_table_label_limpiar"/>" />
+							<c:choose>
+								<c:when test="${not empty caso.suministroJoin}">
+									<input type="text" id="dirRecuperada" disabled="disabled" value="${caso.direccionJoin.name}"/>
+								</c:when>
+								<c:otherwise>
+									<input type="text" id="dirRecuperada" disabled="disabled"/>
+									<input type="button" id="botonLupaDireccion" class="lupa" onclick="abrirDialogDireccion();">
+									<input type="button" id="textDireccion" class="limpiarCampo" onclick="limpiarDireccion();" value="<s:message code="entidadCasoAlta_table_label_limpiar"/>" />
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="divLabel"><label><s:message code="entidadCaso_table_label_emailNotificacion"/></label></div>
 						<div>

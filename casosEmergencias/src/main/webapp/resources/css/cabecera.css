@@ -44,7 +44,7 @@
 }
 #menuCabecera{
 	width:100%;	
-	background-color: #e10000;
+	background-color: rgb(236, 50, 41);
 	height:5%;
 }
 #menuCabecera #posicionamiento{	
@@ -78,6 +78,7 @@
 	float:left;
 	width:5%;
 	text-align:right;
+	background:rgb(236, 50, 41);
 }
 #menuCabecera #divTabs{
 	float:left;

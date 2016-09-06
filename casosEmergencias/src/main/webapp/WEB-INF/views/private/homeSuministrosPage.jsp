@@ -19,7 +19,7 @@
 		<script src="../resources/js/utils.js"></script>
 		<script src="../resources/js/suministros.js"></script>
 	</head>
-	<body onload="initHeader();">
+	<body onload="initHeader();limpiarCamposBuscadorSuministro();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_suministro"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		 

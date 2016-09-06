@@ -1,8 +1,10 @@
 package com.casosemergencias.controller.views;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
+import com.casosemergencias.model.CaseComment;
 import com.casosemergencias.model.Caso;
 
 public class CaseView extends ObjectView {
@@ -57,6 +59,8 @@ public class CaseView extends ObjectView {
 	private String descripcionEstado;
 	private UserView userJoin;
 	private String herokuUsername;
+	private List<CaseHistoryView> historialCaso;
+	private List<CaseCommentView> commentarioCaso;
 	
 	/*Joins con picklist*/
 	private String labelSubmotivoPickList;
@@ -75,6 +79,8 @@ public class CaseView extends ObjectView {
 	private Map<String, String> mapCondicionAgravante;
 	private Map<String, String> mapCanalNotificacion;
 	private Map<String, String> mapFavorabilidadCaso;
+	
+
 	/**/
 	public Integer getId() {
 		return id;
@@ -479,14 +485,26 @@ public class CaseView extends ObjectView {
 	}
 	public void setLabelPeticionPickList(String labelPeticionPickList) {
 		this.labelPeticionPickList = labelPeticionPickList;
-	}
-	
+	}		
 	public String getHerokuUsername() {
 		return herokuUsername;
 	}
 	public void setHerokuUsername(String herokuUsername) {
 		this.herokuUsername = herokuUsername;
 	}
+	public List<CaseHistoryView> getHistorialCaso() {
+		return historialCaso;
+	}
+	public void setHistorialCaso(List<CaseHistoryView> historialCaso) {
+		this.historialCaso = historialCaso;
+	}
+	public List<CaseCommentView> getCommentarioCaso() {
+		return commentarioCaso;
+	}
+	public void setCommentarioCaso(List<CaseCommentView> commentarioCaso) {
+		this.commentarioCaso = commentarioCaso;
+	}
+
 	@Override
 	public Object instantiateTargetLogic() {
 		Caso caso = new Caso();

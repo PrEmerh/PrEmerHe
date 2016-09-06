@@ -61,3 +61,26 @@ $(document).ready(function() {
 		}
 	});
 });
+
+
+//Limpieza campos del buscador.
+
+function limpiarCamposBuscadorContactos() {
+	
+	if (document.getElementById('filtroRunRut').value != '') {
+		document.getElementById('filtroRunRut').value = '';
+	}
+	if (document.getElementById('filtroNombreApellidos').value != '') {
+		document.getElementById('filtroNombreApellidos').value = '';
+	}
+	if (document.getElementById('filtroTelefono').value != '') {
+		document.getElementById('filtroTelefono').value = '';
+	}
+	if (document.getElementById('filtroEmail').value != '') {
+		document.getElementById('filtroEmail').value = '';
+	}
+	if (document.getElementById('filtroTwitter').value != '') {
+		document.getElementById('filtroTwitter').value = '';
+	}
+	
+}

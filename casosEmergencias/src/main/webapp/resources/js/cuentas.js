@@ -59,3 +59,22 @@ $(document).ready(function() {
 		}
 	});
 });
+
+
+//Limpieza campos del buscador.
+
+function limpiarCamposBuscadorCuentas() {
+	
+	if (document.getElementById('filtroRunRut').value != '') {
+		document.getElementById('filtroRunRut').value = '';
+	}
+	if (document.getElementById('filtroRazonSocial').value != '') {
+		document.getElementById('filtroRazonSocial').value = '';
+	}
+	if (document.getElementById('filtroTelefono').value != '') {
+		document.getElementById('filtroTelefono').value = '';
+	}
+	if (document.getElementById('filtroEmail').value != '') {
+		document.getElementById('filtroEmail').value = '';
+	}
+}

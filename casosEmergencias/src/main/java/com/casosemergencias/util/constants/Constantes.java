@@ -19,6 +19,11 @@ public class Constantes {
 	public static final String EDIT_MODE_UPDATED_ERROR = "UPDATED_ERROR";
 	public static final String EDIT_MODE_VIEW = "VIEW";
 	
+	//Modo creación
+	
+	public static final String CREATED_MODE_CREATED_OK = "CREATED_OK";
+	public static final String CREATED_MODE_CREATED_ERROR = "CREATED_ERROR";
+	
 	//PcikLists
 	//Caso
 	public static final String PICKLIST_CASO_DEFAULT = "Default";

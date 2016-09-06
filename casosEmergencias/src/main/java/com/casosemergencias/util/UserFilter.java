@@ -34,7 +34,7 @@ public class UserFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		HttpSession session = req.getSession();
-	    HerokuUser user = (HerokuUser) session.getAttribute("user");
+		HerokuUser user = (HerokuUser) session.getAttribute("user");
 	         
 	        if (user == null){
 	        	logger.debug("UserFilter -- usuario NO esta en sesion");
