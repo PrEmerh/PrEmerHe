@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.casosemergencias.controller.views.CaseHistoryView;
 import com.casosemergencias.dao.vo.CaseHistoryVO;
+import com.casosemergencias.dao.vo.FieldLabelVO;
 
 //Objeto que tiene el modelo de un CaseHistory, se utiliza en el Servicio
 public class CaseHistory extends ObjectLogic{
@@ -19,6 +20,7 @@ public class CaseHistory extends ObjectLogic{
 	/*Creado por el Id*/                 	private String createdbyid;
 	
 	private User userJoin;
+	private FieldLabel fieldLabel;
 	
 	//Campos que almacenan el valor de los picklist de los campos: field, oldvalue, newvalue	
 	private String labelFieldPickList;
@@ -96,6 +98,12 @@ public class CaseHistory extends ObjectLogic{
 	}
 	public void setLabelOldValuePickList(String labelOldValuePickList) {
 		this.labelOldValuePickList = labelOldValuePickList;
+	}	
+	public FieldLabel getFieldLabel() {
+		return fieldLabel;
+	}
+	public void setFieldLabel(FieldLabel fieldLabel) {
+		this.fieldLabel = fieldLabel;
 	}
 	
 	@Override

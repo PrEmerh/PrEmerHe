@@ -34,7 +34,8 @@ public class CaseCommentDAO {
 		Session session = sessionFactory.openSession();
 				
 		try {
-			Query query = session.createQuery("from CaseCommentVO as caseComment WHERE caseComment.caseid = :caseId");
+			Query query = session.createQuery("from CaseCommentVO as caseComment WHERE caseComment.caseid = :caseId"
+					+ " ORDER BY caseComment.createddate DESC");
 			query.setString("caseId", caseId);
 			
 			List<CaseCommentVO> caseCommentList = query.list(); 

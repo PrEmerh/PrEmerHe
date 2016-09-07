@@ -3,6 +3,7 @@ package com.casosemergencias.controller.views;
 import java.util.Date;
 import java.util.List;
 
+import com.casosemergencias.dao.vo.FieldLabelVO;
 import com.casosemergencias.model.CaseHistory;
 
 public class CaseHistoryView extends ObjectView {
@@ -16,6 +17,7 @@ public class CaseHistoryView extends ObjectView {
 	private Date createddate;
 	private String createdbyid;
 	private UserView userJoin;
+	private FieldLabelView fieldLabel;
 	
 	//Campos que almacenan el valor de los picklist de los campos: field, oldvalue, newvalue	
 	private String labelFieldPickList;
@@ -93,8 +95,13 @@ public class CaseHistoryView extends ObjectView {
 	}
 	public void setLabelOldValuePickList(String labelOldValuePickList) {
 		this.labelOldValuePickList = labelOldValuePickList;
+	}	
+	public FieldLabelView getFieldLabel() {
+		return fieldLabel;
 	}
-
+	public void setFieldLabel(FieldLabelView fieldLabel) {
+		this.fieldLabel = fieldLabel;
+	}
 	
 	@Override
 	public Object instantiateTargetLogic() {

@@ -89,6 +89,7 @@
 	                <value>com.casosemergencias.dao.vo.PickListsSumEstadoSumVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsSumEmpresaVO</value>
 	                <value>com.casosemergencias.dao.vo.UserSessionInfoVO</value>
+	                <value>com.casosemergencias.dao.vo.FieldLabelVO</value>
 	            </list>  
 		  </property> 
 		  <property name="hibernateProperties">

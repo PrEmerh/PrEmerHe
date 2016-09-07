@@ -223,29 +223,28 @@ public class CaseController {
 	}
 	
 	@RequestMapping(value = "/private/cancelAltaCaso",method = RequestMethod.GET)
+	public String cancelAltaCaso(HttpServletRequest request){
+			
+		HttpSession session = request.getSession();
 		
-			public String cancelAltaCaso(HttpServletRequest request){
-			
-			HttpSession session = request.getSession();
-			
-			String suministroSfid= new String();
-			String contactoSfid= new String();
-			String finalDetailPage= new String();
-	
-			suministroSfid=(String) session.getAttribute(Constantes.SFID_SUMINISTRO);
-			contactoSfid=(String) session.getAttribute(Constantes.SFID_CONTACTO);
-			finalDetailPage=(String) session.getAttribute(Constantes.FINAL_DETAIL_PAGE);
-			
-			if(finalDetailPage=="CONTACTO"){
-				return "redirect:entidadContacto?sfid=" + contactoSfid;	
-			}
-			if(finalDetailPage=="SUMINISTRO"){			
-				return "redirect:entidadSuministro?sfid=" + suministroSfid;
-				}
-			else{
-				return null;
-			}
+		String suministroSfid= new String();
+		String contactoSfid= new String();
+		String finalDetailPage= new String();
+
+		suministroSfid=(String) session.getAttribute(Constantes.SFID_SUMINISTRO);
+		contactoSfid=(String) session.getAttribute(Constantes.SFID_CONTACTO);
+		finalDetailPage=(String) session.getAttribute(Constantes.FINAL_DETAIL_PAGE);
+		
+		if(finalDetailPage=="CONTACTO"){
+			return "redirect:entidadContacto?sfid=" + contactoSfid;	
 		}
+		if(finalDetailPage=="SUMINISTRO"){			
+			return "redirect:entidadSuministro?sfid=" + suministroSfid;
+			}
+		else{
+			return null;
+		}
+	}
 		
 	@RequestMapping(value = "/private/altaCaso", method = RequestMethod.POST)
 	public String guardarCaso(CaseView caso	, boolean redirectHere) {

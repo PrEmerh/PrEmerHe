@@ -386,7 +386,13 @@
 												${hist.labelFieldPickList}
 											</c:if>
 											<c:if test="${hist.labelFieldPickList == null}">
-												<s:message code="entidadCaso_texto_label_historia_accion_1" arguments="${hist.field}"/>
+												<!-- Si fieldLabel es null mostramo el campo 'field' -->
+												<c:if test="${hist.fieldLabel != null}">
+													<s:message code="entidadCaso_texto_label_historia_accion_1" arguments="${hist.fieldLabel.label}"/>
+												</c:if>
+												<c:if test="${hist.fieldLabel == null}">
+													<s:message code="entidadCaso_texto_label_historia_accion_1" arguments="${hist.field}"/>
+												</c:if>
 												<c:if test="${hist.labelOldValuePickList != ''}">
 													<s:message code="entidadCaso_texto_label_historia_accion_2" arguments="${hist.labelOldValuePickList}"/>
 												</c:if>
@@ -444,7 +450,7 @@
 												<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${coment.lastmodifieddate}" var="lastDate"/> 
 											
 												<b><s:message code="entidadCaso_texto_label_comentarios_comentario_creado" arguments="${coment.createdbyid}, ${createDate}"/>
-												<c:if test="${lastDate le createDate}">
+												<c:if test="${lastDate != null}">
 												 | <s:message code="entidadCaso_texto_label_comentarios_comentario_modificado" arguments="${coment.lastmodifiedbyid}, ${lastDate}"/>
 												</c:if>
 											</b> 
