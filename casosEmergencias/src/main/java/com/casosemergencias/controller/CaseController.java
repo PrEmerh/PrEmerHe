@@ -435,11 +435,16 @@ public class CaseController {
 		
 		CaseComment comentarioCaso = new CaseComment();
 		ParserModelVO.parseDataModelVO(casoRequest, comentarioCaso);
-		Integer insertCaseComment = caseCommentService.insertCaseComment(comentarioCaso);
+		Boolean insertCaseComment = caseCommentService.insertCaseComment(comentarioCaso);
 		
 		logger.info("--- Fin -- actualizarCaso ---");
 		logger.info("UPDATED CASE"+insertCaseComment);
 		
-		return "redirect:entidadCaso?sfid=" + comentarioCaso.getCaseid() + "&editMode=" + (insertCaseComment == 1 ? Constantes.CREATED_MODE_CREATED_OK : Constantes.CREATED_MODE_CREATED_ERROR);
+		if(insertCaseComment == true){			
+			return "redirect:entidadCaso?sfid=" + comentarioCaso.getCaseid() +"&editMode="+Constantes.CREATED_MODE_CREATED_OK;
+		}
+		else{
+			return "redirect:entidadCaso?sfid=" + comentarioCaso.getCaseid() +"&editMode="+Constantes.CREATED_MODE_CREATED_ERROR;
+		}		
 	}
 }

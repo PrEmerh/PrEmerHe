@@ -62,14 +62,14 @@ public class CaseCommentServiceImpl implements CaseCommentService{
 	}
 	
 	@Override
-	public Integer insertCaseComment(CaseComment caseComment) {
+	public Boolean insertCaseComment(CaseComment caseComment) {
 		CaseCommentVO caseCommentVO = new CaseCommentVO();
 		
 		caseCommentVO.setComment(caseComment.getComment());
 		caseCommentVO.setIspublished(false);
 		caseCommentVO.setCaseid(caseComment.getCaseid());
-		Integer id = caseCommentDAO.insertCaseComment(caseCommentVO);
-		return id;
+		Boolean insert = caseCommentDAO.insertCaseComment(caseCommentVO);
+		return insert;
 	}
 	
 

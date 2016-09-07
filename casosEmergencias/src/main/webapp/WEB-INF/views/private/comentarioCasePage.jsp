@@ -24,26 +24,38 @@
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_comentario_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		
-		<form:form name="formComentarioCaso" action="saveComentarioCaso" modelAttribute="caseComment" method="POST">
+		<form:form id="formComentarioCaso" name="formComentarioCaso" action="saveComentarioCaso" modelAttribute="caseComment" method="POST">
 			<form:hidden path="caseid"/>
 			<h2><s:message code="comentarioCase_label_caso" arguments="${numeroCaso}"/></h2>
 			<div class="botoneraListado">
 				<div>
-				<h4><s:message code="comentarioCase_label_titulo"/></h4>
-				<ul>
-					<li><input id="Guardar" type="submit" name="Guardar" value='<s:message code="comentarioCase_label_button_guardar"/>'/></li>
-					<li><input id="Cancelar" type="button" name="Cancelar" value='<s:message code="comentarioCase_label_button_cancelar"/>' onclick="cancelCreatedCase('${sfid}')"/></li>
-				</ul>
+					<h4><s:message code="comentarioCase_label_titulo"/></h4>
+					<ul>
+						<li><input id="Guardar" type="button" name="Guardar" value='<s:message code="comentarioCase_label_button_guardar"/>' onclick="checkCaseCommentCreation()"/></li>
+						<li><input id="Cancelar" type="button" name="Cancelar" value='<s:message code="comentarioCase_label_button_cancelar"/>' onclick="cancelComent('${sfid}')"/></li>
+					</ul>
 				</div>
 			</div>
-			<div class="divEntidad">
-				<div class="subtittlePrincipalAltaEntidad">
-					<div class="subtittlePrincipalAltaEntidadDivInfo">
-						<label class="divLabel"><s:message code="comentarioCase_label_detalle_caso_title"/></label>
+			<!-- INICIO---Mensajes de actualización de caso -->	
+			
+			<div id="divCaseCommentNOCreated" class="divError">
+				<label><s:message code="comentarioCase_error_rellenardatos"/></label>
+				<label id="errorMessage"></label>
+			</div>
+			
+			<!-- FIN---Mensajes de actualización de caso -->
+			<div style="margin-top:1.5%;">
+				<div class="subtitlePrincipalAltaEntidad">
+				<div class="titleObligatorio"></div>
+					<div class="titleObligatorioTexto">
+						<label><s:message code="entidadCasoAlta_table_title_label_infoobligatorio"/></label>
 					</div>
-					<div class="subtittlePrincipalAltaEntidadDivOblig">
-						<div class="tittleObligatorio"></div>
-							<label><s:message code="entidadCasoAlta_table_title_label_infoobligatorio"/></label>
+				</div>
+			</div>						
+			<div class="divEntidad">
+				<div class="subtitleAltaEntidad">
+					<div>
+						<label class="divLabel"><s:message code="comentarioCase_label_detalle_caso_title"/></label>													
 					</div>
 				</div>
 			</div>

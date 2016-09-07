@@ -37,7 +37,7 @@
 			</div>
 		</div>
 		<!-- Mensajes de estado de operación -->
-		<div id="divError" class="divError">
+		<div id="divError" class="divError" style="display:none;margin-top:2%;">
 			<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
 			<br>
 			<label><s:message code="entidadCasoAlta_error_revisemensajes"/></label>

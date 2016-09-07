@@ -153,26 +153,30 @@ public class CaseCommentDAO {
 	
 	
 	@Transactional
-	public Integer insertCaseComment(CaseCommentVO caseComment) {
+	public Boolean insertCaseComment(CaseCommentVO caseComment) {
 
 		logger.debug("--- Inicio -- insert ---");
 
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		try {
-			session.save(caseComment);
-			tx.commit();
-			logger.debug("--- Fin -- insert ---");
-			return 1;
+			if(caseComment.getComment().isEmpty()==true){
+				return false;
+			}
+			else{
+				session.save(caseComment);
+				tx.commit();
+				logger.debug("--- Fin -- insert ---");
+				return true;
+			}
 		} catch (HibernateException e) {
 			tx.rollback();
 			logger.error("--- Error en insertCase: ", e);
 			logger.error("--- Fin -- updateCase ---");
-			return 0;
+			return false;
 		} finally {
 			session.close();
 		}
-
 	}
 	
 	

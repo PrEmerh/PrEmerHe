@@ -19,7 +19,7 @@
 		<script src="../resources/js/header.js" lang=""></script>
         <script src="../resources/js/utils.js" lang=""></script> 
 	</head>
-	<body onload="initHeader(); checkUpdates();checkCaseCommentCreation();">
+	<body onload="initHeader(); checkUpdates();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
@@ -42,7 +42,7 @@
 				<br>
 				<label id="errorMessage"></label>
 			</div>
-			<div id="divOk" class="divOk">
+			<div id="divOk" class="divOk" >
 				<label>Los datos se han modificado correctamente</label>
 			</div>
 			

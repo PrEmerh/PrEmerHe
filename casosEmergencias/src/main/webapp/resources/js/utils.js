@@ -67,6 +67,12 @@ function checkUpdates() {
 	} else if ($('#editMode').val() == 'UPDATED_ERROR') {
 		$('#divError').show();
 	}
+	
+	else if ($('#editMode').val() == 'CREATED_OK') {
+		$('#divCaseCommentCreated').show();
+	} else if ($('#editMode').val() == 'CREATED_ERROR') {
+		$('#divCaseCommentNOCreated').show();
+	}
 }
 // --------------------------------------------------------------------
 
@@ -103,12 +109,14 @@ function altaCasoYNuevo() {
 	}
 }
 
-function checkCaseCommentCreation() {
-	if ($('#editMode').val() == 'CREATED_OK') {
-		$('#divCaseCommentCreated').show();
-	} else if ($('#editMode').val() == 'CREATED_ERROR') {
-		$('#divCaseCommentNOCreated').show();
+function checkCaseCommentCreation() {	
+	if(document.getElementById('comment').value==''){
+		$('#divCaseCommentNOCreated').show();		
 	}
+	else{
+		document.getElementById('formComentarioCaso').submit();
+	}
+
 }
 
 function validaDatos() {
@@ -195,7 +203,7 @@ function establecerDireccion(sfid, name) {
 
 /*Inici -- funciones Guardar y Cancelar Comentario de un Caso*/
 function newComent(sfid){
-	 window.location="../private/casoComentarioPage?sfid="+sfid;
+	 window.location="../private/casoComentarioPage?editMode=VIEW&sfid="+sfid;
 }
 
 
