@@ -13,9 +13,10 @@ public class ConstantesBatch {
 	
 	/** Valores de los campos para el login con SalesForce. */
 	public static final String SF_CLIENT_ID_VALUE = "3MVG9jfQT7vUue.G57q9YxkeioLB1AE02bGctQ09wjCAcxfXK1OFwgt1YXFGm8HdTaXvIRCmF1pG259r4SsTz";
-	public static final String SF_OAUTH_TOKEN_VALUE = "4907478524393614560";
-	public static final String SF_USER_NAME_VALUE = "aalonsotrinidad@enel.emerdev";
-	public static final String SF_PASSWORD_VALUE = "Del*Alvaro1606EI63ahdpjJOLR1T1vPQZN9lb";
+	public static final String SF_CLIENT_SECRET_VALUE = "4907478524393614560";
+	public static final String SF_USER_NAME_VALUE = "herokuintegracion@enel.dev";
+	public static final String SF_PASSWORD_VALUE = "heroku123";
+	public static final String SF_USER_TOKEN_VALUE = "gNjrVGPboZO0WvrSE8P8axaa";
 	public static final String SF_GRANT_TYPE_VALUE = "password";
 	public static final String SF_AUTH_URI_VALUE = "https://test.salesforce.com/services/oauth2/token";
 	public static final String SF_REDIRECT_URI_VALUE = "https://localhost:8443/_callback";
@@ -23,6 +24,8 @@ public class ConstantesBatch {
 	/** Valores de propiedades para recuperar Picklists desde SalesForce. */
 	public static final String PICKLIST_PROPERTIES_ARCHIVE_NAME = "picklist.properties";
 	public static final String PICKLIST_PROPERTIES_INVOLVED_PICKLISTS_PROPERTY = "pickList.implicados";
+	public static final String FIELD_LABEL_PROPERTIES_ARCHIVE_NAME = "fieldlabel.properties";
+	public static final String FIELD_LABEL_PROPERTIES_INVOLVED_OBJECTS_PROPERTY = "fieldLabel.implicados";
 	
 	/** Datos de conexión a la base de datos de Heroku. 
 	LAs tenemos que recuperar de las variables de entorno

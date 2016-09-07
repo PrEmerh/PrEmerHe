@@ -78,7 +78,7 @@ public class CaseServiceImpl implements CaseService{
 		returnCase.setHistorialCaso(historialCasosRelacionado);
 		
 		List<CaseCommentVO> listaComentarioCasoVO = caseCommentDao.readCaseCommentByCaseId(sfid);
-		List<CaseComment> comentariosCasoRelacionado = parseaListaComentariosCasos(listaComentarioCasoVO);
+		List<CaseComment> comentariosCasoRelacionado = parseaYPreparaListaComentariosCasos(listaComentarioCasoVO);
 		returnCase.setCommentarioCaso(comentariosCasoRelacionado);
 		
 		return returnCase;
@@ -208,12 +208,42 @@ public class CaseServiceImpl implements CaseService{
 		return null;
 	}
 	
-	private List<CaseComment> parseaListaComentariosCasos(List<CaseCommentVO> listaCaseCommentVO) {
+	/*
+	 * Método que parsea una lista de CaseHistoryVO en CaseComment.
+	 * Ademas si 'createdate' coincide con 'lastmodifieddate', elimina el valor de 'lastmodifieddate' y 'lastmodifiedbyid', ya que el comentario no ha sido modificado
+	 * */
+	private List<CaseComment> parseaYPreparaListaComentariosCasos(List<CaseCommentVO> listaCaseCommentVO) {
 		if(listaCaseCommentVO!=null && !listaCaseCommentVO.isEmpty()){
+			
 			List<CaseComment> retorno = new ArrayList<CaseComment>();
+			
+			SimpleDateFormat  dateFormat  = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");//Definimos el formato para comparar 'createdate' con 'lastmodifieddate'
+			
 			for(CaseCommentVO comentarioCasoVO: listaCaseCommentVO){
 				CaseComment casoRelacionado = new CaseComment();
 				ParserModelVO.parseDataModelVO(comentarioCasoVO, casoRelacionado);
+				
+				try {
+					
+					Date fechaCreate = null;
+					Date fechaModif = null;					
+					if(casoRelacionado.getCreateddate() != null){
+						fechaModif = dateFormat.parse(casoRelacionado.getCreateddate().toString());
+					}
+					if(casoRelacionado.getLastmodifieddate() != null){
+						fechaCreate = dateFormat.parse(casoRelacionado.getLastmodifieddate().toString());
+					}
+				
+					if(fechaCreate != null && fechaModif != null && fechaCreate.equals(fechaModif)){
+						//El comentario ha sido insertado, no ha sido modificado
+						casoRelacionado.setLastmodifieddate(null);
+						casoRelacionado.setLastmodifiedbyid(null);
+					}
+				} catch (ParseException e) {
+					logger.error("--- parseaYPreparaListaComentariosCasos -- error al parsear una fecha ---");
+					logger.error(e.getMessage());					
+				}
+				
 				retorno.add(casoRelacionado);
 			}
 			return retorno;

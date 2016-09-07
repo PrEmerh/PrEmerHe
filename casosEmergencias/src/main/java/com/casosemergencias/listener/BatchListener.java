@@ -17,6 +17,7 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.quartz.impl.StdSchedulerFactory;
 
+import com.casosemergencias.batch.FieldLabelTableCreatorJob;
 import com.casosemergencias.batch.PicklistTableCreatorJob;
 
 public class BatchListener implements ServletContextListener {
@@ -36,6 +37,18 @@ public class BatchListener implements ServletContextListener {
 			
 			logger.info("Creando scheduler de Quartz");
 			Scheduler picklistTableCreatorScheduler = StdSchedulerFactory.getDefaultScheduler();
+			picklistTableCreatorScheduler.start();
+			picklistTableCreatorScheduler.scheduleJob(job, trigger);
+			
+			logger.info("Creando job de Quartz para labels de campo");
+			job = newJob(FieldLabelTableCreatorJob.class).withIdentity("fieldLabelTableCreatorJob", "batch").build();
+			
+			logger.info("Creando trigger de Quartz");
+			trigger = TriggerBuilder.newTrigger().withIdentity("fieldLabelTableCreatorTrigger", "batch")
+					.withSchedule(CronScheduleBuilder.cronSchedule(new CronExpression("0 0 23 ? * *"))).build();
+			
+			logger.info("Creando scheduler de Quartz");
+			picklistTableCreatorScheduler = StdSchedulerFactory.getDefaultScheduler();
 			picklistTableCreatorScheduler.start();
 			picklistTableCreatorScheduler.scheduleJob(job, trigger);
 			

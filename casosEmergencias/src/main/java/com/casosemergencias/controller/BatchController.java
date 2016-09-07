@@ -17,4 +17,9 @@ public class BatchController {
 	public void listadoCasosHome() {
 		batchService.updateHerokuPickListTable();
 	}
+	
+	@RequestMapping(value = "/updateHerokuFieldLabelTable", method = RequestMethod.GET)
+	public void fieldLabelHome() {
+		batchService.updateHerokuFieldLabelTable();
+	}
 }
