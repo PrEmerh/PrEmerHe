@@ -408,6 +408,7 @@ public class CaseController {
 		CaseCommentView caseComment = new CaseCommentView();
 		
 		List<CaseComment> listaComentariosCasos = caseCommentService.obtenerListaComentariosDeUnCaso(sfidCase);
+
 		List<CaseCommentView> listaComentariosCasoView = new ArrayList<>();
 		
 		if(listaComentariosCasos!=null && !listaComentariosCasos.isEmpty()){
