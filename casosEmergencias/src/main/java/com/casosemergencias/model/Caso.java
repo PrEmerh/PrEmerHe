@@ -33,7 +33,7 @@ public class Caso extends ObjectLogic {
 	private String comuna;
 	private String numeroMedidor;
 	private Direccion direccionJoin;
-	private Cuenta cuentaJoin;	
+	private Cuenta cuentaJoin;
 	private String cuerpoMail;
 	private String estado;
 	private String subestado;
@@ -59,12 +59,17 @@ public class Caso extends ObjectLogic {
 	private String direccion;
 	private String estadoSuministro;
 	private String herokuUsername;
+	private String nombreCuenta;
+	private String nombreContacto;
 	/*Joins caso*/
 	private String labelSubmotivoPickList;
 	private String labelEstadoPickList;
 	private String labelSubestadoPickList;
 	private String labelCanalOrigenPickList;
 	private String labelPeticionPickList;
+	private String labelCondicionAgravantePickList;
+	private String labelCanalNotificacionPickList;
+	private String labelFavorabilidadDelCasoPickList;
 	
 	private List<CaseHistory> historialCaso;
 	private List<CaseComment> commentarioCaso;
@@ -365,6 +370,18 @@ public class Caso extends ObjectLogic {
 	public void setLabelEstadoPickList(String labelEstadoPickList) {
 		this.labelEstadoPickList = labelEstadoPickList;
 	}
+	public String getLabelCondicionAgravantePickList() {
+		return labelCondicionAgravantePickList;
+	}
+	public void setLabelCondicionAgravantePickList(String labelCondicionAgravantePickList) {
+		this.labelCondicionAgravantePickList = labelCondicionAgravantePickList;
+	}
+	public String getLabelCanalNotificacionPickList() {
+		return labelCanalNotificacionPickList;
+	}
+	public void setLabelCanalNotificacionPickList(String labelCanalNotificacionPickList) {
+		this.labelCanalNotificacionPickList = labelCanalNotificacionPickList;
+	}
 	public String getHerokuUsername() {
 		return herokuUsername;
 	}
@@ -383,6 +400,14 @@ public class Caso extends ObjectLogic {
 	public void setCommentarioCaso(List<CaseComment> commentarioCaso) {
 		this.commentarioCaso = commentarioCaso;
 	}
+	
+	public String getLabelFavorabilidadDelCasoPickList() {
+		return labelFavorabilidadDelCasoPickList;
+	}
+	public void setLabelFavorabilidadDelCasoPickList(String labelFavorabilidadDelCasoPickList) {
+		this.labelFavorabilidadDelCasoPickList = labelFavorabilidadDelCasoPickList;
+	}
+	
 	/**/
 	@Override
 	public Object instantiateTargetView() {
@@ -394,5 +419,17 @@ public class Caso extends ObjectLogic {
 	public Object instantiateTargetVO() {
 		CaseVO caso = new CaseVO();
 		return caso;
+	}
+	public String getNombreCuenta() {
+		return nombreCuenta;
+	}
+	public void setNombreCuenta(String nombreCuenta) {
+		this.nombreCuenta = nombreCuenta;
+	}
+	public String getNombreContacto() {
+		return nombreContacto;
+	}
+	public void setNombreContacto(String nombreContacto) {
+		this.nombreContacto = nombreContacto;
 	}
 }

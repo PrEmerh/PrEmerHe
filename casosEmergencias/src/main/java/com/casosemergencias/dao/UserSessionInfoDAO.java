@@ -1,7 +1,5 @@
 package com.casosemergencias.dao;
 
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -21,12 +19,11 @@ public class UserSessionInfoDAO {
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	@SuppressWarnings("unchecked")
-	public List<UserSessionInfoVO> readUserSessionInfo(UserSessionInfoVO userSessionInfo) {
+	public UserSessionInfoVO readUserSessionInfo(UserSessionInfoVO userSessionInfo) {
 
 		logger.debug("--- Inicio -- readCase ---");
 
-		List<UserSessionInfoVO> userSessionInfoList = null;
+		UserSessionInfoVO userSessionInfoVO = null;
 		Session session = sessionFactory.openSession();
 		boolean isFirst = true;
 
@@ -34,7 +31,7 @@ public class UserSessionInfoDAO {
 			// preparamos la query
 			StringBuilder query = new StringBuilder("from UserSessionInfoVO as info");
 			
-			if (userSessionInfo.getId() != null) {
+			if (userSessionInfo.getId() != null && !"".equals(userSessionInfo.getId())) {
 				if (isFirst) {
 					query.append(" WHERE info.id = :id");
 					isFirst = false;
@@ -43,7 +40,7 @@ public class UserSessionInfoDAO {
 				}
 			}
 			
-			if (userSessionInfo.getUsername() != null) {
+			if (userSessionInfo.getUsername() != null && !"".equals(userSessionInfo.getUsername())) {
 				if (isFirst) {
 					query.append(" WHERE info.username = :username");
 					isFirst = false;
@@ -52,7 +49,7 @@ public class UserSessionInfoDAO {
 				}
 			}
 			
-			if (userSessionInfo.getPassword() != null) {
+			if (userSessionInfo.getPassword() != null && !"".equals(userSessionInfo.getPassword())) {
 				if (isFirst) {
 					query.append(" WHERE info.password = :password");
 					isFirst = false;
@@ -61,53 +58,53 @@ public class UserSessionInfoDAO {
 				}
 			}
 			
-			if (userSessionInfo.getAccessToken() != null) {
+			if (userSessionInfo.getAccessToken() != null && !"".equals(userSessionInfo.getAccessToken())) {
 				if (isFirst) {
-					query.append(" WHERE info.access_token = :accessToken");
+					query.append(" WHERE info.accessToken = :accessToken");
 					isFirst = false;
 				} else {
-					query.append(" AND info.access_token = :accessToken");
+					query.append(" AND info.accessToken = :accessToken");
 				}
 			}
 			
-			if (userSessionInfo.getSessionId() != null) {
+			if (userSessionInfo.getSessionId() != null && !"".equals(userSessionInfo.getSessionId())) {
 				if (isFirst) {
-					query.append(" WHERE info.session_id = :sessionId");
+					query.append(" WHERE info.sessionId = :sessionId");
 					isFirst = false;
 				} else {
-					query.append(" AND info.session_id = :sessionId");
+					query.append(" AND info.sessionId = :sessionId");
 				}
 			}
 			
 			if (userSessionInfo.getLastConnection() != null) {
 				if (isFirst) {
-					query.append(" WHERE info.last_connection = :lastConnection");
+					query.append(" WHERE info.lastConnection = :lastConnection");
 					isFirst = false;
 				} else {
-					query.append(" AND info.last_connection = :lastConnection");
+					query.append(" AND info.lastConnection = :lastConnection");
 				}
 			}
 			
 			// añadimos los valores por los que filtrara la query
 			Query result = session.createQuery(query.toString());
 			
-			if (userSessionInfo.getId() != null) {
+			if (userSessionInfo.getId() != null && !"".equals(userSessionInfo.getId())) {
 				result.setInteger("id", userSessionInfo.getId());
 			}
 			
-			if (userSessionInfo.getUsername() != null) {
+			if (userSessionInfo.getUsername() != null && !"".equals(userSessionInfo.getUsername())) {
 				result.setString("username", userSessionInfo.getUsername());
 			}
 			
-			if (userSessionInfo.getPassword() != null) {
+			if (userSessionInfo.getPassword() != null && !"".equals(userSessionInfo.getPassword())) {
 				result.setString("password", userSessionInfo.getPassword());
 			}
 			
-			if (userSessionInfo.getAccessToken() != null) {
+			if (userSessionInfo.getAccessToken() != null && !"".equals(userSessionInfo.getAccessToken())) {
 				result.setString("accessToken", userSessionInfo.getAccessToken());
 			}
 			
-			if (userSessionInfo.getSessionId() != null) {
+			if (userSessionInfo.getSessionId() != null && !"".equals(userSessionInfo.getSessionId())) {
 				result.setString("sessionId", userSessionInfo.getSessionId());
 			}
 			
@@ -115,7 +112,7 @@ public class UserSessionInfoDAO {
 				result.setDate("lastConnection", userSessionInfo.getLastConnection());
 			}
 			
-			userSessionInfoList = result.list();
+			userSessionInfoVO = (UserSessionInfoVO) result.uniqueResult();
 		} catch (HibernateException e) {
 			logger.error("--- Error en readCase: ", e);
 			logger.error("--- Fin -- readCase ---");
@@ -124,7 +121,7 @@ public class UserSessionInfoDAO {
 		}
 
 		logger.debug("--- Fin -- readCase ---");
-		return userSessionInfoList;
+		return userSessionInfoVO;
 	}
 	
 	/**

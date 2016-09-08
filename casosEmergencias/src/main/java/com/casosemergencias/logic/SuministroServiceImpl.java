@@ -10,7 +10,6 @@ import com.casosemergencias.dao.CaseDAO;
 import com.casosemergencias.dao.RelacionActivoContactoDAO;
 import com.casosemergencias.dao.SuministroDAO;
 import com.casosemergencias.dao.vo.CaseVO;
-import com.casosemergencias.dao.vo.ContactVO;
 import com.casosemergencias.dao.vo.RelacionActivoContactoVO;
 import com.casosemergencias.dao.vo.SuministroVO;
 import com.casosemergencias.model.Caso;

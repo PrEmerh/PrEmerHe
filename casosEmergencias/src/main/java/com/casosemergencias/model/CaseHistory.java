@@ -1,10 +1,11 @@
 package com.casosemergencias.model;
 
 import java.util.Date;
+import java.util.List;
 
 import com.casosemergencias.controller.views.CaseHistoryView;
-import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.dao.vo.CaseHistoryVO;
+import com.casosemergencias.dao.vo.FieldLabelVO;
 
 //Objeto que tiene el modelo de un CaseHistory, se utiliza en el Servicio
 public class CaseHistory extends ObjectLogic{
@@ -17,8 +18,15 @@ public class CaseHistory extends ObjectLogic{
 	/*Valor Nuevo*/                 		private String newvalue;
 	/*Fecha de Creacion*/                   private Date createddate;
 	/*Creado por el Id*/                 	private String createdbyid;
-	/*Creado por el name*/					private String createdByName;
 	
+	private User userJoin;
+	private FieldLabel fieldLabel;
+	
+	//Campos que almacenan el valor de los picklist de los campos: field, oldvalue, newvalue	
+	private String labelFieldPickList;
+	private String labelNewValuePickList;
+	private String labelOldValuePickList;
+		
 	public Integer getId() {
 		return id;
 	}
@@ -67,12 +75,37 @@ public class CaseHistory extends ObjectLogic{
 	public void setCreatedbyid(String createdbyid) {
 		this.createdbyid = createdbyid;
 	}
-	public String getCreatedByName() {
-		return createdByName;
+	public User getUserJoin() {
+		return userJoin;
 	}
-	public void setCreatedByName(String createdByName) {
-		this.createdByName = createdByName;
+	public void setUserJoin(User userJoin) {
+		this.userJoin = userJoin;
 	}
+	public String getLabelFieldPickList() {
+		return labelFieldPickList;
+	}
+	public void setLabelFieldPickList(String labelFieldPickList) {
+		this.labelFieldPickList = labelFieldPickList;
+	}	
+	public String getLabelNewValuePickList() {
+		return labelNewValuePickList;
+	}
+	public void setLabelNewValuePickList(String labelNewValuePickList) {
+		this.labelNewValuePickList = labelNewValuePickList;
+	}	
+	public String getLabelOldValuePickList() {
+		return labelOldValuePickList;
+	}
+	public void setLabelOldValuePickList(String labelOldValuePickList) {
+		this.labelOldValuePickList = labelOldValuePickList;
+	}	
+	public FieldLabel getFieldLabel() {
+		return fieldLabel;
+	}
+	public void setFieldLabel(FieldLabel fieldLabel) {
+		this.fieldLabel = fieldLabel;
+	}
+	
 	@Override
 	public Object instantiateTargetVO() {
 		CaseHistoryVO caseHistory = new CaseHistoryVO();

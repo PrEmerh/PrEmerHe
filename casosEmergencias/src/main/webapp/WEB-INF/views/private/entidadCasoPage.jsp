@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
 
 <html>
@@ -18,7 +19,7 @@
 		<script src="../resources/js/header.js" lang=""></script>
         <script src="../resources/js/utils.js" lang=""></script> 
 	</head>
-	<body onload="initHeader(); checkUpdates();checkCaseCommentCreation();">
+	<body onload="initHeader(); checkUpdates();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
@@ -41,7 +42,7 @@
 				<br>
 				<label id="errorMessage"></label>
 			</div>
-			<div id="divOk" class="divOk">
+			<div id="divOk" class="divOk" >
 				<label>Los datos se han modificado correctamente</label>
 			</div>
 			
@@ -186,7 +187,7 @@
 						<label><s:message code="entidadCaso_table_label_condagravante"/></label>
 					</div>
 					<div>
-						<label>${caso.condicionAgravante}</label>
+						<label>${caso.labelCondicionAgravantePickList}</label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_asunto"/></label>
@@ -217,7 +218,7 @@
 						<label><s:message code="entidadCaso_table_label_canalNotificacion"/></label>
 					</div>
 					<div>
-						<label>${caso.canalNotificacion}</label>
+						<label>${caso.labelCanalNotificacionPickList}</label>
 					</div>
 				</div>
 				<div>
@@ -354,7 +355,7 @@
 						<label><s:message code="entidadCaso_title_label_favoravilidadCaso"/></label>
 					</div>
 					<div>
-						<label>${caso.favorabilidadDelCaso}</label>
+						<label>${caso.labelFavorabilidadDelCasoPickList}</label>
 					</div>
 				</div>
 			</div>
@@ -378,9 +379,29 @@
 							<c:when test="${not empty caso.historialCaso}">
 								<c:forEach items="${caso.historialCaso}" var="hist">
 									<tr>
-										<td width="15%">${hist.createddate}</td>
-										<td width="15%">${hist.createdbyid}</td>
-										<td width="70%"><s:message code="entidadCaso_texto_label_historia_accion" arguments="${hist.field}, ${hist.oldvalue}, ${hist.newvalue}"/></td>
+										<td width="15%"><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${hist.createddate}"/></td>
+										<td width="15%">${hist.userJoin.name}</td>
+										<td width="70%">
+											<c:if test="${hist.labelFieldPickList != null}">
+												${hist.labelFieldPickList}
+											</c:if>
+											<c:if test="${hist.labelFieldPickList == null}">
+												<!-- Si fieldLabel es null mostramo el campo 'field' -->
+												<c:if test="${hist.fieldLabel != null}">
+													<s:message code="entidadCaso_texto_label_historia_accion_1" arguments="${hist.fieldLabel.label}"/>
+												</c:if>
+												<c:if test="${hist.fieldLabel == null}">
+													<s:message code="entidadCaso_texto_label_historia_accion_1" arguments="${hist.field}"/>
+												</c:if>
+												<c:if test="${hist.labelOldValuePickList != ''}">
+													<s:message code="entidadCaso_texto_label_historia_accion_2" arguments="${hist.labelOldValuePickList}"/>
+												</c:if>
+												<c:if test="${hist.labelNewValuePickList != ''}">
+													<s:message code="entidadCaso_texto_label_historia_accion_3" arguments="${hist.labelNewValuePickList}"/>
+												</c:if>
+												.
+											</c:if>								
+										</td>
 									</tr>
 								</c:forEach>
 							</c:when>
@@ -425,9 +446,12 @@
 												</c:if>
 											</td>
 											<td>
-												<b><s:message code="entidadCaso_texto_label_comentarios_comentario_creado" arguments="${coment.createdbyid}, ${coment.createddate}"/>
-												<c:if test="${coment.lastmodifiedbyid != null}">
-												 | <s:message code="entidadCaso_texto_label_comentarios_comentario_modificado" arguments="${coment.lastmodifiedbyid}, ${coment.lastmodifieddate}"/>
+												<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${coment.createddate}" var="createDate"/>
+												<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${coment.lastmodifieddate}" var="lastDate"/> 
+											
+												<b><s:message code="entidadCaso_texto_label_comentarios_comentario_creado" arguments="${coment.userJoinCreateComment.name}, ${createDate}"/>
+												<c:if test="${lastDate != null}">
+												 | <s:message code="entidadCaso_texto_label_comentarios_comentario_modificado" arguments="${coment.userJoinModifyComment.name}, ${lastDate}"/>
 												</c:if>
 											</b> 
 											<br>${coment.comment}</td>

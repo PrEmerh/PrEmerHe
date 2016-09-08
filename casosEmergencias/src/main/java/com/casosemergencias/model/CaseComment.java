@@ -3,20 +3,25 @@ package com.casosemergencias.model;
 import java.util.Date;
 
 import com.casosemergencias.controller.views.CaseCommentView;
+import com.casosemergencias.controller.views.UserView;
 import com.casosemergencias.dao.vo.CaseCommentVO;
 
 //Objeto que tiene el modelo de un CaseComment, se utiliza en el Servicio
 public class CaseComment extends ObjectLogic{
 	
-	/*ID*/                                  private Integer id;
-	/*SFID*/                                private String sfid;
-	/*Case ID*/                				private String caseid;
-	/*Creador del comentario */             private String createdbyid;
-	/*Fecha de la creacion*/     			private Date createddate;
-	/*comentario*/                      	private String comment;
-	/*Fecha de la ultima modificacion*/     private Date lastmodifieddate;
-	/*Id user de la ultima modificacion*/   private String lastmodifiedbyid;
-	/*publico*/								private Boolean ispublished;
+	/*ID*/                                  		private Integer id;
+	/*SFID*/                                		private String sfid;
+	/*Case ID*/                						private String caseid;
+	/*Creador del comentario */             		private String createdbyid;
+	/*Fecha de la creacion*/     					private Date createddate;
+	/*comentario*/                      			private String comment;
+	/*Fecha de la ultima modificacion*/     		private Date lastmodifieddate;
+	/*Id user de la ultima modificacion*/   		private String lastmodifiedbyid;
+	/*publico*/										private Boolean ispublished;
+	/*Usuario creador comentario*/					private User userJoinCreateComment;
+	/*Usuario ultima modificacion comentario*/		private User userJoinModifyComment;
+
+
 	
 	public Integer getId() {
 		return id;
@@ -71,6 +76,18 @@ public class CaseComment extends ObjectLogic{
 	}
 	public void setIspublished(Boolean ispublished) {
 		this.ispublished = ispublished;
+	}	
+	public User getUserJoinCreateComment() {
+		return userJoinCreateComment;
+	}
+	public void setUserJoinCreateComment(User userJoinCreateComment) {
+		this.userJoinCreateComment = userJoinCreateComment;
+	}
+	public User getUserJoinModifyComment() {
+		return userJoinModifyComment;
+	}
+	public void setUserJoinModifyComment(User userJoinModifyComment) {
+		this.userJoinModifyComment = userJoinModifyComment;
 	}
 	@Override
 	public Object instantiateTargetVO() {

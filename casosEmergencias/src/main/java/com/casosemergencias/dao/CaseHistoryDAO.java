@@ -31,7 +31,13 @@ public class CaseHistoryDAO {
 		Session session = sessionFactory.openSession();
 				
 		try {
-			Query query = session.createQuery("from CaseHistoryVO as caseHistory WHERE caseHistory.caseid = :caseId");
+			Query query = session.createQuery("from CaseHistoryVO as caseHistory "
+					+ " left join fetch caseHistory.fieldPickList fieldPick "
+					+ " left join fetch caseHistory.newValuePickList newValuePick  "
+					+ " left join fetch caseHistory.oldValuePickList oldValuePick  "
+					+ " left join fetch caseHistory.fieldLabel fielLabelDesc  "					
+					+ " WHERE caseHistory.caseid = :caseId"
+					+ " ORDER BY caseHistory.caseid, caseHistory.createddate DESC");
 			query.setString("caseId", caseId);
 			
 			List<CaseHistoryVO> caseHistoryList = query.list(); 

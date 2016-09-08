@@ -71,10 +71,10 @@ public class PicklistTableCreatorBatch {
 		PostMethod post = new PostMethod(tokenUrl);
 		post.addParameter(ConstantesBatch.SF_GRANT_TYPE_PARAMETER, ConstantesBatch.SF_GRANT_TYPE_VALUE);
 		post.addParameter(ConstantesBatch.SF_CLIENT_ID_PARAMETER, ConstantesBatch.SF_CLIENT_ID_VALUE);
-		post.addParameter(ConstantesBatch.SF_CLIENT_SECRET_PARAMETER, ConstantesBatch.SF_OAUTH_TOKEN_VALUE);
+		post.addParameter(ConstantesBatch.SF_CLIENT_SECRET_PARAMETER, ConstantesBatch.SF_CLIENT_SECRET_VALUE);
 		post.addParameter(ConstantesBatch.SF_REDIRECT_URI_PARAMETER, ConstantesBatch.SF_REDIRECT_URI_VALUE);
 		post.addParameter(ConstantesBatch.SF_USER_NAME_PARAMETER, ConstantesBatch.SF_USER_NAME_VALUE);
-		post.addParameter(ConstantesBatch.SF_PASSWORD_PARAMETER, ConstantesBatch.SF_PASSWORD_VALUE);
+		post.addParameter(ConstantesBatch.SF_PASSWORD_PARAMETER, ConstantesBatch.SF_PASSWORD_VALUE + ConstantesBatch.SF_USER_TOKEN_VALUE);
 		
 		try {
 			logger.info("Petición POST: " + post.getRequestEntity());
@@ -82,7 +82,7 @@ public class PicklistTableCreatorBatch {
 			httpclient.executeMethod(post);
 			
 			JSONObject authResponse = new JSONObject(new JSONTokener(new InputStreamReader(post.getResponseBodyAsStream())));
-			logger.info("Respuesta: " + authResponse.toString(2));
+			System.out.println("Respuesta: " + authResponse.toString(2));
 
 			accessToken = authResponse.getString(ConstantesBatch.SF_ACCESS_TOKEN_PARAMETER);
 			instanceUrl = authResponse.getString(ConstantesBatch.SF_INSTANCE_URL_PARAMETER);
@@ -139,6 +139,7 @@ public class PicklistTableCreatorBatch {
 								listaDatos.addAll(listAux);
 							}
 						}
+
 					}
 				}
 			} catch (Exception ex) {

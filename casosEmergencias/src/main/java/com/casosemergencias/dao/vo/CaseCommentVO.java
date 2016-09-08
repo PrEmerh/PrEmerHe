@@ -5,9 +5,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.casosemergencias.model.CaseComment;
@@ -63,9 +66,22 @@ public class CaseCommentVO extends ObjectVO implements Serializable {
 	@Column(name = "lastmodifiedbyid")
 	private String lastmodifiedbyid;
 
+	
+	// Almacenamos nombre de Usuario creador del Comentario de Caso
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "createdbyid", referencedColumnName = "sfid", insertable = false, updatable = false)
+	private UserVO userJoinCreateComment;
+	
+	// Almacenamos nombre de Usuario que ha modificado por última vez el Comentario de Caso
+
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "lastmodifiedbyid", referencedColumnName = "sfid", insertable = false, updatable = false)
+	private UserVO userJoinModifyComment;
+
 	public CaseCommentVO(Boolean isDeleted, String hcLastop, String hcError, Integer id, String sfid,
 			String createdbyid, Date createddate, Boolean ispublished, String caseid, String comment,
-			String creatorname, Date lastmodifieddate, String lastmodifiedbyid) {
+			String creatorname, Date lastmodifieddate, String lastmodifiedbyid,UserVO userJoinComment,UserVO userJoinModifyComment) {
 		super();
 		this.isDeleted = isDeleted;
 		this.hcLastop = hcLastop;
@@ -80,6 +96,8 @@ public class CaseCommentVO extends ObjectVO implements Serializable {
 		this.creatorname = creatorname;
 		this.lastmodifieddate = lastmodifieddate;
 		this.lastmodifiedbyid = lastmodifiedbyid;
+		this.userJoinCreateComment=userJoinComment;
+		this.userJoinModifyComment=userJoinModifyComment;
 	}
 
 	public CaseCommentVO() {
@@ -188,6 +206,22 @@ public class CaseCommentVO extends ObjectVO implements Serializable {
 
 	public void setLastmodifiedbyid(String lastmodifiedbyid) {
 		this.lastmodifiedbyid = lastmodifiedbyid;
+	}
+	
+	public UserVO getUserJoinCreateComment() {
+		return userJoinCreateComment;
+	}
+
+	public void setUserJoinCreateComment(UserVO userJoinCreateComment) {
+		this.userJoinCreateComment = userJoinCreateComment;
+	}
+	
+	public UserVO getUserJoinModifyComment() {
+		return userJoinModifyComment;
+	}
+
+	public void setUserJoinModifyComment(UserVO userJoinModifyComment) {
+		this.userJoinModifyComment = userJoinModifyComment;
 	}
 
 	@Override
