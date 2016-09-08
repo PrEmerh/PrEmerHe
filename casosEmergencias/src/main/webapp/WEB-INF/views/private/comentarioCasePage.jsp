@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
 
 <html>
@@ -24,26 +25,38 @@
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_comentario_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		
-		<form:form name="formComentarioCaso" action="saveComentarioCaso" modelAttribute="caseComment" method="POST">
+		<form:form id="formComentarioCaso" name="formComentarioCaso" action="saveComentarioCaso" modelAttribute="caseComment" method="POST">
 			<form:hidden path="caseid"/>
 			<h2><s:message code="comentarioCase_label_caso" arguments="${numeroCaso}"/></h2>
 			<div class="botoneraListado">
 				<div>
-				<h4><s:message code="comentarioCase_label_titulo"/></h4>
-				<ul>
-					<li><input id="Guardar" type="submit" name="Guardar" value='<s:message code="comentarioCase_label_button_guardar"/>'/></li>
-					<li><input id="Cancelar" type="button" name="Cancelar" value='<s:message code="comentarioCase_label_button_cancelar"/>' onclick="cancelComent('${sfid}')"/></li>
-				</ul>
+					<h4><s:message code="comentarioCase_label_titulo"/></h4>
+					<ul>
+						<li><input id="Guardar" type="button" name="Guardar" value='<s:message code="comentarioCase_label_button_guardar"/>' onclick="checkCaseCommentCreation()"/></li>
+						<li><input id="Cancelar" type="button" name="Cancelar" value='<s:message code="comentarioCase_label_button_cancelar"/>' onclick="cancelComent('${sfid}')"/></li>
+					</ul>
 				</div>
 			</div>
-			<div class="divEntidad">
-				<div class="subtittlePrincipalAltaEntidad">
-					<div class="subtittlePrincipalAltaEntidadDivInfo">
-						<label class="divLabel"><s:message code="comentarioCase_label_detalle_caso_title"/></label>
+			<!-- INICIO---Mensajes de actualización de caso -->	
+			
+			<div id="divCaseCommentNOCreated" class="divError">
+				<label><s:message code="comentarioCase_error_rellenardatos"/></label>
+				<label id="errorMessage"></label>
+			</div>
+			
+			<!-- FIN---Mensajes de actualización de caso -->
+			<div style="margin-top:1.5%;">
+				<div class="subtitlePrincipalAltaEntidad">
+				<div class="titleObligatorio"></div>
+					<div class="titleObligatorioTexto">
+						<label><s:message code="entidadCasoAlta_table_title_label_infoobligatorio"/></label>
 					</div>
-					<div class="subtittlePrincipalAltaEntidadDivOblig">
-						<div class="tittleObligatorio"></div>
-							<label><s:message code="entidadCasoAlta_table_title_label_infoobligatorio"/></label>
+				</div>
+			</div>						
+			<div class="divEntidad">
+				<div class="subtitleAltaEntidad">
+					<div>
+						<label class="divLabel"><s:message code="comentarioCase_label_detalle_caso_title"/></label>													
 					</div>
 				</div>
 			</div>
@@ -117,11 +130,14 @@
 												</c:if>
 											</td>
 											<td>
-												<b><s:message code="entidadCaso_texto_label_comentarios_comentario_creado" arguments="${coment.createdbyid}, ${coment.createddate}"/>
-												<c:if test="${coment.lastmodifiedbyid != null}">
-												 | <s:message code="entidadCaso_texto_label_comentarios_comentario_modificado" arguments="${coment.lastmodifiedbyid}, ${coment.lastmodifieddate}"/>
+												<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${coment.createddate}" var="createDate"/>
+												<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${coment.lastmodifieddate}" var="lastDate"/> 
+											
+												<b><s:message code="entidadCaso_texto_label_comentarios_comentario_creado" arguments="${coment.userJoinCreateComment.name}, ${createDate}"/>
+												<c:if test="${lastDate != null}">
+												 | <s:message code="entidadCaso_texto_label_comentarios_comentario_modificado" arguments="${coment.userJoinModifyComment.name}, ${lastDate}"/>
 												</c:if>
-											</b> 
+											</b>  
 											<br>${coment.comment}</td>
 										</tr>
 									</c:forEach>

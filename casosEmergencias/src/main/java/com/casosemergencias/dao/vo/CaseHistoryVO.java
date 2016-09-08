@@ -89,6 +89,11 @@ public class CaseHistoryVO extends ObjectVO implements Serializable {
 	@WhereJoinTable(clause = "objeto = 'Case'")
 	private PickListsVO oldValuePickList;
 
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "field", referencedColumnName = "campo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "objeto = 'Case'")
+	private FieldLabelVO fieldLabel;
+
 	public CaseHistoryVO(Boolean isDeleted, String hcLastop, String hcError, Integer id, String sfid,
 			String createdbyid, Date createddate, String newvalue, String oldvalue, String field, String caseid,
 			PickListsCaseHistoryFieldVO fieldPickList) {
@@ -205,9 +210,14 @@ public class CaseHistoryVO extends ObjectVO implements Serializable {
 	public void setOldValuePickList(PickListsVO oldValuePickList) {
 		this.oldValuePickList = oldValuePickList;
 	}
+	public FieldLabelVO getFieldLabel() {
+		return fieldLabel;
+	}
+	public void setFieldLabel(FieldLabelVO fieldLabel) {
+		this.fieldLabel = fieldLabel;
+	}
 
-	
-	
+
 	public String getLabelFieldPickList(){
 		String result = this.getField();
 		if (this.getFieldPickList() != null) {
@@ -226,6 +236,13 @@ public class CaseHistoryVO extends ObjectVO implements Serializable {
 		String result = this.getOldvalue();
 		if (this.getOldValuePickList() != null) {
 			result = this.getOldValuePickList().getValor();
+		}
+		return result;
+	}
+	public String getLabelFieldLabel(){
+		String result = this.getField();
+		if (this.getFieldLabel() != null) {
+			result = this.getFieldLabel().getLabel();
 		}
 		return result;
 	}

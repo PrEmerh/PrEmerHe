@@ -35,6 +35,7 @@ public class CaseHistoryDAO {
 					+ " left join fetch caseHistory.fieldPickList fieldPick "
 					+ " left join fetch caseHistory.newValuePickList newValuePick  "
 					+ " left join fetch caseHistory.oldValuePickList oldValuePick  "
+					+ " left join fetch caseHistory.fieldLabel fielLabelDesc  "					
 					+ " WHERE caseHistory.caseid = :caseId"
 					+ " ORDER BY caseHistory.caseid, caseHistory.createddate DESC");
 			query.setString("caseId", caseId);

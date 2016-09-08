@@ -15,7 +15,6 @@
 		<link href="../resources/css/body.css" rel="stylesheet" />
 		<link href="../resources/css/jquery-ui.css" rel="stylesheet" />
 		<link href="../resources/css/jQueryDatatable.css" rel="stylesheet" />
-
 		
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>	
@@ -33,12 +32,12 @@
 				<ul>
 					<li><input type="submit" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" onclick="altaCaso();"/></li>
 					<li><input type="submit" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li>
-					<li><input type="submit" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" /></li>
+					<li><input type="button" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" onclick="cancelAltaCaso()" /></li>
 				</ul>
 			</div>
 		</div>
 		<!-- Mensajes de estado de operación -->
-		<div id="divError" class="divError">
+		<div id="divError" class="divError" style="display:none;margin-top:2%;">
 			<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
 			<br>
 			<label><s:message code="entidadCasoAlta_error_revisemensajes"/></label>

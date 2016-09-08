@@ -1,6 +1,9 @@
 package com.casosemergencias.logic;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -28,17 +31,11 @@ public class CaseCommentServiceImpl implements CaseCommentService{
 	public List<CaseComment> obtenerListaComentariosDeUnCaso(String caseSfid) {
 		
 		List<CaseCommentVO> listaComentariosVO = caseCommentDAO.readCaseCommentByCaseId(caseSfid);
-		List<CaseComment> listaComentarios = parseaListaComentariosCasos(listaComentariosVO);
+		List<CaseComment> listaComentarios = parseaYPreparaListaComentariosCasos(listaComentariosVO);
 		
 		return listaComentarios;
 	}
 
-	@Override
-	public void guardarComentarioDeUnCaso(CaseComment comentarioCaso) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	@Override
 	public Caso obtenerDatosCasoParaComentario(String caseSfid) {
 		CaseVO caseVO = caseDAO.readCaseForCommentByCaseid(caseSfid);
@@ -48,31 +45,59 @@ public class CaseCommentServiceImpl implements CaseCommentService{
 		return casoRetorno;
 	}
 	
-	private List<CaseComment> parseaListaComentariosCasos(List<CaseCommentVO> listaCaseCommentVO) {
+	@Override
+	public Boolean insertCaseComment(CaseComment caseComment) {
+		CaseCommentVO caseCommentVO = new CaseCommentVO();
+		
+		caseCommentVO.setComment(caseComment.getComment());
+		caseCommentVO.setIspublished(false);
+		caseCommentVO.setCaseid(caseComment.getCaseid());
+		Boolean insert = caseCommentDAO.insertCaseComment(caseCommentVO);
+		return insert;
+	}
+	
+	
+	/*
+	 * Método que parsea una lista de CaseHistoryVO en CaseComment.
+	 * Ademas si 'createdate' coincide con 'lastmodifieddate', elimina el valor de 'lastmodifieddate' y 'lastmodifiedbyid', ya que el comentario no ha sido modificado
+	 * */
+	private List<CaseComment> parseaYPreparaListaComentariosCasos(List<CaseCommentVO> listaCaseCommentVO) {
 		if(listaCaseCommentVO!=null && !listaCaseCommentVO.isEmpty()){
+			
 			List<CaseComment> retorno = new ArrayList<CaseComment>();
+			
+			SimpleDateFormat  dateFormat  = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");//Definimos el formato para comparar 'createdate' con 'lastmodifieddate'
+			
 			for(CaseCommentVO comentarioCasoVO: listaCaseCommentVO){
 				CaseComment casoRelacionado = new CaseComment();
 				ParserModelVO.parseDataModelVO(comentarioCasoVO, casoRelacionado);
+				
+				try {
+					
+					Date fechaCreate = null;
+					Date fechaModif = null;					
+					if(casoRelacionado.getCreateddate() != null){
+						fechaModif = dateFormat.parse(casoRelacionado.getCreateddate().toString());
+					}
+					if(casoRelacionado.getLastmodifieddate() != null){
+						fechaCreate = dateFormat.parse(casoRelacionado.getLastmodifieddate().toString());
+					}
+				
+					if(fechaCreate != null && fechaModif != null && fechaCreate.equals(fechaModif)){
+						//El comentario ha sido insertado, no ha sido modificado
+						casoRelacionado.setLastmodifieddate(null);
+						casoRelacionado.setLastmodifiedbyid(null);
+					}
+				} catch (ParseException e) {
+					logger.error("--- parseaYPreparaListaComentariosCasos -- error al parsear una fecha ---");
+					logger.error(e.getMessage());					
+				}
+				
 				retorno.add(casoRelacionado);
 			}
 			return retorno;
 		}
 		return null;
 	}
-	
-	@Override
-	public Integer insertCaseComment(CaseComment caseComment) {
-		CaseCommentVO caseCommentVO = new CaseCommentVO();
-		
-		caseCommentVO.setComment(caseComment.getComment());
-		caseCommentVO.setIspublished(false);
-		caseCommentVO.setCaseid(caseComment.getCaseid());
-		Integer id = caseCommentDAO.insertCaseComment(caseCommentVO);
-		return id;
-	}
-	
-
-	
 
 }

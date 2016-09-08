@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.casosemergencias.model.CaseComment;
+import com.casosemergencias.model.User;
 
 public class CaseCommentView extends ObjectView {
 	
@@ -16,6 +17,9 @@ public class CaseCommentView extends ObjectView {
 	 private Date lastmodifieddate;
 	 private String lastmodifiedbyid;
 	 private Boolean ispublished;
+	 private UserView userJoinCreateComment;
+	 private UserView userJoinModifyComment;
+
 	 
 	 private List<CaseCommentView> listaOldComment; //Pantalla Nuevo Comentario, lo utilizamos para listar los comentarios almacenados en BBDD
 	 
@@ -78,8 +82,20 @@ public class CaseCommentView extends ObjectView {
 	}
 	public void setListaOldComment(List<CaseCommentView> listaOldComment) {
 		this.listaOldComment = listaOldComment;
+	}	
+	public UserView getUserJoinCreateComment() {
+		return userJoinCreateComment;
+	}
+	public void setUserJoinCreateComment(UserView userJoinCreateComment) {
+		this.userJoinCreateComment = userJoinCreateComment;
 	}
 	
+	public UserView getUserJoinModifyComment() {
+		return userJoinModifyComment;
+	}
+	public void setUserJoinModifyComment(UserView userJoinModifyComment) {
+		this.userJoinModifyComment = userJoinModifyComment;
+	}
 	@Override
 	public Object instantiateTargetLogic() {
 		CaseComment caseComment = new CaseComment();

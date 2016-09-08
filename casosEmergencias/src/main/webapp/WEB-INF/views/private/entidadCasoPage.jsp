@@ -19,7 +19,7 @@
 		<script src="../resources/js/header.js" lang=""></script>
         <script src="../resources/js/utils.js" lang=""></script> 
 	</head>
-	<body onload="initHeader(); checkUpdates();checkCaseCommentCreation();">
+	<body onload="initHeader(); checkUpdates();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
@@ -42,7 +42,7 @@
 				<br>
 				<label id="errorMessage"></label>
 			</div>
-			<div id="divOk" class="divOk">
+			<div id="divOk" class="divOk" >
 				<label>Los datos se han modificado correctamente</label>
 			</div>
 			
@@ -386,7 +386,13 @@
 												${hist.labelFieldPickList}
 											</c:if>
 											<c:if test="${hist.labelFieldPickList == null}">
-												<s:message code="entidadCaso_texto_label_historia_accion_1" arguments="${hist.field}"/>
+												<!-- Si fieldLabel es null mostramo el campo 'field' -->
+												<c:if test="${hist.fieldLabel != null}">
+													<s:message code="entidadCaso_texto_label_historia_accion_1" arguments="${hist.fieldLabel.label}"/>
+												</c:if>
+												<c:if test="${hist.fieldLabel == null}">
+													<s:message code="entidadCaso_texto_label_historia_accion_1" arguments="${hist.field}"/>
+												</c:if>
 												<c:if test="${hist.labelOldValuePickList != ''}">
 													<s:message code="entidadCaso_texto_label_historia_accion_2" arguments="${hist.labelOldValuePickList}"/>
 												</c:if>
@@ -443,9 +449,9 @@
 												<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${coment.createddate}" var="createDate"/>
 												<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${coment.lastmodifieddate}" var="lastDate"/> 
 											
-												<b><s:message code="entidadCaso_texto_label_comentarios_comentario_creado" arguments="${coment.createdbyid}, ${createDate}"/>
-												<c:if test="${lastDate le createDate}">
-												 | <s:message code="entidadCaso_texto_label_comentarios_comentario_modificado" arguments="${coment.lastmodifiedbyid}, ${lastDate}"/>
+												<b><s:message code="entidadCaso_texto_label_comentarios_comentario_creado" arguments="${coment.userJoinCreateComment.name}, ${createDate}"/>
+												<c:if test="${lastDate != null}">
+												 | <s:message code="entidadCaso_texto_label_comentarios_comentario_modificado" arguments="${coment.userJoinModifyComment.name}, ${lastDate}"/>
 												</c:if>
 											</b> 
 											<br>${coment.comment}</td>
