@@ -1,8 +1,5 @@
 package com.casosemergencias.logic;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,19 +15,15 @@ public class UserSessionInfoServiceImpl implements UserSessionInfoService {
 	private UserSessionInfoDAO userSessionInfoDAO;
 	
 	@Override
-	public List<UserSessionInfo> readUserSessionInfo(UserSessionInfo userSessionInfo) {
+	public UserSessionInfo readUserSessionInfo(UserSessionInfo userSessionInfo) {
 		UserSessionInfoVO userSessionInfoVO = new UserSessionInfoVO();
 		ParserModelVO.parseDataModelVO(userSessionInfo, userSessionInfoVO);
-		List<UserSessionInfoVO> userSessionInfoVOList = userSessionInfoDAO.readUserSessionInfo(userSessionInfoVO);
-		List<UserSessionInfo> userSessionInfoList = new ArrayList<UserSessionInfo>();
-		if (userSessionInfoVOList != null && !userSessionInfoVOList.isEmpty()) {
-			for (UserSessionInfoVO userSessionInfoVOToParse : userSessionInfoVOList) {
-				UserSessionInfo userSessionInfoLogic = new UserSessionInfo();
-				ParserModelVO.parseDataModelVO(userSessionInfoVOToParse, userSessionInfoLogic);
-				userSessionInfoList.add(userSessionInfoLogic);
-			}
+		userSessionInfoVO = userSessionInfoDAO.readUserSessionInfo(userSessionInfoVO);
+		UserSessionInfo userSessionInfoLogic = new UserSessionInfo();
+		if (userSessionInfoVO != null) {
+			ParserModelVO.parseDataModelVO(userSessionInfoVO, userSessionInfoLogic);
 		}
-		return userSessionInfoList;
+		return userSessionInfoLogic;
 	}
 
 	@Override

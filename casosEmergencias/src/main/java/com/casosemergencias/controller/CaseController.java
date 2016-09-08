@@ -22,25 +22,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.casosemergencias.controller.views.CaseCommentView;
-import com.casosemergencias.controller.views.CaseView;
-import com.casosemergencias.dao.vo.CaseCommentVO;
-import com.casosemergencias.dao.vo.CaseHistoryVO;
-import com.casosemergencias.logic.CaseCommentService;
 import com.casosemergencias.controller.views.AccountView;
+import com.casosemergencias.controller.views.CaseCommentView;
 import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.ContactView;
 import com.casosemergencias.controller.views.DireccionView;
 import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.AccountService;
+import com.casosemergencias.logic.CaseCommentService;
 import com.casosemergencias.logic.CaseService;
 import com.casosemergencias.logic.ContactService;
 import com.casosemergencias.logic.DireccionService;
 import com.casosemergencias.logic.PickListsService;
-import com.casosemergencias.model.CaseComment;
-import com.casosemergencias.model.CaseHistory;
 import com.casosemergencias.logic.SuministroService;
-
+import com.casosemergencias.model.CaseComment;
 import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Cuenta;
@@ -83,8 +78,6 @@ public class CaseController {
 
 	@Autowired
 	private CaseCommentService caseCommentService;
-
-	private int updatedCase;
 
 	/**
 	 * Metodo que recupera una lista con todos los casos que hay creados en BBDD y los muestra en la pantalla homeCasosPage.jsp
@@ -182,6 +175,7 @@ public class CaseController {
 			suministro = suministroService.readSuministroBySfid(suministroSfid);
 			ParserModelVO.parseDataModelVO(suministro, suministroVista);
 			casoView.setSuministroJoin(suministroVista);
+			casoView.setSuministro(suministroSfid);
 			
 			if (suministro != null && suministro.getDireccion() != null && !"".equals(suministro.getDireccion())) {
 				//Obtener la direccion del suministro para guardarla en el formulario
@@ -191,6 +185,7 @@ public class CaseController {
 				direccion = direccionService.readDireccionBySfid(direccionSfid);
 				ParserModelVO.parseDataModelVO(direccion, direccionVista);
 				casoView.setDireccionJoin(direccionVista);
+				casoView.setDireccion(direccionSfid);
 			}
 		}
 		
@@ -202,6 +197,7 @@ public class CaseController {
 			contacto = contactoService.readContactoBySfid(contactoSfid);
 			ParserModelVO.parseDataModelVO(contacto, contactoVista);
 			casoView.setContactoJoin(contactoVista);
+			casoView.setNombreContacto(contactoSfid);
 		}
 		
 		if (session.getAttribute(Constantes.SFID_CUENTA) != null && !"".equals(session.getAttribute(Constantes.SFID_CUENTA))) {
@@ -212,6 +208,7 @@ public class CaseController {
 			cuenta = cuentaService.getAccountBySfid(cuentaSfid);
 			ParserModelVO.parseDataModelVO(cuenta, cuentaVista);
 			casoView.setCuentaJoin(cuentaVista);
+			casoView.setNombreCuenta(cuentaSfid);
 		}
 
 		model.addObject("caso", casoView);
@@ -245,41 +242,44 @@ public class CaseController {
 	}
 
 	@RequestMapping(value = "/private/altaCaso", method = RequestMethod.POST)
-	public String guardarCaso(CaseView caso	, boolean redirectHere) {
-//		//ModelAndView model = new ModelAndView();
-//		String sfid = saveCase(caso);
-//		
-//		/*Borrar y utilizar el recuperado en el alta*/
-//		sfid = "5005B000000sESVQA2";
-//		
-////		return "redirect:entidadCaso?sfid=" + sfid + "&editMode=" + Constantes.EDIT_MODE_VIEW;
-		if (redirectHere) {
-			return "redirect:entidadCasoAlta";
+	public String guardarCaso(CaseView caso	, boolean redirectToNewCase, HttpServletRequest request) {
+		logger.info("--- Inicio -- guardarCaso ---");
+		
+		String redirectURI = "";
+		Caso casoInsertado = new Caso();
+		
+		verificarPickList(caso);
+		ParserModelVO.parseDataModelVO(caso, casoInsertado);
+		
+		casoInsertado = casoService.insertCase(casoInsertado);
+		
+		if (casoInsertado != null) {
+			logger.info("Caso guardado correctamente con sfid:" + casoInsertado.getSfid());
+			
+			//Limpieza de sfid que arrastramos en la sesión
+			HttpSession session = request.getSession(true);	
+			session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
+			session.setAttribute(Constantes.SFID_CONTACTO, null);	
+			session.setAttribute(Constantes.SFID_CUENTA, null);
+			session.setAttribute(Constantes.FINAL_DETAIL_PAGE, null);
+			
+			if (redirectToNewCase) {
+				logger.info("Se redirecciona a página de nuevo caso");
+				redirectURI = "redirect:entidadCasoAlta";
+			} else {
+				logger.info("Se redirecciona a página de detalle del caso");
+				redirectURI = "redirect:entidadCaso?sfid=" + casoInsertado.getSfid() + "&editMode=" + Constantes.EDIT_MODE_VIEW;
+			}
 		} else {
-			return "redirect:homeCasos";
+			//TODO: Qué hace SF si falla el alta?
+			logger.info("No se ha guardado correctamente el caso");
+			redirectURI = "redirect:entidadCasoAlta";
 		}
 		
+		logger.info("--- Fin -- guardarCaso ---");
+		return redirectURI;
 	}
-	
-//	private String saveCase(CaseView casoView) {
-//		String sfid = "";
-//		
-//		// TODO: Llamada a salesforce para generar el caso y recuperar su sfid y su casenumber
-//		
-//		// TODO: Seteamos en el objeto caseview el sfid y el casenumber
-////		casoView.setSfid(null);
-////		casoView.setNumeroCaso(null);
-//		
-//		verificarPickList(casoView);
-//		Caso caso = new Caso();
-//		ParserModelVO.parseDataModelVO(casoView, caso);
-//		
-//		casoService.insertCase(caso);
-//		
-//		return sfid;
-//	}
-	
-	
+		
 	/**
 	 * M&eacute;todo invocado por la tabla de homeCasosPage. Se recoge del body
 	 * las propiedades de la tabla, le recupera la lista con todos los casos

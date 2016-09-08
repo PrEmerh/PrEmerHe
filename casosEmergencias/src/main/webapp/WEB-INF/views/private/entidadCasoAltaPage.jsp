@@ -30,9 +30,15 @@
 		<div class="divCabeceraEntidad">
 			<div class="botoneraListado botoneraCentrado">
 				<ul>
+<<<<<<< HEAD
+					<li><input type="button" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" onclick="altaCaso();"/></li>
+					<li><input type="button" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li>
+					<li><input type="button" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" onclick="cancelAltaCaso();" /></li>
+=======
 					<li><input type="submit" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" onclick="altaCaso();"/></li>
 					<li><input type="submit" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li>
 					<li><input type="button" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" onclick="cancelAltaCaso()" /></li>
+>>>>>>> branch 'branch01' of https://github.com/PrEmerh/PrEmerHe
 				</ul>
 			</div>
 		</div>
@@ -55,7 +61,7 @@
 		</div>
 		<div>
 			<form:form name="formEntidadCasoAlta" id="formEntidadCasoAlta" action="altaCaso" modelAttribute="caso" method="POST">
-				<input type="hidden" name="redirectHere" id="redirectHere" value="false"/>
+				<input type="hidden" name="redirectToNewCase" id="redirectToNewCase" value="false"/>
 				<form:hidden path="sfid"/>
 				<div id="divEntidadCasoAlta" class="divEntidad">
 					<!-- iNFORMACIÓN DEL CASO -->
@@ -190,6 +196,7 @@
 							<label><s:message code="entidadCaso_table_label_nombreContacto"/></label>
 						</div>
 						<div>
+							<form:hidden path="nombreContacto"/>
 							<label>${caso.contactoJoin.name}</label>
 						</div>
 						<div class="divLabel"><label><s:message code="entidadCaso_table_label_canalNotificacion"/></label></div>
@@ -226,7 +233,7 @@
 						<div>
 							<form:hidden path="direccion"/>
 							<c:choose>
-								<c:when test="${not empty caso.suministroJoin}">
+								<c:when test="${not empty caso.direccionJoin}">
 									<input type="text" id="dirRecuperada" disabled="disabled" value="${caso.direccionJoin.name}"/>
 								</c:when>
 								<c:otherwise>
@@ -246,6 +253,7 @@
 							<label><s:message code="entidadCaso_table_label_nombreCuenta"/></label>
 						</div>
 						<div>
+							<form:hidden path="nombreCuenta"/>
 							<label>${caso.cuentaJoin.name}</label>
 						</div>
 						<div class="divLabel"><label><s:message code="entidadCaso_table_label_idFacebook"/></label></div>
@@ -314,13 +322,13 @@
 					</div>
 					<div>
 						<div class="divLabel">
-							<label><s:message code="entidadCaso_table_label_respuestaCliente"/></label>
+							<label><s:message code="entidadCaso_title_label_respuestaCliente"/></label>
 						</div>
 						<div>
 							<form:textarea path="description" rows="3" cols="60" cssClass=""/>
 						</div>
 						<div class="divLabel">
-							<label><s:message code="entidadCaso_table_label_favoravilidadCaso"/></label>
+							<label><s:message code="entidadCaso_title_label_favoravilidadCaso"/></label>
 						</div>
 						<div>
 							<form:select path="favorabilidadDelCaso" items="${caso.mapFavorabilidadCaso}"/>
@@ -379,9 +387,9 @@
 		<div class="divCabeceraEntidad">
 			<div class="botoneraListado botoneraCentrado botoneraInferior">
 				<ul>
-					<li><input type="submit" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" /></li>
-					<li><input type="submit" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" /></li>
-					<li><input type="submit" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" /></li>
+					<li><input type="button" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" onclick="altaCaso();"/></li>
+					<li><input type="button" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li>
+					<li><input type="button" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" onclick="cancelAltaCaso();" /></li>
 				</ul>
 			</div>
 		</div>

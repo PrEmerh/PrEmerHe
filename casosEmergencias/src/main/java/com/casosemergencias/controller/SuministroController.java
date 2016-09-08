@@ -51,25 +51,6 @@ public class SuministroController {
 		return model;
 	}
 	
-//	@RequestMapping(value = "/private/homeSuministrosInicio", method = RequestMethod.GET)
-//	public ModelAndView detalleSuministroInicio() {
-//
-//		logger.info("--- Inicio -- homeSuministrosInicio ---");
-//		List<SuministroView> listaAMostrar = new ArrayList<SuministroView>(); 
-//		List<Suministro> listSuministros = suministroService.readAllSuministros();
-//		SuministroView suministroView=null;
-//		for(Suministro sum:listSuministros){
-//			suministroView = new SuministroView();	
-//			ParserModelVO.parseDataModelVO(sum, suministroView);
-//			listaAMostrar.add(suministroView);
-//		}
-//		ModelAndView model = new ModelAndView();
-//		model.addObject("suministros", listaAMostrar);
-//		model.setViewName("private/homeSuministrosPage");
-//		logger.info("--- Fin -- homeSuministrosInicio ---");
-//		return model;
-//	}
-//	
 	@RequestMapping(value = "/private/entidadSuministro", method = RequestMethod.GET)
 	public ModelAndView getSuministroData(@RequestParam String sfid, HttpServletRequest request) {
 		

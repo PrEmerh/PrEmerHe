@@ -1,9 +1,9 @@
+
 package com.casosemergencias.ws;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.httpclient.HttpClient;
@@ -48,10 +48,9 @@ public class SalesforceLoginChecker {
 		userSessionInfo.setUsername(username);
 		userSessionInfo.setPassword(password);
 		userSessionInfo.setAccessToken(token);
-		List<UserSessionInfo> listUserSessionInfo = userSessionInfoService.readUserSessionInfo(userSessionInfo);
+		userSessionInfo = userSessionInfoService.readUserSessionInfo(userSessionInfo);
 		
-		if (listUserSessionInfo != null && !listUserSessionInfo.isEmpty()) {
-			userSessionInfo = listUserSessionInfo.get(0);
+		if (userSessionInfo != null) {
 			//Si el usuario existe, se comprueba si la fecha de conexión es mayor o menor de 12 horas.
 			if (!isValidToken(userSessionInfo.getLastConnection())) {
 				// Si la fecha es mayor de 12 horas, se hace login, y se actualiza la información en BBDD antes de devolver los datos del usuario.

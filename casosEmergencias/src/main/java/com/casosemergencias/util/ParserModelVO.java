@@ -177,25 +177,4 @@ public class ParserModelVO {
 		}
 		return mapToReturn;
 	}
-	
-	/**
-	 * M&eacute;todo que dadas dos listas de objetos, se pasa la informaci&oacute;n de cada
-	 * objeto de la lista y se vuelca en otra.
-	 * 
-	 * LIMITACI&Oacute;N: No admite tipos de datos primitivos, solo referencias.
-	 * No se pasar&aacute; el m&eacutetodo con par&aacute;metros de entrada int,
-	 * boolean...
-	 * 
-	 * @param objectListWithData
-	 *            Lista de objetos a convertir.
-	 * @param objectListToFill
-	 *            Lista de objetos convertidos.
-	 */
-	public static void parseListDataModelVO(List<Object> objectListWithData, List<Object> objectListToFill) {
-		for (Object objectWithData : objectListWithData) {
-			Object objectToFill = new Object();
-			ParserModelVO.parseDataModelVO(objectWithData, objectToFill);
-			objectListToFill.add(objectToFill);
-		}
-	}
 }

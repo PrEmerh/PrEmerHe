@@ -1,10 +1,13 @@
 package com.casosemergencias.logic;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +18,14 @@ import com.casosemergencias.dao.CaseHistoryDAO;
 import com.casosemergencias.dao.vo.CaseCommentVO;
 import com.casosemergencias.dao.vo.CaseHistoryVO;
 import com.casosemergencias.dao.vo.CaseVO;
+import com.casosemergencias.logic.sf.response.CreateCaseResponse;
+import com.casosemergencias.logic.sf.rest.CreateCase;
+import com.casosemergencias.logic.sf.util.SalesforceLoginChecker;
 import com.casosemergencias.model.CaseComment;
 import com.casosemergencias.model.CaseHistory;
 import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.User;
+import com.casosemergencias.model.UserSessionInfo;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -34,6 +41,9 @@ public class CaseServiceImpl implements CaseService{
 	
 	@Autowired
 	private CaseCommentDAO caseCommentDao;
+	
+	@Autowired
+	private SalesforceLoginChecker salesforceLoginChecker;
 	
 	/**
 	 * Metodo que devuelve una lista con todos los Casos que hay en BBDD
@@ -98,18 +108,90 @@ public class CaseServiceImpl implements CaseService{
 		}
 		return returnCase;
 	}
-
 	
 	public Integer getNumCasos(DataTableProperties propDatatable){
 		logger.debug("--- getNumCasos ---");
 		return caseDao.getNumCasos(propDatatable);
 	}
 	
-	public Integer insertCase(Caso caso){
-		CaseVO casoVO = new CaseVO();
-		ParserModelVO.parseDataModelVO(caso, casoVO);
-		Integer id = caseDao.insertCase(casoVO);
-		return id;
+	public Caso insertCase(Caso caso) {
+		logger.trace("--- Servicio insertCase iniciado ---");
+		// 1. Leer usuario de fichero de propiedades
+		InputStream propsInputStream = null;
+		Properties properties = new Properties();
+		String username = null;
+		String password = null;
+		String token = null;
+		String userId = null;
+		UserSessionInfo userSessionInfo = null;
+		CreateCaseResponse respuestaCaso = null;
+		CaseVO casoVO = null;
+		
+		try {
+			propsInputStream = getClass().getClassLoader().getResourceAsStream("/environment/dev/config.properties");
+			properties.load(propsInputStream);
+			
+			username = properties.getProperty("heroku.user");
+			password = properties.getProperty("heroku.pass");
+			token = properties.getProperty("heroku.token");
+			userId = properties.getProperty("heroku.userid");
+			
+			if (username != null && !"".equals(username) 
+					&& password != null && !"".equals(password) 
+					&& token != null && !"".equals(token)) {
+				
+				userSessionInfo = salesforceLoginChecker.getUserSessionInfo(username, password, token);
+				if (userSessionInfo != null) {
+					caso.setPropietarioCaso(userId);
+					respuestaCaso = CreateCase.createCaseInSalesforce(userSessionInfo, caso);
+					if (respuestaCaso != null) {
+						if ("0".equals(respuestaCaso.getControlErrores().getCodigoError())) {
+							if (respuestaCaso.getIdCaso() != null && !"".equals(respuestaCaso.getIdCaso())) {
+								caso.setSfid(respuestaCaso.getIdCaso());
+								logger.info("Caso creado con sfid:" + respuestaCaso.getIdCaso());
+							}
+							
+							if (respuestaCaso.getNumeroCaso() != null && !"".equals(respuestaCaso.getNumeroCaso())) {
+								caso.setNumeroCaso(respuestaCaso.getNumeroCaso());
+								logger.info("Caso creado con no. de caso: " + respuestaCaso.getNumeroCaso());
+							}
+							
+							casoVO = new CaseVO();
+							ParserModelVO.parseDataModelVO(caso, casoVO);
+							Integer id = caseDao.insertCase(casoVO);
+							if (id != null && id.intValue() > 0) {
+								logger.info("Caso insertado correctamente en Heroku con id: " + id.intValue());
+							} else {
+								caso = null;
+								logger.warn("No se ha podido insertar el caso en Heroku");
+								//TODO: Qué hacer si falla la inserción en BBDD? Se subirá a Salesforce y acabará bajando a Heroku?
+							}
+						} else {
+							caso = null;
+							logger.error("Se ha producido un error al insertar el caso en SalesForce");
+							logger.error("Código de error: " + respuestaCaso.getControlErrores().getCodigoError() + ". Mensaje: " + respuestaCaso.getControlErrores().getMensajeError());
+						}
+					} else {
+						caso = null;
+						logger.warn("No se ha podido insertar el caso en SalesForce");
+						//TODO: Implementar excepciones propìas
+					}
+				}
+			}
+		} catch (IOException ioException) {
+			logger.error(" Error cargando archivo de propiedades: " + ioException);
+		} finally {
+			if (propsInputStream != null) {
+				try {
+					propsInputStream.close();
+				} catch (IOException ioException) {
+					logger.error(" Error cargando archivo de propiedades: " + ioException);
+				}
+			}
+		}
+
+		logger.trace("--- Servicio insertCase completado ---");
+		return caso;
 	}
 
 	@Override
