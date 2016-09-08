@@ -1,9 +1,7 @@
 package com.casosemergencias.controller.views;
 
 import java.util.Date;
-import java.util.List;
 
-import com.casosemergencias.dao.vo.FieldLabelVO;
 import com.casosemergencias.model.CaseHistory;
 
 public class CaseHistoryView extends ObjectView {
@@ -90,12 +88,12 @@ public class CaseHistoryView extends ObjectView {
 	public void setLabelNewValuePickList(String labelNewValuePickList) {
 		this.labelNewValuePickList = labelNewValuePickList;
 	}
+	public void setLabelOldValuePickList(String labelOldValuePickList) {
+		this.labelOldValuePickList = labelOldValuePickList;
+	}
 	public String getLabelOldValuePickList() {
 		return labelOldValuePickList;
 	}
-	public void setLabelOldValuePickList(String labelOldValuePickList) {
-		this.labelOldValuePickList = labelOldValuePickList;
-	}	
 	public FieldLabelView getFieldLabel() {
 		return fieldLabel;
 	}

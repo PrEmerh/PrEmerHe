@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.CaseCommentDAO;
 import com.casosemergencias.dao.CaseDAO;
-import com.casosemergencias.dao.CaseHistoryDAO;
 import com.casosemergencias.dao.vo.CaseCommentVO;
 import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.model.CaseComment;

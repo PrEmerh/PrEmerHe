@@ -33,7 +33,7 @@ public class Caso extends ObjectLogic {
 	private String comuna;
 	private String numeroMedidor;
 	private Direccion direccionJoin;
-	private Cuenta cuentaJoin;	
+	private Cuenta cuentaJoin;
 	private String cuerpoMail;
 	private String estado;
 	private String subestado;
@@ -59,6 +59,8 @@ public class Caso extends ObjectLogic {
 	private String direccion;
 	private String estadoSuministro;
 	private String herokuUsername;
+	private String nombreCuenta;
+	private String nombreContacto;
 	/*Joins caso*/
 	private String labelSubmotivoPickList;
 	private String labelEstadoPickList;
@@ -417,5 +419,17 @@ public class Caso extends ObjectLogic {
 	public Object instantiateTargetVO() {
 		CaseVO caso = new CaseVO();
 		return caso;
+	}
+	public String getNombreCuenta() {
+		return nombreCuenta;
+	}
+	public void setNombreCuenta(String nombreCuenta) {
+		this.nombreCuenta = nombreCuenta;
+	}
+	public String getNombreContacto() {
+		return nombreContacto;
+	}
+	public void setNombreContacto(String nombreContacto) {
+		this.nombreContacto = nombreContacto;
 	}
 }

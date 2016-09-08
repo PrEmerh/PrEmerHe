@@ -91,8 +91,10 @@
 	                <value>com.casosemergencias.dao.vo.PickListsSumEmpresaVO</value>
 	                <value>com.casosemergencias.dao.vo.UserSessionInfoVO</value>
 	                <value>com.casosemergencias.dao.vo.FieldLabelVO</value>
-	            </list>  
-		  </property> 
+	                <value>com.casosemergencias.dao.vo.UserSessionInfoVO</value>
+	                <value>com.casosemergencias.dao.vo.FieldLabelVO</value>
+	            </list>
+		  </property>
 		  <property name="hibernateProperties">
 			   <props>
 				    <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
@@ -120,6 +122,7 @@
 	<bean id="batchService" class="com.casosemergencias.logic.BatchServiceImpl"/>
 	<bean id="caseCommentService" class="com.casosemergencias.logic.CaseCommentServiceImpl"/>
 	<bean id="userSessionInfoService" class="com.casosemergencias.logic.UserSessionInfoServiceImpl"/>
+	<bean id="salesforceLoginChecker" class="com.casosemergencias.logic.sf.util.SalesforceLoginChecker"/>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/"/> 
 	
