@@ -68,6 +68,8 @@ public class CaseView extends ObjectView {
 	private String labelSubestadoPickList;
 	private String labelCanalOrigenPickList;
 	private String labelPeticionPickList;
+	private String labelCondicionAgravantePickList;
+	private String labelCanalNotificacionPickList;
 	
 	/*Mapas para mostrar los combos de caso*/
 	private Map<String, String> mapStatus;
@@ -424,6 +426,12 @@ public class CaseView extends ObjectView {
 	public void setLabelCanalOrigenPickList(String labelCanalOrigenPickList) {
 		this.labelCanalOrigenPickList = labelCanalOrigenPickList;
 	}
+	public String getLabelCondicionAgravantePickList() {
+		return labelCondicionAgravantePickList;
+	}
+	public void setLabelCondicionAgravantePickList(String labelCondicionAgravantePickList) {
+		this.labelCondicionAgravantePickList = labelCondicionAgravantePickList;
+	}
 	/*Mapas combos*/
 	public Map<String, String> getMapStatus() {
 		return mapStatus;
@@ -485,7 +493,13 @@ public class CaseView extends ObjectView {
 	}
 	public void setLabelPeticionPickList(String labelPeticionPickList) {
 		this.labelPeticionPickList = labelPeticionPickList;
-	}		
+	}
+	public String getLabelCanalNotificacionPickList() {
+		return labelCanalNotificacionPickList;
+	}
+	public void setLabelCanalNotificacionPickList(String labelCanalNotificacionPickList) {
+		this.labelCanalNotificacionPickList = labelCanalNotificacionPickList;
+	}
 	public String getHerokuUsername() {
 		return herokuUsername;
 	}
@@ -504,7 +518,7 @@ public class CaseView extends ObjectView {
 	public void setCommentarioCaso(List<CaseCommentView> commentarioCaso) {
 		this.commentarioCaso = commentarioCaso;
 	}
-
+	
 	@Override
 	public Object instantiateTargetLogic() {
 		Caso caso = new Caso();

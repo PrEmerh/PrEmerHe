@@ -6,6 +6,12 @@ public class FieldLabelBatch {
 	private String campo;
 	private String label;
 	
+	public FieldLabelBatch(String objeto, String campo, String label){
+		this.objeto = objeto;
+		this.campo = campo;
+		this.label = label;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

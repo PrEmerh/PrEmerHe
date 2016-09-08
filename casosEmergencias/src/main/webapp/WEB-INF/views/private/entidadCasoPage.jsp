@@ -187,7 +187,7 @@
 						<label><s:message code="entidadCaso_table_label_condagravante"/></label>
 					</div>
 					<div>
-						<label>${caso.condicionAgravante}</label>
+						<label>${caso.labelCondicionAgravantePickList}</label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_asunto"/></label>
@@ -218,7 +218,7 @@
 						<label><s:message code="entidadCaso_table_label_canalNotificacion"/></label>
 					</div>
 					<div>
-						<label>${caso.canalNotificacion}</label>
+						<label>${caso.labelCanalNotificacionPickList}</label>
 					</div>
 				</div>
 				<div>

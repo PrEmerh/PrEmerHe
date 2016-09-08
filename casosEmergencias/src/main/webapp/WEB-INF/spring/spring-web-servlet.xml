@@ -67,6 +67,7 @@
 	                <value>com.casosemergencias.dao.vo.PickListsCaseHistoryFieldVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsCaseVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsCaseOriginVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsCaseCanalNotificacionVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsContactCanalPreferenteContactoVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsContactTipoContactoVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsContactTipoIdentidadVO</value>

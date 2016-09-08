@@ -65,6 +65,8 @@ public class Caso extends ObjectLogic {
 	private String labelSubestadoPickList;
 	private String labelCanalOrigenPickList;
 	private String labelPeticionPickList;
+	private String labelCondicionAgravantePickList;
+	private String labelCanalNotificacionPickList;
 	
 	private List<CaseHistory> historialCaso;
 	private List<CaseComment> commentarioCaso;
@@ -365,6 +367,18 @@ public class Caso extends ObjectLogic {
 	public void setLabelEstadoPickList(String labelEstadoPickList) {
 		this.labelEstadoPickList = labelEstadoPickList;
 	}
+	public String getLabelCondicionAgravantePickList() {
+		return labelCondicionAgravantePickList;
+	}
+	public void setLabelCondicionAgravantePickList(String labelCondicionAgravantePickList) {
+		this.labelCondicionAgravantePickList = labelCondicionAgravantePickList;
+	}
+	public String getLabelCanalNotificacionPickList() {
+		return labelCanalNotificacionPickList;
+	}
+	public void setLabelCanalNotificacionPickList(String labelCanalNotificacionPickList) {
+		this.labelCanalNotificacionPickList = labelCanalNotificacionPickList;
+	}
 	public String getHerokuUsername() {
 		return herokuUsername;
 	}
@@ -383,6 +397,7 @@ public class Caso extends ObjectLogic {
 	public void setCommentarioCaso(List<CaseComment> commentarioCaso) {
 		this.commentarioCaso = commentarioCaso;
 	}
+	
 	/**/
 	@Override
 	public Object instantiateTargetView() {

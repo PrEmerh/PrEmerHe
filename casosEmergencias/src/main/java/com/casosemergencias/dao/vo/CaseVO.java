@@ -378,7 +378,17 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@JoinColumn(name = "origin", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Origin' and objeto = 'Case'")
 	private PickListsCaseOriginVO canalOrigenPickList;
+	
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "condici_n_agravante__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Condici_n_agravante__c' and objeto = 'Case'")
+	private PickListsCaseVO condicionAgravantePickList;
 
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "canal_de_notificaciOn__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Canal_de_notificaciOn__c' and objeto = 'Case'")
+	private PickListsCaseCanalNotificacionVO canalNotificacionPickList;
+	
 	// vamos a recuperar los datos de Cuenta,Contacto,Suministro y Usuario
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "contactid", referencedColumnName = "sfid", insertable = false, updatable = false)
@@ -425,8 +435,10 @@ public class CaseVO extends ObjectVO implements Serializable {
 			String recordtypeId, String comuna, String prioridad, String valorSubestadoins,
 			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante,String herokuUsername,
 			PickListsCaseVO subestadoPickList, PickListsCaseVO submotivoPickList, PickListsCaseVO peticionPickList,
-			PickListsCaseOriginVO canalOrigenPickList, ContactVO contactoJoin, AccountVO cuentaJoin,
-			SuministroVO suministroJoin, DireccionVO direccionJoin,UserVO userJoin) {
+			PickListsCaseOriginVO canalOrigenPickList, PickListsCaseVO condicionAgravantePickList, 
+			PickListsCaseCanalNotificacionVO canalNotificacionPickList, ContactVO contactoJoin, 
+			AccountVO cuentaJoin, SuministroVO suministroJoin, DireccionVO direccionJoin,
+			UserVO userJoin) {
 		super();
 		this.isdeleted = isdeleted;
 		this.systemmodstamp = systemmodstamp;
@@ -540,6 +552,8 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.submotivoPickList = submotivoPickList;
 		this.canalOrigenPickList = canalOrigenPickList;
 		this.peticionPickList = peticionPickList;
+		this.condicionAgravantePickList = condicionAgravantePickList;
+		this.canalNotificacionPickList = canalNotificacionPickList;
 		this.contactoJoin = contactoJoin;
 		this.cuentaJoin = cuentaJoin;
 		this.suministroJoin = suministroJoin;
@@ -1438,6 +1452,22 @@ public class CaseVO extends ObjectVO implements Serializable {
 	public void setCanalOrigenPickList(PickListsCaseOriginVO canalOrigenPickList) {
 		this.canalOrigenPickList = canalOrigenPickList;
 	}
+	
+	public PickListsCaseVO getCondicionAgravantePickList() {
+		return condicionAgravantePickList;
+	}
+
+	public void setCondicionAgravantePickList(PickListsCaseVO condicionAgravantePickList) {
+		this.condicionAgravantePickList = condicionAgravantePickList;
+	}
+	
+	public PickListsCaseCanalNotificacionVO getCanalNotificacionPickList() {
+		return canalNotificacionPickList;
+	}
+
+	public void setCanalNotificacionPickList(PickListsCaseCanalNotificacionVO canalNotificacionPickList) {
+		this.canalNotificacionPickList = canalNotificacionPickList;
+	}
 
 	@Override
 	public Object instantiateTargetLogic() {
@@ -1485,6 +1515,22 @@ public class CaseVO extends ObjectVO implements Serializable {
 		return result;
 	}
 
+	public String getLabelCondicionAgravantePickList() {
+		String result = this.getCondicionAgravante();
+		if (this.getCondicionAgravantePickList() != null) {
+			result = this.getCondicionAgravantePickList().getValor();
+		}
+		return result;
+	}
+	
+	public String getLabelCanalNotificacionPickList() {
+		String result = this.getCanalNotificacion();
+		if (this.getCanalNotificacionPickList() != null) {
+			result = this.getCanalNotificacionPickList().getValor();
+		}
+		return result;
+	}
+	
 	public PickListsCaseVO getPeticionPickList() {
 		return peticionPickList;
 	}
