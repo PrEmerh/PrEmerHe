@@ -1,5 +1,7 @@
 package com.casosemergencias.controller;
 
+import java.time.ZoneId;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -58,7 +60,12 @@ public class LoginController {
 			
 			//Guardamos el usuario en la sesion
 			HttpSession session = request.getSession(true);
-			session.setAttribute("user", user);			
+			session.setAttribute("user", user);		
+			
+			//Preparamos ZoneId para guardarlo en session
+			ZoneId zoneIdHerokuUser = getZoneIdHerokuUser(user.getCountry());
+			session.setAttribute("ZoneIdUser", zoneIdHerokuUser);		
+		
 
 			model.setViewName("redirect:private/homeCasos");
 
@@ -103,5 +110,25 @@ public class LoginController {
 		
 		logger.info("--- Fin -- logout ---");
 		return model;
+	}
+	
+	/**
+	 * Metodo al que le pasamos el valor del campo 'country' de HerokuUser, comprobamos que constante le corresponde
+	 * y creamos el ZoneId correspondiente
+	 * 
+	 *  @return
+	 */
+	private ZoneId getZoneIdHerokuUser(String idCountry){
+		ZoneId zoneIdHerokuUser = null;
+		if("1".equals(idCountry)){
+			zoneIdHerokuUser = ZoneId.of(ZoneId.SHORT_IDS.get(Constantes.ID_1));
+		}else if("2".equals(idCountry)){
+			zoneIdHerokuUser = ZoneId.of(ZoneId.SHORT_IDS.get(Constantes.ID_2));
+		}else if("3".equals(idCountry)){
+			zoneIdHerokuUser = ZoneId.of(ZoneId.SHORT_IDS.get(Constantes.ID_3));
+		}else if("4".equals(idCountry)){
+			zoneIdHerokuUser = ZoneId.of(ZoneId.SHORT_IDS.get(Constantes.ID_4));
+		}
+		return zoneIdHerokuUser;
 	}
 }

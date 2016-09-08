@@ -13,6 +13,7 @@ public class HerokuUserView extends ObjectView {
 	private String email;
 	private String mensajeError;
 	private String mensaje;
+	private String country;
 	
 	public Integer getId() {
 		return id;
@@ -62,7 +63,13 @@ public class HerokuUserView extends ObjectView {
 	public void setMensaje(String mensaje) {
 		this.mensaje = mensaje;
 	}
-
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	
 	@Override
 	public Object instantiateTargetLogic() {
 		HerokuUser usuario = new HerokuUser();

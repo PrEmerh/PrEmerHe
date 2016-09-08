@@ -47,10 +47,17 @@ public class Constantes {
 	public static final String COD_CASO_STATUS_INGRESADO = "ESTA001";
 	
 	//
-	//Sesion SFID
-	
+	//Sesion SFID	
 	public static final String SFID_SUMINISTRO= "sfidSuministro";
 	public static final String SFID_CONTACTO= "sfidContacto";
 	public static final String SFID_CUENTA= "sfidCuenta";
 	public static final String FINAL_DETAIL_PAGE= "paginaDetalleFinal";
+	
+	//
+	//HerokuUser, GMT constantes. Contantes que de SHORT_IDS de la clae ZoneId de Java
+	public static final String ID_1 = "PRT"; //America/Puerto_Rico
+	public static final String ID_2 = "CST"; //America/Chicago
+	public static final String ID_3 = "CST"; //America/Chicago
+	public static final String ID_4 = "BET"; //America/Sao_Paulo
+	
 }
