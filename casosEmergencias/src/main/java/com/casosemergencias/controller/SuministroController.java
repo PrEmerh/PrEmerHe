@@ -1,6 +1,10 @@
 package com.casosemergencias.controller;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -67,7 +71,7 @@ public class SuministroController {
 //	}
 //	
 	@RequestMapping(value = "/private/entidadSuministro", method = RequestMethod.GET)
-	public ModelAndView getSuministroData(@RequestParam String sfid,HttpServletRequest request) {
+	public ModelAndView getSuministroData(@RequestParam String sfid, HttpServletRequest request) {
 		
 		logger.info("Ejecutar consulta");
 		HttpSession session = request.getSession(true);
@@ -86,7 +90,6 @@ public class SuministroController {
 		}
 		
 		//Almacenamos sfid de contactos relacionados en caso de que el suministro seleccionado tenga solo uno asociado.
-		
 		if(suministroView.getContactosRelacionados()!=null && !suministroView.getContactosRelacionados().isEmpty()  && suministroView.getContactosRelacionados().size()==1 && session.getAttribute(Constantes.SFID_CONTACTO)==null){
 			session.setAttribute(Constantes.SFID_CONTACTO, suministroView.getContactosRelacionados().get(0).getSfid());					
 		}
