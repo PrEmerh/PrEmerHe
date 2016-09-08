@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import com.casosemergencias.model.CaseComment;
 import com.casosemergencias.model.Caso;
 
 public class CaseView extends ObjectView {
@@ -70,6 +69,7 @@ public class CaseView extends ObjectView {
 	private String labelPeticionPickList;
 	private String labelCondicionAgravantePickList;
 	private String labelCanalNotificacionPickList;
+	private String labelFavorabilidadDelCasoPickList;
 	
 	/*Mapas para mostrar los combos de caso*/
 	private Map<String, String> mapStatus;
@@ -499,6 +499,12 @@ public class CaseView extends ObjectView {
 	}
 	public void setLabelCanalNotificacionPickList(String labelCanalNotificacionPickList) {
 		this.labelCanalNotificacionPickList = labelCanalNotificacionPickList;
+	}
+	public String getLabelFavorabilidadDelCasoPickList() {
+		return labelFavorabilidadDelCasoPickList;
+	}
+	public void setLabelFavorabilidadDelCasoPickList(String labelFavorabilidadDelCasoPickList) {
+		this.labelFavorabilidadDelCasoPickList = labelFavorabilidadDelCasoPickList;
 	}
 	public String getHerokuUsername() {
 		return herokuUsername;

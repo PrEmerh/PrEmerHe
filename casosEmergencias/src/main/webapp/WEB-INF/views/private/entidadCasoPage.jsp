@@ -355,7 +355,7 @@
 						<label><s:message code="entidadCaso_title_label_favoravilidadCaso"/></label>
 					</div>
 					<div>
-						<label>${caso.favorabilidadDelCaso}</label>
+						<label>${caso.labelFavorabilidadDelCasoPickList}</label>
 					</div>
 				</div>
 			</div>

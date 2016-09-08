@@ -67,6 +67,7 @@ public class Caso extends ObjectLogic {
 	private String labelPeticionPickList;
 	private String labelCondicionAgravantePickList;
 	private String labelCanalNotificacionPickList;
+	private String labelFavorabilidadDelCasoPickList;
 	
 	private List<CaseHistory> historialCaso;
 	private List<CaseComment> commentarioCaso;
@@ -396,6 +397,13 @@ public class Caso extends ObjectLogic {
 	}
 	public void setCommentarioCaso(List<CaseComment> commentarioCaso) {
 		this.commentarioCaso = commentarioCaso;
+	}
+	
+	public String getLabelFavorabilidadDelCasoPickList() {
+		return labelFavorabilidadDelCasoPickList;
+	}
+	public void setLabelFavorabilidadDelCasoPickList(String labelFavorabilidadDelCasoPickList) {
+		this.labelFavorabilidadDelCasoPickList = labelFavorabilidadDelCasoPickList;
 	}
 	
 	/**/

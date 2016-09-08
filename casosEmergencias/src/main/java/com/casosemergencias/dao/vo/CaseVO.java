@@ -389,6 +389,11 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@WhereJoinTable(clause = "campo = 'Canal_de_notificaciOn__c' and objeto = 'Case'")
 	private PickListsCaseCanalNotificacionVO canalNotificacionPickList;
 	
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "favorabilidad_del_caso__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Favorabilidad_del_caso__c' and objeto = 'Case'")
+	private PickListsCaseVO favorabilidadDelCasoPickList;
+	
 	// vamos a recuperar los datos de Cuenta,Contacto,Suministro y Usuario
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "contactid", referencedColumnName = "sfid", insertable = false, updatable = false)
@@ -436,7 +441,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante,String herokuUsername,
 			PickListsCaseVO subestadoPickList, PickListsCaseVO submotivoPickList, PickListsCaseVO peticionPickList,
 			PickListsCaseOriginVO canalOrigenPickList, PickListsCaseVO condicionAgravantePickList, 
-			PickListsCaseCanalNotificacionVO canalNotificacionPickList, ContactVO contactoJoin, 
+			PickListsCaseCanalNotificacionVO canalNotificacionPickList, PickListsCaseVO favorabilidadDelCasoPickList, ContactVO contactoJoin, 
 			AccountVO cuentaJoin, SuministroVO suministroJoin, DireccionVO direccionJoin,
 			UserVO userJoin) {
 		super();
@@ -554,6 +559,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.peticionPickList = peticionPickList;
 		this.condicionAgravantePickList = condicionAgravantePickList;
 		this.canalNotificacionPickList = canalNotificacionPickList;
+		this.favorabilidadDelCasoPickList = favorabilidadDelCasoPickList;
 		this.contactoJoin = contactoJoin;
 		this.cuentaJoin = cuentaJoin;
 		this.suministroJoin = suministroJoin;
@@ -1469,6 +1475,14 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.canalNotificacionPickList = canalNotificacionPickList;
 	}
 
+	public PickListsCaseVO getFavorabilidadDelCasoPickList() {
+		return favorabilidadDelCasoPickList;
+	}
+
+	public void setFavorabilidadDelCasoPickList(PickListsCaseVO favorabilidadDelCasoPickList) {
+		this.favorabilidadDelCasoPickList = favorabilidadDelCasoPickList;
+	}
+
 	@Override
 	public Object instantiateTargetLogic() {
 		Caso caso = new Caso();
@@ -1519,6 +1533,14 @@ public class CaseVO extends ObjectVO implements Serializable {
 		String result = this.getCondicionAgravante();
 		if (this.getCondicionAgravantePickList() != null) {
 			result = this.getCondicionAgravantePickList().getValor();
+		}
+		return result;
+	}
+	
+	public String getLabelFavorabilidadDelCasoPickList() {
+		String result = this.getFavorabilidadDelCaso();
+		if (this.getFavorabilidadDelCasoPickList() != null) {
+			result = this.getFavorabilidadDelCasoPickList().getValor();
 		}
 		return result;
 	}
