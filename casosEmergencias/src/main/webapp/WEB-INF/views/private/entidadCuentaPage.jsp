@@ -22,16 +22,16 @@
 		<script type="text/javascript">
 			var objetoSeleccionado = '<s:message code="entidadCuenta_title_label_account_detail"/>';
 		</script>
-		<jsp:include page="cabeceraPage.jsp" />
+		<jsp:include page="cabeceraPage.jsp" />		
 		<div id="divEntidadCuenta" class="divEntidad">
 			<div class="subtitleAltaEntidad">
 				<div>
-					<input id="arrowEntidadCuenta" type="image" src="../resources/images/arrow-down-black.png"  
-						height="15" onclick="showHideCabeceras('tablaDatosPersona','arrowEntidadCuenta'); return false;"/>			
+					<input id="arrowEntidadCuenta" type="image" src="../resources/images/arrow-down-black.png"  	height="15" onclick="showHideCabeceras('tablaDatosPersona','arrowEntidadCuenta'); return false;"/>			
 					<label class="divLabel"><s:message code="entidadCuenta_title_label_person_data_detail" /></label>
 				</div>
 			</div>
-			<div id="tablaDatosPersona" class="divSubEntidad">
+		</div>
+			<div id="tablaDatosPersona" class="divEntidad">
 				<div>
 					<div class="divLabel">
 						<label><s:message code="entidadCuenta_title_label_account_name" /></label>
@@ -136,7 +136,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
 		<div id="divEntidadCuentaSuministros" class="divEntidad">
 			<div class="subtitleAltaEntidad">
 				<div>

@@ -30,15 +30,11 @@
 		<div class="divCabeceraEntidad">
 			<div class="botoneraListado botoneraCentrado">
 				<ul>
-<<<<<<< HEAD
+
 					<li><input type="button" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" onclick="altaCaso();"/></li>
 					<li><input type="button" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li>
 					<li><input type="button" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" onclick="cancelAltaCaso();" /></li>
-=======
-					<li><input type="submit" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" onclick="altaCaso();"/></li>
-					<li><input type="submit" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li>
-					<li><input type="button" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" onclick="cancelAltaCaso()" /></li>
->>>>>>> branch 'branch01' of https://github.com/PrEmerh/PrEmerHe
+
 				</ul>
 			</div>
 		</div>

@@ -70,6 +70,9 @@ public class ContactController {
 		if(contactoView.getSuministros()!=null && contactoView.getSuministros().isEmpty()==false  && contactoView.getSuministros().size()==1 && session.getAttribute(Constantes.SFID_SUMINISTRO)==null){
 			session.setAttribute(Constantes.SFID_SUMINISTRO, contactoView.getSuministros().get(0).getSfid());					
 		}
+		if(contactoView.getCuentaJoin()!=null && session.getAttribute(Constantes.SFID_CUENTA)==null){
+			session.setAttribute(Constantes.SFID_CUENTA, contactoView.getCuentaJoin().getSfid());					
+		}
 		
 		logger.info("SFID_CUENTA" + session.getAttribute(Constantes.SFID_CUENTA));
 		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));
