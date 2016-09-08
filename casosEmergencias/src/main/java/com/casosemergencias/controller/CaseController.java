@@ -240,7 +240,7 @@ public class CaseController {
 			return null;
 		}
 	}
-	
+
 	@RequestMapping(value = "/private/altaCaso", method = RequestMethod.POST)
 	public String guardarCaso(CaseView caso	, boolean redirectToNewCase, HttpServletRequest request) {
 		logger.info("--- Inicio -- guardarCaso ---");

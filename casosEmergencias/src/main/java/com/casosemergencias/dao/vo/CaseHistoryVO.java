@@ -217,6 +217,7 @@ public class CaseHistoryVO extends ObjectVO implements Serializable {
 		this.fieldLabel = fieldLabel;
 	}
 
+
 	public String getLabelFieldPickList(){
 		String result = this.getField();
 		if (this.getFieldPickList() != null) {

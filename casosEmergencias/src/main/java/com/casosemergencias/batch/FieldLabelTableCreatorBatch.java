@@ -16,14 +16,14 @@ import org.apache.log4j.Logger;
 
 import com.casosemergencias.batch.bean.FieldLabelBatch;
 import com.casosemergencias.util.constants.ConstantesBatch;
-import com.casosemergencias.logic.sf.util.SalesforceLoginChecker;
+import com.casosemergencias.ws.SalesforceLoginChecker;
 import com.force.api.DescribeSObject;
 import com.force.api.DescribeSObject.Field;
 import com.force.api.ForceApi;
 
 public class FieldLabelTableCreatorBatch {
 	final static Logger logger = Logger.getLogger(FieldLabelTableCreatorBatch.class);
-
+	
 	public static void fillHerokuFieldLabelTable() {
 		logger.trace("Comienzo del proceso de carga de los labels de campo de SalesForce a la base de datos de Heroku");
 		List<FieldLabelBatch> listaRecuperadaSF;
@@ -38,7 +38,7 @@ public class FieldLabelTableCreatorBatch {
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			logger.error("Error cargando los picklists: ", ex);
+			logger.error("Error cargando los labels de campo: ", ex);
 		}
 		logger.trace("Proceso de carga de los labels de campo de SalesForce a la base de datos de Heroku completado");
 	}
@@ -90,10 +90,10 @@ public class FieldLabelTableCreatorBatch {
 		if (objDescribe != null) {
 			logger.info("Nombre del objeto: " + objDescribe.getName());
 			List<Field> fields = objDescribe.getFields();
-			//List<PicklistEntry> picklistValues = null;
 			logger.info("Obtenidos " + fields.size() + " campos");
 			if(fields != null && !fields.isEmpty()) {
 				Field field = null;
+				DescribeSObject objDescribeAux = null;
 				for (int i = 0; i < fields.size(); i++) {
 					field = fields.get(i);
 					if (field != null){
@@ -101,11 +101,21 @@ public class FieldLabelTableCreatorBatch {
 						if (listaFieldLabel == null) {
 							listaFieldLabel = new ArrayList<FieldLabelBatch>();
 						}
-						objFieldLabel = new FieldLabelBatch();
-						objFieldLabel.setObjeto(objetoSalesforce);
-						objFieldLabel.setCampo(field.getName());
-						objFieldLabel.setLabel(field.getLabel());
+						objFieldLabel = new FieldLabelBatch(objetoSalesforce, field.getName(), field.getLabel());
 						listaFieldLabel.add(objFieldLabel);
+						
+						if ("reference".equalsIgnoreCase(field.getType()) && !field.isCustom()){
+							try{
+								objDescribeAux = force.describeSObject(field.getRelationshipName());
+								if (objDescribeAux != null){
+									listaFieldLabel.add(new FieldLabelBatch(objetoSalesforce, field.getRelationshipName(), objDescribeAux.getLabel()));
+									logger.info("Item de la lista [Campo: " + field.getRelationshipName() + " | Label: " + objDescribeAux.getLabel() + "]");
+								}
+								objDescribeAux = null;
+							}catch (Exception ex) {
+								logger.error("Error recuperando objeto relacionado: ", ex);
+							}
+						}
 						logger.info("Item de la lista [Campo: " + field.getName() + " | Label: " + field.getLabel() + "]");
 					}
 				}
@@ -113,7 +123,7 @@ public class FieldLabelTableCreatorBatch {
 		}
 		return listaFieldLabel;
 	}
-
+	
 	/**
 	 * 
 	 * @param picklistList

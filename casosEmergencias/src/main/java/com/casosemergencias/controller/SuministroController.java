@@ -133,7 +133,7 @@ public class SuministroController {
 	public @ResponseBody String listadoSuministros(@RequestBody String body,HttpServletRequest request){
 		
 		logger.info("--- Inicio -- listadoSuministrosHome ---");
-
+				
 		//Limpieza de sfid que arrastramos
 		
 		HttpSession session = request.getSession(true);	

@@ -88,11 +88,11 @@ public class CaseHistoryView extends ObjectView {
 	public void setLabelNewValuePickList(String labelNewValuePickList) {
 		this.labelNewValuePickList = labelNewValuePickList;
 	}
-	public String getLabelOldValuePickList() {
-		return labelOldValuePickList;
-	}
 	public void setLabelOldValuePickList(String labelOldValuePickList) {
 		this.labelOldValuePickList = labelOldValuePickList;
+	}
+	public String getLabelOldValuePickList() {
+		return labelOldValuePickList;
 	}
 	public FieldLabelView getFieldLabel() {
 		return fieldLabel;

@@ -62,18 +62,6 @@ function cancelarButton() {
 	descriptionEdit.style.display = 'none'; 
 }
 
-function checkUpdates() {
-	if ($('#editMode').val() == 'UPDATED_OK') {
-		$('#divOk').show();
-	} else if ($('#editMode').val() == 'UPDATED_ERROR') {
-		$('#divError').show();
-	}else if ($('#editMode').val() == 'CREATED_OK') {
-		$('#divCaseCommentCreated').show();
-	} else if ($('#editMode').val() == 'CREATED_ERROR') {
-		$('#divCaseCommentNOCreated').show();
-	}
-}
-
 // --------------------------------------------------------------------
 
 // FUNCIONES DE VALIDACIONES DE FORMULARIOS DE BÚSQUEDA
@@ -89,7 +77,7 @@ function validateEmail(email) {
 
 // FUNCIONES DE PÁGINA DE ALTA DE CASOS
 function altaCaso() {
-	var validado = true;//validaDatos();
+	var validado = validaDatos();
 	if (validado) {
 		$('#formEntidadCasoAlta').submit();
 		return true;
@@ -99,9 +87,9 @@ function altaCaso() {
 }
 
 function altaCasoYNuevo() {
-	var validado = true;//validaDatos();
+	var validado = validaDatos();
 	if (validado) {
-		$('#redirectToNewCase').val("true");
+		$('#redirectHere').val("true");
 		$('#formEntidadCasoAlta').submit();
 		return true;
 	} else {
@@ -109,15 +97,6 @@ function altaCasoYNuevo() {
 	}
 }
 
-function checkCaseCommentCreation() {	
-	if(document.getElementById('comment').value==''){
-		$('#divCaseCommentNOCreated').show();		
-	}
-	else{
-		document.getElementById('formComentarioCaso').submit();
-	}
-
-}
 
 function validaDatos() {
 	if (document.getElementById('suministro') && document.getElementById('suministro').value == ''
@@ -201,22 +180,23 @@ function establecerDireccion(sfid, name) {
 	$('#dialogDireccion').dialog('close');
 }
 
-/*Inicio -- funciones Guardar y Cancelar Comentario de un Caso*/
+/*Inici -- funciones Guardar y Cancelar Comentario de un Caso*/
 function newComent(sfid){
-	 window.location="../private/casoComentarioPage?editMode=VIEW&sfid="+sfid;
+	 window.location="../private/casoComentarioPage?sfid="+sfid;
 }
 
 
 function cancelComent(sfid){
 	 window.location="../private/entidadCaso?editMode=VIEW&sfid="+sfid;
 }
-
 /*Fin -- funciones Guardar y Cancelar Comentario de un Caso*/
+
 
 //Funcion Cancelar Alta de un Caso
 function cancelAltaCaso(){
 	
 	window.location="../private/cancelAltaCaso";
+	
 	
 }
 
@@ -226,4 +206,3 @@ function limpiarCamposBuscadorCasos() {
 		document.getElementById('filtroNumCaso').value = '';
 	}
 }
-//--------------------------------------------------------------------

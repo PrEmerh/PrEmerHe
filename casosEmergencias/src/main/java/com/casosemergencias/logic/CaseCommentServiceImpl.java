@@ -51,11 +51,10 @@ public class CaseCommentServiceImpl implements CaseCommentService{
 		caseCommentVO.setComment(caseComment.getComment());
 		caseCommentVO.setIspublished(false);
 		caseCommentVO.setCaseid(caseComment.getCaseid());
-		Boolean id = caseCommentDAO.insertCaseComment(caseCommentVO);
-		return id;
+		Boolean insert = caseCommentDAO.insertCaseComment(caseCommentVO);
+		return insert;
 	}
 	
-
 	
 	/*
 	 * Método que parsea una lista de CaseHistoryVO en CaseComment.
