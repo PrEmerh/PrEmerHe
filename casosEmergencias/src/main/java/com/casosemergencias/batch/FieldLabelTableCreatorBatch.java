@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 
 import com.casosemergencias.batch.bean.FieldLabelBatch;
 import com.casosemergencias.util.constants.ConstantesBatch;
-import com.casosemergencias.ws.SalesforceLoginChecker;
+import com.casosemergencias.logic.sf.util.SalesforceLoginChecker;
 import com.force.api.DescribeSObject;
 import com.force.api.DescribeSObject.Field;
 import com.force.api.ForceApi;
