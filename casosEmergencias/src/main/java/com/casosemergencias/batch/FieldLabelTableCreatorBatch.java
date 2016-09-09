@@ -12,24 +12,30 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.batch.bean.FieldLabelBatch;
+import com.casosemergencias.logic.sf.util.SalesforceLoginChecker;
 import com.casosemergencias.util.constants.ConstantesBatch;
-import com.casosemergencias.ws.SalesforceLoginChecker;
 import com.force.api.DescribeSObject;
 import com.force.api.DescribeSObject.Field;
 import com.force.api.ForceApi;
 
+@Resource
 public class FieldLabelTableCreatorBatch {
 	final static Logger logger = Logger.getLogger(FieldLabelTableCreatorBatch.class);
 	
-	public static void fillHerokuFieldLabelTable() {
+	@Autowired
+	private SalesforceLoginChecker salesforceLoginChecker;
+	
+	public void fillHerokuFieldLabelTable() {
 		logger.trace("Comienzo del proceso de carga de los labels de campo de SalesForce a la base de datos de Heroku");
 		List<FieldLabelBatch> listaRecuperadaSF;
 		try {
-			SalesforceLoginChecker login = new SalesforceLoginChecker();
-			ForceApi api = login.getSalesforceApi(ConstantesBatch.SF_USER_NAME_VALUE, ConstantesBatch.SF_PASSWORD_VALUE, ConstantesBatch.SF_USER_TOKEN_VALUE);
+			ForceApi api = salesforceLoginChecker.getSalesforceApi(ConstantesBatch.SF_USER_NAME_VALUE, ConstantesBatch.SF_PASSWORD_VALUE, ConstantesBatch.SF_USER_TOKEN_VALUE);
 			if (api != null) {
 				listaRecuperadaSF = getFieldLabelList(api);
 				if (listaRecuperadaSF != null && !listaRecuperadaSF.isEmpty()) {
