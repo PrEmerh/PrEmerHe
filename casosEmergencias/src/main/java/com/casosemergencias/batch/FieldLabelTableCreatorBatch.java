@@ -114,12 +114,11 @@ public class FieldLabelTableCreatorBatch {
 						}
 						objFieldLabel = new FieldLabelBatch(objetoSalesforce, field.getName(), field.getLabel());
 						listaFieldLabel.add(objFieldLabel);
-						
-						if ("reference".equalsIgnoreCase(field.getType()) && !field.isCustom()){
+						if (ConstantesBatch.UTIL_TYPE_REFERENCE.equalsIgnoreCase(field.getType()) && !field.isCustom()){
 							try{
 								labelAux = "";
 								objDescribeAux = null;
-								if ("owner".equalsIgnoreCase(field.getRelationshipName())){
+								if (ConstantesBatch.UTIL_FIELD_OWNER.equalsIgnoreCase(field.getRelationshipName())){
 									labelAux = "Propietario del caso";
 								}else if (mapaAuxReference != null && mapaAuxReference.containsKey(field.getReferenceTo().get(0))){
 									labelAux = mapaAuxReference.get(field.getReferenceTo().get(0));
