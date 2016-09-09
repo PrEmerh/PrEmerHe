@@ -122,7 +122,7 @@
 	<bean id="batchService" class="com.casosemergencias.logic.BatchServiceImpl"/>
 	<bean id="caseCommentService" class="com.casosemergencias.logic.CaseCommentServiceImpl"/>
 	<bean id="userSessionInfoService" class="com.casosemergencias.logic.UserSessionInfoServiceImpl"/>
-	<bean id="salesforceLoginChecker" class="com.casosemergencias.logic.sf.util.SalesforceLoginChecker"/>
+	<bean id="salesforceLoginChecker" class="com.casosemergencias.logic.sf.util.SalesforceLoginChecker"/>	
 	
 	<mvc:resources mapping="/resources/**" location="/resources/"/> 
 	
