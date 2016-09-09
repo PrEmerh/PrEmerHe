@@ -119,11 +119,55 @@
 	<bean id="suministroService" class="com.casosemergencias.logic.SuministroServiceImpl"/>
 	<bean id="accountService" class="com.casosemergencias.logic.AccountServiceImpl"/>
 	<bean id="pickListsService" class="com.casosemergencias.logic.PickListsServiceImpl"/>
-	<bean id="batchService" class="com.casosemergencias.logic.BatchServiceImpl"/>
 	<bean id="caseCommentService" class="com.casosemergencias.logic.CaseCommentServiceImpl"/>
 	<bean id="userSessionInfoService" class="com.casosemergencias.logic.UserSessionInfoServiceImpl"/>
-	<bean id="salesforceLoginChecker" class="com.casosemergencias.logic.sf.util.SalesforceLoginChecker"/>	
+	<bean id="batchService" class="com.casosemergencias.logic.BatchServiceImpl"/>
+	<bean id="salesforceLoginChecker" class="com.casosemergencias.logic.sf.util.SalesforceLoginChecker"/>
+	<bean id="fieldLabelTableCreatorBatch" class="com.casosemergencias.batch.FieldLabelTableCreatorBatch"/>
+	<bean id="picklistTableCreatorBatch" class="com.casosemergencias.batch.PicklistTableCreatorBatch"/>
+	<bean id="fieldLabelTableCreatorJob" class="com.casosemergencias.batch.FieldLabelTableCreatorJob"/>
+	<bean id="picklistTableCreatorJob" class="com.casosemergencias.batch.PicklistTableCreatorJob"/>
 	
 	<mvc:resources mapping="/resources/**" location="/resources/"/> 
 	
+	<!-- >>>>>>>>>>>>>>>>>> CONFIGURACIÓN DE TAREAS QUARTZ >>>>>>>>>>>>>>>>>> -->
+	<!-- Job de Quartz para el rellenado de la tabla Picklists -->
+    <bean id="picklistsJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="picklistTableCreatorBatch" />
+        <property name="targetMethod" value="fillHerokuPicklistTable" />
+    </bean>
+ 	<!-- Job de Quartz para el rellenado de la tabla FieldLabel -->
+    <bean id="fieldlabelJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="fieldLabelTableCreatorBatch" />
+        <property name="targetMethod" value="fillHerokuFieldLabelTable" />
+    </bean>
+ 
+    <!-- Trigger de Quartz para el rellenado de la tabla Picklists -->
+    <bean id="picklistsTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="picklistsJob" />
+        <property name="cronExpression" value="0 0 12 ? * *" />
+    </bean>
+    
+    <!-- Trigger de Quartz para el rellenado de la tabla FieldLabel -->
+    <bean id="fieldlabelTrigger"  class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="fieldlabelJob" />
+        <property name="cronExpression" value="0 0 12 ? * *" />
+    </bean>
+  
+    <!-- Scheduler de Quartz para rellenar las tablas de picklists y fieldLabels -->
+    <bean id="batchProcessesCreatorScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="jobDetails">
+            <list>
+                <ref bean="picklistsJob" />
+                <ref bean="fieldlabelJob" />
+            </list>
+        </property>
+        <property name="triggers">
+            <list>
+                <ref bean="picklistsTrigger" />
+                <ref bean="fieldlabelTrigger" />
+            </list>
+        </property>
+    </bean>
+    <!-- <<<<<<<<<<<<<<<<<< CONFIGURACIÓN DE TAREAS QUARTZ <<<<<<<<<<<<<<<<<< -->
 </beans>

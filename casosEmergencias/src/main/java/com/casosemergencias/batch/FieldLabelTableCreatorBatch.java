@@ -32,9 +32,9 @@ public class FieldLabelTableCreatorBatch {
 	final static Logger logger = Logger.getLogger(FieldLabelTableCreatorBatch.class);
 	
 	@Autowired
-	private static SalesforceLoginChecker salesforceLoginChecker; 
+	private SalesforceLoginChecker salesforceLoginChecker;
 	
-	public static void fillHerokuFieldLabelTable() {
+	public void fillHerokuFieldLabelTable() {
 		logger.trace("Comienzo del proceso de carga de los labels de campo de SalesForce a la base de datos de Heroku");
 		List<FieldLabelBatch> listaRecuperadaSF;
 		try {
@@ -99,7 +99,7 @@ public class FieldLabelTableCreatorBatch {
 		if (objDescribe != null) {
 			logger.info("Nombre del objeto: " + objDescribe.getName());
 			List<Field> fields = objDescribe.getFields();
-			logger.info("Obtenidos " + fields.size() + " campos");			
+			logger.info("Obtenidos " + fields.size() + " campos");
 			if(fields != null && !fields.isEmpty()) {
 				Field field = null;
 				DescribeSObject objDescribeAux = null;
