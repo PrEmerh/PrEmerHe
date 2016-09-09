@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.casosemergencias.model.Contacto;
+import com.casosemergencias.model.Direccion;
 
 public class ContactView extends ObjectView {
 	
@@ -34,6 +35,13 @@ public class ContactView extends ObjectView {
 	/*Tipo de contacto*/                    private String tipoContacto;
 	/*Casos reiterados*/                    private Boolean casosReiterados;
 	/*Tipo cuenta asociadas*/               private String tipoCuentaAsociado;
+	
+	private String influencer;
+	private String twitterBio;
+	private String influencerType;
+	private Double seguidoresTwitter;
+	
+	private DireccionView dirContactoJoin;
 
 	private List<SuministroView> suministros;
 	
@@ -231,5 +239,35 @@ public class ContactView extends ObjectView {
 	}
 	public void setLabelTipoContactoPickList(String labelTipoContactoPickList) {
 		this.labelTipoContactoPickList = labelTipoContactoPickList;
+	}
+	public String getInfluencer() {
+		return influencer;
+	}
+	public void setInfluencer(String influencer) {
+		this.influencer = influencer;
+	}
+	public String getTwitterBio() {
+		return twitterBio;
+	}
+	public void setTwitterBio(String twitterBio) {
+		this.twitterBio = twitterBio;
+	}
+	public String getInfluencerType() {
+		return influencerType;
+	}
+	public void setInfluencerType(String influencerType) {
+		this.influencerType = influencerType;
+	}
+	public Double getSeguidoresTwitter() {
+		return seguidoresTwitter;
+	}
+	public void setSeguidoresTwitter(Double seguidoresTwitter) {
+		this.seguidoresTwitter = seguidoresTwitter;
+	}
+	public DireccionView getDirContactoJoin() {
+		return dirContactoJoin;
+	}
+	public void setDirContactoJoin(DireccionView dirContactoJoin) {
+		this.dirContactoJoin = dirContactoJoin;
 	}
 }

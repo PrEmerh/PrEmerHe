@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.casosemergencias.controller.views.AccountView;
 import com.casosemergencias.dao.vo.AccountVO;
+import com.casosemergencias.dao.vo.DireccionVO;
 
 //Objeto que tiene el modelo de una cuenta, se utiliza en el Servicio
 
@@ -18,6 +19,7 @@ public class Cuenta extends ObjectLogic {
 	/*Tipo de Identidad*/                   private String tipoIdentidad;
 	/*RUT empresa*/							private String parentRutEmpresa;
 	/*RUN*/                                 private String accountRun;
+	/*RUN*/  								private String run;
 	/*Fecha nacimiento*/       			    private Date fechaNacimiento;
 	/*Teléfono*/		                    private String phone;
 	/*Teléfono principal*/					private String telefonoPrincipal;
@@ -33,6 +35,9 @@ public class Cuenta extends ObjectLogic {
 	/*Joins con picklist*/
 	private String labelTipoIdentidadPickList;
 	private String labelIdEmpresaPickList;
+	
+	private Cuenta parent;
+	private Direccion direccionJoin;
 	
 	/* Getters y Setters */
 	public Integer getId() {
@@ -213,5 +218,29 @@ public class Cuenta extends ObjectLogic {
 
 	public void setLabelIdEmpresaPickList(String labelIdEmpresaPickList) {
 		this.labelIdEmpresaPickList = labelIdEmpresaPickList;
+	}
+
+	public Cuenta getParent() {
+		return parent;
+	}
+
+	public void setParent(Cuenta parent) {
+		this.parent = parent;
+	}
+
+	public Direccion getDireccionJoin() {
+		return direccionJoin;
+	}
+
+	public void setDireccionJoin(Direccion direccionJoin) {
+		this.direccionJoin = direccionJoin;
+	}
+
+	public String getRun() {
+		return run;
+	}
+
+	public void setRun(String run) {
+		this.run = run;
 	}
 }

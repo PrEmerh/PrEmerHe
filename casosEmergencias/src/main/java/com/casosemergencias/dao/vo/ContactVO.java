@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.WhereJoinTable;
 
 import com.casosemergencias.model.Contacto;
+import com.casosemergencias.model.Direccion;
 
 @Entity
 @Table(name="salesforce.contact")
@@ -103,12 +104,28 @@ public class ContactVO extends ObjectVO implements Serializable {
 	@Column(name = "apellido_paterno__c")
 	private String apellidoPaterno;
 	
+	@Column(name = "sf4twitter__influencer__c")
+	private String influencer;
+	
+	@Column(name = "sf4twitter__twitter_bio__c")
+	private String twitterBio;
+	
+	@Column(name = "sf4twitter__influencer_type__c")
+	private String influencerType;
+	
+	@Column(name = "sf4twitter__twitter_follower_count__c")
+	private Double seguidoresTwitter;
+	
 	@Column(name = "accountid")
-	private String accountid;
+	private String accountid;	
 	
 	@OneToOne(fetch=FetchType.LAZY, optional=true)
 	@JoinColumn(name="accountid", referencedColumnName="sfid", insertable = false, updatable=false)
 	private AccountVO cuentaJoin;
+	
+	@OneToOne(fetch=FetchType.LAZY, optional=true)
+	@JoinColumn(name="dircontacto__c", referencedColumnName="sfid", insertable = false, updatable=false)
+	private DireccionVO dirContactoJoin;
 	
 	
 	/*Recuento de seguidores de Twitter*/ 
@@ -449,5 +466,45 @@ public class ContactVO extends ObjectVO implements Serializable {
 			result = this.getTipoContactoPickList().getValor();
 		}
 		return result;
+	}
+
+	public String getInfluencer() {
+		return influencer;
+	}
+
+	public void setInfluencer(String influencer) {
+		this.influencer = influencer;
+	}
+
+	public String getTwitterBio() {
+		return twitterBio;
+	}
+
+	public void setTwitterBio(String twitterBio) {
+		this.twitterBio = twitterBio;
+	}
+
+	public String getInfluencerType() {
+		return influencerType;
+	}
+
+	public void setInfluencerType(String influencerType) {
+		this.influencerType = influencerType;
+	}
+
+	public Double getSeguidoresTwitter() {
+		return seguidoresTwitter;
+	}
+
+	public void setSeguidoresTwitter(Double seguidoresTwitter) {
+		this.seguidoresTwitter = seguidoresTwitter;
+	}
+
+	public DireccionVO getDirContactoJoin() {
+		return dirContactoJoin;
+	}
+
+	public void setDirContactoJoin(DireccionVO dirContactoJoin) {
+		this.dirContactoJoin = dirContactoJoin;
 	}
 }

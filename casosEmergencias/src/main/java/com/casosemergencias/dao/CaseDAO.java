@@ -471,12 +471,12 @@ public class CaseDAO {
 				}
 			}
 			
-			if (caso.getMotivoEmpresa() != null) {
+			if (caso.getSubmotivo() != null) {
 				if (isFirst) {
-					query.append(" WHERE caso.motivoEmpresa = :motivoEmpresa");
+					query.append(" WHERE caso.submotivo = :submotivo");
 					isFirst = false;
 				} else {
-					query.append(" AND caso.motivoEmpresa = :motivoEmpresa");
+					query.append(" AND caso.submotivo = :submotivo");
 				}
 			}
 			
@@ -1335,8 +1335,8 @@ public class CaseDAO {
 				result.setDate("slastartdate", caso.getSlastartdate());
 			}
 			
-			if (caso.getMotivoEmpresa() != null) {
-				result.setString("motivoEmpresa", caso.getMotivoEmpresa());
+			if (caso.getSubmotivo() != null) {
+				result.setString("submotivo", caso.getSubmotivo());
 			}
 			
 			if (caso.getCallCenter() != null) {

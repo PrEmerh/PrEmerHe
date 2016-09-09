@@ -30,15 +30,11 @@
 		<div class="divCabeceraEntidad">
 			<div class="botoneraListado botoneraCentrado">
 				<ul>
-<<<<<<< HEAD
+
 					<li><input type="button" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" onclick="altaCaso();"/></li>
 					<li><input type="button" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li>
 					<li><input type="button" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" onclick="cancelAltaCaso();" /></li>
-=======
-					<li><input type="submit" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" onclick="altaCaso();"/></li>
-					<li><input type="submit" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li>
-					<li><input type="button" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" onclick="cancelAltaCaso()" /></li>
->>>>>>> branch 'branch01' of https://github.com/PrEmerh/PrEmerHe
+
 				</ul>
 			</div>
 		</div>
@@ -73,7 +69,8 @@
 							<label><s:message code="entidadCaso_table_label_motivo"/></label>
 						</div>
 						<div>
-							<label>${caso.labelPeticionPickList}</label>
+							<form:hidden path="peticion"/>
+							<label>${caso.peticionLabel}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadCaso_table_label_estado"/></label>
@@ -149,6 +146,7 @@
 							<label><s:message code="entidadCaso_table_label_type"/></label>
 						</div>
 						<div>
+							<form:hidden path="type"/>
 							<label>${caso.typeLabel}</label>
 						</div>
 						<div class="divLabel">
@@ -307,7 +305,7 @@
 							<label><s:message code="entidadCaso_table_label_cuerpoMail"/></label>
 						</div>
 						<div class="divAreaTexto">
-							<form:textarea path="description" rows="2" cols="60" cssClass=""/>
+							<form:textarea path="cuerpoMail" rows="2" cols="60" cssClass=""/>
 						</div>
 						<div class="divLabel">
 							<label>&nbsp;</label>
@@ -325,7 +323,7 @@
 							<label><s:message code="entidadCaso_title_label_respuestaCliente"/></label>
 						</div>
 						<div>
-							<form:textarea path="description" rows="3" cols="60" cssClass=""/>
+							<form:textarea path="respuestaAlCliente" rows="3" cols="60" cssClass=""/>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadCaso_title_label_favoravilidadCaso"/></label>

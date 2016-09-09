@@ -22,16 +22,16 @@
 		<script type="text/javascript">
 			var objetoSeleccionado = '<s:message code="entidadCuenta_title_label_account_detail"/>';
 		</script>
-		<jsp:include page="cabeceraPage.jsp" />
+		<jsp:include page="cabeceraPage.jsp" />		
 		<div id="divEntidadCuenta" class="divEntidad">
 			<div class="subtitleAltaEntidad">
 				<div>
-					<input id="arrowEntidadCuenta" type="image" src="../resources/images/arrow-down-black.png"  
-						height="15" onclick="showHideCabeceras('tablaDatosPersona','arrowEntidadCuenta'); return false;"/>			
+					<input id="arrowEntidadCuenta" type="image" src="../resources/images/arrow-down-black.png"  	height="15" onclick="showHideCabeceras('tablaDatosPersona','arrowEntidadCuenta'); return false;"/>			
 					<label class="divLabel"><s:message code="entidadCuenta_title_label_person_data_detail" /></label>
 				</div>
 			</div>
-			<div id="tablaDatosPersona" class="divSubEntidad">
+		</div>
+			<div id="tablaDatosPersona" class="divEntidad">
 				<div>
 					<div class="divLabel">
 						<label><s:message code="entidadCuenta_title_label_account_name" /></label>
@@ -57,7 +57,7 @@
 						<label><s:message code="entidadCuenta_title_label_run" /></label>
 					</div>
 					<div>
-						<label>-</label>
+						<label>${cuenta.run}</label>
 					</div>
 				</div>
 				<div>
@@ -79,7 +79,7 @@
 						<label><s:message code="entidadCuenta_title_label_first_phone" /></label>
 					</div>
 					<div>
-						<label>${cuenta.phone}</label>
+						<label>${cuenta.telefonoPrincipal}</label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCuenta_title_label_second_email" /></label>
@@ -115,7 +115,7 @@
 						<label><s:message code="entidadCuenta_title_label_address" /></label>
 					</div>
 					<div>
-						<label>${cuenta.direccion}</label>
+						<label>${cuenta.direccionJoin.numero}</label>
 					</div>
 					<div class="divLabel">
 					</div>
@@ -126,7 +126,7 @@
 						<label><s:message code="entidadCuenta_title_label_main_account" /></label>
 					</div>
 					<div>
-						<label>${cuenta.accountsource}</label>
+						<label><a class="link" href="../private/entidadCuenta?sfid=${cuenta.parent.sfid}">${cuenta.parent.name}</a></label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCuenta_title_label_company_id" /></label>
@@ -136,7 +136,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
 		<div id="divEntidadCuentaSuministros" class="divEntidad">
 			<div class="subtitleAltaEntidad">
 				<div>

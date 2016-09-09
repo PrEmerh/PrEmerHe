@@ -129,7 +129,7 @@ public class AccountController {
 			jsonResult.put("name", cuenta.getName());
 			jsonResult.put("masterrecord__run__c", cuenta.getAccountRun());
 			jsonResult.put("tel_fono_principal__c", cuenta.getTelefonoPrincipal());
-			jsonResult.put("email", cuenta.getEmailPrincipal());
+			jsonResult.put("email_principal__c", cuenta.getEmailPrincipal());
 			jsonResult.put("sfid", cuenta.getSfid());
 			jsonArray.put(jsonResult);
 		}
