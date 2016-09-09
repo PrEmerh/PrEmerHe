@@ -123,12 +123,12 @@ public class FieldLabelTableCreatorBatch {
 								}else if (mapaAuxReference != null && mapaAuxReference.containsKey(field.getReferenceTo().get(0))){
 									labelAux = mapaAuxReference.get(field.getReferenceTo().get(0));
 								}else{
-									objDescribeAux = force.describeSObject(field.getRelationshipName());
+									objDescribeAux = force.describeSObject(field.getReferenceTo().get(0));
 									if (objDescribeAux != null){
 										labelAux = objDescribeAux.getLabel();
 										logger.info("Item de la lista [Campo: " + field.getRelationshipName() + " | Label: " + objDescribeAux.getLabel() + "]");
 										if (mapaAuxReference == null){mapaAuxReference = new HashMap<String, String>();}
-										mapaAuxReference.put(field.getRelationshipName(), labelAux);
+										mapaAuxReference.put(field.getReferenceTo().get(0), labelAux);
 									}
 								}
 								if (!StringUtils.isEmpty(labelAux)){
