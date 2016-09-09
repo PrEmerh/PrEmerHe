@@ -16,7 +16,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.WhereJoinTable;
 
 import com.casosemergencias.model.Contacto;
-import com.casosemergencias.model.Direccion;
 
 @Entity
 @Table(name="salesforce.contact")
@@ -124,7 +123,7 @@ public class ContactVO extends ObjectVO implements Serializable {
 	private AccountVO cuentaJoin;
 	
 	@OneToOne(fetch=FetchType.LAZY, optional=true)
-	@JoinColumn(name="dircontacto__c", referencedColumnName="sfid", insertable = false, updatable=false)
+	@JoinColumn(name="direccion__c", referencedColumnName="sfid", insertable = false, updatable=false)
 	private DireccionVO dirContactoJoin;
 	
 	

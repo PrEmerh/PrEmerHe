@@ -181,7 +181,7 @@
 							<label><s:message code="entidadContacto_table_label_direccionContacto"/></label>
 						</div>
 						<div>
-							<label>${contacto.dirContacto}</label>
+							<label>${contacto.dirContactoJoin.numero}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_emailSecundario"/></label>
