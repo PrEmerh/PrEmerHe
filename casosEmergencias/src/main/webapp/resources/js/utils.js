@@ -62,6 +62,18 @@ function cancelarButton() {
 	descriptionEdit.style.display = 'none'; 
 }
 
+function checkUpdates() {
+	if ($('#editMode').val() == 'UPDATED_OK') {
+		$('#divOk').show();
+	} else if ($('#editMode').val() == 'UPDATED_ERROR') {
+		$('#divError').show();
+	}else if ($('#editMode').val() == 'CREATED_OK') {
+		$('#divCaseCommentCreated').show();
+	} else if ($('#editMode').val() == 'CREATED_ERROR') {
+		$('#divCaseCommentNOCreated').show();
+	}
+}
+
 // --------------------------------------------------------------------
 
 // FUNCIONES DE VALIDACIONES DE FORMULARIOS DE BÚSQUEDA
@@ -97,6 +109,15 @@ function altaCasoYNuevo() {
 	}
 }
 
+function checkCaseCommentCreation() {	
+	if(document.getElementById('comment').value==''){
+		$('#divCaseCommentNOCreated').show();		
+	}
+	else{
+		document.getElementById('formComentarioCaso').submit();
+	}
+
+}
 
 function validaDatos() {
 	if (document.getElementById('suministro') && document.getElementById('suministro').value == ''
