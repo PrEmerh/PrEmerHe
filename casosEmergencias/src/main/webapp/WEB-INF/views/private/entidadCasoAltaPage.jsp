@@ -69,7 +69,8 @@
 							<label><s:message code="entidadCaso_table_label_motivo"/></label>
 						</div>
 						<div>
-							<label>${caso.labelPeticionPickList}</label>
+							<form:hidden path="peticion"/>
+							<label>${caso.peticionLabel}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadCaso_table_label_estado"/></label>
@@ -145,6 +146,7 @@
 							<label><s:message code="entidadCaso_table_label_type"/></label>
 						</div>
 						<div>
+							<form:hidden path="type"/>
 							<label>${caso.typeLabel}</label>
 						</div>
 						<div class="divLabel">
@@ -303,7 +305,7 @@
 							<label><s:message code="entidadCaso_table_label_cuerpoMail"/></label>
 						</div>
 						<div class="divAreaTexto">
-							<form:textarea path="description" rows="2" cols="60" cssClass=""/>
+							<form:textarea path="cuerpoMail" rows="2" cols="60" cssClass=""/>
 						</div>
 						<div class="divLabel">
 							<label>&nbsp;</label>
@@ -321,7 +323,7 @@
 							<label><s:message code="entidadCaso_title_label_respuestaCliente"/></label>
 						</div>
 						<div>
-							<form:textarea path="description" rows="3" cols="60" cssClass=""/>
+							<form:textarea path="respuestaAlCliente" rows="3" cols="60" cssClass=""/>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadCaso_title_label_favoravilidadCaso"/></label>
