@@ -85,7 +85,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	private Date slastartdate;
 
 	@Column(name = "motivo_empresa__c")
-	private String motivoEmpresa;
+	private String submotivo;
 
 	@Column(name = "call_center__c")
 	private String callCenter;
@@ -426,7 +426,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
 			Date fechaApertura, String asunto, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
 			String flagSec, String lastmodifiedbyid, String productid, Boolean validarElectrodependiente,
-			String sf4twitterTwitterUsername, String propietarioCaso, Date slastartdate, String motivoEmpresa,
+			String sf4twitterTwitterUsername, String propietarioCaso, Date slastartdate, String submotivo,
 			String callCenter, Boolean falloEnvioValidacion, String literalComuna, Boolean actDatosContacto,
 			String falloCreacionObservacion, Boolean estadoPreingreso, String emailNotificacion, Double horaap,
 			String numeroInservice, String suppliedphone, String numeroMedidor, Boolean isstopped, String cuerpoMail,
@@ -471,7 +471,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.sf4twitterTwitterUsername = sf4twitterTwitterUsername;
 		this.propietarioCaso = propietarioCaso;
 		this.slastartdate = slastartdate;
-		this.motivoEmpresa = motivoEmpresa;
+		this.submotivo = submotivo;
 		this.callCenter = callCenter;
 		this.falloEnvioValidacion = falloEnvioValidacion;
 		this.literalComuna = literalComuna;
@@ -725,12 +725,14 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.slastartdate = slastartdate;
 	}
 
-	public String getMotivoEmpresa() {
-		return motivoEmpresa;
+
+
+	public String getSubmotivo() {
+		return submotivo;
 	}
 
-	public void setMotivoEmpresa(String motivoEmpresa) {
-		this.motivoEmpresa = motivoEmpresa;
+	public void setSubmotivo(String submotivo) {
+		this.submotivo = submotivo;
 	}
 
 	public String getCallCenter() {
@@ -1500,7 +1502,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	}
 
 	public String getLabelSubmotivoPickList() {
-		String result = this.getMotivoEmpresa();
+		String result = this.getSubmotivo();
 		if (this.getSubmotivoPickList() != null) {
 			result = this.getSubmotivoPickList().getValor();
 		}

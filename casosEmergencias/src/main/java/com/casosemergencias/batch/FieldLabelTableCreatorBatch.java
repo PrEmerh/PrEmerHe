@@ -9,27 +9,36 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
 import com.casosemergencias.batch.bean.FieldLabelBatch;
+import com.casosemergencias.logic.sf.util.SalesforceLoginChecker;
 import com.casosemergencias.util.constants.ConstantesBatch;
-import com.casosemergencias.ws.SalesforceLoginChecker;
 import com.force.api.DescribeSObject;
 import com.force.api.DescribeSObject.Field;
 import com.force.api.ForceApi;
 
+@Resource
 public class FieldLabelTableCreatorBatch {
 	final static Logger logger = Logger.getLogger(FieldLabelTableCreatorBatch.class);
 	
-	public static void fillHerokuFieldLabelTable() {
+	@Autowired
+	private SalesforceLoginChecker salesforceLoginChecker;
+	
+	public void fillHerokuFieldLabelTable() {
 		logger.trace("Comienzo del proceso de carga de los labels de campo de SalesForce a la base de datos de Heroku");
 		List<FieldLabelBatch> listaRecuperadaSF;
 		try {
-			SalesforceLoginChecker login = new SalesforceLoginChecker();
-			ForceApi api = login.getSalesforceApi(ConstantesBatch.SF_USER_NAME_VALUE, ConstantesBatch.SF_PASSWORD_VALUE, ConstantesBatch.SF_USER_TOKEN_VALUE);
+			ForceApi api = salesforceLoginChecker.getSalesforceApi(ConstantesBatch.SF_USER_NAME_VALUE, ConstantesBatch.SF_PASSWORD_VALUE, ConstantesBatch.SF_USER_TOKEN_VALUE);
 			if (api != null) {
 				listaRecuperadaSF = getFieldLabelList(api);
 				if (listaRecuperadaSF != null && !listaRecuperadaSF.isEmpty()) {
@@ -94,6 +103,8 @@ public class FieldLabelTableCreatorBatch {
 			if(fields != null && !fields.isEmpty()) {
 				Field field = null;
 				DescribeSObject objDescribeAux = null;
+				Map<String, String> mapaAuxReference = null;
+				String labelAux = "";
 				for (int i = 0; i < fields.size(); i++) {
 					field = fields.get(i);
 					if (field != null){
@@ -103,15 +114,27 @@ public class FieldLabelTableCreatorBatch {
 						}
 						objFieldLabel = new FieldLabelBatch(objetoSalesforce, field.getName(), field.getLabel());
 						listaFieldLabel.add(objFieldLabel);
-						
-						if ("reference".equalsIgnoreCase(field.getType()) && !field.isCustom()){
+						if (ConstantesBatch.UTIL_TYPE_REFERENCE.equalsIgnoreCase(field.getType()) && !field.isCustom()){
 							try{
-								objDescribeAux = force.describeSObject(field.getRelationshipName());
-								if (objDescribeAux != null){
-									listaFieldLabel.add(new FieldLabelBatch(objetoSalesforce, field.getRelationshipName(), objDescribeAux.getLabel()));
-									logger.info("Item de la lista [Campo: " + field.getRelationshipName() + " | Label: " + objDescribeAux.getLabel() + "]");
-								}
+								labelAux = "";
 								objDescribeAux = null;
+								if (ConstantesBatch.UTIL_FIELD_OWNER.equalsIgnoreCase(field.getRelationshipName())){
+									labelAux = "Propietario del caso";
+								}else if (mapaAuxReference != null && mapaAuxReference.containsKey(field.getReferenceTo().get(0))){
+									labelAux = mapaAuxReference.get(field.getReferenceTo().get(0));
+								}else{
+									objDescribeAux = force.describeSObject(field.getReferenceTo().get(0));
+									if (objDescribeAux != null){
+										labelAux = objDescribeAux.getLabel();
+										logger.info("Item de la lista [Campo: " + field.getRelationshipName() + " | Label: " + objDescribeAux.getLabel() + "]");
+										if (mapaAuxReference == null){mapaAuxReference = new HashMap<String, String>();}
+										mapaAuxReference.put(field.getReferenceTo().get(0), labelAux);
+									}
+								}
+								if (!StringUtils.isEmpty(labelAux)){
+									listaFieldLabel.add(new FieldLabelBatch(objetoSalesforce, field.getRelationshipName(), labelAux));
+									logger.info("Item de la lista [Campo: " + field.getRelationshipName() + " | Label: " + labelAux + "]");
+								}
 							}catch (Exception ex) {
 								logger.error("Error recuperando objeto relacionado: ", ex);
 							}

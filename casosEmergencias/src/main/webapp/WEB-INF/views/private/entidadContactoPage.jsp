@@ -181,7 +181,7 @@
 							<label><s:message code="entidadContacto_table_label_direccionContacto"/></label>
 						</div>
 						<div>
-							<label>${contacto.dirContacto}</label>
+							<label>${contacto.dirContactoJoin.numero}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_emailSecundario"/></label>
@@ -211,7 +211,7 @@
 							<label><s:message code="entidadContacto_table_label_recuentoSeguidoresTwitter"/></label>
 						</div>
 						<div>
-							<label><%-- ${contacto.recuentoSeguidoresTwitter} --%></label>
+							<label>${contacto.seguidoresTwitter}</label>
 						</div>  
 					</div>
 					<div>
@@ -219,19 +219,19 @@
 							<label><s:message code="entidadContacto_table_label_influencer"/></label>
 						</div>
 						<div>
-							<label><%-- ${contacto.influencer} --%></label>
+							<label>${contacto.influencer}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_influencerType"/></label>
 						</div>
 						<div>
-							<label><%-- ${contacto.influencerType} --%></label>
+							<label>${contacto.influencerType}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_biografiaTwitter"/></label>
 						</div>
 						<div>
-							<label><%-- ${contacto.biografiaTwitter} --%></label>
+							<label>${contacto.twitterBio}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_idUsuarioTwitter"/></label>

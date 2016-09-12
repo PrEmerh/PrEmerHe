@@ -68,6 +68,9 @@ public class AccountVO extends ObjectVO implements Serializable {
 
 	@Column(name = "masterrecord__run__c")
 	private String accountRun;
+	
+	@Column(name = "run__c")
+	private String run;
 
 	@Column(name = "fecha_nacimiento__c")
 	private Date fechaNacimiento;
@@ -96,6 +99,14 @@ public class AccountVO extends ObjectVO implements Serializable {
 	@Column(name = "id_empresa__c")
 	private String idEmpresa;
 
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "parentid", referencedColumnName = "sfid", insertable = false, updatable = false)
+	private AccountVO parent;
+	
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "direccion__c", referencedColumnName = "sfid", insertable = false, updatable = false)
+	private DireccionVO direccionJoin;
+	
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cuenta__c", referencedColumnName = "sfid", insertable = false, updatable = false, nullable = true)
 	private List<SuministroVO> suministros;
@@ -107,12 +118,10 @@ public class AccountVO extends ObjectVO implements Serializable {
 	/*Joins con picklist*/
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "tipo_de_identidad__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@WhereJoinTable(clause = "campo = 'Tipo_de_Identidad__c' and objeto = 'Account'")
 	private PickListsAccountTipoIdentidadVO tipoIdentidadPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "tipo_de_identidad__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@WhereJoinTable(clause = "campo = 'Tipo_de_Identidad__c' and objeto = 'Account'")
+	@JoinColumn(name = "Id_Empresa__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsAccountIdEmpresaVO idEmpresaPickList;
 	
 	// Tipo de registro de cuenta
@@ -390,5 +399,29 @@ public class AccountVO extends ObjectVO implements Serializable {
 			result = this.getIdEmpresaPickList().getValor();
 		}
 		return result;
+	}
+
+	public AccountVO getParent() {
+		return parent;
+	}
+
+	public void setParent(AccountVO parent) {
+		this.parent = parent;
+	}
+
+	public DireccionVO getDireccionJoin() {
+		return direccionJoin;
+	}
+
+	public void setDireccionJoin(DireccionVO direccionJoin) {
+		this.direccionJoin = direccionJoin;
+	}
+
+	public String getRun() {
+		return run;
+	}
+
+	public void setRun(String run) {
+		this.run = run;
 	}
 }

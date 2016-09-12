@@ -1,8 +1,6 @@
 package com.casosemergencias.batch;
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
@@ -14,38 +12,34 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.methods.PostMethod;
+import javax.annotation.Resource;
+
 import org.apache.log4j.Logger;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.json.JSONTokener;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.batch.bean.PickListBatch;
+import com.casosemergencias.logic.sf.util.SalesforceLoginChecker;
 import com.casosemergencias.util.constants.ConstantesBatch;
-import com.force.api.ApiSession;
 import com.force.api.DescribeSObject;
 import com.force.api.DescribeSObject.Field;
 import com.force.api.DescribeSObject.PicklistEntry;
 import com.force.api.ForceApi;
 import com.sforce.soap.metadata.FieldType;
 
+@Resource
 public class PicklistTableCreatorBatch {
 	final static Logger logger = Logger.getLogger(PicklistTableCreatorBatch.class);
 
-	private static String accessToken = null;
-	private static String instanceUrl = null;
-	private static String tokenUrl = null;
-
-	public static void fillHerokuPicklistTable() {
+	@Autowired
+	private SalesforceLoginChecker salesforceLoginChecker;
+	
+	public void fillHerokuPicklistTable() {
 		logger.trace("Comienzo del proceso de carga de los picklists de SalesForce a la base de datos de Heroku");
 		
 		List<PickListBatch> listaRecuperadaSF;
 		
 		try {
-			salesForceLoginRequest();
-			ForceApi api = getForceApi();
+			ForceApi api = salesforceLoginChecker.getSalesforceApi(ConstantesBatch.SF_USER_NAME_VALUE, ConstantesBatch.SF_PASSWORD_VALUE, ConstantesBatch.SF_USER_TOKEN_VALUE);
 			if (api != null) {
 				listaRecuperadaSF = getPicklistList(api);
 				if (listaRecuperadaSF != null && !listaRecuperadaSF.isEmpty()) {
@@ -57,62 +51,6 @@ public class PicklistTableCreatorBatch {
 			logger.error("Error cargando los picklists: ", ex);
 		}
 		logger.trace("Proceso de carga de los picklists de SalesForce a la base de datos de Heroku completado");
-	}
-	
-	/**
-	 * Realiza el login a la plataforma de SalesForce.
-	 */
-	private static void salesForceLoginRequest() {
-		logger.trace("Se va a hacer login en SalesForce");
-		
-		HttpClient httpclient = new HttpClient();
-		tokenUrl = ConstantesBatch.SF_AUTH_URI_VALUE;
-		
-		PostMethod post = new PostMethod(tokenUrl);
-		post.addParameter(ConstantesBatch.SF_GRANT_TYPE_PARAMETER, ConstantesBatch.SF_GRANT_TYPE_VALUE);
-		post.addParameter(ConstantesBatch.SF_CLIENT_ID_PARAMETER, ConstantesBatch.SF_CLIENT_ID_VALUE);
-		post.addParameter(ConstantesBatch.SF_CLIENT_SECRET_PARAMETER, ConstantesBatch.SF_CLIENT_SECRET_VALUE);
-		post.addParameter(ConstantesBatch.SF_REDIRECT_URI_PARAMETER, ConstantesBatch.SF_REDIRECT_URI_VALUE);
-		post.addParameter(ConstantesBatch.SF_USER_NAME_PARAMETER, ConstantesBatch.SF_USER_NAME_VALUE);
-		post.addParameter(ConstantesBatch.SF_PASSWORD_PARAMETER, ConstantesBatch.SF_PASSWORD_VALUE + ConstantesBatch.SF_USER_TOKEN_VALUE);
-		
-		try {
-			logger.info("Petición POST: " + post.getRequestEntity());
-			
-			httpclient.executeMethod(post);
-			
-			JSONObject authResponse = new JSONObject(new JSONTokener(new InputStreamReader(post.getResponseBodyAsStream())));
-			System.out.println("Respuesta: " + authResponse.toString(2));
-
-			accessToken = authResponse.getString(ConstantesBatch.SF_ACCESS_TOKEN_PARAMETER);
-			instanceUrl = authResponse.getString(ConstantesBatch.SF_INSTANCE_URL_PARAMETER);
-			
-			logger.info("Tenemos token de acceso [" + accessToken + "] para la instancia " + instanceUrl);
-		} catch (HttpException httpException) {
-			logger.error("Error lanzando la petición HTTP: ", httpException);
-		} catch (IOException ioException) {
-			logger.error("Error lanzando la petición HTTP: ", ioException);
-		} catch (JSONException jsonException) {
-			logger.error("Error lanzando la petición HTTP: ", jsonException);
-		} finally {
-			post.releaseConnection();
-		}
-	}
-	
-	/**
-	 * Obtiene el API de SalesForce a partir del 
-	 * @return ForceApi
-	 */
-	private static ForceApi getForceApi() {
-		ForceApi api = null;
-		
-		if (accessToken != null) {
-			ApiSession s = new ApiSession();
-			s.setAccessToken(accessToken);
-			s.setApiEndpoint(instanceUrl);
-			api = new ForceApi(s);
-		}
-		return api;
 	}
 	
 	/**
