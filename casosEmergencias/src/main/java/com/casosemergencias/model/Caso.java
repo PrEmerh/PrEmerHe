@@ -61,6 +61,8 @@ public class Caso extends ObjectLogic {
 	private String herokuUsername;
 	private String nombreCuenta;
 	private String nombreContacto;
+	private Caso casoPrincipalJoin;
+	private Group groupJoin;
 	/*Joins caso*/
 	private String labelSubmotivoPickList;
 	private String labelEstadoPickList;
@@ -284,7 +286,7 @@ public class Caso extends ObjectLogic {
 		this.ani = ani;
 	}
 
-	public boolean isActDatosContacto() {
+	public boolean getActDatosContacto() {
 		return actDatosContacto;
 	}
 	public void setActDatosContacto(boolean actDatosContacto) {
@@ -406,8 +408,19 @@ public class Caso extends ObjectLogic {
 	}
 	public void setLabelFavorabilidadDelCasoPickList(String labelFavorabilidadDelCasoPickList) {
 		this.labelFavorabilidadDelCasoPickList = labelFavorabilidadDelCasoPickList;
+	}	
+	public Caso getCasoPrincipalJoin() {
+		return casoPrincipalJoin;
 	}
-	
+	public void setCasoPrincipalJoin(Caso casoPrincipalJoin) {
+		this.casoPrincipalJoin = casoPrincipalJoin;
+	}
+	public Group getGroupJoin() {
+		return groupJoin;
+	}
+	public void setGroupJoin(Group groupJoin) {
+		this.groupJoin = groupJoin;
+	}
 	/**/
 	@Override
 	public Object instantiateTargetView() {

@@ -414,6 +414,14 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ownerid", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private UserVO userJoin;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "parentid", referencedColumnName = "sfid", insertable = false, updatable = false)
+	private CaseVO casoPrincipalJoin;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ownerid", referencedColumnName = "sfid", insertable = false, updatable = false)
+	private GroupVO groupJoin;
 
 	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
 			Date fechaApertura, String asunto, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
@@ -443,7 +451,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 			PickListsCaseOriginVO canalOrigenPickList, PickListsCaseVO condicionAgravantePickList, 
 			PickListsCaseCanalNotificacionVO canalNotificacionPickList, PickListsCaseVO favorabilidadDelCasoPickList, ContactVO contactoJoin, 
 			AccountVO cuentaJoin, SuministroVO suministroJoin, DireccionVO direccionJoin,
-			UserVO userJoin) {
+			UserVO userJoin, CaseVO casoPrincipalJoin,GroupVO groupJoin) {
 		super();
 		this.isdeleted = isdeleted;
 		this.systemmodstamp = systemmodstamp;
@@ -565,6 +573,8 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.suministroJoin = suministroJoin;
 		this.direccionJoin = direccionJoin;
 		this.userJoin= userJoin;
+		this.casoPrincipalJoin=casoPrincipalJoin;
+		this.groupJoin=groupJoin;
 	}
 
 	public CaseVO() {
@@ -1610,4 +1620,24 @@ public class CaseVO extends ObjectVO implements Serializable {
 	public void setEstadoPickList(PickListsCaseVO estadoPickList) {
 		this.estadoPickList = estadoPickList;
 	}
+
+	public CaseVO getCasoPrincipalJoin() {
+		return casoPrincipalJoin;
+	}
+
+	public void setCasoPrincipalJoin(CaseVO casoPrincipalJoin) {
+		this.casoPrincipalJoin = casoPrincipalJoin;
+	}
+
+	public GroupVO getGroupJoin() {
+		return groupJoin;
+	}
+
+	public void setGroupJoin(GroupVO groupJoin) {
+		this.groupJoin = groupJoin;
+	}
+	
+	
+	
+	
 }

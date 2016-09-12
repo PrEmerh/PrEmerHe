@@ -166,8 +166,8 @@
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_fechaNacimiento"/></label>
 						</div>
-						<div>
-							<label>${contacto.fechaNacimiento}</label>
+						<div>				
+							<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${contacto.fechaNacimiento}"/></label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_nombreCuenta"/></label>
@@ -300,8 +300,8 @@
 				<div id="divEntidadIndicadoresContacto" class="divIndicadoresEventos">
 					<div class="divContactosIndicadoresTitulo">
 						<div>
-							<input id="arrowTablaIndicadoresSuministro" type="image" src="../resources/images/arrow-down-white.png"  
-								height="15" onclick="showHideCabecerasServicios('tablaIndicadoresSuministro','arrowTablaIndicadoresSuministro'); return false;"/>			
+							<input id="arrowTablaIndicadoresContacto" type="image" src="../resources/images/arrow-down-white.png"  
+								height="15" onclick="showHideCabecerasServicios('tablaIndicadoresContacto','arrowTablaIndicadoresContacto'); return false;"/>			
 							<label class="divLabel"><s:message code="entidadContacto_indicadores_titulo_indicadores" /></label>
 						</div>
 					</div>
