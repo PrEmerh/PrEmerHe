@@ -300,8 +300,8 @@
 				<div id="divEntidadIndicadoresContacto" class="divIndicadoresEventos">
 					<div class="divContactosIndicadoresTitulo">
 						<div>
-							<input id="arrowTablaIndicadoresSuministro" type="image" src="../resources/images/arrow-down-white.png"  
-								height="15" onclick="showHideCabecerasServicios('tablaIndicadoresSuministro','arrowTablaIndicadoresSuministro'); return false;"/>			
+							<input id="arrowTablaIndicadoresContacto" type="image" src="../resources/images/arrow-down-white.png"  
+								height="15" onclick="showHideCabecerasServicios('tablaIndicadoresContacto','arrowTablaIndicadoresContacto'); return false;"/>			
 							<label class="divLabel"><s:message code="entidadContacto_indicadores_titulo_indicadores" /></label>
 						</div>
 					</div>
