@@ -429,6 +429,14 @@
 							<c:choose>
 								<c:when test="${not empty suministro}">
 									<tr>
+										<td class="filaLiteral"><s:message code="entidadSuministro_title_label_estadoSuministro"/></td>
+										<c:choose>
+											<c:when test="${not empty suministro.labelEstadoSuministroPickList}">
+												<td class="filaValor" colspan="2">${suministro.labelEstadoSuministroPickList}</td>
+											</c:when>
+										</c:choose>
+									</tr>
+									<tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_estado_conexion"/></td>
 										<c:choose>
 											<c:when test="${not empty suministro.estadoConexion && suministro.estadoConexion == '0'}">
@@ -439,7 +447,7 @@
 											</c:otherwise>
 										</c:choose>
 									</tr>
-									<tr>
+								<%-- <tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_falla_sector"/></td>
 										<c:choose>
 											<c:when test="${not empty suministro.suministroAfectado && not empty suministro.tipoEvento 
@@ -451,8 +459,8 @@
 												<td class="filaValor" colspan="2">NO</td>
 											</c:otherwise>
 										</c:choose>
-									</tr>
-									<tr>
+									</tr> --%>
+								<%--<tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_corte_programado"/></td>
 										<c:choose>
 											<c:when test="${not empty suministro.suministroAfectado && not empty suministro.tipoEvento 
@@ -464,7 +472,7 @@
 												<td class="filaValor" colspan="2">NO</td>
 											</c:otherwise>
 										</c:choose>
-									</tr>
+									</tr>--%>
 									<tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_corte_deuda"/></td>
 										<c:choose>

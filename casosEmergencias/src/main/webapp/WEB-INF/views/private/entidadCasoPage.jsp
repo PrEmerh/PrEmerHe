@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -6,7 +6,6 @@
 
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Emergencias App</title>		
 		
 		<link rel="icon" type="image/png" href="../resources/images/favicon.png">
@@ -33,7 +32,7 @@
 					<li><input id="Cancelar" type="button" name="Cancelar" value="Cancelar" hidden="true"  onclick="cancelarButton();"/></li>
 				</ul>
 			</div>			
-			<!-- INICIO---Mensajes de actualizaci贸n de caso -->	
+			<!-- INICIO---Mensajes de actualizaci髇 de caso -->	
 					
 			<div id="divError" class="divError">
 				<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
@@ -46,9 +45,9 @@
 				<label>Los datos se han modificado correctamente</label>
 			</div>
 			
-			<!-- FIN---Mensajes de actualizaci贸n de caso -->
+			<!-- FIN---Mensajes de actualizaci髇 de caso -->
 				
-			<!-- INICIO---Mensajes de creaci贸n de un comentario de caso -->	
+			<!-- INICIO---Mensajes de creaci髇 de un comentario de caso -->	
 			
 			<div id="divCaseCommentNOCreated" class="divError">
 				<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
@@ -58,7 +57,7 @@
 				<label>El comentario se ha guardado correctamente</label>
 			</div>
 			
-			<!-- FIN---Mensajes de creaci贸n de un comentario de caso -->	
+			<!-- FIN---Mensajes de creaci髇 de un comentario de caso -->	
 			<div class="divEntidad">
 				<div class="subtitleAltaEntidad">
 					<div>
@@ -329,7 +328,7 @@
 			<div id="cuerpoMail" class="divEntidad">
 				<div>
 					<div class="divLabel">
-						<label><s:message code="entidadCaso_title_label_cuerpoMail"/></label>
+						<label><s:message code="entidadCaso_table_label_cuerpoMail"/></label>
 					</div>
 					<div>
 						<label>${caso.cuerpoMail}</label>

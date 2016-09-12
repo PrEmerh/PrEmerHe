@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
@@ -6,7 +6,6 @@
 
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Emergencias App</title>		
 		
 		<link rel="icon" type="image/png" href="../resources/images/favicon.png">
@@ -38,7 +37,7 @@
 				</ul>
 			</div>
 		</div>
-		<!-- Mensajes de estado de operaciÃ³n -->
+		<!-- Mensajes de estado de operación -->
 		<div id="divError" class="divError" style="display:none;margin-top:2%;">
 			<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
 			<br>
@@ -46,7 +45,7 @@
 			<br>
 			<label id="errorMessage"></label>
 		</div>
-		<!-- IdentificaciÃ³n de campos obligatorios -->
+		<!-- Identificación de campos obligatorios -->
 		<div>
 			<div class="subtitlePrincipalAltaEntidad">
 				<div class="titleObligatorio"></div>
@@ -60,7 +59,7 @@
 				<input type="hidden" name="redirectToNewCase" id="redirectToNewCase" value="false"/>
 				<form:hidden path="sfid"/>
 				<div id="divEntidadCasoAlta" class="divEntidad">
-					<!-- iNFORMACIÃ“N DEL CASO -->
+					<!-- iNFORMACIÓN DEL CASO -->
 					<div class="subtitleAltaEntidad">
 						<div><label><s:message code="entidadCasoAlta_table_title_label_infoentidad"/></label></div>
 					</div>
@@ -185,7 +184,7 @@
 						</div>
 					</div>
 					
-					<!-- IDENTIFICACIÃ“N -->
+					<!-- IDENTIFICACIÓN -->
 					<div class="subtitleAltaEntidad">
 						<div><label class="divLabel"><s:message code="entidadCasoAlta_table_title_label_identificacion"/></label></div>
 					</div>
@@ -314,7 +313,7 @@
 							<label>&nbsp;</label>
 						</div>
 					</div>
-					<!-- SOLUCIÃ“N -->
+					<!-- SOLUCIÓN -->
 					<div class="subtitleAltaEntidad">
 						<div><label><s:message code="entidadCaso_title_label_solucion"/></label></div>
 					</div>
