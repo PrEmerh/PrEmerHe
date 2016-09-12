@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.casosemergencias.model.Cuenta;
+import com.casosemergencias.model.Direccion;
 
 public class AccountView extends ObjectView {
 	/* ID */ private Integer id;
@@ -14,6 +15,7 @@ public class AccountView extends ObjectView {
 	/* Tipo de Identidad */ private String tipoIdentidad;
 	/* RUT empresa */ private String parentRutEmpresa;
 	/* RUN */ private String accountRun;
+	/* RUN */ private String run;	
 	/* Fecha nacimiento */ private Date fechaNacimiento;
 	/* Teléfono */ private String phone;
 	/* Teléfono principal*/ private String telefonoPrincipal;
@@ -30,6 +32,11 @@ public class AccountView extends ObjectView {
 	/*Joins con picklist*/
 	private String labelTipoIdentidadPickList;
 	private String labelIdEmpresaPickList;
+	
+	private AccountView parent;
+	
+	private DireccionView direccionJoin;
+	
 	
 	/* Getters y Setters */
 	public Integer getId() {
@@ -204,5 +211,29 @@ public class AccountView extends ObjectView {
 
 	public void setLabelIdEmpresaPickList(String labelIdEmpresaPickList) {
 		this.labelIdEmpresaPickList = labelIdEmpresaPickList;
+	}
+
+	public AccountView getParent() {
+		return parent;
+	}
+
+	public void setParent(AccountView parent) {
+		this.parent = parent;
+	}
+
+	public DireccionView getDireccionJoin() {
+		return direccionJoin;
+	}
+
+	public void setDireccionJoin(DireccionView direccionJoin) {
+		this.direccionJoin = direccionJoin;
+	}
+
+	public String getRun() {
+		return run;
+	}
+
+	public void setRun(String run) {
+		this.run = run;
 	}
 }
