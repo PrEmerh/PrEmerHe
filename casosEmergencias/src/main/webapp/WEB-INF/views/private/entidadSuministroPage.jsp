@@ -59,7 +59,7 @@
 							<label><s:message code="entidadSuministro_title_label_direccionSuministro"/></label>
 						</div>
 						<div>
-							<label>${suministro.direccionCliente}</label>
+							<label><a class="link" href="../private/entidadDireccion?sfid=${suministro.dirSuministroJoin.sfid}">${suministro.dirSuministroJoin.numero}</a></label>			
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadSuministro_title_label_tipoSegmento"/></label>

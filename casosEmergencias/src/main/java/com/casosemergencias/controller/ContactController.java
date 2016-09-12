@@ -1,6 +1,7 @@
 package com.casosemergencias.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.ContactView;
 import com.casosemergencias.logic.ContactService;
 import com.casosemergencias.model.Contacto;
@@ -73,6 +75,24 @@ public class ContactController {
 		if(contactoView.getCuentaJoin()!=null && session.getAttribute(Constantes.SFID_CUENTA)==null){
 			session.setAttribute(Constantes.SFID_CUENTA, contactoView.getCuentaJoin().getSfid());					
 		}
+		
+		//transformamos las fechas con el gmt de sesion
+		long offset = (long)session.getAttribute("difGMTUser");		
+		if(contactoView.getCasos() != null && !contactoView.getCasos().isEmpty()){
+			for(CaseView miCase : contactoView.getCasos()){
+				if(miCase.getFechaApertura() != null){
+					Date fechaApertura = miCase.getFechaApertura();
+					fechaApertura = new Date(fechaApertura.getTime() + offset);
+					miCase.setFechaApertura(fechaApertura);
+				}
+				if(miCase.getFechaEstimadaCierre() != null){
+					Date fechaEstimacion = miCase.getFechaEstimadaCierre();
+					fechaEstimacion = new Date(fechaEstimacion.getTime() + offset);
+					miCase.setFechaEstimadaCierre(fechaEstimacion);
+				}
+			}	
+		}
+
 		
 		logger.info("SFID_CUENTA" + session.getAttribute(Constantes.SFID_CUENTA));
 		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));

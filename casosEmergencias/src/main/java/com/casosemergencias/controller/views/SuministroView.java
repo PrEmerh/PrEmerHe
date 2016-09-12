@@ -102,6 +102,8 @@ public class SuministroView extends ObjectView {
 	private Boolean suministroAfectado;
 
 	private AccountView cuentaJoin;
+	
+	private DireccionView dirSuministroJoin;
 
 	private List<CaseView> casos;
 	
@@ -575,6 +577,14 @@ public class SuministroView extends ObjectView {
 	public void setCuentaJoin(AccountView cuentaJoin) {
 		this.cuentaJoin = cuentaJoin;
 	}
+	
+	public DireccionView getDirSuministroJoin() {
+		return dirSuministroJoin;
+	}
+	public void setDirSuministroJoin(DireccionView dirSuministroJoin) {
+		this.dirSuministroJoin = dirSuministroJoin;
+	}
+
 	public List<ContactView> getContactosRelacionados() {
 		return contactosRelacionados;
 	}

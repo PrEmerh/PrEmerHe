@@ -116,13 +116,13 @@
 						<label><s:message code="entidadCaso_table_label_fechahoraapertura"/></label>
 					</div>
 					<div>
-						<label>${caso.fechaApertura}</label>
+						<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaApertura}"/></label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_tiempoNormalizacion"/></label>
 					</div>
 					<div>
-						<label>${caso.fechaEstimadaCierre}</label>
+						<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaEstimadaCierre}"/></label>
 					</div>
 				</div>
 				<div>
@@ -147,7 +147,7 @@
 						<label><s:message code="entidadCaso_table_label_fechaHoraCierre"/></label>
 					</div>
 					<div>
-						<label>${caso.fechaCierre}</label>
+						<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaCierre}"/></label>
 					</div>
 				</div>
 				<div>

@@ -1,6 +1,7 @@
 package com.casosemergencias.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.AccountView;
 import com.casosemergencias.controller.views.CaseCommentView;
+import com.casosemergencias.controller.views.CaseHistoryView;
 import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.ContactView;
 import com.casosemergencias.controller.views.DireccionView;
@@ -103,8 +105,9 @@ public class CaseController {
 	}
 	
 	@RequestMapping(value = "/private/entidadCaso", method = RequestMethod.GET)
-	public ModelAndView getCaseData(@RequestParam String sfid, @RequestParam String editMode) {
+	public ModelAndView getCaseData(@RequestParam String sfid, @RequestParam String editMode, HttpServletRequest request) {
 		logger.info("--- Inicio -- getCaseData ---");
+		HttpSession session = request.getSession(true);
 		
 		ModelAndView model = new ModelAndView();		
 		model.addObject("sfid", sfid);
@@ -117,6 +120,44 @@ public class CaseController {
 		if (casoBBDD != null){
 			ParserModelVO.parseDataModelVO(casoBBDD, casoView);
 		}
+		//transformamos las fechas con el gmt de sesion
+		long offset = (long)session.getAttribute("difGMTUser");	
+		if(casoView.getFechaApertura() != null){
+			Date fechaApertura = casoView.getFechaApertura();
+			fechaApertura = new Date(fechaApertura.getTime() + offset);
+			casoView.setFechaApertura(fechaApertura);
+		}
+		if(casoView.getFechaCierre() != null){
+			Date fechaCierre = casoView.getFechaApertura();
+			fechaCierre = new Date(fechaCierre.getTime() + offset);
+			casoView.setFechaCierre(fechaCierre);
+		}
+		if(casoView.getFechaEstimadaCierre() != null){
+			Date fechaEstimacion = casoView.getFechaEstimadaCierre();
+			fechaEstimacion = new Date(fechaEstimacion.getTime() + offset);
+			casoView.setFechaEstimadaCierre(fechaEstimacion);
+		}
+		
+		if(casoView.getHistorialCaso() != null && !casoView.getHistorialCaso().isEmpty()){
+			for(CaseHistoryView miHistorial : casoView.getHistorialCaso()){
+				if(miHistorial.getCreateddate() != null){
+					Date fecha = miHistorial.getCreateddate();
+					fecha = new Date(fecha.getTime() + offset);
+					miHistorial.setCreateddate(fecha);
+				}
+			}	
+		}
+		if(casoView.getCommentarioCaso() != null && !casoView.getCommentarioCaso().isEmpty()){
+			for(CaseCommentView miComentario : casoView.getCommentarioCaso()){
+				if(miComentario.getCreateddate() != null){
+					Date fecha = miComentario.getCreateddate();
+					fecha = new Date(fecha.getTime() + offset);
+					miComentario.setCreateddate(fecha);
+				}
+			}	
+		}
+		
+		
 		model.setViewName("private/entidadCasoPage");
 		/*Hay que añadir recuperación de label de los picklists si no sale el código solo*/
 		model.addObject("caso", casoView);
@@ -391,10 +432,11 @@ public class CaseController {
 	}
 
 	@RequestMapping(value = "/private/casoComentarioPage", method = RequestMethod.GET)
-	public ModelAndView comentarioCaso(@ModelAttribute("sfid") String sfidCase) {
+	public ModelAndView comentarioCaso(@ModelAttribute("sfid") String sfidCase,  HttpServletRequest request) {
 		
 		logger.info("--- Inicio -- comentarioCaso ---");
 		logger.debug("----- comentarioCaso -- sfid del caso: " + sfidCase);
+		HttpSession session = request.getSession(true);
 		
 		ModelAndView model = new ModelAndView();			
 		model.setViewName("private/comentarioCasePage");
@@ -412,9 +454,17 @@ public class CaseController {
 		List<CaseCommentView> listaComentariosCasoView = new ArrayList<>();
 		
 		if(listaComentariosCasos!=null && !listaComentariosCasos.isEmpty()){
-			for(CaseComment historiaCasoVO: listaComentariosCasos){
+			for(CaseComment comentarioCasoVO: listaComentariosCasos){
 				CaseCommentView casoRelacionado = new CaseCommentView();
-				ParserModelVO.parseDataModelVO(historiaCasoVO, casoRelacionado);
+				ParserModelVO.parseDataModelVO(comentarioCasoVO, casoRelacionado);
+
+				//transformamos las fechas con el gmt de sesion
+				long offset = (long)session.getAttribute("difGMTUser");	
+				if(casoRelacionado.getCreateddate() != null){
+					Date fecha = casoRelacionado.getCreateddate();
+					fecha = new Date(fecha.getTime() + offset);
+					casoRelacionado.setCreateddate(fecha);
+				}
 				listaComentariosCasoView.add(casoRelacionado);
 			}
 		}
