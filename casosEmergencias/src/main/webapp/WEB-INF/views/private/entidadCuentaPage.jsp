@@ -1,6 +1,6 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
 
@@ -44,7 +44,7 @@
 						<label><s:message code="entidadCuenta_title_label_birthdate" /></label>
 					</div>
 					<div>
-						<label>${cuenta.fechaNacimiento}</label>
+						<label><fmt:formatDate pattern="dd/MM/yyyy" value="${cuenta.fechaNacimiento}"/></label>
 					</div>
 				</div>
 				<div>
@@ -166,7 +166,7 @@
 									<td>${suministro.labelEstadoConexionPickList}</td>
 									<td>${suministro.labelEstadoSuministroPickList}</td>
 									<td>${suministro.electrodependiente}</td>
-									<td>${suministro.fechaCorte}</td>
+									<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${suministro.fechaCorte}"/></td>
 									<td>${suministro.direccionConcatenada}</td>
 									<td>${suministro.comuna}</td>
 								</tr>

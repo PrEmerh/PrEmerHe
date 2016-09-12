@@ -1,5 +1,7 @@
 package com.casosemergencias.util.constants;
 
+import java.util.TimeZone;
+
 public class Constantes {
 
 	//Mensajes Login
@@ -47,10 +49,17 @@ public class Constantes {
 	public static final String COD_CASO_STATUS_INGRESADO = "ESTA001";
 	
 	//
-	//Sesion SFID
-	
+	//Sesion SFID	
 	public static final String SFID_SUMINISTRO= "sfidSuministro";
 	public static final String SFID_CONTACTO= "sfidContacto";
 	public static final String SFID_CUENTA= "sfidCuenta";
 	public static final String FINAL_DETAIL_PAGE= "paginaDetalleFinal";
+	
+	//
+	//HerokuUser, GMT constantes. (estas constantes las podemos ver 'TimeZone.getTimeZone("America/New_York");')
+	public static final String ID_1CHILE = "America/Puerto_Rico"; //"Chile/Continental";
+	public static final String ID_2PERU = "Brazil/East";
+	public static final String ID_3COLOMBIA = "America/Bogota";
+	public static final String ID_4BRASIL = "America/Lima"; 
+	
 }

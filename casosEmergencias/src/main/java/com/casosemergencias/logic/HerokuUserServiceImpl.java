@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.casosemergencias.dao.HerokuUserDAO;
 import com.casosemergencias.dao.vo.HerokuUserVO;
 import com.casosemergencias.model.HerokuUser;
+import com.casosemergencias.util.ParserModelVO;
 
 
 //las transacciones se abren y cierran aqui
@@ -46,14 +47,7 @@ public class HerokuUserServiceImpl implements HerokuUserService{
 		if(listHerokuUser != null && !listHerokuUser.isEmpty()){
 			//El UserName es unico, por lo tanto  listHerokuUser solo tendra un dato
 			herokuUser = listHerokuUser.get(0);
-			
-			//guardamos el HerokuUser en UserView
-			herokuUserView.setId(herokuUser.getId());
-			herokuUserView.setName(herokuUser.getName());
-			herokuUserView.setUser(herokuUser.getUsername());
-			herokuUserView.setPass(herokuUser.getPassword());
-			herokuUserView.setEmail(herokuUser.getEmail());
-			herokuUserView.setEnvioEmail(herokuUser.getEnvioMail());
+			ParserModelVO.parseDataModelVO(herokuUser, herokuUserView);
 			
 			logger.info("--- Fin -- readUserPass -- Existe usuario y password ---");
 			

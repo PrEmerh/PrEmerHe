@@ -43,6 +43,9 @@ public class HerokuUserVO extends ObjectVO implements Serializable {
 	@Column(name = "activo__c")
 	private Boolean activo;
 	
+	@Column(name = "country__c")
+	private String country;
+	
 	@Column(name = "sfid")
 	private String sfid;
 	
@@ -68,132 +71,120 @@ public class HerokuUserVO extends ObjectVO implements Serializable {
 	private Date createdDate;
 	
 
-	public HerokuUserVO(Integer id, String name, String username, String password, String email, Boolean envioMail,
-			Boolean activo, String sfid, String hcError, String hcLastop, Boolean isDeleted, Date systemDate,
-			Date createdDate) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.username = username;
-		this.password = password;
-		this.email = email;
-		this.envioMail = envioMail;
-		this.activo = activo;
-		this.sfid = sfid;
-		this.hcError = hcError;
-		this.hcLastop = hcLastop;
-		this.isDeleted = isDeleted;
-		this.systemDate = systemDate;
-		this.createdDate = createdDate;
-	}
-
+	
 	public HerokuUserVO() {
 		super();
 	}
 
+
+
+	public HerokuUserVO(Integer id, String name, String username, String password, String email, Boolean envioMail,
+			Boolean activo, String country, String sfid, String hcError, String hcLastop, Boolean isDeleted,
+			Date systemDate, Date createdDate) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.envioMail = envioMail;
+		this.activo = activo;
+		this.country = country;
+		this.sfid = sfid;
+		this.hcError = hcError;
+		this.hcLastop = hcLastop;
+		this.isDeleted = isDeleted;
+		this.systemDate = systemDate;
+		this.createdDate = createdDate;
+	}
+
+
+
 	public Integer getId() {
 		return id;
 	}
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getUsername() {
 		return username;
 	}
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 	public String getEmail() {
 		return email;
 	}
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 	public Boolean getEnvioMail() {
 		return envioMail;
 	}
-
 	public void setEnvioMail(Boolean envioMail) {
 		this.envioMail = envioMail;
 	}
-
 	public Boolean getActivo() {
 		return activo;
 	}
-
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
 	}
-
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
 	public String getSfid() {
 		return sfid;
 	}
-
 	public void setSfid(String sfid) {
 		this.sfid = sfid;
 	}
-
 	public String getHcError() {
 		return hcError;
 	}
-
 	public void setHcError(String hcError) {
 		this.hcError = hcError;
 	}
-
 	public String getHcLastop() {
 		return hcLastop;
 	}
-
 	public void setHcLastop(String hcLastop) {
 		this.hcLastop = hcLastop;
 	}
-
 	public Boolean getIsDeleted() {
 		return isDeleted;
 	}
-
 	public void setIsDeleted(Boolean isDeleted) {
 		this.isDeleted = isDeleted;
 	}
-
 	public Date getSystemDate() {
 		return systemDate;
 	}
-
 	public void setSystemDate(Date systemDate) {
 		this.systemDate = systemDate;
 	}
-
 	public Date getCreatedDate() {
 		return createdDate;
 	}
-
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
-	}	
+	}
+
 	
 	@Override
 	public Object instantiateTargetLogic() {

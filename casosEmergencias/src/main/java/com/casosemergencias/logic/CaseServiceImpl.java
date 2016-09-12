@@ -208,8 +208,9 @@ public class CaseServiceImpl implements CaseService{
 	 * Método que parsea una lista de CaseHistoryVO en CaseHistory.
 	 * Ademas prepara la lista con los datos listos para mostrar en pantalla:
 	 * 		-- 1.- Si 'oldvalue' y 'newvalue' son sfid (no tiene longitud 18, sin espacios ni puntos), si es un sfid no se añade a la lista que devuelve el metodo
-	 * 		-- 2.- Si 'labelOldValuePickList' y 'labelNewValuePickList' estan vacios, se almacena el valor de 'oldvalue' y 'newvalue'
-	 * 		-- 3.- Si hay varios registros con la misma Fecha, hora y minutos borramos los datos de 'createdate', 'createdbyid' y 'userJoi'n de todos, 
+	 * 		-- 2.- Si 'labelFieldPickList' no es vacio y termina en punto, guardamos este valor en el campo 'field' y vaciamos el valor de 'labelFieldPickList' (en pantalla tendrá que mostrarse este valor)
+	 * 		-- 3.- Si 'labelOldValuePickList' y 'labelNewValuePickList' estan vacios, se almacena el valor de 'oldvalue' y 'newvalue'
+	 * 		-- 4.- Si hay varios registros con la misma Fecha, hora y minutos borramos los datos de 'createdate', 'createdbyid' y 'userJoi'n de todos, 
 	 * 				excepto el 1º registros
 	 * */
 	private List<CaseHistory> parseaYPreparaListaHistorialCasos(List<CaseHistoryVO> listaCaseHistoryVO) {
@@ -246,7 +247,18 @@ public class CaseServiceImpl implements CaseService{
 					}					
 				}
 				
-				//Comprobacion punto 2		
+				//Comprobacion punto 2
+				//'labelFieldPickList' no es vacio y termina en punto, guardamos este valor en el campo 'field' y vaciamos el valor de 'labelFieldPickList'
+				value = casoRelacionado.getLabelFieldPickList();
+				if(value != null && value != ""){
+					String lastCharValue = value.substring(value.length()-1);
+					if(!".".equals(lastCharValue)){
+						casoRelacionado.setField(value);
+						casoRelacionado.setLabelFieldPickList(null);
+					}
+				}
+				
+				//Comprobacion punto 3		
 				//'labelOldValuePickList' y 'labelNewValuePickList' no tienen valor, almacenamos oldvalue y newvalue en los campos.
 				String oldValuePickList = casoRelacionado.getLabelOldValuePickList();
 				if(oldValuePickList == null ||  "".equals(oldValuePickList)){
@@ -266,7 +278,7 @@ public class CaseServiceImpl implements CaseService{
 					}
 				}
 				
-				//Comprobacion punto 3		
+				//Comprobacion punto 4		
 				try {
 					fechaIteracion = dateFormat.parse(casoRelacionado.getCreateddate().toString());
 				
