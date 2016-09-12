@@ -1,11 +1,14 @@
 package com.casosemergencias.controller;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.Suministro;
@@ -73,6 +77,23 @@ public class SuministroController {
 		//Almacenamos sfid de contactos relacionados en caso de que el suministro seleccionado tenga solo uno asociado.
 		if(suministroView.getContactosRelacionados()!=null && !suministroView.getContactosRelacionados().isEmpty()  && suministroView.getContactosRelacionados().size()==1 && session.getAttribute(Constantes.SFID_CONTACTO)==null){
 			session.setAttribute(Constantes.SFID_CONTACTO, suministroView.getContactosRelacionados().get(0).getSfid());					
+		}
+		
+		//transformamos las fechas con el gmt de sesion
+		long offset = (long)session.getAttribute("difGMTUser");
+		if(suministroView.getCasos() != null && !suministroView.getCasos().isEmpty()){
+			for(CaseView miCase : suministroView.getCasos()){
+				if(miCase.getFechaApertura() != null){
+					Date fechaApertura = miCase.getFechaApertura();
+					fechaApertura = new Date(fechaApertura.getTime() + offset);
+					miCase.setFechaApertura(fechaApertura);
+				}
+				if(miCase.getFechaEstimadaCierre() != null){
+					Date fechaEstimacion = miCase.getFechaEstimadaCierre();
+					fechaEstimacion = new Date(fechaEstimacion.getTime() + offset);
+					miCase.setFechaEstimadaCierre(fechaEstimacion);
+				}
+			}	
 		}
 		
 		logger.info("SFID_CUENTA" + session.getAttribute(Constantes.SFID_CUENTA));

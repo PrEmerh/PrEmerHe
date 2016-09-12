@@ -279,7 +279,7 @@
 											<td>${caso.descripcionEstado}</td>
 											<td>${caso.fechaApertura}</td>
 											<td>${caso.labelSubmotivoPickList}</td>
-											<td>${caso.tiempoEstimacion}</td>
+											<td>${caso.fechaEstimadaCierre}</td>
 										 	<td>${caso.labelCanalOrigenPickList}</td> 
 										</tr>
 									</c:forEach>

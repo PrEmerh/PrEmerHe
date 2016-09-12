@@ -1,6 +1,10 @@
 package com.casosemergencias.controller;
 
+import java.text.DateFormat;
 import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -63,8 +67,8 @@ public class LoginController {
 			session.setAttribute("user", user);		
 			
 			//Preparamos ZoneId para guardarlo en session
-			ZoneId zoneIdHerokuUser = getZoneIdHerokuUser(user.getCountry());
-			session.setAttribute("ZoneIdUser", zoneIdHerokuUser);		
+			long offset = getOffsetGMTHerokuUser(user.getCountry());
+			session.setAttribute("difGMTUser", offset);		
 		
 
 			model.setViewName("redirect:private/homeCasos");
@@ -118,17 +122,28 @@ public class LoginController {
 	 * 
 	 *  @return
 	 */
-	private ZoneId getZoneIdHerokuUser(String idCountry){
-		ZoneId zoneIdHerokuUser = null;
+	private long getOffsetGMTHerokuUser(String idCountry){		
+		String cteTimeZone = "";	
+		
 		if("1".equals(idCountry)){
-			zoneIdHerokuUser = ZoneId.of(ZoneId.SHORT_IDS.get(Constantes.ID_1));
+			cteTimeZone = Constantes.ID_1CHILE;
 		}else if("2".equals(idCountry)){
-			zoneIdHerokuUser = ZoneId.of(ZoneId.SHORT_IDS.get(Constantes.ID_2));
+			cteTimeZone = Constantes.ID_2PERU;
 		}else if("3".equals(idCountry)){
-			zoneIdHerokuUser = ZoneId.of(ZoneId.SHORT_IDS.get(Constantes.ID_3));
+			cteTimeZone = Constantes.ID_3COLOMBIA;
 		}else if("4".equals(idCountry)){
-			zoneIdHerokuUser = ZoneId.of(ZoneId.SHORT_IDS.get(Constantes.ID_4));
+			cteTimeZone = Constantes.ID_4BRASIL;
 		}
-		return zoneIdHerokuUser;
+		
+		Calendar calen;
+		if("".equals(cteTimeZone)){
+			calen = new GregorianCalendar();
+		}else{
+			calen = new GregorianCalendar(TimeZone.getTimeZone(cteTimeZone));
+		}
+		
+		long offset = calen.getTimeZone().getRawOffset();
+		
+		return offset;
 	}
 }

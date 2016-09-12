@@ -1,5 +1,7 @@
 package com.casosemergencias.util.constants;
 
+import java.util.TimeZone;
+
 public class Constantes {
 
 	//Mensajes Login
@@ -54,10 +56,10 @@ public class Constantes {
 	public static final String FINAL_DETAIL_PAGE= "paginaDetalleFinal";
 	
 	//
-	//HerokuUser, GMT constantes. Contantes que de SHORT_IDS de la clae ZoneId de Java
-	public static final String ID_1 = "PRT"; //America/Puerto_Rico
-	public static final String ID_2 = "CST"; //America/Chicago
-	public static final String ID_3 = "CST"; //America/Chicago
-	public static final String ID_4 = "BET"; //America/Sao_Paulo
+	//HerokuUser, GMT constantes. (estas constantes las podemos ver 'TimeZone.getTimeZone("America/New_York");')
+	public static final String ID_1CHILE = "America/Puerto_Rico"; //"Chile/Continental";
+	public static final String ID_2PERU = "Brazil/East";
+	public static final String ID_3COLOMBIA = "America/Bogota";
+	public static final String ID_4BRASIL = "America/Lima"; 
 	
 }

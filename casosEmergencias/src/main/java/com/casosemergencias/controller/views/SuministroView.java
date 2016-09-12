@@ -127,8 +127,8 @@ public class SuministroView extends ObjectView {
 
 	private String labelFullElectricPickList;
 	
-	private String labelMedidaDisciplinaPickList;
-
+	private String labelMedidaDisciplinaPickList;	
+	
 	public SuministroView() {
 	}
 
@@ -491,67 +491,51 @@ public class SuministroView extends ObjectView {
 	public String getAlimentador() {
 		return alimentador;
 	}
-
 	public void setAlimentador(String alimentador) {
 		this.alimentador = alimentador;
 	}
-
 	public String getDireccionBoleta() {
 		return direccionBoleta;
 	}
-
 	public void setDireccionBoleta(String direccionBoleta) {
 		this.direccionBoleta = direccionBoleta;
 	}
-
 	public String getCuenta() {
 		return cuenta;
 	}
-
 	public void setCuenta(String cuenta) {
 		this.cuenta = cuenta;
 	}
-
 	public String getSubestacionElectricaConexion() {
 		return subestacionElectricaConexion;
 	}
-
 	public void setSubestacionElectricaConexion(String subestacionElectricaConexion) {
 		this.subestacionElectricaConexion = subestacionElectricaConexion;
 	}
-
 	public String getRuta() {
 		return ruta;
 	}
-
 	public void setRuta(String ruta) {
 		this.ruta = ruta;
 	}
-
 	public String getTipoCuenta() {
 		return tipoCuenta;
 	}
-
 	public void setTipoCuenta(String tipoCuenta) {
 		this.tipoCuenta = tipoCuenta;
 	}
-
 	public String getTipoSegmento() {
 		return tipoSegmento;
 	}
-
 	public void setTipoSegmento(String tipoSegmento) {
 		this.tipoSegmento = tipoSegmento;
 	}
-
 	public String getDireccionConcatenada() {
 		return direccionConcatenada;
 	}
-
 	public void setDireccionConcatenada(String direccionConcatenada) {
 		this.direccionConcatenada = direccionConcatenada;
 	}
-
 	public String getRelacionActivo() {
 		return relacionActivo;
 	}
@@ -672,10 +656,7 @@ public class SuministroView extends ObjectView {
 	public void setLabelMedidaDisciplinaPickList(String labelMedidaDisciplinaPickList) {
 		this.labelMedidaDisciplinaPickList = labelMedidaDisciplinaPickList;
 	}
-	
-	public String getFechaCorteGMT() {
-		return "";
-	}
+
 	
 	@Override
 	public Object instantiateTargetLogic() {

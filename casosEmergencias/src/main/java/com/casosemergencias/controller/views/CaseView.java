@@ -18,7 +18,6 @@ public class CaseView extends ObjectView {
 	private String nombreContacto;
 	private String direccionSuministro;
 	private String comuna;
-	private String tiempoEstimacion;
 	private String canalOrigen;
 	private String canalOrigenLabel;
 	private String nombreCuenta;
@@ -82,7 +81,7 @@ public class CaseView extends ObjectView {
 	private Map<String, String> mapCanalNotificacion;
 	private Map<String, String> mapFavorabilidadCaso;
 	
-
+	
 	/**/
 	public Integer getId() {
 		return id;
@@ -144,12 +143,6 @@ public class CaseView extends ObjectView {
 	}
 	public void setComuna(String comuna) {
 		this.comuna = comuna;
-	}
-	public String getTiempoEstimacion() {
-		return tiempoEstimacion;
-	}
-	public void setTiempoEstimacion(String tiempoEstimacion) {
-		this.tiempoEstimacion = tiempoEstimacion;
 	}
 	public String getCanalOrigen() {
 		return canalOrigen;
@@ -524,6 +517,7 @@ public class CaseView extends ObjectView {
 	public void setCommentarioCaso(List<CaseCommentView> commentarioCaso) {
 		this.commentarioCaso = commentarioCaso;
 	}
+	
 	
 	@Override
 	public Object instantiateTargetLogic() {

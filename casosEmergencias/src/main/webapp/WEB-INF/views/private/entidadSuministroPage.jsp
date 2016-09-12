@@ -396,9 +396,9 @@
 										<tr>
 											<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
 											<td>${caso.descripcionEstado}</td>
-											<td>${caso.fechaApertura}</td>
+											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaApertura}"/></td>
 											<td>${caso.labelSubmotivoPickList}</td>
-											<td>${caso.tiempoEstimacion}</td>
+											<td>${caso.fechaEstimadaCierre}</td>
 											<td>${caso.labelCanalOrigenPickList}</td>
 										</tr>
 									</c:forEach>
