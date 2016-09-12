@@ -231,10 +231,18 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "estado_del_suministro__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumEstadoSumVO estadoSuministroPickList;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "electrodependiente__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	private PickListsSumElectrodependienteVO electrodependientePickList;
 
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cuenta__c", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private AccountVO cuentaJoin;
+	
+	@OneToOne(fetch=FetchType.LAZY, optional=true)
+	@JoinColumn(name="direccion__c", referencedColumnName="sfid", insertable = false, updatable=false)
+	private DireccionVO dirSuministroJoin;
 
 	public SuministroVO() {
 	}
@@ -251,7 +259,7 @@ public class SuministroVO extends ObjectVO implements Serializable {
 			String subestacionElectricaConexion, String ruta, String tipoCuenta, String tipoSegmento,
 			String direccionConcatenada, String tipoEvento, Boolean suministroAfectado,
 			PickListsSumEmpresaVO empresaPickList, PickListsSumEstadoConVO estadoConexionPickList,
-			PickListsSumEstadoSumVO estadoSuministroPickList) {
+			PickListsSumEstadoSumVO estadoSuministroPickList,PickListsSumElectrodependienteVO electrodependientePickList) {
 		super();
 		this.isDeleted = isDeleted;
 		this.systemDate = systemDate;
@@ -713,6 +721,15 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	public void setEstadoSuministroPickList(PickListsSumEstadoSumVO estadoSuministroPickList) {
 		this.estadoSuministroPickList = estadoSuministroPickList;
 	}
+	
+
+	public PickListsSumElectrodependienteVO getElectrodependientePickList() {
+		return electrodependientePickList;
+	}
+
+	public void setElectrodependientePickList(PickListsSumElectrodependienteVO electrodependientePickList) {
+		this.electrodependientePickList = electrodependientePickList;
+	}
 
 	public String getLabelEmpresaPickList() {
 		String result = this.getIdEmpresa();
@@ -738,6 +755,14 @@ public class SuministroVO extends ObjectVO implements Serializable {
 		return result;
 	}
 
+	public String getLabelElectrodependientePickList() {
+		String result = this.getElectrodependiente();
+		if (this.getElectrodependientePickList() != null) {
+			result = this.getElectrodependientePickList().getValor();
+		}
+		return result;
+	}
+
 	@Override
 	public Object instantiateTargetLogic() {
 		Suministro suministro = new Suministro();
@@ -750,6 +775,14 @@ public class SuministroVO extends ObjectVO implements Serializable {
 
 	public void setCuentaJoin(AccountVO cuentaJoin) {
 		this.cuentaJoin = cuentaJoin;
+	}
+
+	public DireccionVO getDirSuministroJoin() {
+		return dirSuministroJoin;
+	}
+
+	public void setDirSuministroJoin(DireccionVO dirSuministroJoin) {
+		this.dirSuministroJoin = dirSuministroJoin;
 	}
 
 	public PickListsVO getProcesoLecturaPickList() {

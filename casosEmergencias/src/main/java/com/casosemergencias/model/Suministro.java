@@ -63,6 +63,7 @@ public class Suministro extends ObjectLogic {
 	private List<Caso> casos;
 
 	private Cuenta cuentaJoin;
+	private Direccion dirSuministroJoin;
 	
 	private List<Contacto> contactosRelacionados;
 	
@@ -87,6 +88,8 @@ public class Suministro extends ObjectLogic {
 	private String labelFullElectricPickList;
 	
 	private String labelMedidaDisciplinaPickList;
+	
+	private String labelElectrodependientePickList;
 
 	public Suministro() {
 	}
@@ -106,7 +109,7 @@ public class Suministro extends ObjectLogic {
 			String labelProcesoLecturaPickList, String labelTipoMedidaPickList, String labelTipoSegmentoPickList,
 			String labelSubestacionElecPickList, String labelPropMedidorPickList, String labelTipoConexionPickList,
 			String labelTipoLecturaPickList, String labelTipoTransformadorPickList, String labelComunaRepartoPickList,
-			String labelFullElectricPickList) {
+			String labelFullElectricPickList,String labelElectrodependientePickList,Direccion dirSuministroJoin) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -158,6 +161,7 @@ public class Suministro extends ObjectLogic {
 		this.suministroAfectado = suministroAfectado;
 		this.casos = casos;
 		this.cuentaJoin = cuentaJoin;
+		this.dirSuministroJoin=dirSuministroJoin;
 		this.contactosRelacionados = contactosRelacionados;
 		this.labelProcesoLecturaPickList = labelProcesoLecturaPickList;
 		this.labelTipoMedidaPickList = labelTipoMedidaPickList;
@@ -169,6 +173,7 @@ public class Suministro extends ObjectLogic {
 		this.labelTipoTransformadorPickList = labelTipoTransformadorPickList;
 		this.labelComunaRepartoPickList = labelComunaRepartoPickList;
 		this.labelFullElectricPickList = labelFullElectricPickList;
+		this.labelElectrodependientePickList=labelElectrodependientePickList;
 	}
 
 
@@ -569,6 +574,14 @@ public class Suministro extends ObjectLogic {
 		this.cuentaJoin = cuentaJoin;
 	}
 
+	public Direccion getDirSuministroJoin() {
+		return dirSuministroJoin;
+	}
+
+	public void setDirSuministroJoin(Direccion dirSuministroJoin) {
+		this.dirSuministroJoin = dirSuministroJoin;
+	}
+
 	public String getTipoEvento() {
 		return tipoEvento;
 	}
@@ -683,4 +696,12 @@ public class Suministro extends ObjectLogic {
 		this.labelMedidaDisciplinaPickList = labelMedidaDisciplinaPickList;
 	}
 
+	public String getLabelElectrodependientePickList() {
+		return labelElectrodependientePickList;
+	}
+
+	public void setLabelElectrodependientePickList(String labelElectrodependientePickList) {
+		this.labelElectrodependientePickList = labelElectrodependientePickList;
+	}
+	
 }

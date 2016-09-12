@@ -1,5 +1,11 @@
 package com.casosemergencias.controller;
 
+import java.text.DateFormat;
+import java.time.ZoneId;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -58,7 +64,12 @@ public class LoginController {
 			
 			//Guardamos el usuario en la sesion
 			HttpSession session = request.getSession(true);
-			session.setAttribute("user", user);			
+			session.setAttribute("user", user);		
+			
+			//Preparamos ZoneId para guardarlo en session
+			long offset = getOffsetGMTHerokuUser(user.getCountry());
+			session.setAttribute("difGMTUser", offset);		
+		
 
 			model.setViewName("redirect:private/homeCasos");
 
@@ -103,5 +114,36 @@ public class LoginController {
 		
 		logger.info("--- Fin -- logout ---");
 		return model;
+	}
+	
+	/**
+	 * Metodo al que le pasamos el valor del campo 'country' de HerokuUser, comprobamos que constante le corresponde
+	 * y creamos el ZoneId correspondiente
+	 * 
+	 *  @return
+	 */
+	private long getOffsetGMTHerokuUser(String idCountry){		
+		String cteTimeZone = "";	
+		
+		if("1".equals(idCountry)){
+			cteTimeZone = Constantes.ID_1CHILE;
+		}else if("2".equals(idCountry)){
+			cteTimeZone = Constantes.ID_2PERU;
+		}else if("3".equals(idCountry)){
+			cteTimeZone = Constantes.ID_3COLOMBIA;
+		}else if("4".equals(idCountry)){
+			cteTimeZone = Constantes.ID_4BRASIL;
+		}
+		
+		Calendar calen;
+		if("".equals(cteTimeZone)){
+			calen = new GregorianCalendar();
+		}else{
+			calen = new GregorianCalendar(TimeZone.getTimeZone(cteTimeZone));
+		}
+		
+		long offset = calen.getTimeZone().getRawOffset();
+		
+		return offset;
 	}
 }

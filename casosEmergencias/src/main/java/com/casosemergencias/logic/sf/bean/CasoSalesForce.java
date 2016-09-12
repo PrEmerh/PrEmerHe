@@ -283,7 +283,7 @@ public class CasoSalesForce {
 			casoSF.setAccountId((casoHeroku.getNombreCuenta() != null && !"".equals(casoHeroku.getNombreCuenta()) ? casoHeroku.getNombreCuenta() : ""));
 			casoSF.setFacebook__c((casoHeroku.getFacebook() != null && !"".equals(casoHeroku.getFacebook()) ? casoHeroku.getFacebook() : ""));
 			casoSF.setTwitter__c((casoHeroku.getTwitter() != null && !"".equals(casoHeroku.getTwitter()) ? casoHeroku.getTwitter() : ""));
-			casoSF.setAct_Datos_Contacto__c(Boolean.valueOf(casoHeroku.isActDatosContacto()));
+			casoSF.setAct_Datos_Contacto__c(Boolean.valueOf(casoHeroku.getActDatosContacto()));
 			casoSF.setANI__c((casoHeroku.getAni() != null && !"".equals(casoHeroku.getAni()) ? casoHeroku.getAni() : ""));
 			casoSF.setCuerpo_Mail__c((casoHeroku.getCuerpoMail() != null && !"".equals(casoHeroku.getCuerpoMail()) ? casoHeroku.getCuerpoMail() : ""));
 			casoSF.setRespuesta_al_Cliente__c((casoHeroku.getRespuestaAlCliente() != null && !"".equals(casoHeroku.getRespuestaAlCliente()) ? casoHeroku.getRespuestaAlCliente() : ""));

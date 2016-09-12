@@ -59,7 +59,7 @@
 							<label><s:message code="entidadSuministro_title_label_direccionSuministro"/></label>
 						</div>
 						<div>
-							<label>${suministro.direccionCliente}</label>
+							<label><a class="link" href="../private/entidadDireccion?sfid=${suministro.dirSuministroJoin.sfid}">${suministro.dirSuministroJoin.numero}</a></label>			
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadSuministro_title_label_tipoSegmento"/></label>
@@ -200,7 +200,7 @@
 							<label><s:message code="entidadSuministro_title_label_electrodependiente"/></label>
 						</div>
 						<div>
-							<label>${suministro.electrodependiente}</label>
+							<label>${suministro.labelElectrodependientePickList}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadSuministro_title_label_fullElectric"/></label>
@@ -396,9 +396,9 @@
 										<tr>
 											<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
 											<td>${caso.descripcionEstado}</td>
-											<td>${caso.fechaApertura}</td>
+											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaApertura}"/></td>
 											<td>${caso.labelSubmotivoPickList}</td>
-											<td>${caso.tiempoEstimacion}</td>
+											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaEstimadaCierre}"/></td>
 											<td>${caso.labelCanalOrigenPickList}</td>
 										</tr>
 									</c:forEach>

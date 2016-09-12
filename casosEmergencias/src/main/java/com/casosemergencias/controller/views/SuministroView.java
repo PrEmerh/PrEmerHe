@@ -102,6 +102,8 @@ public class SuministroView extends ObjectView {
 	private Boolean suministroAfectado;
 
 	private AccountView cuentaJoin;
+	
+	private DireccionView dirSuministroJoin;
 
 	private List<CaseView> casos;
 	
@@ -126,8 +128,10 @@ public class SuministroView extends ObjectView {
 	private String labelComunaRepartoPickList;
 
 	private String labelFullElectricPickList;
-	
+		
 	private String labelMedidaDisciplinaPickList;
+	
+	private String labelElectrodependientePickList;
 
 	public SuministroView() {
 	}
@@ -149,7 +153,7 @@ public class SuministroView extends ObjectView {
 			List<ContactView> contactosRelacionados, String labelProcesoLecturaPickList, String labelTipoMedidaPickList,
 			String labelTipoSegmentoPickList, String labelSubestacionElecPickList, String labelPropMedidorPickList,
 			String labelTipoConexionPickList, String labelTipoLecturaPickList, String labelTipoTransformadorPickList,
-			String labelComunaRepartoPickList, String labelFullElectricPickList) {
+			String labelComunaRepartoPickList, String labelFullElectricPickList,String labelElectrodependientePickList) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -212,6 +216,7 @@ public class SuministroView extends ObjectView {
 		this.labelTipoTransformadorPickList = labelTipoTransformadorPickList;
 		this.labelComunaRepartoPickList = labelComunaRepartoPickList;
 		this.labelFullElectricPickList = labelFullElectricPickList;
+		this.labelElectrodependientePickList=labelElectrodependientePickList;
 	}
 
 
@@ -491,235 +496,190 @@ public class SuministroView extends ObjectView {
 	public String getAlimentador() {
 		return alimentador;
 	}
-
 	public void setAlimentador(String alimentador) {
 		this.alimentador = alimentador;
 	}
-
 	public String getDireccionBoleta() {
 		return direccionBoleta;
 	}
-
 	public void setDireccionBoleta(String direccionBoleta) {
 		this.direccionBoleta = direccionBoleta;
 	}
-
 	public String getCuenta() {
 		return cuenta;
 	}
-
 	public void setCuenta(String cuenta) {
 		this.cuenta = cuenta;
 	}
-
 	public String getSubestacionElectricaConexion() {
 		return subestacionElectricaConexion;
 	}
-
 	public void setSubestacionElectricaConexion(String subestacionElectricaConexion) {
 		this.subestacionElectricaConexion = subestacionElectricaConexion;
 	}
-
 	public String getRuta() {
 		return ruta;
 	}
-
 	public void setRuta(String ruta) {
 		this.ruta = ruta;
 	}
-
 	public String getTipoCuenta() {
 		return tipoCuenta;
 	}
-
 	public void setTipoCuenta(String tipoCuenta) {
 		this.tipoCuenta = tipoCuenta;
 	}
-
 	public String getTipoSegmento() {
 		return tipoSegmento;
 	}
-
 	public void setTipoSegmento(String tipoSegmento) {
 		this.tipoSegmento = tipoSegmento;
 	}
-
 	public String getDireccionConcatenada() {
 		return direccionConcatenada;
 	}
-
 	public void setDireccionConcatenada(String direccionConcatenada) {
 		this.direccionConcatenada = direccionConcatenada;
 	}
+	public String getRelacionActivo() {
+		return relacionActivo;
+	}
+	public void setRelacionActivo(String relacionActivo) {
+		this.relacionActivo = relacionActivo;
+	}
+	public String getLabelEmpresaPickList() {
+		return labelEmpresaPickList;
+	}
+	public void setLabelEmpresaPickList(String labelEmpresaPickList) {
+		this.labelEmpresaPickList = labelEmpresaPickList;
+	}
+	public String getLabelEstadoConexionPickList() {
+		return labelEstadoConexionPickList;
+	}
+	public void setLabelEstadoConexionPickList(String labelEstadoConexionPickList) {
+		this.labelEstadoConexionPickList = labelEstadoConexionPickList;
+	}
+	public String getLabelEstadoSuministroPickList() {
+		return labelEstadoSuministroPickList;
+	}
+	public void setLabelEstadoSuministroPickList(String labelEstadoSuministroPickList) {
+		this.labelEstadoSuministroPickList = labelEstadoSuministroPickList;
+	}
+	public List<CaseView> getCasos() {
+		return casos;
+	}
+	public void setCasos(List<CaseView> casos) {
+		this.casos = casos;
+	}
+	public AccountView getCuentaJoin() {
+		return cuentaJoin;
+	}
+	public void setCuentaJoin(AccountView cuentaJoin) {
+		this.cuentaJoin = cuentaJoin;
+	}
+	
+	public DireccionView getDirSuministroJoin() {
+		return dirSuministroJoin;
+	}
+	public void setDirSuministroJoin(DireccionView dirSuministroJoin) {
+		this.dirSuministroJoin = dirSuministroJoin;
+	}
 
+	public List<ContactView> getContactosRelacionados() {
+		return contactosRelacionados;
+	}
+	public void setContactosRelacionados(List<ContactView> contactosRelacionados) {
+		this.contactosRelacionados = contactosRelacionados;
+	}
+	public String getTipoEvento() {
+		return tipoEvento;
+	}
+	public void setTipoEvento(String tipoEvento) {
+		this.tipoEvento = tipoEvento;
+	}
+	public Boolean getSuministroAfectado() {
+		return suministroAfectado;
+	}
+	public void setSuministroAfectado(Boolean suministroAfectado) {
+		this.suministroAfectado = suministroAfectado;
+	}
+	public String getLabelProcesoLecturaPickList() {
+		return labelProcesoLecturaPickList;
+	}
+	public void setLabelProcesoLecturaPickList(String labelProcesoLecturaPickList) {
+		this.labelProcesoLecturaPickList = labelProcesoLecturaPickList;
+	}
+	public String getLabelTipoMedidaPickList() {
+		return labelTipoMedidaPickList;
+	}
+	public void setLabelTipoMedidaPickList(String labelTipoMedidaPickList) {
+		this.labelTipoMedidaPickList = labelTipoMedidaPickList;
+	}
+	public String getLabelTipoSegmentoPickList() {
+		return labelTipoSegmentoPickList;
+	}
+	public void setLabelTipoSegmentoPickList(String labelTipoSegmentoPickList) {
+		this.labelTipoSegmentoPickList = labelTipoSegmentoPickList;
+	}
+	public String getLabelSubestacionElecPickList() {
+		return labelSubestacionElecPickList;
+	}
+	public void setLabelSubestacionElecPickList(String labelSubestacionElecPickList) {
+		this.labelSubestacionElecPickList = labelSubestacionElecPickList;
+	}
+	public String getLabelPropMedidorPickList() {
+		return labelPropMedidorPickList;
+	}
+	public void setLabelPropMedidorPickList(String labelPropMedidorPickList) {
+		this.labelPropMedidorPickList = labelPropMedidorPickList;
+	}
+	public String getLabelTipoConexionPickList() {
+		return labelTipoConexionPickList;
+	}
+	public void setLabelTipoConexionPickList(String labelTipoConexionPickList) {
+		this.labelTipoConexionPickList = labelTipoConexionPickList;
+	}
+	public String getLabelTipoLecturaPickList() {
+		return labelTipoLecturaPickList;
+	}
+	public void setLabelTipoLecturaPickList(String labelTipoLecturaPickList) {
+		this.labelTipoLecturaPickList = labelTipoLecturaPickList;
+	}
+	public String getLabelTipoTransformadorPickList() {
+		return labelTipoTransformadorPickList;
+	}
+	public void setLabelTipoTransformadorPickList(String labelTipoTransformadorPickList) {
+		this.labelTipoTransformadorPickList = labelTipoTransformadorPickList;
+	}
+	public String getLabelComunaRepartoPickList() {
+		return labelComunaRepartoPickList;
+	}
+	public void setLabelComunaRepartoPickList(String labelComunaRepartoPickList) {
+		this.labelComunaRepartoPickList = labelComunaRepartoPickList;
+	}
+	public String getLabelFullElectricPickList() {
+		return labelFullElectricPickList;
+	}
+	public void setLabelFullElectricPickList(String labelFullElectricPickList) {
+		this.labelFullElectricPickList = labelFullElectricPickList;
+	}
+	public String getLabelMedidaDisciplinaPickList() {
+		return labelMedidaDisciplinaPickList;
+	}
+	public void setLabelMedidaDisciplinaPickList(String labelMedidaDisciplinaPickList) {
+		this.labelMedidaDisciplinaPickList = labelMedidaDisciplinaPickList;
+	}
+	public String getLabelElectrodependientePickList() {
+		return labelElectrodependientePickList;
+	}
+	public void setLabelElectrodependientePickList(String labelElectrodependientePickList) {
+		this.labelElectrodependientePickList = labelElectrodependientePickList;
+	}
+	
 	@Override
 	public Object instantiateTargetLogic() {
 		Suministro suministro = new Suministro();
 		return suministro;
 	}
 
-	public String getRelacionActivo() {
-		return relacionActivo;
-	}
-
-	public void setRelacionActivo(String relacionActivo) {
-		this.relacionActivo = relacionActivo;
-	}
-
-	public String getLabelEmpresaPickList() {
-		return labelEmpresaPickList;
-	}
-
-	public void setLabelEmpresaPickList(String labelEmpresaPickList) {
-		this.labelEmpresaPickList = labelEmpresaPickList;
-	}
-
-	public String getLabelEstadoConexionPickList() {
-		return labelEstadoConexionPickList;
-	}
-
-	public void setLabelEstadoConexionPickList(String labelEstadoConexionPickList) {
-		this.labelEstadoConexionPickList = labelEstadoConexionPickList;
-	}
-
-	public String getLabelEstadoSuministroPickList() {
-		return labelEstadoSuministroPickList;
-	}
-
-	public void setLabelEstadoSuministroPickList(String labelEstadoSuministroPickList) {
-		this.labelEstadoSuministroPickList = labelEstadoSuministroPickList;
-	}
-
-	public List<CaseView> getCasos() {
-		return casos;
-	}
-
-	public void setCasos(List<CaseView> casos) {
-		this.casos = casos;
-	}
-
-	public AccountView getCuentaJoin() {
-		return cuentaJoin;
-	}
-
-	public void setCuentaJoin(AccountView cuentaJoin) {
-		this.cuentaJoin = cuentaJoin;
-	}
-
-	public List<ContactView> getContactosRelacionados() {
-		return contactosRelacionados;
-	}
-
-
-	public void setContactosRelacionados(List<ContactView> contactosRelacionados) {
-		this.contactosRelacionados = contactosRelacionados;
-	}
-
-	public String getTipoEvento() {
-		return tipoEvento;
-	}
-
-	public void setTipoEvento(String tipoEvento) {
-		this.tipoEvento = tipoEvento;
-	}
-
-	public Boolean getSuministroAfectado() {
-		return suministroAfectado;
-	}
-
-	public void setSuministroAfectado(Boolean suministroAfectado) {
-		this.suministroAfectado = suministroAfectado;
-	}
-
-	public String getLabelProcesoLecturaPickList() {
-		return labelProcesoLecturaPickList;
-	}
-
-	public void setLabelProcesoLecturaPickList(String labelProcesoLecturaPickList) {
-		this.labelProcesoLecturaPickList = labelProcesoLecturaPickList;
-	}
-
-	public String getLabelTipoMedidaPickList() {
-		return labelTipoMedidaPickList;
-	}
-
-	public void setLabelTipoMedidaPickList(String labelTipoMedidaPickList) {
-		this.labelTipoMedidaPickList = labelTipoMedidaPickList;
-	}
-
-	public String getLabelTipoSegmentoPickList() {
-		return labelTipoSegmentoPickList;
-	}
-
-	public void setLabelTipoSegmentoPickList(String labelTipoSegmentoPickList) {
-		this.labelTipoSegmentoPickList = labelTipoSegmentoPickList;
-	}
-
-	public String getLabelSubestacionElecPickList() {
-		return labelSubestacionElecPickList;
-	}
-
-	public void setLabelSubestacionElecPickList(String labelSubestacionElecPickList) {
-		this.labelSubestacionElecPickList = labelSubestacionElecPickList;
-	}
-
-	public String getLabelPropMedidorPickList() {
-		return labelPropMedidorPickList;
-	}
-
-	public void setLabelPropMedidorPickList(String labelPropMedidorPickList) {
-		this.labelPropMedidorPickList = labelPropMedidorPickList;
-	}
-
-	public String getLabelTipoConexionPickList() {
-		return labelTipoConexionPickList;
-	}
-
-	public void setLabelTipoConexionPickList(String labelTipoConexionPickList) {
-		this.labelTipoConexionPickList = labelTipoConexionPickList;
-	}
-
-	public String getLabelTipoLecturaPickList() {
-		return labelTipoLecturaPickList;
-	}
-
-	public void setLabelTipoLecturaPickList(String labelTipoLecturaPickList) {
-		this.labelTipoLecturaPickList = labelTipoLecturaPickList;
-	}
-
-	public String getLabelTipoTransformadorPickList() {
-		return labelTipoTransformadorPickList;
-	}
-
-	public void setLabelTipoTransformadorPickList(String labelTipoTransformadorPickList) {
-		this.labelTipoTransformadorPickList = labelTipoTransformadorPickList;
-	}
-
-	public String getLabelComunaRepartoPickList() {
-		return labelComunaRepartoPickList;
-	}
-
-	public void setLabelComunaRepartoPickList(String labelComunaRepartoPickList) {
-		this.labelComunaRepartoPickList = labelComunaRepartoPickList;
-	}
-
-	public String getLabelFullElectricPickList() {
-		return labelFullElectricPickList;
-	}
-
-	public void setLabelFullElectricPickList(String labelFullElectricPickList) {
-		this.labelFullElectricPickList = labelFullElectricPickList;
-	}
-
-
-
-	public String getLabelMedidaDisciplinaPickList() {
-		return labelMedidaDisciplinaPickList;
-	}
-
-
-
-	public void setLabelMedidaDisciplinaPickList(String labelMedidaDisciplinaPickList) {
-		this.labelMedidaDisciplinaPickList = labelMedidaDisciplinaPickList;
-	}
 }

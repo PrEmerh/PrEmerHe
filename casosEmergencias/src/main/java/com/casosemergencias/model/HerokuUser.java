@@ -19,6 +19,7 @@ public class HerokuUser extends ObjectLogic {
 	private String email;
 	private String sfid;
 	private Boolean envioEmail;
+	private String country;
 
 	public Integer getId() {
 		return id;
@@ -75,6 +76,14 @@ public class HerokuUser extends ObjectLogic {
 	public void setEnvioEmail(Boolean envioEmail) {
 		this.envioEmail = envioEmail;
 	}
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
 
 	@Override
 	public Object instantiateTargetView() {

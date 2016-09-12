@@ -62,7 +62,7 @@
 											<td>${suministro.comuna}</td>
 											<td>${suministro.labelEstadoConexionPickList}</td>
 											<td>${suministro.labelEstadoSuministroPickList}</td>
-											<td>${suministro.tipoSegmento}</td>
+											<td>${suministro.labelTipoSegmentoPickList}</td>
 											<td>${suministro.relacionActivo}</td>
 										</tr>
 									</c:forEach>
@@ -166,8 +166,8 @@
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_fechaNacimiento"/></label>
 						</div>
-						<div>
-							<label>${contacto.fechaNacimiento}</label>
+						<div>				
+							<label><fmt:formatDate pattern="dd/MM/yyyy" value="${contacto.fechaNacimiento}"/></label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_nombreCuenta"/></label>
@@ -181,7 +181,7 @@
 							<label><s:message code="entidadContacto_table_label_direccionContacto"/></label>
 						</div>
 						<div>
-							<label>${contacto.dirContacto}</label>
+							<label><a class="link" href="../private/entidadDireccion?sfid=${contacto.dirContactoJoin.sfid}">${contacto.dirContactoJoin.numero}</a></label>			
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_emailSecundario"/></label>
@@ -211,7 +211,7 @@
 							<label><s:message code="entidadContacto_table_label_recuentoSeguidoresTwitter"/></label>
 						</div>
 						<div>
-							<label><%-- ${contacto.recuentoSeguidoresTwitter} --%></label>
+							<label>${contacto.seguidoresTwitter}</label>
 						</div>  
 					</div>
 					<div>
@@ -219,19 +219,19 @@
 							<label><s:message code="entidadContacto_table_label_influencer"/></label>
 						</div>
 						<div>
-							<label><%-- ${contacto.influencer} --%></label>
+							<label>${contacto.influencer}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_influencerType"/></label>
 						</div>
 						<div>
-							<label><%-- ${contacto.influencerType} --%></label>
+							<label>${contacto.influencerType}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_biografiaTwitter"/></label>
 						</div>
 						<div>
-							<label><%-- ${contacto.biografiaTwitter} --%></label>
+							<label>${contacto.twitterBio}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_idUsuarioTwitter"/></label>
@@ -277,9 +277,9 @@
 										<tr>
 											<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
 											<td>${caso.descripcionEstado}</td>
-											<td>${caso.fechaApertura}</td>
+											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaApertura}"/></td>
 											<td>${caso.labelSubmotivoPickList}</td>
-											<td>${caso.tiempoEstimacion}</td>
+											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaEstimadaCierre}"/></td>
 										 	<td>${caso.labelCanalOrigenPickList}</td> 
 										</tr>
 									</c:forEach>
@@ -300,8 +300,8 @@
 				<div id="divEntidadIndicadoresContacto" class="divIndicadoresEventos">
 					<div class="divContactosIndicadoresTitulo">
 						<div>
-							<input id="arrowTablaIndicadoresSuministro" type="image" src="../resources/images/arrow-down-white.png"  
-								height="15" onclick="showHideCabecerasServicios('tablaIndicadoresSuministro','arrowTablaIndicadoresSuministro'); return false;"/>			
+							<input id="arrowTablaIndicadoresContacto" type="image" src="../resources/images/arrow-down-white.png"  
+								height="15" onclick="showHideCabecerasServicios('tablaIndicadoresContacto','arrowTablaIndicadoresContacto'); return false;"/>			
 							<label class="divLabel"><s:message code="entidadContacto_indicadores_titulo_indicadores" /></label>
 						</div>
 					</div>

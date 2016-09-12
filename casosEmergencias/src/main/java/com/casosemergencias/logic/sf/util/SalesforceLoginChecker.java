@@ -120,6 +120,7 @@ public class SalesforceLoginChecker {
 		ForceApi api = null;
 		logger.trace("Intentamos recuperar los datos o hacemos login.");
 		salesforceLogin(datosSesion);
+		//UserSessionInfo datosSesion = this.getUserSessionInfo(username, password, token);
 		if (datosSesion != null && !StringUtils.isEmpty(datosSesion.getSessionId())){
 			logger.trace("Login correcto.");
 			ApiSession s = new ApiSession();

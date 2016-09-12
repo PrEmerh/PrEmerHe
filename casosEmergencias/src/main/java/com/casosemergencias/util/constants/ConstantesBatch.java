@@ -36,6 +36,8 @@ public class ConstantesBatch {
 	public static final String HEROKU_DATABASE_PASSWORD = "deloitte12";*/
 	public static final String HEROKU_DATABASE_DRIVER_CLASS = "org.postgresql.Driver";
 	
+	/**Util batch*/
 	public static final String UTIL_TYPE_REFERENCE = "reference";
-	public static final String UTIL_FIELD_OWNER = "owner"; 
+	public static final String UTIL_FIELD_OWNER = "owner";
+	
 }
