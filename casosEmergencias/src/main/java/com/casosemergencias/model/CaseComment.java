@@ -3,7 +3,6 @@ package com.casosemergencias.model;
 import java.util.Date;
 
 import com.casosemergencias.controller.views.CaseCommentView;
-import com.casosemergencias.controller.views.UserView;
 import com.casosemergencias.dao.vo.CaseCommentVO;
 
 //Objeto que tiene el modelo de un CaseComment, se utiliza en el Servicio

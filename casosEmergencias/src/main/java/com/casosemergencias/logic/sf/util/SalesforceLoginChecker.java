@@ -17,8 +17,10 @@ import org.json.JSONTokener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
+import com.casosemergencias.exception.EmergenciasException;
 import com.casosemergencias.logic.UserSessionInfoService;
 import com.casosemergencias.model.UserSessionInfo;
+import com.casosemergencias.util.constants.ConstantesError;
 import com.casosemergencias.util.constants.ConstantesSalesforceLogin;
 import com.force.api.ApiSession;
 import com.force.api.ForceApi;
@@ -41,47 +43,47 @@ public class SalesforceLoginChecker {
 	 *            Token de conexi&oacute;n del usuario.
 	 * @return UserSessionInfo Datos de la sesi&oacute;n del usuario.
 	 */
-	public UserSessionInfo getUserSessionInfo (String username, String password, String token) {
+	public UserSessionInfo getUserSessionInfo (UserSessionInfo userSessionInfoToLogin) throws EmergenciasException {
 		logger.trace("Entrando en getUserSessionInfo() para obtener los datos de sesión del usuario");
 		
-		UserSessionInfo userSessionInfo = new UserSessionInfo();
-		
-		// Se comprueba que el usuario exista en BBDD.
-		userSessionInfo.setUsername(username);
-		userSessionInfo.setPassword(password);
-		userSessionInfo.setAccessToken(token);
-		userSessionInfo = userSessionInfoService.readUserSessionInfo(userSessionInfo);
-		
-		if (userSessionInfo != null) {
-			//Si el usuario existe, se comprueba si la fecha de conexión es mayor o menor de 12 horas.
-			if (!isValidToken(userSessionInfo.getLastConnection())) {
-				// Si la fecha es mayor de 12 horas, se hace login, y se actualiza la información en BBDD antes de devolver los datos del usuario.
-				userSessionInfo = salesforceLogin(userSessionInfo.getUsername(), userSessionInfo.getPassword(), userSessionInfo.getAccessToken());
-				userSessionInfoService.updateUserSessionInfo(userSessionInfo);
+		UserSessionInfo userSessionInfoFromDB = null;
+		try {
+			// Se comprueba que el usuario exista en BBDD.
+			userSessionInfoFromDB = userSessionInfoService.readUserSessionInfo(userSessionInfoToLogin);
+			if (userSessionInfoFromDB != null) {
+				//Si el usuario existe, se comprueba si la fecha de conexión es mayor o menor de 12 horas.
+				if (!isValidToken(userSessionInfoFromDB.getLastConnection())) {
+					// Si la fecha es mayor de 12 horas, se hace login, y se actualiza la información en BBDD antes de devolver los datos del usuario.
+					logger.info("El token no es válido. Se procede a hacer login y actualizar los datos de sesion del usuario");
+					salesforceLogin(userSessionInfoFromDB);
+					userSessionInfoService.updateUserSessionInfo(userSessionInfoFromDB);
+				}
+				logger.info("El token es válido. No es necesario actualizar los datos del usuario");
+			} else {
+				// Si el usuario no existe, se hace login, se guardan en BBDD y se devuelven los datos del usuario.
+				logger.info("El usuario no existe. Se procede a hacer login y guardar los datos de sesion del usuario");
+				salesforceLogin(userSessionInfoFromDB);
+				userSessionInfoService.insertUserSessionInfo(userSessionInfoFromDB);
 			}
-		} else {
-			// Si el usuario no existe, se hace login, se guardan en BBDD y se devuelven los datos del usuario.
-			userSessionInfo = salesforceLogin(username, password, token);
-			userSessionInfoService.insertUserSessionInfo(userSessionInfo);
+		} catch (JSONException|IOException exception) {
+			logger.error(ConstantesError.SALESFORCE_LOGIN_ERROR, exception);
+			throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_001, ConstantesError.SALESFORCE_LOGIN_ERROR);
 		}
 		
 		logger.trace("Saliendo de getUserSessionInfo()");
-		return userSessionInfo;
+		return userSessionInfoFromDB;
 	}	
 	
 	/**
 	 * M&eatuce;todo que realiza el login contra SalesForce.
 	 * 
-	 * @param username
-	 *            Usuario con el que hacer el login.
-	 * @param password
-	 *            Contrase&ntilde;a del usuario.
-	 * @return UserSessionInfo Datos del usuario conectado.
+	 * @param userSessionInfo
+	 *            Informaci&oacute;n del usuario con el que hacer el login.
+	 * 
 	 */
-	public UserSessionInfo salesforceLogin(String username, String password, String token) {
+	public void salesforceLogin(UserSessionInfo userSessionInfo) throws JSONException, HttpException, IOException {
 		logger.trace("Entrando a salesforceLogin() para hacer el login contra SalesForce");
 		
-		UserSessionInfo userSessionInfo = null;
 		String tokenRequestUri = ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_LOGIN_URI + ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_TOKEN_PATH_URI; 
 		HttpClient httpclient = new HttpClient();
 		PostMethod post = new PostMethod(tokenRequestUri);
@@ -90,49 +92,34 @@ public class SalesforceLoginChecker {
 		post.addParameter(ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_CLIENT_ID_KEY, ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_CLIENT_ID_VALUE);
 		post.addParameter(ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_CLIENT_SECRET_KEY, ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_CLIENT_SECRET_VALUE);
 		//post.addParameter(ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_REDIRECT_URI_KEY, ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_REDIRECT_URI);
-		post.addParameter(ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_USER_NAME_KEY, username);
-		post.addParameter(ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_USER_PASS_KEY, password + token);
+		post.addParameter(ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_USER_NAME_KEY, userSessionInfo.getUsername());
+		post.addParameter(ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_USER_PASS_KEY, userSessionInfo.getPassword() + userSessionInfo.getAccessToken());
 		
-		try {
-			logger.info("Intento de llamada POST al servicio " + tokenRequestUri + " para obtener el sessionId del usuario");
-			logger.info("Petición: " + post.getRequestEntity());
+		logger.info("Intento de llamada POST al servicio " + tokenRequestUri + " para obtener el sessionId del usuario");
+		logger.info("Petición: " + post.getRequestEntity());
 			
-			httpclient.executeMethod(post);
-			
-			InputStreamReader inputStreamReader = new InputStreamReader(post.getResponseBodyAsStream());
-			JSONTokener jsonTokener = new JSONTokener(inputStreamReader);
-			JSONObject authResponse = new JSONObject(jsonTokener);
+		httpclient.executeMethod(post);
+		
+		InputStreamReader inputStreamReader = new InputStreamReader(post.getResponseBodyAsStream());
+		JSONTokener jsonTokener = new JSONTokener(inputStreamReader);
+		JSONObject authResponse = new JSONObject(jsonTokener);
 
-			logger.info("Respuesta: " + authResponse.toString(2));
+		logger.info("Respuesta: " + authResponse.toString(2));
 
-			Date currentDate = new Date();
-			userSessionInfo = new UserSessionInfo();
-			userSessionInfo.setUsername(username);
-			userSessionInfo.setPassword(password);
-			userSessionInfo.setAccessToken(token);
-			userSessionInfo.setSessionId(authResponse.getString(ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_ACCESS_TOKEN_KEY));
-			userSessionInfo.setLastConnection(currentDate);
-			
-			logger.info("Id de sesión: " + userSessionInfo.getSessionId());
-			logger.info("Hora de conexión: " + userSessionInfo.getLastConnection());
-		} catch (JSONException jsonException) {
-			logger.error("Error realizando el login en SalesForce: ", jsonException);
-		} catch (HttpException httpException) {
-			logger.error("Error realizando el login en SalesForce: ", httpException);
-		} catch (IOException ioException) {
-			logger.error("Error realizando el login en SalesForce: ", ioException);
-		} finally {
-			post.releaseConnection();
-		}
-		return userSessionInfo;
+		Date currentDate = new Date();
+		userSessionInfo.setSessionId(authResponse.getString(ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_ACCESS_TOKEN_KEY));
+		userSessionInfo.setLastConnection(currentDate);
+		
+		logger.info("Id de sesión: " + userSessionInfo.getSessionId());
+		logger.info("Hora de conexión: " + userSessionInfo.getLastConnection());
+		post.releaseConnection();
 	}
 	
 	
-	public ForceApi getSalesforceApi(String username, String password, String token){
+	public ForceApi getSalesforceApi(UserSessionInfo datosSesion) throws JSONException, HttpException, IOException {
 		ForceApi api = null;
 		logger.trace("Intentamos recuperar los datos o hacemos login.");
-		//UserSessionInfo datosSesion = this.getUserSessionInfo(username, password, token);
-		UserSessionInfo datosSesion = salesforceLogin(username, password, token);
+		salesforceLogin(datosSesion);
 		if (datosSesion != null && !StringUtils.isEmpty(datosSesion.getSessionId())){
 			logger.trace("Login correcto.");
 			ApiSession s = new ApiSession();

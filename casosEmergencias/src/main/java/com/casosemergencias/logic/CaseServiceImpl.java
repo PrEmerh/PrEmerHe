@@ -18,6 +18,7 @@ import com.casosemergencias.dao.CaseHistoryDAO;
 import com.casosemergencias.dao.vo.CaseCommentVO;
 import com.casosemergencias.dao.vo.CaseHistoryVO;
 import com.casosemergencias.dao.vo.CaseVO;
+import com.casosemergencias.exception.EmergenciasException;
 import com.casosemergencias.logic.sf.response.CreateCaseResponse;
 import com.casosemergencias.logic.sf.rest.CreateCase;
 import com.casosemergencias.logic.sf.util.SalesforceLoginChecker;
@@ -27,6 +28,7 @@ import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.User;
 import com.casosemergencias.model.UserSessionInfo;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.constants.ConstantesError;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
 public class CaseServiceImpl implements CaseService{
@@ -114,80 +116,65 @@ public class CaseServiceImpl implements CaseService{
 		return caseDao.getNumCasos(propDatatable);
 	}
 	
-	public Caso insertCase(Caso caso) {
+	public Caso insertCase(Caso caso) throws EmergenciasException {
 		logger.trace("--- Servicio insertCase iniciado ---");
 		// 1. Leer usuario de fichero de propiedades
-		InputStream propsInputStream = null;
 		Properties properties = new Properties();
 		String username = null;
 		String password = null;
 		String token = null;
 		String userId = null;
-		UserSessionInfo userSessionInfo = null;
+		UserSessionInfo userSessionInfoFromDB = null;
 		CreateCaseResponse respuestaCaso = null;
 		CaseVO casoVO = null;
 		
-		try {
-			propsInputStream = getClass().getClassLoader().getResourceAsStream("/environment/dev/config.properties");
+		try (InputStream propsInputStream = getClass().getClassLoader().getResourceAsStream("/environment/dev/config.properties")) {
 			properties.load(propsInputStream);
-			
 			username = properties.getProperty("heroku.user");
 			password = properties.getProperty("heroku.pass");
 			token = properties.getProperty("heroku.token");
 			userId = properties.getProperty("heroku.userid");
 			
-			if (username != null && !"".equals(username) 
-					&& password != null && !"".equals(password) 
-					&& token != null && !"".equals(token)) {
-				
-				userSessionInfo = salesforceLoginChecker.getUserSessionInfo(username, password, token);
-				if (userSessionInfo != null) {
+			if (username != null && !"".equals(username) && password != null && !"".equals(password) && token != null && !"".equals(token)) {
+				UserSessionInfo sessionInfoToLogin = new UserSessionInfo();
+				sessionInfoToLogin.setUsername(properties.getProperty("heroku.user"));
+				sessionInfoToLogin.setPassword(properties.getProperty("heroku.pass"));
+				sessionInfoToLogin.setAccessToken(properties.getProperty("heroku.token"));
+				userSessionInfoFromDB = salesforceLoginChecker.getUserSessionInfo(sessionInfoToLogin);
+				if (userSessionInfoFromDB != null) {
 					caso.setPropietarioCaso(userId);
-					respuestaCaso = CreateCase.createCaseInSalesforce(userSessionInfo, caso);
+					respuestaCaso = CreateCase.createCaseInSalesforce(userSessionInfoFromDB, caso);
 					if (respuestaCaso != null) {
-						if ("0".equals(respuestaCaso.getControlErrores().getCodigoError())) {
-							if (respuestaCaso.getIdCaso() != null && !"".equals(respuestaCaso.getIdCaso())) {
-								caso.setSfid(respuestaCaso.getIdCaso());
-								logger.info("Caso creado con sfid:" + respuestaCaso.getIdCaso());
-							}
-							
-							if (respuestaCaso.getNumeroCaso() != null && !"".equals(respuestaCaso.getNumeroCaso())) {
-								caso.setNumeroCaso(respuestaCaso.getNumeroCaso());
-								logger.info("Caso creado con no. de caso: " + respuestaCaso.getNumeroCaso());
-							}
-							
-							casoVO = new CaseVO();
-							ParserModelVO.parseDataModelVO(caso, casoVO);
-							Integer id = caseDao.insertCase(casoVO);
-							if (id != null && id.intValue() > 0) {
-								logger.info("Caso insertado correctamente en Heroku con id: " + id.intValue());
-							} else {
-								caso = null;
-								logger.warn("No se ha podido insertar el caso en Heroku");
-								//TODO: Qué hacer si falla la inserción en BBDD? Se subirá a Salesforce y acabará bajando a Heroku?
-							}
+						if (respuestaCaso.getIdCaso() != null && !"".equals(respuestaCaso.getIdCaso())) {
+							caso.setSfid(respuestaCaso.getIdCaso());
+							logger.info("Caso creado con sfid:" + respuestaCaso.getIdCaso());
+						}
+						
+						if (respuestaCaso.getNumeroCaso() != null && !"".equals(respuestaCaso.getNumeroCaso())) {
+							caso.setNumeroCaso(respuestaCaso.getNumeroCaso());
+							logger.info("Caso creado con no. de caso: " + respuestaCaso.getNumeroCaso());
+						}
+						
+						casoVO = new CaseVO();
+						ParserModelVO.parseDataModelVO(caso, casoVO);
+						Integer id = caseDao.insertCase(casoVO);
+						if (id != null && id.intValue() > 0) {
+							logger.info("Caso insertado correctamente en Heroku con id: " + id.intValue());
 						} else {
 							caso = null;
-							logger.error("Se ha producido un error al insertar el caso en SalesForce");
-							logger.error("Código de error: " + respuestaCaso.getControlErrores().getCodigoError() + ". Mensaje: " + respuestaCaso.getControlErrores().getMensajeError());
+							logger.error("No se ha podido insertar el caso en Heroku. Ha fallado la inserción en base de datos");
+							throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_003, ConstantesError.HEROKU_CASE_CREATION_OK_WITH_ERROR + "(N. caso: " + respuestaCaso.getNumeroCaso() + ")");
 						}
 					} else {
 						caso = null;
-						logger.warn("No se ha podido insertar el caso en SalesForce");
-						//TODO: Implementar excepciones propìas
+						logger.warn("Se ha producido un error al insertar el caso en SalesForce");
+						throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_002, ConstantesError.SALESFORCE_CASE_CREATION_ERROR);
 					}
 				}
 			}
-		} catch (IOException ioException) {
-			logger.error(" Error cargando archivo de propiedades: " + ioException);
-		} finally {
-			if (propsInputStream != null) {
-				try {
-					propsInputStream.close();
-				} catch (IOException ioException) {
-					logger.error(" Error cargando archivo de propiedades: " + ioException);
-				}
-			}
+		} catch (IOException exception) {
+			logger.error("Error obteniendo los datos del usuario: ", exception);
+			throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_002, ConstantesError.SALESFORCE_CASE_CREATION_ERROR);
 		}
 
 		logger.trace("--- Servicio insertCase completado ---");
@@ -208,8 +195,9 @@ public class CaseServiceImpl implements CaseService{
 	 * Método que parsea una lista de CaseHistoryVO en CaseHistory.
 	 * Ademas prepara la lista con los datos listos para mostrar en pantalla:
 	 * 		-- 1.- Si 'oldvalue' y 'newvalue' son sfid (no tiene longitud 18, sin espacios ni puntos), si es un sfid no se añade a la lista que devuelve el metodo
-	 * 		-- 2.- Si 'labelOldValuePickList' y 'labelNewValuePickList' estan vacios, se almacena el valor de 'oldvalue' y 'newvalue'
-	 * 		-- 3.- Si hay varios registros con la misma Fecha, hora y minutos borramos los datos de 'createdate', 'createdbyid' y 'userJoi'n de todos, 
+	 * 		-- 2.- Si 'labelFieldPickList' no es vacio y termina en punto, guardamos este valor en el campo 'field' y vaciamos el valor de 'labelFieldPickList' (en pantalla tendrá que mostrarse este valor)
+	 * 		-- 3.- Si 'labelOldValuePickList' y 'labelNewValuePickList' estan vacios, se almacena el valor de 'oldvalue' y 'newvalue'
+	 * 		-- 4.- Si hay varios registros con la misma Fecha, hora y minutos borramos los datos de 'createdate', 'createdbyid' y 'userJoi'n de todos, 
 	 * 				excepto el 1º registros
 	 * */
 	private List<CaseHistory> parseaYPreparaListaHistorialCasos(List<CaseHistoryVO> listaCaseHistoryVO) {
@@ -246,7 +234,18 @@ public class CaseServiceImpl implements CaseService{
 					}					
 				}
 				
-				//Comprobacion punto 2		
+				//Comprobacion punto 2
+				//'labelFieldPickList' no es vacio y termina en punto, guardamos este valor en el campo 'field' y vaciamos el valor de 'labelFieldPickList'
+				value = casoRelacionado.getLabelFieldPickList();
+				if(value != null && value != ""){
+					String lastCharValue = value.substring(value.length()-1);
+					if(!".".equals(lastCharValue)){
+						casoRelacionado.setField(value);
+						casoRelacionado.setLabelFieldPickList(null);
+					}
+				}
+				
+				//Comprobacion punto 3		
 				//'labelOldValuePickList' y 'labelNewValuePickList' no tienen valor, almacenamos oldvalue y newvalue en los campos.
 				String oldValuePickList = casoRelacionado.getLabelOldValuePickList();
 				if(oldValuePickList == null ||  "".equals(oldValuePickList)){
@@ -266,7 +265,7 @@ public class CaseServiceImpl implements CaseService{
 					}
 				}
 				
-				//Comprobacion punto 3		
+				//Comprobacion punto 4		
 				try {
 					fechaIteracion = dateFormat.parse(casoRelacionado.getCreateddate().toString());
 				

@@ -64,13 +64,23 @@ function cancelarButton() {
 
 function checkUpdates() {
 	if ($('#editMode').val() == 'UPDATED_OK') {
-		$('#divOk').show();
+		$('#divCaseModifiedOk').show();
 	} else if ($('#editMode').val() == 'UPDATED_ERROR') {
-		$('#divError').show();
-	}else if ($('#editMode').val() == 'CREATED_OK') {
+		$('#divCaseModifiedError').show();
+	} else if ($('#editMode').val() == 'CREATED_OK') {
 		$('#divCaseCommentCreated').show();
 	} else if ($('#editMode').val() == 'CREATED_ERROR') {
 		$('#divCaseCommentNOCreated').show();
+	} else if ($('#editMode').val() == 'INSERTED_OK') {
+		$('#divCaseCreatedOk').show();
+	}
+}
+
+function showNotifications() {
+	if ($('#divInsertError').length) {
+		$('#divInsertError').show();
+	} else if ($('#divInsertOk').length) {
+		$('#divInsertOk').show();
 	}
 }
 
@@ -89,7 +99,7 @@ function validateEmail(email) {
 
 // FUNCIONES DE PÁGINA DE ALTA DE CASOS
 function altaCaso() {
-	var validado = validaDatos();
+	var validado = true; //validaDatos();
 	if (validado) {
 		$('#formEntidadCasoAlta').submit();
 		return true;
@@ -99,9 +109,9 @@ function altaCaso() {
 }
 
 function altaCasoYNuevo() {
-	var validado = validaDatos();
+	var validado = true; //validaDatos();
 	if (validado) {
-		$('#redirectHere').val("true");
+		$('#redirectToNewCase').val("true");
 		$('#formEntidadCasoAlta').submit();
 		return true;
 	} else {

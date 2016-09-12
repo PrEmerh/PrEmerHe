@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.casosemergencias.model.CaseComment;
-import com.casosemergencias.model.User;
 
 public class CaseCommentView extends ObjectView {
 	
