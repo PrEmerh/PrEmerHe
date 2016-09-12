@@ -62,7 +62,7 @@
 											<td>${suministro.comuna}</td>
 											<td>${suministro.labelEstadoConexionPickList}</td>
 											<td>${suministro.labelEstadoSuministroPickList}</td>
-											<td>${suministro.tipoSegmento}</td>
+											<td>${suministro.labelTipoSegmentoPickList}</td>
 											<td>${suministro.relacionActivo}</td>
 										</tr>
 									</c:forEach>
@@ -166,8 +166,8 @@
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_fechaNacimiento"/></label>
 						</div>
-						<div>
-							<label>${contacto.fechaNacimiento}</label>
+						<div>				
+							<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${contacto.fechaNacimiento}"/></label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_nombreCuenta"/></label>

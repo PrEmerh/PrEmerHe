@@ -87,6 +87,8 @@ public class Suministro extends ObjectLogic {
 	private String labelFullElectricPickList;
 	
 	private String labelMedidaDisciplinaPickList;
+	
+	private String labelElectrodependientePickList;
 
 	public Suministro() {
 	}
@@ -106,7 +108,7 @@ public class Suministro extends ObjectLogic {
 			String labelProcesoLecturaPickList, String labelTipoMedidaPickList, String labelTipoSegmentoPickList,
 			String labelSubestacionElecPickList, String labelPropMedidorPickList, String labelTipoConexionPickList,
 			String labelTipoLecturaPickList, String labelTipoTransformadorPickList, String labelComunaRepartoPickList,
-			String labelFullElectricPickList) {
+			String labelFullElectricPickList,String labelElectrodependientePickList) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -169,6 +171,7 @@ public class Suministro extends ObjectLogic {
 		this.labelTipoTransformadorPickList = labelTipoTransformadorPickList;
 		this.labelComunaRepartoPickList = labelComunaRepartoPickList;
 		this.labelFullElectricPickList = labelFullElectricPickList;
+		this.labelElectrodependientePickList=labelElectrodependientePickList;
 	}
 
 
@@ -683,4 +686,12 @@ public class Suministro extends ObjectLogic {
 		this.labelMedidaDisciplinaPickList = labelMedidaDisciplinaPickList;
 	}
 
+	public String getLabelElectrodependientePickList() {
+		return labelElectrodependientePickList;
+	}
+
+	public void setLabelElectrodependientePickList(String labelElectrodependientePickList) {
+		this.labelElectrodependientePickList = labelElectrodependientePickList;
+	}
+	
 }

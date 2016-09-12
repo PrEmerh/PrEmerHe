@@ -200,7 +200,7 @@
 							<label><s:message code="entidadSuministro_title_label_electrodependiente"/></label>
 						</div>
 						<div>
-							<label>${suministro.electrodependiente}</label>
+							<label>${suministro.labelElectrodependientePickList}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadSuministro_title_label_fullElectric"/></label>

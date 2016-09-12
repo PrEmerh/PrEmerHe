@@ -58,6 +58,8 @@ public class CaseView extends ObjectView {
 	private String descripcionEstado;
 	private UserView userJoin;
 	private String herokuUsername;
+	private CaseView casoPrincipalJoin;
+	private GroupView groupJoin;
 	private List<CaseHistoryView> historialCaso;
 	private List<CaseCommentView> commentarioCaso;
 	
@@ -270,7 +272,7 @@ public class CaseView extends ObjectView {
 		this.facebook = facebook;
 	}
 	
-	public boolean isActDatosContacto() {
+	public boolean getActDatosContacto() {
 		return actDatosContacto;
 	}
 	public void setActDatosContacto(boolean actDatosContacto) {
@@ -399,8 +401,19 @@ public class CaseView extends ObjectView {
 	}
 	public void setDescripcionEstado(String descripcionEstado) {
 		this.descripcionEstado = descripcionEstado;
+	}		
+	public CaseView getCasoPrincipalJoin() {
+		return casoPrincipalJoin;
 	}
-	
+	public void setCasoPrincipalJoin(CaseView casoPrincipalJoin) {
+		this.casoPrincipalJoin = casoPrincipalJoin;
+	}
+	public GroupView getGroupJoin() {
+		return groupJoin;
+	}
+	public void setGroupJoin(GroupView groupJoin) {
+		this.groupJoin = groupJoin;
+	}
 	/*Joins con picklist*/	
 	public String getLabelSubmotivoPickList() {
 		return labelSubmotivoPickList;

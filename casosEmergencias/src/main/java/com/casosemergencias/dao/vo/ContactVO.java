@@ -111,6 +111,7 @@ public class ContactVO extends ObjectVO implements Serializable {
 	private AccountVO cuentaJoin;
 	
 	
+	
 	/*Recuento de seguidores de Twitter*/ 
 	/*Influencer*/
 	/*Influencer Tipo*/

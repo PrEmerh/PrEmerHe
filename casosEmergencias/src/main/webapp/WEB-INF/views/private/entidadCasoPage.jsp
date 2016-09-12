@@ -130,13 +130,18 @@
 						<label><s:message code="entidadCaso_table_label_casoPrincipal"/></label>
 					</div>
 					<div>
-						<label>${caso.parent}</label>
+						<label><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.casoPrincipalJoin.sfid}">${caso.casoPrincipalJoin.numeroCaso}</a></label>					
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_propietarioCaso"/></label>
 					</div>
 					<div>
-						<label>${caso.userJoin.name}</label>
+						<c:if test="${caso.userJoin.name!=null}">
+							<label>${caso.userJoin.name}</label>					
+						</c:if> 
+						<c:if test="${caso.userJoin.name==null}">
+							<label>${caso.groupJoin.name}</label>
+						</c:if> 
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_fechaHoraCierre"/></label>
@@ -288,7 +293,7 @@
 						<label><s:message code="entidadCaso_table_label_actualizarDatosContacto"/></label>
 					</div>
 					<div>
-						<c:if test="${caso.actDatosContacto}">
+						<c:if test="${caso.actDatosContacto == true}">
 						    <label><input type="checkbox" id="checkbox" value="true" checked="checked" disabled/>
 							</label> 					
 						</c:if> 

@@ -128,6 +128,8 @@ public class SuministroView extends ObjectView {
 	private String labelFullElectricPickList;
 	
 	private String labelMedidaDisciplinaPickList;
+	
+	private String labelElectrodependientePickList;
 
 	public SuministroView() {
 	}
@@ -149,7 +151,7 @@ public class SuministroView extends ObjectView {
 			List<ContactView> contactosRelacionados, String labelProcesoLecturaPickList, String labelTipoMedidaPickList,
 			String labelTipoSegmentoPickList, String labelSubestacionElecPickList, String labelPropMedidorPickList,
 			String labelTipoConexionPickList, String labelTipoLecturaPickList, String labelTipoTransformadorPickList,
-			String labelComunaRepartoPickList, String labelFullElectricPickList) {
+			String labelComunaRepartoPickList, String labelFullElectricPickList,String labelElectrodependientePickList) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -212,6 +214,7 @@ public class SuministroView extends ObjectView {
 		this.labelTipoTransformadorPickList = labelTipoTransformadorPickList;
 		this.labelComunaRepartoPickList = labelComunaRepartoPickList;
 		this.labelFullElectricPickList = labelFullElectricPickList;
+		this.labelElectrodependientePickList=labelElectrodependientePickList;
 	}
 
 
@@ -711,15 +714,20 @@ public class SuministroView extends ObjectView {
 		this.labelFullElectricPickList = labelFullElectricPickList;
 	}
 
-
-
 	public String getLabelMedidaDisciplinaPickList() {
 		return labelMedidaDisciplinaPickList;
 	}
 
-
-
 	public void setLabelMedidaDisciplinaPickList(String labelMedidaDisciplinaPickList) {
 		this.labelMedidaDisciplinaPickList = labelMedidaDisciplinaPickList;
 	}
+	public String getLabelElectrodependientePickList() {
+		return labelElectrodependientePickList;
+	}
+	public void setLabelElectrodependientePickList(String labelElectrodependientePickList) {
+		this.labelElectrodependientePickList = labelElectrodependientePickList;
+	}
+
+	
+	
 }
