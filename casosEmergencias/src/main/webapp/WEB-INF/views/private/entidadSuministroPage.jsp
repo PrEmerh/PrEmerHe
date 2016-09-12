@@ -398,7 +398,7 @@
 											<td>${caso.descripcionEstado}</td>
 											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaApertura}"/></td>
 											<td>${caso.labelSubmotivoPickList}</td>
-											<td>${caso.fechaEstimadaCierre}</td>
+											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaEstimadaCierre}"/></td>
 											<td>${caso.labelCanalOrigenPickList}</td>
 										</tr>
 									</c:forEach>
