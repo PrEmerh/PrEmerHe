@@ -167,7 +167,7 @@
 							<label><s:message code="entidadContacto_table_label_fechaNacimiento"/></label>
 						</div>
 						<div>				
-							<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${contacto.fechaNacimiento}"/></label>
+							<label><fmt:formatDate pattern="dd/MM/yyyy" value="${contacto.fechaNacimiento}"/></label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_nombreCuenta"/></label>
@@ -181,7 +181,7 @@
 							<label><s:message code="entidadContacto_table_label_direccionContacto"/></label>
 						</div>
 						<div>
-							<label>${contacto.dirContactoJoin.numero}</label>
+							<label><a class="link" href="../private/entidadDireccion?sfid=${contacto.dirContactoJoin.sfid}">${contacto.dirContactoJoin.numero}</a></label>			
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_emailSecundario"/></label>
@@ -277,9 +277,9 @@
 										<tr>
 											<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
 											<td>${caso.descripcionEstado}</td>
-											<td>${caso.fechaApertura}</td>
+											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaApertura}"/></td>
 											<td>${caso.labelSubmotivoPickList}</td>
-											<td>${caso.fechaEstimadaCierre}</td>
+											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaEstimadaCierre}"/></td>
 										 	<td>${caso.labelCanalOrigenPickList}</td> 
 										</tr>
 									</c:forEach>

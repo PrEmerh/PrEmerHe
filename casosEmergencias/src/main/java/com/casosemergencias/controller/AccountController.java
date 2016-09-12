@@ -1,6 +1,7 @@
 package com.casosemergencias.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.AccountView;
+import com.casosemergencias.controller.views.CaseView;
+import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.AccountService;
 import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.util.ParserModelVO;
@@ -71,15 +74,33 @@ public class AccountController {
 			ParserModelVO.parseDataModelVO(cuentaBBDD, cuentaView);
 		}
 		
-		/*Almacenamos sfid de contactos y suministros relacionados en caso de que la cuenta seleccionado tenga uno de cada
-		
-		if(cuentaView.getContactos()!=null && cuentaView.getContactos().isEmpty()==false  && cuentaView.getContactos().size()==1 && session.getAttribute(Constantes.SFID_CONTACTO)==null){
-			session.setAttribute(Constantes.SFID_CONTACTO, cuentaView.getContactos().get(0).getSfid());					
+		//transformamos las fechas con el gmt de sesion
+		long offset = (long)session.getAttribute("difGMTUser");	
+		if(cuentaView.getSuministros() != null && !cuentaView.getSuministros().isEmpty()){
+			for(SuministroView miSuministro : cuentaView.getSuministros()){
+				if(miSuministro.getFechaCorte() != null){
+					Date fechaCorte = miSuministro.getFechaCorte();
+					fechaCorte = new Date(fechaCorte.getTime() + offset);
+					miSuministro.setFechaCorte(fechaCorte);
+				}
+			}	
 		}
-		
-		if(cuentaView.getSuministros()!=null && cuentaView.getSuministros().isEmpty()==false  && cuentaView.getSuministros().size()==1 && session.getAttribute(Constantes.SFID_SUMINISTRO)==null){
-			session.setAttribute(Constantes.SFID_SUMINISTRO, cuentaView.getSuministros().get(0).getSfid());					
-		}*/
+//	-----------	Descomentar cuando se añada la lista de casos
+//		if(cuentaView.getCasos() != null && !cuentaView.getCasos().isEmpty()){
+//			for(CaseView miCase : contactoView.getCasos()){
+//				if(miCase.getFechaApertura() != null){
+//					Date fechaApertura = miCase.getFechaApertura();
+//					fechaApertura = new Date(fechaApertura.getTime() + offset);
+//					miCase.setFechaApertura(fechaApertura);
+//				}
+//				if(miCase.getFechaEstimadaCierre() != null){
+//					Date fechaEstimacion = miCase.getFechaEstimadaCierre();
+//					fechaEstimacion = new Date(fechaEstimacion.getTime() + offset);
+//					miCase.setFechaEstimadaCierre(fechaEstimacion);
+//				}
+//			}	
+//		}
+//----------
 		
 		logger.info("SFID_CUENTA" + session.getAttribute(Constantes.SFID_CUENTA));
 		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));

@@ -63,6 +63,7 @@ public class Suministro extends ObjectLogic {
 	private List<Caso> casos;
 
 	private Cuenta cuentaJoin;
+	private Direccion dirSuministroJoin;
 	
 	private List<Contacto> contactosRelacionados;
 	
@@ -108,7 +109,7 @@ public class Suministro extends ObjectLogic {
 			String labelProcesoLecturaPickList, String labelTipoMedidaPickList, String labelTipoSegmentoPickList,
 			String labelSubestacionElecPickList, String labelPropMedidorPickList, String labelTipoConexionPickList,
 			String labelTipoLecturaPickList, String labelTipoTransformadorPickList, String labelComunaRepartoPickList,
-			String labelFullElectricPickList,String labelElectrodependientePickList) {
+			String labelFullElectricPickList,String labelElectrodependientePickList,Direccion dirSuministroJoin) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -160,6 +161,7 @@ public class Suministro extends ObjectLogic {
 		this.suministroAfectado = suministroAfectado;
 		this.casos = casos;
 		this.cuentaJoin = cuentaJoin;
+		this.dirSuministroJoin=dirSuministroJoin;
 		this.contactosRelacionados = contactosRelacionados;
 		this.labelProcesoLecturaPickList = labelProcesoLecturaPickList;
 		this.labelTipoMedidaPickList = labelTipoMedidaPickList;
@@ -570,6 +572,14 @@ public class Suministro extends ObjectLogic {
 
 	public void setCuentaJoin(Cuenta cuentaJoin) {
 		this.cuentaJoin = cuentaJoin;
+	}
+
+	public Direccion getDirSuministroJoin() {
+		return dirSuministroJoin;
+	}
+
+	public void setDirSuministroJoin(Direccion dirSuministroJoin) {
+		this.dirSuministroJoin = dirSuministroJoin;
 	}
 
 	public String getTipoEvento() {

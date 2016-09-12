@@ -239,6 +239,10 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cuenta__c", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private AccountVO cuentaJoin;
+	
+	@OneToOne(fetch=FetchType.LAZY, optional=true)
+	@JoinColumn(name="direccion__c", referencedColumnName="sfid", insertable = false, updatable=false)
+	private DireccionVO dirSuministroJoin;
 
 	public SuministroVO() {
 	}
@@ -771,6 +775,14 @@ public class SuministroVO extends ObjectVO implements Serializable {
 
 	public void setCuentaJoin(AccountVO cuentaJoin) {
 		this.cuentaJoin = cuentaJoin;
+	}
+
+	public DireccionVO getDirSuministroJoin() {
+		return dirSuministroJoin;
+	}
+
+	public void setDirSuministroJoin(DireccionVO dirSuministroJoin) {
+		this.dirSuministroJoin = dirSuministroJoin;
 	}
 
 	public PickListsVO getProcesoLecturaPickList() {
