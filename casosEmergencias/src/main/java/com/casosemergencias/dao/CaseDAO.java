@@ -1782,7 +1782,7 @@ public class CaseDAO {
 		Session session = sessionFactory.openSession();
 
 		try {
-			StringBuilder sqlQuery = new StringBuilder("SELECT COUNT(id) FROM CaseVO ");
+			StringBuilder sqlQuery = new StringBuilder("SELECT COUNT(id) FROM CaseVO  as caso ");
 
 			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
 				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
