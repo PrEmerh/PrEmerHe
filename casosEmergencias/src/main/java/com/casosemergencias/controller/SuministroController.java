@@ -72,6 +72,9 @@ public class SuministroController {
 		if(suministroView.getContactosRelacionados()!=null && !suministroView.getContactosRelacionados().isEmpty()  && suministroView.getContactosRelacionados().size()==1 && session.getAttribute(Constantes.SFID_CONTACTO)==null){
 			session.setAttribute(Constantes.SFID_CONTACTO, suministroView.getContactosRelacionados().get(0).getSfid());					
 		}
+		if(suministroView.getCuentaJoin()!=null && session.getAttribute(Constantes.SFID_CUENTA)==null){
+			session.setAttribute(Constantes.SFID_CUENTA, suministroView.getCuentaJoin().getSfid());					
+		}
 		
 		//transformamos las fechas con el gmt de sesion
 		long offset = (long)session.getAttribute("difGMTUser");

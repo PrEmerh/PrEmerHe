@@ -19,7 +19,7 @@ $(document).ready(function() {
        	},
        	"columns": [
        	            {"data": "name", 							"width": "25%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
-       	            {"data": "account__run__c", 				"width": "23%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true}, 
+       	            {"data": "run__c", 							"width": "23%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true}, 
        	            {"data": "phone",							"width": "25%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
        	            {"data": "email",							"width": "25%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
        	            {"data": "sf4twitter__twitter_username__c",	"width": "1%",  "defaultContent": "", "searchable": true, 	"orderable": false,	"visible": false},

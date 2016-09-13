@@ -241,7 +241,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	private String suppliedName;
 
 	@Column(name = "closeddate")
-	private Date closedDate;
+	private Date fechaCierre;
 
 	@Column(name = "fallo_envio_inservice__c")
 	private Boolean falloEnvioInservice;
@@ -394,6 +394,11 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@WhereJoinTable(clause = "campo = 'Favorabilidad_del_caso__c' and objeto = 'Case'")
 	private PickListsCaseVO favorabilidadDelCasoPickList;
 	
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "type", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Type' and objeto = 'Case'")
+	private PickListsCaseTypeVO typeCasoPickList;
+	
 	// vamos a recuperar los datos de Cuenta,Contacto,Suministro y Usuario
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "contactid", referencedColumnName = "sfid", insertable = false, updatable = false)
@@ -449,9 +454,9 @@ public class CaseVO extends ObjectVO implements Serializable {
 			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante,String herokuUsername,
 			PickListsCaseVO subestadoPickList, PickListsCaseVO submotivoPickList, PickListsCaseVO peticionPickList,
 			PickListsCaseOriginVO canalOrigenPickList, PickListsCaseVO condicionAgravantePickList, 
-			PickListsCaseCanalNotificacionVO canalNotificacionPickList, PickListsCaseVO favorabilidadDelCasoPickList, ContactVO contactoJoin, 
+			PickListsCaseCanalNotificacionVO canalNotificacionPickList, PickListsCaseVO favorabilidadDelCasoPickList,PickListsCaseTypeVO typeCasoPickList, ContactVO contactoJoin, 
 			AccountVO cuentaJoin, SuministroVO suministroJoin, DireccionVO direccionJoin,
-			UserVO userJoin, CaseVO casoPrincipalJoin,GroupVO groupJoin) {
+			UserVO userJoin, CaseVO casoPrincipalJoin,GroupVO groupJoin, Date fechaCierre) {
 		super();
 		this.isdeleted = isdeleted;
 		this.systemmodstamp = systemmodstamp;
@@ -523,7 +528,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.numSum = numSum;
 		this.twitter = twitter;
 		this.suppliedName = suppliedName;
-		this.closedDate = closedDate;
+		this.fechaCierre = fechaCierre;
 		this.falloEnvioInservice = falloEnvioInservice;
 		this.description = description;
 		this.horaArribado = horaArribado;
@@ -568,6 +573,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.condicionAgravantePickList = condicionAgravantePickList;
 		this.canalNotificacionPickList = canalNotificacionPickList;
 		this.favorabilidadDelCasoPickList = favorabilidadDelCasoPickList;
+		this.typeCasoPickList=typeCasoPickList;
 		this.contactoJoin = contactoJoin;
 		this.cuentaJoin = cuentaJoin;
 		this.suministroJoin = suministroJoin;
@@ -1143,12 +1149,12 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.suppliedName = suppliedName;
 	}
 
-	public Date getClosedDate() {
-		return closedDate;
+	public Date getFechaCierre() {
+		return fechaCierre;
 	}
 
-	public void setClosedDate(Date closedDate) {
-		this.closedDate = closedDate;
+	public void setFechaCierre(Date fechaCierre) {
+		this.fechaCierre = fechaCierre;
 	}
 
 	public Boolean getFalloEnvioInservice() {
@@ -1494,6 +1500,14 @@ public class CaseVO extends ObjectVO implements Serializable {
 	public void setFavorabilidadDelCasoPickList(PickListsCaseVO favorabilidadDelCasoPickList) {
 		this.favorabilidadDelCasoPickList = favorabilidadDelCasoPickList;
 	}
+	
+	public PickListsCaseTypeVO getTypeCasoPickList() {
+		return typeCasoPickList;
+	}
+
+	public void setTypeCasoPickList(PickListsCaseTypeVO typeCasoPickList) {
+		this.typeCasoPickList = typeCasoPickList;
+	}
 
 	@Override
 	public Object instantiateTargetLogic() {
@@ -1556,6 +1570,16 @@ public class CaseVO extends ObjectVO implements Serializable {
 		}
 		return result;
 	}
+	
+	public String getLabelTypeCasoPickList() {
+		String result = this.getType();
+		if (this.getTypeCasoPickList() != null) {
+			result = this.getTypeCasoPickList().getValor();
+		}
+		return result;
+	}
+	
+	
 	
 	public String getLabelCanalNotificacionPickList() {
 		String result = this.getCanalNotificacion();

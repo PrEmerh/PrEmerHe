@@ -72,6 +72,7 @@ public class Caso extends ObjectLogic {
 	private String labelCondicionAgravantePickList;
 	private String labelCanalNotificacionPickList;
 	private String labelFavorabilidadDelCasoPickList;
+	private String labelTypeCasoPickList;
 	
 	private List<CaseHistory> historialCaso;
 	private List<CaseComment> commentarioCaso;
@@ -409,6 +410,12 @@ public class Caso extends ObjectLogic {
 	public void setLabelFavorabilidadDelCasoPickList(String labelFavorabilidadDelCasoPickList) {
 		this.labelFavorabilidadDelCasoPickList = labelFavorabilidadDelCasoPickList;
 	}	
+	public String getLabelTypeCasoPickList() {
+		return labelTypeCasoPickList;
+	}
+	public void setLabelTypeCasoPickList(String labelTypeCasoPickList) {
+		this.labelTypeCasoPickList = labelTypeCasoPickList;
+	}
 	public Caso getCasoPrincipalJoin() {
 		return casoPrincipalJoin;
 	}

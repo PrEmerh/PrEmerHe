@@ -165,7 +165,7 @@
 									<td>${suministro.labelEmpresaPickList}</td>
 									<td>${suministro.labelEstadoConexionPickList}</td>
 									<td>${suministro.labelEstadoSuministroPickList}</td>
-									<td>${suministro.electrodependiente}</td>
+									<td>${suministro.labelElectrodependientePickList}</td>
 									<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${suministro.fechaCorte}"/></td>
 									<td>${suministro.direccionConcatenada}</td>
 									<td>${suministro.comuna}</td>
@@ -204,9 +204,57 @@
 							<c:forEach items="${cuenta.contactos}" var="contacto">
 								<tr>
 									<td><a class="link" href="../private/entidadContacto?sfid=${contacto.sfid}">${contacto.name}</a></td>
-									<td>${contacto.accountRun}</td>
+									<td>${contacto.run}</td>
 									<td>${contacto.phone}</td>
 									<td>${contacto.email}</td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<td colspan="6" class="tablaVacia">
+									<s:message code="entidades_empty_case_table" />
+								</td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
+				</table>
+			</div>
+		</div>
+		<div id="divEntidadCuentaCasos" class="divEntidad">
+			<div class="subtitleAltaEntidad">
+				<div>
+					<input id="arrowTablaCuentaCasos" type="image" src="../resources/images/arrow-down-black.png" 
+						height="15" onclick="showHideCabeceras('tablaCuentaCasos','arrowTablaCuentaCasos'); return false;"/>							
+					<label class="divLabel"><s:message code="entidadCuenta_title_label_caso_data_detail" /></label>
+				</div>
+			</div>
+			<div id="tablaCuentaCasos">
+				<table class="basicTable">
+					<tr>
+						<th><s:message code="entidadCuenta_title_label_caso_numcaso" /></th>
+						<th><s:message code="entidadCuenta_title_label_caso_i" /></th>
+					    <th><s:message code="entidadCuenta_title_label_caso_nombreContacto" /></th>
+					    <th><s:message code="entidadCuenta_title_label_caso_asunto" /></th>
+					    <th><s:message code="entidadCuenta_title_label_caso_fechahoraapertura" /></th>
+					    <th><s:message code="entidadCuenta_title_label_caso_estado" /></th>
+					    <th><s:message code="entidadCuenta_title_label_caso_propietarioCaso" /></th>
+					</tr>
+					<c:choose>
+						<c:when test="${not empty cuenta.casos}">
+							<c:forEach items="${cuenta.casos}" var="caso">
+								<tr>
+									<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
+									<td class="filaImagen">
+									<c:if test="${caso.labelEstadoPickList!=null && caso.labelEstadoPickList!='Cerrado' && caso.labelEstadoPickList!='Cancelado'}">					
+									<img src="../resources/images/inservice_red_point.png" height="12px" width="12px">
+									</c:if>	
+									</td>
+									<td>${caso.contactoJoin.name}</td>
+									<td>${caso.asunto}</td>
+									<td width="15%"><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaApertura}"/></td>								
+									<td>${caso.labelEstadoPickList}</td>
+									<td>${caso.userJoin.name}</td>
 								</tr>
 							</c:forEach>
 						</c:when>

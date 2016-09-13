@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -6,7 +6,6 @@
 
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Emergencias App</title>		
 		
 		<link rel="icon" type="image/png" href="../resources/images/favicon.png">
@@ -172,6 +171,12 @@
 			<div id="datosEmergencia" class="divEntidad">
 				<div>	
 					<div class="divLabel">
+						<label><s:message code="entidadCaso_table_label_motivo"/></label>
+					</div>
+					<div>
+						<label>${caso.labelTypeCasoPickList}</label>
+					</div>	
+					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_description"/></label>
 					</div>
 					<div>
@@ -327,7 +332,7 @@
 			<div id="cuerpoMail" class="divEntidad">
 				<div>
 					<div class="divLabel">
-						<label><s:message code="entidadCaso_title_label_cuerpoMail"/></label>
+						<label><s:message code="entidadCaso_table_label_cuerpoMail"/></label>
 					</div>
 					<div>
 						<label>${caso.cuerpoMail}</label>
