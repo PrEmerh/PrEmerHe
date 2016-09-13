@@ -246,7 +246,7 @@
 								<tr>
 									<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
 									<td class="filaImagen">
-									<c:if test="${caso.labelEstadoPickList!='Cerrado' && caso.labelEstadoPickList!='Cancelado' }">					
+									<c:if test="${caso.labelEstadoPickList!=null && caso.labelEstadoPickList!='Cerrado' && caso.labelEstadoPickList!='Cancelado'}">					
 									<img src="../resources/images/inservice_red_point.png" height="12px" width="12px">
 									</c:if>	
 									</td>

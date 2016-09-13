@@ -85,9 +85,9 @@ public class AccountController {
 				}
 			}	
 		}
-
+//	-----------	Descomentar cuando se añada la lista de casos
 //		if(cuentaView.getCasos() != null && !cuentaView.getCasos().isEmpty()){
-//			for(CaseView miCase : cuentaView.getCasos()){
+//			for(CaseView miCase : contactoView.getCasos()){
 //				if(miCase.getFechaApertura() != null){
 //					Date fechaApertura = miCase.getFechaApertura();
 //					fechaApertura = new Date(fechaApertura.getTime() + offset);
@@ -100,7 +100,8 @@ public class AccountController {
 //				}
 //			}	
 //		}
-	
+//----------
+		
 		logger.info("SFID_CUENTA" + session.getAttribute(Constantes.SFID_CUENTA));
 		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));
 		logger.info("SFID_SUMINISTRO" + session.getAttribute(Constantes.SFID_SUMINISTRO));
