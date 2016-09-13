@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.batch.bean.PickListBatch;
 import com.casosemergencias.logic.sf.util.SalesforceLoginChecker;
+import com.casosemergencias.model.UserSessionInfo;
 import com.casosemergencias.util.constants.ConstantesBatch;
 import com.force.api.DescribeSObject;
 import com.force.api.DescribeSObject.Field;
@@ -39,7 +40,11 @@ public class PicklistTableCreatorBatch {
 		List<PickListBatch> listaRecuperadaSF;
 		
 		try {
-			ForceApi api = salesforceLoginChecker.getSalesforceApi(ConstantesBatch.SF_USER_NAME_VALUE, ConstantesBatch.SF_PASSWORD_VALUE, ConstantesBatch.SF_USER_TOKEN_VALUE);
+			UserSessionInfo sessionInfo = new UserSessionInfo();
+			sessionInfo.setUsername(ConstantesBatch.SF_USER_NAME_VALUE);
+			sessionInfo.setPassword(ConstantesBatch.SF_PASSWORD_VALUE);
+			sessionInfo.setAccessToken(ConstantesBatch.SF_USER_TOKEN_VALUE);
+			ForceApi api = salesforceLoginChecker.getSalesforceApi(sessionInfo);
 			if (api != null) {
 				listaRecuperadaSF = getPicklistList(api);
 				if (listaRecuperadaSF != null && !listaRecuperadaSF.isEmpty()) {

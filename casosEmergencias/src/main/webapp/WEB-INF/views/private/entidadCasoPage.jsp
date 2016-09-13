@@ -22,6 +22,37 @@
 	<body onload="initHeader(); checkUpdates();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
+		<!-- INICIO---Mensajes de actualización de caso -->	
+		<div class="notificationMessage">
+			<div id="divCaseModifiedError" class="divError">
+				<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
+				<br>
+				<label><s:message code="entidadCasoAlta_error_revisemensajes"/></label>
+				<br>
+				<label class="notificationMessage" id="errorMessage"></label>
+			</div>
+			<div id="divCaseModifiedOk" class="divOk" >
+				<label><s:message code="entidadCaso_modificacion_correcta"/></label>
+			</div>
+			<!-- FIN---Mensajes de actualización de caso -->
+				
+			<!-- INICIO---Mensaje de creación de un comentario de caso -->	
+			<div id="divCaseCommentNOCreated" class="divError">
+				<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
+				<label class="notificationMessage" id="errorMessage"></label>
+			</div>
+			<div id="divCaseCommentCreated" class="divOk">
+				<label>El comentario se ha guardado correctamente</label>
+			</div>
+			<!-- FIN---Mensajes de creación de un comentario de caso -->
+			
+			<!-- INICIO---Mensaje de alta de un caso -->
+			<div id="divCaseCreatedOk" class="divOk">
+				<label>Se ha creado el caso correctamente</label>
+			</div>
+			<!-- FIN---Mensaje de alta de un caso -->
+		</div>
+		
 		<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
 			<form:hidden path="id"/>
 			<form:hidden path="editMode" value="${editMode}"/>
@@ -33,32 +64,6 @@
 					<li><input id="Cancelar" type="button" name="Cancelar" value="Cancelar" hidden="true"  onclick="cancelarButton();"/></li>
 				</ul>
 			</div>			
-			<!-- INICIO---Mensajes de actualización de caso -->	
-					
-			<div id="divError" class="divError">
-				<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
-				<br>
-				<label><s:message code="entidadCasoAlta_error_revisemensajes"/></label>
-				<br>
-				<label id="errorMessage"></label>
-			</div>
-			<div id="divOk" class="divOk" >
-				<label>Los datos se han modificado correctamente</label>
-			</div>
-			
-			<!-- FIN---Mensajes de actualización de caso -->
-				
-			<!-- INICIO---Mensajes de creación de un comentario de caso -->	
-			
-			<div id="divCaseCommentNOCreated" class="divError">
-				<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
-				<label id="errorMessage"></label>
-			</div>
-			<div id="divCaseCommentCreated" class="divOk">
-				<label>El comentario se ha guardado correctamente</label>
-			</div>
-			
-			<!-- FIN---Mensajes de creación de un comentario de caso -->	
 			<div class="divEntidad">
 				<div class="subtitleAltaEntidad">
 					<div>
@@ -116,13 +121,13 @@
 						<label><s:message code="entidadCaso_table_label_fechahoraapertura"/></label>
 					</div>
 					<div>
-						<label>${caso.fechaApertura}</label>
+						<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaApertura}"/></label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_tiempoNormalizacion"/></label>
 					</div>
 					<div>
-						<label>${caso.fechaEstimadaCierre}</label>
+						<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaEstimadaCierre}"/></label>
 					</div>
 				</div>
 				<div>
@@ -147,7 +152,7 @@
 						<label><s:message code="entidadCaso_table_label_fechaHoraCierre"/></label>
 					</div>
 					<div>
-						<label>${caso.fechaCierre}</label>
+						<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaCierre}"/></label>
 					</div>
 				</div>
 				<div>

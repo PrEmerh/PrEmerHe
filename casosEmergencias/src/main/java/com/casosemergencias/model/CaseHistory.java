@@ -1,11 +1,9 @@
 package com.casosemergencias.model;
 
 import java.util.Date;
-import java.util.List;
 
 import com.casosemergencias.controller.views.CaseHistoryView;
 import com.casosemergencias.dao.vo.CaseHistoryVO;
-import com.casosemergencias.dao.vo.FieldLabelVO;
 
 //Objeto que tiene el modelo de un CaseHistory, se utiliza en el Servicio
 public class CaseHistory extends ObjectLogic{

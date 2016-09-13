@@ -1,6 +1,7 @@
 package com.casosemergencias.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,10 +25,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.AccountView;
 import com.casosemergencias.controller.views.CaseCommentView;
+import com.casosemergencias.controller.views.CaseHistoryView;
 import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.ContactView;
 import com.casosemergencias.controller.views.DireccionView;
 import com.casosemergencias.controller.views.SuministroView;
+import com.casosemergencias.exception.EmergenciasException;
 import com.casosemergencias.logic.AccountService;
 import com.casosemergencias.logic.CaseCommentService;
 import com.casosemergencias.logic.CaseService;
@@ -103,8 +106,9 @@ public class CaseController {
 	}
 	
 	@RequestMapping(value = "/private/entidadCaso", method = RequestMethod.GET)
-	public ModelAndView getCaseData(@RequestParam String sfid, @RequestParam String editMode) {
+	public ModelAndView getCaseData(@RequestParam String sfid, @RequestParam String editMode, HttpServletRequest request) {
 		logger.info("--- Inicio -- getCaseData ---");
+		HttpSession session = request.getSession(true);
 		
 		ModelAndView model = new ModelAndView();		
 		model.addObject("sfid", sfid);
@@ -117,6 +121,44 @@ public class CaseController {
 		if (casoBBDD != null){
 			ParserModelVO.parseDataModelVO(casoBBDD, casoView);
 		}
+		//transformamos las fechas con el gmt de sesion
+		long offset = (long)session.getAttribute("difGMTUser");	
+		if(casoView.getFechaApertura() != null){
+			Date fechaApertura = casoView.getFechaApertura();
+			fechaApertura = new Date(fechaApertura.getTime() + offset);
+			casoView.setFechaApertura(fechaApertura);
+		}
+		if(casoView.getFechaCierre() != null){
+			Date fechaCierre = casoView.getFechaApertura();
+			fechaCierre = new Date(fechaCierre.getTime() + offset);
+			casoView.setFechaCierre(fechaCierre);
+		}
+		if(casoView.getFechaEstimadaCierre() != null){
+			Date fechaEstimacion = casoView.getFechaEstimadaCierre();
+			fechaEstimacion = new Date(fechaEstimacion.getTime() + offset);
+			casoView.setFechaEstimadaCierre(fechaEstimacion);
+		}
+		
+		if(casoView.getHistorialCaso() != null && !casoView.getHistorialCaso().isEmpty()){
+			for(CaseHistoryView miHistorial : casoView.getHistorialCaso()){
+				if(miHistorial.getCreateddate() != null){
+					Date fecha = miHistorial.getCreateddate();
+					fecha = new Date(fecha.getTime() + offset);
+					miHistorial.setCreateddate(fecha);
+				}
+			}	
+		}
+		if(casoView.getCommentarioCaso() != null && !casoView.getCommentarioCaso().isEmpty()){
+			for(CaseCommentView miComentario : casoView.getCommentarioCaso()){
+				if(miComentario.getCreateddate() != null){
+					Date fecha = miComentario.getCreateddate();
+					fecha = new Date(fecha.getTime() + offset);
+					miComentario.setCreateddate(fecha);
+				}
+			}	
+		}
+		
+		
 		model.setViewName("private/entidadCasoPage");
 		/*Hay que añadir recuperación de label de los picklists si no sale el código solo*/
 		model.addObject("caso", casoView);
@@ -135,81 +177,10 @@ public class CaseController {
 		
 		model.addObject("editMode", Constantes.EDIT_MODE_INSERT);
 		model.setViewName("private/entidadCasoAltaPage");
-		//Setteo de datos fijos
-		casoView.setCanalOrigen(Constantes.COD_CASO_ORIGEN_WEB);
-		casoView.setCanalOrigenLabel(Constantes.COD_CASO_ORIGEN_WEB_DESC);
-		casoView.setType(Constantes.COD_CASO_TYPE_RECLAMO);
-		casoView.setTypeLabel(Constantes.COD_CASO_TYPE_RECLAMO_DESC);
-		casoView.setEstado(Constantes.COD_CASO_STATUS_INGRESADO);
-
-		//Recuperacion mapa picklists
-		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("Case");
-		casoView.setMapStatus(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_STATUS, false));
-		casoView.setMapPeticion(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_PETICION, false));
-		//Recupero el RecordTypeId de Emergencia. Cambia por entorno
-		if (casoView.getMapPeticion() != null && !casoView.getMapPeticion().isEmpty() 
-				&& casoView.getMapPeticion().containsValue(Constantes.PICKLIST_CASO_PETICION_EMERGENCIA_NAME)){
-	        for (Entry<String, String> entry : casoView.getMapPeticion().entrySet()) {
-	            if (Constantes.PICKLIST_CASO_PETICION_EMERGENCIA_NAME.equalsIgnoreCase(entry.getValue())){
-	            	casoView.setPeticion(entry.getKey());
-	            	casoView.setPeticionLabel(entry.getValue());
-	                break;
-	            }
-	        }
-		}
-		casoView.setMapSubMotivo(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_SUBMOTIVO, true));
-		casoView.setMapCondicionAgravante(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CONDICION_AGRAVANTE, true));
-		casoView.setMapCanalNotificacion(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CANAL_NOTIFICACION, true));
-		casoView.setMapFavorabilidadCaso(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_FAVORABILIDAD, true));
 		
-		// Añadir datos de suministro, direccion, cuenta y contacto. Se recupera
-		// el sfid a través de la sesión y, a partir de este, se recupera la
-		// información de cada entidad.
-		HttpSession session = request.getSession(true);
+		fillNewCaseFormInfo(casoView);
 		
-		if (session.getAttribute(Constantes.SFID_SUMINISTRO) != null && !"".equals(session.getAttribute(Constantes.SFID_SUMINISTRO))) {
-			//Obtener el suministro para guardarlo en el formulario
-			Suministro suministro = new Suministro();
-			SuministroView suministroVista = new SuministroView();
-			String suministroSfid = (String) session.getAttribute(Constantes.SFID_SUMINISTRO);
-			suministro = suministroService.readSuministroBySfid(suministroSfid);
-			ParserModelVO.parseDataModelVO(suministro, suministroVista);
-			casoView.setSuministroJoin(suministroVista);
-			casoView.setSuministro(suministroSfid);
-			
-			if (suministro != null && suministro.getDireccion() != null && !"".equals(suministro.getDireccion())) {
-				//Obtener la direccion del suministro para guardarla en el formulario
-				Direccion direccion = new Direccion();
-				DireccionView direccionVista = new DireccionView();
-				String direccionSfid = suministro.getDireccion();
-				direccion = direccionService.readDireccionBySfid(direccionSfid);
-				ParserModelVO.parseDataModelVO(direccion, direccionVista);
-				casoView.setDireccionJoin(direccionVista);
-				casoView.setDireccion(direccionSfid);
-			}
-		}
-		
-		if (session.getAttribute(Constantes.SFID_CONTACTO) != null && !"".equals(session.getAttribute(Constantes.SFID_CONTACTO))) {
-			//Obtener el contacto para guardarlo en el formulario
-			Contacto contacto = new Contacto();
-			ContactView contactoVista = new ContactView();
-			String contactoSfid = (String) session.getAttribute(Constantes.SFID_CONTACTO);
-			contacto = contactoService.readContactoBySfid(contactoSfid);
-			ParserModelVO.parseDataModelVO(contacto, contactoVista);
-			casoView.setContactoJoin(contactoVista);
-			casoView.setNombreContacto(contactoSfid);
-		}
-		
-		if (session.getAttribute(Constantes.SFID_CUENTA) != null && !"".equals(session.getAttribute(Constantes.SFID_CUENTA))) {
-			//Obtener la cuenta para guardarla en el formulario
-			Cuenta cuenta = new Cuenta();
-			AccountView cuentaVista = new AccountView();
-			String cuentaSfid = (String) session.getAttribute(Constantes.SFID_CUENTA);
-			cuenta = cuentaService.getAccountBySfid(cuentaSfid);
-			ParserModelVO.parseDataModelVO(cuenta, cuentaVista);
-			casoView.setCuentaJoin(cuentaVista);
-			casoView.setNombreCuenta(cuentaSfid);
-		}
+		getEntityDataForNewCase(request, casoView);
 
 		model.addObject("caso", casoView);
 		
@@ -242,42 +213,58 @@ public class CaseController {
 	}
 
 	@RequestMapping(value = "/private/altaCaso", method = RequestMethod.POST)
-	public String guardarCaso(CaseView caso	, boolean redirectToNewCase, HttpServletRequest request) {
+	public ModelAndView guardarCaso(CaseView caso, boolean redirectToNewCase, HttpServletRequest request) {
 		logger.info("--- Inicio -- guardarCaso ---");
 		
-		String redirectURI = "";
 		Caso casoInsertado = new Caso();
+		ModelAndView model = new ModelAndView();
 		
-		verificarPickList(caso);
-		ParserModelVO.parseDataModelVO(caso, casoInsertado);
-		
-		casoInsertado = casoService.insertCase(casoInsertado);
-		
-		if (casoInsertado != null) {
-			logger.info("Caso guardado correctamente con sfid:" + casoInsertado.getSfid());
+		try {
+			verificarPickList(caso);
+			ParserModelVO.parseDataModelVO(caso, casoInsertado);
 			
-			//Limpieza de sfid que arrastramos en la sesión
-			HttpSession session = request.getSession(true);	
-			session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
-			session.setAttribute(Constantes.SFID_CONTACTO, null);	
-			session.setAttribute(Constantes.SFID_CUENTA, null);
-			session.setAttribute(Constantes.FINAL_DETAIL_PAGE, null);
+			casoInsertado = casoService.insertCase(casoInsertado);
 			
-			if (redirectToNewCase) {
-				logger.info("Se redirecciona a página de nuevo caso");
-				redirectURI = "redirect:entidadCasoAlta";
+			if (casoInsertado != null) {
+				logger.info("Caso guardado correctamente con sfid:" + casoInsertado.getSfid());
+				
+				if (redirectToNewCase) {
+					logger.info("Se redirecciona a página de nuevo caso");
+					model.addObject("mostrarMensaje", true);
+					model.addObject("hayError", false);
+					model.addObject("mensajeResultado", "Se ha insertado correctamente el caso con número " + casoInsertado.getNumeroCaso());
+					caso = new CaseView();
+					fillNewCaseFormInfo(caso);
+					model.addObject("caso", caso);
+					model.setViewName("private/entidadCasoAltaPage");
+				} else {
+					logger.info("Se redirecciona a página de detalle del caso");
+					model.setViewName("redirect:entidadCaso?sfid=" + casoInsertado.getSfid() + "&editMode=" + Constantes.EDIT_MODE_INSERTED_OK);
+				}
 			} else {
-				logger.info("Se redirecciona a página de detalle del caso");
-				redirectURI = "redirect:entidadCaso?sfid=" + casoInsertado.getSfid() + "&editMode=" + Constantes.EDIT_MODE_VIEW;
+				logger.info("Se ha producido un error guardando el caso");
+				model.addObject("mostrarMensaje", true);
+				model.addObject("hayError", true);
+				model.addObject("mensajeResultado", "Se ha producido un error guardando el caso");
+				fillNewCaseFormInfo(caso);
+				getEntityDataForNewCase(request, caso);
+				model.addObject("caso", caso);
+				model.setViewName("private/entidadCasoAltaPage");
 			}
-		} else {
-			//TODO: Qué hace SF si falla el alta?
+		} catch(EmergenciasException exception) {
 			logger.info("No se ha guardado correctamente el caso");
-			redirectURI = "redirect:entidadCasoAlta";
+			model.addObject("mostrarMensaje", true);
+			model.addObject("hayError", true);
+			model.addObject("codigoError", exception.getCode());
+			model.addObject("mensajeResultado", exception.getMessage());
+			fillNewCaseFormInfo(caso);
+			getEntityDataForNewCase(request, caso);
+			model.addObject("caso", caso);
+			model.setViewName("private/entidadCasoAltaPage");
 		}
 		
 		logger.info("--- Fin -- guardarCaso ---");
-		return redirectURI;
+		return model;
 	}
 		
 	/**
@@ -294,19 +281,10 @@ public class CaseController {
 		
 		logger.info("--- Inicio -- listadoCasosHome ---");
 		
-		//Limpieza de sfid que arrastramos
-		
-		HttpSession session = request.getSession(true);	
-		
-		session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
-		session.setAttribute(Constantes.SFID_CONTACTO, null);	
-		session.setAttribute(Constantes.SFID_CUENTA, null);	
-		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, null);	
-		
-		//Limpieza de sfid que arrastramos
+		// Se limpian los ids de las entidades.
+		cleanSessionEntityIds(request);	
 		
 		DataTableProperties dataTableProperties = DataTableParser.parseBodyToDataTable(body);
-		
 		List<Caso> listCasos = new ArrayList<Caso>();
 		
 		JSONObject jsonResult;
@@ -337,6 +315,19 @@ public class CaseController {
 		logger.info("--- Fin -- listadoCasosHome ---");
 		
 		return jsonObject.toString();
+	}
+
+	/**
+	 * Limpia los identificadores de las entidades de la sesi&oacute;n.
+	 * @param request Petici&oacute;n donde limpiar los identificadores.
+	 */
+	private void cleanSessionEntityIds(HttpServletRequest request) {
+		//Limpieza de sfid que arrastramos
+		HttpSession session = request.getSession(true);	
+		session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
+		session.setAttribute(Constantes.SFID_CONTACTO, null);	
+		session.setAttribute(Constantes.SFID_CUENTA, null);	
+		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, null);
 	}
 	
 	/**
@@ -391,10 +382,11 @@ public class CaseController {
 	}
 
 	@RequestMapping(value = "/private/casoComentarioPage", method = RequestMethod.GET)
-	public ModelAndView comentarioCaso(@ModelAttribute("sfid") String sfidCase) {
+	public ModelAndView comentarioCaso(@ModelAttribute("sfid") String sfidCase,  HttpServletRequest request) {
 		
 		logger.info("--- Inicio -- comentarioCaso ---");
 		logger.debug("----- comentarioCaso -- sfid del caso: " + sfidCase);
+		HttpSession session = request.getSession(true);
 		
 		ModelAndView model = new ModelAndView();			
 		model.setViewName("private/comentarioCasePage");
@@ -412,9 +404,17 @@ public class CaseController {
 		List<CaseCommentView> listaComentariosCasoView = new ArrayList<>();
 		
 		if(listaComentariosCasos!=null && !listaComentariosCasos.isEmpty()){
-			for(CaseComment historiaCasoVO: listaComentariosCasos){
+			for(CaseComment comentarioCasoVO: listaComentariosCasos){
 				CaseCommentView casoRelacionado = new CaseCommentView();
-				ParserModelVO.parseDataModelVO(historiaCasoVO, casoRelacionado);
+				ParserModelVO.parseDataModelVO(comentarioCasoVO, casoRelacionado);
+
+				//transformamos las fechas con el gmt de sesion
+				long offset = (long)session.getAttribute("difGMTUser");	
+				if(casoRelacionado.getCreateddate() != null){
+					Date fecha = casoRelacionado.getCreateddate();
+					fecha = new Date(fecha.getTime() + offset);
+					casoRelacionado.setCreateddate(fecha);
+				}
 				listaComentariosCasoView.add(casoRelacionado);
 			}
 		}
@@ -447,5 +447,104 @@ public class CaseController {
 		else{
 			return "redirect:entidadCaso?sfid=" + comentarioCaso.getCaseid() +"&editMode="+Constantes.CREATED_MODE_CREATED_ERROR;
 		}		
+	}
+	
+	private void fillNewCaseFormInfo(CaseView casoView) {
+		logger.trace("Entrando en fillNewCaseFormInfo()");
+		
+		logger.debug("Se van a cargar los datos iniciales del formulario de alta de caso");
+		//Setteo de datos fijos
+		casoView.setCanalOrigen(Constantes.COD_CASO_ORIGEN_WEB);
+		casoView.setCanalOrigenLabel(Constantes.COD_CASO_ORIGEN_WEB_DESC);
+		casoView.setType(Constantes.COD_CASO_TYPE_RECLAMO);
+		casoView.setTypeLabel(Constantes.COD_CASO_TYPE_RECLAMO_DESC);
+		casoView.setEstado(Constantes.COD_CASO_STATUS_INGRESADO);
+		
+		//Recuperacion mapa picklists
+		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("Case");
+		casoView.setMapStatus(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_STATUS, false));
+		casoView.setMapPeticion(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_PETICION, false));
+		//Recupero el RecordTypeId de Emergencia. Cambia por entorno
+		if (casoView.getMapPeticion() != null && !casoView.getMapPeticion().isEmpty() 
+				&& casoView.getMapPeticion().containsValue(Constantes.PICKLIST_CASO_PETICION_EMERGENCIA_NAME)){
+	        for (Entry<String, String> entry : casoView.getMapPeticion().entrySet()) {
+	            if (Constantes.PICKLIST_CASO_PETICION_EMERGENCIA_NAME.equalsIgnoreCase(entry.getValue())){
+	            	casoView.setPeticion(entry.getKey());
+	            	casoView.setPeticionLabel(entry.getValue());
+	                break;
+	            }
+	        }
+		}
+		casoView.setMapSubMotivo(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_SUBMOTIVO, true));
+		casoView.setMapCondicionAgravante(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CONDICION_AGRAVANTE, true));
+		casoView.setMapCanalNotificacion(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CANAL_NOTIFICACION, true));
+		casoView.setMapFavorabilidadCaso(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_FAVORABILIDAD, true));
+				
+		logger.info("Carga de datos iniciales del formulario de alta de un nuevo caso completa");
+		logger.trace("Saliendo de fillNewCaseFormInfo()");
+	}
+	
+	/**
+	 * M&eacute;todo para a&ntilde;adir datos de suministro, direcci&oacute;n,
+	 * cuenta y contacto.
+	 * 
+	 * @param request
+	 *            Petición de donde obtener los ids. de las entidades.
+	 * @param casoView
+	 *            Caso donde guardar la informaci&oacute;n.
+	 */
+	private void getEntityDataForNewCase(HttpServletRequest request, CaseView casoView) {
+		logger.trace("Entrando en getEntityDataForNewCase()");
+		HttpSession session = request.getSession(true);
+		
+		if (session.getAttribute(Constantes.SFID_SUMINISTRO) != null && !"".equals(session.getAttribute(Constantes.SFID_SUMINISTRO))) {
+			//Obtener el suministro para guardarlo en el formulario
+			Suministro suministro = new Suministro();
+			SuministroView suministroVista = new SuministroView();
+			String suministroSfid = (String) session.getAttribute(Constantes.SFID_SUMINISTRO);
+			suministro = suministroService.readSuministroBySfid(suministroSfid);
+			ParserModelVO.parseDataModelVO(suministro, suministroVista);
+			casoView.setSuministroJoin(suministroVista);
+			casoView.setSuministro(suministroSfid);
+			logger.info("Suministro encontrado con id: " + suministroSfid);
+			
+			if (suministro != null && suministro.getDireccion() != null && !"".equals(suministro.getDireccion())) {
+				//Obtener la direccion del suministro para guardarla en el formulario
+				Direccion direccion = new Direccion();
+				DireccionView direccionVista = new DireccionView();
+				String direccionSfid = suministro.getDireccion();
+				direccion = direccionService.readDireccionBySfid(direccionSfid);
+				ParserModelVO.parseDataModelVO(direccion, direccionVista);
+				casoView.setDireccionJoin(direccionVista);
+				casoView.setDireccion(direccionSfid);
+				logger.info("Direccion encontrada con id: " + direccionSfid);
+			}
+		}
+		
+		if (session.getAttribute(Constantes.SFID_CONTACTO) != null && !"".equals(session.getAttribute(Constantes.SFID_CONTACTO))) {
+			//Obtener el contacto para guardarlo en el formulario
+			Contacto contacto = new Contacto();
+			ContactView contactoVista = new ContactView();
+			String contactoSfid = (String) session.getAttribute(Constantes.SFID_CONTACTO);
+			contacto = contactoService.readContactoBySfid(contactoSfid);
+			ParserModelVO.parseDataModelVO(contacto, contactoVista);
+			casoView.setContactoJoin(contactoVista);
+			casoView.setNombreContacto(contactoSfid);
+			logger.info("Contacto encontrada con id: " + contactoSfid);
+		}
+		
+		if (session.getAttribute(Constantes.SFID_CUENTA) != null && !"".equals(session.getAttribute(Constantes.SFID_CUENTA))) {
+			//Obtener la cuenta para guardarla en el formulario
+			Cuenta cuenta = new Cuenta();
+			AccountView cuentaVista = new AccountView();
+			String cuentaSfid = (String) session.getAttribute(Constantes.SFID_CUENTA);
+			cuenta = cuentaService.getAccountBySfid(cuentaSfid);
+			ParserModelVO.parseDataModelVO(cuenta, cuentaVista);
+			casoView.setCuentaJoin(cuentaVista);
+			casoView.setNombreCuenta(cuentaSfid);
+			logger.info("Cuenta encontrada con id: " + cuentaSfid);
+		}
+		
+		logger.trace("Saliendo de getEntityDataForNewCase()");
 	}
 }

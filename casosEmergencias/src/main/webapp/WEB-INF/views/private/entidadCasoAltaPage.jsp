@@ -23,28 +23,37 @@
   		<script src="../resources/js/popupsTable.js"></script>
 		<script src="../resources/js/header.js" lang=""></script>
 	</head>
-	<body onload="initHeader(); cargarDialogSuministro(); cargarDialogDireccion();">
+	<body onload="initHeader(); cargarDialogSuministro(); cargarDialogDireccion(); showNotifications();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCasoAlta_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
+		<!-- Mensajes de estado de operación -->
+		<c:if test="${not empty mostrarMensaje && mostrarMensaje eq true}">
+			<c:choose>
+				<c:when test="${not empty hayError && hayError eq true}">
+					<div id="divInsertError" class="divError">
+						<label id="errorMessage">Eror en la inserci&oacute;n.</label>
+						<br/>
+						<label id="errorMessage">Código: ${codigoError}</label>
+						<br/>
+						<label id="errorMessage">Mensaje: ${mensajeResultado}</label>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div id="divInsertOk" class="divOk" >
+						<label id="okMessage">${mensajeResultado}</label>
+					</div>	
+				</c:otherwise>
+			</c:choose>
+		</c:if>
 		<!-- Botonera superior -->
 		<div class="divCabeceraEntidad">
 			<div class="botoneraListado botoneraCentrado">
 				<ul>
-
 					<li><input type="button" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" onclick="altaCaso();"/></li>
 					<li><input type="button" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li>
 					<li><input type="button" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" onclick="cancelAltaCaso();" /></li>
-
 				</ul>
 			</div>
-		</div>
-		<!-- Mensajes de estado de operación -->
-		<div id="divError" class="divError" style="display:none;margin-top:2%;">
-			<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
-			<br>
-			<label><s:message code="entidadCasoAlta_error_revisemensajes"/></label>
-			<br>
-			<label id="errorMessage"></label>
 		</div>
 		<!-- Identificación de campos obligatorios -->
 		<div>

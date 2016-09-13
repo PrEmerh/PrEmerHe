@@ -295,8 +295,8 @@ body label {
 	color: #DF0000;
 	font-size: 14px;
 	font-weight: bold;
-	padding: 20px;
-	margin-top:2%;
+	padding: 20px 0px 20px 20px;
+	margin: 0px 0px 10px 0px;
 }
 
 .divOk {
@@ -308,8 +308,12 @@ body label {
 	color: #298D07;
 	font-size: 14px;
 	font-weight: bold;
-	padding: 20px;
-	margin-top:2%;
+	padding: 20px 0px 20px 20px;
+	margin: 0px 0px 10px 0px;
+}
+
+.notificationMessage {
+	width: 50%;
 }
 /* <<<<< ESTILOS PARA MENSAJES DE ACTUALIZACIÓN DE CASOS */
 
