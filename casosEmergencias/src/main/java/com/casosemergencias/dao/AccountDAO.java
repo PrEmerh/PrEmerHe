@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.casosemergencias.dao.vo.AccountVO;
+import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.dao.vo.ContactVO;
 import com.casosemergencias.dao.vo.SuministroVO;
 import com.casosemergencias.util.datatables.DataTableColumnInfo;
@@ -111,6 +112,10 @@ public class AccountDAO {
 			Query contactsQuery = session.createQuery("from ContactVO as contacto WHERE contacto.accountid = :sfid "); 
 			contactsQuery.setString("sfid", sfid);
 			List<ContactVO> accountContactsList = contactsQuery.list();
+			
+			Query casosQuery = session.createQuery("from CaseVO as contacto WHERE contacto.accountid = :sfid "); 
+			casosQuery.setString("sfid", sfid);
+			List<CaseVO> accountCasosList = casosQuery.list();
 			//Metemos las listas en los objetos, ya que al estar a lazy no les devolvería
 			if (accountList != null && !accountList.isEmpty()) {
 				account = accountList.get(0);
@@ -127,6 +132,14 @@ public class AccountDAO {
 						cont.setCuentaJoin(null);
 					}
 					account.setContactos(accountContactsList);
+				}
+				
+				if (accountCasosList != null && !accountCasosList.isEmpty()) {
+					for (CaseVO cas: accountCasosList) {
+						//Anulamos la cuenta para que no entre en bucle.
+						cas.setCuentaJoin(null);
+					}
+					account.setCasos(accountCasosList);
 				}
 				return account;
 			}			
