@@ -71,6 +71,7 @@ public class CaseView extends ObjectView {
 	private String labelCondicionAgravantePickList;
 	private String labelCanalNotificacionPickList;
 	private String labelFavorabilidadDelCasoPickList;
+	private String labelTypeCasoPickList;
 	
 	/*Mapas para mostrar los combos de caso*/
 	private Map<String, String> mapStatus;
@@ -511,6 +512,12 @@ public class CaseView extends ObjectView {
 	}
 	public void setLabelFavorabilidadDelCasoPickList(String labelFavorabilidadDelCasoPickList) {
 		this.labelFavorabilidadDelCasoPickList = labelFavorabilidadDelCasoPickList;
+	}
+	public String getLabelTypeCasoPickList() {
+		return labelTypeCasoPickList;
+	}
+	public void setLabelTypeCasoPickList(String labelTypeCasoPickList) {
+		this.labelTypeCasoPickList = labelTypeCasoPickList;
 	}
 	public String getHerokuUsername() {
 		return herokuUsername;

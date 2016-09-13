@@ -930,12 +930,12 @@ public class CaseDAO {
 				}
 			}
 			
-			if (caso.getClosedDate() != null) {
+			if (caso.getFechaCierre() != null) {
 				if (isFirst) {
-					query.append(" WHERE caso.closedDate = :closedDate");
+					query.append(" WHERE caso.fechaCierre = :fechaCierre");
 					isFirst = false;
 				} else {
-					query.append(" AND caso.closedDate = :closedDate");
+					query.append(" AND caso.fechaCierre = :fechaCierre");
 				}
 			}
 			
@@ -1547,8 +1547,8 @@ public class CaseDAO {
 				result.setString("suppliedName", caso.getSuppliedName());
 			}
 			
-			if (caso.getClosedDate() != null) {
-				result.setDate("closedDate", caso.getClosedDate());
+			if (caso.getFechaCierre() != null) {
+				result.setDate("fechaCierre", caso.getFechaCierre());
 			}
 			
 			if (caso.getFalloEnvioInservice() != null) {

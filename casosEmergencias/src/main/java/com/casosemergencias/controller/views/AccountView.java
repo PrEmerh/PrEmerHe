@@ -27,6 +27,7 @@ public class AccountView extends ObjectView {
 	/* Id Empresa */ private String idEmpresa;
 	/* Suministros asociados */ private List<SuministroView> suministros;
 	/* Contactos asociados */ private List<ContactView> contactos;
+	/* Casos asociados */ private List<CaseView> casos;
 	// Tipo de registro de cuenta
 
 	/*Joins con picklist*/
@@ -189,6 +190,14 @@ public class AccountView extends ObjectView {
 
 	public void setContactos(List<ContactView> contactos) {
 		this.contactos = contactos;
+	}
+	
+	public List<CaseView> getCasos() {
+		return casos;
+	}
+
+	public void setCasos(List<CaseView> casos) {
+		this.casos = casos;
 	}
 
 	@Override
