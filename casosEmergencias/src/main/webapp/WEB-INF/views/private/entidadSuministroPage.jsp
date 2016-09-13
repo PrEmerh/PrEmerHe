@@ -6,7 +6,6 @@
 
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Emergencias App</title>		
 		
 		<link rel="icon" type="image/png" href="../resources/images/favicon.png">
@@ -19,9 +18,21 @@
 		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
 	</head>
-	<body onload="initHeader();">
+	<body onload="initHeader(); showNotifications();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadSuministro_title_label_detalle_suministro"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
+		<!-- Mensajes de estado de operación -->
+		<c:if test="${not empty param.codigoError}">
+			<div>
+				<div class="divError" id="divInsertError">
+					<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
+					<br/>
+					<label class="labelDivError"><s:message code="notificaciones_label_error_codigo"/>&nbsp;${param.codigoError}</label>
+					<br/>
+					<label class="labelDivError"><s:message code="notificaciones_label_error_mensaje"/>&nbsp;<s:message code="notificaciones_label_error_alta_caso_ya_existente"/></label>
+				</div>
+			</div>
+		</c:if>
 		<form:form name="formEntidadSuministro" action="actualizarSuministro" modelAttribute="suministro" method="POST">
 			<div class="botoneraListado">
 				<ul>

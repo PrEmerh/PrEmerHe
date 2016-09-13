@@ -22,37 +22,30 @@
 	<body onload="initHeader(); checkUpdates();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
-		<!-- INICIO---Mensajes de actualización de caso -->	
-		<div class="notificationMessage">
+		<!-- Mensajes de estado de alta, actualización e inserción de comentarios de un caso -->
+		<div>
+			<!-- Actualización de comentario -->
 			<div id="divCaseModifiedError" class="divError">
-				<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
+				<label class="labelDivError"><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
 				<br>
-				<label><s:message code="entidadCasoAlta_error_revisemensajes"/></label>
-				<br>
-				<label class="notificationMessage" id="errorMessage"></label>
+				<label class="labelDivError"><s:message code="entidadCasoAlta_error_revisemensajes"/></label>
 			</div>
 			<div id="divCaseModifiedOk" class="divOk" >
-				<label><s:message code="entidadCaso_modificacion_correcta"/></label>
+				<label class="labelDivOk"><s:message code="entidadCaso_modificacion_correcta"/></label>
 			</div>
-			<!-- FIN---Mensajes de actualización de caso -->
-				
-			<!-- INICIO---Mensaje de creación de un comentario de caso -->	
+			<!-- Creación de un comentario de caso -->	
 			<div id="divCaseCommentNOCreated" class="divError">
-				<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
+				<label class="labelDivError"><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
 				<label class="notificationMessage" id="errorMessage"></label>
 			</div>
 			<div id="divCaseCommentCreated" class="divOk">
-				<label>El comentario se ha guardado correctamente</label>
+				<label class="labelDivOk"><s:message code="notificaciones_label_ok_comentario_guardado"/></label>
 			</div>
-			<!-- FIN---Mensajes de creación de un comentario de caso -->
-			
-			<!-- INICIO---Mensaje de alta de un caso -->
+			<!-- Alta de un caso -->
 			<div id="divCaseCreatedOk" class="divOk">
-				<label>Se ha creado el caso correctamente</label>
+				<label class="labelDivOk"><s:message code="notificaciones_label_ok_caso_creado"/></label>
 			</div>
-			<!-- FIN---Mensaje de alta de un caso -->
 		</div>
-		
 		<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
 			<form:hidden path="id"/>
 			<form:hidden path="editMode" value="${editMode}"/>

@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.AccountView;
-import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.AccountService;
 import com.casosemergencias.model.Cuenta;
