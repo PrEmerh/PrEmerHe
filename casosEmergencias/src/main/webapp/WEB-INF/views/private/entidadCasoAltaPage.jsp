@@ -159,7 +159,7 @@
 					</div>
 					<div>
 						<div class="divLabel">
-							<label><s:message code="entidadCaso_table_label_type"/></label>
+							<label><s:message code="entidadCaso_table_label_motivo"/></label>
 						</div>
 						<div>
 							<form:hidden path="type"/>

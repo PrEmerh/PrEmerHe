@@ -15,7 +15,8 @@ public class ContactView extends ObjectView {
 	/*Apellido Paterno*/                    private String apellidoPaterno;
 	/*Apellido Materno*/                    private String apellidoMaterno;
 	/*Tipo de Identidad*/                   private String tipoIdentidad;
-	/*RUN*/                                 private String accountRun;
+	/*AccountRun*/                          private String accountRun;
+	/*RUN*/									private String run;
 	/*Canal Preferente de Contacto*/        private String canalPreferenteContacto;
 	/*Teléfono Principal*/                  private String phone;
 	/*Teléfono Secundario*/                 private String telefonoSecundario;
@@ -101,6 +102,12 @@ public class ContactView extends ObjectView {
 	}
 	public void setAccountRun(String accountRun) {
 		this.accountRun = accountRun;
+	}
+	public String getRun() {
+		return run;
+	}
+	public void setRun(String run) {
+		this.run = run;
 	}
 	public String getCanalPreferenteContacto() {
 		return canalPreferenteContacto;

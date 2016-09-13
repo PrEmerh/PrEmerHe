@@ -69,9 +69,9 @@ public class ContactController {
 		
 		//Almacenamos sfid de suministro relacionado en caso de que el contacto tenga solo uno asociado.
 		
-		if(contactoView.getSuministros()!=null && contactoView.getSuministros().isEmpty()==false  && contactoView.getSuministros().size()==1 && session.getAttribute(Constantes.SFID_SUMINISTRO)==null){
-			session.setAttribute(Constantes.SFID_SUMINISTRO, contactoView.getSuministros().get(0).getSfid());					
-		}
+//		if(contactoView.getSuministros()!=null && contactoView.getSuministros().isEmpty()==false  && contactoView.getSuministros().size()==1 && session.getAttribute(Constantes.SFID_SUMINISTRO)==null){
+//			session.setAttribute(Constantes.SFID_SUMINISTRO, contactoView.getSuministros().get(0).getSfid());					
+//		}
 		if(contactoView.getCuentaJoin()!=null && session.getAttribute(Constantes.SFID_CUENTA)==null){
 			session.setAttribute(Constantes.SFID_CUENTA, contactoView.getCuentaJoin().getSfid());					
 		}
@@ -139,7 +139,7 @@ public class ContactController {
 		for (Contacto contacto : listaContactos) {
 			jsonResult = new JSONObject();
 			jsonResult.put("name", contacto.getName());
-			jsonResult.put("account__run__c", contacto.getAccountRun());
+			jsonResult.put("run__c", contacto.getRun());
 			jsonResult.put("phone", contacto.getPhone());
 			jsonResult.put("email", contacto.getEmail());
 			jsonResult.put("sf4twitter__twitter_username__c", contacto.getSf4twitterTwitterUsername());

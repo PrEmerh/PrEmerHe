@@ -1,4 +1,4 @@
-<%@ page language="java"%>
+<%@ page language="java" contentType="text/html;" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -24,9 +24,6 @@
 		<!-- INICIO---Mensajes de actualizaci贸n de caso -->	
 		<div class="notificationMessage">
 			<div id="divCaseModifiedError" class="divError">
-		<!-- INICIO---Mensajes de actualizaci贸n de caso -->	
-		<div class="notificationMessage">
-			<div id="divCaseModifiedError" class="divError">
 				<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
 				<br>
 				<label><s:message code="entidadCasoAlta_error_revisemensajes"/></label>
@@ -36,10 +33,9 @@
 			<div id="divCaseModifiedOk" class="divOk" >
 				<label><s:message code="entidadCaso_modificacion_correcta"/></label>
 			</div>
-			<!-- FIN---Mensajes de actualizaci髇 de caso -->
+			<!-- FIN---Mensajes de actualizaci贸n de caso -->
 				
-			<!-- INICIO---Mensajes de creaci髇 de un comentario de caso -->	
-			
+			<!-- INICIO---Mensaje de creaci贸n de un comentario de caso -->	
 			<div id="divCaseCommentNOCreated" class="divError">
 				<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
 				<label class="notificationMessage" id="errorMessage"></label>
@@ -48,7 +44,7 @@
 				<label>El comentario se ha guardado correctamente</label>
 			</div>
 			<!-- FIN---Mensajes de creaci贸n de un comentario de caso -->
-				
+			
 			<!-- INICIO---Mensaje de alta de un caso -->
 			<div id="divCaseCreatedOk" class="divOk">
 				<label>Se ha creado el caso correctamente</label>
@@ -181,6 +177,12 @@
 			</div>
 			<div id="datosEmergencia" class="divEntidad">
 				<div>	
+					<div class="divLabel">
+						<label><s:message code="entidadCaso_table_label_motivo"/></label>
+					</div>
+					<div>
+						<label>${caso.labelTypeCasoPickList}</label>
+					</div>	
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_description"/></label>
 					</div>

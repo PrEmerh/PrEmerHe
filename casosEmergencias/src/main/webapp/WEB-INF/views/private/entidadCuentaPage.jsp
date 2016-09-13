@@ -165,7 +165,7 @@
 									<td>${suministro.labelEmpresaPickList}</td>
 									<td>${suministro.labelEstadoConexionPickList}</td>
 									<td>${suministro.labelEstadoSuministroPickList}</td>
-									<td>${suministro.electrodependiente}</td>
+									<td>${suministro.labelElectrodependientePickList}</td>
 									<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${suministro.fechaCorte}"/></td>
 									<td>${suministro.direccionConcatenada}</td>
 									<td>${suministro.comuna}</td>
@@ -204,7 +204,7 @@
 							<c:forEach items="${cuenta.contactos}" var="contacto">
 								<tr>
 									<td><a class="link" href="../private/entidadContacto?sfid=${contacto.sfid}">${contacto.name}</a></td>
-									<td>${contacto.accountRun}</td>
+									<td>${contacto.run}</td>
 									<td>${contacto.phone}</td>
 									<td>${contacto.email}</td>
 								</tr>
