@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.WhereJoinTable;
 import org.hibernate.collection.internal.PersistentBag;
 
 import com.casosemergencias.model.Cuenta;
@@ -114,6 +113,10 @@ public class AccountVO extends ObjectVO implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "accountid", referencedColumnName = "sfid", insertable = false, updatable = false, nullable = true)
 	private List<ContactVO> contactos;
+	
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinColumn(name = "accountid", referencedColumnName = "sfid", insertable = false, updatable = false, nullable = true)
+	private List<CaseVO> casos;
 
 	/*Joins con picklist*/
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
@@ -129,7 +132,7 @@ public class AccountVO extends ObjectVO implements Serializable {
 			String name, String apellidoPaterno, String apellidoMaterno, String tipoIdentidad, String parentRutEmpresa,
 			String accountRun, Date fechaNacimiento, String phone, String telefonoPrincipal, String telefonoSecundario,
 			String email, String emailSecundario, String direccion, String accountsource, String idEmpresa,
-			List<SuministroVO> suministros, List<ContactVO> contactos,
+			List<SuministroVO> suministros, List<ContactVO> contactos,List<CaseVO> casos,
 			PickListsAccountTipoIdentidadVO tipoIdentidadPickList, PickListsAccountIdEmpresaVO idEmpresaPickList) {
 		super();
 		this.isDeleted = isDeleted;
@@ -155,6 +158,7 @@ public class AccountVO extends ObjectVO implements Serializable {
 		this.idEmpresa = idEmpresa;
 		this.suministros = suministros;
 		this.contactos = contactos;
+		this.casos=casos;
 		this.tipoIdentidadPickList = tipoIdentidadPickList;
 		this.idEmpresaPickList = idEmpresaPickList;
 	}
@@ -361,6 +365,20 @@ public class AccountVO extends ObjectVO implements Serializable {
 
 	public void setContactos(List<ContactVO> contactos) {
 		this.contactos = contactos;
+	}
+	
+	public List<CaseVO> getCasos() {
+		if (casos instanceof PersistentBag) {
+			PersistentBag bag = (PersistentBag) casos;
+			if (bag.getStoredSnapshot() == null) {
+				return null;
+			}
+		}
+		return casos;
+	}
+	
+	public void setCasos(List<CaseVO> casos) {
+		this.casos= casos;
 	}
 
 	@Override

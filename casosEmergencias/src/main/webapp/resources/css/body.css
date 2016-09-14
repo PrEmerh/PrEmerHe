@@ -287,33 +287,35 @@ body label {
 
 /* >>>>> ESTILOS PARA MENSAJES DE ACTUALIZACIÓN DE CASOS */
 .divError {
-	width: 100%;
 	display: none;
 	border: 1px solid #DF0000;
 	background-color: #FFCECE;
 	text-align: left;
-	color: #DF0000;
-	font-size: 14px;
-	font-weight: bold;
-	padding: 20px 0px 20px 20px;
+	padding: 10px 0px 10px 5px;
 	margin: 0px 0px 10px 0px;
 }
 
+.labelDivError {
+	color: #DF0000;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	font-weight: bold;	
+}
+
 .divOk {
-	width: 100%;
 	display: none;
 	border: 1px solid #298D07;
 	background-color: #DFFDD5;
 	text-align: left;
-	color: #298D07;
-	font-size: 14px;
-	font-weight: bold;
-	padding: 20px 0px 20px 20px;
+	padding: 10px 0px 10px 5px;
 	margin: 0px 0px 10px 0px;
 }
 
-.notificationMessage {
-	width: 50%;
+.labelDivOk {
+	color: #298D07;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
 }
 /* <<<<< ESTILOS PARA MENSAJES DE ACTUALIZACIÓN DE CASOS */
 

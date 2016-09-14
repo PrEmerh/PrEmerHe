@@ -7,7 +7,6 @@
 
 <html>
 	<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Emergencias App</title>		
 	
 	<link rel="icon" type="image/png" href="../resources/images/favicon.png">
@@ -20,9 +19,21 @@
 	<script src="../resources/js/header.js" lang=""></script>
 	<script src="../resources/js/utils.js" lang=""></script>
 	</head>
-	<body onload="initHeader();">
+	<body onload="initHeader(); showNotifications();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadContacto_title_label_detalle_contacto"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
+		<!-- Mensajes de estado de operación -->
+		<c:if test="${not empty param.codigoError}">
+			<div>
+				<div class="divError" id="divInsertError">
+					<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
+					<br/>
+					<label class="labelDivError"><s:message code="notificaciones_label_error_codigo"/>&nbsp;${param.codigoError}</label>
+					<br/>
+					<label class="labelDivError"><s:message code="notificaciones_label_error_mensaje"/>&nbsp;<s:message code="notificaciones_label_error_alta_caso_ya_existente"/></label>
+				</div>
+			</div>
+		</c:if>
 		<div>
 		<form:form name="formEntidadContacto" action="actualizarContacto" modelAttribute="contacto" method="POST">
 			<div class="botoneraListado">
@@ -120,7 +131,7 @@
 							<label><s:message code="entidadContacto_table_label_run"/></label>
 						</div>
 						<div>
-							<label>${contacto.accountRun}</label>
+							<label>${contacto.run}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_canalPreferenteContacto"/></label>
@@ -181,7 +192,7 @@
 							<label><s:message code="entidadContacto_table_label_direccionContacto"/></label>
 						</div>
 						<div>
-							<label><a class="link" href="../private/entidadDireccion?sfid=${contacto.dirContactoJoin.sfid}">${contacto.dirContactoJoin.numero}</a></label>			
+							<label><a class="link" href="../private/entidadDireccion?sfid=${contacto.dirContactoJoin.sfid}">${contacto.dirContactoJoin.name}</a></label>			
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_emailSecundario"/></label>
@@ -265,22 +276,34 @@
 						<table class="basicTable">
 							<tr>
 								<th><s:message code="entidadContacto_title_label_caso_caso" /></th>
+								<th><s:message code="entidadContacto_title_label_caso_i" /></th>
 							    <th><s:message code="entidadContacto_title_label_caso_estado" /></th>
 							    <th><s:message code="entidadContacto_title_label_caso_fechaApertura" /></th>
 							    <th><s:message code="entidadContacto_title_label_caso_submotivo" /></th>
 							    <th><s:message code="entidadContacto_title_label_caso_tiempoEstimado" /></th>
 							    <th><s:message code="entidadContacto_title_label_caso_canalOrigen" /></th>
+							    <th><s:message code="entidadContacto_title_label_caso_nombreProp" /></th>
+							    <th><s:message code="entidadContacto_title_label_caso_fechaCierre" /></th>
+							    <th><s:message code="entidadContacto_title_label_caso_asunto" /></th>
 							</tr>
 							<c:choose>
 								<c:when test="${not empty contacto.casos}">
 									<c:forEach items="${contacto.casos}" var="caso">
 										<tr>
 											<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
+											<td class="filaImagen">
+											<c:if test="${caso.descripcionEstado!=null && caso.descripcionEstado!='Cerrado' && caso.descripcionEstado!='Cancelado'}">					
+											<img src="../resources/images/inservice_red_point.png" height="12px" width="12px">
+											</c:if>	
+											</td>
 											<td>${caso.descripcionEstado}</td>
 											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaApertura}"/></td>
 											<td>${caso.labelSubmotivoPickList}</td>
 											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaEstimadaCierre}"/></td>
-										 	<td>${caso.labelCanalOrigenPickList}</td> 
+											<td>${caso.labelCanalOrigenPickList}</td>
+											<td>${caso.userJoin.name}</td>
+											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaCierre}"/></td>
+											<td>${caso.asunto}</td>
 										</tr>
 									</c:forEach>
 								</c:when>
@@ -313,7 +336,7 @@
 							</tr>
 							<tr>
 								<td class="filaLiteral"><s:message code="entidadContacto_indicadores_literal_run"/></td>
-								<td class="filaValor" colspan="2">${contacto.accountRun}</td>
+								<td class="filaValor" colspan="2">${contacto.run}</td>
 							</tr>
 							<tr>
 								<td class="filaLiteral"><s:message code="entidadContacto_indicadores_literal_canal_preferente_contacto"/></td>

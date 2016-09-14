@@ -81,7 +81,10 @@ public class ContactVO extends ObjectVO implements Serializable {
 		
 	@Column(name = "account__run__c")
 	private String accountRun;
-		
+	
+	@Column(name = "run__c")
+	private String run;
+	
 	@Column(name = "dircontacto__c")
 	private String dirContacto;
 	
@@ -156,7 +159,7 @@ public class ContactVO extends ObjectVO implements Serializable {
 	public ContactVO(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
 			String name, Date fechaNacimiento, String canalPreferenteContacto, String tipoCuentaAsociado,
 			String apellidoMaterno, String tipoIdentidad, String telefonoSecundario, String emailSecundario,
-			String sf4twitterFcbkUsername, Boolean casosReiterados, String email, String accountRun, String dirContacto,
+			String sf4twitterFcbkUsername, Boolean casosReiterados, String email, String accountRun,String run, String dirContacto,
 			String sf4twitterTwitterUserId, String sf4twitterFcbkUserId, String sf4twitterTwitterUsername,
 			String tipoContacto, String phone, String apellidoPaterno, String accountid, AccountVO cuentaJoin,
 			PickListsContactCanalPreferenteContactoVO canalPreferenteContactoPickList, PickListsContactTipoIdentidadVO tipoIdentidadPickList,
@@ -180,6 +183,7 @@ public class ContactVO extends ObjectVO implements Serializable {
 		this.casosReiterados = casosReiterados;
 		this.email = email;
 		this.accountRun = accountRun;
+		this.run=run;
 		this.dirContacto = dirContacto;
 		this.sf4twitterTwitterUserId = sf4twitterTwitterUserId;
 		this.sf4twitterFcbkUserId = sf4twitterFcbkUserId;
@@ -337,7 +341,13 @@ public class ContactVO extends ObjectVO implements Serializable {
 	public void setAccountRun(String accountRun) {
 		this.accountRun = accountRun;
 	}
-
+	
+	public String getRun() {
+		return run;
+	}
+	public void setRun(String run) {
+		this.run = run;
+	}
 	public String getDirContacto() {
 		return dirContacto;
 	}

@@ -1,14 +1,8 @@
 package com.casosemergencias.controller;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -78,6 +72,9 @@ public class SuministroController {
 		if(suministroView.getContactosRelacionados()!=null && !suministroView.getContactosRelacionados().isEmpty()  && suministroView.getContactosRelacionados().size()==1 && session.getAttribute(Constantes.SFID_CONTACTO)==null){
 			session.setAttribute(Constantes.SFID_CONTACTO, suministroView.getContactosRelacionados().get(0).getSfid());					
 		}
+		if(suministroView.getCuentaJoin()!=null && session.getAttribute(Constantes.SFID_CUENTA)==null){
+			session.setAttribute(Constantes.SFID_CUENTA, suministroView.getCuentaJoin().getSfid());					
+		}
 		
 		//transformamos las fechas con el gmt de sesion
 		long offset = (long)session.getAttribute("difGMTUser");
@@ -100,7 +97,7 @@ public class SuministroController {
 		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));
 		logger.info("SFID_SUMINISTRO" + session.getAttribute(Constantes.SFID_SUMINISTRO));
 		logger.info("FINAL_DETAIL_PAGE" + session.getAttribute(Constantes.FINAL_DETAIL_PAGE));
-
+		
 		model.setViewName("private/entidadSuministroPage");
 		model.addObject("suministro", suministroView);
 

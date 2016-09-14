@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -7,7 +7,6 @@
 <html>
 
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Emergencias App</title>		
 		
 		<link rel="icon" type="image/png" href="../resources/images/favicon.png">
@@ -24,7 +23,11 @@
 	<body onload="initHeader();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_comentario_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
-		
+		<!-- INICIO---Mensajes de actualización de caso -->	
+		<div id="divCaseCommentNOCreated" class="divError">
+			<label class="labelDivError"><s:message code="comentarioCase_error_rellenardatos"/></label>
+		</div>
+		<!-- FIN---Mensajes de actualización de caso -->
 		<form:form id="formComentarioCaso" name="formComentarioCaso" action="saveComentarioCaso" modelAttribute="caseComment" method="POST">
 			<form:hidden path="caseid"/>
 			<h2><s:message code="comentarioCase_label_caso" arguments="${numeroCaso}"/></h2>
@@ -37,14 +40,6 @@
 					</ul>
 				</div>
 			</div>
-			<!-- INICIO---Mensajes de actualización de caso -->	
-			
-			<div id="divCaseCommentNOCreated" class="divError">
-				<label><s:message code="comentarioCase_error_rellenardatos"/></label>
-				<label id="errorMessage"></label>
-			</div>
-			
-			<!-- FIN---Mensajes de actualización de caso -->
 			<div style="margin-top:1.5%;">
 				<div class="subtitlePrincipalAltaEntidad">
 				<div class="titleObligatorio"></div>

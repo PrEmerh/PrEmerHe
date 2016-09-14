@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
@@ -6,7 +6,6 @@
 
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Emergencias App</title>		
 		
 		<link rel="icon" type="image/png" href="../resources/images/favicon.png">
@@ -30,18 +29,22 @@
 		<c:if test="${not empty mostrarMensaje && mostrarMensaje eq true}">
 			<c:choose>
 				<c:when test="${not empty hayError && hayError eq true}">
-					<div id="divInsertError" class="divError">
-						<label id="errorMessage">Eror en la inserci&oacute;n.</label>
-						<br/>
-						<label id="errorMessage">CÃ³digo: ${codigoError}</label>
-						<br/>
-						<label id="errorMessage">Mensaje: ${mensajeResultado}</label>
+					<div>
+						<div class="divError" id="divInsertError">
+							<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
+							<br/>
+							<label class="labelDivError"><s:message code="notificaciones_label_error_codigo"/>&nbsp;${codigoError}</label>
+							<br/>
+							<label class="labelDivError"><s:message code="notificaciones_label_error_mensaje"/>&nbsp;${mensajeResultado}</label>
+						</div>
 					</div>
 				</c:when>
 				<c:otherwise>
-					<div id="divInsertOk" class="divOk" >
-						<label id="okMessage">${mensajeResultado}</label>
-					</div>	
+					<div>
+						<div id="divInsertOk" class="divOk" >
+							<label class="labelDivOk">${mensajeResultado}</label>
+						</div>	
+					</div>
 				</c:otherwise>
 			</c:choose>
 		</c:if>
@@ -55,7 +58,15 @@
 				</ul>
 			</div>
 		</div>
-		<!-- IdentificaciÃ³n de campos obligatorios -->
+		<!-- Mensajes de estado de operación -->
+		<div id="divError" class="divError" style="display:none;margin-top:2%;">
+			<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
+			<br>
+			<label><s:message code="entidadCasoAlta_error_revisemensajes"/></label>
+			<br>
+			<label id="errorMessage"></label>
+		</div>
+		<!-- Identificación de campos obligatorios -->
 		<div>
 			<div class="subtitlePrincipalAltaEntidad">
 				<div class="titleObligatorio"></div>
@@ -154,7 +165,7 @@
 					</div>
 					<div>
 						<div class="divLabel">
-							<label><s:message code="entidadCaso_table_label_type"/></label>
+							<label><s:message code="entidadCaso_table_label_motivo"/></label>
 						</div>
 						<div>
 							<form:hidden path="type"/>

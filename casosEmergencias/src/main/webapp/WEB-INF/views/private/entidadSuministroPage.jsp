@@ -6,7 +6,6 @@
 
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Emergencias App</title>		
 		
 		<link rel="icon" type="image/png" href="../resources/images/favicon.png">
@@ -19,9 +18,21 @@
 		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
 	</head>
-	<body onload="initHeader();">
+	<body onload="initHeader(); showNotifications();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadSuministro_title_label_detalle_suministro"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
+		<!-- Mensajes de estado de operación -->
+		<c:if test="${not empty param.codigoError}">
+			<div>
+				<div class="divError" id="divInsertError">
+					<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
+					<br/>
+					<label class="labelDivError"><s:message code="notificaciones_label_error_codigo"/>&nbsp;${param.codigoError}</label>
+					<br/>
+					<label class="labelDivError"><s:message code="notificaciones_label_error_mensaje"/>&nbsp;<s:message code="notificaciones_label_error_alta_caso_ya_existente"/></label>
+				</div>
+			</div>
+		</c:if>
 		<form:form name="formEntidadSuministro" action="actualizarSuministro" modelAttribute="suministro" method="POST">
 			<div class="botoneraListado">
 				<ul>
@@ -51,7 +62,7 @@
 							<label><s:message code="entidadSuministro_title_label_detalleDireccion"/></label>
 						</div>
 						<div>
-							<label>${suministro.direccionConcatenada}</label>
+							<label><a class="link" href="../private/entidadDireccion?sfid=${suministro.dirSuministroJoin.sfid}">${suministro.dirSuministroJoin.name}</a></label>
 						</div>
 					</div>
 					<div>
@@ -59,7 +70,7 @@
 							<label><s:message code="entidadSuministro_title_label_direccionSuministro"/></label>
 						</div>
 						<div>
-							<label><a class="link" href="../private/entidadDireccion?sfid=${suministro.dirSuministroJoin.sfid}">${suministro.dirSuministroJoin.numero}</a></label>			
+							<label>${suministro.direccionConcatenada}</label>			
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadSuministro_title_label_tipoSegmento"/></label>
@@ -384,22 +395,34 @@
 						<table class="basicTable">
 							<tr>
 								<th><s:message code="entidadSuministro_title_label_caso_caso" /></th>
+								<th><s:message code="entidadSuministro_title_label_caso_i" /></th>
 							    <th><s:message code="entidadSuministro_title_label_caso_estado" /></th>
 							    <th><s:message code="entidadSuministro_title_label_caso_fechaApertura" /></th>
 							    <th><s:message code="entidadSuministro_title_label_caso_submotivo" /></th>
 							    <th><s:message code="entidadSuministro_title_label_caso_tiempoEstimado" /></th>
 							    <th><s:message code="entidadSuministro_title_label_caso_canalOrigen" /></th>
+							    <th><s:message code="entidadSuministro_title_label_caso_nombreProp" /></th>
+							    <th><s:message code="entidadSuministro_title_label_caso_fechaCierre" /></th>
+							    <th><s:message code="entidadSuministro_title_label_caso_asunto" /></th>
 							</tr>
 							<c:choose>
 								<c:when test="${not empty suministro.casos}">
 									<c:forEach items="${suministro.casos}" var="caso">
 										<tr>
 											<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
+											<td class="filaImagen">
+											<c:if test="${caso.descripcionEstado!=null && caso.descripcionEstado!='Cerrado' && caso.descripcionEstado!='Cancelado'}">					
+											<img src="../resources/images/inservice_red_point.png" height="12px" width="12px">
+											</c:if>	
+											</td>
 											<td>${caso.descripcionEstado}</td>
 											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaApertura}"/></td>
 											<td>${caso.labelSubmotivoPickList}</td>
 											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaEstimadaCierre}"/></td>
 											<td>${caso.labelCanalOrigenPickList}</td>
+											<td>${caso.userJoin.name}</td>
+											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaCierre}"/></td>
+											<td>${caso.asunto}</td>
 										</tr>
 									</c:forEach>
 								</c:when>
@@ -429,6 +452,14 @@
 							<c:choose>
 								<c:when test="${not empty suministro}">
 									<tr>
+										<td class="filaLiteral"><s:message code="entidadSuministro_title_label_estadoSuministro"/></td>
+										<c:choose>
+											<c:when test="${not empty suministro.labelEstadoSuministroPickList}">
+												<td class="filaValor" colspan="2">${suministro.labelEstadoSuministroPickList}</td>
+											</c:when>
+										</c:choose>
+									</tr>
+									<tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_estado_conexion"/></td>
 										<c:choose>
 											<c:when test="${not empty suministro.estadoConexion && suministro.estadoConexion == '0'}">
@@ -439,7 +470,7 @@
 											</c:otherwise>
 										</c:choose>
 									</tr>
-									<tr>
+								<%-- <tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_falla_sector"/></td>
 										<c:choose>
 											<c:when test="${not empty suministro.suministroAfectado && not empty suministro.tipoEvento 
@@ -451,8 +482,8 @@
 												<td class="filaValor" colspan="2">NO</td>
 											</c:otherwise>
 										</c:choose>
-									</tr>
-									<tr>
+									</tr> --%>
+								<%--<tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_corte_programado"/></td>
 										<c:choose>
 											<c:when test="${not empty suministro.suministroAfectado && not empty suministro.tipoEvento 
@@ -464,7 +495,7 @@
 												<td class="filaValor" colspan="2">NO</td>
 											</c:otherwise>
 										</c:choose>
-									</tr>
+									</tr>--%>
 									<tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_corte_deuda"/></td>
 										<c:choose>

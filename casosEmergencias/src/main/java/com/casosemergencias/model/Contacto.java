@@ -3,11 +3,8 @@ package com.casosemergencias.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-
 import com.casosemergencias.controller.views.ContactView;
 import com.casosemergencias.dao.vo.ContactVO;
-import com.casosemergencias.dao.vo.DireccionVO;
 
 //Objeto que tiene el modelo de un contacto, se utiliza en el Servicio
 
@@ -20,7 +17,8 @@ public class Contacto extends ObjectLogic {
 	/*Apellido Paterno*/                    private String apellidoPaterno;
 	/*Apellido Materno*/                    private String apellidoMaterno;
 	/*Tipo de Identidad*/                   private String tipoIdentidad;
-	/*RUN*/                                 private String accountRun;
+	/*AccounRun*/                           private String accountRun;
+	/*Run*/									private String run;
 	/*Canal Preferente de Contacto*/        private String canalPreferenteContacto;
 	/*Teléfono Principal*/                  private String phone;
 	/*Teléfono Secundario*/                 private String telefonoSecundario;
@@ -122,6 +120,14 @@ public class Contacto extends ObjectLogic {
 
 	public void setAccountRun(String accountRun) {
 		this.accountRun = accountRun;
+	}
+
+	public String getRun() {
+		return run;
+	}
+
+	public void setRun(String run) {
+		this.run = run;
 	}
 
 	public String getCanalPreferenteContacto() {

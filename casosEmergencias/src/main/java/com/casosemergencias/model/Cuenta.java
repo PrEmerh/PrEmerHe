@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.casosemergencias.controller.views.AccountView;
 import com.casosemergencias.dao.vo.AccountVO;
-import com.casosemergencias.dao.vo.DireccionVO;
 
 //Objeto que tiene el modelo de una cuenta, se utiliza en el Servicio
 
@@ -31,6 +30,7 @@ public class Cuenta extends ObjectLogic {
 	/*Id Empresa*/							private String idEmpresa;
 	/*Suministros asociados*/				private List<Suministro> suministros;
 	/*Contactos asociados*/					private List<Contacto> contactos;
+	/*Casos asociados*/						private List<Caso> casos;
 	
 	/*Joins con picklist*/
 	private String labelTipoIdentidadPickList;
@@ -192,6 +192,14 @@ public class Cuenta extends ObjectLogic {
 		this.contactos = contactos;
 	}
 	
+	public List<Caso> getCasos() {
+		return casos;
+	}
+
+	public void setCasos(List<Caso> casos) {
+		this.casos = casos;
+	}
+
 	@Override
 	public Object instantiateTargetView() {
 		AccountView cuenta = new AccountView();
