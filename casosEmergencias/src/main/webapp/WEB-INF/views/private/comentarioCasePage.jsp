@@ -23,17 +23,19 @@
 	<body onload="initHeader();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_comentario_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
-		<!-- INICIO---Mensajes de actualización de caso -->	
+		<div>
+			<p class="cabeceraTitulo"><s:message code="comentarioCase_label_caso" arguments="${numeroCaso}"/></p>
+			<p class="cabeceraSubTitulo"><s:message code="comentarioCase_label_titulo"/></p>
+		</div>
+		<!-- INICIO---Mensajes de actualizacion de caso -->	
 		<div id="divCaseCommentNOCreated" class="divError">
 			<label class="labelDivError"><s:message code="comentarioCase_error_rellenardatos"/></label>
 		</div>
 		<!-- FIN---Mensajes de actualización de caso -->
 		<form:form id="formComentarioCaso" name="formComentarioCaso" action="saveComentarioCaso" modelAttribute="caseComment" method="POST">
 			<form:hidden path="caseid"/>
-			<h2><s:message code="comentarioCase_label_caso" arguments="${numeroCaso}"/></h2>
 			<div class="botoneraListado">
 				<div>
-					<h4><s:message code="comentarioCase_label_titulo"/></h4>
 					<ul>
 						<li><input id="Guardar" type="button" name="Guardar" value='<s:message code="comentarioCase_label_button_guardar"/>' onclick="checkCaseCommentCreation()"/></li>
 						<li><input id="Cancelar" type="button" name="Cancelar" value='<s:message code="comentarioCase_label_button_cancelar"/>' onclick="cancelComent('${sfid}')"/></li>

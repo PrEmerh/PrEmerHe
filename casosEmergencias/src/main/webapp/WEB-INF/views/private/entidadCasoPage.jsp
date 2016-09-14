@@ -276,7 +276,12 @@
 						<label><s:message code="entidadCaso_table_label_direccionSuministro"/></label>
 					</div>
 					<div>
-						<label>${caso.direccionSuministro}</label>
+						<label>
+							<c:choose>
+								<c:when test="${not empty caso.direccionSuministro}">${caso.direccionSuministro}</c:when>
+								<c:otherwise>${caso.suministroJoin.direccionConcatenada}</c:otherwise>
+							</c:choose>
+						</label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_twitter"/></label>
@@ -290,7 +295,12 @@
 						<label><s:message code="entidadCaso_table_label_comuna"/></label>
 					</div>
 					<div>
-						<label>${caso.comuna}</label>					
+						<label>
+							<c:choose>
+								<c:when test="${not empty caso.comuna}">${caso.comuna}</c:when>
+								<c:otherwise>${caso.suministroJoin.comuna}</c:otherwise>
+							</c:choose>
+						</label>					
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_actualizarDatosContacto"/></label>
@@ -310,7 +320,12 @@
 						<label><s:message code="entidadCaso_table_label_numeroMedidor"/></label>
 					</div>
 					<div>
-						<label>${caso.numeroMedidor}</label>
+						<label>
+							<c:choose>
+								<c:when test="${not empty caso.numeroMedidor}">${caso.numeroMedidor}</c:when>
+								<c:otherwise>${caso.suministroJoin.numeroMedidor}</c:otherwise>
+							</c:choose>
+						</label>					
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_ani"/></label>

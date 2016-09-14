@@ -184,7 +184,12 @@ public class CaseController {
 		CaseView casoSuministro = null;
 		SuministroView suministroAsociado = null;
 		
-		getEntityDataForNewCase(request, casoView);
+		HttpSession session = request.getSession(true);
+		String suministroSfid = (String) session.getAttribute(Constantes.SFID_SUMINISTRO);
+		String contactoSfid = (String) session.getAttribute(Constantes.SFID_CONTACTO);
+		String cuentaSfid = (String) session.getAttribute(Constantes.SFID_CUENTA);
+		HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
+		getEntityDataForNewCase(suministroSfid, contactoSfid, cuentaSfid, user, casoView);
 		
 		if (casoView.getSuministroJoin() != null) {
 			suministroAsociado = casoView.getSuministroJoin();
@@ -233,6 +238,12 @@ public class CaseController {
 	public ModelAndView guardarCaso(CaseView caso, boolean redirectToNewCase, HttpServletRequest request) {
 		logger.info("--- Inicio -- guardarCaso ---");
 		
+		HttpSession session = request.getSession(true);
+		String suministroSfid = (String) session.getAttribute(Constantes.SFID_SUMINISTRO);
+		String contactoSfid = (String) session.getAttribute(Constantes.SFID_CONTACTO);
+		String cuentaSfid = (String) session.getAttribute(Constantes.SFID_CUENTA);
+		HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
+		
 		Caso casoInsertado = new Caso();
 		ModelAndView model = new ModelAndView();
 		
@@ -265,7 +276,7 @@ public class CaseController {
 				model.addObject("codigoError", ConstantesError.EMERG_ERROR_CODE_004);
 				model.addObject("mensajeResultado", ConstantesError.HEROKU_CASE_CREATION_GENERIC_ERROR);
 				fillNewCaseFormInfo(caso);
-				getEntityDataForNewCase(request, caso);
+				getEntityDataForNewCase(suministroSfid, contactoSfid, cuentaSfid, user, caso);
 				model.addObject("caso", caso);
 				model.setViewName("private/entidadCasoAltaPage");
 			}
@@ -276,7 +287,7 @@ public class CaseController {
 			model.addObject("codigoError", exception.getCode());
 			model.addObject("mensajeResultado", exception.getMessage());
 			fillNewCaseFormInfo(caso);
-			getEntityDataForNewCase(request, caso);
+			getEntityDataForNewCase(suministroSfid, contactoSfid, cuentaSfid, user, caso);
 			model.addObject("caso", caso);
 			model.setViewName("private/entidadCasoAltaPage");
 		}
@@ -511,15 +522,13 @@ public class CaseController {
 	 * @param casoView
 	 *            Caso donde guardar la informaci&oacute;n.
 	 */
-	private void getEntityDataForNewCase(HttpServletRequest request, CaseView casoView) {
+	private void getEntityDataForNewCase(String suministroSfid, String contactoSfid, String cuentaSfid, HerokuUser user ,CaseView casoView) {
 		logger.trace("Entrando en getEntityDataForNewCase()");
-		HttpSession session = request.getSession(true);
-		
-		if (session.getAttribute(Constantes.SFID_SUMINISTRO) != null && !"".equals(session.getAttribute(Constantes.SFID_SUMINISTRO))) {
+				
+		if (suministroSfid != null && !"".equals(suministroSfid)) {
 			//Obtener el suministro para guardarlo en el formulario
 			Suministro suministro = new Suministro();
 			SuministroView suministroVista = new SuministroView();
-			String suministroSfid = (String) session.getAttribute(Constantes.SFID_SUMINISTRO);
 			suministro = suministroService.readSuministroBySfid(suministroSfid);
 			ParserModelVO.parseDataModelVO(suministro, suministroVista);
 			casoView.setSuministroJoin(suministroVista);
@@ -539,11 +548,10 @@ public class CaseController {
 			}
 		}
 		
-		if (session.getAttribute(Constantes.SFID_CONTACTO) != null && !"".equals(session.getAttribute(Constantes.SFID_CONTACTO))) {
+		if (contactoSfid != null && !"".equals(contactoSfid)) {
 			//Obtener el contacto para guardarlo en el formulario
 			Contacto contacto = new Contacto();
 			ContactView contactoVista = new ContactView();
-			String contactoSfid = (String) session.getAttribute(Constantes.SFID_CONTACTO);
 			contacto = contactoService.readContactoBySfid(contactoSfid);
 			ParserModelVO.parseDataModelVO(contacto, contactoVista);
 			casoView.setContactoJoin(contactoVista);
@@ -551,20 +559,19 @@ public class CaseController {
 			logger.info("Contacto encontrada con id: " + contactoSfid);
 		}
 		
-		if (session.getAttribute(Constantes.SFID_CUENTA) != null && !"".equals(session.getAttribute(Constantes.SFID_CUENTA))) {
+		if (cuentaSfid != null && !"".equals(cuentaSfid)) {
 			//Obtener la cuenta para guardarla en el formulario
 			Cuenta cuenta = new Cuenta();
 			AccountView cuentaVista = new AccountView();
-			String cuentaSfid = (String) session.getAttribute(Constantes.SFID_CUENTA);
 			cuenta = cuentaService.getAccountBySfid(cuentaSfid);
 			ParserModelVO.parseDataModelVO(cuenta, cuentaVista);
 			casoView.setCuentaJoin(cuentaVista);
 			casoView.setNombreCuenta(cuentaSfid);
 			logger.info("Cuenta encontrada con id: " + cuentaSfid);
 		}
-		if (session.getAttribute(Constantes.SESSION_HEROKU_USER) != null && !"".equals(session.getAttribute(Constantes.SESSION_HEROKU_USER))) {
-			//Obtener la cuenta para guardarla en el formulario
-			HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
+		
+		if (user != null) {
+			//Obtener el usuario para guardarlo en el formulario
 			casoView.setHerokuUsername(user.getName());
 			logger.info("Heroku user name: " + user.getName());
 		}

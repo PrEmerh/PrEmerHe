@@ -113,7 +113,7 @@ public class AccountDAO {
 			contactsQuery.setString("sfid", sfid);
 			List<ContactVO> accountContactsList = contactsQuery.list();
 			
-			Query casosQuery = session.createQuery("from CaseVO as contacto WHERE contacto.accountid = :sfid "); 
+			Query casosQuery = session.createQuery("from CaseVO as contacto WHERE contacto.nombreCuenta = :sfid "); 
 			casosQuery.setString("sfid", sfid);
 			List<CaseVO> accountCasosList = casosQuery.list();
 			//Metemos las listas en los objetos, ya que al estar a lazy no les devolvería

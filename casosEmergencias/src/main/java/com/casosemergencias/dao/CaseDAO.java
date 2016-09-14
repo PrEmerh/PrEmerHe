@@ -355,7 +355,7 @@ public class CaseDAO {
 					query.append(" AND caso.fechaEstimadaCierre = :fechaEstimadaCierre");
 				}
 			}
-			if (caso.getAccountid() != null) {
+			if (caso.getNombreCuenta() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.accountid = :accountid");
 					isFirst = false;
@@ -1128,7 +1128,7 @@ public class CaseDAO {
 				}
 			}
 			
-			if (caso.getContactId() != null) {
+			if (caso.getNombreContacto() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.contactId = :contactId");
 					isFirst = false;
@@ -1287,8 +1287,8 @@ public class CaseDAO {
 				result.setDate("fechaEstimadaCierre", caso.getFechaEstimadaCierre());
 			}
 			
-			if (caso.getAccountid() != null) {
-				result.setString("accountid", caso.getAccountid());
+			if (caso.getNombreCuenta() != null) {
+				result.setString("accountid", caso.getNombreCuenta());
 			}
 			
 			if (caso.getFavorabilidadDelCaso() != null) {
@@ -1635,8 +1635,8 @@ public class CaseDAO {
 				result.setString("milestoneStatus", caso.getMilestoneStatus());
 			}
 			
-			if (caso.getContactId() != null) {
-				result.setString("contactId", caso.getContactId());
+			if (caso.getNombreContacto() != null) {
+				result.setString("contactId", caso.getNombreContacto());
 			}
 			
 			if (caso.getHoraPredespacho() != null) {
