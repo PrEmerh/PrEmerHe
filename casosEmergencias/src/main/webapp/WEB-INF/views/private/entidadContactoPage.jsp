@@ -383,7 +383,7 @@
 									<c:forEach items="${contacto.suministros}" var="suministro">
 										<tr>
 											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_estado_suministro"/></td>
-											<td class="filaValor" colspan="2">${suministro.estadoSuministro}</td>
+											<td class="filaValor" colspan="2">${suministro.labelEstadoSuministroPickList}</td>
 										</tr>
 										<tr>
 											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_estado_conexion"/></td>
