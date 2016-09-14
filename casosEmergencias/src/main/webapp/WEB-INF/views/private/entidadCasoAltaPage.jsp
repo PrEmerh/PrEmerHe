@@ -29,18 +29,22 @@
 		<c:if test="${not empty mostrarMensaje && mostrarMensaje eq true}">
 			<c:choose>
 				<c:when test="${not empty hayError && hayError eq true}">
-					<div id="divInsertError" class="divError">
-						<label id="errorMessage">Eror en la inserci&oacute;n.</label>
-						<br/>
-						<label id="errorMessage">Código: ${codigoError}</label>
-						<br/>
-						<label id="errorMessage">Mensaje: ${mensajeResultado}</label>
+					<div>
+						<div class="divError" id="divInsertError">
+							<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
+							<br/>
+							<label class="labelDivError"><s:message code="notificaciones_label_error_codigo"/>&nbsp;${codigoError}</label>
+							<br/>
+							<label class="labelDivError"><s:message code="notificaciones_label_error_mensaje"/>&nbsp;${mensajeResultado}</label>
+						</div>
 					</div>
 				</c:when>
 				<c:otherwise>
-					<div id="divInsertOk" class="divOk" >
-						<label id="okMessage">${mensajeResultado}</label>
-					</div>	
+					<div>
+						<div id="divInsertOk" class="divOk" >
+							<label class="labelDivOk">${mensajeResultado}</label>
+						</div>	
+					</div>
 				</c:otherwise>
 			</c:choose>
 		</c:if>

@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.casosemergencias.controller.views.AccountView;
 import com.casosemergencias.dao.vo.AccountVO;
-import com.casosemergencias.dao.vo.DireccionVO;
 
 //Objeto que tiene el modelo de una cuenta, se utiliza en el Servicio
 

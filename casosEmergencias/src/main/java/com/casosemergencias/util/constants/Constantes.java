@@ -1,7 +1,5 @@
 package com.casosemergencias.util.constants;
 
-import java.util.TimeZone;
-
 public class Constantes {
 
 	//Mensajes Login

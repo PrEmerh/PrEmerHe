@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import com.casosemergencias.model.Cuenta;
-import com.casosemergencias.model.Direccion;
 
 public class AccountView extends ObjectView {
 	/* ID */ private Integer id;

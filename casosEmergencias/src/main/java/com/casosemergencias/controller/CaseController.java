@@ -2,6 +2,7 @@ package com.casosemergencias.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +47,7 @@ import com.casosemergencias.model.Direccion;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.constants.Constantes;
+import com.casosemergencias.util.constants.ConstantesError;
 import com.casosemergencias.util.datatables.DataTableParser;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -173,43 +175,53 @@ public class CaseController {
 		
 		ModelAndView model = new ModelAndView();	
 		CaseView casoView = new CaseView();
-				
-		
-		model.addObject("editMode", Constantes.EDIT_MODE_INSERT);
-		model.setViewName("private/entidadCasoAltaPage");
-		
-		fillNewCaseFormInfo(casoView);
+		boolean hayCasoAbierto = false;
+		CaseView casoSuministro = null;
+		SuministroView suministroAsociado = null;
 		
 		getEntityDataForNewCase(request, casoView);
-
-		model.addObject("caso", casoView);
 		
+		if (casoView.getSuministroJoin() != null) {
+			suministroAsociado = casoView.getSuministroJoin();
+		} else if (casoView.getSuministro() != null && !"".equals(casoView.getSuministro())) {
+			Suministro suministroBD = suministroService.readSuministroBySfid(casoView.getSuministro());
+			if (suministroBD != null) {
+				ParserModelVO.parseDataModelVO(suministroBD, suministroAsociado);
+			}
+		}
+		
+		if (suministroAsociado != null && suministroAsociado.getCasos() != null && !suministroAsociado.getCasos().isEmpty()) {
+			logger.info("El suministro tiene casos asociados. Se comprueba si alguno está abierto");
+			Iterator<CaseView> iteradorCasos = suministroAsociado.getCasos().iterator();
+			do {
+				casoSuministro = iteradorCasos.next();
+				if (!"ESTA007".equals(casoSuministro.getEstado()) || !"ESTA008".equals(casoSuministro.getEstado())) {
+					hayCasoAbierto = true;
+				}
+			} while (iteradorCasos.hasNext() && !hayCasoAbierto);
+		}
+		
+		if (!hayCasoAbierto) {
+			logger.info("El suministro no tiene casos abiertos. Se redirecciona al alta del caso");
+			fillNewCaseFormInfo(casoView);
+			model.addObject("caso", casoView);
+			model.addObject("editMode", Constantes.EDIT_MODE_INSERT);
+			model.setViewName("private/entidadCasoAltaPage");
+		} else {
+			logger.info("El caso con id " + casoSuministro.getSfid() + " y número " + casoSuministro.getNumeroCaso() + " está abierto. No se puede crear otro caso hasta que se complete");
+			model.addObject("codigoError", ConstantesError.EMERG_ERROR_CODE_005);
+			// Comprobar redirección
+			String redirectionPage = checkRedirectionPage(request);
+			model.setViewName(redirectionPage);
+		}
 		logger.info("--- Fin -- cargarPaginaAltaCaso ---");
-		
 		return model;
 	}
 	
 	@RequestMapping(value = "/private/cancelAltaCaso",method = RequestMethod.GET)
 	public String cancelAltaCaso(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-			
-		String suministroSfid= new String();
-		String contactoSfid= new String();
-		String finalDetailPage= new String();
-	
-		suministroSfid=(String) session.getAttribute(Constantes.SFID_SUMINISTRO);
-		contactoSfid=(String) session.getAttribute(Constantes.SFID_CONTACTO);
-		finalDetailPage=(String) session.getAttribute(Constantes.FINAL_DETAIL_PAGE);
-			
-		if (finalDetailPage=="CONTACTO") {
-			return "redirect:entidadContacto?sfid=" + contactoSfid;	
-		}
-		if (finalDetailPage=="SUMINISTRO") {			
-			return "redirect:entidadSuministro?sfid=" + suministroSfid;
-	
-		} else {
-			return null;
-		}
+		String redirectionPage = checkRedirectionPage(request);
+		return redirectionPage;
 	}
 
 	@RequestMapping(value = "/private/altaCaso", method = RequestMethod.POST)
@@ -245,7 +257,8 @@ public class CaseController {
 				logger.info("Se ha producido un error guardando el caso");
 				model.addObject("mostrarMensaje", true);
 				model.addObject("hayError", true);
-				model.addObject("mensajeResultado", "Se ha producido un error guardando el caso");
+				model.addObject("codigoError", ConstantesError.EMERG_ERROR_CODE_004);
+				model.addObject("mensajeResultado", ConstantesError.HEROKU_CASE_CREATION_GENERIC_ERROR);
 				fillNewCaseFormInfo(caso);
 				getEntityDataForNewCase(request, caso);
 				model.addObject("caso", caso);
@@ -546,5 +559,31 @@ public class CaseController {
 		}
 		
 		logger.trace("Saliendo de getEntityDataForNewCase()");
+	}
+	
+	/**
+	 * M&eacute;todo que comprueba la página de entidad donde redireccionar.
+	 * 
+	 * @param request
+	 *            Petici&oacute;n HTTP.
+	 * @return String ruta de redirecci&oacute;n.
+	 */
+	private String checkRedirectionPage(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String suministroSfid = new String();
+		String contactoSfid = new String();
+		String finalDetailPage = new String();
+		String redirectionPage = "";
+		
+		suministroSfid = (String) session.getAttribute(Constantes.SFID_SUMINISTRO);
+		contactoSfid = (String) session.getAttribute(Constantes.SFID_CONTACTO);
+		finalDetailPage = (String) session.getAttribute(Constantes.FINAL_DETAIL_PAGE);
+		
+		if (finalDetailPage != null && "CONTACTO".equals(finalDetailPage) && contactoSfid != null && !"".equals(contactoSfid)) {
+			redirectionPage = "redirect:entidadContacto?sfid=" + contactoSfid;
+		} else if (finalDetailPage != null && "SUMINISTRO".equals(finalDetailPage) && suministroSfid != null && !"".equals(suministroSfid)) {
+			redirectionPage = "redirect:entidadSuministro?sfid=" + suministroSfid;
+		}
+		return redirectionPage;
 	}
 }
