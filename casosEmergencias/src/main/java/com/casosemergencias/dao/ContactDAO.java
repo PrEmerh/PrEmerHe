@@ -505,7 +505,7 @@ public class ContactDAO {
 			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
 				query.append(" WHERE ");
 				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
-					if ("account__run__c".equals(columnInfo.getData())) {
+					if ("run".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							query.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
 							query.append(" AND ");

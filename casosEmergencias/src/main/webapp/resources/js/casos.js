@@ -22,7 +22,7 @@ $(document).ready(function() {
        	            {"data": "numeroInservice", "width": "16%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
        	            {"data": "canalOrigen", 	"width": "16%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
        	            {"data": "estado", 			"width": "16%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
-       	            {"data": "subestado", 		"width": "16%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
+       	            {"data": "subEstado", 		"width": "16%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
        	            {"data": "submotivo", 		"width": "16%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
        	            {"data": "sfid", 			"width": "1%", 	"defaultContent": "", "searchable": false, 	"orderable": false,	"visible": false}
 		],

@@ -21,7 +21,7 @@ $(document).ready(function() {
        	            {"data": "name", 					"width": "33%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
        	            {"data": "tel_fono_principal__c",	"width": "32%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
        	            {"data": "email_principal__c",		"width": "33%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
-       	            {"data": "masterrecord__run__c", 	"width": "1%",  "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": false},
+       	            {"data": "run", 	"width": "1%",  "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": false},
        	            {"data": "sfid", 					"width": "1%", 	"defaultContent": "", "searchable": false, 	"orderable": false,	"visible": false}
 		],
 		"columnDefs": [
