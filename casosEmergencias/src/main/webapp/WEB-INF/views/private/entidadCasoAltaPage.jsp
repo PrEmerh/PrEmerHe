@@ -79,6 +79,7 @@
 			<form:form name="formEntidadCasoAlta" id="formEntidadCasoAlta" action="altaCaso" modelAttribute="caso" method="POST">
 				<input type="hidden" name="redirectToNewCase" id="redirectToNewCase" value="false"/>
 				<form:hidden path="sfid"/>
+				<form:hidden path="herokuUsername"/>
 				<div id="divEntidadCasoAlta" class="divEntidad">
 					<!-- iNFORMACIÓN DEL CASO -->
 					<div class="subtitleAltaEntidad">
@@ -125,6 +126,7 @@
 							<label><s:message code="entidadCaso_table_label_canalorigen"/></label>
 						</div>
 						<div>
+							<form:hidden path="canalOrigen"/>
 							<label>${caso.canalOrigenLabel}</label>
 						</div>
 					</div>

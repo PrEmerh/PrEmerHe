@@ -44,6 +44,7 @@ import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.model.Direccion;
+import com.casosemergencias.model.HerokuUser;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.constants.Constantes;
@@ -557,7 +558,12 @@ public class CaseController {
 			casoView.setNombreCuenta(cuentaSfid);
 			logger.info("Cuenta encontrada con id: " + cuentaSfid);
 		}
-		
+		if (session.getAttribute(Constantes.SESSION_HEROKU_USER) != null && !"".equals(session.getAttribute(Constantes.SESSION_HEROKU_USER))) {
+			//Obtener la cuenta para guardarla en el formulario
+			HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
+			casoView.setHerokuUsername(user.getName());
+			logger.info("Heroku user name: " + user.getName());
+		}
 		logger.trace("Saliendo de getEntityDataForNewCase()");
 	}
 	
