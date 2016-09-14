@@ -156,11 +156,12 @@ public class CaseController {
 				if(miComentario.getCreateddate() != null){
 					Date fecha = miComentario.getCreateddate();
 					fecha = new Date(fecha.getTime() + offset);
-					miComentario.setCreateddate(fecha);
+					miComentario.setCreateddate(fecha);				
+				}
+				if(miComentario.getComment() != null){
 					String comentarioSaltosLinea = miComentario.getComment();
 					comentarioSaltosLinea=comentarioSaltosLinea.replace("\n","<br>");
 					miComentario.setComment(comentarioSaltosLinea);
-					
 				}
 			}	
 		}
