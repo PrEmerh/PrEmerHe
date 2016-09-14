@@ -316,7 +316,7 @@ public class CaseController {
 			jsonResult.put("numeroCaso", caso.getNumeroCaso());
 			jsonResult.put("numeroInservice", caso.getNumeroInservice());
 			jsonResult.put("canalOrigen", caso.getLabelCanalOrigenPickList());
-			jsonResult.put("estado", caso.getDescripcionEstado());
+			jsonResult.put("estado", caso.getLabelEstadoPickList());
 			jsonResult.put("subEstado", caso.getLabelSubestadoPickList());
 			jsonResult.put("submotivo", caso.getLabelSubmotivoPickList());
 			jsonResult.put("sfid", caso.getSfid());
