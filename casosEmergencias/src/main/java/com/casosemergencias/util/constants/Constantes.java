@@ -1,7 +1,5 @@
 package com.casosemergencias.util.constants;
 
-import java.util.TimeZone;
-
 public class Constantes {
 
 	//Mensajes Login
@@ -55,6 +53,7 @@ public class Constantes {
 	public static final String SFID_SUMINISTRO= "sfidSuministro";
 	public static final String SFID_CONTACTO= "sfidContacto";
 	public static final String SFID_CUENTA= "sfidCuenta";
+	public static final String SESSION_HEROKU_USER= "user";
 	public static final String FINAL_DETAIL_PAGE= "paginaDetalleFinal";
 	
 	//

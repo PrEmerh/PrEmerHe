@@ -3,11 +3,8 @@ package com.casosemergencias.model;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-
 import com.casosemergencias.controller.views.ContactView;
 import com.casosemergencias.dao.vo.ContactVO;
-import com.casosemergencias.dao.vo.DireccionVO;
 
 //Objeto que tiene el modelo de un contacto, se utiliza en el Servicio
 

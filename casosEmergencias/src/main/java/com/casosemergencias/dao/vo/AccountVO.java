@@ -15,7 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.WhereJoinTable;
 import org.hibernate.collection.internal.PersistentBag;
 
 import com.casosemergencias.model.Cuenta;
