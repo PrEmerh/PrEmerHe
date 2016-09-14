@@ -58,7 +58,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	private Date fechaEstimadaCierre;
 
 	@Column(name = "accountid")
-	private String accountid;
+	private String nombreCuenta;
 
 	@Column(name = "favorabilidad_del_caso__c")
 	private String favorabilidadDelCaso;
@@ -307,7 +307,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	private String milestoneStatus;
 
 	@Column(name = "contactid")
-	private String contactId;
+	private String nombreContacto;
 
 	@Column(name = "hora_predespacho__c")
 	private Date horaPredespacho;
@@ -429,7 +429,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	private GroupVO groupJoin;
 
 	public CaseVO(Boolean isdeleted, Date systemmodstamp, String _hc_lastop, String _hc_err, Integer id, String sfid,
-			Date fechaApertura, String asunto, Date fechaEstimadaCierre, String accountid, String favorabilidadDelCaso,
+			Date fechaApertura, String asunto, Date fechaEstimadaCierre, String nombreCuenta, String favorabilidadDelCaso,
 			String flagSec, String lastmodifiedbyid, String productid, Boolean validarElectrodependiente,
 			String sf4twitterTwitterUsername, String propietarioCaso, Date slastartdate, String submotivo,
 			String callCenter, Boolean falloEnvioValidacion, String literalComuna, Boolean actDatosContacto,
@@ -448,7 +448,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 			String businessHoursId, String sf4twitterAuthorExternalId, Boolean hasCommentSunReadByOwner,
 			Date horaCerrado, String literalCondicionAgravante, String type, String direccionSuministro,
 			Date horaPendiente, String ani, String facebook, String peticion, String communityId, String direccion,
-			Date horaAsignado, String milestoneStatus, String contactId, Date horaPredespacho, Date horaEnruta,
+			Date horaAsignado, String milestoneStatus, String nombreContacto, Date horaPredespacho, Date horaEnruta,
 			String reason, String idEmpresa, Date horaProgramado, Double numeroSeguidoresDel, String literalCategorias,
 			String recordtypeId, String comuna, String prioridad, String valorSubestadoins,
 			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante,String herokuUsername,
@@ -467,7 +467,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.fechaApertura = fechaApertura;
 		this.asunto = asunto;
 		this.fechaEstimadaCierre = fechaEstimadaCierre;
-		this.accountid = accountid;
+		this.nombreCuenta = nombreCuenta;
 		this.favorabilidadDelCaso = favorabilidadDelCaso;
 		this.flagSec = flagSec;
 		this.lastmodifiedbyid = lastmodifiedbyid;
@@ -550,7 +550,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.direccion = direccion;
 		this.horaAsignado = horaAsignado;
 		this.milestoneStatus = milestoneStatus;
-		this.contactId = contactId;
+		this.nombreContacto = nombreContacto;
 		this.horaPredespacho = horaPredespacho;
 		this.horaEnruta = horaEnruta;
 		this.reason = reason;
@@ -659,12 +659,12 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.fechaEstimadaCierre = fechaEstimadaCierre;
 	}
 
-	public String getAccountid() {
-		return accountid;
+	public String getNombreCuenta() {
+		return nombreCuenta;
 	}
 
-	public void setAccountid(String accountid) {
-		this.accountid = accountid;
+	public void setNombreCuenta(String nombreCuenta) {
+		this.nombreCuenta = nombreCuenta;
 	}
 
 	public String getFavorabilidadDelCaso() {
@@ -1325,12 +1325,12 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.milestoneStatus = milestoneStatus;
 	}
 
-	public String getContactId() {
-		return contactId;
+	public String getNombreContacto() {
+		return nombreContacto;
 	}
 
-	public void setContactId(String contactId) {
-		this.contactId = contactId;
+	public void setNombreContacto(String nombreContacto) {
+		this.nombreContacto = nombreContacto;
 	}
 
 	public Date getHoraPredespacho() {

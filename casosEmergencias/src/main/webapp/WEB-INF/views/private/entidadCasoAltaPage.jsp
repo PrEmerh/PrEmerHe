@@ -1,4 +1,4 @@
-<%@ page language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
@@ -25,7 +25,7 @@
 	<body onload="initHeader(); cargarDialogSuministro(); cargarDialogDireccion(); showNotifications();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCasoAlta_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
-		<!-- Mensajes de estado de operación -->
+		<!-- Mensajes de estado de operaciÃ³n -->
 		<c:if test="${not empty mostrarMensaje && mostrarMensaje eq true}">
 			<c:choose>
 				<c:when test="${not empty hayError && hayError eq true}">
@@ -58,7 +58,7 @@
 				</ul>
 			</div>
 		</div>
-		<!-- Mensajes de estado de operaci�n -->
+		<!-- Mensajes de estado de operación -->
 		<div id="divError" class="divError" style="display:none;margin-top:2%;">
 			<label><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
 			<br>
@@ -66,7 +66,7 @@
 			<br>
 			<label id="errorMessage"></label>
 		</div>
-		<!-- Identificaci�n de campos obligatorios -->
+		<!-- Identificación de campos obligatorios -->
 		<div>
 			<div class="subtitlePrincipalAltaEntidad">
 				<div class="titleObligatorio"></div>
@@ -81,7 +81,7 @@
 				<form:hidden path="sfid"/>
 				<form:hidden path="herokuUsername"/>
 				<div id="divEntidadCasoAlta" class="divEntidad">
-					<!-- iNFORMACIÓN DEL CASO -->
+					<!-- iNFORMACIÃN DEL CASO -->
 					<div class="subtitleAltaEntidad">
 						<div><label><s:message code="entidadCasoAlta_table_title_label_infoentidad"/></label></div>
 					</div>
@@ -207,7 +207,7 @@
 						</div>
 					</div>
 					
-					<!-- IDENTIFICACIÓN -->
+					<!-- IDENTIFICACIÃN -->
 					<div class="subtitleAltaEntidad">
 						<div><label class="divLabel"><s:message code="entidadCasoAlta_table_title_label_identificacion"/></label></div>
 					</div>
@@ -336,7 +336,7 @@
 							<label>&nbsp;</label>
 						</div>
 					</div>
-					<!-- SOLUCIÓN -->
+					<!-- SOLUCIÃN -->
 					<div class="subtitleAltaEntidad">
 						<div><label><s:message code="entidadCaso_title_label_solucion"/></label></div>
 					</div>

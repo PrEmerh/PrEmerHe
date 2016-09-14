@@ -542,3 +542,21 @@ table.servicesTable td.filaVacia {
 }
 
 /* <<<<< ESTILOS PARA TABLA DE SERVICIOS DE SUMINISTROS */
+
+div .cabeceraTitulo {
+	text-align: left;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 18px;
+	font-weight: bold;
+	padding: 5px;
+	margin-left: 5px;
+}
+
+div .cabeceraSubTitulo {
+	text-align: left;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 5px;
+	margin-left: 5px;
+}
