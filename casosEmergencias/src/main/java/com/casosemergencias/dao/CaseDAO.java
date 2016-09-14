@@ -112,9 +112,10 @@ public class CaseDAO {
 
 		try {
 			StringBuilder query = new StringBuilder("FROM CaseVO caso "
-					+ "LEFT JOIN FETCH caso.subestadoPickList subest "
+					+ "LEFT JOIN FETCH caso.subestadoPickList subEstado "
 					+ "LEFT JOIN FETCH caso.submotivoPickList submotivo "
-					+ "LEFT JOIN FETCH caso.canalOrigenPickList canalorigen");
+					+ "LEFT JOIN FETCH caso.canalOrigenPickList canalOrigen "
+					+ "LEFT JOIN FETCH caso.estadoPickList estado ");
 			
 			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
 				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
@@ -127,7 +128,11 @@ public class CaseDAO {
 			}
 			
 			if (order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)) {
-				query.append(" ORDER BY caso." + order + " " + dirOrder);
+				if("submotivo".equals(order) || "subEstado".equals(order) || "canalOrigen".equals(order) || "estado".equals(order)){
+					query.append(" ORDER BY " + order + ".valor " + dirOrder);
+				}else{
+					query.append(" ORDER BY caso." + order + " " + dirOrder);
+				}
 			}
 			
 			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);
@@ -1782,7 +1787,7 @@ public class CaseDAO {
 		Session session = sessionFactory.openSession();
 
 		try {
-			StringBuilder sqlQuery = new StringBuilder("SELECT COUNT(id) FROM CaseVO ");
+			StringBuilder sqlQuery = new StringBuilder("SELECT COUNT(id) FROM CaseVO  as caso ");
 
 			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
 				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {

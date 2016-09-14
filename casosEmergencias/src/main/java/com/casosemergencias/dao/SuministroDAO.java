@@ -786,7 +786,9 @@ public class SuministroDAO {
 		int searchParamsCounter = 0;
 				
 		try {
-			StringBuilder query = new StringBuilder("FROM SuministroVO ");
+			StringBuilder query = new StringBuilder("FROM SuministroVO suministro "
+					+ "LEFT JOIN FETCH suministro.estadoConexionPickList estadoConexion "
+					+ "LEFT JOIN FETCH suministro.estadoSuministroPickList estadoSuministro ");
 			
 			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
 				query.append(" WHERE ");
@@ -832,7 +834,11 @@ public class SuministroDAO {
 			}
 			
 			if (order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)) {
-				query.append(" ORDER BY " + order + " " + dirOrder);
+				if("estadoConexion".equals(order) || "estadoSuministro".equals(order)){
+					query.append(" ORDER BY " + order + ".valor " + dirOrder);
+				}else{
+					query.append(" ORDER BY " + order + " " + dirOrder);
+				}
 			}
 			
 			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);

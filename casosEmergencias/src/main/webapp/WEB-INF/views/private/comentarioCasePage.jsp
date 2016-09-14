@@ -1,4 +1,4 @@
-<%@ page language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -31,7 +31,7 @@
 		<div id="divCaseCommentNOCreated" class="divError">
 			<label class="labelDivError"><s:message code="comentarioCase_error_rellenardatos"/></label>
 		</div>
-		<!-- FIN---Mensajes de actualización de caso -->
+		<!-- FIN---Mensajes de actualizacion de caso -->
 		<form:form id="formComentarioCaso" name="formComentarioCaso" action="saveComentarioCaso" modelAttribute="caseComment" method="POST">
 			<form:hidden path="caseid"/>
 			<div class="botoneraListado">

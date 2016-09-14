@@ -42,7 +42,7 @@ public class CreateCase {
 				String jsonInString = mapper.writeValueAsString(casoSalesforce);
 				logger.info("Parseo JSON caso: " + jsonInString);
 
-				StringEntity params = new StringEntity(jsonInString);
+				StringEntity params = new StringEntity(jsonInString, "UTF-8");
 				post.setEntity(params);
 				
 				logger.info("Intento de llamada POST crearCaso");

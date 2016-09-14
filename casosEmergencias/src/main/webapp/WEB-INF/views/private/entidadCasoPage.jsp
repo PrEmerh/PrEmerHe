@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html;" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -21,9 +21,9 @@
 	<body onload="initHeader(); checkUpdates();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
-		<!-- Mensajes de estado de alta, actualización e inserción de comentarios de un caso -->
+		<!-- Mensajes de estado de alta, actualizaciÃ³n e inserciÃ³n de comentarios de un caso -->
 		<div>
-			<!-- Actualización de comentario -->
+			<!-- ActualizaciÃ³n de comentario -->
 			<div id="divCaseModifiedError" class="divError">
 				<label class="labelDivError"><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
 				<br>
@@ -32,7 +32,7 @@
 			<div id="divCaseModifiedOk" class="divOk" >
 				<label class="labelDivOk"><s:message code="entidadCaso_modificacion_correcta"/></label>
 			</div>
-			<!-- Creación de un comentario de caso -->	
+			<!-- CreaciÃ³n de un comentario de caso -->	
 			<div id="divCaseCommentNOCreated" class="divError">
 				<label class="labelDivError"><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
 				<label class="notificationMessage" id="errorMessage"></label>

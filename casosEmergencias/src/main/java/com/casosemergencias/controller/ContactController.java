@@ -139,7 +139,7 @@ public class ContactController {
 		for (Contacto contacto : listaContactos) {
 			jsonResult = new JSONObject();
 			jsonResult.put("name", contacto.getApellidoPaterno()+","+contacto.getFirstname());
-			jsonResult.put("run__c", contacto.getRun());
+			jsonResult.put("run", contacto.getRun());
 			jsonResult.put("phone", contacto.getPhone());
 			jsonResult.put("email", contacto.getEmail());
 			jsonResult.put("sf4twitter__twitter_username__c", contacto.getSf4twitterTwitterUsername());

@@ -518,12 +518,9 @@ public class AccountDAO {
 						}
 					}
 					
-					if ("masterrecord__run__c".equals(columnInfo.getData())) {
+					if ("run".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							query.append("(");
 							query.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
-							query.append(" OR parent__rut_empresa__c LIKE '%" + columnInfo.getSearchValue() +"%'");
-							query.append(")");
 							query.append(" AND ");
 							searchParamsCounter++;
 						}
@@ -597,12 +594,9 @@ public class AccountDAO {
 						}
 					}
 					
-					if ("masterrecord__run__c".equals(columnInfo.getData())) {
+					if ("run".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							sqlQuery.append("(");
 							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
-							sqlQuery.append(" OR parent__rut_empresa__c LIKE '%" + columnInfo.getSearchValue() +"%'");
-							sqlQuery.append(")");
 							sqlQuery.append(" AND ");
 							searchParamsCounter++;
 						}
