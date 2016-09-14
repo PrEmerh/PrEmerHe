@@ -82,10 +82,10 @@ function createTableSuministro() {
 	        	 }
 	       	}, 
 	       	"columns": [ 
-	       	            {"data": "name", "width" : "30%","defaultContent": ""}, 
-	       	            {"data": "idEmpresa", "width":"15%", "defaultContent": ""},
-	       	            {"data": "comuna", "width":"15%", "defaultContent": ""},
-	       	            {"data": "direccionConcatenada", "width":"39%", "defaultContent": ""},
+	       	            {"data": "name", "width" : "10%","defaultContent": ""}, 
+	       	            {"data": "id_empresa__c", "width":"20%", "defaultContent": ""},
+	       	            {"data": "comuna__c", "width":"20%", "defaultContent": ""},
+	       	            {"data": "DireccionConcatenada__c", "width":"19%", "defaultContent": ""},
 	       	            {"data": "sfid", "width":"1%", "defaultContent": "", "visible": false}
 	       	            ],
 	       "columnDefs": [

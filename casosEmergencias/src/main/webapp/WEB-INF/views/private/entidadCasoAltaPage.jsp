@@ -365,13 +365,13 @@
 						<label><s:message code="dialog_label_busqueda_nombre"/></label>
 					</div>
 					<div>
-				  		<table id="tablaSuministrosPopUp" class="display" data-page-length="10" data-order="[[ 0, &quot;asc&quot; ]]">
+				  		<table  id="tablaSuministrosPopUp" class="display" data-page-length="10" data-order="[[ 0, &quot;asc&quot; ]]">
 								<thead>
 						            <tr>
-						            	<th width="30%"><s:message code="homeSuministros_table_head_nombreSuministro"/></th>
-						            	<th width="15%"><s:message code="homeSuministros_table_head_idEmpresa"/></th>
-						            	<th width="15%"><s:message code="homeSuministros_table_head_comuna"/></th>
-						            	<th width="39%"><s:message code="homeSuministros_table_head_direccionConcat"/></th>		
+						            	<th width="10%"><s:message code="homeSuministros_table_head_nombreSuministro"/></th>
+						            	<th width="20%"><s:message code="homeSuministros_table_head_idEmpresa"/></th>
+						            	<th width="20%"><s:message code="homeSuministros_table_head_comuna"/></th>
+						            	<th width="19%"><s:message code="homeSuministros_table_head_direccionConcat"/></th>		
 						            	<th width="1%" hidden="true">sfid</th>	            	
 						            </tr>
 					        	</thead>

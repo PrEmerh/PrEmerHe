@@ -125,8 +125,8 @@ public class SuministroController {
 		for(Suministro suministro : listSuministros){
 			jsonResult = new JSONObject();
 			jsonResult.put("name", suministro.getName());
-			jsonResult.put("idEmpresa", suministro.getIdEmpresa());
-			jsonResult.put("comuna", suministro.getComuna());
+			jsonResult.put("id_empresa__c", suministro.getIdEmpresa());
+			jsonResult.put("comuna__c", suministro.getComuna());
 			jsonResult.put("DireccionConcatenada__c", suministro.getDireccionConcatenada());
 			jsonResult.put("sfid", suministro.getSfid());
 			array.put(jsonResult);
