@@ -1,4 +1,4 @@
-<%@ page language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -23,11 +23,11 @@
 	<body onload="initHeader();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_comentario_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
-		<!-- INICIO---Mensajes de actualización de caso -->	
+		<!-- INICIO---Mensajes de actualizaciÃ³n de caso -->	
 		<div id="divCaseCommentNOCreated" class="divError">
 			<label class="labelDivError"><s:message code="comentarioCase_error_rellenardatos"/></label>
 		</div>
-		<!-- FIN---Mensajes de actualización de caso -->
+		<!-- FIN---Mensajes de actualizaciÃ³n de caso -->
 		<form:form id="formComentarioCaso" name="formComentarioCaso" action="saveComentarioCaso" modelAttribute="caseComment" method="POST">
 			<form:hidden path="caseid"/>
 			<h2><s:message code="comentarioCase_label_caso" arguments="${numeroCaso}"/></h2>
