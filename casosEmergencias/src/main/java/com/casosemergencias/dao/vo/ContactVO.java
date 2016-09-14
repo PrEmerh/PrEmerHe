@@ -116,10 +116,13 @@ public class ContactVO extends ObjectVO implements Serializable {
 	private String influencerType;
 	
 	@Column(name = "sf4twitter__twitter_follower_count__c")
-	private Double seguidoresTwitter;
+	private Integer seguidoresTwitter;
 	
 	@Column(name = "accountid")
 	private String accountid;	
+	
+	@Column(name = "firstname")
+	private String firstname;	
 	
 	@OneToOne(fetch=FetchType.LAZY, optional=true)
 	@JoinColumn(name="accountid", referencedColumnName="sfid", insertable = false, updatable=false)
@@ -161,7 +164,7 @@ public class ContactVO extends ObjectVO implements Serializable {
 			String apellidoMaterno, String tipoIdentidad, String telefonoSecundario, String emailSecundario,
 			String sf4twitterFcbkUsername, Boolean casosReiterados, String email, String accountRun,String run, String dirContacto,
 			String sf4twitterTwitterUserId, String sf4twitterFcbkUserId, String sf4twitterTwitterUsername,
-			String tipoContacto, String phone, String apellidoPaterno, String accountid, AccountVO cuentaJoin,
+			String tipoContacto, String phone, String apellidoPaterno, String accountid,String firstname, AccountVO cuentaJoin,
 			PickListsContactCanalPreferenteContactoVO canalPreferenteContactoPickList, PickListsContactTipoIdentidadVO tipoIdentidadPickList,
 			PickListsContactTipoContactoVO tipoContactoPickList) {
 		super();
@@ -192,6 +195,7 @@ public class ContactVO extends ObjectVO implements Serializable {
 		this.phone = phone;
 		this.apellidoPaterno = apellidoPaterno;
 		this.accountid = accountid;
+		this.firstname=firstname;
 		this.cuentaJoin = cuentaJoin;
 		this.canalPreferenteContactoPickList = canalPreferenteContactoPickList;
 		this.tipoIdentidadPickList = tipoIdentidadPickList;
@@ -421,6 +425,14 @@ public class ContactVO extends ObjectVO implements Serializable {
 	public void setAccountid(String accountid) {
 		this.accountid = accountid;
 	}
+	
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
 
 	public AccountVO getCuentaJoin() {
 		return cuentaJoin;
@@ -502,11 +514,11 @@ public class ContactVO extends ObjectVO implements Serializable {
 		this.influencerType = influencerType;
 	}
 
-	public Double getSeguidoresTwitter() {
+	public Integer getSeguidoresTwitter() {
 		return seguidoresTwitter;
 	}
 
-	public void setSeguidoresTwitter(Double seguidoresTwitter) {
+	public void setSeguidoresTwitter(Integer seguidoresTwitter) {
 		this.seguidoresTwitter = seguidoresTwitter;
 	}
 

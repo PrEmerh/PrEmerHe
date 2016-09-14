@@ -45,7 +45,6 @@ $(document).ready(function() {
 	});
 	
 	$('#search').on('click', function() {
-		if (validateEmail($("#filtroEmail").val())) {
 			table
 			.columns(0).search($('#filtroNombreApellidos').val())
 			.columns(1).search($('#filtroRunRut').val())
@@ -53,12 +52,6 @@ $(document).ready(function() {
 			.columns(3).search($('#filtroEmail').val())
 			.columns(4).search($('#filtroTwitter').val())
 			.draw();
-		} else {
-			alert("Introduzca un email válido");
-			$("#filtroEmail").val("");
-			$("#filtroEmail").focus();
-			return false;
-		}
 	});
 });
 

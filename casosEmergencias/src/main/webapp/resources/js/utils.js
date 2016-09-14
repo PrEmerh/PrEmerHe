@@ -40,10 +40,18 @@ function modificarButton() {
 	var cancelar = document.getElementById('Cancelar');
 	var descriptionEdit = document.getElementById('fieldEdit');
 	var descriptionRead = document.getElementById('fieldRead');
+	var datosEmergenciaDiv = document.getElementById('datosEmergencia');
+	var arrowDatosEmergenciaDiv = document.getElementById('arrowDatosEmergencia');
 	
 	modificar.hidden = true;
 	guardar.hidden = false;
-	cancelar.hidden = false;		
+	cancelar.hidden = false;	
+	
+	if (datosEmergenciaDiv.style.display == 'none'){
+		datosEmergenciaDiv.style.display = '';
+		arrowDatosEmergenciaDiv.src="../resources/images/arrow-down-black.png";
+	}
+	
 	descriptionRead.style.display = 'none'; 
 	descriptionEdit.style.display = ''; 
 }
@@ -83,20 +91,6 @@ function showNotifications() {
 		$('#divInsertOk').show();
 	}
 }
-
-// --------------------------------------------------------------------
-
-// FUNCIONES DE VALIDACIONES DE FORMULARIOS DE BÚSQUEDA
-function validateEmail(email) {
-    var emailRegex = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    var validated = true;
-    if (email != "") {
-    	validated =  emailRegex.test(email);
-    }
-    return validated;
-}
-//--------------------------------------------------------------------
-
 // FUNCIONES DE PÁGINA DE ALTA DE CASOS
 function altaCaso() {
 	var validado = true; //validaDatos();

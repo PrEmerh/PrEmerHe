@@ -12,6 +12,7 @@ public class ContactView extends ObjectView {
 	/*ID*/                                  private Integer id;
 	/*SFID*/                                private String sfid;
 	/*Nombre*/                              private String name;
+	/*Firstname*/ 							private String firstname;
 	/*Apellido Paterno*/                    private String apellidoPaterno;
 	/*Apellido Materno*/                    private String apellidoMaterno;
 	/*Tipo de Identidad*/                   private String tipoIdentidad;
@@ -40,7 +41,7 @@ public class ContactView extends ObjectView {
 	private String influencer;
 	private String twitterBio;
 	private String influencerType;
-	private Double seguidoresTwitter;
+	private Integer seguidoresTwitter;
 	
 	private DireccionView dirContactoJoin;
 
@@ -78,6 +79,12 @@ public class ContactView extends ObjectView {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 	public String getApellidoPaterno() {
 		return apellidoPaterno;
@@ -265,10 +272,10 @@ public class ContactView extends ObjectView {
 	public void setInfluencerType(String influencerType) {
 		this.influencerType = influencerType;
 	}
-	public Double getSeguidoresTwitter() {
+	public Integer getSeguidoresTwitter() {
 		return seguidoresTwitter;
 	}
-	public void setSeguidoresTwitter(Double seguidoresTwitter) {
+	public void setSeguidoresTwitter(Integer seguidoresTwitter) {
 		this.seguidoresTwitter = seguidoresTwitter;
 	}
 	public DireccionView getDirContactoJoin() {

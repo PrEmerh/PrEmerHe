@@ -154,6 +154,10 @@ public class CaseController {
 					Date fecha = miComentario.getCreateddate();
 					fecha = new Date(fecha.getTime() + offset);
 					miComentario.setCreateddate(fecha);
+					String comentarioSaltosLinea = miComentario.getComment();
+					comentarioSaltosLinea=comentarioSaltosLinea.replace("\n","<br>");
+					miComentario.setComment(comentarioSaltosLinea);
+					
 				}
 			}	
 		}

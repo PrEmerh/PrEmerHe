@@ -138,7 +138,7 @@ public class ContactController {
 
 		for (Contacto contacto : listaContactos) {
 			jsonResult = new JSONObject();
-			jsonResult.put("name", contacto.getName());
+			jsonResult.put("name", contacto.getApellidoPaterno()+","+contacto.getFirstname());
 			jsonResult.put("run__c", contacto.getRun());
 			jsonResult.put("phone", contacto.getPhone());
 			jsonResult.put("email", contacto.getEmail());

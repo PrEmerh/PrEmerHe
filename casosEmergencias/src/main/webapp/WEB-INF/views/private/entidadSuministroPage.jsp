@@ -90,7 +90,13 @@
 							<label>${suministro.labelEstadoSuministroPickList}</label>
 						</div>
 					</div>
-					<div>		
+					<div>
+						<div class="divLabel">
+							<label><s:message code="entidadSuministro_title_label_numeroSuministro"/></label>
+						</div>
+						<div>
+							<label>${suministro.numeroSuministro}</label>
+						</div>
 					</div>	
 				</div>
 				<div id="divEntidadSuministroCasos" class="divEntidad">

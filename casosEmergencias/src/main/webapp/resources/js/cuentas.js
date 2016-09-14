@@ -44,19 +44,12 @@ $(document).ready(function() {
 	});
 	
 	$('#search').on('click', function() {
-		if (validateEmail($("#filtroEmail").val())) {
 			table
 				.columns(0).search($('#filtroRazonSocial').val())
 				.columns(1).search($('#filtroTelefono').val())
 				.columns(2).search($('#filtroEmail').val())
 				.columns(3).search($('#filtroRunRut').val())
 				.draw();
-		} else {
-			alert("Introduzca un email válido");
-			$("#filtroEmail").val("");
-			$("#filtroEmail").focus();
-			return false;
-		}
 	});
 });
 

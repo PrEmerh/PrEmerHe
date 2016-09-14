@@ -459,7 +459,8 @@
 												<c:if test="${coment.ispublished == false}">
 													<label><input type="checkbox" id="checkbox" value="true" disabled/></label>	
 												</c:if>
-											</td>
+											</td> 
+											
 											<td>
 												<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${coment.createddate}" var="createDate"/>
 												<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${coment.lastmodifieddate}" var="lastDate"/> 

@@ -17,6 +17,7 @@ public class Contacto extends ObjectLogic {
 	/*ID*/                                  private Integer id;
 	/*SFID*/                               	private String sfid;
 	/*Nombre*/                              private String name;
+	/*Firstname*/ 							private String firstname;
 	/*Apellido Paterno*/                    private String apellidoPaterno;
 	/*Apellido Materno*/                    private String apellidoMaterno;
 	/*Tipo de Identidad*/                   private String tipoIdentidad;
@@ -48,7 +49,7 @@ public class Contacto extends ObjectLogic {
 	
 	private String influencerType;
 	
-	private Double seguidoresTwitter;
+	private Integer seguidoresTwitter;
 	
 	private Direccion dirContactoJoin;
 	
@@ -91,6 +92,14 @@ public class Contacto extends ObjectLogic {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
 
 	public String getApellidoPaterno() {
@@ -345,11 +354,11 @@ public class Contacto extends ObjectLogic {
 		this.influencerType = influencerType;
 	}
 
-	public Double getSeguidoresTwitter() {
+	public Integer getSeguidoresTwitter() {
 		return seguidoresTwitter;
 	}
 
-	public void setSeguidoresTwitter(Double seguidoresTwitter) {
+	public void setSeguidoresTwitter(Integer seguidoresTwitter) {
 		this.seguidoresTwitter = seguidoresTwitter;
 	}
 

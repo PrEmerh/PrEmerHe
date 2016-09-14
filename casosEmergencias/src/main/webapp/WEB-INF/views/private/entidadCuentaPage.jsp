@@ -116,7 +116,7 @@
 						<label><s:message code="entidadCuenta_title_label_address" /></label>
 					</div>
 					<div>
-						<label><a class="link" href="../private/entidadDireccion?sfid=${cuenta.direccionJoin.sfid}">${cuenta.direccionJoin.numero}</a></label>
+						<label><a class="link" href="../private/entidadDireccion?sfid=${cuenta.direccionJoin.sfid}">${cuenta.direccionJoin.name}</a></label>
 					</div>
 					<div class="divLabel">
 					</div>
