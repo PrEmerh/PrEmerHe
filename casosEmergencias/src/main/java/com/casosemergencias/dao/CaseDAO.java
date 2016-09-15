@@ -121,7 +121,7 @@ public class CaseDAO {
 				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
 					if ("numeroCaso".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							query.append(" WHERE caso." + columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							query.append(" WHERE UPPER(caso." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 						}
 					}
 				}
