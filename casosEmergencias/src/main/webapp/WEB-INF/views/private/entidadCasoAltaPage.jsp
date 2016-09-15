@@ -357,7 +357,7 @@
 				</div>
 				<!-- Dialog suministro -->
 				<div id="dialogSuministro" title="<s:message code="dialog_title_suministro"/>" class="dialogLupa">
-					<div class="divBusquedaDialog">
+					<div class="divBusquedaDialog" >
 						<input type="text" id="txtNumeroSuministro"/>
 						<input type="text" id="txtComuna"/>
 						<input type="button" id="searchSuministro" value="<s:message code="btn_label_boton_ir"/>"/>
