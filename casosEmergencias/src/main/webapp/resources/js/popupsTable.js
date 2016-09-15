@@ -10,7 +10,7 @@ function createTableDireccion() {
 	if(tableDireccion == null){
 		tableDireccion= $('#tablaDireccionesPopUp').DataTable( {
 			"scrollY": "250px",
-			"scrollX": true,
+			"scrollX": false,
 			"scrollCollapse": true,
 			"paging": true,
 			"serverSide": true,
@@ -25,10 +25,10 @@ function createTableDireccion() {
 	        	 }
 	       	}, 
 	       	"columns": [ 
-	       	            {"data": "name","width" : "30%","defaultContent": ""}, 
+	       	            {"data": "name","width" : "15%","defaultContent": ""}, 
 	       	            {"data": "numero", "width":"10%", "defaultContent": ""},
-	       	            {"data": "comuna", "width":"20%", "defaultContent": ""},
-	       	            {"data": "calle", "width":"30%", "defaultContent": ""},
+	       	            {"data": "literalComuna", "width":"20%", "defaultContent": ""},
+	       	            {"data": "direccionConcatenada", "width":"35%", "defaultContent": ""},
 	       	            {"data": "departamento", "width":"9%", "defaultContent": ""},
 	       	            {"data": "sfid", "width":"1%", "visible": false, "defaultContent": ""}
 	       	            ],
@@ -52,10 +52,10 @@ function createTableDireccion() {
 	        "deferRender": true, 
 	  
 		});
-		$('#searchDireccion').on('click', function(){
-			var allCase = true;
-			first = false;
-			tableDireccion.search($('#txtNombreDireccion').val(),allCase).draw();
+		$('#searchDireccion').on('click', function() {
+			tableDireccion
+				.columns(3).search($('#txtNombreDireccion').val())
+				.draw();
 		});
 	}
 }
@@ -67,7 +67,7 @@ function createTableSuministro() {
 	if(tableSuministro==null){
 		tableSuministro= $('#tablaSuministrosPopUp').DataTable( {
 			"scrollY": "250px",
-			"scrollX": true,
+			"scrollX": false,
 			"scrollCollapse": true,
 			"paging": true,
 			"serverSide": true,
@@ -108,11 +108,10 @@ function createTableSuministro() {
 	        "deferRender": true, 
 	  
 		});
-	
 		$('#searchSuministro').on('click', function() {
-			var allCase = true;
-			first = false;
-			tableSuministro.column(0).search($('#txtNumeroSuministro').val(), allCase).column(2).search($('#txtComuna').val(), allCase).draw();
+			tableSuministro
+				.columns(0).search($('#txtNumeroSuministro').val())
+				.draw();
 		});
 	}
 	

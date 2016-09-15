@@ -104,7 +104,7 @@ public class DireccionController {
 		for (Direccion direccion : listDirecciones) {
 			jsonResult = new JSONObject();
 			jsonResult.put("name", direccion.getName());
-			jsonResult.put("calle__c", direccion.getCalle());
+			jsonResult.put("calle", direccion.getCalle());
 			jsonResult.put("altura__c", direccion.getNumero());
 			jsonResult.put("literalcomuna__c", direccion.getLiteralComuna());
 			jsonResult.put("direccionconcatenada__c", direccion.getDireccionConcatenada());
@@ -147,8 +147,8 @@ public class DireccionController {
 			jsonResult = new JSONObject();
 			jsonResult.put("name", direccion.getName());
 			jsonResult.put("numero", direccion.getNumero());
-			jsonResult.put("comuna", direccion.getComuna());
-			jsonResult.put("calle", direccion.getDireccionConcatenada());
+			jsonResult.put("literalComuna", direccion.getLiteralComuna());
+			jsonResult.put("direccionConcatenada", direccion.getDireccionConcatenada());
 			jsonResult.put("departamento", direccion.getDepartamento());
 			jsonResult.put("sfid", direccion.getSfid());
 			array.put(jsonResult);
