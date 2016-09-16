@@ -809,15 +809,7 @@ public class SuministroDAO {
 						}
 					}
 					
-					if ("n_mero_medidor__c".equals(columnInfo.getData())) {
-						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
-							query.append(" AND ");
-							searchParamsCounter++;
-						}
-					}
-					
-					if ("ruta__c".equals(columnInfo.getData())) {
+					if ("comuna__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 							query.append(" AND ");
@@ -889,15 +881,7 @@ public class SuministroDAO {
 						}
 					}
 									
-					if ("n_mero_medidor__c".equals(columnInfo.getData())) {
-						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							sqlQuery.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
-							sqlQuery.append(" AND ");
-							searchParamsCounter++;
-						}
-					}
-					
-					if ("ruta__c".equals(columnInfo.getData())) {
+					if ("comuna__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							sqlQuery.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 							sqlQuery.append(" AND ");

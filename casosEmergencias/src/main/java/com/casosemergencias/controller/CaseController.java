@@ -421,6 +421,7 @@ public class CaseController {
 		ModelAndView model = new ModelAndView();			
 		model.setViewName("private/comentarioCasePage");
 		
+
 		Caso caso = this.caseCommentService.obtenerDatosCasoParaComentario(sfidCase);
 
 		model.addObject("description", caso.getDescription());
@@ -453,16 +454,25 @@ public class CaseController {
 		caseComment.setCaseid(sfidCase);
 		
 		model.addObject("caseComment", caseComment);
+		
+		
+		//Recuperamos el heroku user de sesion y lo pasamos a la vista
+		
 		logger.info("--- Fin -- comentarioCaso ---");
 		
 		return model;
 	}
 	
 	@RequestMapping(value ="/private/saveComentarioCaso", method = RequestMethod.POST)
-	public String saveComentarioCaso(CaseCommentView casoRequest){
+	public String saveComentarioCaso(CaseCommentView casoRequest,  HttpServletRequest request){
 		
 		
 		logger.info("--- Inicio -- actualizarCaso ---");
+		//Recuperamos el heroku user para concatenarlo al comentario.
+		HttpSession session = request.getSession(true);
+		HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
+		String comentario = "<b>"+ user.getName() + ": </b> " + casoRequest.getComment();
+		casoRequest.setComment(comentario);
 		
 		CaseComment comentarioCaso = new CaseComment();
 		ParserModelVO.parseDataModelVO(casoRequest, comentarioCaso);
@@ -484,8 +494,8 @@ public class CaseController {
 		
 		logger.debug("Se van a cargar los datos iniciales del formulario de alta de caso");
 		//Setteo de datos fijos
-		casoView.setCanalOrigen(Constantes.COD_CASO_ORIGEN_WEB);
-		casoView.setCanalOrigenLabel(Constantes.COD_CASO_ORIGEN_WEB_DESC);
+		casoView.setCanalOrigen(Constantes.COD_CASO_ORIGEN_CALL_CENTER);
+		casoView.setCanalOrigenLabel(Constantes.COD_CASO_ORIGEN_CALL_CENTER_DESC);
 		casoView.setType(Constantes.COD_CASO_TYPE_RECLAMO);
 		casoView.setTypeLabel(Constantes.COD_CASO_TYPE_RECLAMO_DESC);
 		casoView.setEstado(Constantes.COD_CASO_STATUS_INGRESADO);
@@ -557,6 +567,11 @@ public class CaseController {
 			ParserModelVO.parseDataModelVO(contacto, contactoVista);
 			casoView.setContactoJoin(contactoVista);
 			casoView.setNombreContacto(contactoSfid);
+			casoView.setCanalNotificacion(contactoVista.getCanalPreferenteContacto());
+			casoView.setTelefonoContacto(contactoVista.getPhone());
+			casoView.setEmailNotificacion(contactoVista.getEmail());
+			casoView.setFacebook(contactoVista.getSf4twitterFcbkUsername());
+			casoView.setTwitter(contactoVista.getSf4twitterTwitterUsername());
 			logger.info("Contacto encontrada con id: " + contactoSfid);
 		}
 		

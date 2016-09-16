@@ -180,9 +180,7 @@ public class SuministroController {
 			jsonResult.put("estadoConexion", suministro.getLabelEstadoConexionPickList());
 			jsonResult.put("estadoSuministro", suministro.getLabelEstadoSuministroPickList());
 			jsonResult.put("DireccionConcatenada__c", suministro.getDireccionConcatenada());
-			jsonResult.put("comuna", suministro.getComuna());
-			jsonResult.put("n_mero_medidor__c", suministro.getNumeroMedidor());
-			jsonResult.put("ruta__c", suministro.getRuta());
+			jsonResult.put("comuna__c", suministro.getComuna());
 			jsonResult.put("sfid", suministro.getSfid());
 			array.put(jsonResult);
 		}

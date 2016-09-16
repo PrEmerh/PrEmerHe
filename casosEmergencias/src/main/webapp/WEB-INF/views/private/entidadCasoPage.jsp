@@ -49,6 +49,9 @@
 			<form:hidden path="id"/>
 			<form:hidden path="editMode" value="${editMode}"/>
 			<form:hidden path="sfid"/>
+			<div>
+				<p class="cabeceraTitulo"><s:message code="comentarioCase_label_caso" arguments="${caso.numeroCaso}"/></p>
+			</div>
 			<div class="botoneraListado">
 				<ul>
 					<li><input id="Modificar" type="button" name="Modificar" value="Modificar"  onclick="modificarButton();" /></li>
