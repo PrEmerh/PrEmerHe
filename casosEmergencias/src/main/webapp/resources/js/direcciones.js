@@ -19,7 +19,7 @@ $(document).ready(function() {
        	},
        	"columns": [
        	            {"data": "name", 					"width": "15%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
-       	            {"data": "calle__c", 				"width": "20%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true}, 
+       	            {"data": "calle", 				"width": "20%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true}, 
        	            {"data": "altura__c",				"width": "15%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
        	            {"data": "literalcomuna__c",		"width": "20%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
        	            {"data": "direccionconcatenada__c", "width": "28%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},

@@ -44,6 +44,8 @@ public class Constantes {
 	//Case Object
 	public static final String COD_CASO_ORIGEN_WEB = "CAN001";
 	public static final String COD_CASO_ORIGEN_WEB_DESC = "Web";
+	public static final String COD_CASO_ORIGEN_CALL_CENTER = "CAN005";
+	public static final String COD_CASO_ORIGEN_CALL_CENTER_DESC = "Call Center";
 	public static final String COD_CASO_TYPE_RECLAMO = "TIP001";
 	public static final String COD_CASO_TYPE_RECLAMO_DESC = "Reclamo";
 	public static final String COD_CASO_STATUS_INGRESADO = "ESTA001";
