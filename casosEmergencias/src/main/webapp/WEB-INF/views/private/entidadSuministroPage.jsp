@@ -33,13 +33,17 @@
 				</div>
 			</div>
 		</c:if>
-		<form:form name="formEntidadSuministro" action="actualizarSuministro" modelAttribute="suministro" method="POST">
-			<div class="botoneraListado">
-				<ul>
-					<li><input type="submit" name="goCrearCasoBySuministro" value="<s:message code="homeCasos_button_nuevocaso"/>" /></li>
-				</ul>
-			</div>
-			<form:hidden path="sfid"/>
+		<form:form name="formEntidadSuministroName" id="formEntidadSuministro" action="actualizarSuministro" modelAttribute="suministro" method="POST">
+			<center>
+				<div class="botoneraListado">
+					<ul>
+						<li><input type="button" name="goCrearCasoBySuministroName" value="<s:message code="homeCasos_button_nuevocaso"/>" onclick="goCrearCasoBySuministro();" /></li>
+						<li><input type="button" name="corteDeuda" value="<s:message code="homeCasos_button_corteDeuda"/>" onclick="crearCasoCorteDeuda();"  /></li>
+						<li><input type="button" name="corteProgramado" value="<s:message code="homeCasos_button_corteProgramado"/>" onclick="crearCasoCorteProgramado();" /></li>
+					</ul>
+				</div>
+			</center>
+			<form:hidden path="sfid" id="sfidSum"/>
 			<div class="divEntidadDatos">
 				<div class="divEntidad">
 					<div class="subtitleAltaEntidad">

@@ -21,7 +21,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.SuministroView;
+import com.casosemergencias.logic.ContactService;
+import com.casosemergencias.logic.DireccionService;
 import com.casosemergencias.logic.SuministroService;
+import com.casosemergencias.model.Caso;
+import com.casosemergencias.model.Contacto;
+import com.casosemergencias.model.Direccion;
+import com.casosemergencias.model.HerokuUser;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.constants.Constantes;
@@ -35,6 +41,12 @@ public class SuministroController {
 	
 	@Autowired
 	private SuministroService suministroService;
+	
+	@Autowired
+	private ContactService contactoService;
+	
+	@Autowired
+	private DireccionService direccionService;
 	
 	@RequestMapping(value = "/private/homeSuministros", method = RequestMethod.GET)
 	public ModelAndView detalleSuministro() {
@@ -206,14 +218,77 @@ public class SuministroController {
 	
 	//Crear Caso nuevo con Suministro asociado.
 	
-	@RequestMapping(value = "/private/actualizarSuministro", method = RequestMethod.POST)
+	@RequestMapping(value = "/private/goCrearCasoBySuministro", method = RequestMethod.GET)
 	public ModelAndView crearCasoBySuministro() {
-				
 		ModelAndView model = new ModelAndView();
 		model.setViewName("redirect:entidadCasoAlta");
 		
 		return model;
 	}
 	
+@RequestMapping(value = "/private/goCrearCasoBySuministroAndCorte", method = RequestMethod.POST)
+public ModelAndView goCrearCasoBySuministroAndCorte(@RequestBody String body, HttpServletRequest request) {
+
+	logger.info("--- Inicio -- CreacionCasoCorte ---");
+	
+	// Obtenemos sfid y causa del body (peticion ajax)
+	
+	String causa=body.substring(6, 11);
+	String sfidSum=body.substring(20, 38);
+	
+	// Rellenamos los datos del caso a insertar 
+	
+	if (sfidSum != null && !"".equals(sfidSum)) {
+		//Obtener el suministro para guardarlo en el formulario
+		
+			HttpSession session = request.getSession(true);
+	
+			Suministro suministro = new Suministro();
+			HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
+			Caso caso= new Caso();
+			CaseView casoview = new CaseView();
+			
+			SuministroView suministroVista = new SuministroView();
+			suministro = suministroService.readSuministroBySfid(sfidSum);
+			
+			if (suministro != null) {
+				
+				//Set de info de Direccion
+				
+				if(suministro.getDireccion()!=null){
+					Direccion direccion = new Direccion();
+					String direccionSfid = suministro.getDireccion();
+					direccion = direccionService.readDireccionBySfid(direccionSfid);
+					caso.setDireccionJoin(direccion);			
+					logger.info("Direccion encontrada con id: " + direccionSfid);	
+				}
+				
+				//Set de info de Contacto
+				
+				if(suministro.getContactosRelacionados()!=null && suministro.getContactosRelacionados().isEmpty()==false  && suministro.getContactosRelacionados().size()==1){
+					Contacto contacto = new Contacto();
+					String contactoSfid = suministro.getContactosRelacionados().get(0).getSfid();
+					contacto = contactoService.readContactoBySfid(contactoSfid);
+					caso.setContactoJoin(contacto);			
+					logger.info("Contacto encontrada con id: " + contactoSfid);
+				}
+				
+				//Set de info de HerokuUser
+				
+				if(user != null && user.getName() != null && !"".equals(user.getName())){			
+					String username=user.getName();
+					caso.setHerokuUsername(username);				
+					logger.info("Heroku user name: " + user.getName());
+				}
+				
+				//Set campos de Caso comunes en ambos tipos de corte
+				
+			
+			}			
+		}
+					
+		logger.info("--- Fin -- CreacionCasoCorte ---");
+		return null;
+	}
 	
 }

@@ -205,6 +205,18 @@ function establecerDireccion(sfid, name) {
 	$('#dialogDireccion').dialog('close');
 }
 
+//Crear caso por suministro
+
+function goCrearCasoBySuministro(){	
+	window.location="../private/goCrearCasoBySuministro";
+}
+
+//Crear caso por contacto
+
+function goCrearCasoByContacto(){	
+	window.location="../private/goCrearCasoByContacto";
+}
+
 /*Inici -- funciones Guardar y Cancelar Comentario de un Caso*/
 function newComent(sfid){
 	 window.location="../private/casoComentarioPage?sfid="+sfid;
@@ -230,4 +242,34 @@ function limpiarCamposBuscadorCasos() {
 	if (document.getElementById('filtroNumCaso').value != '') {
 		document.getElementById('filtroNumCaso').value = '';
 	}
+}
+
+//Crear caso corte por deuda
+
+function crearCasoCorteDeuda(){	
+	
+	var validado = true; //validaDatos();
+	if (validado) {	
+        $.ajax({
+            url: "../private/goCrearCasoBySuministroAndCorte",
+            type: "POST",
+            dataType: "json",  
+            data:{ 
+                Causa: 'deuda',
+                sfidSum: document.getElementById('sfidSum').value 
+            },
+            success: function (mydata) {
+            alert('Fallo peticion ajax');
+            }
+        });
+        return true;
+	} else {
+		return false;
+	}
+}
+
+//Crear caso corte programado
+
+function crearCasoCorteProgramado(){	
+	window.location="../private/goCrearCasoBySuministroAndCorte";
 }

@@ -167,9 +167,8 @@ public class ContactController {
 	
 	//Crear Caso nuevo con Contacto asociado.
 	
-	@RequestMapping(value = "/private/actualizarContacto", method = RequestMethod.POST)
+	@RequestMapping(value = "/private/goCrearCasoByContacto", method = RequestMethod.GET)
 	public ModelAndView crearCasoByContacto() {
-				
 		ModelAndView model = new ModelAndView();
 		model.setViewName("redirect:entidadCasoAlta");
 		
