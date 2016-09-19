@@ -49,6 +49,9 @@
 			<form:hidden path="id"/>
 			<form:hidden path="editMode" value="${editMode}"/>
 			<form:hidden path="sfid"/>
+			<div>
+				<p class="cabeceraTitulo"><s:message code="comentarioCase_label_caso" arguments="${caso.numeroCaso}"/></p>
+			</div>
 			<div class="botoneraListado">
 				<ul>
 					<li><input id="Modificar" type="button" name="Modificar" value="Modificar"  onclick="modificarButton();" /></li>
@@ -116,19 +119,27 @@
 						<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaApertura}"/></label>
 					</div>
 					<div class="divLabel">
+						<label><s:message code="entidadCaso_table_label_unidad"/></label>
+					</div>
+					<div>
+						<label>${caso.labelCallCenterPickList}</label>
+					</div>					
+				</div>
+				<div>
+					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_tiempoNormalizacion"/></label>
 					</div>
 					<div>
 						<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaEstimadaCierre}"/></label>
-					</div>
-				</div>
-				<div>
+					</div> 
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_casoPrincipal"/></label>
 					</div>
 					<div>
 						<label><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.casoPrincipalJoin.sfid}">${caso.casoPrincipalJoin.numeroCaso}</a></label>					
 					</div>
+				</div>
+				<div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_propietarioCaso"/></label>
 					</div>
@@ -141,21 +152,24 @@
 						</c:if> 
 					</div>
 					<div class="divLabel">
-						<label><s:message code="entidadCaso_table_label_fechaHoraCierre"/></label>
-					</div>
-					<div>
-						<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaCierre}"/></label>
-					</div>
-				</div>
-				<div>
-					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_herokuUsername"/></label>
 					</div>
 					<div>
 						<label>${caso.herokuUsername}</label>
 					</div>
+				</div>		
+				<div>
+					<div class="divLabel">
+						<label><s:message code="entidadCaso_table_label_fechaHoraCierre"/></label>
+					</div>
 					<div>
-							
+						<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaCierre}"/></label>
+					</div>
+					<div class="divLabel">
+						<label>&nbsp;</label>
+					</div>
+					<div>
+						<label>&nbsp;</label>
 					</div>
 				</div>						
 			</div>	

@@ -73,6 +73,7 @@ public class Caso extends ObjectLogic {
 	private String labelCanalNotificacionPickList;
 	private String labelFavorabilidadDelCasoPickList;
 	private String labelTypeCasoPickList;
+	private String labelCallCenterPickList;
 	
 	private List<CaseHistory> historialCaso;
 	private List<CaseComment> commentarioCaso;
@@ -452,4 +453,11 @@ public class Caso extends ObjectLogic {
 	public void setNombreContacto(String nombreContacto) {
 		this.nombreContacto = nombreContacto;
 	}
+	public String getLabelCallCenterPickList() {
+		return labelCallCenterPickList;
+	}
+	public void setLabelCallCenterPickList(String labelCallCenterPickList) {
+		this.labelCallCenterPickList = labelCallCenterPickList;
+	}
+	
 }

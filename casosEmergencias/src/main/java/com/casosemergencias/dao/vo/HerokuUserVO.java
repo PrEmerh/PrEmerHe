@@ -5,12 +5,19 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
+import org.hibernate.annotations.WhereJoinTable;
+
 import com.casosemergencias.model.HerokuUser;
+import com.sforce.soap.metadata.Picklist;
 
 
 
@@ -46,6 +53,9 @@ public class HerokuUserVO extends ObjectVO implements Serializable {
 	@Column(name = "country__c")
 	private String country;
 	
+	@Column(name = "unity__c")
+	private String unidad;
+	
 	@Column(name = "sfid")
 	private String sfid;
 	
@@ -70,6 +80,10 @@ public class HerokuUserVO extends ObjectVO implements Serializable {
 	@Column(name="createddate")
 	private Date createdDate;
 	
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "unity__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Unity__c' and objeto = 'herokuuser__c'")
+	private PickListsHerokuUserUnidadVO unidadPickList;
 
 	
 	public HerokuUserVO() {
@@ -148,6 +162,12 @@ public class HerokuUserVO extends ObjectVO implements Serializable {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+	public String getUnidad() {
+		return unidad;
+	}
+	public void setUnidad(String unidad) {
+		this.unidad = unidad;
+	}
 	public String getSfid() {
 		return sfid;
 	}
@@ -184,8 +204,23 @@ public class HerokuUserVO extends ObjectVO implements Serializable {
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
-
+	public PickListsHerokuUserUnidadVO getUnidadPickList() {
+		return unidadPickList;
+	}
+	public void setUnidadPickList(PickListsHerokuUserUnidadVO unidadPickList) {
+		this.unidadPickList = unidadPickList;
+	}
 	
+	public String getLabelUnidadPickList(){
+		String result = this.getUnidad();
+		if (this.getUnidadPickList() != null) {
+			result = this.getUnidadPickList().getValor();
+		}
+		return result;
+	}
+
+
+
 	@Override
 	public Object instantiateTargetLogic() {
 		HerokuUser usuario = new HerokuUser();

@@ -554,7 +554,11 @@ public class ContactDAO {
 			}
 			
 			if (order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)) {
-				query.append(" ORDER BY " + order + " " + dirOrder);
+				if("name".equals(order)){
+					query.append(" ORDER BY  apellidoPaterno " + dirOrder + ", firstname " + dirOrder);
+				}else{
+					query.append(" ORDER BY " + order + " " + dirOrder);
+				}
 			}
 			
 			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);

@@ -20,6 +20,8 @@ public class HerokuUser extends ObjectLogic {
 	private String sfid;
 	private Boolean envioEmail;
 	private String country;
+	private String unidad;
+	private String labelUnidadPickList;
 
 	public Integer getId() {
 		return id;
@@ -76,6 +78,7 @@ public class HerokuUser extends ObjectLogic {
 	public void setEnvioEmail(Boolean envioEmail) {
 		this.envioEmail = envioEmail;
 	}
+	
 	public String getCountry() {
 		return country;
 	}
@@ -83,7 +86,22 @@ public class HerokuUser extends ObjectLogic {
 	public void setCountry(String country) {
 		this.country = country;
 	}
+	
+	public String getUnidad() {
+		return unidad;
+	}
 
+	public void setUnidad(String unidad) {
+		this.unidad = unidad;
+	}
+
+	public String getLabelUnidadPickList() {
+		return labelUnidadPickList;
+	}
+
+	public void setLabelUnidadPickList(String labelUnidadPickList) {
+		this.labelUnidadPickList = labelUnidadPickList;
+	}
 
 	@Override
 	public Object instantiateTargetView() {

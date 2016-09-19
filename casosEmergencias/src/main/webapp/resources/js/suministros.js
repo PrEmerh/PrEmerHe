@@ -19,12 +19,10 @@ $(document).ready(function() {
        	},
        	"columns": [
        	            {"data": "name", 						"width": "20%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true}, 
-       	            {"data": "estadoConexion",				"width": "19%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
+       	            {"data": "estadoConexion",				"width": "20%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
        	            {"data": "estadoSuministro", 			"width": "19%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
        	            {"data": "DireccionConcatenada__c", 	"width": "20%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
-       	            {"data": "comuna", 						"width": "19%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
-       	            {"data": "n_mero_medidor__c",			"width": "1%", 	"defaultContent": "", "searchable": true, 	"orderable": false,	"visible": false},
-       	            {"data": "ruta__c",						"width": "1%", 	"defaultContent": "", "searchable": true, 	"orderable": false,	"visible": false},
+       	            {"data": "comuna__c", 						"width": "20%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
        	            {"data": "sfid", 						"width": "1%", 	"defaultContent": "", "searchable": false, 	"orderable": false,	"visible": false}
 		],
 		"columnDefs": [
@@ -50,8 +48,7 @@ $(document).ready(function() {
 		table
 			.columns(0).search($('#filtroNumSuministro').val())
 			.columns(3).search($('#filtroDireccion').val())
-			.columns(5).search($('#filtroNumMedidor').val())
-			.columns(6).search($('#filtroRutaLectura').val())
+			.columns(4).search($('#filtroComuna').val())
 			.draw();
 	});
 });

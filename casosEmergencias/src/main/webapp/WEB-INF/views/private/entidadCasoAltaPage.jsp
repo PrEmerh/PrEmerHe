@@ -53,7 +53,7 @@
 			<div class="botoneraListado botoneraCentrado">
 				<ul>
 					<li><input type="button" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" onclick="altaCaso();"/></li>
-					<li><input type="button" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li>
+					<%-- <li><input type="button" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li> --%>
 					<li><input type="button" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" onclick="cancelAltaCaso();" /></li>
 				</ul>
 			</div>
@@ -138,10 +138,11 @@
 							<label>${caso.propietarioCaso}</label>
 						</div>
 						<div class="divLabel">
-							<label>&nbsp;</label>
+							<label><s:message code="entidadCaso_table_label_unidad"/></label>
 						</div>
 						<div>
-							<label>&nbsp;</label>
+							<form:hidden path="callCenter"/>
+							<label>${caso.labelCallCenterPickList}</label>
 						</div>
 					</div>
 					<div>
@@ -407,7 +408,7 @@
 			<div class="botoneraListado botoneraCentrado botoneraInferior">
 				<ul>
 					<li><input type="button" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" onclick="altaCaso();"/></li>
-					<li><input type="button" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li>
+					<%-- <li><input type="button" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li> --%>
 					<li><input type="button" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" onclick="cancelAltaCaso();" /></li>
 				</ul>
 			</div>
