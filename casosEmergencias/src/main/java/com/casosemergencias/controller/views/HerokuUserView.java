@@ -14,6 +14,7 @@ public class HerokuUserView extends ObjectView {
 	private String mensajeError;
 	private String mensaje;
 	private String country;
+	private String labelUnidadPickList;
 	
 	public Integer getId() {
 		return id;
@@ -68,6 +69,12 @@ public class HerokuUserView extends ObjectView {
 	}
 	public void setCountry(String country) {
 		this.country = country;
+	}
+	public String getLabelUnidadPickList() {
+		return labelUnidadPickList;
+	}
+	public void setLabelUnidadPickList(String labelUnidadPickList) {
+		this.labelUnidadPickList = labelUnidadPickList;
 	}
 	
 	@Override

@@ -115,7 +115,8 @@ public class CaseDAO {
 					+ "LEFT JOIN FETCH caso.subestadoPickList subEstado "
 					+ "LEFT JOIN FETCH caso.submotivoPickList submotivo "
 					+ "LEFT JOIN FETCH caso.canalOrigenPickList canalOrigen "
-					+ "LEFT JOIN FETCH caso.estadoPickList estado ");
+					+ "LEFT JOIN FETCH caso.estadoPickList estado "
+					+ "LEFT JOIN FETCH caso.callCenterPickList callCenter ");
 			
 			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
 				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {

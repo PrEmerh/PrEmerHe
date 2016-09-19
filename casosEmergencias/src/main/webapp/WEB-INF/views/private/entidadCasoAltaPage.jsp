@@ -141,7 +141,8 @@
 							<label><s:message code="entidadCaso_table_label_unidad"/></label>
 						</div>
 						<div>
-							<label>${caso.callCenter}</label>
+							<form:hidden path="callCenter"/>
+							<label>${caso.labelCallCenterPickList}</label>
 						</div>
 					</div>
 					<div>

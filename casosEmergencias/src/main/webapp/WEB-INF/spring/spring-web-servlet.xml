@@ -68,6 +68,7 @@
 	                <value>com.casosemergencias.dao.vo.PickListsCaseVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsCaseOriginVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsCaseCanalNotificacionVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsCaseCallCenterVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsContactCanalPreferenteContactoVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsContactTipoContactoVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsContactTipoIdentidadVO</value>
@@ -76,6 +77,7 @@
 	                <value>com.casosemergencias.dao.vo.PickListsAccountTipoIdentidadVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsDireccionTipoCalleVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsDireccionRegionVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsHerokuUserUnidadVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsRelacionActivoVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsSumComunaRepartoVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsSumFullElectricVO</value>

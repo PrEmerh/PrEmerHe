@@ -244,7 +244,7 @@ public class CaseController {
 		String contactoSfid = (String) session.getAttribute(Constantes.SFID_CONTACTO);
 		String cuentaSfid = (String) session.getAttribute(Constantes.SFID_CUENTA);
 		HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
-		
+				
 		Caso casoInsertado = new Caso();
 		ModelAndView model = new ModelAndView();
 		
@@ -589,6 +589,8 @@ public class CaseController {
 		if (user != null) {
 			//Obtener el usuario para guardarlo en el formulario
 			casoView.setHerokuUsername(user.getName());
+			casoView.setLabelCallCenterPickList(user.getLabelUnidadPickList());
+			casoView.setCallCenter(user.getUnidad());
 			logger.info("Heroku user name: " + user.getName());
 		}
 		logger.trace("Saliendo de getEntityDataForNewCase()");
