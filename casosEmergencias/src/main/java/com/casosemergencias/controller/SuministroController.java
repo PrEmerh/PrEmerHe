@@ -283,8 +283,10 @@ public class SuministroController {
 					}					
 					//Set de info de HerokuUser					
 					if(user != null && user.getName() != null && !"".equals(user.getName())){			
+						String unidad=user.getUnidad();
 						String username=user.getName();
-						caso.setHerokuUsername(username);				
+						caso.setHerokuUsername(username);						
+						caso.setCallCenter(unidad);
 						logger.info("Heroku user name: " + user.getName());
 					}					
 					//Set campos de Caso comunes en ambos tipos de corte
