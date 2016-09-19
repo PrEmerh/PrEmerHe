@@ -21,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.SuministroView;
+import com.casosemergencias.exception.EmergenciasException;
+import com.casosemergencias.logic.CaseService;
 import com.casosemergencias.logic.ContactService;
 import com.casosemergencias.logic.DireccionService;
 import com.casosemergencias.logic.SuministroService;
@@ -31,6 +33,7 @@ import com.casosemergencias.model.HerokuUser;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.constants.Constantes;
+import com.casosemergencias.util.constants.ConstantesError;
 import com.casosemergencias.util.datatables.DataTableParser;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -47,6 +50,9 @@ public class SuministroController {
 	
 	@Autowired
 	private DireccionService direccionService;
+	
+	@Autowired
+	private CaseService casoService;
 	
 	@RequestMapping(value = "/private/homeSuministros", method = RequestMethod.GET)
 	public ModelAndView detalleSuministro() {
@@ -226,69 +232,118 @@ public class SuministroController {
 		return model;
 	}
 	
-@RequestMapping(value = "/private/goCrearCasoBySuministroAndCorte", method = RequestMethod.POST)
-public ModelAndView goCrearCasoBySuministroAndCorte(@RequestBody String body, HttpServletRequest request) {
-
-	logger.info("--- Inicio -- CreacionCasoCorte ---");
+	@RequestMapping(value = "/private/goCrearCasoBySuministroAndCorte", method = RequestMethod.POST)
+	public @ResponseBody String goCrearCasoBySuministroAndCorte(@RequestBody String body, HttpServletRequest request) {
 	
-	// Obtenemos sfid y causa del body (peticion ajax)
-	
-	String causa=body.substring(6, 11);
-	String sfidSum=body.substring(20, 38);
-	
-	// Rellenamos los datos del caso a insertar 
-	
-	if (sfidSum != null && !"".equals(sfidSum)) {
-		//Obtener el suministro para guardarlo en el formulario
+		logger.info("--- Inicio -- CreacionCasoCorte ---");
+		ModelAndView model = new ModelAndView();
+		// Obtenemos sfid y causa del body (peticion ajax)
 		
-			HttpSession session = request.getSession(true);
-	
-			Suministro suministro = new Suministro();
-			HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
-			Caso caso= new Caso();
-			CaseView casoview = new CaseView();
+		String causa=body.substring(6, 11);
+		String sfidSum=body.substring(20, 38);
+		
+		// Rellenamos los datos del caso a insertar 
+		
+		if (sfidSum != null && !"".equals(sfidSum)) {
+			//Obtener el suministro para guardarlo en el formulario
 			
-			SuministroView suministroVista = new SuministroView();
-			suministro = suministroService.readSuministroBySfid(sfidSum);
-			
-			if (suministro != null) {
+				HttpSession session = request.getSession(true);
+		
+				Suministro suministro = new Suministro();
+				HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
+				Caso caso= new Caso();
+				suministro = suministroService.readSuministroBySfid(sfidSum);	
 				
-				//Set de info de Direccion
-				
-				if(suministro.getDireccion()!=null){
-					Direccion direccion = new Direccion();
-					String direccionSfid = suministro.getDireccion();
-					direccion = direccionService.readDireccionBySfid(direccionSfid);
-					caso.setDireccionJoin(direccion);			
-					logger.info("Direccion encontrada con id: " + direccionSfid);	
-				}
-				
-				//Set de info de Contacto
-				
-				if(suministro.getContactosRelacionados()!=null && suministro.getContactosRelacionados().isEmpty()==false  && suministro.getContactosRelacionados().size()==1){
-					Contacto contacto = new Contacto();
-					String contactoSfid = suministro.getContactosRelacionados().get(0).getSfid();
-					contacto = contactoService.readContactoBySfid(contactoSfid);
-					caso.setContactoJoin(contacto);			
-					logger.info("Contacto encontrada con id: " + contactoSfid);
-				}
-				
-				//Set de info de HerokuUser
-				
-				if(user != null && user.getName() != null && !"".equals(user.getName())){			
-					String username=user.getName();
-					caso.setHerokuUsername(username);				
-					logger.info("Heroku user name: " + user.getName());
-				}
-				
-				//Set campos de Caso comunes en ambos tipos de corte
-				
-			
-			}			
-		}
+				if (suministro != null) {		
 					
-		logger.info("--- Fin -- CreacionCasoCorte ---");
-		return null;
-	}
-	
+					//Set de info de Suministro					
+					if(suministro.getSfid()!=null){
+						String suministroSfid = suministro.getSfid();
+						suministro = suministroService.readSuministroBySfid(suministroSfid);
+						caso.setSuministro(suministroSfid);
+						caso.setSuministroJoin(suministro);	
+						logger.info("Suministro encontrada con id: " + suministroSfid);	
+					}					
+					//Set de info de Direccion					
+					if(suministro.getDireccion()!=null){
+						Direccion direccion = new Direccion();
+						String direccionSfid = suministro.getDireccion();
+						direccion = direccionService.readDireccionBySfid(direccionSfid);
+						caso.setDireccion(direccionSfid);
+						caso.setDireccionJoin(direccion);	
+						logger.info("Direccion encontrada con id: " + direccionSfid);	
+					}				
+					//Set de info de Contacto				
+					if(suministro.getContactosRelacionados()!=null && suministro.getContactosRelacionados().isEmpty()==false  && suministro.getContactosRelacionados().size()==1){
+						Contacto contacto = new Contacto();
+						String contactoSfid = suministro.getContactosRelacionados().get(0).getSfid();
+						contacto = contactoService.readContactoBySfid(contactoSfid);
+						caso.setNombreContacto(contactoSfid);
+						caso.setContactoJoin(contacto);		
+						
+						logger.info("Contacto encontrada con id: " + contactoSfid);
+					}					
+					//Set de info de HerokuUser					
+					if(user != null && user.getName() != null && !"".equals(user.getName())){			
+						String username=user.getName();
+						caso.setHerokuUsername(username);				
+						logger.info("Heroku user name: " + user.getName());
+					}					
+					//Set campos de Caso comunes en ambos tipos de corte
+					caso.setCanalOrigen(Constantes.COD_CASO_ORIGEN_CALL_CENTER);
+					caso.setPeticion(Constantes.COD_CASO_MOTIVO_EMERGENCIA);
+					caso.setEstado(Constantes.COD_CASO_STATUS_CERRADO);
+					caso.setType(Constantes.COD_CASO_TYPE_RECLAMO_DESC);
+					//Set campos con valores especificos para cada corte de Caso 
+					if(causa!=null){
+						if("deuda".equals(causa)){							
+							caso.setSubmotivo(Constantes.COD_CASO_SUBMOTIVO_CORTE_DEUDA);
+							caso.setDescription(Constantes.COD_CASO_DESC_DEUDA);
+						}
+						if("progr".equals(causa)){
+							caso.setSubmotivo(Constantes.COD_CASO_SUBMOTIVO_CORTE_PROGRAMADO);
+							caso.setDescription(Constantes.COD_CASO_DESC_PROGRAMADO);
+						}
+					}
+				}				
+				logger.info("--- Fin -- CreacionCasoCorte ---");
+				
+				//Inserccion de Caso
+				
+				logger.info("--- Fin -- InserccionCasoCorte ---");
+				
+				Caso casoInsertado = new Caso();
+							
+				try{
+					casoInsertado = casoService.insertCase(caso);	
+					if(casoInsertado != null){
+						
+						logger.info("Caso guardado correctamente con sfid:" + casoInsertado.getSfid());
+						CaseView caseview=new CaseView();
+						ParserModelVO.parseDataModelVO(casoInsertado, caseview);
+						logger.info("Se redirecciona a página de detalle del caso");
+						return "../private/entidadCaso?sfid=" + caseview.getSfid() + "&editMode=" + Constantes.EDIT_MODE_INSERTED_OK;
+					}
+					
+					else {
+					logger.info("Se ha producido un error guardando el caso");
+					String codigoError=new String();
+					String mensajeError=new String();
+					codigoError=ConstantesError.EMERG_ERROR_CODE_004;		
+					mensajeError=ConstantesError.HEROKU_CASE_CREATION_GENERIC_ERROR;
+					return codigoError+"$"+mensajeError;
+					}
+				}
+				catch(EmergenciasException exception){	
+					logger.info("No se ha guardado correctamente el caso");
+					String codigoError=new String();
+					String mensajeError=new String();
+					codigoError=exception.getCode();	
+					mensajeError=exception.getMessage();
+					return codigoError+"$"+mensajeError;
+				}				
+			}
+			return null;	
+		}
+		
 }

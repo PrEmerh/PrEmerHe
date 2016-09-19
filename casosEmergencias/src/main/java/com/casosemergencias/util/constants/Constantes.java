@@ -19,7 +19,6 @@ public class Constantes {
 	public static final String EDIT_MODE_UPDATED_OK = "UPDATED_OK";
 	public static final String EDIT_MODE_UPDATED_ERROR = "UPDATED_ERROR";
 	public static final String EDIT_MODE_INSERTED_OK = "INSERTED_OK";
-	public static final String EDIT_MODE_INSERTED_ERROR = "INSERTED_ERROR";
 	
 	//Modo creación
 	
@@ -49,6 +48,12 @@ public class Constantes {
 	public static final String COD_CASO_TYPE_RECLAMO = "TIP001";
 	public static final String COD_CASO_TYPE_RECLAMO_DESC = "Reclamo";
 	public static final String COD_CASO_STATUS_INGRESADO = "ESTA001";
+	public static final String COD_CASO_STATUS_CERRADO = "ESTA007";
+	public static final String COD_CASO_SUBMOTIVO_CORTE_DEUDA="FA001";
+	public static final String COD_CASO_SUBMOTIVO_CORTE_PROGRAMADO ="FA002";
+	public static final String COD_CASO_MOTIVO_EMERGENCIA ="MOT001";
+	public static final String COD_CASO_DESC_DEUDA="Se informa a Cliente que corte de suministro es por deuda comercial";			
+	public static final String COD_CASO_DESC_PROGRAMADO="Se informa a cliente que corte de suministro es por una mantención programada ";			
 	
 	//
 	//Sesion SFID	

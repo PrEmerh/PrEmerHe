@@ -18,9 +18,19 @@
 		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
 	</head>
-	<body onload="initHeader(); showNotifications();">
+	<body onload="initHeader();showNotifications();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadSuministro_title_label_detalle_suministro"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
+		<!-- Mensajes de inserccion caso por corte-->
+		<div>
+			<div id="divCaseCorteCreatedError" class="divError">
+				<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
+				<br/>
+				<label class="labelDivError" id="idCodigo"><s:message code="notificaciones_label_error_codigo"/></label>
+				<br/>
+				<label class="labelDivError" id="idMensaje"><s:message code="notificaciones_label_error_mensaje"/></label>
+			</div>
+		</div>
 		<!-- Mensajes de estado de operación -->
 		<c:if test="${not empty param.codigoError}">
 			<div>
@@ -38,8 +48,8 @@
 				<div class="botoneraListado">
 					<ul>
 						<li><input type="button" name="goCrearCasoBySuministroName" value="<s:message code="homeCasos_button_nuevocaso"/>" onclick="goCrearCasoBySuministro();" /></li>
-						<li><input type="button" name="corteDeuda" value="<s:message code="homeCasos_button_corteDeuda"/>" onclick="crearCasoCorteDeuda();"  /></li>
-						<li><input type="button" name="corteProgramado" value="<s:message code="homeCasos_button_corteProgramado"/>" onclick="crearCasoCorteProgramado();" /></li>
+						<li><input type="button" name="corteDeudaName" value="<s:message code="homeCasos_button_corteDeuda"/>" onclick="crearCasoCorteDeuda();"  /></li>
+						<li><input type="button" name="corteProgramadoName" value="<s:message code="homeCasos_button_corteProgramado"/>" onclick="crearCasoCorteProgramado();" /></li>
 					</ul>
 				</div>
 			</center>

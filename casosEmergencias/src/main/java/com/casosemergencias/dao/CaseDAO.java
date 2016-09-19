@@ -189,7 +189,7 @@ public class CaseDAO {
 		Session session = sessionFactory.openSession();
 		try {
 			StringBuilder query = new StringBuilder("from CaseVO caso left join fetch caso.submotivoPickList submotivv left join fetch caso.canalOrigenPickList canalorigen");
-			query.append(" WHERE caso.contactId = '" + contactId + "'");
+			query.append(" WHERE caso.nombreContacto = '" + contactId + "'");
 
 			Query result = session.createQuery(query.toString());
 			List<CaseVO> casoList = result.list();
