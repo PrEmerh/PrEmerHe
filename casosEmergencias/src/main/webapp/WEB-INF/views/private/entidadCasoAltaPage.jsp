@@ -371,8 +371,10 @@
 						            	<th width="10%"><s:message code="homeSuministros_table_head_nombreSuministro"/></th>
 						            	<th width="20%"><s:message code="homeSuministros_table_head_idEmpresa"/></th>
 						            	<th width="20%"><s:message code="homeSuministros_table_head_comuna"/></th>
-						            	<th width="19%"><s:message code="homeSuministros_table_head_direccionConcat"/></th>		
-						            	<th width="1%" hidden="true">sfid</th>	            	
+						            	<th width="19%"><s:message code="homeSuministros_table_head_direccionConcat"/></th>	
+						            	<th width="0.5%" hidden="true" ><s:message code="homeSuministros_table_head_direccionSfid"/></th>	
+						            	<th width="0.5%" hidden="true"><s:message code="homeSuministros_table_head_direccionName"/></th>			
+						            	<th width="0.5%" hidden="true">sfid</th>	            	
 						            </tr>
 					        	</thead>
 						</table>

@@ -22,7 +22,7 @@ $(document).ready(function() {
        	            {"data": "estadoConexion",				"width": "20%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
        	            {"data": "estadoSuministro", 			"width": "19%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
        	            {"data": "DireccionConcatenada__c", 	"width": "20%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
-       	            {"data": "comuna__c", 						"width": "20%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
+       	            {"data": "comuna__c", 					"width": "20%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
        	            {"data": "sfid", 						"width": "1%", 	"defaultContent": "", "searchable": false, 	"orderable": false,	"visible": false}
 		],
 		"columnDefs": [

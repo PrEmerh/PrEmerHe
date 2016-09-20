@@ -195,9 +195,13 @@ function abrirDialogDireccion() {
 	createTableDireccion(); //Funcion de popupsTable.js, crea la tabla
 }
 
-function establecerSuministro(sfid, name) {
+function establecerSuministro(sfid, name,direccionSfid,direccionName) {
 	document.getElementById('suministro').value = sfid;
 	document.getElementById('numSumiRecuperado').value = name;
+	if(direccionName!=null && direccionSfid!=null ){
+		document.getElementById('direccion').value = direccionSfid;
+		document.getElementById('dirRecuperada').value = direccionName;
+	}
 	$('#dialogSuministro').dialog('close');
 }
 
@@ -258,7 +262,7 @@ function crearCasoCorteDeuda(){
 				var dataCodigo = dataPartes[0]; 
 				var dataMensaje = dataPartes[1]; 
 				if(dataCodigo!=null && dataCodigo!=dataPartes && dataMensaje!=null){
-					if(document.getElementById('divInsertError').style.display='block'){
+					if(document.getElementById('divInsertError').style.display=='block'){
 						document.getElementById('divInsertError').style.display='none';
 					}
 					document.getElementById('idCodigo').innerText ="Código:"+" "+dataCodigo;
@@ -285,7 +289,7 @@ function crearCasoCorteProgramado(){
 				var dataCodigo = dataPartes[0]; 
 				var dataMensaje = dataPartes[1]; 	
 				if(dataCodigo!=null && dataCodigo!=dataPartes && dataMensaje!=null){
-					if(document.getElementById('divInsertError').style.display='block'){
+					if(document.getElementById('divInsertError').style.display=='block'){
 						document.getElementById('divInsertError').style.display='none';
 					}
 					document.getElementById('idCodigo').innerText ="Código:"+" "+dataCodigo;
