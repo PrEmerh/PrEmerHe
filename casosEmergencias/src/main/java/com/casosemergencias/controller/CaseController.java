@@ -446,6 +446,9 @@ public class CaseController {
 					fecha = new Date(fecha.getTime() + offset);
 					casoRelacionado.setCreateddate(fecha);
 				}
+				if(casoRelacionado.getComment()!=null){
+					casoRelacionado.setComment(casoRelacionado.getComment().replace("\n","<br>"));					
+				}
 				listaComentariosCasoView.add(casoRelacionado);
 			}
 		}
