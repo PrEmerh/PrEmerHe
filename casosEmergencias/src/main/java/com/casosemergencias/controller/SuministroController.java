@@ -238,13 +238,24 @@ public class SuministroController {
 	public @ResponseBody String goCrearCasoBySuministroAndCorte(@RequestBody String body, HttpServletRequest request) {
 	
 		logger.info("--- Inicio -- CreacionCasoCorte ---");
+		
 		// Obtenemos sfid y causa del body (peticion ajax)
+		String causa="";
+		String sfidSum="";
+		String[] bodyArray = body.split("&");
+		for(String miArray : bodyArray){
+			String[] componente  = miArray.split("=");
+			if("causa".equals(componente[0])){
+				causa = componente[1];
+			}
+			if("sfidSum".equals(componente[0])){
+				sfidSum = componente[1];
+			}
+			
+		}
 		
-		String causa=body.substring(6, 11);
-		String sfidSum=body.substring(20, 38);
-		
+
 		// Rellenamos los datos del caso a insertar 
-		
 		if (sfidSum != null && !"".equals(sfidSum)) {
 			//Obtener el suministro para guardarlo en el formulario
 			
@@ -256,17 +267,12 @@ public class SuministroController {
 				suministro = suministroService.readSuministroBySfid(sfidSum);	
 				
 				if (suministro != null) {		
-					
 					//Set de info de Suministro					
-					if(suministro.getSfid()!=null){
-						String suministroSfid = suministro.getSfid();
-						suministro = suministroService.readSuministroBySfid(suministroSfid);
-						caso.setSuministro(suministroSfid);
-						caso.setSuministroJoin(suministro);	
-						logger.info("Suministro encontrada con id: " + suministroSfid);	
-					}					
+					caso.setSuministro(sfidSum);
+					caso.setSuministroJoin(suministro);	
+				
 					//Set de info de Direccion					
-					if(suministro.getDireccion()!=null){
+					if(suministro.getDireccion()!=null){						
 						Direccion direccion = new Direccion();
 						String direccionSfid = suministro.getDireccion();
 						direccion = direccionService.readDireccionBySfid(direccionSfid);
@@ -275,7 +281,7 @@ public class SuministroController {
 						logger.info("Direccion encontrada con id: " + direccionSfid);	
 					}				
 					//Set de info de Contacto				
-					if(suministro.getContactosRelacionados()!=null && suministro.getContactosRelacionados().isEmpty()==false  && suministro.getContactosRelacionados().size()==1){
+					if(suministro.getContactosRelacionados()!=null && suministro.getContactosRelacionados().isEmpty()==false  && suministro.getContactosRelacionados().size()==1){						
 						Contacto contacto = new Contacto();
 						String contactoSfid = suministro.getContactosRelacionados().get(0).getSfid();
 						contacto = contactoService.readContactoBySfid(contactoSfid);
@@ -285,7 +291,7 @@ public class SuministroController {
 						logger.info("Contacto encontrada con id: " + contactoSfid);
 					}					
 					//Set de info de HerokuUser					
-					if(user != null && user.getName() != null && !"".equals(user.getName())){			
+					if(user != null && user.getName() != null && !"".equals(user.getName())){									
 						String unidad=user.getUnidad();
 						String username=user.getName();
 						caso.setHerokuUsername(username);						
@@ -318,6 +324,7 @@ public class SuministroController {
 				Caso casoInsertado = new Caso();
 							
 				try{
+					
 					casoInsertado = casoService.insertCase(caso);	
 					if(casoInsertado != null){
 						

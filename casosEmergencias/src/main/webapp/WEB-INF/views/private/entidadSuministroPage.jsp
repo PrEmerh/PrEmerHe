@@ -578,7 +578,7 @@
 									<tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_casos_reiterados"/></td>
 										<c:choose>
-											<c:when test="${not empty suministro.casosReiterados && suministro.casosReiterados == '1'}">
+											<c:when test="${not empty suministro.casosReiterados && suministro.casosReiterados > 0}">
 												<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
 												<td class="filaValor">SI</td>
 											</c:when>

@@ -255,14 +255,14 @@ function limpiarCamposBuscadorCasos() {
 function crearCasoCorteDeuda(){	
 	
 	$.post( "../private/goCrearCasoBySuministroAndCorte",
-	{Causa: 'deuda', sfidSum: document.getElementById('sfidSum').value},
+		{causa: 'deuda', sfidSum: document.getElementById('sfidSum').value},
 		function( data ) {
 			if(data!=null){	
 				var dataPartes = data.split("$");
 				var dataCodigo = dataPartes[0]; 
 				var dataMensaje = dataPartes[1]; 
 				if(dataCodigo!=null && dataCodigo!=dataPartes && dataMensaje!=null){
-					if(document.getElementById('divInsertError').style.display=='block'){
+					if(document.getElementById('divInsertError') != null && document.getElementById('divInsertError').style.display=='block'){
 						document.getElementById('divInsertError').style.display='none';
 					}
 					document.getElementById('idCodigo').innerText ="Código:"+" "+dataCodigo;
@@ -282,14 +282,14 @@ function crearCasoCorteDeuda(){
 function crearCasoCorteProgramado(){	
 	
 	$.post( "../private/goCrearCasoBySuministroAndCorte",
-	{Causa: 'progr', sfidSum: document.getElementById('sfidSum').value},
+		{causa: 'progr', sfidSum: document.getElementById('sfidSum').value},
 		function( data ) {
 			if(data!=null){	
 				var dataPartes = data.split("$");
 				var dataCodigo = dataPartes[0]; 
 				var dataMensaje = dataPartes[1]; 	
 				if(dataCodigo!=null && dataCodigo!=dataPartes && dataMensaje!=null){
-					if(document.getElementById('divInsertError').style.display=='block'){
+					if(document.getElementById('divInsertError') != null && document.getElementById('divInsertError').style.display=='block'){
 						document.getElementById('divInsertError').style.display='none';
 					}
 					document.getElementById('idCodigo').innerText ="Código:"+" "+dataCodigo;

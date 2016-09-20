@@ -51,7 +51,7 @@ public class ContactController {
 
 	@RequestMapping(value = "/private/entidadContacto", method = RequestMethod.GET)
 	public ModelAndView getContactoData(@RequestParam String sfid,HttpServletRequest request) {
-		System.out.println("Ejecutar consulta");
+		logger.debug("Ejecutar consulta");
 		HttpSession session = request.getSession(true);
 		
 		

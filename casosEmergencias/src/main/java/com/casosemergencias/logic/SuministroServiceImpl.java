@@ -1,15 +1,21 @@
 package com.casosemergencias.logic;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.CaseDAO;
+import com.casosemergencias.dao.CasosReiteradosDAO;
 import com.casosemergencias.dao.RelacionActivoContactoDAO;
 import com.casosemergencias.dao.SuministroDAO;
 import com.casosemergencias.dao.vo.CaseVO;
+import com.casosemergencias.dao.vo.CasosReiteradosVO;
 import com.casosemergencias.dao.vo.RelacionActivoContactoVO;
 import com.casosemergencias.dao.vo.SuministroVO;
 import com.casosemergencias.model.Caso;
@@ -31,6 +37,9 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 	
 	@Autowired
 	private RelacionActivoContactoDAO relacionDAO;
+	
+	@Autowired
+	private CasosReiteradosDAO casoReiteradosDAO;
 	
 	@Override
 	public List<Suministro> readAllSuministros() {
@@ -90,6 +99,53 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 			List<RelacionActivoContactoVO> listaRelacionVO = relacionDAO.getContactosRelacionadosPorSuministro(sfid);
 			List<Contacto> contactosRelacionado = parseaListaContactosRel(listaRelacionVO);
 			suministro.setContactosRelacionados(contactosRelacionado);
+			
+			
+			
+			
+			//Se puede añadir dentro del for el calculo de casos abiertos
+			if(casoRelacionado != null && !casoRelacionado.isEmpty() && casoRelacionado.size()>0){
+				
+				//Calculamos si el suministro tiene casosReiterados 
+				CasosReiteradosVO casosReiteradosVO = casoReiteradosDAO.readCasosReiteradosByName("Suministro");
+				int numCasos = 0;
+				int limiteDias = casosReiteradosVO.getNumDias().intValue();
+				int numCasosReit = casosReiteradosVO.getNumCasos().intValue();
+				
+				Calendar calendar = Calendar.getInstance();	
+				//Definimos el formato para comparar 'fechaApertura' con la fecha actual
+				SimpleDateFormat  dateFormat  = new SimpleDateFormat("dd-MM-yyyy");
+			
+				for(Caso caso : casoRelacionado){
+					try {
+						Date dateCreadionCaso = caso.getFechaApertura();
+						Date dateHoy = new Date();
+						if(dateCreadionCaso != null){
+							//Fecha apertura del caso le sumamos 'limiteDias'
+							calendar.setTime(dateCreadionCaso);
+							calendar.add(Calendar.DAY_OF_YEAR, limiteDias);
+								
+							String stringDate = dateFormat.format(calendar.getTime());
+							dateCreadionCaso = dateFormat.parse(stringDate);						
+							stringDate = dateFormat.format(dateHoy);
+							dateHoy = dateFormat.parse(stringDate);
+							
+							if(dateCreadionCaso.getTime() > dateHoy.getTime()){
+								numCasos ++;
+							}
+						}
+						
+					} catch (ParseException e) {
+						logger.error("--- readSuministroBySfid -- error al parsear una fecha ---");
+						logger.error(e.getMessage());
+					}
+	
+				}	
+				
+				if(numCasos >= numCasosReit){
+					suministro.setCasosReiterados((double) numCasos);
+				}
+			}
 			
 			return suministro;
 		}

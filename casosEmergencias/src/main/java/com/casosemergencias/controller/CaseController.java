@@ -132,7 +132,7 @@ public class CaseController {
 			casoView.setFechaApertura(fechaApertura);
 		}
 		if(casoView.getFechaCierre() != null){
-			Date fechaCierre = casoView.getFechaApertura();
+			Date fechaCierre = casoView.getFechaCierre();
 			fechaCierre = new Date(fechaCierre.getTime() + offset);
 			casoView.setFechaCierre(fechaCierre);
 		}

@@ -67,7 +67,7 @@ public class DireccionController {
 	
 	@RequestMapping(value = "/private/entidadDireccion", method = RequestMethod.GET)
 	public ModelAndView getDireccionData(@RequestParam String sfid) {
-		System.out.println("Ejecutar consulta");
+		logger.debug("Ejecutar consulta");
 		ModelAndView model = new ModelAndView();		
 		model.addObject("sfid", sfid);
 

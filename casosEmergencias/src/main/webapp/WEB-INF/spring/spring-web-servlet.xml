@@ -97,7 +97,8 @@
 	                <value>com.casosemergencias.dao.vo.FieldLabelVO</value>
 	                <value>com.casosemergencias.dao.vo.UserSessionInfoVO</value>
 	                <value>com.casosemergencias.dao.vo.FieldLabelVO</value>
-	               	<value>com.casosemergencias.dao.vo.GroupVO</value>                
+	               	<value>com.casosemergencias.dao.vo.GroupVO</value>   
+	               	<value>com.casosemergencias.dao.vo.CasosReiteradosVO</value>                 
 	            </list>
 		  </property>
 		  <property name="hibernateProperties">
