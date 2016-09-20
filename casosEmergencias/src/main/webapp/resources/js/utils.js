@@ -251,35 +251,24 @@ function limpiarCamposBuscadorCasos() {
 function crearCasoCorteDeuda(){	
 	
 	$.post( "../private/goCrearCasoBySuministroAndCorte",
-			{Causa: 'deuda', sfidSum: document.getElementById('sfidSum').value},
-				function( data ) {
-					if(data!=null){
-						if(data=='<s:message code="notificaciones_label_error_mensaje_001"/>'){
-							document.getElementById('cod001').style.display='';
-							document.getElementById('mes001').style.display='';
-						}
-						else if(data=='<s:message code="notificaciones_label_error_mensaje_002"/>'){
-							document.getElementById('cod002').style.display='';
-							document.getElementById('mes002').style.display='';
-						}
-						else if(data=='<s:message code="notificaciones_label_error_mensaje_003"/>'){
-							document.getElementById('cod003').style.display='';
-							document.getElementById('mes003').style.display='';
-						}
-						else if(data=='<s:message code="notificaciones_label_error_mensaje_004"/>'){
-							document.getElementById('cod004').style.display='';
-							document.getElementById('mes004').style.display='';
-						}
-						else if(data=='<s:message code="notificaciones_label_error_mensaje_005"/>'){
-							document.getElementById('cod005').style.display='';
-							document.getElementById('mes005').style.display='';
-						}
-						else{
-							window.location=data;
-						}
-					}				
+	{Causa: 'deuda', sfidSum: document.getElementById('sfidSum').value},
+		function( data ) {
+		document.getElementById('divCaseCorteCreatedError').style.display='';
+			if(data!=null){	
+				var dataPartes = data.split("$");
+				var dataCodigo = dataPartes[0]; 
+				var dataMensaje = dataPartes[1]; 				
+				if(dataCodigo!=null && dataCodigo!=dataPartes && dataMensaje!=null){
+					document.getElementById('idCodigo').innerText =document.getElementById('idCodigo').innerText+" "+dataCodigo;
+					document.getElementById('idMensaje').innerText =document.getElementById('idMensaje').innerText +" "+dataMensaje;
+					document.getElementById('divCaseCorteCreatedError').style.display='block';	
 				}
-			);
+				else{				
+					window.location=data;
+				}
+			}				
+		}
+	);
 }
 
 //Crear caso corte programado

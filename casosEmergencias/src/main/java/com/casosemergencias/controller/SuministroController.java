@@ -234,7 +234,6 @@ public class SuministroController {
 	public @ResponseBody String goCrearCasoBySuministroAndCorte(@RequestBody String body, HttpServletRequest request) {
 	
 		logger.info("--- Inicio -- CreacionCasoCorte ---");
-		ModelAndView model = new ModelAndView();
 		// Obtenemos sfid y causa del body (peticion ajax)
 		
 		String causa=body.substring(6, 11);
