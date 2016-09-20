@@ -51,7 +51,7 @@ public class ContactController {
 
 	@RequestMapping(value = "/private/entidadContacto", method = RequestMethod.GET)
 	public ModelAndView getContactoData(@RequestParam String sfid,HttpServletRequest request) {
-		System.out.println("Ejecutar consulta");
+		logger.debug("Ejecutar consulta");
 		HttpSession session = request.getSession(true);
 		
 		
@@ -167,9 +167,8 @@ public class ContactController {
 	
 	//Crear Caso nuevo con Contacto asociado.
 	
-	@RequestMapping(value = "/private/actualizarContacto", method = RequestMethod.POST)
+	@RequestMapping(value = "/private/goCrearCasoByContacto", method = RequestMethod.GET)
 	public ModelAndView crearCasoByContacto() {
-				
 		ModelAndView model = new ModelAndView();
 		model.setViewName("redirect:entidadCasoAlta");
 		

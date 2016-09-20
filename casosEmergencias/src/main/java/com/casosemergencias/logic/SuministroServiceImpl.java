@@ -100,44 +100,51 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 			List<Contacto> contactosRelacionado = parseaListaContactosRel(listaRelacionVO);
 			suministro.setContactosRelacionados(contactosRelacionado);
 			
-			//Calculamos si el suministro tiene casosReiterados 
-			CasosReiteradosVO casosReiteradosVO = casoReiteradosDAO.readCasosReiteradosByName("Suministro");
-			int numCasos = 0;
-			int limiteDias = casosReiteradosVO.getNumDias().intValue();
-			int numCasosReit = casosReiteradosVO.getNumCasos().intValue();
 			
-			Calendar calendar = Calendar.getInstance();	
-			//Definimos el formato para comparar 'fechaApertura' con la fecha actual
-			SimpleDateFormat  dateFormat  = new SimpleDateFormat("dd-MM-yyyy");
 			
 			
 			//Se puede añadir dentro del for el calculo de casos abiertos
-			for(Caso caso : casoRelacionado){
-				try {
-					Date dateCreadionCaso = caso.getFechaApertura();
-					Date dateHoy = new Date();
-					//Fecha apertura del caso le sumamos 'limiteDias'
-					calendar.setTime(dateCreadionCaso);
-					calendar.add(Calendar.DAY_OF_YEAR, limiteDias);
-						
-					String stringDate = dateFormat.format(calendar.getTime());
-					dateCreadionCaso = dateFormat.parse(stringDate);						
-					stringDate = dateFormat.format(dateHoy);
-					dateHoy = dateFormat.parse(stringDate);
-					
-					if(dateCreadionCaso.getTime() > dateHoy.getTime()){
-						numCasos ++;
-					}
-					
-				} catch (ParseException e) {
-					logger.error("--- readSuministroBySfid -- error al parsear una fecha ---");
-					logger.error(e.getMessage());
-				}
-
-			}	
+			if(casoRelacionado != null && !casoRelacionado.isEmpty() && casoRelacionado.size()>0){
+				
+				//Calculamos si el suministro tiene casosReiterados 
+				CasosReiteradosVO casosReiteradosVO = casoReiteradosDAO.readCasosReiteradosByName("Suministro");
+				int numCasos = 0;
+				int limiteDias = casosReiteradosVO.getNumDias().intValue();
+				int numCasosReit = casosReiteradosVO.getNumCasos().intValue();
+				
+				Calendar calendar = Calendar.getInstance();	
+				//Definimos el formato para comparar 'fechaApertura' con la fecha actual
+				SimpleDateFormat  dateFormat  = new SimpleDateFormat("dd-MM-yyyy");
 			
-			if(numCasos >= numCasosReit){
-				suministro.setCasosReiterados((double) numCasos);
+				for(Caso caso : casoRelacionado){
+					try {
+						Date dateCreadionCaso = caso.getFechaApertura();
+						Date dateHoy = new Date();
+						if(dateCreadionCaso != null){
+							//Fecha apertura del caso le sumamos 'limiteDias'
+							calendar.setTime(dateCreadionCaso);
+							calendar.add(Calendar.DAY_OF_YEAR, limiteDias);
+								
+							String stringDate = dateFormat.format(calendar.getTime());
+							dateCreadionCaso = dateFormat.parse(stringDate);						
+							stringDate = dateFormat.format(dateHoy);
+							dateHoy = dateFormat.parse(stringDate);
+							
+							if(dateCreadionCaso.getTime() > dateHoy.getTime()){
+								numCasos ++;
+							}
+						}
+						
+					} catch (ParseException e) {
+						logger.error("--- readSuministroBySfid -- error al parsear una fecha ---");
+						logger.error(e.getMessage());
+					}
+	
+				}	
+				
+				if(numCasos >= numCasosReit){
+					suministro.setCasosReiterados((double) numCasos);
+				}
 			}
 			
 			return suministro;

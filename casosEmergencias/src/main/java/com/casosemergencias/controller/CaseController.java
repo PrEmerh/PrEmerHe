@@ -132,7 +132,7 @@ public class CaseController {
 			casoView.setFechaApertura(fechaApertura);
 		}
 		if(casoView.getFechaCierre() != null){
-			Date fechaCierre = casoView.getFechaApertura();
+			Date fechaCierre = casoView.getFechaCierre();
 			fechaCierre = new Date(fechaCierre.getTime() + offset);
 			casoView.setFechaCierre(fechaCierre);
 		}
@@ -445,6 +445,9 @@ public class CaseController {
 					Date fecha = casoRelacionado.getCreateddate();
 					fecha = new Date(fecha.getTime() + offset);
 					casoRelacionado.setCreateddate(fecha);
+				}
+				if(casoRelacionado.getComment()!=null){
+					casoRelacionado.setComment(casoRelacionado.getComment().replace("\n","<br>"));					
 				}
 				listaComentariosCasoView.add(casoRelacionado);
 			}

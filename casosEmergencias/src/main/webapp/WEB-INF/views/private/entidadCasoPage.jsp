@@ -45,7 +45,7 @@
 				<label class="labelDivOk"><s:message code="notificaciones_label_ok_caso_creado"/></label>
 			</div>
 		</div>
-		<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
+	<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
 			<form:hidden path="id"/>
 			<form:hidden path="editMode" value="${editMode}"/>
 			<form:hidden path="sfid"/>

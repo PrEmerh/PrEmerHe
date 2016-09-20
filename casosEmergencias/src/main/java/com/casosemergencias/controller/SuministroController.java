@@ -21,10 +21,19 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.SuministroView;
+import com.casosemergencias.exception.EmergenciasException;
+import com.casosemergencias.logic.CaseService;
+import com.casosemergencias.logic.ContactService;
+import com.casosemergencias.logic.DireccionService;
 import com.casosemergencias.logic.SuministroService;
+import com.casosemergencias.model.Caso;
+import com.casosemergencias.model.Contacto;
+import com.casosemergencias.model.Direccion;
+import com.casosemergencias.model.HerokuUser;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.constants.Constantes;
+import com.casosemergencias.util.constants.ConstantesError;
 import com.casosemergencias.util.datatables.DataTableParser;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -35,6 +44,15 @@ public class SuministroController {
 	
 	@Autowired
 	private SuministroService suministroService;
+	
+	@Autowired
+	private ContactService contactoService;
+	
+	@Autowired
+	private DireccionService direccionService;
+	
+	@Autowired
+	private CaseService casoService;
 	
 	@RequestMapping(value = "/private/homeSuministros", method = RequestMethod.GET)
 	public ModelAndView detalleSuministro() {
@@ -204,14 +222,134 @@ public class SuministroController {
 	
 	//Crear Caso nuevo con Suministro asociado.
 	
-	@RequestMapping(value = "/private/actualizarSuministro", method = RequestMethod.POST)
+	@RequestMapping(value = "/private/goCrearCasoBySuministro", method = RequestMethod.GET)
 	public ModelAndView crearCasoBySuministro() {
-				
 		ModelAndView model = new ModelAndView();
 		model.setViewName("redirect:entidadCasoAlta");
 		
 		return model;
 	}
 	
+	@RequestMapping(value = "/private/goCrearCasoBySuministroAndCorte", method = RequestMethod.POST)
+	public @ResponseBody String goCrearCasoBySuministroAndCorte(@RequestBody String body, HttpServletRequest request) {
 	
+		logger.info("--- Inicio -- CreacionCasoCorte ---");
+		
+		// Obtenemos sfid y causa del body (peticion ajax)
+		String causa="";
+		String sfidSum="";
+		String[] bodyArray = body.split("&");
+		for(String miArray : bodyArray){
+			String[] componente  = miArray.split("=");
+			if("causa".equals(componente[0])){
+				causa = componente[1];
+			}
+			if("sfidSum".equals(componente[0])){
+				sfidSum = componente[1];
+			}
+			
+		}
+		
+
+		// Rellenamos los datos del caso a insertar 
+		if (sfidSum != null && !"".equals(sfidSum)) {
+			//Obtener el suministro para guardarlo en el formulario
+			
+				HttpSession session = request.getSession(true);
+		
+				Suministro suministro = new Suministro();
+				HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
+				Caso caso= new Caso();
+				suministro = suministroService.readSuministroBySfid(sfidSum);	
+				
+				if (suministro != null) {		
+					//Set de info de Suministro					
+					caso.setSuministro(sfidSum);
+					caso.setSuministroJoin(suministro);	
+				
+					//Set de info de Direccion					
+					if(suministro.getDireccion()!=null){						
+						Direccion direccion = new Direccion();
+						String direccionSfid = suministro.getDireccion();
+						direccion = direccionService.readDireccionBySfid(direccionSfid);
+						caso.setDireccion(direccionSfid);
+						caso.setDireccionJoin(direccion);	
+						logger.info("Direccion encontrada con id: " + direccionSfid);	
+					}				
+					//Set de info de Contacto				
+					if(suministro.getContactosRelacionados()!=null && suministro.getContactosRelacionados().isEmpty()==false  && suministro.getContactosRelacionados().size()==1){						
+						Contacto contacto = new Contacto();
+						String contactoSfid = suministro.getContactosRelacionados().get(0).getSfid();
+						contacto = contactoService.readContactoBySfid(contactoSfid);
+						caso.setNombreContacto(contactoSfid);
+						caso.setContactoJoin(contacto);		
+						
+						logger.info("Contacto encontrada con id: " + contactoSfid);
+					}					
+					//Set de info de HerokuUser					
+					if(user != null && user.getName() != null && !"".equals(user.getName())){									
+						String unidad=user.getUnidad();
+						String username=user.getName();
+						caso.setHerokuUsername(username);						
+						caso.setCallCenter(unidad);
+						logger.info("Heroku user name: " + user.getName());
+					}					
+					//Set campos de Caso comunes en ambos tipos de corte
+					caso.setCanalOrigen(Constantes.COD_CASO_ORIGEN_CALL_CENTER);
+					caso.setPeticion(Constantes.COD_CASO_MOTIVO_EMERGENCIA);
+					caso.setEstado(Constantes.COD_CASO_STATUS_CERRADO);
+					caso.setType(Constantes.COD_CASO_TYPE_RECLAMO_DESC);
+					//Set campos con valores especificos para cada corte de Caso 
+					if(causa!=null){
+						if("deuda".equals(causa)){							
+							caso.setSubmotivo(Constantes.COD_CASO_SUBMOTIVO_CORTE_DEUDA);
+							caso.setDescription(Constantes.COD_CASO_DESC_DEUDA);
+						}
+						if("progr".equals(causa)){
+							caso.setSubmotivo(Constantes.COD_CASO_SUBMOTIVO_CORTE_PROGRAMADO);
+							caso.setDescription(Constantes.COD_CASO_DESC_PROGRAMADO);
+						}
+					}
+				}				
+				logger.info("--- Fin -- CreacionCasoCorte ---");
+				
+				//Inserccion de Caso
+				
+				logger.info("--- Fin -- InserccionCasoCorte ---");
+				
+				Caso casoInsertado = new Caso();
+							
+				try{
+					
+					casoInsertado = casoService.insertCase(caso);	
+					if(casoInsertado != null){
+						
+						logger.info("Caso guardado correctamente con sfid:" + casoInsertado.getSfid());
+						CaseView caseview=new CaseView();
+						ParserModelVO.parseDataModelVO(casoInsertado, caseview);
+						logger.info("Se redirecciona a página de detalle del caso");
+						return "../private/entidadCaso?sfid=" + caseview.getSfid() + "&editMode=" + Constantes.EDIT_MODE_INSERTED_OK;
+					}
+					
+					else {
+					logger.info("Se ha producido un error guardando el caso");
+					String codigoError=new String();
+					String mensajeError=new String();
+					codigoError=ConstantesError.EMERG_ERROR_CODE_004;		
+					mensajeError=ConstantesError.HEROKU_CASE_CREATION_GENERIC_ERROR;
+					return codigoError+"$"+mensajeError;
+					}
+				}
+				catch(EmergenciasException exception){	
+					logger.info("No se ha guardado correctamente el caso");
+					String codigoError=new String();
+					String mensajeError=new String();
+					codigoError=exception.getCode();	
+					mensajeError=exception.getMessage();
+					return codigoError+"$"+mensajeError;
+				}				
+			}
+			return null;	
+		}
+		
 }

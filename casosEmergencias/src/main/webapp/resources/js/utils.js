@@ -81,6 +81,8 @@ function checkUpdates() {
 		$('#divCaseCommentNOCreated').show();
 	} else if ($('#editMode').val() == 'INSERTED_OK') {
 		$('#divCaseCreatedOk').show();
+	} else if ($('#editMode').val() == 'INSERTED_ERROR') {
+	  $('#divCaseCreatedError').show();
 	}
 }
 
@@ -205,6 +207,18 @@ function establecerDireccion(sfid, name) {
 	$('#dialogDireccion').dialog('close');
 }
 
+//Crear caso por suministro
+
+function goCrearCasoBySuministro(){	
+	window.location="../private/goCrearCasoBySuministro";
+}
+
+//Crear caso por contacto
+
+function goCrearCasoByContacto(){	
+	window.location="../private/goCrearCasoByContacto";
+}
+
 /*Inici -- funciones Guardar y Cancelar Comentario de un Caso*/
 function newComent(sfid){
 	 window.location="../private/casoComentarioPage?sfid="+sfid;
@@ -230,4 +244,58 @@ function limpiarCamposBuscadorCasos() {
 	if (document.getElementById('filtroNumCaso').value != '') {
 		document.getElementById('filtroNumCaso').value = '';
 	}
+}
+
+//Crear caso corte por deuda
+
+function crearCasoCorteDeuda(){	
+	
+	$.post( "../private/goCrearCasoBySuministroAndCorte",
+		{causa: 'deuda', sfidSum: document.getElementById('sfidSum').value},
+		function( data ) {
+			if(data!=null){	
+				var dataPartes = data.split("$");
+				var dataCodigo = dataPartes[0]; 
+				var dataMensaje = dataPartes[1]; 
+				if(dataCodigo!=null && dataCodigo!=dataPartes && dataMensaje!=null){
+					if(document.getElementById('divInsertError') != null && document.getElementById('divInsertError').style.display=='block'){
+						document.getElementById('divInsertError').style.display='none';
+					}
+					document.getElementById('idCodigo').innerText ="Código:"+" "+dataCodigo;
+					document.getElementById('idMensaje').innerText ="Mensaje:"+" "+dataMensaje;
+					document.getElementById('divCaseCorteCreatedError').style.display='block';					
+				}
+				else{				
+					window.location=data;
+				}
+			}				
+		}
+	);
+}
+
+//Crear caso corte programado
+
+function crearCasoCorteProgramado(){	
+	
+	$.post( "../private/goCrearCasoBySuministroAndCorte",
+		{causa: 'progr', sfidSum: document.getElementById('sfidSum').value},
+		function( data ) {
+			if(data!=null){	
+				var dataPartes = data.split("$");
+				var dataCodigo = dataPartes[0]; 
+				var dataMensaje = dataPartes[1]; 	
+				if(dataCodigo!=null && dataCodigo!=dataPartes && dataMensaje!=null){
+					if(document.getElementById('divInsertError') != null && document.getElementById('divInsertError').style.display=='block'){
+						document.getElementById('divInsertError').style.display='none';
+					}
+					document.getElementById('idCodigo').innerText ="Código:"+" "+dataCodigo;
+					document.getElementById('idMensaje').innerText ="Mensaje:"+" "+dataMensaje;
+					document.getElementById('divCaseCorteCreatedError').style.display='block';
+				}
+				else{				
+					window.location=data;
+				}
+			}				
+		}
+	);
 }
