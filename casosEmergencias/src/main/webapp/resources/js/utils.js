@@ -253,7 +253,7 @@ function crearCasoCorteDeuda(){
 	$.post( "../private/goCrearCasoBySuministroAndCorte",
 	{Causa: 'deuda', sfidSum: document.getElementById('sfidSum').value},
 		function( data ) {
-		document.getElementById('divCaseCorteCreatedError').style.display='';
+		document.getElementById('divCaseCorteCreatedError').style.display='block';
 			if(data!=null){	
 				var dataPartes = data.split("$");
 				var dataCodigo = dataPartes[0]; 
@@ -278,7 +278,7 @@ function crearCasoCorteProgramado(){
 	$.post( "../private/goCrearCasoBySuministroAndCorte",
 	{Causa: 'progr', sfidSum: document.getElementById('sfidSum').value},
 		function( data ) {
-		document.getElementById('divCaseCorteCreatedError').style.display='';
+		document.getElementById('divCaseCorteCreatedError').style.display='block';
 			if(data!=null){	
 				var dataPartes = data.split("$");
 				var dataCodigo = dataPartes[0]; 
