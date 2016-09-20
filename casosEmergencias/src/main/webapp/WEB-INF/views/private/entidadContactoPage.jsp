@@ -38,7 +38,7 @@
 		<form:form name="formEntidadContacto" action="actualizarContacto" modelAttribute="contacto" method="POST">
 			<div class="botoneraListado">
 				<ul>
-					<li><input type="button" name="goCrearCasoByContactoName" value="<s:message code="homeCasos_button_nuevocaso"/>" onclick="goCrearCasoByContacto();" /></li>
+					<li><input type="button" name="goCrearCasoByContactoName" value="<s:message code="homeCasos_button_nuevoCaso"/>" onclick="goCrearCasoByContacto();" /></li>
 				</ul>
 			</div>
 			<form:hidden path="sfid"/>
