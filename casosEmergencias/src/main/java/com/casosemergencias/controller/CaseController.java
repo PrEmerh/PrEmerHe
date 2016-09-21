@@ -206,7 +206,7 @@ public class CaseController {
 			Iterator<CaseView> iteradorCasos = suministroAsociado.getCasos().iterator();
 			do {
 				casoSuministro = iteradorCasos.next();
-				if (!"ESTA007".equals(casoSuministro.getEstado()) || !"ESTA008".equals(casoSuministro.getEstado())) {
+				if (!"ESTA007".equals(casoSuministro.getEstado()) && !"ESTA008".equals(casoSuministro.getEstado())) {
 					hayCasoAbierto = true;
 				}
 			} while (iteradorCasos.hasNext() && !hayCasoAbierto);

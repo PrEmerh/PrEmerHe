@@ -57,7 +57,7 @@
 			<div class="botoneraListado">
 				<ul>
 					<li><input id="Modificar" type="button" name="Modificar" value=<s:message code="entidadCaso_boton_modificar"/>  onclick="modificarCasoButton();" /></li>
-					<li><input id="CancelarCaso" type="button" name="CancelarCaso" value="<s:message code="entidadCaso_boton_cancelar_caso"/>"  onclick="cancelarCasoButton();" /></li>
+					
 					<li><input id="Guardar" type="submit" name="Guardar" value="<s:message code="entidadCaso_boton_guardar"/>" hidden="true"/></li>
 					<li><input id="Cancelar" type="button" name="Cancelar" value="<s:message code="entidadCaso_boton_cancelar"/>" hidden="true"  onclick="cancelarButton();"/></li>
 				</ul>
