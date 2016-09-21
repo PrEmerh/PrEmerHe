@@ -1,7 +1,6 @@
 // FUNCIONES PARA MODIFICAR UN CASO
 function modificarCasoButton() {
 	var modificar = document.getElementById('Modificar');
-	var cancelarCaso = document.getElementById('CancelarCaso');
 	var guardar = document.getElementById('Guardar');
 	var cancelar = document.getElementById('Cancelar');
 	var descriptionEdit = document.getElementById('fieldEdit');
@@ -10,7 +9,6 @@ function modificarCasoButton() {
 	var arrowDatosEmergenciaDiv = document.getElementById('arrowDatosEmergencia');
 	
 	modificar.hidden = true;
-	cancelarCaso.hidden = true;
 	guardar.hidden = false;
 	cancelar.hidden = false;	
 	
@@ -25,18 +23,27 @@ function modificarCasoButton() {
 
 function cancelarButton() {
 	var modificar = document.getElementById('Modificar');
-	var cancelarCaso = document.getElementById('CancelarCaso');
 	var guardar = document.getElementById('Guardar');
 	var cancelar = document.getElementById('Cancelar');
 	var descriptionEdit = document.getElementById('fieldEdit');
 	var descriptionRead = document.getElementById('fieldRead');
 	
 	modificar.hidden = false;
-	cancelarCaso.hidden = false;
 	guardar.hidden = true;
 	cancelar.hidden = true;	
 	descriptionRead.style.display = '';
 	descriptionEdit.style.display = 'none'; 
+}
+
+
+
+function cancelarCasoButton() {
+	$('#subEstadoCanceladion');
+	
+	
+	$('#dialogCancelarCaso').dialog('open');	
+	//createTableSuministro();//Funcion de popupsTable.js, crea la tabla
+	
 }
 
 function checkUpdates() {
