@@ -17,6 +17,7 @@
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/header.js" lang=""></script>
         <script src="../resources/js/utils.js" lang=""></script> 
+		<script src="../resources/js/casos.js"></script>
 	</head>
 	<body onload="initHeader(); checkUpdates();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_detalle_caso"/>';</script>
@@ -45,7 +46,8 @@
 				<label class="labelDivOk"><s:message code="notificaciones_label_ok_caso_creado"/></label>
 			</div>
 		</div>
-	<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
+		
+		<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
 			<form:hidden path="id"/>
 			<form:hidden path="editMode" value="${editMode}"/>
 			<form:hidden path="sfid"/>
@@ -54,9 +56,10 @@
 			</div>
 			<div class="botoneraListado">
 				<ul>
-					<li><input id="Modificar" type="button" name="Modificar" value="Modificar"  onclick="modificarButton();" /></li>
-					<li><input id="Guardar" type="submit" name="Cancelar" value="Guardar" hidden="true"/></li>
-					<li><input id="Cancelar" type="button" name="Cancelar" value="Cancelar" hidden="true"  onclick="cancelarButton();"/></li>
+					<li><input id="Modificar" type="button" name="Modificar" value=<s:message code="entidadCaso_boton_modificar"/>  onclick="modificarCasoButton();" /></li>
+					<li><input id="CancelarCaso" type="button" name="CancelarCaso" value="<s:message code="entidadCaso_boton_cancelar_caso"/>"  onclick="cancelarCasoButton();" /></li>
+					<li><input id="Guardar" type="submit" name="Guardar" value="<s:message code="entidadCaso_boton_guardar"/>" hidden="true"/></li>
+					<li><input id="Cancelar" type="button" name="Cancelar" value="<s:message code="entidadCaso_boton_cancelar"/>" hidden="true"  onclick="cancelarButton();"/></li>
 				</ul>
 			</div>			
 			<div class="divEntidad">

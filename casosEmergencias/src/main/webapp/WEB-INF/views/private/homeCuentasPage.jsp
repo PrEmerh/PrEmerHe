@@ -17,7 +17,7 @@
 		<script src="../resources/js/jQueryDatatables.js"></script>
 		<script src="../resources/js/header.js"></script>
 		<script src="../resources/js/utils.js"></script>
-		<script src="../resources/js/cuentas.js"></script>
+		<script src="../resources/js/cuentasDataTable.js"></script>
 	</head>
 	<body onload="initHeader();limpiarCamposBuscadorCuentas();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_cuentas"/>';</script>

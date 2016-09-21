@@ -19,6 +19,7 @@
 		<script src="../resources/js/jQueryDatatables.js"></script>	
   		<script src="../resources/js/jquery-ui.js"></script>
 		<script src="../resources/js/utils.js" lang=""></script>
+		<script src="../resources/js/casos.js"></script>
   		<script src="../resources/js/popupsTable.js"></script>
 		<script src="../resources/js/header.js" lang=""></script>
 	</head>
