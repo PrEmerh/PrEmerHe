@@ -2,7 +2,6 @@ package com.casosemergencias.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -166,24 +165,6 @@ public class CaseController {
 				}
 			}	
 		}
-		
-		//Si el caso  no esta Cancelado si Cerrado, preparamos la lista de valores del combo de Cancelacion
-		if(!(Constantes.COD_CASO_STATUS_CERRADO).equals(casoView.getEstado()) && !(Constantes.COD_CASO_STATUS_CANCELADO).equals(casoView.getEstado())){
-			Map<String, String> mapSubstatusCancel = new LinkedHashMap<String, String>();
-			mapSubstatusCancel.put(Constantes.PICKLIST_CASO_DEFAULT, " ");
-			
-			//Comprobar si el caso es alta. (Caso es alta si no tiene numero de inservice)
-			if(casoView.getNumeroInservice() != null && !"".equals(casoView.getNumeroInservice())) {
-				mapSubstatusCancel.put(Constantes.COD_CASO_SUBSTATUS_ERROR_INGRESO,Constantes.COD_CASO_SUBSTATUS_ERROR_INGRESO_DESC);
-				mapSubstatusCancel.put(Constantes.COD_CASO_SUBSTATUS_VERIFICADO_OK,Constantes.COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC); //En este caso la descripcion es diferente a BBDD	
-			}else{
-				mapSubstatusCancel.put(Constantes.COD_CASO_SUBSTATUS_COMUNICACION_INTERRUMPIDA,Constantes.COD_CASO_SUBSTATUS_COMUNICACION_INTERRUMPIDA_DESC);
-				mapSubstatusCancel.put(Constantes.COD_CASO_SUBSTATUS_PRUEBA_ERROR_INGRESO,Constantes.COD_CASO_SUBSTATUS_PRUEBA_ERROR_INGRESO_DESC);
-				mapSubstatusCancel.put(Constantes.COD_CASO_SUBSTATUS_VERIFICADO_OK,Constantes.COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC); //En este caso la descripcion es diferente a BBDD				
-			}	
-			casoView.setMapSubStatusCancelacion(mapSubstatusCancel);
-		}
-		
 		
 		model.setViewName("private/entidadCasoPage");
 		/*Hay que añadir recuperación de label de los picklists si no sale el código solo*/
