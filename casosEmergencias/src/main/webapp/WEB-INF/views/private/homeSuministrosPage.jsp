@@ -17,7 +17,7 @@
 		<script src="../resources/js/jQueryDatatables.js"></script>
 		<script src="../resources/js/header.js"></script>
 		<script src="../resources/js/utils.js"></script>
-		<script src="../resources/js/suministros.js"></script>
+		<script src="../resources/js/suministrosDataTable.js"></script>
 	</head>
 	<body onload="initHeader();limpiarCamposBuscadorSuministro();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_suministro"/>';</script>
