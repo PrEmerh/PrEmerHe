@@ -61,6 +61,7 @@
 			<div class="botoneraListado">
 				<ul>
 					<li><input id="Modificar" type="button" name="Modificar" value=<s:message code="entidadCaso_boton_modificar"/>  onclick="modificarCasoButton();" /></li>
+					<li><input id="CancelarCaso" type="button" name="CancelarCaso" value="<s:message code="entidadCaso_boton_cancelar_caso"/>"  onclick="cancelarCasoButton();" /></li>
 					<li><input id="Guardar" type="submit" name="Guardar" value="<s:message code="entidadCaso_boton_guardar"/>" hidden="true"/></li>
 					<li><input id="Cancelar" type="button" name="Cancelar" value="<s:message code="entidadCaso_boton_cancelar"/>" hidden="true"  onclick="cancelarButton();"/></li>
 				</ul>
@@ -515,5 +516,21 @@
 				</div>
 			</div>				
 		</form:form>
+				
+				
+		<!-- Dialog combo Cancelar Caso -->
+		<div id="dialogCancelarCaso" title="<s:message code="entidadCaso_dialog_labe" arguments="${caso.numeroCaso}"/>" class="dialogLupa">			
+			<form:form name="formCancelarCaso" action="cancelarCaso" modelAttribute="caso" method="POST">
+				<form:hidden path="id"/>
+				<div>
+					<form:select id="subEstadoCanceladion" path="subestado" items="${caso.mapSubStatusCancelacion}"/>
+				</div>
+				<br>
+				<div>
+					<input id="Aceptar" type="submit" name="Aceptar" value=<s:message code="entidadCaso_boton_modificar"/> />
+					<input id="Cancelar" type="button" name="Cancelar" value="<s:message code="entidadCaso_boton_cancelar_caso"/>" onclick="cancelarCasoButton();" />
+				</div>		
+			</form:form>
+		</div>
   	</body>
 </html>
