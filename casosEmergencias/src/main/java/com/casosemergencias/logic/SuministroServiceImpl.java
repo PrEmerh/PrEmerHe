@@ -100,9 +100,6 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 			List<Contacto> contactosRelacionado = parseaListaContactosRel(listaRelacionVO);
 			suministro.setContactosRelacionados(contactosRelacionado);
 			
-			
-			
-			
 			//Se puede añadir dentro del for el calculo de casos abiertos
 			if(casoRelacionado != null && !casoRelacionado.isEmpty() && casoRelacionado.size()>0){
 				
@@ -151,6 +148,33 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 		}
 		return null;
 	}
+
+	public Integer getNumSuministros(DataTableProperties propDatatable){
+		return suministroDao.countSuministro(propDatatable);
+	}
+
+	public List<Suministro> readSuministrosCuenta(String sfidCuenta, Integer numeroSuministros){
+		
+		List<Suministro> listaSuministros = new ArrayList<Suministro>();
+		
+		SuministroVO suministroFiltro = new SuministroVO();
+		suministroFiltro.setCuenta(sfidCuenta);
+		
+		List<SuministroVO> listaSuministrosVO = suministroDao.readSuministro(suministroFiltro);
+		int limiteSuministro = listaSuministrosVO.size();
+		if(numeroSuministros != null){
+			limiteSuministro = numeroSuministros;
+		}
+		for(int i = 0; i<limiteSuministro; i++){
+			SuministroVO suministro = listaSuministrosVO.get(i);
+			Suministro suministroRellenar = new Suministro();
+			ParserModelVO.parseDataModelVO(suministro, suministroRellenar);
+			listaSuministros.add(suministroRellenar);
+		}
+		
+		return listaSuministros;
+		
+	}
 	
 	private List<Caso> parseaListaCasos(List<CaseVO> listacasosVO) {
 		if(listacasosVO!=null && !listacasosVO.isEmpty()){
@@ -181,9 +205,4 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 		}
 		return null;
 	}
-
-	public Integer getNumSuministros(DataTableProperties propDatatable){
-		return suministroDao.countSuministro(propDatatable);
-	}
-
 }

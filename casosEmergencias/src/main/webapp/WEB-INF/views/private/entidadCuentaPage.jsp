@@ -18,12 +18,16 @@
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
+		<script src="../resources/js/cuentas.js" lang=""></script>
 	</head>
 	<body onload="initHeader();">
 		<script type="text/javascript">
 			var objetoSeleccionado = '<s:message code="entidadCuenta_title_label_account_detail"/>';
 		</script>
 		<jsp:include page="cabeceraPage.jsp" />		
+		
+		<input type="hidden" value="${cuenta.sfid}" id="sfidCuenta">
+		
 		<div id="divEntidadCuenta" class="divEntidad">
 			<div class="subtitleAltaEntidad">
 				<div>
@@ -146,7 +150,7 @@
 				</div>
 			</div>
 			<div id="tablaCuentaSuministros">
-				<table class="basicTable">
+				<table class="basicTable" id="tablaSuministros">
 					<tr>
 						<th><s:message code="entidadCuenta_title_label_supply_number" /></th>
 					    <th><s:message code="entidadCuenta_title_label_supply_company_id" /></th>
@@ -159,7 +163,7 @@
 					</tr>
 					<c:choose>
 						<c:when test="${not empty cuenta.suministros}">
-							<c:forEach items="${cuenta.suministros}" var="suministro">
+							<c:forEach items="${cuenta.suministros}" var="suministro" begin="0" end="9">
 								<tr>
 									<td><a class="link" href="../private/entidadSuministro?sfid=${suministro.sfid}">${suministro.name}</a></td>
 									<td>${suministro.labelEmpresaPickList}</td>
@@ -181,6 +185,8 @@
 						</c:otherwise>
 					</c:choose>
 				</table>
+				<a class="link" href="javaScript:{allSuministros('All')}" id="hrefTodosSuministros">Mostrar todos</a>
+				<a class="link" href="javaScript:{allSuministros(10)}" id="hrefNoTodosSuministros" hidden="true">Mostrar 10</a>
 			</div>
 		</div>
 		<div id="divEntidadCuentaContactos" class="divEntidad">

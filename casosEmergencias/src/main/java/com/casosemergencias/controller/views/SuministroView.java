@@ -132,6 +132,8 @@ public class SuministroView extends ObjectView {
 	private String labelMedidaDisciplinaPickList;
 	
 	private String labelElectrodependientePickList;
+	
+	private String fechaCorteString;
 
 	public SuministroView() {
 	}
@@ -675,7 +677,15 @@ public class SuministroView extends ObjectView {
 	public void setLabelElectrodependientePickList(String labelElectrodependientePickList) {
 		this.labelElectrodependientePickList = labelElectrodependientePickList;
 	}
-	
+	public String getFechaCorteString() {
+		return fechaCorteString;
+	}
+	public void setFechaCorteString(String fechaCorteString) {
+		this.fechaCorteString = fechaCorteString;
+	}
+
+
+
 	@Override
 	public Object instantiateTargetLogic() {
 		Suministro suministro = new Suministro();

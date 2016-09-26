@@ -106,9 +106,6 @@ public class AccountController {
 		logger.info("SFID_SUMINISTRO" + session.getAttribute(Constantes.SFID_SUMINISTRO));
 		logger.info("FINAL_DETAIL_PAGE" + session.getAttribute(Constantes.FINAL_DETAIL_PAGE));
 
-		
-		
-		model.addObject("sfid", sfid);
 		model.setViewName("private/entidadCuentaPage");
 		model.addObject("cuenta", cuentaView);
 		return model;
