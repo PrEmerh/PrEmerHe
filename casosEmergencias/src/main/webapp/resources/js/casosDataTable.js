@@ -50,6 +50,13 @@ $(document).ready(function() {
 			.columns(0).search($('#filtroNumCaso').val())
 			.draw();
 	});
+	
+	//Añadir opcion de buscar pulsando enter
+	$("#filtroNumCaso").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
 });
 
 //Limpieza campos del buscador.

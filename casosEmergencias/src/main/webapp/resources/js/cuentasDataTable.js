@@ -51,6 +51,28 @@ $(document).ready(function() {
 				.columns(3).search($('#filtroRunRut').val())
 				.draw();
 	});
+	
+	//Añadir opcion de buscar pulsando enter
+	$("#filtroRunRut").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
+	$("#filtroRazonSocial").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
+	$("#filtroTelefono").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
+	$("#filtroEmail").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
 });
 
 

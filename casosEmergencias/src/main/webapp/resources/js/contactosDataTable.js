@@ -53,6 +53,33 @@ $(document).ready(function() {
 			.columns(4).search($('#filtroTwitter').val())
 			.draw();
 	});
+	
+	//Añadir opcion de buscar pulsando enter
+	$("#filtroRunRut").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
+	$("#filtroNombreApellidos").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
+	$("#filtroTelefono").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
+	$("#filtroEmail").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
+	$("#filtroTwitter").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
 });
 
 
