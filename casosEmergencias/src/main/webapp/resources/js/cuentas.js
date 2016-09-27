@@ -21,6 +21,7 @@ function allSuministros(numeroSuministros){
 					
 					var numero = document.createElement("a");
 					numero.href = '../private/entidadSuministro?sfid=' + fila.sfid;
+					numero.className = "link";
 					numero.text =fila.name;
 
 					var numeroSuministro = row.insertCell(0);
