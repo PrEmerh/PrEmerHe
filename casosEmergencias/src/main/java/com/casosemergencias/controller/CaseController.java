@@ -510,6 +510,24 @@ public class CaseController {
 		}		
 	}
 	
+	@RequestMapping(value ="/private/cancelarCaso", method = RequestMethod.POST)
+	public String cancelarCaso(CaseView casoRequest,  HttpServletRequest request){
+			
+		logger.info("--- Inicio -- cancelarCaso ---");
+		logger.debug("--- cancelarCaso -- sfid del caso: " + casoRequest.getSfid() + "---");
+		//Recuperamos el heroku user para concatenarlo al comentario.
+		HttpSession session = request.getSession(true);
+		HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
+				
+		Caso caso = new Caso();
+		ParserModelVO.parseDataModelVO(casoRequest, caso);
+		boolean casoCancelado = casoService.cancelarCaso(caso,  user.getName());
+
+		logger.info("--- Fin -- cancelarCaso ---");
+		
+		return "redirect:entidadCaso?sfid=" + caso.getSfid() + "&editMode=" + (casoCancelado ? Constantes.CANCEL_CASE_OK : Constantes.CANCEL_CASE_ERROR);
+	}
+	
 	private void fillNewCaseFormInfo(CaseView casoView) {
 		logger.trace("Entrando en fillNewCaseFormInfo()");
 		

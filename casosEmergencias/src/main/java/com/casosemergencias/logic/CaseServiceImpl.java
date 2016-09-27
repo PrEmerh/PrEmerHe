@@ -28,6 +28,7 @@ import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.User;
 import com.casosemergencias.model.UserSessionInfo;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.constants.Constantes;
 import com.casosemergencias.util.constants.ConstantesError;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -189,6 +190,87 @@ public class CaseServiceImpl implements CaseService{
 		casoVO.setDescription(caso.getDescription());
 		Integer id = caseDao.updateCase(casoVO);
 		return id;
+	}
+	
+	/**
+	 * Metodo que actualiza la BBDD Casos registrando un caso como cancelado
+	 * 
+	 * Si subestado es VERIFICADO_OK (si):
+	 * 		estado = cerrado (ESTA007) y si es alta, motivo_empresa = fuera_zona_conce (FA003)
+	 * Con otro subestado:
+	 * 		estado = cancelado (ESTA008) y sies alta, motivo_empresa = null
+	 * 
+	 * Guardamos como comentario del caso la descripcion del subestado.
+	 * 
+	 * Nota: Un caso es alta si numeroInservice es null o vacio.
+	 * 
+	 * @return
+	 */
+	public boolean cancelarCaso(Caso caso, String userName) {
+		
+		String subestadoCancelacion = caso.getSubestado();
+		boolean esAlta;
+		boolean canceladoOk = false;
+		String comentarioCaso = "<b>"+ userName + ": </b> ";
+
+		CaseCommentVO comentario = new CaseCommentVO();
+		CaseVO casoVO = new CaseVO();
+		
+		//Recuperamos el caso que estamos cancelando
+		casoVO = caseDao.readCaseBySfid(caso.getSfid());
+
+		//Modificamos el caso para guardarlo como cancelado y preparamos el comentario
+		if(casoVO.getNumeroInservice() == null || "".equals(casoVO.getNumeroInservice())){
+			esAlta = true;
+		}else{
+			esAlta = false;
+		}
+
+		if((Constantes.COD_CASO_SUBSTATUS_VERIFICADO_OK.equals(subestadoCancelacion))){
+			//Cliente con luz			
+			casoVO.setEstado(Constantes.COD_CASO_STATUS_CERRADO);
+			
+			if(esAlta){
+				casoVO.setSubmotivo(Constantes.COD_CASO_SUBMOTIVO_CONS_FUERA_ZONA_CONCE);
+			}
+			
+			comentarioCaso += Constantes.COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC_COMENTARIO;
+			
+		}else{
+			//cliente si luz
+			casoVO.setEstado(Constantes.COD_CASO_STATUS_CANCELADO);
+			
+			if(esAlta){
+				casoVO.setSubmotivo(null);
+			}			
+			
+			if((Constantes.COD_CASO_SUBSTATUS_COMUNICACION_INTERRUMPIDA).equals(subestadoCancelacion)){
+				comentarioCaso += Constantes.COD_CASO_SUBSTATUS_COMUNICACION_INTERRUMPIDA_DESC;
+			}else if((Constantes.COD_CASO_SUBSTATUS_PRUEBA_ERROR_INGRESO).equals(subestadoCancelacion)){
+				comentarioCaso += Constantes.COD_CASO_SUBSTATUS_PRUEBA_ERROR_INGRESO_DESC;				
+			}else if((Constantes.COD_CASO_SUBSTATUS_ERROR_INGRESO).equals(subestadoCancelacion)){
+				comentarioCaso += Constantes.COD_CASO_SUBSTATUS_ERROR_INGRESO_DESC;				
+			}
+		}
+
+		casoVO.setSubEstado(subestadoCancelacion);
+		casoVO.setCancelar(true);
+		
+		comentario.setCaseid(caso.getSfid());	
+		comentario.setIspublished(false);
+		comentario.setComment(comentarioCaso);
+		
+		casoVO.setDescription(caso.getDescription());
+		Integer id = caseDao.updateCase(casoVO);
+		Boolean insert = false;
+		
+		if(id > 0){
+			insert = caseCommentDao.insertCaseComment(comentario);
+			if(insert){
+				canceladoOk = true;
+			}
+		}
+		return canceladoOk;
 	}
 	
 	/*

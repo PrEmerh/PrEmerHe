@@ -19,4 +19,6 @@ public interface CaseService {
 	public Caso insertCase(Caso caso) throws EmergenciasException;
 	
 	public Integer updateCase(Caso caso);
+	
+	public boolean cancelarCaso(Caso caso, String userName);
 }

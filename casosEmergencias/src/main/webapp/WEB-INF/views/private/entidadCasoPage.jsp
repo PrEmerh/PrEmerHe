@@ -26,18 +26,17 @@
 	<body onload="initHeader(); checkUpdates(); cargarDialogCancelacion();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
-		<!-- Mensajes de estado de alta, actualizaciÃ³n e inserciÃ³n de comentarios de un caso -->
+		<!-- Mensajes de estado de alta, actualizacion e insercion de comentarios de un caso -->
 		<div>
-			<!-- ActualizaciÃ³n de comentario -->
 			<div id="divCaseModifiedError" class="divError">
 				<label class="labelDivError"><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
 				<br>
-				<label class="labelDivError"><s:message code="entidadCasoAlta_error_revisemensajes"/></label>
+				<label class="labelDivError"><s:message code="entidadCasoAlta_error_revisemensajes"/></label>				
 			</div>
 			<div id="divCaseModifiedOk" class="divOk" >
 				<label class="labelDivOk"><s:message code="entidadCaso_modificacion_correcta"/></label>
 			</div>
-			<!-- CreaciÃ³n de un comentario de caso -->	
+			<!-- Creacion de un comentario de caso -->	
 			<div id="divCaseCommentNOCreated" class="divError">
 				<label class="labelDivError"><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
 				<label class="notificationMessage" id="errorMessage"></label>
@@ -48,6 +47,16 @@
 			<!-- Alta de un caso -->
 			<div id="divCaseCreatedOk" class="divOk">
 				<label class="labelDivOk"><s:message code="notificaciones_label_ok_caso_creado"/></label>
+			</div>
+			<!--  Cancelacion casos -->
+			<div id="divCaseCancelError" class="divError">
+				<label class="labelDivError"><s:message code="entidadCaso_error_cancelacion"/></label>
+			</div>
+			<div id="divCaseCancelEstado" class="divError">
+				<label class="labelDivError"><s:message code="entidadCaso_error_casocancelado"/></label>
+			</div>
+			<div id="divCaseCancel" class="divOk">
+				<label class="labelDivOk"><s:message code="entidadCaso_ok_cancelacion"/></label>
 			</div>
 		</div>
 		
@@ -87,6 +96,7 @@
 						<label><s:message code="entidadCaso_table_label_estado"/></label>
 					</div>
 					<div>
+						<form:hidden path="estado" id="idEstado"/>
 						<label>${caso.labelEstadoPickList}</label>
 					</div>
 				</div>
@@ -203,7 +213,7 @@
 					</div>
 					<div>
 						<label id="fieldRead">${caso.description}</label>
-						<label id="fieldEdit" style="display:none;"><form:input type="text" path="description" class="buttontext" value="${caso.description}"/></label>
+						<label id="fieldEdit" style="display:none;"><form:input id="idDescripcion" type="text" path="description" class="buttontext" value="${caso.description}"/></label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_submotivo"/></label>
@@ -520,15 +530,15 @@
 				
 		<!-- Dialog combo Cancelar Caso -->
 		<div id="dialogCancelarCaso" title="<s:message code="entidadCaso_dialog_labe" arguments="${caso.numeroCaso}"/>" class="dialogLupa">			
-			<form:form name="formCancelarCaso" action="cancelarCaso" modelAttribute="caso" method="POST">
-				<form:hidden path="id"/>
+			<form:form name="formCancelarCaso" id="formCancelarCasoId" action="cancelarCaso" modelAttribute="caso" method="POST">
+				<form:hidden path="sfid"/>
 				<div>
-					<form:select id="subEstadoCanceladion" path="subestado" items="${caso.mapSubStatusCancelacion}"/>
+					<form:select id="subEstadoCancelacion" path="subestado" items="${caso.mapSubStatusCancelacion}"/>
 				</div>
 				<br>
 				<div>
-					<input id="Aceptar" type="submit" name="Aceptar" value=<s:message code="entidadCaso_boton_modificar"/> />
-					<input id="Cancelar" type="button" name="Cancelar" value="<s:message code="entidadCaso_boton_cancelar_caso"/>" onclick="cancelarCasoButton();" />
+					<input id="Aceptar" type="button" name="Aceptar" value=<s:message code="entidadCaso_boton_modificar"/> onclick="guardarCancelarCaso();"/>
+					<input id="Cancelar" type="button" name="Cancelar" value="<s:message code="entidadCaso_boton_cancelar_caso"/>" onclick="cerrarDialogCancelarCaso();" />
 				</div>		
 			</form:form>
 		</div>

@@ -20,10 +20,14 @@ public class Constantes {
 	public static final String EDIT_MODE_UPDATED_ERROR = "UPDATED_ERROR";
 	public static final String EDIT_MODE_INSERTED_OK = "INSERTED_OK";
 	
-	//Modo creación
-	
+	//Modo creación	
 	public static final String CREATED_MODE_CREATED_OK = "CREATED_OK";
 	public static final String CREATED_MODE_CREATED_ERROR = "CREATED_ERROR";
+	
+	//Cancelar caso
+	public static final String CANCEL_CASE_OK = "CANCEL_OK";
+	public static final String CANCEL_CASE_ERROR = "CACEL_ERROR";
+	
 	
 	//PcikLists
 	//Caso
@@ -52,6 +56,7 @@ public class Constantes {
 	public static final String COD_CASO_STATUS_CANCELADO = "ESTA008";
 	public static final String COD_CASO_SUBMOTIVO_CORTE_DEUDA="FA001";
 	public static final String COD_CASO_SUBMOTIVO_CORTE_PROGRAMADO ="FA002";
+	public static final String COD_CASO_SUBMOTIVO_CONS_FUERA_ZONA_CONCE ="FA003";	
 	public static final String COD_CASO_MOTIVO_EMERGENCIA ="MOT001";
 	public static final String COD_CASO_DESC_DEUDA="Se informa a Cliente que corte de suministro es por deuda comercial";			
 	public static final String COD_CASO_DESC_PROGRAMADO="Se informa a cliente que corte de suministro es por una mantención programada ";	
@@ -62,7 +67,8 @@ public class Constantes {
 	public static final String COD_CASO_SUBSTATUS_COMUNICACION_INTERRUMPIDA_DESC = "Comunicación Interrumpida";
 	public static final String COD_CASO_SUBSTATUS_PRUEBA_ERROR_INGRESO_DESC = "Prueba o Error de Ingreso";	
 	public static final String COD_CASO_SUBSTATUS_ERROR_INGRESO_DESC = "Error de Ingreso";	
-	public static final String COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC = "Cliente con Luz, por contacto recibido";
+	public static final String COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC = "Cliente con Luz";
+	public static final String COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC_COMENTARIO = "Cliente con Luz, por contacto recibido";
 	
 	
 	//
