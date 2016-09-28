@@ -3,6 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 
 <html>
 	<head>
@@ -185,8 +187,10 @@
 						</c:otherwise>
 					</c:choose>
 				</table>
-				<a class="link" href="javaScript:{allSuministros('All')}" id="hrefTodosSuministros">Mostrar todos</a>
-				<a class="link" href="javaScript:{allSuministros(10)}" id="hrefNoTodosSuministros" hidden="true">Mostrar 10</a>
+				<c:if test="${fn:length(cuenta.suministros)>10}">
+					<a class="link" href="javaScript:{allSuministros('All')}" id="hrefTodosSuministros">Mostrar todos</a>
+					<a class="link" href="javaScript:{allSuministros(10)}" id="hrefNoTodosSuministros" hidden="true">Mostrar 10</a>
+				</c:if>
 			</div>
 		</div>
 		<div id="divEntidadCuentaContactos" class="divEntidad">
