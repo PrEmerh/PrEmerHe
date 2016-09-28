@@ -260,7 +260,14 @@
 									<td>${caso.asunto}</td>
 									<td width="15%"><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaApertura}"/></td>								
 									<td>${caso.labelEstadoPickList}</td>
-									<td>${caso.userJoin.name}</td>
+									<td>
+										<c:if test="${caso.userJoin.name!=null}">
+											<label>${caso.userJoin.name}</label>					
+										</c:if> 
+										<c:if test="${caso.userJoin.name==null}">
+											<label>${caso.groupJoin.name}</label>
+										</c:if> 
+									</td>
 								</tr>
 							</c:forEach>
 						</c:when>
