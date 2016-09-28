@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.casosemergencias.controller.views.AccountView;
 import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.AccountService;
+import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.constants.Constantes;
@@ -35,6 +36,9 @@ public class AccountController {
 	
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private SuministroService suministroService;
 	
 	@RequestMapping(value = "/private/homeCuentas", method = RequestMethod.GET)
 	public ModelAndView listadoCuentas() {
@@ -61,17 +65,31 @@ public class AccountController {
 		logger.trace("Detalle de cuenta");
 		HttpSession session = request.getSession(true);
 		
+		//def. variables para controlar tablas de la pantalla
+		Integer limiteSuministros = 10; //por defecto recuperaremos 10 suministros asociados a la cuenta.
+		Integer limiteContacto = 10; //por defecto recuperaremos 10 contactos asociados a la cuenta.
+		Integer limiteCasos = 10; //por defecto recuperaremos 10 casos asociados a la cuenta.
+		Integer numSuministros;
+		
 		
 		session.setAttribute(Constantes.SFID_CUENTA, sfid);	
 		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, "CUENTA");
 		
 		AccountView cuentaView = new AccountView();
 		ModelAndView model = new ModelAndView();
-		Cuenta cuentaBBDD = accountService.getAccountBySfid(sfid);
+		Cuenta cuentaBBDD = accountService.getAccountBySfid(sfid, limiteSuministros, null, null);
 		
 		if (cuentaBBDD != null) {
 			ParserModelVO.parseDataModelVO(cuentaBBDD, cuentaView);
 		}
+				
+		numSuministros = suministroService.getNumSuministrosDeUnaCuetna(sfid);
+		if(numSuministros > limiteSuministros){
+			cuentaView.setControlNumSuministros(true);
+		}else{
+			cuentaView.setControlNumSuministros(false);
+		}
+		
 		
 		//transformamos las fechas con el gmt de sesion
 		long offset = (long)session.getAttribute("difGMTUser");	
