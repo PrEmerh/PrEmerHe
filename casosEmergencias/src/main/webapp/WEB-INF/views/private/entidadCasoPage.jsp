@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <html>
 	<head>
@@ -63,7 +64,7 @@
 		<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
 			<form:hidden path="id"/>
 			<form:hidden path="editMode" value="${editMode}"/>
-			<form:hidden path="sfid"/>
+			<form:hidden path="sfid" id="idSfid"/>
 			<div>
 				<p class="cabeceraTitulo"><s:message code="comentarioCase_label_caso" arguments="${caso.numeroCaso}"/></p>
 			</div>
@@ -424,7 +425,7 @@
 					</div>
 				</div>
 				<div id="tablaCasosHistory">
-					<table class="basicTable">
+					<table class="basicTable" id="tablaHistorial">
 						<tr>
 							<th width="15%"><s:message code="entidadCaso_column_label_historia_fecha" /></th>
 						    <th width="15%"><s:message code="entidadCaso_column_label_historia_usuario" /></th>
@@ -432,7 +433,7 @@
 						</tr>
 						<c:choose>
 							<c:when test="${not empty caso.historialCaso}">
-								<c:forEach items="${caso.historialCaso}" var="hist">
+								<c:forEach items="${caso.historialCaso}" var="hist"  begin="0" end="9">
 									<tr>
 										<td width="15%"><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${hist.createddate}"/></td>
 										<td width="15%">${hist.userJoin.name}</td>
@@ -469,6 +470,10 @@
 							</c:otherwise>
 						</c:choose>
 					</table>
+					<c:if test="${fn:length(caso.historialCaso)>10}">
+						<a class="link" href="javaScript:{refrescarHistorial('All')}" id="hrefTodosHistorial">Mostrar todos</a>
+						<a class="link" href="javaScript:{refrescarHistorial(10)}" id="hrefNoTodosHistorial" hidden="true">Mostrar 10</a>
+					</c:if>
 				</div>
 			</div>
 				

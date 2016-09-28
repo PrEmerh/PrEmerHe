@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 
 <html>
@@ -187,7 +186,7 @@
 						</c:otherwise>
 					</c:choose>
 				</table>
-				<c:if test="${fn:length(cuenta.suministros)>10}">
+				<c:if test="${cuenta.controlNumSuministros}">
 					<a class="link" href="javaScript:{allSuministros('All')}" id="hrefTodosSuministros">Mostrar todos</a>
 					<a class="link" href="javaScript:{allSuministros(10)}" id="hrefNoTodosSuministros" hidden="true">Mostrar 10</a>
 				</c:if>
@@ -264,7 +263,14 @@
 									<td>${caso.asunto}</td>
 									<td width="15%"><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaApertura}"/></td>								
 									<td>${caso.labelEstadoPickList}</td>
-									<td>${caso.userJoin.name}</td>
+									<td>
+										<c:if test="${caso.userJoin.name!=null}">
+											<label>${caso.userJoin.name}</label>					
+										</c:if> 
+										<c:if test="${caso.userJoin.name==null}">
+											<label>${caso.groupJoin.name}</label>
+										</c:if> 
+									</td>									
 								</tr>
 							</c:forEach>
 						</c:when>
