@@ -49,11 +49,21 @@ public class Constantes {
 	public static final String COD_CASO_TYPE_RECLAMO_DESC = "Reclamo";
 	public static final String COD_CASO_STATUS_INGRESADO = "ESTA001";
 	public static final String COD_CASO_STATUS_CERRADO = "ESTA007";
+	public static final String COD_CASO_STATUS_CANCELADO = "ESTA008";
 	public static final String COD_CASO_SUBMOTIVO_CORTE_DEUDA="FA001";
 	public static final String COD_CASO_SUBMOTIVO_CORTE_PROGRAMADO ="FA002";
 	public static final String COD_CASO_MOTIVO_EMERGENCIA ="MOT001";
 	public static final String COD_CASO_DESC_DEUDA="Se informa a Cliente que corte de suministro es por deuda comercial";			
-	public static final String COD_CASO_DESC_PROGRAMADO="Se informa a cliente que corte de suministro es por una mantención programada ";			
+	public static final String COD_CASO_DESC_PROGRAMADO="Se informa a cliente que corte de suministro es por una mantención programada ";	
+	public static final String COD_CASO_SUBSTATUS_COMUNICACION_INTERRUMPIDA = "CI";	
+	public static final String COD_CASO_SUBSTATUS_PRUEBA_ERROR_INGRESO = "PEI";	
+	public static final String COD_CASO_SUBSTATUS_ERROR_INGRESO = "EI";	
+	public static final String COD_CASO_SUBSTATUS_VERIFICADO_OK = "si";
+	public static final String COD_CASO_SUBSTATUS_COMUNICACION_INTERRUMPIDA_DESC = "Comunicación Interrumpida";
+	public static final String COD_CASO_SUBSTATUS_PRUEBA_ERROR_INGRESO_DESC = "Prueba o Error de Ingreso";	
+	public static final String COD_CASO_SUBSTATUS_ERROR_INGRESO_DESC = "Error de Ingreso";	
+	public static final String COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC = "Cliente con Luz, por contacto recibido";
+	
 	
 	//
 	//Sesion SFID	

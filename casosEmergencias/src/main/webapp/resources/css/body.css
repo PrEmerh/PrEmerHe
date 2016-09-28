@@ -372,6 +372,11 @@ body label {
 	font-weight: normal;
 }
 
+.dialogCancelarCaso input[type="button"] {
+	background: #e8e8e9 url('../../resources/images/btn_sprite.png')
+		repeat-x right top;
+}
+
 .buttonLink {
 	cursor: pointer;
 	text-decoration: underline;

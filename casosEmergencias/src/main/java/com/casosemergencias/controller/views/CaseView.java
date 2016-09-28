@@ -83,7 +83,7 @@ public class CaseView extends ObjectView {
 	private Map<String, String> mapSubMotivo;
 	private Map<String, String> mapCondicionAgravante;
 	private Map<String, String> mapCanalNotificacion;
-	private Map<String, String> mapFavorabilidadCaso;
+	private Map<String, String> mapFavorabilidadCaso;	
 	
 	
 	/**/
@@ -545,7 +545,7 @@ public class CaseView extends ObjectView {
 	public void setCommentarioCaso(List<CaseCommentView> commentarioCaso) {
 		this.commentarioCaso = commentarioCaso;
 	}
-	
+
 	
 	@Override
 	public Object instantiateTargetLogic() {

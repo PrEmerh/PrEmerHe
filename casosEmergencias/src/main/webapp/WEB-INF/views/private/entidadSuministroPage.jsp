@@ -445,7 +445,14 @@
 											<td>${caso.labelSubmotivoPickList}</td>
 											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaEstimadaCierre}"/></td>
 											<td>${caso.labelCanalOrigenPickList}</td>
-											<td>${caso.userJoin.name}</td>
+											<td>
+												<c:if test="${caso.userJoin.name!=null}">
+													<label>${caso.userJoin.name}</label>					
+												</c:if> 
+												<c:if test="${caso.userJoin.name==null}">
+													<label>${caso.groupJoin.name}</label>
+												</c:if> 
+											</td>	
 											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaCierre}"/></td>
 											<td>${caso.asunto}</td>
 										</tr>

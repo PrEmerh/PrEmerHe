@@ -166,7 +166,6 @@ public class CaseController {
 			}	
 		}
 		
-		
 		model.setViewName("private/entidadCasoPage");
 		/*Hay que añadir recuperación de label de los picklists si no sale el código solo*/
 		model.addObject("caso", casoView);
@@ -206,7 +205,7 @@ public class CaseController {
 			Iterator<CaseView> iteradorCasos = suministroAsociado.getCasos().iterator();
 			do {
 				casoSuministro = iteradorCasos.next();
-				if (!"ESTA007".equals(casoSuministro.getEstado()) && !"ESTA008".equals(casoSuministro.getEstado())) {
+				if (!(Constantes.COD_CASO_STATUS_CERRADO).equals(casoSuministro.getEstado()) && !(Constantes.COD_CASO_STATUS_CANCELADO).equals(casoSuministro.getEstado())) {
 					hayCasoAbierto = true;
 				}
 			} while (iteradorCasos.hasNext() && !hayCasoAbierto);

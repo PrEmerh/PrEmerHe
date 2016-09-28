@@ -37,17 +37,6 @@ function cancelarButton() {
 	descriptionEdit.style.display = 'none'; 
 }
 
-
-
-function cancelarCasoButton() {
-	$('#subEstadoCanceladion');
-	
-	
-	$('#dialogCancelarCaso').dialog('open');	
-	//createTableSuministro();//Funcion de popupsTable.js, crea la tabla
-	
-}
-
 function checkUpdates() {
 	if ($('#editMode').val() == 'UPDATED_OK') {
 		$('#divCaseModifiedOk').show();

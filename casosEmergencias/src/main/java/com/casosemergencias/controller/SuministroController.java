@@ -1,5 +1,6 @@
 package com.casosemergencias.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +28,7 @@ import com.casosemergencias.logic.ContactService;
 import com.casosemergencias.logic.DireccionService;
 import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.Caso;
+import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.model.HerokuUser;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
@@ -53,7 +55,7 @@ public class SuministroController {
 	private CaseService casoService;
 	
 	@RequestMapping(value = "/private/homeSuministros", method = RequestMethod.GET)
-	public ModelAndView detalleSuministro() {
+	public ModelAndView listadoSuministros() {
 		logger.info("--- Inicio -- listadoSuministros ---");
 		
 		
@@ -163,6 +165,61 @@ public class SuministroController {
 		
 		return json.toString();
 	}
+	/**
+	 * Metodo que recupera una lista con los suministros asociados a una cuenta. Devuelve todos o los 10 primeros, segun si 
+	 * numSuministros es 'All' o 10.
+	 * 
+	 * @param body
+	 * @return
+	 */
+	@RequestMapping(value = "/private/listarSuministrosCuenta", method = RequestMethod.POST)
+	public @ResponseBody List<SuministroView> listadoSuministrosParaCuenta(@RequestBody String body, HttpServletRequest request){
+		
+		logger.info("--- Inicio -- listarSuministrosCuenta ---");
+
+		SimpleDateFormat  dateFormat  = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		HttpSession session = request.getSession(true);
+		long offset = (long)session.getAttribute("difGMTUser");
+		
+		String[] param = body.split("&");
+		String sfidCuenta = "";
+		Integer numSuministor = null;
+		
+		for(String dato : param){
+			String[] valor = dato.split("=");
+			if("numSuministros".equals(valor[0]) && !"All".equals(valor[1])){
+				numSuministor = Integer.parseInt(valor[1]);
+			}
+			if("sfidCuenta".equals(valor[0])){
+				sfidCuenta = valor[1];
+			}
+		}
+	
+		List<Suministro> listSuministros = new ArrayList<Suministro>();
+		List<SuministroView> listSuministrosView = new ArrayList<SuministroView>();
+		
+		listSuministros = suministroService.readSuministrosCuenta(sfidCuenta, numSuministor);
+		for(Suministro suministro : listSuministros){
+			SuministroView suministroView = new SuministroView();
+			ParserModelVO.parseDataModelVO(suministro, suministroView);
+			
+			//transformamos las fechas con el gmt de sesion			
+			if(suministroView.getFechaCorte() != null){
+				Date fechaCorte = suministroView.getFechaCorte();
+				fechaCorte = new Date(fechaCorte.getTime() + offset);
+				suministroView.setFechaCorte(fechaCorte);
+				suministroView.setFechaCorteString(dateFormat.format(fechaCorte));
+			}
+			
+			
+			listSuministrosView.add(suministroView);
+		}
+		
+		logger.info("--- Fin -- listarSuministrosCuenta ---");
+		
+		return listSuministrosView;
+	}
+	
 	
 	/**
 	 * M&eacute;todo para recuperar los datos del listado de suministros.
