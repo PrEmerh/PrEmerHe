@@ -22,6 +22,12 @@
 	</head>
 	<body onload="initHeader(); showNotifications();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadContacto_title_label_detalle_contacto"/>';</script>
+		<div  class="divCargando" id="cargandoGif" hidden="true">
+			<div>
+				<img  src="${pageContext.request.contextPath}/resources/images/loading.gif" width="4%"/>
+				<label class="labelCargando"><s:message code="notificaciones_label_loading"/></label>
+			</div>
+		</div>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<!-- Mensajes de estado de operación -->
 		<c:if test="${not empty param.codigoError}">
@@ -39,7 +45,7 @@
 		<form:form name="formEntidadContacto" action="actualizarContacto" modelAttribute="contacto" method="POST">
 			<div class="botoneraListado">
 				<ul>
-					<li><input type="button" name="goCrearCasoByContactoName" value="<s:message code="homeCasos_button_nuevoCaso"/>" onclick="goCrearCasoByContacto();" /></li>
+					<li><input type="button" name="goCrearCasoByContactoName" value="<s:message code="entidadContacto_table_label_botonCrearCaso"/>" onclick="goCrearCasoByContacto();" /></li>
 				</ul>
 			</div>
 			<form:hidden path="sfid"/>

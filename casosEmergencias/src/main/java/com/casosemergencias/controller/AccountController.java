@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.AccountView;
+import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.AccountService;
 import com.casosemergencias.model.Cuenta;
@@ -84,22 +85,20 @@ public class AccountController {
 				}
 			}	
 		}
-//	-----------	Descomentar cuando se añada la lista de casos
-//		if(cuentaView.getCasos() != null && !cuentaView.getCasos().isEmpty()){
-//			for(CaseView miCase : contactoView.getCasos()){
-//				if(miCase.getFechaApertura() != null){
-//					Date fechaApertura = miCase.getFechaApertura();
-//					fechaApertura = new Date(fechaApertura.getTime() + offset);
-//					miCase.setFechaApertura(fechaApertura);
-//				}
-//				if(miCase.getFechaEstimadaCierre() != null){
-//					Date fechaEstimacion = miCase.getFechaEstimadaCierre();
-//					fechaEstimacion = new Date(fechaEstimacion.getTime() + offset);
-//					miCase.setFechaEstimadaCierre(fechaEstimacion);
-//				}
-//			}	
-//		}
-//----------
+		if(cuentaView.getCasos() != null && !cuentaView.getCasos().isEmpty()){
+			for(CaseView miCase : cuentaView.getCasos()){
+				if(miCase.getFechaApertura() != null){
+					Date fechaApertura = miCase.getFechaApertura();
+					fechaApertura = new Date(fechaApertura.getTime() + offset);
+					miCase.setFechaApertura(fechaApertura);
+				}
+				if(miCase.getFechaEstimadaCierre() != null){
+					Date fechaEstimacion = miCase.getFechaEstimadaCierre();
+					fechaEstimacion = new Date(fechaEstimacion.getTime() + offset);
+					miCase.setFechaEstimadaCierre(fechaEstimacion);
+				}
+			}	
+		}
 		
 		logger.info("SFID_CUENTA" + session.getAttribute(Constantes.SFID_CUENTA));
 		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));

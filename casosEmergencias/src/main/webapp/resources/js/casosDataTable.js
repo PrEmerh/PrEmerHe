@@ -8,6 +8,9 @@ $(document).ready(function() {
 		"scrollCollapse": true,
 		"paging": true,
 		"serverSide": true,
+		   oLanguage: {
+		        sProcessing: "<img src='../resources/images/loading.gif' width='25' > Cargando..."
+		    },
 		"processing": true, 
 		"ajax": {
 			"type": "POST", 

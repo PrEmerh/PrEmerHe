@@ -198,7 +198,7 @@
 					</div>
 					<div>
 						<label id="fieldRead">${caso.description}</label>
-						<label id="fieldEdit" style="display:none;"><form:input type="text" path="description" class="buttontext" value="${caso.description}"/></label>
+						<label id="fieldEdit" style="display:none;"><form:input id="descrip" type="text" path="description" class="buttontext" value="${caso.description}"/></label>				
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_submotivo"/></label>

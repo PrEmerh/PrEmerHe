@@ -28,6 +28,8 @@ function cancelarButton() {
 	var descriptionEdit = document.getElementById('fieldEdit');
 	var descriptionRead = document.getElementById('fieldRead');
 	
+	document.getElementById('descrip').value=document.getElementById('fieldRead').innerText;
+	
 	modificar.hidden = false;
 	guardar.hidden = true;
 	cancelar.hidden = true;	
@@ -87,10 +89,12 @@ function cancelComent(sfid){
 
 /*Inicio -- Funciones Alta de un caso*/
 function cancelAltaCaso(){
+	//document.getElementById("cargandoGif").hidden=false;
 	window.location="../private/cancelAltaCaso";	
 }
 
 function altaCaso() {
+	document.getElementById("cargandoGif").hidden=false;
 	var validado = true; //validaDatos();
 	if (validado) {
 		$('#formEntidadCasoAlta').submit();

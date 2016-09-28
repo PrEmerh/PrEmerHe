@@ -13,7 +13,10 @@ function createTableDireccion() {
 			"scrollX": false,
 			"scrollCollapse": true,
 			"paging": true,
-			"serverSide": true,
+			"serverSide": true, 
+			   oLanguage: {
+			        sProcessing: "<img src='../resources/images/loading.gif' width='25' > Cargando..."
+			    },
 			"deferLoading": 0,
 			"processing": true, 
 			"ajax": { 
@@ -71,6 +74,9 @@ function createTableSuministro() {
 			"scrollCollapse": true,
 			"paging": true,
 			"serverSide": true,
+			   oLanguage: {
+			        sProcessing: "<img src='../resources/images/loading.gif' width='25' > Cargando..."
+			    },
 			"deferLoading": 0,
 			"processing": true, 
 			"ajax": { 
