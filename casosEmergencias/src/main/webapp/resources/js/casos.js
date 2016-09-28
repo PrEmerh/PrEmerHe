@@ -78,7 +78,7 @@ function cancelComent(sfid){
 
 /*Inicio -- Funciones Alta de un caso*/
 function cancelAltaCaso(){
-	//document.getElementById("cargandoGif").hidden=false;
+	document.getElementById("cargandoGif").hidden=false;
 	window.location="../private/cancelAltaCaso";	
 }
 
