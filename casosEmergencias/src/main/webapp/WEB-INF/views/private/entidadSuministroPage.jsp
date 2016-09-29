@@ -625,7 +625,7 @@
 					<div id="tablaEventosSuministro">
 						<table class="servicesTable">
 							<c:choose>
-								<c:when test="${not empty suministro}">
+								<c:when test="${not empty suministro && not empty suministro.listadoEventos}">
 									<c:forEach items="${suministro.listadoEventos}" var="evento">
 										<!-- <s:message code="entidadSuministro_title_label_estadoSuministro"/> -->
 										<tr>
