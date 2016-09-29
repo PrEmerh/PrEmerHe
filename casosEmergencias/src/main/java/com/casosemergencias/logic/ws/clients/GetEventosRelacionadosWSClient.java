@@ -88,15 +88,15 @@ public class GetEventosRelacionadosWSClient {
 					&& getEventosRelMsgResponse.getErrorHeader().getError() != null
 					&& !getEventosRelMsgResponse.getErrorHeader().getError().isEmpty()) {
 				checkWSErrors(response, getEventosRelMsgResponse.getErrorHeader(), idSuministro);
-			} else {
-				if (getEventosRelMsgResponse != null) {
-					if (getEventosRelMsgResponse.getListadoEventos() != null
-							&& getEventosRelMsgResponse.getListadoEventos() != null
-							&& !getEventosRelMsgResponse.getListadoEventos().getEvento().isEmpty()) {
-						response.setListadoEventos(getEventosRelMsgResponse.getListadoEventos());
-						for (EventoType evento : getEventosRelMsgResponse.getListadoEventos().getEvento()) {
-							logger.info("Evento " + evento.getNEvento() + " con descipción: " + evento.getDescripcionTipoEvento());
-						}
+			} 
+			
+			if (getEventosRelMsgResponse != null) {
+				if (getEventosRelMsgResponse.getListadoEventos() != null
+						&& getEventosRelMsgResponse.getListadoEventos() != null
+						&& !getEventosRelMsgResponse.getListadoEventos().getEvento().isEmpty()) {
+					response.setListadoEventos(getEventosRelMsgResponse.getListadoEventos());
+					for (EventoType evento : getEventosRelMsgResponse.getListadoEventos().getEvento()) {
+						logger.info("Evento " + evento.getNEvento() + " con descipción: " + evento.getDescripcionTipoEvento());
 					}
 				}
 			}

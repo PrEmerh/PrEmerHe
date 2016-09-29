@@ -96,17 +96,17 @@ public class ConsultaDatosSuministroWSClient {
 					&& consultaDatosSuministroMsgResponse.getErrorHeader().getError() != null
 					&& !consultaDatosSuministroMsgResponse.getErrorHeader().getError().isEmpty()) {
 				checkWSErrors(response, consultaDatosSuministroMsgResponse.getErrorHeader(), idSuministro);
-			} else {
-				if (consultaDatosSuministroMsgResponse != null) {
-					response.setTotalRegistros(consultaDatosSuministroMsgResponse.getTotalRegistros());
-					logger.info("Total registros: " + consultaDatosSuministroMsgResponse.getTotalRegistros());
-					if (consultaDatosSuministroMsgResponse.getListadoSuministros() != null
-							&& consultaDatosSuministroMsgResponse.getListadoSuministros().getSuministro() != null
-							&& !consultaDatosSuministroMsgResponse.getListadoSuministros().getSuministro().isEmpty()) {
-						response.setListadoSuministros(consultaDatosSuministroMsgResponse.getListadoSuministros());
-						for (SuministroType suministro : consultaDatosSuministroMsgResponse.getListadoSuministros().getSuministro()) {
-							logger.info("Suministro " + suministro.getNumeroSuministro() + " con estado " + suministro.getEstadoSuministro());
-						}
+			}
+
+			if (consultaDatosSuministroMsgResponse != null) {
+				response.setTotalRegistros(consultaDatosSuministroMsgResponse.getTotalRegistros());
+				logger.info("Total registros: " + consultaDatosSuministroMsgResponse.getTotalRegistros());
+				if (consultaDatosSuministroMsgResponse.getListadoSuministros() != null
+						&& consultaDatosSuministroMsgResponse.getListadoSuministros().getSuministro() != null
+						&& !consultaDatosSuministroMsgResponse.getListadoSuministros().getSuministro().isEmpty()) {
+					response.setListadoSuministros(consultaDatosSuministroMsgResponse.getListadoSuministros());
+					for (SuministroType suministro : consultaDatosSuministroMsgResponse.getListadoSuministros().getSuministro()) {
+						logger.info("Suministro " + suministro.getNumeroSuministro() + " con estado " + suministro.getEstadoSuministro());
 					}
 				}
 			}
