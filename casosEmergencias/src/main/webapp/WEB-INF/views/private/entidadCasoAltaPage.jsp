@@ -357,12 +357,11 @@
 				</div>
 				<!-- Dialog suministro -->
 				<div id="dialogSuministro" title="<s:message code="dialog_title_suministro"/>" class="dialogLupa">
-					<div class="divBusquedaDialog">
-						<input type="text" id="txtNumeroSuministro"/>
-						<input type="text" id="txtComuna"/>
+					<div class="divBusquedaDialog" >
+						<input type="text" id="txtNumeroSuministro" name="txtNumeroSuministro" value=""/>
 						<input type="button" id="searchSuministro" value="<s:message code="btn_label_boton_ir"/>"/>
 						<br>
-						<label><s:message code="dialog_label_busqueda_nombre"/></label>
+						<label><s:message code="dialog_label_busqueda_numero"/></label>
 					</div>
 					<div>
 				  		<table  id="tablaSuministrosPopUp" class="display" data-page-length="10" data-order="[[ 0, &quot;asc&quot; ]]">
@@ -381,19 +380,19 @@
 				<!-- Dialog direccion -->
 				<div id="dialogDireccion" title="<s:message code="dialog_title_direccion"/>" class="dialogLupa">
 					<div class="divBusquedaDialog">
-						<input type="text" id="txtNombreDireccion"/>
+						<input type="text" id="txtNombreDireccion" name="txtNombreDireccion" value=""/>
 						<input type="button" id="searchDireccion" value="<s:message code="btn_label_boton_ir"/>"/>
 						<br>
-						<label><s:message code="dialog_label_busqueda_nombre"/></label>
+						<label><s:message code="dialog_label_busqueda_calle"/></label>
 					</div>
 					<div>
 				  		<table id="tablaDireccionesPopUp" class="display" data-page-length="10" data-order="[[ 0, &quot;asc&quot; ]]">
 							<thead>
 					            <tr>
-					            	<th width="30%"><s:message code="homeDirecciones_table_head_codigoDireccion"/></th>
+					            	<th width="15%"><s:message code="homeDirecciones_table_head_codigoDireccion"/></th>
 					            	<th width="10%"><s:message code="homeDirecciones_table_head_numero"/></th>
 					            	<th width="20%"><s:message code="homeDirecciones_table_head_comuna"/></th>
-					            	<th width="30%"><s:message code="homeDirecciones_table_head_calle"/></th>
+					            	<th width="35%"><s:message code="homeDirecciones_table_head_calle"/></th>
 					            	<th width="9%"><s:message code="homeDirecciones_table_head_departamento"/></th>
 					            	<th width="1%" hidden="true">sfid</th>
 					            </tr>

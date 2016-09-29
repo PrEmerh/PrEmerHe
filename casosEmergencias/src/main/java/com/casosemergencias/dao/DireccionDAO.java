@@ -378,12 +378,12 @@ public class DireccionDAO {
 		int searchParamsCounter = 0;
 		
 		try {
-			StringBuilder query = new StringBuilder("FROM DireccionVO ");
+			StringBuilder query = new StringBuilder("FROM DireccionVO direcc");
 			
 			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
 				query.append(" WHERE ");
 				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
-					if ("comuna__c".equals(columnInfo.getData())) {
+					if ("comuna".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							query.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
 							query.append(" AND ");
@@ -391,9 +391,16 @@ public class DireccionDAO {
 						}
 					}
 					
-					if ("calle__c".equals(columnInfo.getData())) {
+					if ("calle".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							query.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							query.append(" AND ");
+							searchParamsCounter++;
+						}
+					}
+					if("direccionConcatenada".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 							query.append(" AND ");
 							searchParamsCounter++;
 						}
@@ -408,7 +415,7 @@ public class DireccionDAO {
 			}
 			
 			if (order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)) {
-				query.append(" ORDER BY " + order + " " + dirOrder);
+				query.append(" ORDER BY direcc." + order + " " + dirOrder);
 			}
 			
 			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);
@@ -443,7 +450,7 @@ public class DireccionDAO {
 			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
 				sqlQuery.append(" WHERE ");
 				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
-					if ("comuna__c".equals(columnInfo.getData())) {
+					if ("comuna".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
 							sqlQuery.append(" AND ");
@@ -451,9 +458,9 @@ public class DireccionDAO {
 						}
 					}
 					
-					if ("calle__c".equals(columnInfo.getData())) {
+					if ("calle".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							sqlQuery.append("UPPER("+columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 							sqlQuery.append(" AND ");
 							searchParamsCounter++;
 						}

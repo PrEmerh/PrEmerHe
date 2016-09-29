@@ -507,7 +507,7 @@ public class ContactDAO {
 				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
 					if ("run".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							query.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							query.append("UPPER("+columnInfo.getData()+")" + " LIKE UPPER('%" + columnInfo.getSearchValue() +"%'"+")");
 							query.append(" AND ");
 							searchParamsCounter++;
 						}
@@ -515,7 +515,7 @@ public class ContactDAO {
 					
 					if ("name".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							query.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							query.append("UPPER("+columnInfo.getData()+")" + " LIKE UPPER('%" + columnInfo.getSearchValue() +"%'"+")");
 							query.append(" AND ");
 							searchParamsCounter++;
 						}
@@ -531,7 +531,7 @@ public class ContactDAO {
 					
 					if ("email".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							query.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							query.append("UPPER("+columnInfo.getData()+")" + " LIKE UPPER('%" + columnInfo.getSearchValue() +"%'"+")");
 							query.append(" AND ");
 							searchParamsCounter++;
 						}
@@ -539,7 +539,7 @@ public class ContactDAO {
 					
 					if ("sf4twitter__twitter_username__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							query.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
+							query.append("UPPER("+columnInfo.getData()+")" + " LIKE UPPER('%" + columnInfo.getSearchValue() +"%'"+")");
 							query.append(" AND ");
 							searchParamsCounter++;
 						}
