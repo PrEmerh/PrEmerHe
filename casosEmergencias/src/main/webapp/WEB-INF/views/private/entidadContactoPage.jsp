@@ -22,12 +22,6 @@
 	</head>
 	<body onload="initHeader(); showNotifications();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadContacto_title_label_detalle_contacto"/>';</script>
-		<div  class="divCargando" id="cargandoGif" hidden="true">
-			<div>
-				<img  src="${pageContext.request.contextPath}/resources/images/loading.gif" width="4%"/>
-				<label class="labelCargando"><s:message code="notificaciones_label_loading"/></label>
-			</div>
-		</div>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<!-- Mensajes de estado de operación -->
 		<c:if test="${not empty param.codigoError}">

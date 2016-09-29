@@ -39,7 +39,7 @@ $(document).ready(function() {
                     	 if (data != null) {
                     		 txtColumn = data;
                     	 }
-                    	 return '<a href="../private/entidadContacto?sfid=' + sfid + '">' + txtColumn + '</a>';
+                    	 return '<a href="javaScript:{cargandoGif('+"'" +sfid + "'"+","+"'"+"entidadContacto"+"'"+')}">'+ txtColumn + '</a>';
                     }
         }],
         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],

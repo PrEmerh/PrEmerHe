@@ -25,12 +25,6 @@
 	</head>
 	<body onload="initHeader(); cargarDialogSuministro(); cargarDialogDireccion(); showNotifications();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCasoAlta_title_label_detalle_caso"/>';</script>
-		<div  class="divCargando" id="cargandoGif" hidden="true">
-			<div>
-				<img  src="${pageContext.request.contextPath}/resources/images/loading.gif" width="4%"/>
-				<label class="labelCargando"><s:message code="notificaciones_label_loading"/></label>
-			</div>
-		</div>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<!-- Mensajes de estado de operaciÃ³n -->
 		<c:if test="${not empty mostrarMensaje && mostrarMensaje eq true}">
