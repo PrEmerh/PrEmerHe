@@ -521,8 +521,8 @@
 				</div>
 				<br>
 				<div>
-					<input id="Aceptar" type="button" name="Aceptar" value=<s:message code="entidadCaso_boton_modificar"/> onclick="guardarCancelarCaso();"/>
-					<input id="Cancelar" type="button" name="Cancelar" value="<s:message code="entidadCaso_boton_cancelar_caso"/>" onclick="cerrarDialogCancelarCaso();" />
+					<input id="Aceptar" type="button" name="Aceptar" value=<s:message code="entidadCaso_cancelarCaso_boton_aceptar"/> onclick="guardarCancelarCaso();"/>
+					<input id="Cancelar" type="button" name="Cancelar" value="<s:message code="entidadCaso_cancelarCaso_boton_cancelar"/>" onclick="cerrarDialogCancelarCaso();" />
 				</div>		
 			</form:form>
 		</div>
