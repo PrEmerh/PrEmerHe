@@ -86,6 +86,10 @@ public class CaseView extends ObjectView {
 	private Map<String, String> mapFavorabilidadCaso;	
 	private Map<String, String> mapSubStatusCancelacion;
 	
+
+	//variables para controlar numero de entradas de las tablas
+	private boolean controlHistorialEntradas;
+	private boolean controlCometarioEntradas;
 	
 	/**/
 	public Integer getId() {
@@ -551,6 +555,18 @@ public class CaseView extends ObjectView {
 	}
 	public void setMapSubStatusCancelacion(Map<String, String> mapSubStatusCancelacion) {
 		this.mapSubStatusCancelacion = mapSubStatusCancelacion;
+	}	
+	public boolean isControlHistorialEntradas() {
+		return controlHistorialEntradas;
+	}
+	public void setControlHistorialEntradas(boolean controlHistorialEntradas) {
+		this.controlHistorialEntradas = controlHistorialEntradas;
+	}
+	public boolean isControlCometarioEntradas() {
+		return controlCometarioEntradas;
+	}
+	public void setControlCometarioEntradas(boolean controlCometarioEntradas) {
+		this.controlCometarioEntradas = controlCometarioEntradas;
 	}
 	
 	@Override

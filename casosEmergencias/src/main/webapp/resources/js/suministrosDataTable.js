@@ -54,6 +54,23 @@ $(document).ready(function() {
 			.columns(4).search($('#filtroComuna').val())
 			.draw();
 	});
+	
+	//Añadir opcion de buscar pulsando enter
+	$("#filtroNumSuministro").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
+	$("#filtroDireccion").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
+	$("#filtroComuna").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
 });
 
 //Limpieza campos del buscador.

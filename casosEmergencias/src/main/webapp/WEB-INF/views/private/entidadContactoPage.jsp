@@ -69,7 +69,7 @@
 									<c:forEach items="${contacto.suministros}" var="suministro">
 										<tr>
 										    <td>${suministro.labelEmpresaPickList}</td>
-											<td><a class="link" href="../private/entidadSuministro?sfid=${suministro.sfid}">${suministro.name}</a></td>
+											<td><a class="link" href="javascript:cargandoGif('${suministro.sfid}','entidadSuministro');">${suministro.name}</a></td>
 											<td>${suministro.direccionConcatenada}</td>
 											<td>${suministro.comuna}</td>
 											<td>${suministro.labelEstadoConexionPickList}</td>
@@ -185,7 +185,7 @@
 							<label><s:message code="entidadContacto_table_label_nombreCuenta"/></label>
 						</div>
 						<div>
-							<label><a class="link" href="../private/entidadCuenta?sfid=${contacto.cuentaJoin.sfid}">${contacto.cuentaJoin.name}</a></label>
+							<label><a class="link" href="javascript:cargandoGif('${contacto.cuentaJoin.sfid}','entidadCuenta');">${contacto.cuentaJoin.name}</a></label>
 						</div>  
 					</div>
 					<div>
@@ -193,7 +193,7 @@
 							<label><s:message code="entidadContacto_table_label_direccionContacto"/></label>
 						</div>
 						<div>
-							<label><a class="link" href="../private/entidadDireccion?sfid=${contacto.dirContactoJoin.sfid}">${contacto.dirContactoJoin.name}</a></label>			
+							<label><a class="link" href="javascript:cargandoGif('${contacto.dirContactoJoin.sfid}','entidadDireccion');">${contacto.dirContactoJoin.name}</a></label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_emailSecundario"/></label>
@@ -291,7 +291,7 @@
 								<c:when test="${not empty contacto.casos}">
 									<c:forEach items="${contacto.casos}" var="caso">
 										<tr>
-											<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
+											<td><a class="link" href="javascript:cargandoGif('${caso.sfid}','entidadCaso');">${caso.numeroCaso}</a></td>
 											<td class="filaImagen">
 											<c:if test="${caso.descripcionEstado!=null && caso.descripcionEstado!='Cerrado' && caso.descripcionEstado!='Cancelado'}">					
 											<img src="../resources/images/inservice_red_point.png" height="12px" width="12px">

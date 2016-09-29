@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 
 <html>
@@ -165,7 +164,7 @@
 					</tr>
 					<c:choose>
 						<c:when test="${not empty cuenta.suministros}">
-							<c:forEach items="${cuenta.suministros}" var="suministro" begin="0" end="9">
+							<c:forEach items="${cuenta.suministros}" var="suministro">
 								<tr>
 									<td><a class="link" href="../private/entidadSuministro?sfid=${suministro.sfid}">${suministro.name}</a></td>
 									<td>${suministro.labelEmpresaPickList}</td>
@@ -187,7 +186,7 @@
 						</c:otherwise>
 					</c:choose>
 				</table>
-				<c:if test="${fn:length(cuenta.suministros)>10}">
+				<c:if test="${cuenta.controlNumSuministros}">
 					<a class="link" href="javaScript:{allSuministros('All')}" id="hrefTodosSuministros">Mostrar todos</a>
 					<a class="link" href="javaScript:{allSuministros(10)}" id="hrefNoTodosSuministros" hidden="true">Mostrar 10</a>
 				</c:if>

@@ -26,9 +26,8 @@
 	<body onload="initHeader(); checkUpdates(); cargarDialogCancelacion();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
-		<!-- Mensajes de estado de alta, actualizaciÃ³n e inserciÃ³n de comentarios de un caso -->
+		<!-- Mensajes de estado de alta, actualizacion e insercion de comentarios de un caso -->
 		<div>
-			<!-- ActualizaciÃ³n de comentario -->
 			<div id="divCaseModifiedError" class="divError">
 				<label class="labelDivError"><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
 				<br>
@@ -37,7 +36,7 @@
 			<div id="divCaseModifiedOk" class="divOk" >
 				<label class="labelDivOk"><s:message code="entidadCaso_modificacion_correcta"/></label>
 			</div>
-			<!-- CreaciÃ³n de un comentario de caso -->	
+			<!-- Creacion de un comentario de caso -->	
 			<div id="divCaseCommentNOCreated" class="divError">
 				<label class="labelDivError"><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
 				<label class="notificationMessage" id="errorMessage"></label>
@@ -49,12 +48,22 @@
 			<div id="divCaseCreatedOk" class="divOk">
 				<label class="labelDivOk"><s:message code="notificaciones_label_ok_caso_creado"/></label>
 			</div>
+			<!--  Cancelacion casos -->
+			<div id="divCaseCancelError" class="divError">
+				<label class="labelDivError"><s:message code="entidadCaso_error_cancelacion"/></label>
+			</div>
+			<div id="divCaseCancelEstado" class="divError">
+				<label class="labelDivError"><s:message code="entidadCaso_error_casocancelado"/></label>
+			</div>
+			<div id="divCaseCancel" class="divOk">
+				<label class="labelDivOk"><s:message code="entidadCaso_ok_cancelacion"/></label>
+			</div>
 		</div>
 		
 		<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
 			<form:hidden path="id"/>
 			<form:hidden path="editMode" value="${editMode}"/>
-			<form:hidden path="sfid"/>
+			<form:hidden path="sfid" id="idSfid"/>
 			<div>
 				<p class="cabeceraTitulo"><s:message code="comentarioCase_label_caso" arguments="${caso.numeroCaso}"/></p>
 			</div>
@@ -87,6 +96,7 @@
 						<label><s:message code="entidadCaso_table_label_estado"/></label>
 					</div>
 					<div>
+						<form:hidden path="estado" id="idEstado"/>
 						<label>${caso.labelEstadoPickList}</label>
 					</div>
 				</div>
@@ -414,7 +424,7 @@
 					</div>
 				</div>
 				<div id="tablaCasosHistory">
-					<table class="basicTable">
+					<table class="basicTable" id="tablaHistorial">
 						<tr>
 							<th width="15%"><s:message code="entidadCaso_column_label_historia_fecha" /></th>
 						    <th width="15%"><s:message code="entidadCaso_column_label_historia_usuario" /></th>
@@ -426,27 +436,7 @@
 									<tr>
 										<td width="15%"><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${hist.createddate}"/></td>
 										<td width="15%">${hist.userJoin.name}</td>
-										<td width="70%">
-											<c:if test="${hist.labelFieldPickList != null}">
-												${hist.labelFieldPickList}
-											</c:if>
-											<c:if test="${hist.labelFieldPickList == null}">
-												<!-- Si fieldLabel es null mostramo el campo 'field' -->
-												<c:if test="${hist.fieldLabel != null}">
-													<s:message code="entidadCaso_texto_label_historia_accion_1" arguments="${hist.fieldLabel.label}"/>
-												</c:if>
-												<c:if test="${hist.fieldLabel == null}">
-													<s:message code="entidadCaso_texto_label_historia_accion_1" arguments="${hist.field}"/>
-												</c:if>
-												<c:if test="${hist.labelOldValuePickList != ''}">
-													<s:message code="entidadCaso_texto_label_historia_accion_2" arguments="${hist.labelOldValuePickList}"/>
-												</c:if>
-												<c:if test="${hist.labelNewValuePickList != ''}">
-													<s:message code="entidadCaso_texto_label_historia_accion_3" arguments="${hist.labelNewValuePickList}"/>
-												</c:if>
-												.
-											</c:if>								
-										</td>
+										<td width="70%"> ${hist.field}</td>
 									</tr>
 								</c:forEach>
 							</c:when>
@@ -459,6 +449,10 @@
 							</c:otherwise>
 						</c:choose>
 					</table>
+					<c:if test="${caso.controlHistorialEntradas}">
+						<a class="link" href="javaScript:{refrescarHistorial('All')}" id="hrefTodosHistorial">Mostrar todos</a>
+						<a class="link" href="javaScript:{refrescarHistorial(10)}" id="hrefNoTodosHistorial" hidden="true">Mostrar 10</a>
+					</c:if>
 				</div>
 			</div>
 				
@@ -520,15 +514,15 @@
 				
 		<!-- Dialog combo Cancelar Caso -->
 		<div id="dialogCancelarCaso" title="<s:message code="entidadCaso_dialog_labe" arguments="${caso.numeroCaso}"/>" class="dialogLupa">			
-			<form:form name="formCancelarCaso" action="cancelarCaso" modelAttribute="caso" method="POST">
-				<form:hidden path="id"/>
+			<form:form name="formCancelarCaso" id="formCancelarCasoId" action="cancelarCaso" modelAttribute="caso" method="POST">
+				<form:hidden path="sfid"/>
 				<div>
-					<form:select id="subEstadoCanceladion" path="subestado" items="${caso.mapSubStatusCancelacion}"/>
+					<form:select id="subEstadoCancelacion" path="subestado" items="${caso.mapSubStatusCancelacion}"/>
 				</div>
 				<br>
 				<div>
-					<input id="Aceptar" type="submit" name="Aceptar" value=<s:message code="entidadCaso_boton_modificar"/> />
-					<input id="Cancelar" type="button" name="Cancelar" value="<s:message code="entidadCaso_boton_cancelar_caso"/>" onclick="cancelarCasoButton();" />
+					<input id="Aceptar" type="button" name="Aceptar" value=<s:message code="entidadCaso_boton_modificar"/> onclick="guardarCancelarCaso();"/>
+					<input id="Cancelar" type="button" name="Cancelar" value="<s:message code="entidadCaso_boton_cancelar_caso"/>" onclick="cerrarDialogCancelarCaso();" />
 				</div>		
 			</form:form>
 		</div>

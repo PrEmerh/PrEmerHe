@@ -132,7 +132,7 @@ public class SuministroDAO {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<SuministroVO> readSuministro(SuministroVO suministro) {
+	public List<SuministroVO> readSuministro(SuministroVO suministro, Integer numeroSuministros) {
 		
 		logger.debug("--- Inicio -- readSuministro ---");
 		
@@ -712,7 +712,13 @@ public class SuministroDAO {
 				result.setDate("systemDate", suministro.getSystemDate());
 			}
 
-			List<SuministroVO> suministrosList = result.list(); 	 
+			List<SuministroVO> suministrosList;
+			if(numeroSuministros == null){
+				suministrosList = result.list(); 	 
+			}else{
+
+				suministrosList = result.setMaxResults(numeroSuministros).list(); 	 
+			}
 			
 			logger.debug("--- Fin -- readSuministro ---");
 			
@@ -907,6 +913,36 @@ public class SuministroDAO {
 	    } catch (HibernateException e) {
 	    	logger.error("--- countSuministro ", e); 
 	    	logger.error("--- Fin -- countSuministro ---");
+	    } finally {
+	    	session.close(); 
+	    }
+		return null;
+	}
+	
+	/**
+	 * Devuelve el número de direcciones utilizando los parametros del datatable
+	 * 
+	 * @return
+	 */
+	public Integer countSuministroDeCuenta(String sfidCuenta) {
+		logger.debug("--- Inicio -- countSuministroDeCuenta ---");
+		
+		Session session = sessionFactory.openSession();
+		
+		try {
+			StringBuilder sqlQuery = new StringBuilder("SELECT COUNT(id) FROM SuministroVO as suministro ");
+			sqlQuery.append(" WHERE suministro.cuenta = '" + sfidCuenta + "'");
+			
+			Query query = session.createQuery(sqlQuery.toString());
+			Long count = (Long) query.uniqueResult();
+			
+			logger.debug("--- Fin -- countSuministroDeCuenta ---");
+			
+			return count.intValue();
+			
+	    } catch (HibernateException e) {
+	    	logger.error("--- countSuministroDeCuenta ", e); 
+	    	logger.error("--- Fin -- countSuministroDeCuenta ---");
 	    } finally {
 	    	session.close(); 
 	    }
