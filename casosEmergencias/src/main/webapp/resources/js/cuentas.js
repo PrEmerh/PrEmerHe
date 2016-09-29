@@ -1,73 +1,60 @@
-var table;
-var urlTable = createUrl();
+//Funcion que oculta o muestra todos los suministros de una cuenta.
+function allSuministros(numeroSuministros){	
+	$.post("../private/listarSuministrosCuenta",
+			{sfidCuenta: document.getElementById('sfidCuenta').value,
+			numSuministros: numeroSuministros},
+			function(data) {
+				var tablaDatos=  document.getElementById("tablaSuministros");
+				var longTabla = tablaDatos.rows.length;
+				
+				//eliminamos los registros de la tabla actual, !Cuidado! no eliminar la fila 0 que es la cabecera
+				for(i = 1; i<longTabla; i++){
+					tablaDatos.deleteRow(1);
+				}
+				
+				//Añadimos registros a la tabla nueva. Vamos insertando la fila 1 e iremos recorriendo de manera inversa 
+				//la lista de suministros para guardarlos en la tabla
+				for(j=data.length -1 ; j >= 0; j--){
+					
+					var fila= data[j];
+					var row = tablaDatos.insertRow(1);
+					
+					var numero = document.createElement("a");
+					numero.href = '../private/entidadSuministro?sfid=' + fila.sfid;
+					numero.className = "link";
+					numero.text =fila.name;
 
-$(document).ready(function() {
-	table = $('#tablaCuentas').DataTable({
-       	"scrollY": "250px",
-		"scrollX": true,
-		"scrollCollapse": true,
-		"paging": true,
-		"serverSide": true,
-		"processing": true, 
-		"ajax": { 
-        	"type": "POST", 
-        	 "url": urlTable +'/listarCuentas', 	        	
-        	 "contentType": 'application/json; charset=utf-8' ,
-        	 "error": function(data) {
-        		 alert('Se ha producido un error obteniendo la lista de cuentas. Repita la operación y, si el error persiste, contacte con el administrador de la plataforma.');
-        	 }
-       	},
-       	"columns": [
-       	            {"data": "name", 					"width": "33%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
-       	            {"data": "tel_fono_principal__c",	"width": "32%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
-       	            {"data": "email_principal__c",		"width": "33%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
-       	            {"data": "run", 	"width": "1%",  "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": false},
-       	            {"data": "sfid", 					"width": "1%", 	"defaultContent": "", "searchable": false, 	"orderable": false,	"visible": false}
-		],
-		"columnDefs": [
-                    {"targets": 0,
-                     "render": function (data, type, full, meta) {
-                    	 var sfid = "";
-                    	 var txtColumn = "";
-                    	 if (full.sfid != null) {
-                    		 sfid = full.sfid;
-                    	 }
-                    	 if (data != null) {
-                    		 txtColumn = data;
-                    	 }
-                    	 return '<a href="../private/entidadCuenta?sfid=' + sfid + '">' + txtColumn + '</a>';
-                    }
-        }],
-        "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-		"order": [[0, 'asc']],
-        "deferRender": true
-	});
+					var numeroSuministro = row.insertCell(0);
+				    numeroSuministro.appendChild(numero);				    
+				    var idEmpresa = row.insertCell(1);
+				    idEmpresa.innerHTML = fila.labelEmpresaPickList;				    
+				    var estadoConexcion = row.insertCell(2);
+				    estadoConexcion.innerHTML = fila.labelEstadoConexionPickList;				    
+				    var estadoSuministro = row.insertCell(3);
+				    estadoSuministro.innerHTML = fila.labelEstadoSuministroPickList;				    
+				    var electrodependiente = row.insertCell(4);
+				    electrodependiente.innerHTML = fila.labelElectrodependientePickList;				    
+				    var fechaCorte = row.insertCell(5);
+				    fechaCorte.innerHTML =  fila.fechaCorteString;			    
+				    var direccionSumiistro = row.insertCell(6);
+				    direccionSumiistro.innerHTML = fila.direccionConcatenada;
+				    
+				    var comuna = row.insertCell(7);
+				    comuna.innerHTML =fila.comuna;
+
+				} 
+				
+				if(numeroSuministros == 'All'){
+					//mostramos href 'Mostar 10'
+					document.getElementById('hrefNoTodosSuministros').hidden = false;
+					document.getElementById('hrefTodosSuministros').hidden = true;
+				}else{
+					//mostramos href 'Mostar todos'
+					document.getElementById('hrefNoTodosSuministros').hidden = true;
+					document.getElementById('hrefTodosSuministros').hidden = false;
+					
+				}
+		}); 	
 	
-	$('#search').on('click', function() {
-			table
-				.columns(0).search($('#filtroRazonSocial').val())
-				.columns(1).search($('#filtroTelefono').val())
-				.columns(2).search($('#filtroEmail').val())
-				.columns(3).search($('#filtroRunRut').val())
-				.draw();
-	});
-});
-
-
-//Limpieza campos del buscador.
-
-function limpiarCamposBuscadorCuentas() {
-	
-	if (document.getElementById('filtroRunRut').value != '') {
-		document.getElementById('filtroRunRut').value = '';
-	}
-	if (document.getElementById('filtroRazonSocial').value != '') {
-		document.getElementById('filtroRazonSocial').value = '';
-	}
-	if (document.getElementById('filtroTelefono').value != '') {
-		document.getElementById('filtroTelefono').value = '';
-	}
-	if (document.getElementById('filtroEmail').value != '') {
-		document.getElementById('filtroEmail').value = '';
-	}
 }
+

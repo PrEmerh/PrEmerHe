@@ -140,6 +140,9 @@ public class SuministroView extends ObjectView {
 	
 	private ListadoEventosType listadoEventos;
 
+	private String fechaCorteString;
+
+
 	public SuministroView() {
 	}
 
@@ -160,7 +163,8 @@ public class SuministroView extends ObjectView {
 			List<ContactView> contactosRelacionados, String labelProcesoLecturaPickList, String labelTipoMedidaPickList,
 			String labelTipoSegmentoPickList, String labelSubestacionElecPickList, String labelPropMedidorPickList,
 			String labelTipoConexionPickList, String labelTipoLecturaPickList, String labelTipoTransformadorPickList,
-			String labelComunaRepartoPickList, String labelFullElectricPickList,String labelElectrodependientePickList) {
+			String labelComunaRepartoPickList, String labelFullElectricPickList, String labelElectrodependientePickList,
+			ListadoSuministrosType listadoSuministros, ListadoEventosType listadoEventos, String fechaCorteString) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -224,6 +228,9 @@ public class SuministroView extends ObjectView {
 		this.labelComunaRepartoPickList = labelComunaRepartoPickList;
 		this.labelFullElectricPickList = labelFullElectricPickList;
 		this.labelElectrodependientePickList=labelElectrodependientePickList;
+		this.listadoSuministros = listadoSuministros;
+		this.listadoEventos = listadoEventos;
+		this.fechaCorteString = fechaCorteString;
 	}
 
 
@@ -682,7 +689,7 @@ public class SuministroView extends ObjectView {
 	public void setLabelElectrodependientePickList(String labelElectrodependientePickList) {
 		this.labelElectrodependientePickList = labelElectrodependientePickList;
 	}
-	
+
 	public ListadoSuministrosType getListadoSuministros() {
 		return listadoSuministros;
 	}
@@ -699,6 +706,13 @@ public class SuministroView extends ObjectView {
 		this.listadoEventos = listadoEventos;
 	}
 	
+	public String getFechaCorteString() {
+		return fechaCorteString;
+	}
+	public void setFechaCorteString(String fechaCorteString) {
+		this.fechaCorteString = fechaCorteString;
+	}
+
 	@Override
 	public Object instantiateTargetLogic() {
 		Suministro suministro = new Suministro();

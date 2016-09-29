@@ -115,7 +115,8 @@ public class CaseDAO {
 					+ "LEFT JOIN FETCH caso.subestadoPickList subEstado "
 					+ "LEFT JOIN FETCH caso.submotivoPickList submotivo "
 					+ "LEFT JOIN FETCH caso.canalOrigenPickList canalOrigen "
-					+ "LEFT JOIN FETCH caso.estadoPickList estado ");
+					+ "LEFT JOIN FETCH caso.estadoPickList estado "
+					+ "LEFT JOIN FETCH caso.callCenterPickList callCenter ");
 			
 			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
 				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
@@ -189,7 +190,7 @@ public class CaseDAO {
 		Session session = sessionFactory.openSession();
 		try {
 			StringBuilder query = new StringBuilder("from CaseVO caso left join fetch caso.submotivoPickList submotivv left join fetch caso.canalOrigenPickList canalorigen");
-			query.append(" WHERE caso.contactId = '" + contactId + "'");
+			query.append(" WHERE caso.nombreContacto = '" + contactId + "'");
 
 			Query result = session.createQuery(query.toString());
 			List<CaseVO> casoList = result.list();

@@ -1,5 +1,6 @@
 package com.casosemergencias.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,10 +26,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.SuministroView;
+import com.casosemergencias.exception.EmergenciasException;
+import com.casosemergencias.logic.CaseService;
 import com.casosemergencias.logic.SuministroService;
+import com.casosemergencias.model.Caso;
+import com.casosemergencias.model.HerokuUser;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.constants.Constantes;
+import com.casosemergencias.util.constants.ConstantesError;
 import com.casosemergencias.util.constants.ConstantesTibcoWS;
 import com.casosemergencias.util.datatables.DataTableParser;
 import com.casosemergencias.util.datatables.DataTableProperties;
@@ -40,9 +46,12 @@ public class SuministroController {
 	
 	@Autowired
 	private SuministroService suministroService;
+
+	@Autowired
+	private CaseService casoService;
 	
 	@RequestMapping(value = "/private/homeSuministros", method = RequestMethod.GET)
-	public ModelAndView detalleSuministro() {
+	public ModelAndView listadoSuministros() {
 		logger.info("--- Inicio -- listadoSuministros ---");
 		
 		
@@ -156,6 +165,10 @@ public class SuministroController {
 			jsonResult.put("id_empresa__c", suministro.getIdEmpresa());
 			jsonResult.put("comuna__c", suministro.getComuna());
 			jsonResult.put("DireccionConcatenada__c", suministro.getDireccionConcatenada());
+			if(suministro.getDireccion()!=null){
+				jsonResult.put("direccionSfid", suministro.getDirSuministroJoin().getSfid());
+				jsonResult.put("direccionName", suministro.getDirSuministroJoin().getName());	
+			}
 			jsonResult.put("sfid", suministro.getSfid());
 			array.put(jsonResult);
 		}
@@ -171,6 +184,61 @@ public class SuministroController {
 		
 		return json.toString();
 	}
+	/**
+	 * Metodo que recupera una lista con los suministros asociados a una cuenta. Devuelve todos o los 10 primeros, segun si 
+	 * numSuministros es 'All' o 10.
+	 * 
+	 * @param body
+	 * @return
+	 */
+	@RequestMapping(value = "/private/listarSuministrosCuenta", method = RequestMethod.POST)
+	public @ResponseBody List<SuministroView> listadoSuministrosParaCuenta(@RequestBody String body, HttpServletRequest request){
+		
+		logger.info("--- Inicio -- listarSuministrosCuenta ---");
+
+		SimpleDateFormat  dateFormat  = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		HttpSession session = request.getSession(true);
+		long offset = (long)session.getAttribute("difGMTUser");
+		
+		String[] param = body.split("&");
+		String sfidCuenta = "";
+		Integer numSuministor = null;
+		
+		for(String dato : param){
+			String[] valor = dato.split("=");
+			if("numSuministros".equals(valor[0]) && !"All".equals(valor[1])){
+				numSuministor = Integer.parseInt(valor[1]);
+			}
+			if("sfidCuenta".equals(valor[0])){
+				sfidCuenta = valor[1];
+			}
+		}
+	
+		List<Suministro> listSuministros = new ArrayList<Suministro>();
+		List<SuministroView> listSuministrosView = new ArrayList<SuministroView>();
+		
+		listSuministros = suministroService.readSuministrosCuenta(sfidCuenta, numSuministor);
+		for(Suministro suministro : listSuministros){
+			SuministroView suministroView = new SuministroView();
+			ParserModelVO.parseDataModelVO(suministro, suministroView);
+			
+			//transformamos las fechas con el gmt de sesion			
+			if(suministroView.getFechaCorte() != null){
+				Date fechaCorte = suministroView.getFechaCorte();
+				fechaCorte = new Date(fechaCorte.getTime() + offset);
+				suministroView.setFechaCorte(fechaCorte);
+				suministroView.setFechaCorteString(dateFormat.format(fechaCorte));
+			}
+			
+			
+			listSuministrosView.add(suministroView);
+		}
+		
+		logger.info("--- Fin -- listarSuministrosCuenta ---");
+		
+		return listSuministrosView;
+	}
+	
 	
 	/**
 	 * M&eacute;todo para recuperar los datos del listado de suministros.
@@ -208,9 +276,7 @@ public class SuministroController {
 			jsonResult.put("estadoConexion", suministro.getLabelEstadoConexionPickList());
 			jsonResult.put("estadoSuministro", suministro.getLabelEstadoSuministroPickList());
 			jsonResult.put("DireccionConcatenada__c", suministro.getDireccionConcatenada());
-			jsonResult.put("comuna", suministro.getComuna());
-			jsonResult.put("n_mero_medidor__c", suministro.getNumeroMedidor());
-			jsonResult.put("ruta__c", suministro.getRuta());
+			jsonResult.put("comuna__c", suministro.getComuna());
 			jsonResult.put("sfid", suministro.getSfid());
 			array.put(jsonResult);
 		}
@@ -234,14 +300,132 @@ public class SuministroController {
 	
 	//Crear Caso nuevo con Suministro asociado.
 	
-	@RequestMapping(value = "/private/actualizarSuministro", method = RequestMethod.POST)
+	@RequestMapping(value = "/private/goCrearCasoBySuministro", method = RequestMethod.GET)
 	public ModelAndView crearCasoBySuministro() {
-				
 		ModelAndView model = new ModelAndView();
 		model.setViewName("redirect:entidadCasoAlta");
 		
 		return model;
 	}
 	
+	@RequestMapping(value = "/private/goCrearCasoBySuministroAndCorte", method = RequestMethod.POST)
+	public @ResponseBody String goCrearCasoBySuministroAndCorte(@RequestBody String body, HttpServletRequest request) {
 	
+		logger.info("--- Inicio -- goCrearCasoBySuministroAndCorte ---");
+		logger.debug("--- Creamos el objeto Caso con los datos necesarios para insertar ---");
+		
+		// Obtenemos sfid y causa del body (peticion ajax)
+		String causa="";
+		String sfidSum="";
+		String[] bodyArray = body.split("&");
+		for(String miArray : bodyArray){
+			String[] componente  = miArray.split("=");
+			if("causa".equals(componente[0])){
+				causa = componente[1];
+			}
+			if("sfidSum".equals(componente[0])){
+				sfidSum = componente[1];
+			}	
+		}		
+
+		// Rellenamos los datos del caso a insertar 
+		if (sfidSum != null && !"".equals(sfidSum)) {
+			//Obtener el suministro para guardarlo en el formulario
+			
+				HttpSession session = request.getSession(true);
+		
+				Suministro suministro = new Suministro();
+				Caso caso= new Caso();
+				
+				HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
+				
+				suministro = suministroService.readSuministroBySfid(sfidSum);	
+				
+				if (suministro != null) {		
+					//Set de info de Suministro					
+					caso.setSuministro(sfidSum);
+					caso.setSuministroJoin(suministro);	
+				
+					//Set de info de Direccion					
+					if(suministro.getDireccion()!=null){			
+						caso.setDireccion(suministro.getDireccion());
+						logger.debug("Direccion encontrada con id: " + suministro.getDireccion());	
+					}		
+					
+					//Set de info de Contacto				
+					if(suministro.getContactosRelacionados()!=null && suministro.getContactosRelacionados().isEmpty()==false  && suministro.getContactosRelacionados().size()==1){						
+						caso.setNombreContacto(suministro.getContactosRelacionados().get(0).getSfid());
+						
+						logger.debug("Contacto encontrada con id: " + suministro.getContactosRelacionados().get(0).getSfid());
+					}	
+					
+					//Set de info Cuenta 
+					if(suministro.getCuentaJoin() != null){
+						caso.setNombreCuenta(suministro.getCuenta());
+					}
+					
+					//Set de info de HerokuUser					
+					if(user != null && user.getName() != null && !"".equals(user.getName())){									
+						String unidad=user.getUnidad();
+						String username=user.getName();
+						caso.setHerokuUsername(username);						
+						caso.setCallCenter(unidad);
+						logger.info("Heroku user name: " + user.getName());
+					}	
+					
+					//Set campos de Caso comunes en ambos tipos de corte
+					caso.setCanalOrigen(Constantes.COD_CASO_ORIGEN_CALL_CENTER);
+					caso.setPeticion(Constantes.COD_CASO_MOTIVO_EMERGENCIA);
+					caso.setEstado(Constantes.COD_CASO_STATUS_CERRADO);
+					caso.setType(Constantes.COD_CASO_TYPE_RECLAMO_DESC);
+					
+					//Set campos con valores especificos para cada corte de Caso 
+					if(causa!=null){
+						if("deuda".equals(causa)){							
+							caso.setSubmotivo(Constantes.COD_CASO_SUBMOTIVO_CORTE_DEUDA);
+							caso.setDescription(Constantes.COD_CASO_DESC_DEUDA);
+						}
+						if("progr".equals(causa)){
+							caso.setSubmotivo(Constantes.COD_CASO_SUBMOTIVO_CORTE_PROGRAMADO);
+							caso.setDescription(Constantes.COD_CASO_DESC_PROGRAMADO);
+						}
+					}
+				}				
+
+				logger.debug("--- Insertamos el nuevo caso en BBDD ---");
+						
+				try{
+					
+					caso = casoService.insertCase(caso);	
+					if(caso != null){
+						
+						logger.info("Caso guardado correctamente con sfid:" + caso.getSfid());
+						logger.debug("Se redirecciona a página de detalle del caso");
+						logger.info("--- Fin -- goCrearCasoBySuministroAndCorte ---");
+						return "../private/entidadCaso?sfid=" + caso.getSfid() + "&editMode=" + Constantes.EDIT_MODE_INSERTED_OK;
+					}
+					
+					else {
+						logger.debug("Se ha producido un error guardando el caso");
+						String codigoError=new String();
+						String mensajeError=new String();
+						codigoError=ConstantesError.EMERG_ERROR_CODE_004;		
+						mensajeError=ConstantesError.HEROKU_CASE_CREATION_GENERIC_ERROR;
+						logger.info("--- Fin -- goCrearCasoBySuministroAndCorte ---");
+						return codigoError+"$"+mensajeError;
+					}
+				}
+				catch(EmergenciasException exception){	
+					logger.info("No se ha guardado correctamente el caso");
+					String codigoError=new String();
+					String mensajeError=new String();
+					codigoError=exception.getCode();	
+					mensajeError=exception.getMessage();
+					logger.info("--- Fin -- goCrearCasoBySuministroAndCorte ---");
+					return codigoError+"$"+mensajeError;
+				}				
+			}
+			return null;	
+		}
+		
 }

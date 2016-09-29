@@ -17,7 +17,7 @@
 		<script src="../resources/js/jQueryDatatables.js"></script>
 		<script src="../resources/js/header.js"></script>
 		<script src="../resources/js/utils.js"></script>
-		<script src="../resources/js/suministros.js"></script>
+		<script src="../resources/js/suministrosDataTable.js"></script>
 	</head>
 	<body onload="initHeader();limpiarCamposBuscadorSuministro();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_suministro"/>';</script>
@@ -50,18 +50,10 @@
 					</tr>							
 					<tr>
 						<td class="tablaBusquedaEtiquetas">
-							<label for="filtroRutaLectura"><s:message code="search_form_input_suministro_ruta_lectura"/></label>
+							<label for="filtroComuna"><s:message code="search_form_input_suministro_comuna"/></label>
 						</td>
 						<td class="tablaBusquedaTextos">
-							<input type="text" id="filtroRutaLectura" name="filtroRutaLectura" class="column_filter" value="" maxlength="50">
-						</td>
-					</tr>
-					<tr>
-						<td class="tablaBusquedaEtiquetas">
-							<label for="filtroNumMedidor"><s:message code="search_form_input_suministro_numero_medidor"/></label>
-						</td>
-						<td class="tablaBusquedaTextos">
-							<input type="text" id="filtroNumMedidor" name="filtroNumMedidor" class="column_filter" value="" maxlength="50">
+							<input type="text" id="filtroComuna" name="filtroComuna" class="column_filter" value="" maxlength="50">
 						</td>
 					</tr>
 					<tr>
@@ -76,12 +68,10 @@
 					<thead>
 			            <tr>
 			            	<th width="20%"><s:message code="homeSuministros_table_head_nombreSuministro"/></th>
-			                <th width="19%"><s:message code="homeSuministros_table_head_estadoConexion"/></th>
+			                <th width="20%"><s:message code="homeSuministros_table_head_estadoConexion"/></th>
 			                <th width="19%"><s:message code="homeSuministros_table_head_estadoSuministro"/></th>
 			                <th width="20%"><s:message code="homeSuministros_table_head_direccion"/></th>
-			                <th width="19%"><s:message code="homeSuministros_table_head_comuna"/></th>
-			                <th width="1%" hidden="true">n_mero_medidor__c</th>
-			                <th width="1%" hidden="true">ruta__c</th>
+			                <th width="20%"><s:message code="homeSuministros_table_head_comuna"/></th>
 			                <th width="1%" hidden="true">sfid</th>
 			            </tr>
 		        	</thead>

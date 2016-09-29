@@ -18,6 +18,7 @@
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
+		<script src="../resources/js/casos.js"></script>
 	</head>
 	
 	<body onload="initHeader();">

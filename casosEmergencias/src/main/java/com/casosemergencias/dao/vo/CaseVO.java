@@ -399,6 +399,11 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@WhereJoinTable(clause = "campo = 'Type' and objeto = 'Case'")
 	private PickListsCaseTypeVO typeCasoPickList;
 	
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "call_center__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Call_Center__c' and objeto = 'Case'")
+	private PickListsCaseCallCenterVO callCenterPickList;
+	
 	// vamos a recuperar los datos de Cuenta,Contacto,Suministro y Usuario
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "contactid", referencedColumnName = "sfid", insertable = false, updatable = false)
@@ -1508,6 +1513,13 @@ public class CaseVO extends ObjectVO implements Serializable {
 	public void setTypeCasoPickList(PickListsCaseTypeVO typeCasoPickList) {
 		this.typeCasoPickList = typeCasoPickList;
 	}
+	public PickListsCaseCallCenterVO getCallCenterPickList() {
+		return callCenterPickList;
+	}
+	public void setCallCenterPickList(PickListsCaseCallCenterVO callCenterPickList) {
+		this.callCenterPickList = callCenterPickList;
+	}
+	
 
 	@Override
 	public Object instantiateTargetLogic() {
@@ -1579,12 +1591,18 @@ public class CaseVO extends ObjectVO implements Serializable {
 		return result;
 	}
 	
-	
-	
 	public String getLabelCanalNotificacionPickList() {
 		String result = this.getCanalNotificacion();
 		if (this.getCanalNotificacionPickList() != null) {
 			result = this.getCanalNotificacionPickList().getValor();
+		}
+		return result;
+	}
+	
+	public String getLabelCallCenterPickList(){
+		String result = this.getCallCenter();
+		if (this.getCallCenterPickList() != null) {
+			result = this.getCallCenterPickList().getValor();
 		}
 		return result;
 	}

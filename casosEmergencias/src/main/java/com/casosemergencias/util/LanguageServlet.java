@@ -12,7 +12,6 @@ public class LanguageServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, java.io.IOException {
 		// Recuperar la url para modificarla
-		System.out.println("hola");
 		StringBuffer url = request.getRequestURL();
 		int index = url.indexOf("changLang.do");
 		url = url.delete(index, url.length());

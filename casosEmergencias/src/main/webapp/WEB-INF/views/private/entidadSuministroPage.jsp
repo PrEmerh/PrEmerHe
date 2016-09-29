@@ -17,10 +17,21 @@
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
+		<script src="../resources/js/suministros.js" lang=""></script>
 	</head>
-	<body onload="initHeader(); showNotifications();">
+	<body onload="initHeader();showNotifications();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadSuministro_title_label_detalle_suministro"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
+		<!-- Mensajes de inserccion caso por corte-->
+		<div>
+			<div id="divCaseCorteCreatedError" class="divError">
+				<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
+				<br/>
+				<label class="labelDivError" id="idCodigo"><s:message code="notificaciones_label_error_codigo"/></label>
+				<br/>
+				<label class="labelDivError" id="idMensaje"><s:message code="notificaciones_label_error_mensaje"/></label>
+			</div>
+		</div>
 		<!-- Mensajes de estado de operación -->
 		<c:if test="${not empty param.codigoError}">
 			<div>
@@ -33,13 +44,17 @@
 				</div>
 			</div>
 		</c:if>
-		<form:form name="formEntidadSuministro" action="actualizarSuministro" modelAttribute="suministro" method="POST">
-			<div class="botoneraListado">
-				<ul>
-					<li><input type="submit" name="goCrearCasoBySuministro" value="<s:message code="homeCasos_button_nuevocaso"/>" /></li>
-				</ul>
-			</div>
-			<form:hidden path="sfid"/>
+		<form:form name="formEntidadSuministroName" id="formEntidadSuministro" action="actualizarSuministro" modelAttribute="suministro" method="POST">
+			<center>
+				<div class="botoneraListado">
+					<ul>
+						<li><input type="button" name="goCrearCasoBySuministroName" value="<s:message code="homeCasos_button_nuevocaso"/>" onclick="goCrearCasoBySuministro();" /></li>
+						<li><input type="button" name="corteDeudaName" value="<s:message code="homeCasos_button_corteDeuda"/>" onclick="crearCasoCorteDeuda();"  /></li>
+						<li><input type="button" name="corteProgramadoName" value="<s:message code="homeCasos_button_corteProgramado"/>" onclick="crearCasoCorteProgramado();" /></li>
+					</ul>
+				</div>
+			</center>
+			<form:hidden path="sfid" id="sfidSum"/>
 			<div class="divEntidadDatos">
 				<div class="divEntidad">
 					<div class="subtitleAltaEntidad">
@@ -426,7 +441,14 @@
 											<td>${caso.labelSubmotivoPickList}</td>
 											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaEstimadaCierre}"/></td>
 											<td>${caso.labelCanalOrigenPickList}</td>
-											<td>${caso.userJoin.name}</td>
+											<td>
+												<c:if test="${caso.userJoin.name!=null}">
+													<label>${caso.userJoin.name}</label>					
+												</c:if> 
+												<c:if test="${caso.userJoin.name==null}">
+													<label>${caso.groupJoin.name}</label>
+												</c:if> 
+											</td>	
 											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaCierre}"/></td>
 											<td>${caso.asunto}</td>
 										</tr>
@@ -571,7 +593,7 @@
 									<tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_casos_reiterados"/></td>
 										<c:choose>
-											<c:when test="${not empty suministro.casosReiterados && suministro.casosReiterados == '1'}">
+											<c:when test="${not empty suministro.casosReiterados && suministro.casosReiterados > 0}">
 												<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
 												<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>
 											</c:when>

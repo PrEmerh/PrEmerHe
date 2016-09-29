@@ -72,6 +72,7 @@ public class CaseView extends ObjectView {
 	private String labelCanalNotificacionPickList;
 	private String labelFavorabilidadDelCasoPickList;
 	private String labelTypeCasoPickList;
+	private String labelCallCenterPickList;
 	
 	/*Mapas para mostrar los combos de caso*/
 	private Map<String, String> mapStatus;
@@ -82,7 +83,7 @@ public class CaseView extends ObjectView {
 	private Map<String, String> mapSubMotivo;
 	private Map<String, String> mapCondicionAgravante;
 	private Map<String, String> mapCanalNotificacion;
-	private Map<String, String> mapFavorabilidadCaso;
+	private Map<String, String> mapFavorabilidadCaso;	
 	
 	
 	/**/
@@ -519,6 +520,13 @@ public class CaseView extends ObjectView {
 	public void setLabelTypeCasoPickList(String labelTypeCasoPickList) {
 		this.labelTypeCasoPickList = labelTypeCasoPickList;
 	}
+	public String getLabelCallCenterPickList() {
+		return labelCallCenterPickList;
+	}
+	public void setLabelCallCenterPickList(String labelCallCenterPickList) {
+		this.labelCallCenterPickList = labelCallCenterPickList;
+	}
+	
 	public String getHerokuUsername() {
 		return herokuUsername;
 	}
@@ -537,7 +545,7 @@ public class CaseView extends ObjectView {
 	public void setCommentarioCaso(List<CaseCommentView> commentarioCaso) {
 		this.commentarioCaso = commentarioCaso;
 	}
-	
+
 	
 	@Override
 	public Object instantiateTargetLogic() {

@@ -7,17 +7,18 @@
 
 <html>
 	<head>
-	<title>Emergencias App</title>		
+		<title>Emergencias App</title>		
+		
+		<link rel="icon" type="image/png" href="../resources/images/favicon.png">
+		
+		<link href="../resources/css/cabecera.css" rel="stylesheet" />
+		<link href="../resources/css/body.css" rel="stylesheet" />
+		<link href="../resources/css/styles.css" rel="stylesheet" />	
 	
-	<link rel="icon" type="image/png" href="../resources/images/favicon.png">
-	
-	<link href="../resources/css/cabecera.css" rel="stylesheet" />
-	<link href="../resources/css/body.css" rel="stylesheet" />
-	<link href="../resources/css/styles.css" rel="stylesheet" />	
-
-	<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
-	<script src="../resources/js/header.js" lang=""></script>
-	<script src="../resources/js/utils.js" lang=""></script>
+		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
+		<script src="../resources/js/header.js" lang=""></script>
+		<script src="../resources/js/utils.js" lang=""></script>
+		<script src="../resources/js/contactos.js" lang=""></script>
 	</head>
 	<body onload="initHeader(); showNotifications();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadContacto_title_label_detalle_contacto"/>';</script>
@@ -38,7 +39,7 @@
 		<form:form name="formEntidadContacto" action="actualizarContacto" modelAttribute="contacto" method="POST">
 			<div class="botoneraListado">
 				<ul>
-					<li><input type="submit" name="goCrearCasoByContacto" value="<s:message code="homeCasos_button_nuevocaso"/>" /></li>
+					<li><input type="button" name="goCrearCasoByContactoName" value="<s:message code="homeCasos_button_nuevocaso"/>" onclick="goCrearCasoByContacto();" /></li>
 				</ul>
 			</div>
 			<form:hidden path="sfid"/>

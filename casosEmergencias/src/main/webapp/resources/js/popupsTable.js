@@ -86,20 +86,30 @@ function createTableSuministro() {
 	       	            {"data": "id_empresa__c", "width":"20%", "defaultContent": ""},
 	       	            {"data": "comuna__c", "width":"20%", "defaultContent": ""},
 	       	            {"data": "DireccionConcatenada__c", "width":"19%", "defaultContent": ""},
-	       	            {"data": "sfid", "width":"1%", "defaultContent": "", "visible": false}
+	       	            {"data": "direccionSfid", "width":"0.5%", "defaultContent": "","visible": false},
+	       	            {"data": "direccionName", "width":"0.5%", "defaultContent": "","visible": false},
+	       	            {"data": "sfid", "width":"0.5%", "defaultContent": "", "visible": false}
 	       	            ],
 	       "columnDefs": [
 	                    {"targets":0,
 	                     "render": function (data, type, full, meta){
 	                    	 var numeroSuministro = "";
 	                    	 var idSuministro = "";
+	                    	 var idDireccionSum= "";
+	                    	 var codigoDireccionSum= "";
 	                    	 if(full.name != null){
 	                    		 numeroSuministro = full.name;
 	                     	 }
 	                    	 if(full.sfid != null){
 	                    		 idSuministro = full.sfid;
 	                     	 }
-	                    	 return '<input type="button" class="buttonLink" onclick="javascript:establecerSuministro(\''+ idSuministro + '\',\'' + numeroSuministro + '\')" value="' + numeroSuministro + '" >';
+	                    	 if(full.direccionSfid != null){
+	                    		 idDireccionSum = full.direccionSfid;
+	                     	 }
+	                     	 if(full.direccionName != null){
+	                     		codigoDireccionSum = full.direccionName;
+	                     	 }
+	                    	 return '<input type="button" class="buttonLink" onclick="javascript:establecerSuministro(\''+ idSuministro + '\',\'' + numeroSuministro +'\',\'' + idDireccionSum +'\',\'' + codigoDireccionSum + '\')" value="' + numeroSuministro + '" >';
 	                     	}
 		    	   		}
 		    	   		],

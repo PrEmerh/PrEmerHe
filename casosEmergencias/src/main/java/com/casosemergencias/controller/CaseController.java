@@ -132,7 +132,7 @@ public class CaseController {
 			casoView.setFechaApertura(fechaApertura);
 		}
 		if(casoView.getFechaCierre() != null){
-			Date fechaCierre = casoView.getFechaApertura();
+			Date fechaCierre = casoView.getFechaCierre();
 			fechaCierre = new Date(fechaCierre.getTime() + offset);
 			casoView.setFechaCierre(fechaCierre);
 		}
@@ -165,7 +165,6 @@ public class CaseController {
 				}
 			}	
 		}
-		
 		
 		model.setViewName("private/entidadCasoPage");
 		/*Hay que añadir recuperación de label de los picklists si no sale el código solo*/
@@ -206,7 +205,7 @@ public class CaseController {
 			Iterator<CaseView> iteradorCasos = suministroAsociado.getCasos().iterator();
 			do {
 				casoSuministro = iteradorCasos.next();
-				if (!"ESTA007".equals(casoSuministro.getEstado()) || !"ESTA008".equals(casoSuministro.getEstado())) {
+				if (!(Constantes.COD_CASO_STATUS_CERRADO).equals(casoSuministro.getEstado()) && !(Constantes.COD_CASO_STATUS_CANCELADO).equals(casoSuministro.getEstado())) {
 					hayCasoAbierto = true;
 				}
 			} while (iteradorCasos.hasNext() && !hayCasoAbierto);
@@ -244,7 +243,7 @@ public class CaseController {
 		String contactoSfid = (String) session.getAttribute(Constantes.SFID_CONTACTO);
 		String cuentaSfid = (String) session.getAttribute(Constantes.SFID_CUENTA);
 		HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
-		
+				
 		Caso casoInsertado = new Caso();
 		ModelAndView model = new ModelAndView();
 		
@@ -421,6 +420,7 @@ public class CaseController {
 		ModelAndView model = new ModelAndView();			
 		model.setViewName("private/comentarioCasePage");
 		
+
 		Caso caso = this.caseCommentService.obtenerDatosCasoParaComentario(sfidCase);
 
 		model.addObject("description", caso.getDescription());
@@ -445,6 +445,9 @@ public class CaseController {
 					fecha = new Date(fecha.getTime() + offset);
 					casoRelacionado.setCreateddate(fecha);
 				}
+				if(casoRelacionado.getComment()!=null){
+					casoRelacionado.setComment(casoRelacionado.getComment().replace("\n","<br>"));					
+				}
 				listaComentariosCasoView.add(casoRelacionado);
 			}
 		}
@@ -453,16 +456,25 @@ public class CaseController {
 		caseComment.setCaseid(sfidCase);
 		
 		model.addObject("caseComment", caseComment);
+		
+		
+		//Recuperamos el heroku user de sesion y lo pasamos a la vista
+		
 		logger.info("--- Fin -- comentarioCaso ---");
 		
 		return model;
 	}
 	
 	@RequestMapping(value ="/private/saveComentarioCaso", method = RequestMethod.POST)
-	public String saveComentarioCaso(CaseCommentView casoRequest){
+	public String saveComentarioCaso(CaseCommentView casoRequest,  HttpServletRequest request){
 		
 		
 		logger.info("--- Inicio -- actualizarCaso ---");
+		//Recuperamos el heroku user para concatenarlo al comentario.
+		HttpSession session = request.getSession(true);
+		HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
+		String comentario = "<b>"+ user.getName() + ": </b> " + casoRequest.getComment();
+		casoRequest.setComment(comentario);
 		
 		CaseComment comentarioCaso = new CaseComment();
 		ParserModelVO.parseDataModelVO(casoRequest, comentarioCaso);
@@ -484,8 +496,8 @@ public class CaseController {
 		
 		logger.debug("Se van a cargar los datos iniciales del formulario de alta de caso");
 		//Setteo de datos fijos
-		casoView.setCanalOrigen(Constantes.COD_CASO_ORIGEN_WEB);
-		casoView.setCanalOrigenLabel(Constantes.COD_CASO_ORIGEN_WEB_DESC);
+		casoView.setCanalOrigen(Constantes.COD_CASO_ORIGEN_CALL_CENTER);
+		casoView.setCanalOrigenLabel(Constantes.COD_CASO_ORIGEN_CALL_CENTER_DESC);
 		casoView.setType(Constantes.COD_CASO_TYPE_RECLAMO);
 		casoView.setTypeLabel(Constantes.COD_CASO_TYPE_RECLAMO_DESC);
 		casoView.setEstado(Constantes.COD_CASO_STATUS_INGRESADO);
@@ -557,6 +569,11 @@ public class CaseController {
 			ParserModelVO.parseDataModelVO(contacto, contactoVista);
 			casoView.setContactoJoin(contactoVista);
 			casoView.setNombreContacto(contactoSfid);
+			casoView.setCanalNotificacion(contactoVista.getCanalPreferenteContacto());
+			casoView.setTelefonoContacto(contactoVista.getPhone());
+			casoView.setEmailNotificacion(contactoVista.getEmail());
+			casoView.setFacebook(contactoVista.getSf4twitterFcbkUsername());
+			casoView.setTwitter(contactoVista.getSf4twitterTwitterUsername());
 			logger.info("Contacto encontrada con id: " + contactoSfid);
 		}
 		
@@ -574,6 +591,8 @@ public class CaseController {
 		if (user != null) {
 			//Obtener el usuario para guardarlo en el formulario
 			casoView.setHerokuUsername(user.getName());
+			casoView.setLabelCallCenterPickList(user.getLabelUnidadPickList());
+			casoView.setCallCenter(user.getUnidad());
 			logger.info("Heroku user name: " + user.getName());
 		}
 		logger.trace("Saliendo de getEntityDataForNewCase()");

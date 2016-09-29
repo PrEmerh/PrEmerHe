@@ -554,7 +554,11 @@ public class ContactDAO {
 			}
 			
 			if (order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)) {
-				query.append(" ORDER BY " + order + " " + dirOrder);
+				if("name".equals(order)){
+					query.append(" ORDER BY  apellidoPaterno " + dirOrder + ", firstname " + dirOrder);
+				}else{
+					query.append(" ORDER BY " + order + " " + dirOrder);
+				}
 			}
 			
 			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);
@@ -589,7 +593,7 @@ public class ContactDAO {
 			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
 				sqlQuery.append(" WHERE ");
 				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
-					if ("account__run__c".equals(columnInfo.getData())) {
+					if ("run".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
 							sqlQuery.append(" AND ");

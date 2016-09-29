@@ -19,6 +19,7 @@
 		<script src="../resources/js/jQueryDatatables.js"></script>	
   		<script src="../resources/js/jquery-ui.js"></script>
 		<script src="../resources/js/utils.js" lang=""></script>
+		<script src="../resources/js/casos.js"></script>
   		<script src="../resources/js/popupsTable.js"></script>
 		<script src="../resources/js/header.js" lang=""></script>
 	</head>
@@ -53,7 +54,7 @@
 			<div class="botoneraListado botoneraCentrado">
 				<ul>
 					<li><input type="button" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" onclick="altaCaso();"/></li>
-					<li><input type="button" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li>
+					<%-- <li><input type="button" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li> --%>
 					<li><input type="button" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" onclick="cancelAltaCaso();" /></li>
 				</ul>
 			</div>
@@ -138,10 +139,11 @@
 							<label>${caso.propietarioCaso}</label>
 						</div>
 						<div class="divLabel">
-							<label>&nbsp;</label>
+							<label><s:message code="entidadCaso_table_label_unidad"/></label>
 						</div>
 						<div>
-							<label>&nbsp;</label>
+							<form:hidden path="callCenter"/>
+							<label>${caso.labelCallCenterPickList}</label>
 						</div>
 					</div>
 					<div>
@@ -370,8 +372,10 @@
 						            	<th width="10%"><s:message code="homeSuministros_table_head_nombreSuministro"/></th>
 						            	<th width="20%"><s:message code="homeSuministros_table_head_idEmpresa"/></th>
 						            	<th width="20%"><s:message code="homeSuministros_table_head_comuna"/></th>
-						            	<th width="19%"><s:message code="homeSuministros_table_head_direccionConcat"/></th>		
-						            	<th width="1%" hidden="true">sfid</th>	            	
+						            	<th width="19%"><s:message code="homeSuministros_table_head_direccionConcat"/></th>	
+						            	<th width="0.5%" hidden="true" ><s:message code="homeSuministros_table_head_direccionSfid"/></th>	
+						            	<th width="0.5%" hidden="true"><s:message code="homeSuministros_table_head_direccionName"/></th>			
+						            	<th width="0.5%" hidden="true">sfid</th>	            	
 						            </tr>
 					        	</thead>
 						</table>
@@ -407,7 +411,7 @@
 			<div class="botoneraListado botoneraCentrado botoneraInferior">
 				<ul>
 					<li><input type="button" name="Guardar" value="<s:message code="entidadCasoAlta_button_guardar"/>" onclick="altaCaso();"/></li>
-					<li><input type="button" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li>
+					<%-- <li><input type="button" name="GuardarYNuevo" value="<s:message code="entidadCasoAlta_button_guardarynuevo"/>" onclick="altaCasoYNuevo();"/></li> --%>
 					<li><input type="button" name="Cancelar" value="<s:message code="entidadCasoAlta_button_cancelar"/>" onclick="cancelAltaCaso();" /></li>
 				</ul>
 			</div>

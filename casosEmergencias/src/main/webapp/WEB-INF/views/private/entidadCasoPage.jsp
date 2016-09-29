@@ -13,12 +13,17 @@
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
 		<link href="../resources/css/body.css" rel="stylesheet" />	
 		<link href="../resources/css/styles.css" rel="stylesheet" />	
+		<link href="../resources/css/jquery-ui.css" rel="stylesheet" />
+		<link href="../resources/css/jQueryDatatable.css" rel="stylesheet" />
 	
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
+		<script src="../resources/js/jQueryDatatables.js"></script>	
+  		<script src="../resources/js/jquery-ui.js"></script>
 		<script src="../resources/js/header.js" lang=""></script>
         <script src="../resources/js/utils.js" lang=""></script> 
+		<script src="../resources/js/casos.js"></script>
 	</head>
-	<body onload="initHeader(); checkUpdates();">
+	<body onload="initHeader(); checkUpdates(); cargarDialogCancelacion();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<!-- Mensajes de estado de alta, actualizaciÃ³n e inserciÃ³n de comentarios de un caso -->
@@ -45,15 +50,19 @@
 				<label class="labelDivOk"><s:message code="notificaciones_label_ok_caso_creado"/></label>
 			</div>
 		</div>
+		
 		<form:form name="formEntidadCaso" action="actualizarCaso" modelAttribute="caso" method="POST">
 			<form:hidden path="id"/>
 			<form:hidden path="editMode" value="${editMode}"/>
 			<form:hidden path="sfid"/>
+			<div>
+				<p class="cabeceraTitulo"><s:message code="comentarioCase_label_caso" arguments="${caso.numeroCaso}"/></p>
+			</div>
 			<div class="botoneraListado">
 				<ul>
-					<li><input id="Modificar" type="button" name="Modificar" value="Modificar"  onclick="modificarButton();" /></li>
-					<li><input id="Guardar" type="submit" name="Cancelar" value="Guardar" hidden="true"/></li>
-					<li><input id="Cancelar" type="button" name="Cancelar" value="Cancelar" hidden="true"  onclick="cancelarButton();"/></li>
+					<li><input id="Modificar" type="button" name="Modificar" value=<s:message code="entidadCaso_boton_modificar"/>  onclick="modificarCasoButton();" /></li>
+					<li><input id="Guardar" type="submit" name="Guardar" value="<s:message code="entidadCaso_boton_guardar"/>" hidden="true"/></li>
+					<li><input id="Cancelar" type="button" name="Cancelar" value="<s:message code="entidadCaso_boton_cancelar"/>" hidden="true"  onclick="cancelarButton();"/></li>
 				</ul>
 			</div>			
 			<div class="divEntidad">
@@ -99,6 +108,7 @@
 						<label><s:message code="entidadCaso_table_label_numinservice"/></label>
 					</div>
 					<div>
+						<form:hidden path="numeroInservice"/>
 						<label>${caso.numeroInservice}</label>
 					</div>
 					<div class="divLabel">
@@ -116,19 +126,27 @@
 						<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaApertura}"/></label>
 					</div>
 					<div class="divLabel">
+						<label><s:message code="entidadCaso_table_label_unidad"/></label>
+					</div>
+					<div>
+						<label>${caso.labelCallCenterPickList}</label>
+					</div>					
+				</div>
+				<div>
+					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_tiempoNormalizacion"/></label>
 					</div>
 					<div>
 						<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaEstimadaCierre}"/></label>
-					</div>
-				</div>
-				<div>
+					</div> 
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_casoPrincipal"/></label>
 					</div>
 					<div>
 						<label><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.casoPrincipalJoin.sfid}">${caso.casoPrincipalJoin.numeroCaso}</a></label>					
 					</div>
+				</div>
+				<div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_propietarioCaso"/></label>
 					</div>
@@ -141,21 +159,24 @@
 						</c:if> 
 					</div>
 					<div class="divLabel">
-						<label><s:message code="entidadCaso_table_label_fechaHoraCierre"/></label>
-					</div>
-					<div>
-						<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaCierre}"/></label>
-					</div>
-				</div>
-				<div>
-					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_herokuUsername"/></label>
 					</div>
 					<div>
 						<label>${caso.herokuUsername}</label>
 					</div>
+				</div>		
+				<div>
+					<div class="divLabel">
+						<label><s:message code="entidadCaso_table_label_fechaHoraCierre"/></label>
+					</div>
 					<div>
-							
+						<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaCierre}"/></label>
+					</div>
+					<div class="divLabel">
+						<label>&nbsp;</label>
+					</div>
+					<div>
+						<label>&nbsp;</label>
 					</div>
 				</div>						
 			</div>	
@@ -441,58 +462,58 @@
 			</div>
 				
 			<div id="divEntidadCasosComments" class="divEntidad">
-					<div class="subtitleAltaEntidad">
-						<div>
-							<input id="arrowTablaCasosComments" type="image" src="../resources/images/arrow-down-black.png"  
-								height="15" onclick="showHideCabeceras('tablaCasosComments','arrowTablaCasosComments'); return false;"/>			
-							<label class="divLabel"><s:message code="entidadCaso_title_label_comentarios_titulo" /></label>			
-							<input id="NuevoComent" type="button" name="NuevoComent" style='margin-left:8%; 'value='<s:message code="entidadCaso_button_label_comentarios_nuevo"/>' onclick="newComent('${caso.sfid}');" />
-						</div>
-					</div>
-					<div id="tablaCasosComments">
-						<table class="basicTable">
-							<tr>
-							    <th><s:message code="entidadCaso_column_label_comentarios_publica" /></th>
-							    <th><s:message code="entidadCaso_column_label_comentarios_comentario" /></th>
-							</tr>
-							<c:choose>
-								<c:when test="${not empty caso.commentarioCaso}">
-									<c:forEach items="${caso.commentarioCaso}" var="coment">
-										<tr>
-											<td>
-												<c:if test="${coment.ispublished}">
-												    <label><input type="checkbox" id="checkbox" value="true" checked="checked" disabled/>
-													</label> 					
-												</c:if> 
-												<c:if test="${coment.ispublished == false}">
-													<label><input type="checkbox" id="checkbox" value="true" disabled/></label>	
-												</c:if>
-											</td> 
-											
-											<td>
-												<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${coment.createddate}" var="createDate"/>
-												<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${coment.lastmodifieddate}" var="lastDate"/> 
-											
-												<b><s:message code="entidadCaso_texto_label_comentarios_comentario_creado" arguments="${coment.userJoinCreateComment.name}, ${createDate}"/>
-												<c:if test="${lastDate != null}">
-												 | <s:message code="entidadCaso_texto_label_comentarios_comentario_modificado" arguments="${coment.userJoinModifyComment.name}, ${lastDate}"/>
-												</c:if>
-											</b> 
-											<br>${coment.comment}</td>
-										</tr>
-									</c:forEach>
-								</c:when>
-								<c:otherwise>
-									<tr>
-										<td colspan="6" class="tablaVacia">
-											<s:message code="entidades_empty_case_table" />
-										</td>
-									</tr>
-								</c:otherwise>
-							</c:choose>
-						</table>
+				<div class="subtitleAltaEntidad">
+					<div>
+						<input id="arrowTablaCasosComments" type="image" src="../resources/images/arrow-down-black.png"  
+							height="15" onclick="showHideCabeceras('tablaCasosComments','arrowTablaCasosComments'); return false;"/>			
+						<label class="divLabel"><s:message code="entidadCaso_title_label_comentarios_titulo" /></label>			
+						<input id="NuevoComent" type="button" name="NuevoComent" style='margin-left:8%; 'value='<s:message code="entidadCaso_button_label_comentarios_nuevo"/>' onclick="newComent('${caso.sfid}');" />
 					</div>
 				</div>
+				<div id="tablaCasosComments">
+					<table class="basicTable">
+						<tr>
+						    <th><s:message code="entidadCaso_column_label_comentarios_publica" /></th>
+						    <th><s:message code="entidadCaso_column_label_comentarios_comentario" /></th>
+						</tr>
+						<c:choose>
+							<c:when test="${not empty caso.commentarioCaso}">
+								<c:forEach items="${caso.commentarioCaso}" var="coment">
+									<tr>
+										<td>
+											<c:if test="${coment.ispublished}">
+											    <label><input type="checkbox" id="checkbox" value="true" checked="checked" disabled/>
+												</label> 					
+											</c:if> 
+											<c:if test="${coment.ispublished == false}">
+												<label><input type="checkbox" id="checkbox" value="true" disabled/></label>	
+											</c:if>
+										</td> 
+										
+										<td>
+											<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${coment.createddate}" var="createDate"/>
+											<fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${coment.lastmodifieddate}" var="lastDate"/> 
+										
+											<b><s:message code="entidadCaso_texto_label_comentarios_comentario_creado" arguments="${coment.userJoinCreateComment.name}, ${createDate}"/>
+											<c:if test="${lastDate != null}">
+											 | <s:message code="entidadCaso_texto_label_comentarios_comentario_modificado" arguments="${coment.userJoinModifyComment.name}, ${lastDate}"/>
+											</c:if>
+										</b> 
+										<br>${coment.comment}</td>
+									</tr>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="6" class="tablaVacia">
+										<s:message code="entidades_empty_case_table" />
+									</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+					</table>
+				</div>
+			</div>				
 		</form:form>
   	</body>
 </html>

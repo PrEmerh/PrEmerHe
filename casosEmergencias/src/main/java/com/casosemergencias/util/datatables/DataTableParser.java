@@ -13,6 +13,12 @@ public class DataTableParser {
 	
 	final static Logger logger = Logger.getLogger(DataTableParser.class);
 	
+	/**
+	 * Metodo que transforma el body en un DataTableProperties, clase que contiene propiedades de los DataTables 
+	 * 
+	 * @param body -- body recuperado del DataTable con el formato "prop1=valor&prop2=valor&prop3=valor"
+	 * @return
+	 */ 
 	public static DataTableProperties parseBodyToDataTable(String body) {
 		DataTableProperties dataTableProperties = new DataTableProperties();
 		try {

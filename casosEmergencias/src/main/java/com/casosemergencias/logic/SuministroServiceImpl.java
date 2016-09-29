@@ -1,7 +1,11 @@
 package com.casosemergencias.logic;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -9,9 +13,11 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.CaseDAO;
+import com.casosemergencias.dao.CasosReiteradosDAO;
 import com.casosemergencias.dao.RelacionActivoContactoDAO;
 import com.casosemergencias.dao.SuministroDAO;
 import com.casosemergencias.dao.vo.CaseVO;
+import com.casosemergencias.dao.vo.CasosReiteradosVO;
 import com.casosemergencias.dao.vo.RelacionActivoContactoVO;
 import com.casosemergencias.dao.vo.SuministroVO;
 import com.casosemergencias.logic.ws.clients.ConsultaDatosSuministroWSClient;
@@ -38,12 +44,15 @@ public class SuministroServiceImpl implements SuministroService{
 	
 	@Autowired
 	private RelacionActivoContactoDAO relacionDAO;
-		
+	
 	@Autowired
 	private ConsultaDatosSuministroWSClient consultaDatosSuministroWSClient;
 	
 	@Autowired
 	private GetEventosRelacionadosWSClient getEventosRelacionadosWSClient;
+	
+	@Autowired
+	private CasosReiteradosDAO casoReiteradosDAO;
 	
 	@Override
 	public List<Suministro> readAllSuministros() {
@@ -104,9 +113,80 @@ public class SuministroServiceImpl implements SuministroService{
 			List<Contacto> contactosRelacionado = parseaListaContactosRel(listaRelacionVO);
 			suministro.setContactosRelacionados(contactosRelacionado);
 			
+			//Se puede añadir dentro del for el calculo de casos abiertos
+			if(casoRelacionado != null && !casoRelacionado.isEmpty() && casoRelacionado.size()>0){
+				
+				//Calculamos si el suministro tiene casosReiterados 
+				CasosReiteradosVO casosReiteradosVO = casoReiteradosDAO.readCasosReiteradosByName("Suministro");
+				int numCasos = 0;
+				int limiteDias = casosReiteradosVO.getNumDias().intValue();
+				int numCasosReit = casosReiteradosVO.getNumCasos().intValue();
+				
+				Calendar calendar = Calendar.getInstance();	
+				//Definimos el formato para comparar 'fechaApertura' con la fecha actual
+				SimpleDateFormat  dateFormat  = new SimpleDateFormat("dd-MM-yyyy");
+			
+				for(Caso caso : casoRelacionado){
+					try {
+						Date dateCreadionCaso = caso.getFechaApertura();
+						Date dateHoy = new Date();
+						if(dateCreadionCaso != null){
+							//Fecha apertura del caso le sumamos 'limiteDias'
+							calendar.setTime(dateCreadionCaso);
+							calendar.add(Calendar.DAY_OF_YEAR, limiteDias);
+								
+							String stringDate = dateFormat.format(calendar.getTime());
+							dateCreadionCaso = dateFormat.parse(stringDate);						
+							stringDate = dateFormat.format(dateHoy);
+							dateHoy = dateFormat.parse(stringDate);
+							
+							if(dateCreadionCaso.getTime() > dateHoy.getTime()){
+								numCasos ++;
+							}
+						}
+						
+					} catch (ParseException e) {
+						logger.error("--- readSuministroBySfid -- error al parsear una fecha ---");
+						logger.error(e.getMessage());
+					}
+	
+				}	
+				
+				if(numCasos >= numCasosReit){
+					suministro.setCasosReiterados((double) numCasos);
+				}
+			}
+			
 			return suministro;
 		}
 		return null;
+	}
+
+	public Integer getNumSuministros(DataTableProperties propDatatable){
+		return suministroDao.countSuministro(propDatatable);
+	}
+
+	public List<Suministro> readSuministrosCuenta(String sfidCuenta, Integer numeroSuministros){
+		
+		List<Suministro> listaSuministros = new ArrayList<Suministro>();
+		
+		SuministroVO suministroFiltro = new SuministroVO();
+		suministroFiltro.setCuenta(sfidCuenta);
+		
+		List<SuministroVO> listaSuministrosVO = suministroDao.readSuministro(suministroFiltro);
+		int limiteSuministro = listaSuministrosVO.size();
+		if(numeroSuministros != null){
+			limiteSuministro = numeroSuministros;
+		}
+		for(int i = 0; i<limiteSuministro; i++){
+			SuministroVO suministro = listaSuministrosVO.get(i);
+			Suministro suministroRellenar = new Suministro();
+			ParserModelVO.parseDataModelVO(suministro, suministroRellenar);
+			listaSuministros.add(suministroRellenar);
+		}
+		
+		return listaSuministros;
+		
 	}
 	
 	private List<Caso> parseaListaCasos(List<CaseVO> listacasosVO) {
@@ -137,10 +217,6 @@ public class SuministroServiceImpl implements SuministroService{
 			return retorno;
 		}
 		return null;
-	}
-
-	public Integer getNumSuministros(DataTableProperties propDatatable){
-		return suministroDao.countSuministro(propDatatable);
 	}
 
 	/**
