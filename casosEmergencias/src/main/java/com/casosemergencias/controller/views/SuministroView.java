@@ -3,6 +3,9 @@ package com.casosemergencias.controller.views;
 import java.util.Date;
 import java.util.List;
 
+import org.example.sieme009_schema.ListadoEventosType;
+import org.example.sires033_schema.ListadoSuministrosType;
+
 import com.casosemergencias.model.Suministro;
 
 public class SuministroView extends ObjectView {
@@ -132,6 +135,10 @@ public class SuministroView extends ObjectView {
 	private String labelMedidaDisciplinaPickList;
 	
 	private String labelElectrodependientePickList;
+	
+	private ListadoSuministrosType listadoSuministros;
+	
+	private ListadoEventosType listadoEventos;
 
 	public SuministroView() {
 	}
@@ -676,10 +683,25 @@ public class SuministroView extends ObjectView {
 		this.labelElectrodependientePickList = labelElectrodependientePickList;
 	}
 	
+	public ListadoSuministrosType getListadoSuministros() {
+		return listadoSuministros;
+	}
+
+	public void setListadoSuministros(ListadoSuministrosType listadoSuministros) {
+		this.listadoSuministros = listadoSuministros;
+	}
+
+	public ListadoEventosType getListadoEventos() {
+		return listadoEventos;
+	}
+
+	public void setListadoEventos(ListadoEventosType listadoEventos) {
+		this.listadoEventos = listadoEventos;
+	}
+	
 	@Override
 	public Object instantiateTargetLogic() {
 		Suministro suministro = new Suministro();
 		return suministro;
 	}
-
 }

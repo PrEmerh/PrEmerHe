@@ -23,10 +23,15 @@
 		<commons-dbcp.version>1.2.2</commons-dbcp.version>
 		<httpcomponents.version>4.5.2</httpcomponents.version>
 		<commons-httpclient.version>3.1</commons-httpclient.version>
+		<commons-discovery.version>0.5</commons-discovery.version>
 		<quartz.version>2.2.3</quartz.version>
 		<quartz-jobs.version>2.2.3</quartz-jobs.version>
 		<force-rest-api.version>0.0.23</force-rest-api.version>
 		<force-oauth.version>22.0.8-BETA</force-oauth.version>
+		<wsdl4j.version>1.6.3</wsdl4j.version>
+		<cxf.version>3.1.7</cxf.version>
+		<junit.version>4.12</junit.version>
+		<!--<tomcat.version>8.0.28</tomcat.version>-->
 	</properties>
 	<repositories>
 		<repository>
@@ -76,7 +81,11 @@
             <artifactId>spring-context-support</artifactId>
             <version>${spring-mvc.version}</version>
         </dependency>
-		
+        <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-test</artifactId>
+		    <version>${spring-mvc.version}</version>
+		</dependency>
 		<!-- JSTL for JSP -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -134,6 +143,11 @@
 			<artifactId>commons-httpclient</artifactId>
 			<version>${commons-httpclient.version}</version>
 		</dependency>
+		<dependency>
+		    <groupId>commons-discovery</groupId>
+		    <artifactId>commons-discovery</artifactId>
+		    <version>${commons-discovery.version}</version>
+		</dependency>
 		<!-- Log4j -->
 		<dependency>
 			<groupId>log4j</groupId>
@@ -167,6 +181,39 @@
 			<groupId>com.force.sdk</groupId>
 			<artifactId>force-oauth</artifactId>
 			<version>${force-oauth.version}</version>
+		</dependency>
+		<!-- CXF Web Services -->
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-core</artifactId>
+		    <version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-rt-transports-http</artifactId>
+		    <version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+   			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-rt-ws-policy</artifactId>
+		    <version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-rt-ws-security</artifactId>
+		    <version>${cxf.version}</version>
+		</dependency>
+		<!-- JUnit -->
+		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <version>${junit.version}</version>
+		    <scope>test</scope>
 		</dependency>
 	</dependencies>
 	<build>
@@ -228,11 +275,47 @@
 			<plugin>
 				<groupId>com.heroku.sdk</groupId>
 				<artifactId>heroku-maven-plugin</artifactId>
-				<version>1.0.3</version>
+				<version>1.1.1</version>
 				<configuration>
 					<appName>chile-en-dev</appName>
 				</configuration>
 			</plugin>
+			<!-- Configuracion CXF para generar las clases cliente de los servicios web -->
+			<!-- Tenerlo comentado para evitar que genere las clases cada vez que compile.
+			<plugin>
+			    <groupId>org.apache.cxf</groupId>
+			    <artifactId>cxf-codegen-plugin</artifactId>
+			    <version>${cxf.version}</version>
+			    <executions>
+			        <execution>
+			            <id>generate-sources</id>
+			            <phase>generate-sources</phase>
+			            <configuration>
+			            	<defaultOptions>
+							    <noAddressBinding>true</noAddressBinding>
+							</defaultOptions>
+			                <sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
+			                <wsdlOptions>
+			                    <wsdlOption>
+			                        <wsdl>${basedir}/src/main/resources/wsdl/SIEME009.WSDL</wsdl>
+			                        <extraargs>
+			                        	<extraarg>-client</extraarg>
+			                        	<extraarg>-verboset</extraarg>
+			                        	<extraarg>-p</extraarg>
+			                        	<extraarg>your.namespace/services/=your.package</extraarg>
+			                        </extraargs>
+			                    </wsdlOption>
+			                    <wsdlOption>
+			                        <wsdl>${basedir}/src/main/resources/wsdl/SIRES033.WSDL</wsdl>
+			                    </wsdlOption>
+			                </wsdlOptions>
+			            </configuration>
+			            <goals>
+			                <goal>wsdl2java</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			</plugin>-->
 		</plugins>
 	</build>
 </project>

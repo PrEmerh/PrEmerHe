@@ -3,11 +3,15 @@ package com.casosemergencias.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.example.sieme009_schema.ListadoEventosType;
+import org.example.sires033_schema.ListadoSuministrosType;
+import org.example.sires033_schema.SuministroType;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +25,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.ContactView;
+import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.ContactService;
+import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.constants.Constantes;
+import com.casosemergencias.util.constants.ConstantesTibcoWS;
 import com.casosemergencias.util.datatables.DataTableParser;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -36,6 +43,9 @@ public class ContactController {
 	@Autowired
 	private ContactService contactService;
 
+	@Autowired 
+	SuministroService suministroService;
+	
 	@RequestMapping(value = "/private/homeContacts", method = RequestMethod.GET)
 	public ModelAndView listadoContactos() {
 
@@ -93,6 +103,33 @@ public class ContactController {
 			}	
 		}
 
+		if (contactoView.getSuministros() != null && !contactoView.getSuministros().isEmpty() && contactoView.getSuministros().size() == 1) {
+			/* Llamada a los servicios web de Tibco para obtener datos y eventos del suministro para los indicadores */
+			SuministroView suministroView = contactoView.getSuministros().get(0);
+			Map<String, Object> datosWS = suministroService.getDatosSuministroWS(suministroView.getNumeroSuministro());
+			
+			if (datosWS.get(ConstantesTibcoWS.SIRES033_RESPONSE_LIST_NAME) != null) {
+				suministroView.setListadoSuministros((ListadoSuministrosType) datosWS.get(ConstantesTibcoWS.SIRES033_RESPONSE_LIST_NAME));
+				for (SuministroType suministro : suministroView.getListadoSuministros().getSuministro()) {
+					if (suministro.getFechaCorteSuministro() != null) {
+						Date fechaActual = new Date();
+						Date fechaCorteSuministro = suministro.getFechaCorteSuministro().toGregorianCalendar().getTime();
+						suministroView.setFechaCorte(fechaCorteSuministro);
+						logger.info("La fecha de corte del suministro es " + fechaCorteSuministro);
+						if (fechaActual.getTime() > fechaCorteSuministro.getTime()) {
+							logger.info("Se ha superado la fecha de corte, por lo que se marca que es corte por deuda");
+							suministroView.setCortePorDeuda(true);
+						}
+					}
+				}
+			}
+			
+			if (datosWS.get(ConstantesTibcoWS.SIEME009_RESPONSE_LIST_NAME) != null) {
+				suministroView.setListadoEventos((ListadoEventosType) datosWS.get(ConstantesTibcoWS.SIEME009_RESPONSE_LIST_NAME));
+			}
+			
+			contactoView.getSuministros().set(0, suministroView);
+		}
 		
 		logger.info("SFID_CUENTA" + session.getAttribute(Constantes.SFID_CUENTA));
 		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));

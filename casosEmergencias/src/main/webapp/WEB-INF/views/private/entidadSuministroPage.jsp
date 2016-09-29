@@ -476,41 +476,48 @@
 											</c:otherwise>
 										</c:choose>
 									</tr>
-								<%-- <tr>
+									<tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_falla_sector"/></td>
 										<c:choose>
 											<c:when test="${not empty suministro.suministroAfectado && not empty suministro.tipoEvento 
 													&& suministro.suministroAfectado && suministro.tipoEvento == '2'}">
 												<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
-												<td class="filaValor">SI</td>
+												<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>
 											</c:when>
 											<c:otherwise>
-												<td class="filaValor" colspan="2">NO</td>
+												<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
 											</c:otherwise>
 										</c:choose>
-									</tr> --%>
-								<%--<tr>
+									</tr>
+									<tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_corte_programado"/></td>
 										<c:choose>
 											<c:when test="${not empty suministro.suministroAfectado && not empty suministro.tipoEvento 
 													&& suministro.suministroAfectado && suministro.tipoEvento == '1'}">
 												<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
-												<td class="filaValor">SI</td>
+												<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>
 											</c:when>
 											<c:otherwise>
-												<td class="filaValor" colspan="2">NO</td>
+												<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
 											</c:otherwise>
 										</c:choose>
-									</tr>--%>
+									</tr>
 									<tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_corte_deuda"/></td>
 										<c:choose>
-											<c:when test="${not empty suministro.cortePorDeuda && suministro.cortePorDeuda}">
-												<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
-												<td class="filaValor">SI</td>	
+											<c:when test="${not empty suministro.cortePorDeuda}">
+												<c:choose>
+													<c:when test="${suministro.cortePorDeuda}">
+														<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
+														<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>	
+													</c:when>
+													<c:otherwise>
+														<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
+													</c:otherwise>
+												</c:choose>
 											</c:when>
 											<c:otherwise>
-												<td class="filaValor" colspan="2">NO</td>
+												<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_sin_informacion"/></td>
 											</c:otherwise>
 										</c:choose>
 									</tr>
@@ -530,10 +537,10 @@
 										<c:choose>
 											<c:when test="${not empty suministro.pagoEnProceso && suministro.pagoEnProceso}">
 												<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
-												<td class="filaValor">SI</td>
+												<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>
 											</c:when>
 											<c:otherwise>
-												<td class="filaValor" colspan="2">NO</td>
+												<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
 											</c:otherwise>
 										</c:choose>
 									</tr>
@@ -542,10 +549,10 @@
 										<c:choose>
 											<c:when test="${not empty suministro.electrodependiente && suministro.electrodependiente == '1'}">
 												<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
-												<td class="filaValor">SI</td>
+												<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>
 											</c:when>
 											<c:otherwise>
-												<td class="filaValor" colspan="2">NO</td>
+												<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
 											</c:otherwise>
 										</c:choose>
 									</tr>
@@ -554,10 +561,10 @@
 										<c:choose>
 											<c:when test="${not empty suministro.casosAbiertos && suministro.casosAbiertos}">
 												<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
-												<td class="filaValor">SI</td>
+												<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>
 											</c:when>
 											<c:otherwise>
-												<td class="filaValor" colspan="2">NO</td>
+												<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
 											</c:otherwise>
 										</c:choose>
 									</tr>
@@ -566,10 +573,10 @@
 										<c:choose>
 											<c:when test="${not empty suministro.casosReiterados && suministro.casosReiterados == '1'}">
 												<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
-												<td class="filaValor">SI</td>
+												<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>
 											</c:when>
 											<c:otherwise>
-												<td class="filaValor" colspan="2">NO</td>
+												<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
 											</c:otherwise>
 										</c:choose>
 									</tr>
@@ -597,15 +604,68 @@
 						<table class="servicesTable">
 							<c:choose>
 								<c:when test="${not empty suministro}">
-									<tr>
-										<td colspan="3" class="filaVacia">
-											<s:message code="entidadSuministro_indicadores_literal_sin_informacion" />
-										</td>
-									</tr>
+									<c:forEach items="${suministro.listadoEventos}" var="evento">
+										<!-- <s:message code="entidadSuministro_title_label_estadoSuministro"/> -->
+										<tr>
+											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_tipo"/></td>
+											<td class="filaValor">${evento.tipo}</td>
+										</tr>
+										<tr>
+											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_numero"/></td>
+											<td class="filaValor">${evento.nEvento}</td>
+										</tr>
+										<tr>
+											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_vecino"/></td>
+											<c:choose>
+												<c:when test="${evento.vecino}">
+													<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>
+												</c:when>
+												<c:otherwise>
+													<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
+												</c:otherwise>
+											</c:choose>
+										</tr>
+										<tr>
+											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_numero_incidencia"/></td>
+											<td class="filaValor">${evento.nincidencia}</td>
+										</tr>
+										<tr>
+											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_numero_descargo"/></td>
+											<td class="filaValor">${evento.ndescargo}</td>
+										</tr>
+										<tr>
+											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_fecha_inicio"/></td>
+											<td class="filaValor"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${evento.fechaInicio.toGregorianCalendar().time}"/></td>
+										</tr>
+										<tr>
+											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_fecha_inicio_programada"/></td>
+											<td class="filaValor"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${evento.fechaInicioProgramada.toGregorianCalendar().time}"/></td>
+										</tr>
+										<tr>
+											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_fecha_termino_programada"/></td>
+											<td class="filaValor"><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${evento.fechaTerminoProgramada.toGregorianCalendar().time}"/></td>
+										</tr>
+										<tr>
+											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_descripcion"/></td>
+											<td class="filaValor">${evento.descripcionTipoEvento}</td>
+										</tr>
+										<tr>
+											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_comuna"/></td>
+											<td class="filaValor">${evento.comuna}</td>
+										</tr>
+										<tr>
+											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_titulo_descargo"/></td>
+											<td class="filaValor">${evento.tituloDescargo}</td>
+										</tr>
+										<tr>
+											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_tipo_incidencia"/></td>
+											<td class="filaValor">${evento.tipoIncidencia}</td>
+										</tr>
+									</c:forEach>
 								</c:when>
 								<c:otherwise>
 									<tr>
-										<td colspan="3" class="filaVacia">
+										<td colspan="2" class="filaVacia">
 											<s:message code="entidadSuministro_indicadores_literal_sin_informacion" />
 										</td>
 									</tr>
