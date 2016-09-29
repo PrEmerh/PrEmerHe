@@ -131,6 +131,7 @@ public class SuministroController {
 		}
 		
 		if (datosWS.get(ConstantesTibcoWS.SIEME009_RESPONSE_LIST_NAME) != null) {
+			logger.info("Se envían los eventos a la vista");
 			suministroView.setListadoEventos((ListadoEventosType) datosWS.get(ConstantesTibcoWS.SIEME009_RESPONSE_LIST_NAME));
 		}
 		

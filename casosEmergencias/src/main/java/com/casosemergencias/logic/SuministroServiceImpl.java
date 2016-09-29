@@ -242,10 +242,11 @@ public class SuministroServiceImpl implements SuministroService{
 				}
 			} else {
 				logger.info("Peticion procesada correctamente");
+			}
+			
+			if (datosSumResponse.getListadoSuministros() != null && !datosSumResponse.getListadoSuministros().getSuministro().isEmpty()) {
 				logger.info("Registros encontrados: " + datosSumResponse.getTotalRegistros());
-				if (datosSumResponse.getListadoSuministros() != null && !datosSumResponse.getListadoSuministros().getSuministro().isEmpty()) {
-					datosWS.put(ConstantesTibcoWS.SIRES033_RESPONSE_LIST_NAME, datosSumResponse.getListadoSuministros());
-				}
+				datosWS.put(ConstantesTibcoWS.SIRES033_RESPONSE_LIST_NAME, datosSumResponse.getListadoSuministros());
 			}
 		} else {
 			logger.error("El servicio ha devuelto una respuesta vacia");
@@ -261,10 +262,10 @@ public class SuministroServiceImpl implements SuministroService{
 				}
 			} else {
 				logger.error("Petición procesada correctamente");
-				if (eventosRelResponse.getListadoEventos() != null && !eventosRelResponse.getListadoEventos().getEvento().isEmpty()) {
-					logger.info("El suministro tiene " + eventosRelResponse.getListadoEventos().getEvento().size() + " eventos relacionados");
-					datosWS.put(ConstantesTibcoWS.SIEME009_RESPONSE_LIST_NAME, eventosRelResponse.getListadoEventos());
-				}
+			}
+			if (eventosRelResponse.getListadoEventos() != null && !eventosRelResponse.getListadoEventos().getEvento().isEmpty()) {
+				logger.info("El suministro tiene " + eventosRelResponse.getListadoEventos().getEvento().size() + " eventos relacionados");
+				datosWS.put(ConstantesTibcoWS.SIEME009_RESPONSE_LIST_NAME, eventosRelResponse.getListadoEventos());
 			}
 		} else {
 			logger.error("El servicio ha devuelto una respuesta vacia");
