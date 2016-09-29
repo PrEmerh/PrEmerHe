@@ -634,7 +634,7 @@
 										</tr>
 										<tr>
 											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_numero"/></td>
-											<td class="filaValor">${eventoSum.nEvento}</td>
+											<td class="filaValor">${eventoSum.nevento}</td>
 										</tr>
 										<tr>
 											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_vecino"/></td>
