@@ -53,12 +53,12 @@ function cargarDialogCancelacion() {
 		modal: true, 
 		show: "blind", 
 		hide: "blind", 
-		height: "150",
-		width: "350",
+		height: "auto",
+		width: "auto",
 		position:{
-			my: "center", 
-			at: "center",
-			of: window 
+			my: "center center", 
+			at: "center center",
+			of: $('#detalleCaso') 
 		},
 		
 		//resizable: false,
