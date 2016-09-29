@@ -625,8 +625,8 @@
 					<div id="tablaEventosSuministro">
 						<table class="servicesTable">
 							<c:choose>
-								<c:when test="${not empty suministro && not empty suministro.listadoEventos}">
-									<c:forEach items="${suministro.listadoEventos}" var="evento">
+								<c:when test="${not empty suministro && not empty suministro.listadoEventos && not empty suministro.listadoEventos.evento}">
+									<c:forEach items="${suministro.listadoEventos.evento}" var="evento">
 										<!-- <s:message code="entidadSuministro_title_label_estadoSuministro"/> -->
 										<tr>
 											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_tipo"/></td>
