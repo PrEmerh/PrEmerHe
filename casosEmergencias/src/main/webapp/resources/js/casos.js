@@ -203,3 +203,48 @@ function ocultarDivNotificacion(){
 	$('#divCaseCancelError').hide();
 	$('#divCaseCancelEstado').hide();
 }
+
+
+//Funcion que oculta o muestra todos los historicos de un caso (si tiene mas de 10 entradas)
+function refrescarHistorial(numeroEntradas){	
+	$.post("../private/listarHistorialCaso",
+			{sfid: document.getElementById('idSfid').value,
+			entradas: numeroEntradas},
+			function(data) {
+				var tablaDatos=  document.getElementById("tablaHistorial");
+				var longTabla = tablaDatos.rows.length;
+				
+				//eliminamos los registros de la tabla actual, !Cuidado! no eliminar la fila 0 que es la cabecera
+				for(i = 1; i<longTabla; i++){
+					tablaDatos.deleteRow(1);
+				}
+				
+				//Añadimos registros a la tabla nueva. Vamos insertando la fila 1 e iremos recorriendo de manera inversa 
+				//la lista de suministros para guardarlos en la tabla
+				for(j=data.length -1 ; j >= 0; j--){
+					
+					var fila= data[j];
+					var row = tablaDatos.insertRow(1);
+					
+					var fechaCreacion = row.insertCell(0);
+					fechaCreacion.innerHTML =  fila.createddateString;	
+					var userName = row.insertCell(1);
+					userName.innerHTML = fila.userJoin.name;						
+					var accion = row.insertCell(2);
+					accion.innerHTML = fila.field;
+
+				} 
+				
+				if(numeroEntradas == 'All'){
+					//mostramos href 'Mostar 10'
+					document.getElementById('hrefNoTodosHistorial').hidden = false;
+					document.getElementById('hrefTodosHistorial').hidden = true;
+				}else{
+					//mostramos href 'Mostar todos'
+					document.getElementById('hrefNoTodosHistorial').hidden = true;
+					document.getElementById('hrefTodosHistorial').hidden = false;
+					
+				}
+		}); 	
+	
+}

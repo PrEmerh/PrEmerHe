@@ -79,14 +79,14 @@ public class CaseServiceImpl implements CaseService{
 	 * @return
 	 */
 	@Override
-	public Caso readCaseBySfid(String sfid){
+	public Caso readCaseBySfid(String sfid, Integer numEntradas){
 		Caso returnCase = new Caso();
 		CaseVO casoVO = caseDao.readCaseBySfid(sfid);
 		if (casoVO != null){
 			ParserModelVO.parseDataModelVO(casoVO, returnCase);
 		}
 		
-		List<CaseHistoryVO> listaHistorialCasoVO = caseHistoryDao.readCaseHistoryByCaseId(sfid);
+		List<CaseHistoryVO> listaHistorialCasoVO = caseHistoryDao.readCaseHistoryByCaseId(sfid, numEntradas);//inicialmente solo recuperamos 10
 		List<CaseHistory> historialCasosRelacionado = parseaYPreparaListaHistorialCasos(listaHistorialCasoVO);
 		returnCase.setHistorialCaso(historialCasosRelacionado);
 		
@@ -271,6 +271,19 @@ public class CaseServiceImpl implements CaseService{
 			}
 		}
 		return canceladoOk;
+	}
+	
+	@Override
+	public List<CaseHistory> obtenerListaHistorialDeUnCaso(String caseSfid, Integer numEntradas) {
+
+		List<CaseHistoryVO> listaHistorialCasoVO = caseHistoryDao.readCaseHistoryByCaseId(caseSfid, numEntradas);
+		List<CaseHistory> listaHistorialCaso  = parseaYPreparaListaHistorialCasos(listaHistorialCasoVO);
+		
+		return listaHistorialCaso;
+	}
+	
+	public Integer getNumHistorialDeUnCaso(String sfidCase){
+		return caseHistoryDao.countHistoriaDeCaso(sfidCase);
 	}
 	
 	/*

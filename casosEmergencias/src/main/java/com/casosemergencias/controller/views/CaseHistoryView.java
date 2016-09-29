@@ -21,6 +21,8 @@ public class CaseHistoryView extends ObjectView {
 	private String labelFieldPickList;
 	private String labelNewValuePickList;
 	private String labelOldValuePickList;
+	
+	private String createddateString;
 		
 	public Integer getId() {
 		return id;
@@ -99,7 +101,13 @@ public class CaseHistoryView extends ObjectView {
 	}
 	public void setFieldLabel(FieldLabelView fieldLabel) {
 		this.fieldLabel = fieldLabel;
+	}	
+	public String getCreateddateString() {
+		return createddateString;
 	}
+	public void setCreateddateString(String createddateString) {
+		this.createddateString = createddateString;
+	}	
 	
 	@Override
 	public Object instantiateTargetLogic() {

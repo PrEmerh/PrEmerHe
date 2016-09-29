@@ -153,6 +153,10 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 		return suministroDao.countSuministro(propDatatable);
 	}
 
+	public Integer getNumSuministrosDeUnaCuetna(String sfidCuenta){
+		return suministroDao.countSuministroDeCuenta(sfidCuenta);
+	}
+	
 	public List<Suministro> readSuministrosCuenta(String sfidCuenta, Integer numeroSuministros){
 		
 		List<Suministro> listaSuministros = new ArrayList<Suministro>();
@@ -160,7 +164,7 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 		SuministroVO suministroFiltro = new SuministroVO();
 		suministroFiltro.setCuenta(sfidCuenta);
 		
-		List<SuministroVO> listaSuministrosVO = suministroDao.readSuministro(suministroFiltro);
+		List<SuministroVO> listaSuministrosVO = suministroDao.readSuministro(suministroFiltro, numeroSuministros);
 		int limiteSuministro = listaSuministrosVO.size();
 		if(numeroSuministros != null){
 			limiteSuministro = numeroSuministros;

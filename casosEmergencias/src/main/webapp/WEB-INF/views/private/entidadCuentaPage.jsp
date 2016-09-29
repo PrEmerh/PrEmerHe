@@ -164,7 +164,7 @@
 					</tr>
 					<c:choose>
 						<c:when test="${not empty cuenta.suministros}">
-							<c:forEach items="${cuenta.suministros}" var="suministro" begin="0" end="9">
+							<c:forEach items="${cuenta.suministros}" var="suministro">
 								<tr>
 									<td><a class="link" href="../private/entidadSuministro?sfid=${suministro.sfid}">${suministro.name}</a></td>
 									<td>${suministro.labelEmpresaPickList}</td>

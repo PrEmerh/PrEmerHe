@@ -3,7 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <html>
 	<head>
@@ -433,31 +432,11 @@
 						</tr>
 						<c:choose>
 							<c:when test="${not empty caso.historialCaso}">
-								<c:forEach items="${caso.historialCaso}" var="hist"  begin="0" end="9">
+								<c:forEach items="${caso.historialCaso}" var="hist">
 									<tr>
 										<td width="15%"><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${hist.createddate}"/></td>
 										<td width="15%">${hist.userJoin.name}</td>
-										<td width="70%">
-											<c:if test="${hist.labelFieldPickList != null}">
-												${hist.labelFieldPickList}
-											</c:if>
-											<c:if test="${hist.labelFieldPickList == null}">
-												<!-- Si fieldLabel es null mostramo el campo 'field' -->
-												<c:if test="${hist.fieldLabel != null}">
-													<s:message code="entidadCaso_texto_label_historia_accion_1" arguments="${hist.fieldLabel.label}"/>
-												</c:if>
-												<c:if test="${hist.fieldLabel == null}">
-													<s:message code="entidadCaso_texto_label_historia_accion_1" arguments="${hist.field}"/>
-												</c:if>
-												<c:if test="${hist.labelOldValuePickList != ''}">
-													<s:message code="entidadCaso_texto_label_historia_accion_2" arguments="${hist.labelOldValuePickList}"/>
-												</c:if>
-												<c:if test="${hist.labelNewValuePickList != ''}">
-													<s:message code="entidadCaso_texto_label_historia_accion_3" arguments="${hist.labelNewValuePickList}"/>
-												</c:if>
-												.
-											</c:if>								
-										</td>
+										<td width="70%"> ${hist.field}</td>
 									</tr>
 								</c:forEach>
 							</c:when>
@@ -470,7 +449,7 @@
 							</c:otherwise>
 						</c:choose>
 					</table>
-					<c:if test="${fn:length(caso.historialCaso)>10}">
+					<c:if test="${caso.controlHistorialEntradas}">
 						<a class="link" href="javaScript:{refrescarHistorial('All')}" id="hrefTodosHistorial">Mostrar todos</a>
 						<a class="link" href="javaScript:{refrescarHistorial(10)}" id="hrefNoTodosHistorial" hidden="true">Mostrar 10</a>
 					</c:if>
