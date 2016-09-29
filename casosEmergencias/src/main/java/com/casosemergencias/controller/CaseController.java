@@ -473,7 +473,7 @@ public class CaseController {
 		//Recuperamos el heroku user para concatenarlo al comentario.
 		HttpSession session = request.getSession(true);
 		HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
-		String comentario = "<b>"+ user.getName() + ": </b> " + casoRequest.getComment();
+		String comentario = user.getName() + ": " + casoRequest.getComment();
 		casoRequest.setComment(comentario);
 		
 		CaseComment comentarioCaso = new CaseComment();

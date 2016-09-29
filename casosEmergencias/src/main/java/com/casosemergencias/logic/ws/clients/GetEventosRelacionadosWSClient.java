@@ -96,7 +96,7 @@ public class GetEventosRelacionadosWSClient {
 						&& !getEventosRelMsgResponse.getListadoEventos().getEvento().isEmpty()) {
 					response.setListadoEventos(getEventosRelMsgResponse.getListadoEventos());
 					for (EventoType evento : getEventosRelMsgResponse.getListadoEventos().getEvento()) {
-						logger.info("Evento " + evento.getNEvento() + " con descipción: " + evento.getDescripcionTipoEvento());
+						logger.info("Evento " + evento.getNevento() + " con descipción: " + evento.getDescripcionTipoEvento());
 					}
 				}
 			}

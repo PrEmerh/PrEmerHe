@@ -42,7 +42,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "EventoType", propOrder = {
     "tipo",
-    "nEvento",
+    "nevento",
     "vecino",
     "nincidencia",
     "ndescargo",
@@ -59,7 +59,7 @@ public class EventoType {
     @XmlElement(name = "Tipo")
     protected String tipo;
     @XmlElement(name = "NEvento")
-    protected String nEvento;
+    protected String nevento;
     @XmlElement(name = "Vecino")
     protected Boolean vecino;
     @XmlElement(name = "Nincidencia")
@@ -116,8 +116,8 @@ public class EventoType {
      *     {@link String }
      *     
      */
-    public String getNEvento() {
-        return nEvento;
+    public String getNevento() {
+        return nevento;
     }
 
     /**
@@ -128,8 +128,8 @@ public class EventoType {
      *     {@link String }
      *     
      */
-    public void setNEvento(String value) {
-        this.nEvento = value;
+    public void setNevento(String value) {
+        this.nevento = value;
     }
 
     /**

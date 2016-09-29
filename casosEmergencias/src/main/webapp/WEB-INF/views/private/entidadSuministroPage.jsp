@@ -632,6 +632,10 @@
 											<td class="filaValor">${eventoSum.tipo}</td>
 										</tr>
 										<tr>
+											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_numero"/></td>
+											<td class="filaValor">${eventoSum.nevento}</td>
+										</tr>
+										<tr>
 											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_vecino"/></td>
 											<c:choose>
 												<c:when test="${eventoSum.vecino}">
