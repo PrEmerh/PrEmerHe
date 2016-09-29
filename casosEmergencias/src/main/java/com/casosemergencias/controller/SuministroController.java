@@ -124,6 +124,10 @@ public class SuministroController {
 					}
 				}
 			}
+		} else {
+			// Estos datos se deben rellenar solo desde el WS. Si no, no se muiestra informacion
+			suministroView.setFechaCorte(null);
+			suministroView.setCortePorDeuda(null);
 		}
 		
 		if (datosWS.get(ConstantesTibcoWS.SIEME009_RESPONSE_LIST_NAME) != null) {

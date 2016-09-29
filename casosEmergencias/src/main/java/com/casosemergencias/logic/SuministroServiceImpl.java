@@ -235,16 +235,13 @@ public class SuministroServiceImpl implements SuministroService{
 		logger.info("------>>>>> Llamando al servicio de consulta de datos de suministro ------>>>>>");
 		ConsultaDatosSuministroWSResponse datosSumResponse = consultaDatosSuministroWSClient.consultarDatosSuministroWS(numSuministro, ConstantesTibcoWS.TIBCO_WS_SIRES033_ID_EMPRESA);
 		if (datosSumResponse != null) {
-			if (datosSumResponse.getMapaErrores() != null) {
-				if (datosSumResponse.getMapaErrores().containsKey("0")) {
-					logger.info("Peticion procesada correctamente");
-				} else {
-					logger.error("Error en la llamada al servicio: ");
-					for (Map.Entry<String,String> entry : datosSumResponse.getMapaErrores().entrySet()) {
-						logger.error("- Error " + entry.getKey() + ": " + entry.getValue());
-					}
+			if (datosSumResponse.getMapaErrores() != null && !datosSumResponse.getMapaErrores().containsKey("0")) {
+				logger.error("Error en la llamada al servicio: ");
+				for (Map.Entry<String,String> entry : datosSumResponse.getMapaErrores().entrySet()) {
+					logger.error("- Error " + entry.getKey() + ": " + entry.getValue());
 				}
 			} else {
+				logger.info("Peticion procesada correctamente");
 				logger.info("Registros encontrados: " + datosSumResponse.getTotalRegistros());
 				if (datosSumResponse.getListadoSuministros() != null && !datosSumResponse.getListadoSuministros().getSuministro().isEmpty()) {
 					datosWS.put(ConstantesTibcoWS.SIRES033_RESPONSE_LIST_NAME, datosSumResponse.getListadoSuministros());
@@ -257,18 +254,15 @@ public class SuministroServiceImpl implements SuministroService{
 		logger.info("------>>>>> Llamando al servicio de consulta de eventos relacionados con un suministro ------>>>>>");
 		GetEventosRelacionadosWSResponse eventosRelResponse = getEventosRelacionadosWSClient.getEventosRelacionadosWS(numSuministro, ConstantesTibcoWS.TIBCO_WS_SIRES033_ID_EMPRESA);
 		if (eventosRelResponse != null) {
-			if (eventosRelResponse.getMapaErrores() != null) {
-				if (eventosRelResponse.getMapaErrores().containsKey("0")) {
-					logger.info("Peticion procesada correctamente");
-				} else {
-					logger.error("Error en la llamada al servicio: ");
-					for (Map.Entry<String,String> entry : eventosRelResponse.getMapaErrores().entrySet()) {
-						logger.error("- Error " + entry.getKey() + ": " + entry.getValue());
-					}
+			if (eventosRelResponse.getMapaErrores() != null && !eventosRelResponse.getMapaErrores().containsKey("0")) {
+				logger.error("Error en la llamada al servicio: ");
+				for (Map.Entry<String,String> entry : eventosRelResponse.getMapaErrores().entrySet()) {
+					logger.error("- Error " + entry.getKey() + ": " + entry.getValue());
 				}
 			} else {
+				logger.error("Petición procesada correctamente");
 				if (eventosRelResponse.getListadoEventos() != null && !eventosRelResponse.getListadoEventos().getEvento().isEmpty()) {
-					logger.info("El suministro tiene eventos " + eventosRelResponse.getListadoEventos().getEvento().size() + " relacionados");
+					logger.info("El suministro tiene " + eventosRelResponse.getListadoEventos().getEvento().size() + " eventos relacionados");
 					datosWS.put(ConstantesTibcoWS.SIEME009_RESPONSE_LIST_NAME, eventosRelResponse.getListadoEventos());
 				}
 			}
