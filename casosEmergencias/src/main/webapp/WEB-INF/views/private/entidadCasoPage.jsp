@@ -31,7 +31,7 @@
 			<div id="divCaseModifiedError" class="divError">
 				<label class="labelDivError"><s:message code="entidadCasoAlta_error_datonovalidos"/></label>
 				<br>
-				<label class="labelDivError"><s:message code="entidadCasoAlta_error_revisemensajes"/></label>				
+				<label class="labelDivError"><s:message code="entidadCasoAlta_error_revisemensajes"/></label>
 			</div>
 			<div id="divCaseModifiedOk" class="divOk" >
 				<label class="labelDivOk"><s:message code="entidadCaso_modificacion_correcta"/></label>
@@ -213,7 +213,7 @@
 					</div>
 					<div>
 						<label id="fieldRead">${caso.description}</label>
-						<label id="fieldEdit" style="display:none;"><form:input id="idDescripcion" type="text" path="description" class="buttontext" value="${caso.description}"/></label>
+						<label id="fieldEdit" style="display:none;"><form:input id="descrip" type="text" path="description" class="buttontext" value="${caso.description}"/></label>				
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_submotivo"/></label>
@@ -252,7 +252,7 @@
 						<label><s:message code="entidadCaso_table_label_nombreContacto"/></label>
 					</div>
 					<div>
-						<label><a class="link" href="../private/entidadContacto?sfid=${caso.contactoJoin.sfid}">${caso.contactoJoin.name}</a></label>
+						<label><a class="link" href="javascript:cargandoGif('${caso.contactoJoin.sfid}','entidadContacto');">${caso.contactoJoin.name}</a></label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_canalNotificacion"/></label>
@@ -266,7 +266,7 @@
 						<label><s:message code="entidadCaso_table_label_suministro"/></label>
 					</div>
 					<div>
-						<label><a class="link" href="../private/entidadSuministro?sfid=${caso.suministroJoin.sfid}">${caso.suministroJoin.name}</a></label>
+						<label><a class="link" href="javascript:cargandoGif('${caso.suministroJoin.sfid}','entidadSuministro');">${caso.suministroJoin.name}</a></label>						
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_telefonoContacto"/></label>
@@ -280,7 +280,7 @@
 						<label><s:message code="entidadCaso_table_label_detalleDireccion"/></label>
 					</div>
 					<div>
-						<label><a class="link" href="../private/entidadDireccion?sfid=${caso.direccionJoin.sfid}">${caso.direccionJoin.name}</a></label>
+						<label><a class="link" href="javascript:cargandoGif('${caso.direccionJoin.sfid}','entidadDireccion');">${caso.direccionJoin.name}</a></label>											
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_emailNotificacion"/></label>
@@ -294,7 +294,7 @@
 						<label><s:message code="entidadCaso_table_label_nombreCuenta"/></label>
 					</div>
 					<div>
-						<label><a class="link" href="../private/entidadCuenta?sfid=${caso.cuentaJoin.sfid}">${caso.cuentaJoin.name}</a></label>
+						<label><a class="link" href="javascript:cargandoGif('${caso.cuentaJoin.sfid}','entidadCuenta');">${caso.cuentaJoin.name}</a></label>																	
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCaso_table_label_idFacebook"/></label>

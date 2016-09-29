@@ -270,7 +270,7 @@
 										<c:if test="${caso.userJoin.name==null}">
 											<label>${caso.groupJoin.name}</label>
 										</c:if> 
-									</td>									
+									</td>
 								</tr>
 							</c:forEach>
 						</c:when>

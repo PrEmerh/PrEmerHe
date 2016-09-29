@@ -19,7 +19,7 @@
 		<script src="../resources/js/utils.js"></script>
 		<script src="../resources/js/contactosDataTable.js"></script>
 	</head>
-	<body onload="initHeader();limpiarCamposBuscadorContactos();">
+	<body onload="initHeader();limpiarCamposBuscadorContactos()">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_contact"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<br><br>
@@ -77,6 +77,11 @@
 				</tr>
 			</table>
 		</div>
+<%--  		<center>
+			<div>
+				<img id="cargandoGif" src="${pageContext.request.contextPath}/resources/images/loading.gif" width="30" style="padding-left: 15px;" hidden="true"/>								
+			</div>
+		</center>  --%>
 		<div>
 			<table id="tablaContactos" class="display" style="width: 100%;">
 				<thead>

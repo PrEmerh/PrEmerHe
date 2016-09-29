@@ -22,7 +22,7 @@
 	<body onload="initHeader();showNotifications();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadSuministro_title_label_detalle_suministro"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
-		<!-- Mensajes de inserccion caso por corte-->
+		<!-- Mensajes de inserccion caso por corte-->	
 		<div>
 			<div id="divCaseCorteCreatedError" class="divError">
 				<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
@@ -44,16 +44,14 @@
 				</div>
 			</div>
 		</c:if>
-		<form:form name="formEntidadSuministroName" id="formEntidadSuministro" action="actualizarSuministro" modelAttribute="suministro" method="POST">
-			<center>
-				<div class="botoneraListado">
+		<form:form name="formEntidadSuministroName" id="formEntidadSuministro" action="actualizarSuministro" modelAttribute="suministro" method="POST">			
+				<div class="botoneraCentrado">
 					<ul>
-						<li><input type="button" name="goCrearCasoBySuministroName" value="<s:message code="homeCasos_button_nuevocaso"/>" onclick="goCrearCasoBySuministro();" /></li>
-						<li><input type="button" name="corteDeudaName" value="<s:message code="homeCasos_button_corteDeuda"/>" onclick="crearCasoCorteDeuda();"  /></li>
-						<li><input type="button" name="corteProgramadoName" value="<s:message code="homeCasos_button_corteProgramado"/>" onclick="crearCasoCorteProgramado();" /></li>
+						<li><input type="button" name="goCrearCasoBySuministroName" value="<s:message code="entidadSuministro_table_label_botonCrearCaso"/>" onclick="goCrearCasoBySuministro();" /></li>
+						<li><input type="button" name="corteDeudaName" value="<s:message code="entidadSuministro_table_label_botonCorteDeuda"/>" onclick="crearCasoCorteDeuda();"  /></li>
+						<li><input type="button" name="corteProgramadoName" value="<s:message code="entidadSuministro_table_label_botonCorteProg"/>" onclick="crearCasoCorteProgramado();" /></li>
 					</ul>
-				</div>
-			</center>
+				</div>			
 			<form:hidden path="sfid" id="sfidSum"/>
 			<div class="divEntidadDatos">
 				<div class="divEntidad">
