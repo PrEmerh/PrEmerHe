@@ -599,6 +599,14 @@ div .cabeceraSubTitulo {
 	margin-left: 5px;
 }
 
+.dialogLupa select{
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	padding: 2px;
+}   
+
+
 /* <<<<< ESTILOS PARA DIV DE CARGAR PAGINA */
 
 .divCargando {

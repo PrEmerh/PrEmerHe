@@ -56,14 +56,12 @@ function cargarDialogCancelacion() {
 		show: "blind", 
 		hide: "blind", 
 		height: "auto",
-		width: "auto",
+		width: "13%",
 		position:{
 			my: "center center", 
 			at: "center center",
 			of: $('#detalleCaso') 
 		},
-		
-		//resizable: false,
 		create: function (event) {}
 	});
 }

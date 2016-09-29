@@ -10,11 +10,11 @@
 		
 		<link rel="icon" type="image/png" href="../resources/images/favicon.png">
 			
+		<link href="../resources/css/jquery-ui.css" rel="stylesheet" />
+		<link href="../resources/css/jQueryDatatable.css" rel="stylesheet" />
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
 		<link href="../resources/css/body.css" rel="stylesheet" />	
 		<link href="../resources/css/styles.css" rel="stylesheet" />	
-		<link href="../resources/css/jquery-ui.css" rel="stylesheet" />
-		<link href="../resources/css/jQueryDatatable.css" rel="stylesheet" />
 	
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>	
@@ -516,7 +516,7 @@
 		<div id="dialogCancelarCaso" title="<s:message code="entidadCaso_dialog_labe" arguments="${caso.numeroCaso}"/>" class="dialogLupa">			
 			<form:form name="formCancelarCaso" id="formCancelarCasoId" action="cancelarCaso" modelAttribute="caso" method="POST">
 				<form:hidden path="sfid"/>
-				<div>
+				<div style="padding-top:4%;">
 					<form:select id="subEstadoCancelacion" path="subestado" items="${caso.mapSubStatusCancelacion}"/>
 				</div>
 				<br>
