@@ -143,6 +143,10 @@ public class EventoType {
     public Boolean isVecino() {
         return vecino;
     }
+    
+    public Boolean getVecino() {
+        return vecino;
+    }
 
     /**
      * Sets the value of the vecino property.
