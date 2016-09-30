@@ -28,6 +28,7 @@ import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.constants.Constantes;
 import com.casosemergencias.util.constants.ConstantesTibcoWS;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -121,6 +122,7 @@ public class SuministroServiceImpl implements SuministroService{
 				int numCasos = 0;
 				int limiteDias = casosReiteradosVO.getNumDias().intValue();
 				int numCasosReit = casosReiteradosVO.getNumCasos().intValue();
+				boolean hayCasoAbierto = false;
 				
 				Calendar calendar = Calendar.getInstance();	
 				//Definimos el formato para comparar 'fechaApertura' con la fecha actual
@@ -143,6 +145,10 @@ public class SuministroServiceImpl implements SuministroService{
 							if(dateCreadionCaso.getTime() > dateHoy.getTime()){
 								numCasos ++;
 							}
+							
+							if (!(Constantes.COD_CASO_STATUS_CERRADO).equals(caso.getEstado()) && !(Constantes.COD_CASO_STATUS_CANCELADO).equals(caso.getEstado())) {
+								hayCasoAbierto = true;
+							}
 						}
 						
 					} catch (ParseException e) {
@@ -154,6 +160,10 @@ public class SuministroServiceImpl implements SuministroService{
 				
 				if(numCasos >= numCasosReit){
 					suministro.setCasosReiterados((double) numCasos);
+				}
+				
+				if (hayCasoAbierto) {
+					suministro.setCasosAbiertos(Boolean.valueOf(true));
 				}
 			}
 			

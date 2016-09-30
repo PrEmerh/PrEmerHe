@@ -185,7 +185,11 @@ public class CaseController {
 		SuministroView suministroAsociado = null;
 		
 		HttpSession session = request.getSession(true);
-		String suministroSfid = (String) session.getAttribute(Constantes.SFID_SUMINISTRO);
+		String suministroSfid = null;
+		if (Constantes.FINAL_DETAIL_PAGE.equals(Constantes.FINAL_DETAIL_PAGE_CONTACTO)) {
+			logger.info("Se crea el caso desde contacto, no se arrastra el suministro");
+			suministroSfid = (String) session.getAttribute(Constantes.SFID_SUMINISTRO);
+		}
 		String contactoSfid = (String) session.getAttribute(Constantes.SFID_CONTACTO);
 		String cuentaSfid = (String) session.getAttribute(Constantes.SFID_CUENTA);
 		HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
@@ -616,9 +620,9 @@ public class CaseController {
 		contactoSfid = (String) session.getAttribute(Constantes.SFID_CONTACTO);
 		finalDetailPage = (String) session.getAttribute(Constantes.FINAL_DETAIL_PAGE);
 		
-		if (finalDetailPage != null && "CONTACTO".equals(finalDetailPage) && contactoSfid != null && !"".equals(contactoSfid)) {
+		if (finalDetailPage != null && Constantes.FINAL_DETAIL_PAGE_CONTACTO.equals(finalDetailPage) && contactoSfid != null && !"".equals(contactoSfid)) {
 			redirectionPage = "redirect:entidadContacto?sfid=" + contactoSfid;
-		} else if (finalDetailPage != null && "SUMINISTRO".equals(finalDetailPage) && suministroSfid != null && !"".equals(suministroSfid)) {
+		} else if (finalDetailPage != null && Constantes.FINAL_DETAIL_PAGE_SUMINISTRO.equals(finalDetailPage) && suministroSfid != null && !"".equals(suministroSfid)) {
 			redirectionPage = "redirect:entidadSuministro?sfid=" + suministroSfid;
 		}
 		return redirectionPage;

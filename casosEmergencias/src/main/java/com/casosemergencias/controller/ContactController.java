@@ -66,7 +66,7 @@ public class ContactController {
 		
 		
 		session.setAttribute(Constantes.SFID_CONTACTO, sfid);
-		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, "CONTACTO");
+		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, Constantes.FINAL_DETAIL_PAGE_CONTACTO);
 
 		ModelAndView model = new ModelAndView();		
 		model.addObject("sfid", sfid);

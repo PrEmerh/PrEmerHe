@@ -624,9 +624,17 @@
 					</div>
 					<div id="tablaEventosSuministro">
 						<table class="servicesTable">
+							<c:set var="contEventos" value="0" scope="page"/>
 							<c:choose>
 								<c:when test="${not empty suministro && not empty suministro.listadoEventos && not empty suministro.listadoEventos.evento}">
 									<c:forEach items="${suministro.listadoEventos.evento}" var="eventoSum">
+										<c:set var="count" value="${count + 1}" scope="page"/>
+										<c:if test="${count > 1}">
+											<tr>
+											<td class="filaLiteral">&nbsp;</td>
+											<td class="filaValor">&nbsp;</td>
+										</tr>
+										</c:if>
 										<tr>
 											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_evento_tipo"/></td>
 											<td class="filaValor">${eventoSum.tipo}</td>

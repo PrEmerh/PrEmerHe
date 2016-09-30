@@ -70,7 +70,7 @@ public class SuministroController {
 		HttpSession session = request.getSession(true);
 		
 		session.setAttribute(Constantes.SFID_SUMINISTRO, sfid);	
-		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, "SUMINISTRO");
+		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, Constantes.FINAL_DETAIL_PAGE_SUMINISTRO);
 
 		ModelAndView model = new ModelAndView();		
 		model.addObject("sfid", sfid);
@@ -121,7 +121,12 @@ public class SuministroController {
 					if (fechaActual.getTime() > fechaCorteSuministro.getTime()) {
 						logger.info("Se ha superado la fecha de corte, por lo que se marca que es corte por deuda");
 						suministroView.setCortePorDeuda(true);
+					} else {
+						suministroView.setCortePorDeuda(false);
 					}
+				} else {
+					suministroView.setFechaCorte(null);
+					suministroView.setCortePorDeuda(false);
 				}
 			}
 		} else {
