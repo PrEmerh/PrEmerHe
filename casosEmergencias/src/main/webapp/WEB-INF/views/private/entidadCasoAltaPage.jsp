@@ -219,7 +219,8 @@
 						</div>
 						<div>
 							<form:hidden path="nombreContacto"/>
-							<label>${caso.contactoJoin.name}</label>
+							<form:hidden path="nombreContactoString"/>
+							<label>${caso.nombreContactoString}</label>
 						</div>
 						<div class="divLabel"><label><s:message code="entidadCaso_table_label_canalNotificacion"/></label></div>
 						<div>
@@ -232,12 +233,13 @@
 						</div>
 						<div>
 							<form:hidden path="suministro"/>
+							<form:hidden path="suministroString"/>
 							<c:choose>
-								<c:when test="${not empty caso.suministroJoin}">
-									<input type="text" id="numSumiRecuperado" disabled="disabled" value="${caso.suministroJoin.name}"/>
+								<c:when test="${not empty paginaDetalleFinal && paginaDetalleFinal == 'SUMINISTRO'}">
+									<input type="text" id="numSumiRecuperado" disabled="disabled" value="${caso.suministroString}"/>
 								</c:when>
 								<c:otherwise>
-									<input type="text" id="numSumiRecuperado" disabled="disabled"/>
+									<input type="text" id="numSumiRecuperado" disabled="disabled" value="${caso.suministroString}"/>
 									<input type="button" id="botonLupaSuministro" class="lupa" onclick="abrirDialogSuministro();">					
 									<input type="button" id="textSuministro" class="limpiarCampo" onclick="limpiarSuministro();" value="<s:message code="entidadCasoAlta_table_label_limpiar"/>"/>
 								</c:otherwise>
@@ -254,12 +256,13 @@
 						</div>
 						<div>
 							<form:hidden path="direccion"/>
+							<form:hidden path="direccionString"/>
 							<c:choose>
-								<c:when test="${not empty caso.direccionJoin}">
-									<input type="text" id="dirRecuperada" disabled="disabled" value="${caso.direccionJoin.name}"/>
+								<c:when test="${not empty paginaDetalleFinal && paginaDetalleFinal == 'SUMINISTRO'}">
+									<input type="text" id="dirRecuperada" disabled="disabled" value="${caso.direccionString}"/>
 								</c:when>
 								<c:otherwise>
-									<input type="text" id="dirRecuperada" disabled="disabled"/>
+									<input type="text" id="dirRecuperada" disabled="disabled" value="${caso.direccionString}"/>
 									<input type="button" id="botonLupaDireccion" class="lupa" onclick="abrirDialogDireccion();">
 									<input type="button" id="textDireccion" class="limpiarCampo" onclick="limpiarDireccion();" value="<s:message code="entidadCasoAlta_table_label_limpiar"/>" />
 								</c:otherwise>
@@ -276,7 +279,8 @@
 						</div>
 						<div>
 							<form:hidden path="nombreCuenta"/>
-							<label>${caso.cuentaJoin.name}</label>
+							<form:hidden path="nombreCuentaString"/>
+							<label>${caso.nombreCuentaString}</label>
 						</div>
 						<div class="divLabel"><label><s:message code="entidadCaso_table_label_idFacebook"/></label></div>
 						<div>

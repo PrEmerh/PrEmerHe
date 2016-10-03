@@ -16,13 +16,17 @@ public class CaseView extends ObjectView {
 	private Date fechaApertura;
 	private String subestado;
 	private String nombreContacto;
+	private String nombreContactoString;
 	private String direccionSuministro;
 	private String comuna;
 	private String canalOrigen;
 	private String canalOrigenLabel;
 	private String nombreCuenta;
+	private String nombreCuentaString;
 	private String suministro;
+	private String suministroString;
 	private String direccion;
+	private String direccionString;
 	private String estadoSuministro;
 	private String peticion;
 	private String peticionLabel;
@@ -551,5 +555,29 @@ public class CaseView extends ObjectView {
 	public Object instantiateTargetLogic() {
 		Caso caso = new Caso();
 		return caso;
+	}
+	public String getNombreContactoString() {
+		return nombreContactoString;
+	}
+	public void setNombreContactoString(String nombreContactoString) {
+		this.nombreContactoString = nombreContactoString;
+	}
+	public String getNombreCuentaString() {
+		return nombreCuentaString;
+	}
+	public void setNombreCuentaString(String nombreCuentaString) {
+		this.nombreCuentaString = nombreCuentaString;
+	}
+	public String getSuministroString() {
+		return suministroString;
+	}
+	public void setSuministroString(String suministroString) {
+		this.suministroString = suministroString;
+	}
+	public String getDireccionString() {
+		return direccionString;
+	}
+	public void setDireccionString(String direccionString) {
+		this.direccionString = direccionString;
 	}
 }

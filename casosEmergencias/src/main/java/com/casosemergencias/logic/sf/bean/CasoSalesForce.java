@@ -33,6 +33,7 @@ public class CasoSalesForce {
 	private String Respuesta_al_Cliente__c;
 	private String Favorabilidad_del_Caso__c;
 	private String HerokuUser__c;
+	private String Call_Center__c;
 	
 	public String getPetici_n__c() {
 		return Petici_n__c;
@@ -257,6 +258,14 @@ public class CasoSalesForce {
 	public void setHerokuUser__c(String herokuUser__c) {
 		HerokuUser__c = herokuUser__c;
 	}
+
+	public String getCall_Center__c() {
+		return Call_Center__c;
+	}
+
+	public void setCall_Center__c(String call_Center__c) {
+		Call_Center__c = call_Center__c;
+	}
 	
 	public static CasoSalesForce copyFieldsFromHerokuToSalesForceCaseBean(Caso casoHeroku) {
 		CasoSalesForce casoSF = new CasoSalesForce();
@@ -289,6 +298,7 @@ public class CasoSalesForce {
 			casoSF.setRespuesta_al_Cliente__c((casoHeroku.getRespuestaAlCliente() != null && !"".equals(casoHeroku.getRespuestaAlCliente()) ? casoHeroku.getRespuestaAlCliente() : ""));
 			casoSF.setFavorabilidad_del_Caso__c((casoHeroku.getFavorabilidadDelCaso() != null && !"".equals(casoHeroku.getFavorabilidadDelCaso()) ? casoHeroku.getFavorabilidadDelCaso() : ""));
 			casoSF.setHerokuUser__c((casoHeroku.getHerokuUsername() != null && !"".equals(casoHeroku.getHerokuUsername()) ? casoHeroku.getHerokuUsername() : ""));
+			casoSF.setCall_Center__c((casoHeroku.getCallCenter() != null && !"".equals(casoHeroku.getCallCenter()) ? casoHeroku.getCallCenter() : ""));
 		}
 		return casoSF;
 	}

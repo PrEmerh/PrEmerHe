@@ -293,11 +293,11 @@
 										<tr>
 											<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
 											<td class="filaImagen">
-											<c:if test="${caso.descripcionEstado!=null && caso.descripcionEstado!='Cerrado' && caso.descripcionEstado!='Cancelado'}">					
+											<c:if test="${caso.labelEstadoPickList!=null && caso.labelEstadoPickList!='Cerrado' && caso.labelEstadoPickList!='Cancelado'}">					
 											<img src="../resources/images/inservice_red_point.png" height="12px" width="12px">
 											</c:if>	
 											</td>
-											<td>${caso.descripcionEstado}</td>
+											<td>${caso.labelEstadoPickList}</td>
 											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaApertura}"/></td>
 											<td>${caso.labelSubmotivoPickList}</td>
 											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaEstimadaCierre}"/></td>
