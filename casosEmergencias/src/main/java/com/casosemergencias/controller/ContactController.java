@@ -12,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +22,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.ContactView;
+import com.casosemergencias.controller.views.HerokuUserView;
+import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.ContactService;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.util.ParserModelVO;
@@ -174,5 +177,82 @@ public class ContactController {
 		
 		return model;
 	}
+	
+	//Crear Caso nuevo con Contacto asociado.
+	
+	@RequestMapping(value = "/private/listarAsociarSuministros", method = RequestMethod.POST)
+	public @ResponseBody String listadoSuministrosAsociar2(@ModelAttribute("asociarSuministro") SuministroView suministroView){//@RequestBody String body) {
+		
+		logger.info("--- Inicio -- listadoSuministrosAsociar ---");
+		
+//		DataTableProperties propDataTable = DataTableParser.parseBodyToDataTable(body);
+//		List<Contacto> listaContactos = new ArrayList<Contacto>();
+		
+		JSONObject jsonResult = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
+		
+//		listaContactos = contactService.readAllContactos(propDataTable);
+
+//		for (Contacto contacto : listaContactos) {
+			jsonResult = new JSONObject();
+			jsonResult.put("name", "39282-3");
+			jsonResult.put("direccionConcatenada", "Calle Jorge Luis, 4");
+			jsonResult.put("comuna", "CHILE");
+			jsonResult.put("empresaPickList", "EMPRESA");
+			jsonResult.put("sfid", "12342kdiwe");
+			jsonArray.put(jsonResult);
+//		}
+//		
+//		Integer numContactos = contactService.getNumContactos(propDataTable);
+		
+		JSONObject jsonObject = new JSONObject();
+//		jsonObject.put("iTotalRecords", numContactos); 
+//		jsonObject.put("iTotalDisplayRecords", numContactos); 
+		jsonObject.put("data", jsonArray);
+//		jsonObject.put("draw", propDataTable.getDraw());
+	
+				
+		logger.info("--- Fin -- listadoSuministrosAsociar ---");
+		
+		return jsonObject.toString();
+	}
+	
+	@RequestMapping(value = "/listarAsociarSuministros", method = RequestMethod.POST)
+	public @ResponseBody String listadoSuministrosAsociar(@RequestBody String body) {
+		
+		logger.info("--- Inicio -- listadoSuministrosAsociar ---");
+		
+//		DataTableProperties propDataTable = DataTableParser.parseBodyToDataTable(body);
+//		List<Contacto> listaContactos = new ArrayList<Contacto>();
+		
+		JSONObject jsonResult = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
+		
+//		listaContactos = contactService.readAllContactos(propDataTable);
+
+//		for (Contacto contacto : listaContactos) {
+			jsonResult = new JSONObject();
+			jsonResult.put("name", "39282-3");
+			jsonResult.put("direccionConcatenada", "Calle Jorge Luis, 4");
+			jsonResult.put("comuna", "CHILE");
+			jsonResult.put("empresaPickList", "EMPRESA");
+			jsonResult.put("sfid", "12342kdiwe");
+			jsonArray.put(jsonResult);
+//		}
+//		
+//		Integer numContactos = contactService.getNumContactos(propDataTable);
+		
+		JSONObject jsonObject = new JSONObject();
+//		jsonObject.put("iTotalRecords", numContactos); 
+//		jsonObject.put("iTotalDisplayRecords", numContactos); 
+		jsonObject.put("data", jsonArray);
+//		jsonObject.put("draw", propDataTable.getDraw());
+	
+				
+		logger.info("--- Fin -- listadoSuministrosAsociar ---");
+		
+		return jsonObject.toString();
+	}
+	
 	
 }

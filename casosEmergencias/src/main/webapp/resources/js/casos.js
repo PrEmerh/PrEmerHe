@@ -1,6 +1,12 @@
 var estadoCancelado = 'ESTA008';
 var estadoCerrado = 'ESTA007';
 
+function funcionOnload(){
+	initHeader(); 
+	checkUpdates(); 
+	cargarDialogCancelacion();
+}
+
 // FUNCIONES PARA MODIFICAR UN CASO
 function modificarCasoButton() {
 	ocultarDivNotificacion();

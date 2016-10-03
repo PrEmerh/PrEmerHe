@@ -211,7 +211,7 @@ public class CaseServiceImpl implements CaseService{
 		String subestadoCancelacion = caso.getSubestado();
 		boolean esAlta;
 		boolean canceladoOk = false;
-		String comentarioCaso = "<b>"+ userName + ": </b> ";
+		String comentarioCaso = userName + ": ";
 
 		CaseCommentVO comentario = new CaseCommentVO();
 		CaseVO casoVO = new CaseVO();

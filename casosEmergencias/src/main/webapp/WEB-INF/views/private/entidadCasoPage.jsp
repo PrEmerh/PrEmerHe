@@ -23,7 +23,7 @@
         <script src="../resources/js/utils.js" lang=""></script> 
 		<script src="../resources/js/casos.js"></script>
 	</head>
-	<body onload="initHeader(); checkUpdates(); cargarDialogCancelacion();">
+	<body onload="funcionOnload();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<!-- Mensajes de estado de alta, actualizacion e insercion de comentarios de un caso -->

@@ -123,5 +123,9 @@ function cargandoGif(sfid,page) {
 		}
 }
 
+//metodo que muestra el div de "cargando.."
+function verCaragando(){
+	document.getElementById("cargandoGif").hidden=false;
+}
 
 
