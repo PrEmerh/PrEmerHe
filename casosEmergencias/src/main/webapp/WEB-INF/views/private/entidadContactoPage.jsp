@@ -12,10 +12,10 @@
 		<link rel="icon" type="image/png" href="../resources/images/favicon.png">
 		
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
-		<link href="../resources/css/body.css" rel="stylesheet" />
 		<link href="../resources/css/styles.css" rel="stylesheet" />	
+		<link href="../resources/css/body.css" rel="stylesheet" />
 		<link href="../resources/css/jquery-ui.css" rel="stylesheet" />
-		<!-- <link href="../resources/css/jQueryDatatable.css" rel="stylesheet" /> -->
+		<link href="../resources/css/jQueryDatatable.css" rel="stylesheet" />
 	
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
   		<script src="../resources/js/jquery-ui.js"></script>

@@ -25,9 +25,12 @@ import com.casosemergencias.controller.views.ContactView;
 import com.casosemergencias.controller.views.HerokuUserView;
 import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.ContactService;
+import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.Contacto;
+import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.constants.Constantes;
+import com.casosemergencias.util.datatables.DataTableColumnInfo;
 import com.casosemergencias.util.datatables.DataTableParser;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -38,6 +41,9 @@ public class ContactController {
 
 	@Autowired
 	private ContactService contactService;
+	
+	@Autowired
+	private SuministroService suministroSrvice;
 
 	@RequestMapping(value = "/private/homeContacts", method = RequestMethod.GET)
 	public ModelAndView listadoContactos() {
@@ -178,38 +184,46 @@ public class ContactController {
 		return model;
 	}
 	
-	//Crear Caso nuevo con Contacto asociado.
 	
+	/**
+	 * Metodo invocado desde Asociar Suministros a un Contacto. Si los parametros de filtrado estan vacios, no se
+	 * realiza busqueda en BBDD y se devuelve una lista de suministros vacia.
+	 * 
+	 * @param suministroView
+	 * @return
+	 */
 	@RequestMapping(value = "/private/listarAsociarSuministros", method = RequestMethod.POST)
-	public @ResponseBody String listadoSuministrosAsociar2(@ModelAttribute("asociarSuministro") SuministroView suministroView){//@RequestBody String body) {
+	public @ResponseBody String listadoSuministrosAsociar(@RequestBody String body) {//@ModelAttribute("asociarSuministro") SuministroView suministroView){
 		
 		logger.info("--- Inicio -- listadoSuministrosAsociar ---");
 		
-//		DataTableProperties propDataTable = DataTableParser.parseBodyToDataTable(body);
-//		List<Contacto> listaContactos = new ArrayList<Contacto>();
-		
+		//Def variable de la vista
 		JSONObject jsonResult = new JSONObject();
 		JSONArray jsonArray = new JSONArray();
-		
-//		listaContactos = contactService.readAllContactos(propDataTable);
-
-//		for (Contacto contacto : listaContactos) {
-			jsonResult = new JSONObject();
-			jsonResult.put("name", "39282-3");
-			jsonResult.put("direccionConcatenada", "Calle Jorge Luis, 4");
-			jsonResult.put("comuna", "CHILE");
-			jsonResult.put("empresaPickList", "EMPRESA");
-			jsonResult.put("sfid", "12342kdiwe");
-			jsonArray.put(jsonResult);
-//		}
-//		
-//		Integer numContactos = contactService.getNumContactos(propDataTable);
-		
 		JSONObject jsonObject = new JSONObject();
-//		jsonObject.put("iTotalRecords", numContactos); 
-//		jsonObject.put("iTotalDisplayRecords", numContactos); 
+		
+		DataTableProperties propDataTable = DataTableParser.parseBodyToDataTable(body);
+		boolean busqueda = realizarBusquedaDataTable(propDataTable.getColumsInfo());
+		
+		if(busqueda){
+			//Realizamos la busqueda en BBDD
+			List<Suministro> listaSuministros = new ArrayList<Suministro>();
+			listaSuministros = this.suministroSrvice.readAllSuministros(propDataTable);
+			
+			for(Suministro suministro : listaSuministros){
+				jsonResult = new JSONObject();
+				jsonResult.put("name", suministro.getName());
+				jsonResult.put("direccionConcatenada", suministro.getDireccionConcatenada());
+				jsonResult.put("comuna", suministro.getComuna());
+				jsonResult.put("estadoSuministroPickList", suministro.getLabelEstadoSuministroPickList());
+				jsonResult.put("empresaPickList", suministro.getLabelEmpresaPickList());
+				jsonResult.put("sfid", suministro.getSfid());
+				jsonArray.put(jsonResult);
+			}
+
+		}		
+
 		jsonObject.put("data", jsonArray);
-//		jsonObject.put("draw", propDataTable.getDraw());
 	
 				
 		logger.info("--- Fin -- listadoSuministrosAsociar ---");
@@ -217,42 +231,21 @@ public class ContactController {
 		return jsonObject.toString();
 	}
 	
-	@RequestMapping(value = "/listarAsociarSuministros", method = RequestMethod.POST)
-	public @ResponseBody String listadoSuministrosAsociar(@RequestBody String body) {
-		
-		logger.info("--- Inicio -- listadoSuministrosAsociar ---");
-		
-//		DataTableProperties propDataTable = DataTableParser.parseBodyToDataTable(body);
-//		List<Contacto> listaContactos = new ArrayList<Contacto>();
-		
-		JSONObject jsonResult = new JSONObject();
-		JSONArray jsonArray = new JSONArray();
-		
-//		listaContactos = contactService.readAllContactos(propDataTable);
-
-//		for (Contacto contacto : listaContactos) {
-			jsonResult = new JSONObject();
-			jsonResult.put("name", "39282-3");
-			jsonResult.put("direccionConcatenada", "Calle Jorge Luis, 4");
-			jsonResult.put("comuna", "CHILE");
-			jsonResult.put("empresaPickList", "EMPRESA");
-			jsonResult.put("sfid", "12342kdiwe");
-			jsonArray.put(jsonResult);
-//		}
-//		
-//		Integer numContactos = contactService.getNumContactos(propDataTable);
-		
-		JSONObject jsonObject = new JSONObject();
-//		jsonObject.put("iTotalRecords", numContactos); 
-//		jsonObject.put("iTotalDisplayRecords", numContactos); 
-		jsonObject.put("data", jsonArray);
-//		jsonObject.put("draw", propDataTable.getDraw());
-	
-				
-		logger.info("--- Fin -- listadoSuministrosAsociar ---");
-		
-		return jsonObject.toString();
+	/**
+	 * Dada una lista con las propiedades de las columnas un DataTable, comprueba si alguna tiene datos para filtrar, en ese caso return true
+	 * 
+	 * @param propColumns
+	 * @return
+	 */
+	private boolean realizarBusquedaDataTable(List<DataTableColumnInfo> propColumns){
+		//Si alguna columna tiene datos para filtrar, ponemos realizarBusqueda a true
+		for(DataTableColumnInfo columnInfor : propColumns){
+			if(columnInfor.getSearchValue() != null && !"".equals(columnInfor.getSearchValue())){
+				return true;				
+			}
+			
+		}
+		return false;
 	}
-	
 	
 }
