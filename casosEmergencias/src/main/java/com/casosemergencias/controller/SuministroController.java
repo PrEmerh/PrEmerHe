@@ -143,9 +143,9 @@ public class SuministroController {
 		for(Suministro suministro : listSuministros){
 			jsonResult = new JSONObject();
 			jsonResult.put("name", suministro.getName());
-			jsonResult.put("id_empresa__c", suministro.getIdEmpresa());
-			jsonResult.put("comuna__c", suministro.getComuna());
-			jsonResult.put("DireccionConcatenada__c", suministro.getDireccionConcatenada());
+			jsonResult.put("idEmpresa", suministro.getIdEmpresa());
+			jsonResult.put("comuna", suministro.getComuna());
+			jsonResult.put("direccionConcatenada", suministro.getDireccionConcatenada());
 			if(suministro.getDireccion()!=null){
 				jsonResult.put("direccionSfid", suministro.getDirSuministroJoin().getSfid());
 				jsonResult.put("direccionName", suministro.getDirSuministroJoin().getName());	
@@ -256,8 +256,8 @@ public class SuministroController {
 			jsonResult.put("name", suministro.getName());
 			jsonResult.put("estadoConexion", suministro.getLabelEstadoConexionPickList());
 			jsonResult.put("estadoSuministro", suministro.getLabelEstadoSuministroPickList());
-			jsonResult.put("DireccionConcatenada__c", suministro.getDireccionConcatenada());
-			jsonResult.put("comuna__c", suministro.getComuna());
+			jsonResult.put("direccionConcatenada", suministro.getDireccionConcatenada());
+			jsonResult.put("comuna", suministro.getComuna());
 			jsonResult.put("sfid", suministro.getSfid());
 			array.put(jsonResult);
 		}

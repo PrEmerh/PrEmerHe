@@ -35,13 +35,16 @@ public class DataTableParser {
 			dataTableProperties.setGenericSearching(genericSearching);
 			
 			Map<String, Object> tableOrdering = new HashMap<String, Object>();
-			Integer orderingColumnNumber = Integer.parseInt(mappedPropertiesFromBody.get("order[0][column]"));
-			//variable para recuperar el nombre de la columna, es de la forma 'columns[0][data]'
-			String orderingColumnName = mappedPropertiesFromBody.get("columns[" + orderingColumnNumber+ "][data]"); 
-			tableOrdering.put("orderingColumnNumber", orderingColumnNumber);
-			tableOrdering.put("orderingColumnName", orderingColumnName);
-			tableOrdering.put("orderingDirection", mappedPropertiesFromBody.get("order[0][dir]"));
-			dataTableProperties.setTableOrdering(tableOrdering);
+			//Comprobamos si es ordenable
+			if(mappedPropertiesFromBody.get("order[0][column]") != null){
+				Integer orderingColumnNumber = Integer.parseInt(mappedPropertiesFromBody.get("order[0][column]"));
+				//variable para recuperar el nombre de la columna, es de la forma 'columns[0][data]'
+				String orderingColumnName = mappedPropertiesFromBody.get("columns[" + orderingColumnNumber+ "][data]"); 
+				tableOrdering.put("orderingColumnNumber", orderingColumnNumber);
+				tableOrdering.put("orderingColumnName", orderingColumnName);
+				tableOrdering.put("orderingDirection", mappedPropertiesFromBody.get("order[0][dir]"));
+				dataTableProperties.setTableOrdering(tableOrdering);
+			}
 			
 			List<DataTableColumnInfo> columnsInfo = new LinkedList<DataTableColumnInfo>();
 			int columnCounter = 0;
