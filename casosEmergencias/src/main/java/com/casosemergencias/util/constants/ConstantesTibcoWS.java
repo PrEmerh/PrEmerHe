@@ -3,6 +3,7 @@ package com.casosemergencias.util.constants;
 public class ConstantesTibcoWS {
 	/** Constantes para el login contra el entorno de desarrollo de SalesForce. */
 	public static final String TIBCO_WS_SIRES033_ID_EMPRESA = "1";
+	public static final String TIBCO_WS_SIRES033_CODIGO_PAIS = "CH";
 	
 	public static final String XMLNS_WSU_XSD = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd";
 	public static final String XMLNS_WSSE_XSD = "http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd";

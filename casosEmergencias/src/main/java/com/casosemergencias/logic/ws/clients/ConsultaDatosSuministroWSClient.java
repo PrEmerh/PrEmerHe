@@ -15,6 +15,7 @@ import org.example.sires033_schema.OrdenType;
 import org.example.sires033_schema.SuministroType;
 
 import com.casosemergencias.logic.ws.responses.ConsultaDatosSuministroWSResponse;
+import com.casosemergencias.util.constants.ConstantesTibcoWS;
 import com.endesa.xmlns.commonschemas.SOAHeaderType;
 import com.endesa.xmlns.commonschemasneol.ErrorHeaderType;
 import com.endesa.xmlns.commonschemasneol.ErrorType;
@@ -61,6 +62,7 @@ public class ConsultaDatosSuministroWSClient {
 			ordenamiento.setPosicionDesde("1");
 			
 			consultaDatosSuministroMsgRequest = new ConsultaDatosSuministroMsgRequestType();
+			consultaDatosSuministroMsgRequest.setCodigoPais(ConstantesTibcoWS.TIBCO_WS_SIRES033_CODIGO_PAIS);
 			consultaDatosSuministroMsgRequest.setCodigoEmpresa(codEmpresa);
 			consultaDatosSuministroMsgRequest.setNumeroSuministro(numSuministro);
 			consultaDatosSuministroMsgRequest.setOrdenamiento(ordenamiento);			
