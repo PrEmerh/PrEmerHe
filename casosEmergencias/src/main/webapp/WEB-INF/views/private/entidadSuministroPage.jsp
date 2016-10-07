@@ -143,7 +143,7 @@
 							<c:when test="${not empty suministro.contactosRelacionados}">
 								<c:forEach items="${suministro.contactosRelacionados}" var="contacto">
 									<tr>
-										<td><a class="link" href="../private/entidadContacto?sfid=${contacto.sfid}">${contacto.name}</a></td>
+										<td><a class="link" href="javascript:cargandoGif('${contacto.sfid}','entidadContacto');">${contacto.name}</a></td>									
 										<td>${contacto.relacionActivo}</td>
 										<c:if test="${contacto.principal}">
 						    				<td><input type="checkbox" id="checkbox" value="true" checked="checked" disabled/></td>					
@@ -183,7 +183,7 @@
 							<label><s:message code="entidadSuministro_title_label_cuenta"/></label>
 						</div>
 						<div>
-							<label><a class="link" href="../private/entidadCuenta?sfid=${suministro.cuentaJoin.sfid}">${suministro.cuentaJoin.name}</a></label>
+							<label><a class="link" href="javascript:cargandoGif('${suministro.cuentaJoin.sfid}','entidadCuenta');">${suministro.cuentaJoin.name}</a></label>		
 						</div>		
 						<div class="divLabel">
 							<label><s:message code="entidadSuministro_title_label_runRut"/></label>
@@ -428,7 +428,7 @@
 								<c:when test="${not empty suministro.casos}">
 									<c:forEach items="${suministro.casos}" var="caso">
 										<tr>
-											<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
+											<td><a class="link" href="javascript:cargandoGif('${caso.sfid}','entidadCaso');">${caso.numeroCaso}</a></td>					
 											<td class="filaImagen">
 											<c:if test="${caso.descripcionEstado!=null && caso.descripcionEstado!='Cerrado' && caso.descripcionEstado!='Cancelado'}">					
 											<img src="../resources/images/inservice_red_point.png" height="12px" width="12px">

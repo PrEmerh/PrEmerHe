@@ -121,7 +121,7 @@
 						<label><s:message code="entidadCuenta_title_label_address" /></label>
 					</div>
 					<div>
-						<label><a class="link" href="../private/entidadDireccion?sfid=${cuenta.direccionJoin.sfid}">${cuenta.direccionJoin.name}</a></label>
+						<label><a class="link" href="javascript:cargandoGif('${cuenta.direccionJoin.sfid}','entidadDireccion');">${cuenta.direccionJoin.name}</a></label>						
 					</div>
 					<div class="divLabel">
 					</div>
@@ -132,7 +132,7 @@
 						<label><s:message code="entidadCuenta_title_label_main_account" /></label>
 					</div>
 					<div>
-						<label><a class="link" href="../private/entidadCuenta?sfid=${cuenta.parent.sfid}">${cuenta.parent.name}</a></label>
+						<label><a class="link" href="javascript:cargandoGif('${cuenta.parent.sfid}','entidadCuenta');">${cuenta.parent.name}</a></label>						
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCuenta_title_label_company_id" /></label>
@@ -166,7 +166,7 @@
 						<c:when test="${not empty cuenta.suministros}">
 							<c:forEach items="${cuenta.suministros}" var="suministro">
 								<tr>
-									<td><a class="link" href="../private/entidadSuministro?sfid=${suministro.sfid}">${suministro.name}</a></td>
+									<td><a class="link" href="javascript:cargandoGif('${suministro.sfid}','entidadSuministro');">${suministro.name}</a></td>								
 									<td>${suministro.labelEmpresaPickList}</td>
 									<td>${suministro.labelEstadoConexionPickList}</td>
 									<td>${suministro.labelEstadoSuministroPickList}</td>
@@ -212,7 +212,7 @@
 						<c:when test="${not empty cuenta.contactos}">
 							<c:forEach items="${cuenta.contactos}" var="contacto">
 								<tr>
-									<td><a class="link" href="../private/entidadContacto?sfid=${contacto.sfid}">${contacto.name}</a></td>
+									<td><a class="link" href="javascript:cargandoGif('${contacto.sfid}','entidadContacto');">${contacto.name}</a></td>								
 									<td>${contacto.run}</td>
 									<td>${contacto.phone}</td>
 									<td>${contacto.email}</td>
@@ -253,7 +253,7 @@
 						<c:when test="${not empty cuenta.casos}">
 							<c:forEach items="${cuenta.casos}" var="caso">
 								<tr>
-									<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
+									<td><a class="link" href="javascript:cargandoGif('${caso.sfid}','entidadCaso');">${caso.numeroCaso}</a></td>						
 									<td class="filaImagen">
 									<c:if test="${caso.labelEstadoPickList!=null && caso.labelEstadoPickList!='Cerrado' && caso.labelEstadoPickList!='Cancelado'}">					
 									<img src="../resources/images/inservice_red_point.png" height="12px" width="12px">
