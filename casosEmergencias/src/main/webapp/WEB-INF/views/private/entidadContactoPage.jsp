@@ -12,15 +12,19 @@
 		<link rel="icon" type="image/png" href="../resources/images/favicon.png">
 		
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
-		<link href="../resources/css/body.css" rel="stylesheet" />
 		<link href="../resources/css/styles.css" rel="stylesheet" />	
+		<link href="../resources/css/body.css" rel="stylesheet" />
+		<link href="../resources/css/jquery-ui.css" rel="stylesheet" />
+		<link href="../resources/css/jQueryDatatable.css" rel="stylesheet" />
 	
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
+  		<script src="../resources/js/jquery-ui.js"></script>
+		<script src="../resources/js/jQueryDatatables.js"></script>
 		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
 		<script src="../resources/js/contactos.js" lang=""></script>
 	</head>
-	<body onload="initHeader(); showNotifications();">
+	<body onload="funcionOnload();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadContacto_title_label_detalle_contacto"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<!-- Mensajes de estado de operación -->
@@ -40,6 +44,7 @@
 			<div class="botoneraListado">
 				<ul>
 					<li><input type="button" name="goCrearCasoByContactoName" value="<s:message code="entidadContacto_table_label_botonCrearCaso"/>" onclick="goCrearCasoByContacto();" /></li>
+					<li><input type="button" name="asociarSumministro" value="Asociar Suministro" onclick="abrirAsociarSuministro();" /></li>
 				</ul>
 			</div>
 			<form:hidden path="sfid"/>
@@ -483,6 +488,7 @@
 				</div>
 			</div>
 		</form:form> 
+		<jsp:include page="asociarSuministroDialog.jsp"/>
 		</div>		
 	</body>
 </html>

@@ -42,6 +42,13 @@ table.dataTable thead .sorting, table.dataTable thead .sorting_asc,
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 12.5px;
 }
+table.dataTable thead .sorting_disabled {
+	background-repeat: no-repeat;
+	background-position: center right;
+	Text-align: left;
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 12.5px;
+}
 
 table.dataTable td {
 	Text-align: left;

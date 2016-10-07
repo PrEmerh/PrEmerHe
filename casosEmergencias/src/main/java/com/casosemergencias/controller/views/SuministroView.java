@@ -8,132 +8,76 @@ import com.casosemergencias.model.Suministro;
 public class SuministroView extends ObjectView {
 
 	private Integer id;
-
 	private String sfid;
-
 	private String name;
-
 	private String fullElectric;
-
 	private Boolean casosAbiertos;
-
 	private String tipoTransformador;
-
 	private Boolean cortePorDeuda;
-
 	private String tipoLectura;
-
 	private String procesoLectura;
-
 	private String estadoConexion;
-
 	private String tipoMedida;
-
 	private String comunaReparto;
-
 	private String comuna;
-
 	private String numeroMedidor;
-
 	private String modeloMedidor;
-
 	private String numeroSuministro;
-
 	private String numeroTransformador;
-
 	private String estadoSuministro;
-
 	private String marcaMedidor;
-
 	private Date fechaCorte;
-
 	private String propiedadMedidor;
-
 	private String idEmpresa;
-
 	private String direccion;
-
 	private String runRut;
-
 	private Boolean pagoEnProceso;
-
 	private String nombreDuenoBoleta;
-
 	private String bloque;
-
 	private String tipoConexion;
-
 	private String direccionCliente;
-
 	private String electrodependiente;
-
 	private String medidaDisciplina;
-
 	private String horarioRacionamiento;
-
 	private Double casosReiterados;
-
 	private String tarifa;
-
 	private String alimentador;
-
 	private String direccionBoleta;
-
 	private String cuenta;
-
 	private String subestacionElectricaConexion;
-
 	private String ruta;
-
 	private String tipoCuenta;
-
 	private String tipoSegmento;
-
 	private String relacionActivo;
-
 	private String direccionConcatenada;
-
+	
 	private String labelEmpresaPickList;
 	private String labelEstadoConexionPickList;
 	private String labelEstadoSuministroPickList;
-
 	private String tipoEvento;
-
 	private Boolean suministroAfectado;
-
-	private AccountView cuentaJoin;
 	
+	private AccountView cuentaJoin;	
 	private DireccionView dirSuministroJoin;
-
-	private List<CaseView> casos;
 	
+	private List<CaseView> casos;	
 	private List<ContactView> contactosRelacionados;
 	
 	private String labelProcesoLecturaPickList;
-
-	private String labelTipoMedidaPickList;
-	
+	private String labelTipoMedidaPickList;	
 	private String labelTipoSegmentoPickList;
-
-	private String labelSubestacionElecPickList;
-	
+	private String labelSubestacionElecPickList;	
 	private String labelPropMedidorPickList;
-
-	private String labelTipoConexionPickList;
-	
+	private String labelTipoConexionPickList;	
 	private String labelTipoLecturaPickList;
-
-	private String labelTipoTransformadorPickList;
-	
+	private String labelTipoTransformadorPickList;	
 	private String labelComunaRepartoPickList;
-
-	private String labelFullElectricPickList;
-		
-	private String labelMedidaDisciplinaPickList;
-	
+	private String labelFullElectricPickList;		
+	private String labelMedidaDisciplinaPickList;	
 	private String labelElectrodependientePickList;
 	
 	private String fechaCorteString;
+	private String sfidContAsociado;
 
 	public SuministroView() {
 	}
@@ -682,6 +626,15 @@ public class SuministroView extends ObjectView {
 	}
 	public void setFechaCorteString(String fechaCorteString) {
 		this.fechaCorteString = fechaCorteString;
+	}
+	public String getSfidContAsociado() {
+		return sfidContAsociado;
+	}
+
+
+
+	public void setSfidContAsociado(String sfidContAsociado) {
+		this.sfidContAsociado = sfidContAsociado;
 	}
 
 

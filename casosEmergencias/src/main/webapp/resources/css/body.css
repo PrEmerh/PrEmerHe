@@ -464,7 +464,6 @@ body label {
 
 .tablaBusquedaTextos select {
     width: 200px;
-    
 }
 
 .tablaBusquedaBotonera {
@@ -579,6 +578,17 @@ table.servicesTable td.filaVacia {
 	font-size: 11px;
 }
 
+.tablaAsociarSuministroEtiquetas {
+	text-align: left;
+	width: 10%;
+	padding: 10px;
+}
+
+.tablaAsociarSuministroTextos {
+	text-align: left;
+	width: 25%;
+}
+
 /* <<<<< ESTILOS PARA TABLA DE SERVICIOS DE SUMINISTROS */
 
 div .cabeceraTitulo {
@@ -598,6 +608,14 @@ div .cabeceraSubTitulo {
 	padding: 5px;
 	margin-left: 5px;
 }
+
+.dialogLupa select{
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	padding: 2px;
+}   
+
 
 /* <<<<< ESTILOS PARA DIV DE CARGAR PAGINA */
 

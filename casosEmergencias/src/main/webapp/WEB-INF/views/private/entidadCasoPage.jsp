@@ -10,11 +10,11 @@
 		
 		<link rel="icon" type="image/png" href="../resources/images/favicon.png">
 			
+		<link href="../resources/css/jquery-ui.css" rel="stylesheet" />
+		<link href="../resources/css/jQueryDatatable.css" rel="stylesheet" />
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
 		<link href="../resources/css/body.css" rel="stylesheet" />	
 		<link href="../resources/css/styles.css" rel="stylesheet" />	
-		<link href="../resources/css/jquery-ui.css" rel="stylesheet" />
-		<link href="../resources/css/jQueryDatatable.css" rel="stylesheet" />
 	
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>	
@@ -23,7 +23,7 @@
         <script src="../resources/js/utils.js" lang=""></script> 
 		<script src="../resources/js/casos.js"></script>
 	</head>
-	<body onload="initHeader(); checkUpdates(); cargarDialogCancelacion();">
+	<body onload="funcionOnload();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_detalle_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<!-- Mensajes de estado de alta, actualizacion e insercion de comentarios de un caso -->
@@ -516,13 +516,13 @@
 		<div id="dialogCancelarCaso" title="<s:message code="entidadCaso_dialog_labe" arguments="${caso.numeroCaso}"/>" class="dialogLupa">			
 			<form:form name="formCancelarCaso" id="formCancelarCasoId" action="cancelarCaso" modelAttribute="caso" method="POST">
 				<form:hidden path="sfid"/>
-				<div>
+				<div style="padding-top:4%;">
 					<form:select id="subEstadoCancelacion" path="subestado" items="${caso.mapSubStatusCancelacion}"/>
 				</div>
 				<br>
 				<div>
-					<input id="Aceptar" type="button" name="Aceptar" value=<s:message code="entidadCaso_boton_modificar"/> onclick="guardarCancelarCaso();"/>
-					<input id="Cancelar" type="button" name="Cancelar" value="<s:message code="entidadCaso_boton_cancelar_caso"/>" onclick="cerrarDialogCancelarCaso();" />
+					<input id="Aceptar" type="button" name="Aceptar" value=<s:message code="entidadCaso_cancelarCaso_boton_aceptar"/> onclick="guardarCancelarCaso();"/>
+					<input id="Cancelar" type="button" name="Cancelar" value="<s:message code="entidadCaso_cancelarCaso_boton_cancelar"/>" onclick="cerrarDialogCancelarCaso();" />
 				</div>		
 			</form:form>
 		</div>
