@@ -9,7 +9,7 @@ function funcionOnload(){
 
 //Crear caso por contacto
 function goCrearCasoByContacto(){
-	verCaragando();
+	verCargando();
 	window.location="../private/goCrearCasoByContacto";
 }
 

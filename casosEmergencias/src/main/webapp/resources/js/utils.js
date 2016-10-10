@@ -105,7 +105,7 @@ function establecerDireccion(sfid, name) {
 }
 
 function cargandoGif(sfid,page) {
-	document.getElementById("cargandoGif").hidden=false;
+	verCargando();
 	if(page=="entidadCaso"){
 	window.location="../private/entidadCaso?editMode=VIEW&sfid=" + sfid ;
 	}
@@ -123,9 +123,14 @@ function cargandoGif(sfid,page) {
 		}
 }
 
-//metodo que muestra el div de "cargando.."
-function verCaragando(){
+//Metodo que muestra el div de "cargando.."
+function verCargando(){
 	document.getElementById("cargandoGif").hidden=false;
+}
+
+//Metodo que oculta el div de "cargando.."
+function ocultarCargando(){
+	document.getElementById("cargandoGif").hidden=true;
 }
 
 

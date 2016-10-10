@@ -55,6 +55,12 @@ function cancelarButton() {
 	descriptionEdit.style.display = 'none'; 
 }
 
+function guardarModificacion(){
+	var form=document.getElementById('formEntidadCasoID');
+	verCargando();
+	form.submit();	
+}
+
 function cargarDialogCancelacion() {
 	$("#dialogCancelarCaso").dialog({
 		autoOpen: false, 
@@ -92,6 +98,8 @@ function guardarCancelarCaso(){
 	var subEstado = document.getElementById('subEstadoCancelacion').value;
 	
 	if(subEstado != null && subEstado != "" && subEstado != 'Default'){
+		cerrarDialogCancelarCaso();
+		verCargando();
 		document.getElementById('formCancelarCasoId').submit();
 	}else{
 		alert("Error: Debe seleccionar un valor de la lista.");
@@ -131,17 +139,20 @@ function checkCaseCommentCreation() {
 		$('#divCaseCommentNOCreated').show();		
 	}
 	else{
+		verCargando();
 		document.getElementById('formComentarioCaso').submit();
 	}
 
 }
 
 function newComent(sfid){
+	 verCargando();
 	 window.location="../private/casoComentarioPage?sfid="+sfid;
 }
 
 
 function cancelComent(sfid){
+	 verCargando();
 	 window.location="../private/entidadCaso?editMode=VIEW&sfid="+sfid;
 }
 /*Fin -- Funciones Comentario de un caso*/
@@ -149,12 +160,12 @@ function cancelComent(sfid){
 
 /*Inicio -- Funciones Alta de un caso*/
 function cancelAltaCaso(){
-	document.getElementById("cargandoGif").hidden=false;
+	verCargando();
 	window.location="../private/cancelAltaCaso";	
 }
 
 function altaCaso() {
-	document.getElementById("cargandoGif").hidden=false;
+	verCargando();
 	var validado = true; //validaDatos();
 	if (validado) {
 		$('#formEntidadCasoAlta').submit();
@@ -169,7 +180,7 @@ function altaCasoYNuevo() {
 	if (validado) {
 		$('#redirectToNewCase').val("true");
 		$('#formEntidadCasoAlta').submit();
-		return true;
+		return true;newComent('${caso.sfid}');
 	} else {
 		return false;
 	}

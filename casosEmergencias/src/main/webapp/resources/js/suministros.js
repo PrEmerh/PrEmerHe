@@ -1,12 +1,12 @@
 //Crear caso por suministro
 function goCrearCasoBySuministro(){	
-	document.getElementById("cargandoGif").hidden=false;
+	verCargando();
 	window.location="../private/goCrearCasoBySuministro";
 }
 
 //Crear caso corte por deuda
 function crearCasoCorteDeuda(){	
-	document.getElementById("cargandoGif").hidden=false;
+	verCargando();
 	$.post( "../private/goCrearCasoBySuministroAndCorte",
 		{causa: 'deuda', sfidSum: document.getElementById('sfidSum').value},
 		function( data ) {
@@ -19,7 +19,7 @@ function crearCasoCorteDeuda(){
 					if(document.getElementById('divInsertError') != null && document.getElementById('divInsertError').style.display=='block'){
 						document.getElementById('divInsertError').style.display='none';
 					}				
-					document.getElementById("cargandoGif").hidden=true;
+					ocultarCargando();
 					document.getElementById('idCodigo').innerText ="Código:"+" "+dataCodigo;
 					document.getElementById('idMensaje').innerText ="Mensaje:"+" "+dataMensaje;
 					document.getElementById('divCaseCorteCreatedError').style.display='block';
@@ -36,7 +36,7 @@ function crearCasoCorteDeuda(){
 //Crear caso corte programado
 function crearCasoCorteProgramado(){
 	
-	document.getElementById("cargandoGif").hidden=false;
+	verCargando();
 	$.post( "../private/goCrearCasoBySuministroAndCorte",
 		{causa: 'progr', sfidSum: document.getElementById('sfidSum').value},
 		function( data ) {
@@ -48,7 +48,7 @@ function crearCasoCorteProgramado(){
 					if(document.getElementById('divInsertError') != null && document.getElementById('divInsertError').style.display=='block'){
 						document.getElementById('divInsertError').style.display='none';
 					}
-					document.getElementById("cargandoGif").hidden=true;
+					ocultarCargando();
 					document.getElementById('idCodigo').innerText ="Código:"+" "+dataCodigo;
 					document.getElementById('idMensaje').innerText ="Mensaje:"+" "+dataMensaje;
 					document.getElementById('divCaseCorteCreatedError').style.display='block';
