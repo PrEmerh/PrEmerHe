@@ -1,19 +1,10 @@
 package com.casosemergencias.controller.views;
 
-import java.io.Serializable;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
-import com.casosemergencias.dao.vo.CasosReiteradosVO;
-import com.casosemergencias.dao.vo.ObjectVO;
 import com.casosemergencias.model.CasosReiterados;
 
 //Objeto que tiene el modelo de un CasosReiterados, se utiliza en el Servicio
 public class CasosReiteradosView extends ObjectView {
 	
-	private static final long serialVersionUID = 1L;
-
 	private Integer id;
 	private String sfid;
 	private String name;

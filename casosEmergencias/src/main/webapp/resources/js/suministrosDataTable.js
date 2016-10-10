@@ -82,10 +82,7 @@ function limpiarCamposBuscadorSuministro() {
 	if (document.getElementById('filtroDireccion').value != '') {
 		document.getElementById('filtroDireccion').value = '';
 	}
-	if (document.getElementById('filtroRutaLectura').value != '') {
-		document.getElementById('filtroRutaLectura').value = '';
-	}
-	if (document.getElementById('filtroNumMedidor').value != '') {
-		document.getElementById('filtroNumMedidor').value = '';
+	if (document.getElementById('filtroComuna').value != '') {
+		document.getElementById('filtroComuna').value = '';
 	}
 }

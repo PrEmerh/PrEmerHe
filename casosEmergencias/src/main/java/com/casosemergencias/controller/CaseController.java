@@ -231,7 +231,18 @@ public class CaseController {
 		SuministroView suministroAsociado = null;
 		
 		HttpSession session = request.getSession(true);
-		String suministroSfid = (String) session.getAttribute(Constantes.SFID_SUMINISTRO);
+		String suministroSfid = null;
+		String finalDetailPage = (String) session.getAttribute(Constantes.FINAL_DETAIL_PAGE);
+		if (finalDetailPage != null && !"".equals(finalDetailPage)) {
+			if (!(Constantes.FINAL_DETAIL_PAGE_CONTACTO).equals(finalDetailPage)) {
+				logger.info("Se crea el caso desde suministro, se arrastra el id del suministro");
+				suministroSfid = (String) session.getAttribute(Constantes.SFID_SUMINISTRO);
+			} else {
+				logger.info("Se crea el caso desde contacto, no se arrastra el id del suministro");
+			}
+		} else {
+			suministroSfid = (String) session.getAttribute(Constantes.SFID_SUMINISTRO);
+		}
 		String contactoSfid = (String) session.getAttribute(Constantes.SFID_CONTACTO);
 		String cuentaSfid = (String) session.getAttribute(Constantes.SFID_CUENTA);
 		HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
@@ -284,12 +295,6 @@ public class CaseController {
 	public ModelAndView guardarCaso(CaseView caso, boolean redirectToNewCase, HttpServletRequest request) {
 		logger.info("--- Inicio -- guardarCaso ---");
 		
-		HttpSession session = request.getSession(true);
-		String suministroSfid = (String) session.getAttribute(Constantes.SFID_SUMINISTRO);
-		String contactoSfid = (String) session.getAttribute(Constantes.SFID_CONTACTO);
-		String cuentaSfid = (String) session.getAttribute(Constantes.SFID_CUENTA);
-		HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
-				
 		Caso casoInsertado = new Caso();
 		ModelAndView model = new ModelAndView();
 		
@@ -322,7 +327,6 @@ public class CaseController {
 				model.addObject("codigoError", ConstantesError.EMERG_ERROR_CODE_004);
 				model.addObject("mensajeResultado", ConstantesError.HEROKU_CASE_CREATION_GENERIC_ERROR);
 				fillNewCaseFormInfo(caso);
-				getEntityDataForNewCase(suministroSfid, contactoSfid, cuentaSfid, user, caso);
 				model.addObject("caso", caso);
 				model.setViewName("private/entidadCasoAltaPage");
 			}
@@ -333,7 +337,6 @@ public class CaseController {
 			model.addObject("codigoError", exception.getCode());
 			model.addObject("mensajeResultado", exception.getMessage());
 			fillNewCaseFormInfo(caso);
-			getEntityDataForNewCase(suministroSfid, contactoSfid, cuentaSfid, user, caso);
 			model.addObject("caso", caso);
 			model.setViewName("private/entidadCasoAltaPage");
 		}
@@ -595,7 +598,7 @@ public class CaseController {
 		//Recuperamos el heroku user para concatenarlo al comentario.
 		HttpSession session = request.getSession(true);
 		HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
-		String comentario = "<b>"+ user.getName() + ": </b> " + casoRequest.getComment();
+		String comentario = user.getName() + ": " + casoRequest.getComment();
 		casoRequest.setComment(comentario);
 		
 		CaseComment comentarioCaso = new CaseComment();
@@ -669,6 +672,7 @@ public class CaseController {
 			ParserModelVO.parseDataModelVO(suministro, suministroVista);
 			casoView.setSuministroJoin(suministroVista);
 			casoView.setSuministro(suministroSfid);
+			casoView.setSuministroString(suministroVista.getName());
 			logger.info("Suministro encontrado con id: " + suministroSfid);
 			
 			if (suministro != null && suministro.getDireccion() != null && !"".equals(suministro.getDireccion())) {
@@ -680,6 +684,7 @@ public class CaseController {
 				ParserModelVO.parseDataModelVO(direccion, direccionVista);
 				casoView.setDireccionJoin(direccionVista);
 				casoView.setDireccion(direccionSfid);
+				casoView.setDireccionString(direccionVista.getName());
 				logger.info("Direccion encontrada con id: " + direccionSfid);
 			}
 		}
@@ -692,6 +697,7 @@ public class CaseController {
 			ParserModelVO.parseDataModelVO(contacto, contactoVista);
 			casoView.setContactoJoin(contactoVista);
 			casoView.setNombreContacto(contactoSfid);
+			casoView.setNombreContactoString(contactoVista.getName());
 			casoView.setCanalNotificacion(contactoVista.getCanalPreferenteContacto());
 			casoView.setTelefonoContacto(contactoVista.getPhone());
 			casoView.setEmailNotificacion(contactoVista.getEmail());
@@ -708,6 +714,7 @@ public class CaseController {
 			ParserModelVO.parseDataModelVO(cuenta, cuentaVista);
 			casoView.setCuentaJoin(cuentaVista);
 			casoView.setNombreCuenta(cuentaSfid);
+			casoView.setNombreCuentaString(cuentaVista.getName());
 			logger.info("Cuenta encontrada con id: " + cuentaSfid);
 		}
 		
@@ -739,9 +746,9 @@ public class CaseController {
 		contactoSfid = (String) session.getAttribute(Constantes.SFID_CONTACTO);
 		finalDetailPage = (String) session.getAttribute(Constantes.FINAL_DETAIL_PAGE);
 		
-		if (finalDetailPage != null && "CONTACTO".equals(finalDetailPage) && contactoSfid != null && !"".equals(contactoSfid)) {
+		if (finalDetailPage != null && Constantes.FINAL_DETAIL_PAGE_CONTACTO.equals(finalDetailPage) && contactoSfid != null && !"".equals(contactoSfid)) {
 			redirectionPage = "redirect:entidadContacto?sfid=" + contactoSfid;
-		} else if (finalDetailPage != null && "SUMINISTRO".equals(finalDetailPage) && suministroSfid != null && !"".equals(suministroSfid)) {
+		} else if (finalDetailPage != null && Constantes.FINAL_DETAIL_PAGE_SUMINISTRO.equals(finalDetailPage) && suministroSfid != null && !"".equals(suministroSfid)) {
 			redirectionPage = "redirect:entidadSuministro?sfid=" + suministroSfid;
 		}
 		return redirectionPage;

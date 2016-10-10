@@ -4,11 +4,15 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.example.sieme009_schema.ListadoEventosType;
+import org.example.sires033_schema.ListadoSuministrosType;
+import org.example.sires033_schema.SuministroType;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,16 +28,14 @@ import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.exception.EmergenciasException;
 import com.casosemergencias.logic.CaseService;
-import com.casosemergencias.logic.ContactService;
-import com.casosemergencias.logic.DireccionService;
 import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.Caso;
-import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.model.HerokuUser;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.constants.Constantes;
 import com.casosemergencias.util.constants.ConstantesError;
+import com.casosemergencias.util.constants.ConstantesTibcoWS;
 import com.casosemergencias.util.datatables.DataTableParser;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -44,13 +46,7 @@ public class SuministroController {
 	
 	@Autowired
 	private SuministroService suministroService;
-	
-	@Autowired
-	private ContactService contactoService;
-	
-	@Autowired
-	private DireccionService direccionService;
-	
+
 	@Autowired
 	private CaseService casoService;
 	
@@ -74,7 +70,7 @@ public class SuministroController {
 		HttpSession session = request.getSession(true);
 		
 		session.setAttribute(Constantes.SFID_SUMINISTRO, sfid);	
-		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, "SUMINISTRO");
+		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, Constantes.FINAL_DETAIL_PAGE_SUMINISTRO);
 
 		ModelAndView model = new ModelAndView();		
 		model.addObject("sfid", sfid);
@@ -111,10 +107,43 @@ public class SuministroController {
 			}	
 		}
 		
-		logger.info("SFID_CUENTA" + session.getAttribute(Constantes.SFID_CUENTA));
-		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));
-		logger.info("SFID_SUMINISTRO" + session.getAttribute(Constantes.SFID_SUMINISTRO));
-		logger.info("FINAL_DETAIL_PAGE" + session.getAttribute(Constantes.FINAL_DETAIL_PAGE));
+		/* Llamada a los servicios web de Tibco para obtener datos y eventos del suministro para los indicadores */
+		Map<String, Object> datosWS = suministroService.getDatosSuministroWS(suministroView.getNumeroSuministro());
+		
+		if (datosWS.get(ConstantesTibcoWS.SIRES033_RESPONSE_LIST_NAME) != null) {
+			suministroView.setListadoSuministros((ListadoSuministrosType) datosWS.get(ConstantesTibcoWS.SIRES033_RESPONSE_LIST_NAME));
+			for (SuministroType suministro : suministroView.getListadoSuministros().getSuministro()) {
+				if (suministro.getFechaCorteSuministro() != null) {
+					Date fechaActual = new Date();
+					Date fechaCorteSuministro = suministro.getFechaCorteSuministro().toGregorianCalendar().getTime();
+					suministroView.setFechaCorte(fechaCorteSuministro);
+					logger.info("La fecha de corte del suministro es " + fechaCorteSuministro);
+					if (fechaActual.getTime() > fechaCorteSuministro.getTime()) {
+						logger.info("Se ha superado la fecha de corte, por lo que se marca que es corte por deuda");
+						suministroView.setCortePorDeuda(true);
+					} else {
+						suministroView.setCortePorDeuda(false);
+					}
+				} else {
+					suministroView.setFechaCorte(null);
+					suministroView.setCortePorDeuda(false);
+				}
+			}
+		} else {
+			// Estos datos se deben rellenar solo desde el WS. Si no, no se muiestra informacion
+			suministroView.setFechaCorte(null);
+			suministroView.setCortePorDeuda(null);
+		}
+		
+		if (datosWS.get(ConstantesTibcoWS.SIEME009_RESPONSE_LIST_NAME) != null) {
+			logger.info("Se envían los eventos a la vista");
+			suministroView.setListadoEventos((ListadoEventosType) datosWS.get(ConstantesTibcoWS.SIEME009_RESPONSE_LIST_NAME));
+		}
+		
+		logger.info("SFID_CUENTA: " + session.getAttribute(Constantes.SFID_CUENTA));
+		logger.info("SFID_CONTACTO: " + session.getAttribute(Constantes.SFID_CONTACTO));
+		logger.info("SFID_SUMINISTRO: " + session.getAttribute(Constantes.SFID_SUMINISTRO));
+		logger.info("FINAL_DETAIL_PAGE: " + session.getAttribute(Constantes.FINAL_DETAIL_PAGE));
 		
 		model.setViewName("private/entidadSuministroPage");
 		model.addObject("suministro", suministroView);

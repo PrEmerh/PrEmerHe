@@ -74,7 +74,7 @@ public class AccountController {
 		
 		
 		session.setAttribute(Constantes.SFID_CUENTA, sfid);	
-		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, "CUENTA");
+		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, Constantes.FINAL_DETAIL_PAGE_CUENTA);
 		
 		AccountView cuentaView = new AccountView();
 		ModelAndView model = new ModelAndView();

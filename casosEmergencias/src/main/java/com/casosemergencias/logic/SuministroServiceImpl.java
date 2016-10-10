@@ -3,9 +3,11 @@ package com.casosemergencias.logic;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,16 +20,22 @@ import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.dao.vo.CasosReiteradosVO;
 import com.casosemergencias.dao.vo.RelacionActivoContactoVO;
 import com.casosemergencias.dao.vo.SuministroVO;
+import com.casosemergencias.logic.ws.clients.ConsultaDatosSuministroWSClient;
+import com.casosemergencias.logic.ws.clients.GetEventosRelacionadosWSClient;
+import com.casosemergencias.logic.ws.responses.ConsultaDatosSuministroWSResponse;
+import com.casosemergencias.logic.ws.responses.GetEventosRelacionadosWSResponse;
 import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.constants.Constantes;
+import com.casosemergencias.util.constants.ConstantesTibcoWS;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
 
 public class SuministroServiceImpl implements SuministroService{
 
-final static Logger logger = Logger.getLogger(SuministroService.class);
+	final static Logger logger = Logger.getLogger(SuministroService.class);
 	
 	@Autowired
 	private SuministroDAO suministroDao;
@@ -37,6 +45,12 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 	
 	@Autowired
 	private RelacionActivoContactoDAO relacionDAO;
+	
+	@Autowired
+	private ConsultaDatosSuministroWSClient consultaDatosSuministroWSClient;
+	
+	@Autowired
+	private GetEventosRelacionadosWSClient getEventosRelacionadosWSClient;
 	
 	@Autowired
 	private CasosReiteradosDAO casoReiteradosDAO;
@@ -87,31 +101,6 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 		return listSuministro;
 	}
 	
-	/**
-	 * Metodo que devuelve una lista con todos los suministros de BBDD para asociar a un contacto
-	 * 
-	 * @return
-	 */
-	@Override
-	public List<Suministro> readSuministrosAsociarContacto(DataTableProperties propDatatable) {
-		
-		logger.debug("--- Inicio -- readSuministrosAsociarContacto ---");
-		List<Suministro> listSuministro = new ArrayList<Suministro>();
-		
-//		List<SuministroVO> listSuministroVO = suministroDao.readSuministroAsociarContacto(propDatatable);
-//		logger.debug("--- Inicio -- readAllSuministros cantidad: " + listSuministroVO.size() + " ---");
-//		
-//		for (SuministroVO suministroVO : listSuministroVO) {
-//			Suministro suministro = new Suministro();
-//			ParserModelVO.parseDataModelVO(suministroVO, suministro);
-//			listSuministro.add(suministro);
-//		}
-//		
-//		logger.debug("--- Fin -- readSuministrosAsociarContacto ---:"+listSuministro.size());
-		return listSuministro;
-	}
-	
-	
 	public Suministro readSuministroBySfid(String sfid){
 		SuministroVO suministroVO = suministroDao.readSuministroBySfid(sfid);
 		Suministro suministro = new Suministro();
@@ -133,6 +122,7 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 				int numCasos = 0;
 				int limiteDias = casosReiteradosVO.getNumDias().intValue();
 				int numCasosReit = casosReiteradosVO.getNumCasos().intValue();
+				boolean hayCasoAbierto = false;
 				
 				Calendar calendar = Calendar.getInstance();	
 				//Definimos el formato para comparar 'fechaApertura' con la fecha actual
@@ -155,6 +145,10 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 							if(dateCreadionCaso.getTime() > dateHoy.getTime()){
 								numCasos ++;
 							}
+							
+							if (!(Constantes.COD_CASO_STATUS_CERRADO).equals(caso.getEstado()) && !(Constantes.COD_CASO_STATUS_CANCELADO).equals(caso.getEstado())) {
+								hayCasoAbierto = true;
+							}
 						}
 						
 					} catch (ParseException e) {
@@ -166,6 +160,10 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 				
 				if(numCasos >= numCasosReit){
 					suministro.setCasosReiterados((double) numCasos);
+				}
+				
+				if (hayCasoAbierto) {
+					suministro.setCasosAbiertos(Boolean.valueOf(true));
 				}
 			}
 			
@@ -233,5 +231,62 @@ final static Logger logger = Logger.getLogger(SuministroService.class);
 			return retorno;
 		}
 		return null;
+	}
+
+	/**
+	 * M&eacute;todo que realiza la llamada a los servicios web de TIBCO para
+	 * devolver la informaci&oacute;n del suministro y sus eventos relacionados.
+	 * 
+	 * @param numSuministro
+	 *            N&uacute;mero del suministro.
+	 * @return Map<String, Object> Mapa con los objetos de los dos servicios
+	 *         web.
+	 */
+	public Map<String, Object> getDatosSuministroWS(String numSuministro) {
+		logger.debug("--- Inicio -- getDatosSuministroWS ---");
+		Map<String, Object> datosWS = new HashMap<String, Object>();
+		
+		logger.info("------>>>>> Llamando al servicio de consulta de datos de suministro ------>>>>>");
+		ConsultaDatosSuministroWSResponse datosSumResponse = consultaDatosSuministroWSClient.consultarDatosSuministroWS(numSuministro, ConstantesTibcoWS.TIBCO_WS_SIRES033_ID_EMPRESA);
+		if (datosSumResponse != null) {
+			if (datosSumResponse.getMapaErrores() != null && !datosSumResponse.getMapaErrores().containsKey("0")) {
+				logger.error("Error en la llamada al servicio: ");
+				for (Map.Entry<String,String> entry : datosSumResponse.getMapaErrores().entrySet()) {
+					logger.error("- Error " + entry.getKey() + ": " + entry.getValue());
+				}
+			} else {
+				logger.info("Peticion procesada correctamente");
+			}
+			
+			if (datosSumResponse.getListadoSuministros() != null && !datosSumResponse.getListadoSuministros().getSuministro().isEmpty()) {
+				logger.info("Registros encontrados: " + datosSumResponse.getTotalRegistros());
+				datosWS.put(ConstantesTibcoWS.SIRES033_RESPONSE_LIST_NAME, datosSumResponse.getListadoSuministros());
+			}
+		} else {
+			logger.error("El servicio ha devuelto una respuesta vacia");
+		}
+		logger.info("<<<<<------ Llamada al servicio de consulta de datos de suministro completa <<<<<------");
+		logger.info("------>>>>> Llamando al servicio de consulta de eventos relacionados con un suministro ------>>>>>");
+		GetEventosRelacionadosWSResponse eventosRelResponse = getEventosRelacionadosWSClient.getEventosRelacionadosWS(numSuministro, ConstantesTibcoWS.TIBCO_WS_SIRES033_ID_EMPRESA);
+		if (eventosRelResponse != null) {
+			if (eventosRelResponse.getMapaErrores() != null && !eventosRelResponse.getMapaErrores().containsKey("0")) {
+				logger.error("Error en la llamada al servicio: ");
+				for (Map.Entry<String,String> entry : eventosRelResponse.getMapaErrores().entrySet()) {
+					logger.error("- Error " + entry.getKey() + ": " + entry.getValue());
+				}
+			} else {
+				logger.error("Petición procesada correctamente");
+			}
+			if (eventosRelResponse.getListadoEventos() != null && !eventosRelResponse.getListadoEventos().getEvento().isEmpty()) {
+				logger.info("El suministro tiene " + eventosRelResponse.getListadoEventos().getEvento().size() + " eventos relacionados");
+				datosWS.put(ConstantesTibcoWS.SIEME009_RESPONSE_LIST_NAME, eventosRelResponse.getListadoEventos());
+			}
+		} else {
+			logger.error("El servicio ha devuelto una respuesta vacia");
+		}
+		logger.info("<<<<<------ Llamada al servicio de consulta de eventos relacionados con un suministro completa <<<<<------");
+		
+		logger.debug("--- Fin -- getDatosSuministroWS ---");
+		return datosWS;
 	}
 }

@@ -78,6 +78,9 @@ public class Constantes {
 	public static final String SFID_CUENTA= "sfidCuenta";
 	public static final String SESSION_HEROKU_USER= "user";
 	public static final String FINAL_DETAIL_PAGE= "paginaDetalleFinal";
+	public static final String FINAL_DETAIL_PAGE_CUENTA = "CUENTA";
+	public static final String FINAL_DETAIL_PAGE_CONTACTO = "CONTACTO";
+	public static final String FINAL_DETAIL_PAGE_SUMINISTRO = "SUMINISTRO";
 	
 	//
 	//HerokuUser, GMT constantes. (estas constantes las podemos ver 'TimeZone.getTimeZone("America/New_York");')

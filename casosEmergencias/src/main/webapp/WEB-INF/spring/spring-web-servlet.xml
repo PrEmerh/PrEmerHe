@@ -3,16 +3,35 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:http="http://cxf.apache.org/transports/http/configuration"
+	xmlns:sec="http://cxf.apache.org/configuration/security"
+	xmlns:cxf="http://cxf.apache.org/core"
+	xmlns:http-conf="http://cxf.apache.org/transports/http/configuration"
+	xmlns:conf-sec="http://cxf.apache.org/configuration/security"
 	xsi:schemaLocation="
         http://www.springframework.org/schema/beans     
         http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
         http://www.springframework.org/schema/mvc 
         http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+        http://www.springframework.org/schema/util 
+        http://www.springframework.org/schema/util/spring-util.xsd
         http://www.springframework.org/schema/context 
-        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://cxf.apache.org/jaxws 
+        http://cxf.apache.org/schemas/jaxws.xsd
+        http://cxf.apache.org/configuration/security 
+        http://cxf.apache.org/schemas/configuration/security.xsd        
+        http://cxf.apache.org/transports/http/configuration 
+        http://cxf.apache.org/schemas/configuration/http-conf.xsd
+        http://cxf.apache.org/core 
+        http://cxf.apache.org/schemas/core.xsd
+        http://cxf.apache.org/transports/http/configuration
+        http://cxf.apache.org/schemas/configuration/http-conf.xsd">
 
 	<context:component-scan base-package="com.casosemergencias" />
-
+	
 	<!-- Register the properties file -->	
  	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="classpath:text_page"/>
@@ -128,12 +147,14 @@
 	<bean id="caseCommentService" class="com.casosemergencias.logic.CaseCommentServiceImpl"/>
 	<bean id="userSessionInfoService" class="com.casosemergencias.logic.UserSessionInfoServiceImpl"/>
 	<bean id="batchService" class="com.casosemergencias.logic.BatchServiceImpl"/>
+	
+	<!-- Batches y utilidades de SalesForce -->
 	<bean id="salesforceLoginChecker" class="com.casosemergencias.logic.sf.util.SalesforceLoginChecker"/>
 	<bean id="fieldLabelTableCreatorBatch" class="com.casosemergencias.batch.FieldLabelTableCreatorBatch"/>
 	<bean id="picklistTableCreatorBatch" class="com.casosemergencias.batch.PicklistTableCreatorBatch"/>
 	<bean id="fieldLabelTableCreatorJob" class="com.casosemergencias.batch.FieldLabelTableCreatorJob"/>
 	<bean id="picklistTableCreatorJob" class="com.casosemergencias.batch.PicklistTableCreatorJob"/>
-	
+
 	<mvc:resources mapping="/resources/**" location="/resources/"/> 
 	
 	<!-- >>>>>>>>>>>>>>>>>> CONFIGURACIÓN DE TAREAS QUARTZ >>>>>>>>>>>>>>>>>> -->
@@ -142,6 +163,7 @@
         <property name="targetObject" ref="picklistTableCreatorBatch" />
         <property name="targetMethod" value="fillHerokuPicklistTable" />
     </bean>
+    
  	<!-- Job de Quartz para el rellenado de la tabla FieldLabel -->
     <bean id="fieldlabelJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
         <property name="targetObject" ref="fieldLabelTableCreatorBatch" />
@@ -176,4 +198,53 @@
         </property>
     </bean>
     <!-- <<<<<<<<<<<<<<<<<< CONFIGURACIÓN DE TAREAS QUARTZ <<<<<<<<<<<<<<<<<< -->
+    
+    <!-- >>>>>>>>>>>>>>>>>> CONFIGURACIÓN DE WEB SERVICES >>>>>>>>>>>>>>>>>> -->
+	<import resource="classpath:META-INF/cxf/cxf.xml"/>
+    <import resource="classpath:META-INF/cxf/cxf-servlet.xml"/>
+    
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:webservices/env/pro.properties</value>
+		</property>
+	</bean>
+	
+    <!-- Handler para incluir las credenciales a la cabecera WSS de la peticion SOAP -->
+    <bean id="tibcoRequestsSOAPHandler" class="com.casosemergencias.logic.ws.handlers.TibcoRequestsSOAPHandler">
+    	<property name="username" value="${wss.header.username}"/>
+    	<property name="password" value="${wss.header.password}"/>
+    </bean>
+    
+    <!-- Configuracion del servicio web SIRES033 para consultar datos de un suministro -->
+    <bean id="consultaDatosSuministroWSClient" class="com.casosemergencias.logic.ws.clients.ConsultaDatosSuministroWSClient"/>
+    <jaxws:client id="sires033Service" serviceClass="org.example.sires033.SIRES033" address="${sires033.endpoint}">
+		<jaxws:handlers>
+      		<ref bean="tibcoRequestsSOAPHandler" />
+    	</jaxws:handlers>
+	</jaxws:client>
+    
+    <!-- Configuracion del servicio web SIEME009 para consultar eventos relacionados de un suministro -->
+    <bean id="getEventosRelacionadosWSClient" class="com.casosemergencias.logic.ws.clients.GetEventosRelacionadosWSClient"/>
+    <jaxws:client id="sieme009Service" serviceClass="org.example.sieme009.SIEME009" address="${sieme009.endpoint}">
+		<jaxws:handlers>
+      		<ref bean="tibcoRequestsSOAPHandler" />
+    	</jaxws:handlers>
+	</jaxws:client>
+    
+    <!-- Autenticacion SSL para conectar con los servicios de TIBCO -->
+    <http:conduit id="siresConduit" name="*">
+        <http:tlsClientParameters><!-- parametro disableCNCheck="true" para no comprobar que el CN del cert de servidor concuerte con el hostname -->
+            <sec:trustManagers>
+                <sec:keyStore password="${ssl.jks.password}"
+                    file="../classes/webservices/certs/${ssl.jks.name}" type="${ssl.jks.type}"/>
+            </sec:trustManagers>
+            <sec:cipherSuitesFilter>
+                <sec:include>.*_WITH_3DES_.*</sec:include>
+                <sec:include>.*_WITH_DES_.*</sec:include>
+                <sec:exclude>.*_WITH_NULL_.*</sec:exclude>
+                <sec:exclude>.*_DH_anon_.*</sec:exclude>
+            </sec:cipherSuitesFilter>
+        </http:tlsClientParameters>
+    </http:conduit>
+    <!-- <<<<<<<<<<<<<<<<<< CONFIGURACIÓN DE WEBSERVICES <<<<<<<<<<<<<<<<<< -->
 </beans>
