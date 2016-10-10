@@ -3,6 +3,9 @@ package com.casosemergencias.controller.views;
 import java.util.Date;
 import java.util.List;
 
+import org.example.sieme009_schema.ListadoEventosType;
+import org.example.sires033_schema.ListadoSuministrosType;
+
 import com.casosemergencias.model.Suministro;
 
 public class SuministroView extends ObjectView {
@@ -76,6 +79,9 @@ public class SuministroView extends ObjectView {
 	private String labelMedidaDisciplinaPickList;	
 	private String labelElectrodependientePickList;
 	
+	private ListadoSuministrosType listadoSuministros;	
+	private ListadoEventosType listadoEventos;
+
 	private String fechaCorteString;
 	private String sfidContAsociado;
 
@@ -99,7 +105,8 @@ public class SuministroView extends ObjectView {
 			List<ContactView> contactosRelacionados, String labelProcesoLecturaPickList, String labelTipoMedidaPickList,
 			String labelTipoSegmentoPickList, String labelSubestacionElecPickList, String labelPropMedidorPickList,
 			String labelTipoConexionPickList, String labelTipoLecturaPickList, String labelTipoTransformadorPickList,
-			String labelComunaRepartoPickList, String labelFullElectricPickList,String labelElectrodependientePickList) {
+			String labelComunaRepartoPickList, String labelFullElectricPickList, String labelElectrodependientePickList,
+			ListadoSuministrosType listadoSuministros, ListadoEventosType listadoEventos, String fechaCorteString) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -163,6 +170,9 @@ public class SuministroView extends ObjectView {
 		this.labelComunaRepartoPickList = labelComunaRepartoPickList;
 		this.labelFullElectricPickList = labelFullElectricPickList;
 		this.labelElectrodependientePickList=labelElectrodependientePickList;
+		this.listadoSuministros = listadoSuministros;
+		this.listadoEventos = listadoEventos;
+		this.fechaCorteString = fechaCorteString;
 	}
 
 
@@ -621,6 +631,23 @@ public class SuministroView extends ObjectView {
 	public void setLabelElectrodependientePickList(String labelElectrodependientePickList) {
 		this.labelElectrodependientePickList = labelElectrodependientePickList;
 	}
+
+	public ListadoSuministrosType getListadoSuministros() {
+		return listadoSuministros;
+	}
+
+	public void setListadoSuministros(ListadoSuministrosType listadoSuministros) {
+		this.listadoSuministros = listadoSuministros;
+	}
+
+	public ListadoEventosType getListadoEventos() {
+		return listadoEventos;
+	}
+
+	public void setListadoEventos(ListadoEventosType listadoEventos) {
+		this.listadoEventos = listadoEventos;
+	}
+	
 	public String getFechaCorteString() {
 		return fechaCorteString;
 	}

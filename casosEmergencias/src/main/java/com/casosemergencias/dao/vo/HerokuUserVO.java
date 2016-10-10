@@ -13,11 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Where;
 import org.hibernate.annotations.WhereJoinTable;
 
 import com.casosemergencias.model.HerokuUser;
-import com.sforce.soap.metadata.Picklist;
 
 
 

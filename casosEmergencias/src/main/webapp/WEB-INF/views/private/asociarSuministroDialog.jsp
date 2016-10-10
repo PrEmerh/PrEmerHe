@@ -20,7 +20,11 @@
 						<label for="filtroDireccion">Número de Suministro</label>
 					</td>
 					<td class="tablaAsociarSuministroTextos" rowspan="3">
+<<<<<<< HEAD
+						<input type="text" name="nameSuministro" value="" id="idNameSuministro" class="buttontext">
+=======
 						<input type="text" name="nameSuministro" value="" id="idNumero" class="buttontext">
+>>>>>>> refs/remotes/origin/master
 					</td>
 					<td class="tablaAsociarSuministroEtiquetas">
 						<label for="filtroDireccion">Comuna</label>

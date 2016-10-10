@@ -52,7 +52,7 @@ function cargarTablaSuministros(){
 			"scrollCollapse": true,
 			"paging": false,
 			"serverSide": true,
-		    "ordering": true,	    
+		    "ordering": false,	    
 			"processing": true, 
 	        "language": {
 	        	processing:  "<img src='../resources/images/loading.gif' width='25' > Cargando...",
@@ -97,21 +97,22 @@ function cargarTablaSuministros(){
 	                    	 }
 	                    	 return '<a href="javaScript:{cargandoGif('+"'" +sfid + "', '"+"entidadSuministro"+"'"+')}">'+ txtColumn + '</a>';
 	                    }
-	        }],
-	        "order":[[0, "desc"]]
+	        }]
+//	      	,
+//	        "order":[[0, "desc"]]
 		});
 		
 		$('#buscar').on('click', function() {
 			table
-				.columns(0).search($('#idNumero').val())
+				.columns(0).search($('#idNameSuministro').val())
 				.columns(2).search($('#idComuna').val())
-				.columns(5).search($('#idCalle').val())
-				.columns(6).search($('#idNumero').val())
+				.columns(6).search($('#idCalle').val())
+				.columns(7).search($('#idNumero').val())
 				.draw();			
 		});
 		
 		//Añadir opcion de buscar pulsando enter
-		$("#idNumero").on("keyup", function (event) {
+		$("#idNameSuministro").on("keyup", function (event) {
 		    if (event.keyCode==13) {
 		        $("#buscar").get(0).click();
 		    }

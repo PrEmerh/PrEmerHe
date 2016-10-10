@@ -784,9 +784,14 @@ public class SuministroDAO {
 	public List<SuministroVO> readSuministroDataTable(DataTableProperties dataTableProperties) {
 		logger.debug("--- Inicio -- readSuministroDataTable ---");
 		
-		Session session = sessionFactory.openSession();
-		String order = (String) dataTableProperties.getTableOrdering().get("orderingColumnName");
-		String dirOrder = (String) dataTableProperties.getTableOrdering().get("orderingDirection");
+		Session session = sessionFactory.openSession();		
+		String order = null;
+		String dirOrder = null;
+		if(dataTableProperties.getTableOrdering() != null){
+			order = (String) dataTableProperties.getTableOrdering().get("orderingColumnName");
+			dirOrder = (String) dataTableProperties.getTableOrdering().get("orderingDirection");
+		}
+		
 		int numStart = dataTableProperties.getStart();
 		int numLength = dataTableProperties.getLength();
 		int searchParamsCounter = 0;
@@ -848,30 +853,44 @@ public class SuministroDAO {
 //			}
 			StringBuilder query = new StringBuilder("FROM SuministroVO suministro "
 					+ "LEFT JOIN FETCH suministro.estadoConexionPickList estadoConexion "
-					+ "LEFT JOIN FETCH suministro.estadoSuministroPickList estadoSuministro ");
+					+ "LEFT JOIN FETCH suministro.estadoSuministroPickList estadoSuministro "
+					+ "LEFT JOIN FETCH suministro.dirSuministroJoin direccionSumi ");
 			
 			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
 				query.append(" WHERE ");
 				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
 					if ("name".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							query.append("UPPER(suministro." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							query.append(" AND ");
+							searchParamsCounter++;
+						}
+					}					
+					if ("direccionConcatenada".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							query.append("UPPER(suministro." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							query.append(" AND ");
+							searchParamsCounter++;
+						}
+					}					
+					if ("comuna".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							query.append("UPPER(suministro." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 							query.append(" AND ");
 							searchParamsCounter++;
 						}
 					}
 					
-					if ("DireccionConcatenada__c".equals(columnInfo.getData())) {
+					if ("calle".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							query.append("UPPER(direccionSumi." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 							query.append(" AND ");
 							searchParamsCounter++;
 						}
-					}
-					
-					if ("comuna__c".equals(columnInfo.getData())) {
+					}							
+					if ("numero".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							query.append("UPPER(direccionSumi." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 							query.append(" AND ");
 							searchParamsCounter++;
 						}
@@ -891,6 +910,8 @@ public class SuministroDAO {
 				}else{
 					query.append(" ORDER BY suministro." + order + " " + dirOrder);
 				}
+			}else{
+				query.append(" ORDER BY suministro.name desc" );
 			}
 			
 			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);

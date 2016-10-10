@@ -90,9 +90,11 @@ function abrirDialogDireccion() {
 
 function establecerSuministro(sfid, name,direccionSfid,direccionName) {
 	document.getElementById('suministro').value = sfid;
+	document.getElementById('suministroString').value = name;
 	document.getElementById('numSumiRecuperado').value = name;
 	if(direccionName!=null && direccionSfid!=null ){
 		document.getElementById('direccion').value = direccionSfid;
+		document.getElementById('direccionString').value = direccionName;
 		document.getElementById('dirRecuperada').value = direccionName;
 	}
 	$('#dialogSuministro').dialog('close');
@@ -100,6 +102,7 @@ function establecerSuministro(sfid, name,direccionSfid,direccionName) {
 
 function establecerDireccion(sfid, name) {
 	document.getElementById('direccion').value = sfid;
+	document.getElementById('direccionString').value = name;
 	document.getElementById('dirRecuperada').value = name;
 	$('#dialogDireccion').dialog('close');
 }

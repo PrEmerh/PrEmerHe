@@ -298,11 +298,11 @@
 										<tr>
 											<td><a class="link" href="javascript:cargandoGif('${caso.sfid}','entidadCaso');">${caso.numeroCaso}</a></td>
 											<td class="filaImagen">
-											<c:if test="${caso.descripcionEstado!=null && caso.descripcionEstado!='Cerrado' && caso.descripcionEstado!='Cancelado'}">					
+											<c:if test="${caso.labelEstadoPickList!=null && caso.labelEstadoPickList!='Cerrado' && caso.labelEstadoPickList!='Cancelado'}">					
 											<img src="../resources/images/inservice_red_point.png" height="12px" width="12px">
 											</c:if>	
 											</td>
-											<td>${caso.descripcionEstado}</td>
+											<td>${caso.labelEstadoPickList}</td>
 											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaApertura}"/></td>
 											<td>${caso.labelSubmotivoPickList}</td>
 											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaEstimadaCierre}"/></td>
@@ -353,10 +353,10 @@
 								<c:choose>
 									<c:when test="${not empty contacto.casosReiterados && contacto.casosReiterados}">
 										<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
-										<td class="filaValor">SI</td>
+										<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>
 									</c:when>
 									<c:otherwise>
-										<td class="filaValor" colspan="2">NO</td>
+										<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
 									</c:otherwise>
 								</c:choose>
 							</tr>
@@ -405,12 +405,19 @@
 										<tr>
 											<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_corte_deuda"/></td>
 											<c:choose>
-												<c:when test="${not empty suministro.cortePorDeuda && suministro.cortePorDeuda}">
-													<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
-													<td class="filaValor">SI</td>	
+												<c:when test="${not empty suministro.cortePorDeuda}">
+													<c:choose>
+														<c:when test="${suministro.cortePorDeuda}">
+															<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
+															<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>	
+														</c:when>
+														<c:otherwise>
+															<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
+														</c:otherwise>
+													</c:choose>
 												</c:when>
 												<c:otherwise>
-													<td class="filaValor" colspan="2">NO</td>
+													<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_sin_informacion"/></td>
 												</c:otherwise>
 											</c:choose>
 										</tr>
@@ -430,10 +437,10 @@
 											<c:choose>
 												<c:when test="${not empty suministro.pagoEnProceso && suministro.pagoEnProceso}">
 													<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
-													<td class="filaValor">SI</td>
+													<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>
 												</c:when>
 												<c:otherwise>
-													<td class="filaValor" colspan="2">NO</td>
+													<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
 												</c:otherwise>
 											</c:choose>
 										</tr>
@@ -442,10 +449,10 @@
 											<c:choose>
 												<c:when test="${not empty suministro.electrodependiente && suministro.electrodependiente == '1'}">
 													<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
-													<td class="filaValor">SI</td>
+													<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>
 												</c:when>
 												<c:otherwise>
-													<td class="filaValor" colspan="2">NO</td>
+													<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
 												</c:otherwise>
 											</c:choose>
 										</tr>
@@ -454,10 +461,10 @@
 											<c:choose>
 												<c:when test="${not empty suministro.casosAbiertos && suministro.casosAbiertos}">
 													<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
-													<td class="filaValor">SI</td>
+													<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>
 												</c:when>
 												<c:otherwise>
-													<td class="filaValor" colspan="2">NO</td>
+													<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
 												</c:otherwise>
 											</c:choose>
 										</tr>
@@ -466,10 +473,10 @@
 											<c:choose>
 												<c:when test="${not empty suministro.casosReiterados && suministro.casosReiterados == '1'}">
 													<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
-													<td class="filaValor">SI</td>
+													<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>
 												</c:when>
 												<c:otherwise>
-													<td class="filaValor" colspan="2">NO</td>
+													<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
 												</c:otherwise>
 											</c:choose>
 										</tr>
