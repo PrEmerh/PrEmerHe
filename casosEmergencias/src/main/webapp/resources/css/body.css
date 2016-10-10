@@ -1,4 +1,4 @@
-body {
+labelCargandobody {
 	background-color: #FFFFFF;
 	padding: 0px;
 	margin: 3px;
@@ -630,7 +630,8 @@ div .cabeceraSubTitulo {
 
 }
 
-.labelCargando {	
+.labelCargando {
+	
 vertical-align: 35%;
 font-size: 15;
 

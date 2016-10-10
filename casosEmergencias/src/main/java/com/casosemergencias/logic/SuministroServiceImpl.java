@@ -101,6 +101,31 @@ public class SuministroServiceImpl implements SuministroService{
 		return listSuministro;
 	}
 	
+	/**
+	 * Metodo que devuelve una lista con todos los suministros de BBDD para asociar a un contacto
+	 * 
+	 * @return
+	 */
+	@Override
+	public List<Suministro> readSuministrosAsociarContacto(DataTableProperties propDatatable) {
+		
+		logger.debug("--- Inicio -- readSuministrosAsociarContacto ---");
+		List<Suministro> listSuministro = new ArrayList<Suministro>();
+		
+//		List<SuministroVO> listSuministroVO = suministroDao.readSuministroAsociarContacto(propDatatable);
+//		logger.debug("--- Inicio -- readAllSuministros cantidad: " + listSuministroVO.size() + " ---");
+//		
+//		for (SuministroVO suministroVO : listSuministroVO) {
+//			Suministro suministro = new Suministro();
+//			ParserModelVO.parseDataModelVO(suministroVO, suministro);
+//			listSuministro.add(suministro);
+//		}
+//		
+//		logger.debug("--- Fin -- readSuministrosAsociarContacto ---:"+listSuministro.size());
+		return listSuministro;
+	}
+	
+	
 	public Suministro readSuministroBySfid(String sfid){
 		SuministroVO suministroVO = suministroDao.readSuministroBySfid(sfid);
 		Suministro suministro = new Suministro();

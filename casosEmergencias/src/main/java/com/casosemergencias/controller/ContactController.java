@@ -245,6 +245,7 @@ public class ContactController {
 			//Realizamos la busqueda en BBDD
 			List<Suministro> listaSuministros = new ArrayList<Suministro>();
 			listaSuministros = this.suministroService.readAllSuministros(propDataTable);
+
 			
 			for(Suministro suministro : listaSuministros){
 				jsonResult = new JSONObject();

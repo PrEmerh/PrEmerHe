@@ -11,6 +11,7 @@ public interface SuministroService {
 	public List<Suministro> readAllSuministros();	
 	public List<Suministro> readAllSuministros(DataTableProperties propDatatable);
 	public Suministro readSuministroBySfid(String id);	
+	public List<Suministro> readSuministrosAsociarContacto(DataTableProperties propDatatable);
 	public Integer getNumSuministros(DataTableProperties propDatatable);
 	public Integer getNumSuministrosDeUnaCuetna(String sfidCuenta);
 	public Map<String, Object> getDatosSuministroWS(String numSuministro);
