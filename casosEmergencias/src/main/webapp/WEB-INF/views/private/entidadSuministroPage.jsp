@@ -75,7 +75,7 @@
 							<label><s:message code="entidadSuministro_title_label_detalleDireccion"/></label>
 						</div>
 						<div>
-							<label><a class="link" href="../private/entidadDireccion?sfid=${suministro.dirSuministroJoin.sfid}">${suministro.dirSuministroJoin.name}</a></label>
+							<label><a class="link" href="javascript:cargandoGif('${suministro.dirSuministroJoin.sfid}','entidadDireccion');">${suministro.dirSuministroJoin.name}</a></label>
 						</div>
 					</div>
 					<div>
