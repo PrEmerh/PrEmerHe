@@ -264,6 +264,6 @@ function refrescarHistorial(numeroEntradas){
 					document.getElementById('hrefTodosHistorial').hidden = false;
 					
 				}
-		}); 	
+		});
 	
 }

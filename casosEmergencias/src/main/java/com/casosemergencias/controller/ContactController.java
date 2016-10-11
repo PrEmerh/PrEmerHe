@@ -2,6 +2,7 @@ package com.casosemergencias.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,13 +27,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.ContactView;
+import com.casosemergencias.controller.views.DireccionView;
 import com.casosemergencias.controller.views.HerokuUserView;
 import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.ContactService;
+import com.casosemergencias.logic.PickListsService;
 import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.Contacto;
+import com.casosemergencias.model.Direccion;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.PickListByField;
 import com.casosemergencias.util.constants.Constantes;
 import com.casosemergencias.util.datatables.DataTableColumnInfo;
 import com.casosemergencias.util.constants.ConstantesTibcoWS;
@@ -49,6 +54,9 @@ public class ContactController {
 	
 	@Autowired
 	private SuministroService suministroService;
+	
+	@Autowired
+	private PickListsService pickListsService;
 
 	@RequestMapping(value = "/private/homeContacts", method = RequestMethod.GET)
 	public ModelAndView listadoContactos() {
@@ -64,7 +72,7 @@ public class ContactController {
 	}
 
 	@RequestMapping(value = "/private/entidadContacto", method = RequestMethod.GET)
-	public ModelAndView getContactoData(@RequestParam String sfid,HttpServletRequest request) {
+	public ModelAndView getContactoData(@RequestParam String sfid,@RequestParam String editMode,HttpServletRequest request) {
 		logger.debug("Ejecutar consulta");
 		HttpSession session = request.getSession(true);
 		
@@ -74,13 +82,14 @@ public class ContactController {
 
 		ModelAndView model = new ModelAndView();		
 		model.addObject("sfid", sfid);
+		model.addObject("editMode", editMode);
 
 		ContactView contactoView = new ContactView();		
 		Contacto contactoBBDD = contactService.readContactoBySfid(sfid);
 		if (contactoBBDD != null){
 			ParserModelVO.parseDataModelVO(contactoBBDD, contactoView);
 		}
-		
+				
 		//Almacenamos sfid de suministro relacionado en caso de que el contacto tenga solo uno asociado.
 		
 //		if(contactoView.getSuministros()!=null && contactoView.getSuministros().isEmpty()==false  && contactoView.getSuministros().size()==1 && session.getAttribute(Constantes.SFID_SUMINISTRO)==null){
@@ -143,10 +152,16 @@ public class ContactController {
 		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));
 		logger.info("SFID_SUMINISTRO" + session.getAttribute(Constantes.SFID_SUMINISTRO));
 		logger.info("FINAL_DETAIL_PAGE" + session.getAttribute(Constantes.FINAL_DETAIL_PAGE));
+		
+		//Setteamos picklist del campo comuna del cuadro de dialogo "Asociar suministro"
+		SuministroView suministroViewDial =new SuministroView();
+		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("Direccion__c");
+		suministroViewDial.setMapComuna(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_SUMINISTRO_COMUNA, true));
 
 		
 		model.setViewName("private/entidadContactoPage");
 		model.addObject("contacto", contactoView);
+		model.addObject("suministroDial",suministroViewDial);
 		
 		return model;
 	}
@@ -284,5 +299,25 @@ public class ContactController {
 		}
 		return false;
 	}
+	
+	@RequestMapping(value = "/private/asociarSuministro", method = RequestMethod.GET)
+	public String getDireccionData(@RequestParam String sfid,@RequestParam String contactSfid) {
+		logger.debug("Ejecutar consulta");
+
+		boolean asociarSuministro=contactService.asociarSuministro(sfid,contactSfid);	
+		if(asociarSuministro==true){
+			return "redirect:entidadContacto?editMode="+Constantes.SUM_ASSOCIATION_CONTACT_OK+"&sfid=" + contactSfid;
+		}
+		else if(asociarSuministro==false){
+			return "redirect:entidadContacto?editMode="+Constantes.SUM_ASSOCIATION_CONTACT_ERROR+"&sfid=" + contactSfid;
+
+		}
+		else{
+			return null;
+		}
+		
+	}
+	
+
 	
 }

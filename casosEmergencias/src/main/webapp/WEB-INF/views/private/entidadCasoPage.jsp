@@ -154,7 +154,7 @@
 						<label><s:message code="entidadCaso_table_label_casoPrincipal"/></label>
 					</div>
 					<div>
-						<label><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.casoPrincipalJoin.sfid}">${caso.casoPrincipalJoin.numeroCaso}</a></label>					
+						<label><a class="link" href="javascript:cargandoGif('${caso.casoPrincipalJoin.sfid}','entidadCaso');">${caso.casoPrincipalJoin.numeroCaso}</a></label>					
 					</div>
 				</div>
 				<div>

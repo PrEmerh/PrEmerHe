@@ -6,9 +6,11 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.casosemergencias.dao.AssetDAO;
 import com.casosemergencias.dao.CaseDAO;
 import com.casosemergencias.dao.ContactDAO;
 import com.casosemergencias.dao.RelacionActivoContactoDAO;
+import com.casosemergencias.dao.vo.AssetVO;
 import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.dao.vo.ContactVO;
 import com.casosemergencias.dao.vo.RelacionActivoContactoVO;
@@ -17,6 +19,7 @@ import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.constants.Constantes;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
 
@@ -33,6 +36,9 @@ public class ContactServiceImpl implements ContactService{
 	
 	@Autowired
 	private CaseDAO casoDAO;
+	
+	@Autowired
+	private AssetDAO assetDAO;
 		
 	/**
 	 * Metodo que devuelve una lista de todos los contactos a mostrar en la tabla de nuestra app.
@@ -133,4 +139,28 @@ public class ContactServiceImpl implements ContactService{
 		}
 		return null;
 	}
+
+	@Override
+	public Boolean asociarSuministro(String sfid, String contactSfid) {
+		List<AssetVO> listAssetVO= assetDAO.readAssetBySuministroid(sfid);
+		if(listAssetVO!=null && !listAssetVO.isEmpty()){
+			AssetVO assetVO=listAssetVO.get(0);
+			String activoId=assetVO.getSfid();
+			List<RelacionActivoContactoVO> listRelActiContactoVO= relacionDAO.readRelacionActivoContactoByActivoIdAndContact(activoId,contactSfid);
+				if(listRelActiContactoVO!=null && !listRelActiContactoVO.isEmpty()){
+					return false;				
+				}
+				else{
+					RelacionActivoContactoVO relActiContactoVO= new RelacionActivoContactoVO();
+					relActiContactoVO.setTipoRelacionActivoClave(Constantes.PICKLIST_RELACIONACTIVO_REPORTADOR);
+					relActiContactoVO.setActivoId(activoId);
+					relActiContactoVO.setContactoId(contactSfid);
+					relacionDAO.insertRelacionActivoContacto(relActiContactoVO);
+					return true;
+				}
+		}
+		return null;
+	}
+	
+	
 }

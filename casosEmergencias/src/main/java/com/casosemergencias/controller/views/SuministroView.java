@@ -2,6 +2,7 @@ package com.casosemergencias.controller.views;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.example.sieme009_schema.ListadoEventosType;
 import org.example.sires033_schema.ListadoSuministrosType;
@@ -84,6 +85,9 @@ public class SuministroView extends ObjectView {
 
 	private String fechaCorteString;
 	private String sfidContAsociado;
+	
+	/*Mapas para mostrar los combos de Suministro*/
+	private Map<String, String> mapComuna;
 
 	public SuministroView() {
 	}
@@ -106,7 +110,7 @@ public class SuministroView extends ObjectView {
 			String labelTipoSegmentoPickList, String labelSubestacionElecPickList, String labelPropMedidorPickList,
 			String labelTipoConexionPickList, String labelTipoLecturaPickList, String labelTipoTransformadorPickList,
 			String labelComunaRepartoPickList, String labelFullElectricPickList, String labelElectrodependientePickList,
-			ListadoSuministrosType listadoSuministros, ListadoEventosType listadoEventos, String fechaCorteString) {
+			ListadoSuministrosType listadoSuministros, ListadoEventosType listadoEventos, String fechaCorteString,Map<String, String> mapComuna) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -173,6 +177,7 @@ public class SuministroView extends ObjectView {
 		this.listadoSuministros = listadoSuministros;
 		this.listadoEventos = listadoEventos;
 		this.fechaCorteString = fechaCorteString;
+		this.mapComuna=mapComuna;
 	}
 
 
@@ -658,10 +663,15 @@ public class SuministroView extends ObjectView {
 		return sfidContAsociado;
 	}
 
-
-
 	public void setSfidContAsociado(String sfidContAsociado) {
 		this.sfidContAsociado = sfidContAsociado;
+	}
+	
+	public Map<String, String> getMapComuna() {
+		return mapComuna;
+	}
+	public void setMapComuna(Map<String, String> mapComuna) {
+		this.mapComuna = mapComuna;
 	}
 
 

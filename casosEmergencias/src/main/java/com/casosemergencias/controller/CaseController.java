@@ -56,6 +56,7 @@ import com.casosemergencias.model.Direccion;
 import com.casosemergencias.model.HerokuUser;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.PickListByField;
 import com.casosemergencias.util.constants.Constantes;
 import com.casosemergencias.util.constants.ConstantesBatch;
 import com.casosemergencias.util.constants.ConstantesError;
@@ -447,19 +448,6 @@ public class CaseController {
 		}
 	}
 	
-	private Map<String, String> getPickListPorCampo(Map<String, Map<String, String>> mapaGeneral, String campo, Boolean anniadirDefault){
-		Map<String, String> returnMap = null;
-		if (mapaGeneral != null && !mapaGeneral.isEmpty() && mapaGeneral.containsKey(campo)){
-				returnMap = new LinkedHashMap<String, String>();
-			if(anniadirDefault){
-				returnMap.put(Constantes.PICKLIST_CASO_DEFAULT, "");
-			}
-				returnMap.putAll(mapaGeneral.get(campo));
-		}
-		return returnMap;
-	}
-
-	
 	@RequestMapping(value ="/private/cancelarCaso", method = RequestMethod.POST)
 	public String cancelarCaso(CaseView casoRequest,  HttpServletRequest request){
 			
@@ -630,8 +618,8 @@ public class CaseController {
 		
 		//Recuperacion mapa picklists
 		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("Case");
-		casoView.setMapStatus(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_STATUS, false));
-		casoView.setMapPeticion(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_PETICION, false));
+		casoView.setMapStatus(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_STATUS, false));
+		casoView.setMapPeticion(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_PETICION, false));
 		//Recupero el RecordTypeId de Emergencia. Cambia por entorno
 		if (casoView.getMapPeticion() != null && !casoView.getMapPeticion().isEmpty() 
 				&& casoView.getMapPeticion().containsValue(Constantes.PICKLIST_CASO_PETICION_EMERGENCIA_NAME)){
@@ -643,10 +631,10 @@ public class CaseController {
 	            }
 	        }
 		}
-		casoView.setMapSubMotivo(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_SUBMOTIVO, true));
-		casoView.setMapCondicionAgravante(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CONDICION_AGRAVANTE, true));
-		casoView.setMapCanalNotificacion(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CANAL_NOTIFICACION, true));
-		casoView.setMapFavorabilidadCaso(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_FAVORABILIDAD, true));
+		casoView.setMapSubMotivo(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_SUBMOTIVO, true));
+		casoView.setMapCondicionAgravante(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CONDICION_AGRAVANTE, true));
+		casoView.setMapCanalNotificacion(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CANAL_NOTIFICACION, true));
+		casoView.setMapFavorabilidadCaso(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_FAVORABILIDAD, true));
 				
 		logger.info("Carga de datos iniciales del formulario de alta de un nuevo caso completa");
 		logger.trace("Saliendo de fillNewCaseFormInfo()");
@@ -747,7 +735,7 @@ public class CaseController {
 		finalDetailPage = (String) session.getAttribute(Constantes.FINAL_DETAIL_PAGE);
 		
 		if (finalDetailPage != null && Constantes.FINAL_DETAIL_PAGE_CONTACTO.equals(finalDetailPage) && contactoSfid != null && !"".equals(contactoSfid)) {
-			redirectionPage = "redirect:entidadContacto?sfid=" + contactoSfid;
+			redirectionPage = "redirect:entidadContacto?editMode=VIEW&sfid=" + contactoSfid;
 		} else if (finalDetailPage != null && Constantes.FINAL_DETAIL_PAGE_SUMINISTRO.equals(finalDetailPage) && suministroSfid != null && !"".equals(suministroSfid)) {
 			redirectionPage = "redirect:entidadSuministro?sfid=" + suministroSfid;
 		}

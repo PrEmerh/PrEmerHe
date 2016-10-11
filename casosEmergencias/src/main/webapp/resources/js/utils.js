@@ -113,7 +113,7 @@ function cargandoGif(sfid,page) {
 	window.location="../private/entidadCaso?editMode=VIEW&sfid=" + sfid ;
 	}
 	if(page=="entidadContacto"){
-		window.location="../private/entidadContacto?sfid=" + sfid ;
+		window.location="../private/entidadContacto?editMode=VIEW&sfid=" + sfid ;
 		}
 	if(page=="entidadSuministro"){
 		window.location="../private/entidadSuministro?sfid=" + sfid ;

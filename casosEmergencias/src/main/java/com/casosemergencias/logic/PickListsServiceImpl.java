@@ -50,25 +50,25 @@ final static Logger logger = Logger.getLogger(CaseService.class);
 		return datosRetorno;
 	}
 	
-	@Override
-	public Map<String, String> getPickListPorCampo(String objeto, String campo){
-		Map<String, String> datosRetorno = null;
-		PickListsVO objPick = new PickListsVO();
-		objPick.setObjeto(objeto);
-		objPick.setCampo(campo);
-		List<PickListsVO> listaPickList = pickListDao.readPickListsUser(objPick);
-		if (listaPickList != null && !listaPickList.isEmpty()){
-			PickListsVO ob = null;					
-			for(int i=0; i<listaPickList.size();i++){
-				ob = listaPickList.get(i);
-				if (datosRetorno == null){
-					 datosRetorno = new LinkedHashMap<String, String>();
-				}
-				datosRetorno.put(ob.getCodigo(), ob.getValor());
-			}
-		}
-		return datosRetorno;
-	}
+//	@Override
+//	public Map<String, String> getPickListPorCampo(String objeto, String campo){
+//		Map<String, String> datosRetorno = null;
+//		PickListsVO objPick = new PickListsVO();
+//		objPick.setObjeto(objeto);
+//		objPick.setCampo(campo);
+//		List<PickListsVO> listaPickList = pickListDao.readPickListsUser(objPick);
+//		if (listaPickList != null && !listaPickList.isEmpty()){
+//			PickListsVO ob = null;					
+//			for(int i=0; i<listaPickList.size();i++){
+//				ob = listaPickList.get(i);
+//				if (datosRetorno == null){
+//					 datosRetorno = new LinkedHashMap<String, String>();
+//				}
+//				datosRetorno.put(ob.getCodigo(), ob.getValor());
+//			}
+//		}
+//		return datosRetorno;
+//	}
 
 	@Override
 	public List<PickList> getPickListPorObjetoYCampo(String objeto, String campo) {

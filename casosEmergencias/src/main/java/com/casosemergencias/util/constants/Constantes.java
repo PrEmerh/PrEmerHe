@@ -27,9 +27,7 @@ public class Constantes {
 	//Cancelar caso
 	public static final String CANCEL_CASE_OK = "CANCEL_OK";
 	public static final String CANCEL_CASE_ERROR = "CACEL_ERROR";
-	
-	
-	//PcikLists
+
 	//Caso
 	public static final String PICKLIST_CASO_DEFAULT = "Default";
 	public static final String PICKLIST_CASO_STATUS = "Status";
@@ -41,7 +39,17 @@ public class Constantes {
 	public static final String PICKLIST_CASO_SUBMOTIVO = "Motivo_Empresa__c";
 	public static final String PICKLIST_CASO_CONDICION_AGRAVANTE = "Condici_n_agravante__c";
 	public static final String PICKLIST_CASO_CANAL_NOTIFICACION = "Canal_de_notificaciOn__c";
-	public static final String PICKLIST_CASO_FAVORABILIDAD = "Favorabilidad_del_Caso__c";
+	public static final String PICKLIST_CASO_FAVORABILIDAD = "Favorabilidad_del_Caso__c";	
+	//Suministro
+	public static final String PICKLIST_SUMINISTRO_COMUNA = "Comuna__c";
+	//Contacto
+	public static final String SUM_ASSOCIATION_CONTACT_ERROR = "ASSOCIATION_ERROR";
+	public static final String SUM_ASSOCIATION_CONTACT_OK = "ASSOCIATION_OK";
+	
+	
+	//RelaciónActivoContacto
+	
+	public static final String PICKLIST_RELACIONACTIVO_REPORTADOR = "REL003";
 	
 	//
 	//Case Object

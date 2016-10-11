@@ -38,7 +38,13 @@
 					<label class="labelDivError"><s:message code="notificaciones_label_error_mensaje"/>&nbsp;<s:message code="notificaciones_label_error_alta_caso_ya_existente"/></label>
 				</div>
 			</div>
-		</c:if>
+		</c:if>		
+		<div id="divAssociationError" class="divError">
+			<label class="labelDivError"><s:message code="notificaciones_label_error_suministro_association"/></label>
+		</div>
+		<div id="divAssociationOk" class="divOk">
+			<label class="labelDivOk"><s:message code="notificaciones_label_ok_suministro_association"/></label>
+		</div>
 		<div>
 		<form:form name="formEntidadContacto" action="actualizarContacto" modelAttribute="contacto" method="POST">
 			<div class="botoneraListado">
@@ -48,6 +54,7 @@
 				</ul>
 			</div>
 			<form:hidden path="sfid"/>
+			<input type="hidden" value="${editMode}" id="editModeId"/>
 			<div class="divEntidadDatos">
 				<div id="divEntidadContactoSuministros" class="divEntidad">
 					<div class="subtitleAltaEntidad">

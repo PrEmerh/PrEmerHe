@@ -5,6 +5,7 @@ function funcionOnload(){
 	initHeader(); 
 	showNotifications(); 
 	cargarAsociarSuministro();
+	checkUpdates(); 
 }
 
 //Crear caso por contacto
@@ -88,6 +89,7 @@ function cargarTablaSuministros(){
 	                    {"targets": 0,
 	                     "render": function (data, type, full, meta) {
 	                    	 var sfid = "";
+	                    	 var contactoSfid=document.getElementById("sfidContAsociadoID").value;
 	                    	 var txtColumn = "";
 	                    	 if (full.sfid != null) {
 	                    		 sfid = full.sfid;
@@ -95,7 +97,7 @@ function cargarTablaSuministros(){
 	                    	 if (data != null) {
 	                    		 txtColumn = data;
 	                    	 }
-	                    	 return '<a href="javaScript:{cargandoGif('+"'" +sfid + "', '"+"entidadSuministro"+"'"+')}">'+ txtColumn + '</a>';
+	                    	 return '<a href="javaScript:{asociarSuministro('+"'" +sfid + "', '"+contactoSfid+"'"+')}">'+ txtColumn + '</a>';
 	                    }
 	        }]
 //	      	,
@@ -137,3 +139,23 @@ function cargarTablaSuministros(){
 
 
 
+function crearCasoPorDireccion(){	
+	verCargando();
+	//window.location="../private/entidadCasoAltaPorDireccionPage";		
+}
+
+function asociarSuministro(sfid,contactSfid){
+	verCargando();	
+	window.location="../private/asociarSuministro?sfid=" + sfid +"&contactSfid="+contactSfid ;
+	
+}
+
+function checkUpdates() {
+	if (document.getElementById('editModeId').value == 'ASSOCIATION_ERROR') {
+		$('#divAssociationError').show();
+	}
+	if (document.getElementById('editModeId').value == 'ASSOCIATION_OK') {
+		$('#divAssociationOk').show();
+	}
+}
+	
