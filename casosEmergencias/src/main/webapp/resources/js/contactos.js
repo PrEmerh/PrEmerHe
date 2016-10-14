@@ -40,6 +40,7 @@ function cargarAsociarSuministro() {
 function abrirAsociarSuministro(){
 	ocultarNotificacion();
 	$("#dialogAsociarSuministroContacto").dialog('open');
+	$('#divAssociationErrorSearch').hide();
 	cargarTablaSuministros();
 }
 
@@ -105,6 +106,19 @@ function cargarTablaSuministros(){
 		});
 		
 		$('#buscar').on('click', function() {
+						
+			var numeroSuministro= document.getElementById("idNameSuministro");
+			var comuna= document.getElementById("idComuna");
+			var calle= document.getElementById("idCalle");
+			var numero= document.getElementById("idNumero");
+			
+			if(numeroSuministro.value=="" && comuna.value=="" && calle.value=="" &&numero.value==""){
+				$('#divAssociationErrorSearch').show();
+			}
+			else{
+				$('#divAssociationErrorSearch').hide();
+			}
+			
 			table
 				.columns(0).search($('#idNameSuministro').val())
 				.columns(2).search($('#idComuna').val())
@@ -145,6 +159,7 @@ function crearCasoPorDireccion(){
 }
 
 function asociarSuministro(sfid,contactSfid){
+	$("#dialogAsociarSuministroContacto").dialog('close');
 	verCargando();	
 	window.location="../private/asociarSuministro?sfid=" + sfid +"&contactSfid="+contactSfid ;
 	

@@ -6,6 +6,9 @@
 <div id="dialogAsociarSuministroContacto" title="Búsqueda" class="dialogLupa">	
 	<form id="asociarSuministroId" action="listarAsociarSuministros"  method="POST" name="formAsociarSuministro">	
 		<input id="sfidContAsociadoID" type="hidden" value="${contacto.sfid}" name="sfidContAsociado">
+		<div id="divAssociationErrorSearch" class="divError">
+			<label class="labelDivError"><s:message code="notificaciones_label_error_suministro_association_busqueda"/></label>
+		</div>
 		<div id="busquedaSuministro" class="divEntidad, divLabel">
 			<table  class="tablaBusqueda">
 				<tr>
