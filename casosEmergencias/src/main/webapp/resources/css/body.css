@@ -620,20 +620,24 @@ div .cabeceraSubTitulo {
 /* <<<<< ESTILOS PARA DIV DE CARGAR PAGINA */
 
 .divCargando {
-	position: relative;
-	width: 100%;
+	position: fixed;
 	text-align: center;
 	background-color: white; 
 	opacity: 0.5;
-	height:5000%; 
 	padding-top:25%;
-	z-index: auto;
+	z-index:100;
+	width: 100%; 
+	height: 100%;
+	overflow: hidden;
 
+	 
 }
 
 .labelCargando {
 	
-vertical-align: 35%;
+vertical-align:middle;
 font-size: 15;
+font-weight: 800;
+opacity: inherit;
 
 }
