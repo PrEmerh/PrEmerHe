@@ -23,7 +23,7 @@
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="cabeceraPage_list_contact"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<br><br>
-		<div class="formBusqueda">
+		<div id="formBusquedaContactoId" class="formBusqueda">
 			<table class="tablaBusqueda">
 				<tr>
 					<td class="tablaBusquedaTitulo" colspan="2">

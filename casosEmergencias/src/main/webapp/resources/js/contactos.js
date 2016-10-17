@@ -5,7 +5,7 @@ function funcionOnload(){
 	initHeader(); 
 	showNotifications(); 
 	cargarAsociarSuministro();
-	checkUpdates(); 
+	checkUpdates();
 }
 
 //Crear caso por contacto
@@ -173,4 +173,5 @@ function checkUpdates() {
 		$('#divAssociationOk').show();
 	}
 }
-	
+
+
