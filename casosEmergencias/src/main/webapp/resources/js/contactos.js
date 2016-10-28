@@ -1,10 +1,12 @@
-var table;
+var tableSum;
+var tableDir
 var urlTable = createUrl();
 
 function funcionOnload(){
 	initHeader(); 
 	showNotifications(); 
 	cargarAsociarSuministro();
+	cargarCrearCasoPorDireccion();
 	checkUpdates();
 }
 
@@ -19,6 +21,25 @@ function ocultarNotificacion(){
 }
 
 //Cargamos el dialog para asociar suministro a un contacto
+function cargarCrearCasoPorDireccion() {
+	$("#dialogCrearCasoPorDireccion").dialog({
+		resizable: false,
+		autoOpen: false, 
+		modal: true, 
+		show: "blind", 
+		hide: "blind", 
+		height: "auto",
+		width: "40%",
+		position:{
+			my: "center center", 
+			at: "center center",
+			of: $('#divEntidadContactoSuministros') 
+		},
+		create: function (event) {}
+	});
+}
+
+//Cargamos el dialog para crear caso por Direcciom
 function cargarAsociarSuministro() {
 	$("#dialogAsociarSuministroContacto").dialog({
 		resizable: false,
@@ -45,10 +66,10 @@ function abrirAsociarSuministro(){
 }
 
 function cargarTablaSuministros(){
-	if(table == null){
+	if(tableSum == null){
 		var formulario = $('#asociarSuministroId');
 		
-		table = $('#tablaSuministros').DataTable({
+		tableSum = $('#tablaSuministros').DataTable({
 	       	"scrollY": "250px",
 			"scrollX": false,
 			"scrollCollapse": true,
@@ -85,6 +106,7 @@ function cargarTablaSuministros(){
 	       	            {data: "sfid", width: "1%", defaultContent: "", visible: false, orderable: false},
 	       	            {data: "calle", width: "1%", defaultContent: "", visible: false, orderable: false},
 	       	            {data: "numero", width: "1%", defaultContent: "", visible: false, orderable: false}
+	       	            
 			],
 			"columnDefs": [
 	                    {"targets": 0,
@@ -119,7 +141,7 @@ function cargarTablaSuministros(){
 				$('#divAssociationErrorSearch').hide();
 			}
 			
-			table
+			tableSum
 				.columns(0).search($('#idNameSuministro').val())
 				.columns(2).search($('#idComuna').val())
 				.columns(6).search($('#idCalle').val())
@@ -151,12 +173,13 @@ function cargarTablaSuministros(){
 	}
 }
 
+function abrirDialogoCasoDireccion(){		
+	$("#dialogAsociarSuministroContacto").dialog('close');
+	$("#dialogCrearCasoPorDireccion").dialog('open');
+	cargarTablaDirecciones();
 
-
-function crearCasoPorDireccion(){	
-	verCargando();
-	//window.location="../private/entidadCasoAltaPorDireccionPage";		
 }
+
 
 function asociarSuministro(sfid,contactSfid){
 	$("#dialogAsociarSuministroContacto").dialog('close');
@@ -174,4 +197,114 @@ function checkUpdates() {
 	}
 }
 
+
+function cargarTablaDirecciones(){
+	if(tableDir == null){
+		var formularioDir = $('#crearCasoPorDireccionId');
+		
+		tableDir = $('#tablaDirecciones').DataTable({
+	       	"scrollY": "250px",
+			"scrollX": false,
+			"scrollCollapse": true,
+			"paging": false,
+			"serverSide": true,
+		    "ordering": false,	    
+			"processing": true, 
+	        "language": {
+	        	processing:  "<img src='../resources/images/loading.gif' width='25' > Cargando...",
+	            lengthMenu: "",
+	            info: "",
+	            infoEmpty: "",
+	            infoFiltered: "",
+	            zeroRecords:"",
+	            emptyTable:"No se han encontrado registros"
+	        },
+	        "lengthChange": false,
+	        "deferRender": true,
+	        "deferLoading": -1,
+			"ajax": { 
+	        	"type": formularioDir.attr('method'),
+	        	"url": 'listarDirecciones', 	               	
+	        	 "contentType": 'application/json; charset=utf-8' ,
+	        	 "error": function(data) {
+	        		 alert('Se ha producido un error obteniendo la lista de direcciones. Repita la operación y, si el error persiste, contacte con el administrador de la plataforma.');
+	        	 }
+	      	},
+	       	"columns": [
+	       	            {data: "calle", width: "1%", defaultContent: "", orderable: false}, 
+	       	            {data: "tipoCalle", width: "1%", defaultContent: "", orderable: false},
+	       	            {data: "comuna", width: "1%", defaultContent: "", visible: false, orderable: false},
+	       	            {data: "direccionConcatenada", width: "1%",visible: false, defaultContent: "", orderable: false},
+
+			],
+			"columnDefs": [
+	                    {"targets": 0,
+	                     "render": function (data, type, full, meta) {
+	                    	 var txtColumn = "";
+	                    	 var tipoCalle ="";
+	                    	 if (data!= null) {
+	                    		 calle = full.calle;;
+	                    	 }if (full.tipoCalle != null) {
+	                    		 tipoCalle = full.tipoCalle;
+	                     	 }if (full.comuna != null) {
+	                     		 comuna = full.comuna;
+	                     	 }if (full.direccionConcatenada != null) {
+	                     		 direccionConcatenada  = full.direccionConcatenada;
+	                     	 }
+	                    	 return '<a href="javaScript:{agregarDireccion('+"'" +calle +"'"+","+"'"+tipoCalle+"'"+","+"'"+direccionConcatenada+"'"+')}">'+ calle  + '</a>';
+	                    }
+	        }]
+//	      	,
+//	        "order":[[0, "desc"]]
+		});
+		
+		$('#buscarCalleID').on('click', function() {
+						
+			var comunaDir= document.getElementById("idComunaDir");
+			var calleDir= document.getElementById("idCalleDir");
+			var numeroDir= document.getElementById("idNumeroDir");
+			
+			if(comunaDir.value=="" || calleDir.value=="" ||calleDir.value.length<3){
+				$('#divDireccionErrorSearch').show();
+				$('#tablaDirecciones').hide();			
+				}
+			else{
+				$('#tablaDirecciones').show();			
+				$('#divDireccionErrorSearch').hide();
+				
+			tableDir
+			    .columns(0).search($('#idCalleDir').val())
+				.columns(2).search($('#idComunaDir').val())
+				.draw();	
+			}
+		});
+		
+		//Añadir opcion de buscar pulsando enter
+		$("#idComunaDir").on("keyup", function (event) {
+		    if (event.keyCode==13) {
+		        $("#buscarCalleID").get(0).click();
+		    }
+		});
+		$("#idCalleDir").on("keyup", function (event) {
+		    if (event.keyCode==13) {
+		        $("#buscarCalleID").get(0).click();
+		    }
+		});
+	}
+}
+
+function agregarDireccion(direccion,tipoCalle,direccionConcatenada){
+	document.getElementById("idCalleDir").value=direccion;
+	document.getElementById("idTipoCalleDir").value=tipoCalle;
+	document.getElementById("idDireccionCon").value=direccionConcatenada;
+}
+
+
+
+function crearCasoPorDireccion(){
+	$("#cargarCrearCasoPorDireccion").dialog('close');
+	verCargando();	
+	window.location="../private/crearCasoPorDireccion";
+	
+}
 

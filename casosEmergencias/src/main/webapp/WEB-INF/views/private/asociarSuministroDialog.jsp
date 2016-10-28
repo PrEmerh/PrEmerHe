@@ -58,7 +58,7 @@
 				</tr>
 				<tr>
 					<td class="tablaBusquedaBotonera">
-						<input id="crearCasoDireccion" type="button" name="crearCasoDirecion" value="Crear Caso Dirección" onclick="crearCasoPorDireccion();"/>
+						<input id="crearCasoDireccion" type="button" name="crearCasoDirecion" value="Crear Caso Dirección" onclick="abrirDialogoCasoDireccion();"/>
 					</td>
 					<td colspan="3" align="right">
 						<input id="buscar" type="button" name="buscar" value="Buscar" />					
@@ -85,4 +85,5 @@
         	</thead>
 		</table>
 	</div>
+	<jsp:include page="crearCasoPorDireccionDialog.jsp"/>	
 </div>

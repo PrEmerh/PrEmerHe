@@ -47,8 +47,8 @@ $(document).ready(function() {
 	
 	$('#search').on('click', function() {
 		table
-			.columns(1).search($('#filtroCalle').val())
-			.columns(5).search($('#filtroComuna').val())
+			.columns(0).search($('#filtroCalle').val())
+			.columns(1).search($('#filtroComuna').val())
 			.draw();
 	});
 });

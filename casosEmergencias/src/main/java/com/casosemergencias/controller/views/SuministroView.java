@@ -88,6 +88,7 @@ public class SuministroView extends ObjectView {
 	
 	/*Mapas para mostrar los combos de Suministro*/
 	private Map<String, String> mapComuna;
+	private Map<String, String> mapRegion;
 
 	public SuministroView() {
 	}
@@ -110,7 +111,8 @@ public class SuministroView extends ObjectView {
 			String labelTipoSegmentoPickList, String labelSubestacionElecPickList, String labelPropMedidorPickList,
 			String labelTipoConexionPickList, String labelTipoLecturaPickList, String labelTipoTransformadorPickList,
 			String labelComunaRepartoPickList, String labelFullElectricPickList, String labelElectrodependientePickList,
-			ListadoSuministrosType listadoSuministros, ListadoEventosType listadoEventos, String fechaCorteString,Map<String, String> mapComuna) {
+			ListadoSuministrosType listadoSuministros, ListadoEventosType listadoEventos, String fechaCorteString,Map<String, String> mapComuna,
+			Map<String, String> mapRegion) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -178,6 +180,7 @@ public class SuministroView extends ObjectView {
 		this.listadoEventos = listadoEventos;
 		this.fechaCorteString = fechaCorteString;
 		this.mapComuna=mapComuna;
+		this.mapRegion=mapRegion;
 	}
 
 
@@ -672,6 +675,12 @@ public class SuministroView extends ObjectView {
 	}
 	public void setMapComuna(Map<String, String> mapComuna) {
 		this.mapComuna = mapComuna;
+	}	
+	public Map<String, String> getMapRegion() {
+		return mapRegion;
+	}
+	public void setMapRegion(Map<String, String> mapRegion) {
+		this.mapRegion = mapRegion;
 	}
 
 

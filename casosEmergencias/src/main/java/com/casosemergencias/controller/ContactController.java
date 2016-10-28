@@ -31,6 +31,7 @@ import com.casosemergencias.controller.views.DireccionView;
 import com.casosemergencias.controller.views.HerokuUserView;
 import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.ContactService;
+import com.casosemergencias.logic.DireccionService;
 import com.casosemergencias.logic.PickListsService;
 import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.Contacto;
@@ -57,6 +58,9 @@ public class ContactController {
 	
 	@Autowired
 	private PickListsService pickListsService;
+	
+	@Autowired
+	private DireccionService direccionService;
 
 	@RequestMapping(value = "/private/homeContacts", method = RequestMethod.GET)
 	public ModelAndView listadoContactos() {
@@ -153,10 +157,11 @@ public class ContactController {
 		logger.info("SFID_SUMINISTRO" + session.getAttribute(Constantes.SFID_SUMINISTRO));
 		logger.info("FINAL_DETAIL_PAGE" + session.getAttribute(Constantes.FINAL_DETAIL_PAGE));
 		
-		//Setteamos picklist del campo comuna del cuadro de dialogo "Asociar suministro"
+		//Setteamos picklist del campo comuna y region del cuadro de dialogo "Asociar suministro"
 		SuministroView suministroViewDial =new SuministroView();
 		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("Direccion__c");
 		suministroViewDial.setMapComuna(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_SUMINISTRO_COMUNA, true));
+		suministroViewDial.setMapRegion(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_SUMINISTRO_REGION, true));
 
 		
 		model.setViewName("private/entidadContactoPage");
@@ -316,6 +321,55 @@ public class ContactController {
 			return null;
 		}
 		
+	}
+	
+	
+	/**
+	 * Metodo invocado desde Crear Caso por Direccion. Si los parametros de filtrado estan vacios, no se
+	 * realiza busqueda en BBDD y se devuelve una lista de suministros vacia.
+	 * 
+	 * @param direccionView
+	 * @return
+	 */
+	
+	@RequestMapping(value = "/private/listarDirecciones", method = RequestMethod.POST)
+	public @ResponseBody String listadoDirecciones(@RequestBody String body) {//@ModelAttribute("asociarSuministro") SuministroView suministroView){
+		
+		logger.info("--- Inicio -- listarDirecciones ---");
+		
+		//Def variable de la vista
+		JSONObject jsonResult = new JSONObject();
+		JSONArray jsonArray = new JSONArray();
+		JSONObject jsonObject = new JSONObject();
+		
+		DataTableProperties propDataTable = DataTableParser.parseBodyToDataTable(body);
+		boolean busqueda = realizarBusquedaDataTable(propDataTable.getColumsInfo());
+		
+		if(busqueda){
+			//Realizamos la busqueda en BBDD
+			List<Direccion> listaDirecciones = new ArrayList<Direccion>();
+			listaDirecciones = this.direccionService.readAllDirecciones(propDataTable);
+
+			
+			for(Direccion direccion : listaDirecciones){
+				jsonResult = new JSONObject();
+				jsonResult.put("comuna", direccion.getComuna());
+				jsonResult.put("calle", direccion.getCalle());
+				jsonResult.put("tipoCalle", direccion.getTipoCalle());
+				jsonResult.put("direccionConcatenada", direccion.getDireccionConcatenada());
+				jsonArray.put(jsonResult);
+			}
+
+		}		
+
+		jsonObject.put("data", jsonArray);
+		//jsonObject.put("iTotalRecords", "10"); 
+		//jsonObject.put("iTotalDisplayRecords",  "10"); 
+	
+				
+		logger.info("--- Fin -- listarDirecciones ---");
+		
+		return jsonObject.toString();
 	}
 	
 

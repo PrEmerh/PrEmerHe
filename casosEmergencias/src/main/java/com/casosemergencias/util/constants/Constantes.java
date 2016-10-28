@@ -42,6 +42,7 @@ public class Constantes {
 	public static final String PICKLIST_CASO_FAVORABILIDAD = "Favorabilidad_del_Caso__c";	
 	//Suministro
 	public static final String PICKLIST_SUMINISTRO_COMUNA = "Comuna__c";
+	public static final String PICKLIST_SUMINISTRO_REGION = "Regi_n__c";
 	//Contacto
 	public static final String SUM_ASSOCIATION_CONTACT_ERROR = "ASSOCIATION_ERROR";
 	public static final String SUM_ASSOCIATION_CONTACT_OK = "ASSOCIATION_OK";
