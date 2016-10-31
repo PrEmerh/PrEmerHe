@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.AccountDAO;
 import com.casosemergencias.dao.vo.AccountVO;
-import com.casosemergencias.dao.vo.SuministroVO;
 import com.casosemergencias.model.Cuenta;
-import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -21,8 +19,6 @@ public class AccountServiceImpl implements AccountService {
 
 	@Autowired
 	private AccountDAO accountDao;
-	@Autowired
-	private SuministroDAO suministroDao;
 
 	/**
 	 * Metodo que devuelve una lista de todas las cuentas a mostrar en la tabla

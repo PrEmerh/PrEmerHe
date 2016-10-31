@@ -1,5 +1,8 @@
 package com.casosemergencias.controller;
 
+import java.io.InputStream;
+import java.text.MessageFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -7,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -40,6 +44,7 @@ import com.casosemergencias.logic.DireccionService;
 import com.casosemergencias.logic.PickListsService;
 import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.CaseComment;
+import com.casosemergencias.model.CaseHistory;
 import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Cuenta;
@@ -47,6 +52,7 @@ import com.casosemergencias.model.Direccion;
 import com.casosemergencias.model.HerokuUser;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
+import com.casosemergencias.util.PickListByField;
 import com.casosemergencias.util.constants.Constantes;
 import com.casosemergencias.util.constants.ConstantesError;
 import com.casosemergencias.util.datatables.DataTableParser;
@@ -84,6 +90,7 @@ public class CaseController {
 
 	@Autowired
 	private CaseCommentService caseCommentService;
+	
 
 	/**
 	 * Metodo que recupera una lista con todos los casos que hay creados en BBDD y los muestra en la pantalla homeCasosPage.jsp
@@ -113,6 +120,10 @@ public class CaseController {
 		logger.info("--- Inicio -- getCaseData ---");
 		HttpSession session = request.getSession(true);
 		
+		//def. variables para controlar el numero de registros de las tablas
+		int limiteEntradasHistorial = 10;
+		int numeroHistorial;
+
 		ModelAndView model = new ModelAndView();		
 		model.addObject("sfid", sfid);
 		model.addObject("editMode", editMode);
@@ -120,11 +131,13 @@ public class CaseController {
 		//List<CaseView> listCaseView = new ArrayList<CaseView>();
 		CaseView casoView = new CaseView();
 		
-		Caso casoBBDD = casoService.readCaseBySfid(sfid);
+		Caso casoBBDD = casoService.readCaseBySfid(sfid, limiteEntradasHistorial);
 		if (casoBBDD != null){
 			ParserModelVO.parseDataModelVO(casoBBDD, casoView);
 		}
+		
 		//transformamos las fechas con el gmt de sesion
+		//y en el historia adaptamos el texto utilizando los properties adecuados
 		long offset = (long)session.getAttribute("difGMTUser");	
 		if(casoView.getFechaApertura() != null){
 			Date fechaApertura = casoView.getFechaApertura();
@@ -142,15 +155,6 @@ public class CaseController {
 			casoView.setFechaEstimadaCierre(fechaEstimacion);
 		}
 		
-		if(casoView.getHistorialCaso() != null && !casoView.getHistorialCaso().isEmpty()){
-			for(CaseHistoryView miHistorial : casoView.getHistorialCaso()){
-				if(miHistorial.getCreateddate() != null){
-					Date fecha = miHistorial.getCreateddate();
-					fecha = new Date(fecha.getTime() + offset);
-					miHistorial.setCreateddate(fecha);
-				}
-			}	
-		}
 		if(casoView.getCommentarioCaso() != null && !casoView.getCommentarioCaso().isEmpty()){
 			for(CaseCommentView miComentario : casoView.getCommentarioCaso()){
 				if(miComentario.getCreateddate() != null){
@@ -164,6 +168,41 @@ public class CaseController {
 					miComentario.setComment(comentarioSaltosLinea);
 				}
 			}	
+		}
+		if(casoView.getHistorialCaso() != null && !casoView.getHistorialCaso().isEmpty()){
+			for(CaseHistoryView miHistorial : casoView.getHistorialCaso()){
+				if(miHistorial.getCreateddate() != null){
+					Date fecha = miHistorial.getCreateddate();
+					fecha = new Date(fecha.getTime() + offset);
+					miHistorial.setCreateddate(fecha);
+				}
+				
+				this.prepararFieldHistorial(miHistorial);
+			}	
+		}
+		
+		//Si el caso  no esta Cancelado si Cerrado, preparamos la lista de valores del combo de Cancelacion
+		if(!(Constantes.COD_CASO_STATUS_CERRADO).equals(casoView.getEstado()) && !(Constantes.COD_CASO_STATUS_CANCELADO).equals(casoView.getEstado())){
+			Map<String, String> mapSubstatusCancel = new LinkedHashMap<String, String>();
+			mapSubstatusCancel.put(Constantes.PICKLIST_CASO_DEFAULT, " ");
+			
+			//Comprobar si el caso es alta. (Caso es alta si no tiene numero de inservice)
+			if(casoView.getNumeroInservice() != null && !"".equals(casoView.getNumeroInservice())) {
+				mapSubstatusCancel.put(Constantes.COD_CASO_SUBSTATUS_ERROR_INGRESO,Constantes.COD_CASO_SUBSTATUS_ERROR_INGRESO_DESC);
+				mapSubstatusCancel.put(Constantes.COD_CASO_SUBSTATUS_VERIFICADO_OK,Constantes.COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC); //En este caso la descripcion es diferente a BBDD	
+			}else{
+				mapSubstatusCancel.put(Constantes.COD_CASO_SUBSTATUS_COMUNICACION_INTERRUMPIDA,Constantes.COD_CASO_SUBSTATUS_COMUNICACION_INTERRUMPIDA_DESC);
+				mapSubstatusCancel.put(Constantes.COD_CASO_SUBSTATUS_PRUEBA_ERROR_INGRESO,Constantes.COD_CASO_SUBSTATUS_PRUEBA_ERROR_INGRESO_DESC);
+				mapSubstatusCancel.put(Constantes.COD_CASO_SUBSTATUS_VERIFICADO_OK,Constantes.COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC); //En este caso la descripcion es diferente a BBDD				
+			}	
+			casoView.setMapSubStatusCancelacion(mapSubstatusCancel);
+		}
+		
+		
+		//comprobamos si tenemos que controlar el numero de entradas del historial
+		numeroHistorial = this.casoService.getNumHistorialDeUnCaso(sfid);
+		if(numeroHistorial > limiteEntradasHistorial){
+			casoView.setControlHistorialEntradas(true);
 		}
 		
 		model.setViewName("private/entidadCasoPage");
@@ -401,18 +440,81 @@ public class CaseController {
 		}
 	}
 	
-	private Map<String, String> getPickListPorCampo(Map<String, Map<String, String>> mapaGeneral, String campo, Boolean anniadirDefault){
-		Map<String, String> returnMap = null;
-		if (mapaGeneral != null && !mapaGeneral.isEmpty() && mapaGeneral.containsKey(campo)){
-				returnMap = new LinkedHashMap<String, String>();
-			if(anniadirDefault){
-				returnMap.put(Constantes.PICKLIST_CASO_DEFAULT, "");
+	@RequestMapping(value ="/private/cancelarCaso", method = RequestMethod.POST)
+	public String cancelarCaso(CaseView casoRequest,  HttpServletRequest request){
+			
+		logger.info("--- Inicio -- cancelarCaso ---");
+		logger.debug("--- cancelarCaso -- sfid del caso: " + casoRequest.getSfid() + "---");
+		//Recuperamos el heroku user para concatenarlo al comentario.
+		HttpSession session = request.getSession(true);
+		HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
+				
+		Caso caso = new Caso();
+		ParserModelVO.parseDataModelVO(casoRequest, caso);
+		boolean casoCancelado = casoService.cancelarCaso(caso,  user.getName());
+
+		logger.info("--- Fin -- cancelarCaso ---");
+		
+		return "redirect:entidadCaso?sfid=" + caso.getSfid() + "&editMode=" + (casoCancelado ? Constantes.CANCEL_CASE_OK : Constantes.CANCEL_CASE_ERROR);
+	}
+	
+	/**
+	 * Metodo que recupera una lista con el historial asociado a un caso. Devuelve todos o los 10 primeros registros, segun si 
+	 * 'entradas' tenemos 'All' o 10.
+	 * 
+	 * @param body
+	 * @return
+	 */
+	@RequestMapping(value = "/private/listarHistorialCaso", method = RequestMethod.POST)
+	public @ResponseBody List<CaseHistoryView> listadoHistorialDeCaso(@RequestBody String body, HttpServletRequest request){
+		
+		logger.info("--- Inicio -- listadoHistorialDeCaso ---");
+
+		SimpleDateFormat  dateFormat  = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		HttpSession session = request.getSession(true);
+		long offset = (long)session.getAttribute("difGMTUser");
+		
+		String[] param = body.split("&");
+		String sfidCaso = "";
+		Integer numEntradas = null;
+		
+		for(String dato : param){
+			String[] valor = dato.split("=");
+			if("entradas".equals(valor[0]) && !"All".equals(valor[1])){
+				numEntradas = Integer.parseInt(valor[1]);
 			}
-				returnMap.putAll(mapaGeneral.get(campo));
+			if("sfid".equals(valor[0])){
+				sfidCaso = valor[1];
+			}
 		}
-		return returnMap;
+		
+		List<CaseHistory> listHistorial = new ArrayList<CaseHistory>();
+		List<CaseHistoryView> listHistorialView = new ArrayList<CaseHistoryView>();
+		listHistorial = this.casoService.obtenerListaHistorialDeUnCaso(sfidCaso, numEntradas);
+		
+		for(CaseHistory historial : listHistorial){
+			CaseHistoryView historialView = new CaseHistoryView();
+			ParserModelVO.parseDataModelVO(historial, historialView);
+
+			//transformamos las fechas con el gmt de sesion			
+			if(historialView.getCreateddate() != null){
+				Date fecha = historialView.getCreateddate();
+				fecha = new Date(fecha.getTime() + offset);
+				historialView.setCreateddate(fecha);
+				historialView.setCreateddateString(dateFormat.format(fecha));
+			}
+
+			//preparamos el texto que se tiene ue mostrar
+			this.prepararFieldHistorial(historialView);
+			listHistorialView.add(historialView);
+		}
+			
+		logger.info("--- Fin -- listadoHistorialDeCaso ---");
+		
+		return listHistorialView;
 	}
 
+	
 	@RequestMapping(value = "/private/casoComentarioPage", method = RequestMethod.GET)
 	public ModelAndView comentarioCaso(@ModelAttribute("sfid") String sfidCase,  HttpServletRequest request) {
 		
@@ -493,6 +595,7 @@ public class CaseController {
 			return "redirect:entidadCaso?sfid=" + comentarioCaso.getCaseid() +"&editMode="+Constantes.CREATED_MODE_CREATED_ERROR;
 		}		
 	}
+
 	
 	private void fillNewCaseFormInfo(CaseView casoView) {
 		logger.trace("Entrando en fillNewCaseFormInfo()");
@@ -507,8 +610,8 @@ public class CaseController {
 		
 		//Recuperacion mapa picklists
 		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("Case");
-		casoView.setMapStatus(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_STATUS, false));
-		casoView.setMapPeticion(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_PETICION, false));
+		casoView.setMapStatus(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_STATUS, false));
+		casoView.setMapPeticion(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_PETICION, false));
 		//Recupero el RecordTypeId de Emergencia. Cambia por entorno
 		if (casoView.getMapPeticion() != null && !casoView.getMapPeticion().isEmpty() 
 				&& casoView.getMapPeticion().containsValue(Constantes.PICKLIST_CASO_PETICION_EMERGENCIA_NAME)){
@@ -520,10 +623,10 @@ public class CaseController {
 	            }
 	        }
 		}
-		casoView.setMapSubMotivo(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_SUBMOTIVO, true));
-		casoView.setMapCondicionAgravante(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CONDICION_AGRAVANTE, true));
-		casoView.setMapCanalNotificacion(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CANAL_NOTIFICACION, true));
-		casoView.setMapFavorabilidadCaso(this.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_FAVORABILIDAD, true));
+		casoView.setMapSubMotivo(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_SUBMOTIVO, true));
+		casoView.setMapCondicionAgravante(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CONDICION_AGRAVANTE, true));
+		casoView.setMapCanalNotificacion(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_CANAL_NOTIFICACION, true));
+		casoView.setMapFavorabilidadCaso(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_CASO_FAVORABILIDAD, true));
 				
 		logger.info("Carga de datos iniciales del formulario de alta de un nuevo caso completa");
 		logger.trace("Saliendo de fillNewCaseFormInfo()");
@@ -587,7 +690,7 @@ public class CaseController {
 			//Obtener la cuenta para guardarla en el formulario
 			Cuenta cuenta = new Cuenta();
 			AccountView cuentaVista = new AccountView();
-			cuenta = cuentaService.getAccountBySfid(cuentaSfid);
+			cuenta = cuentaService.getAccountBySfid(cuentaSfid, null, null, null);
 			ParserModelVO.parseDataModelVO(cuenta, cuentaVista);
 			casoView.setCuentaJoin(cuentaVista);
 			casoView.setNombreCuenta(cuentaSfid);
@@ -624,10 +727,49 @@ public class CaseController {
 		finalDetailPage = (String) session.getAttribute(Constantes.FINAL_DETAIL_PAGE);
 		
 		if (finalDetailPage != null && Constantes.FINAL_DETAIL_PAGE_CONTACTO.equals(finalDetailPage) && contactoSfid != null && !"".equals(contactoSfid)) {
-			redirectionPage = "redirect:entidadContacto?sfid=" + contactoSfid;
+			redirectionPage = "redirect:entidadContacto?editMode=VIEW&sfid=" + contactoSfid;
 		} else if (finalDetailPage != null && Constantes.FINAL_DETAIL_PAGE_SUMINISTRO.equals(finalDetailPage) && suministroSfid != null && !"".equals(suministroSfid)) {
 			redirectionPage = "redirect:entidadSuministro?sfid=" + suministroSfid;
 		}
 		return redirectionPage;
+	}
+	
+	private void prepararFieldHistorial (CaseHistoryView caseHistory){
+		
+		//Cargamos el fichero de propiedades, para obtener las properties utilizadas en los comentarios
+		 Properties propiedades = new Properties();
+		 InputStream entrada = null;
+		 try{			 
+			 //TODO: ADAPTAR SI AÑADIMOS MULTILENGUAJE
+			 entrada = Thread.currentThread().getContextClassLoader().getResourceAsStream("text_page_es.properties");
+			 if(entrada != null){
+				 propiedades.load(entrada);
+			 }
+		 }catch (Exception ex) {
+			 logger.error("--- getCaseData --- problemas al cargar el fichero de propiedades---");
+		 } 
+		 
+		//controlamos el texto que se mostrara en el campo accion
+		String field = "";
+		if(caseHistory.getLabelFieldPickList() != null){
+			field = caseHistory.getLabelFieldPickList();
+		}else {
+			if(caseHistory.getFieldLabel() != null){
+				field = propiedades.getProperty("entidadCaso_texto_label_historia_accion_1", caseHistory.getFieldLabel().getLabel());
+				field = MessageFormat.format(field, caseHistory.getFieldLabel().getLabel());
+			}else{
+				field = propiedades.getProperty("entidadCaso_texto_label_historia_accion_1", caseHistory.getField());	
+				field = MessageFormat.format(field, caseHistory.getField());
+			}
+			if(caseHistory.getLabelOldValuePickList() != null && !"".equals(caseHistory.getLabelOldValuePickList())){
+				field += " " + propiedades.getProperty("entidadCaso_texto_label_historia_accion_2", caseHistory.getLabelOldValuePickList());
+				field = MessageFormat.format(field, caseHistory.getLabelOldValuePickList());
+			}
+			if(caseHistory.getLabelNewValuePickList() != null && !"".equals(caseHistory.getLabelNewValuePickList())){
+				field += " " + propiedades.getProperty("entidadCaso_texto_label_historia_accion_3", caseHistory.getLabelNewValuePickList());
+				field = MessageFormat.format(field, caseHistory.getLabelNewValuePickList());
+			}
+		}
+		caseHistory.setField(field);
 	}
 }

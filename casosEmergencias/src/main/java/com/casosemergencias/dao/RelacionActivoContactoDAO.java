@@ -7,8 +7,10 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.casosemergencias.dao.vo.RelacionActivoContactoVO;
 
@@ -21,7 +23,7 @@ public class RelacionActivoContactoDAO {
 	private SessionFactory sessionFactory;
 	
 	/**
-	 * Devuelve una lista con todos las relaciones de activos de BBDD
+	 * Devuelve una lista con todos las RelacionesActivoContacto de BBDD
 	 * 
 	 * @return
 	 */
@@ -74,4 +76,71 @@ public class RelacionActivoContactoDAO {
 	    }
 	    return null;
 	}
+	
+	
+	/**
+	 * Devuelve el los RelacionActivoContacto que tiene como suministroid el pasado por parametro al metodo
+	 * 
+	 * @param id - id de un RelacionActivoContacto
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<RelacionActivoContactoVO> readRelacionActivoContactoByActivoIdAndContact(String activoId,String contactSfid) {
+		
+		logger.debug("--- Inicio -- readRelacionActivoContactoByActivoIdAndContact ---");
+		
+		Session session = sessionFactory.openSession();
+			
+		try {
+			Query query = session.createQuery("from RelacionActivoContactoVO as rel WHERE rel.activoId = :activoId AND rel.contactoId=:contactSfid");
+			query.setString("activoId", activoId);
+			query.setString("contactSfid", contactSfid);
+			
+			List<RelacionActivoContactoVO> relacionList = query.list(); 
+
+			if(relacionList != null && !relacionList.isEmpty()){
+				return relacionList;
+			}			
+			
+			logger.debug("--- Fin -- readRelacionActivoContactoByActivo ---");
+			
+	    } catch (HibernateException e) {
+	    	logger.error("--- readRelacionActivoContactoByActivoIdAndContact ", e); 
+	    	logger.error("--- Fin -- readRelacionActivoContactoByActivoIdAndContact ---");
+	    } finally {
+	    	session.close(); 
+	    }
+	    return null;
+	}
+	
+	/**
+	 * Inserta un RelacionActivo en BBDD.
+	 * 
+	 * @param Case
+	 * @return
+	 */
+	@Transactional
+	public Integer insertRelacionActivoContacto(RelacionActivoContactoVO relacionActivoContacto) {
+
+		logger.debug("--- Inicio -- insert ---");
+
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			session.save(relacionActivoContacto);
+			tx.commit();
+			logger.debug("--- Fin -- insert ---");
+			return relacionActivoContacto.getId();
+		} catch (HibernateException e) {
+			tx.rollback();
+			logger.error("--- Error en insertRelacionActivoContacto: ", e);
+			logger.error("--- Fin -- updateRelacionActivoContacto ---");
+			return 0;
+		} finally {
+			session.close();
+		}
+
+	}
+
+	
 }

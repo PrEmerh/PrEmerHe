@@ -95,7 +95,7 @@ public class AccountDAO {
 	 * @return AccountVO Datos de la cuenta.
 	 */
 	@SuppressWarnings("unchecked")
-	public AccountVO readAccountBySfid(String sfid) {
+	public AccountVO readAccountBySfid(String sfid, Integer limiteSuministros, Integer limiteContacto, Integer limiteCasos) {
 		logger.debug("--- Inicio -- readAccountBySfid ---");
 		Session session = sessionFactory.openSession();
 		AccountVO account;
@@ -107,15 +107,31 @@ public class AccountDAO {
 			
 			Query suppliesQuery = session.createQuery("from SuministroVO as suministro WHERE suministro.cuenta = :sfid "); 
 			suppliesQuery.setString("sfid", sfid);
-			List<SuministroVO> accountSuppliesList = suppliesQuery.list();
+			List<SuministroVO> accountSuppliesList;
+			if(limiteSuministros != null){
+				accountSuppliesList = suppliesQuery.setMaxResults(limiteSuministros).list();
+			}else{
+				accountSuppliesList = suppliesQuery.list();
+			}	
 			
 			Query contactsQuery = session.createQuery("from ContactVO as contacto WHERE contacto.accountid = :sfid "); 
 			contactsQuery.setString("sfid", sfid);
-			List<ContactVO> accountContactsList = contactsQuery.list();
-			
+			List<ContactVO> accountContactsList;
+			if(limiteContacto != null){
+				accountContactsList = contactsQuery.setMaxResults(limiteContacto).list();
+			}else{
+				accountContactsList = contactsQuery.list();
+			}
+		
 			Query casosQuery = session.createQuery("from CaseVO as contacto WHERE contacto.nombreCuenta = :sfid "); 
 			casosQuery.setString("sfid", sfid);
-			List<CaseVO> accountCasosList = casosQuery.list();
+			List<CaseVO> accountCasosList;
+			if(limiteCasos != null){
+				accountCasosList = casosQuery.setMaxResults(limiteCasos).list();
+			}else{
+				accountCasosList = casosQuery.list();
+			}
+			
 			//Metemos las listas en los objetos, ya que al estar a lazy no les devolvería
 			if (accountList != null && !accountList.isEmpty()) {
 				account = accountList.get(0);
@@ -123,7 +139,7 @@ public class AccountDAO {
 					for (SuministroVO sum: accountSuppliesList) {
 						//Anulamos la cuenta para que no entre en bucle.
 						sum.setCuentaJoin(null);
-					}
+					}					
 					account.setSuministros(accountSuppliesList);
 				}
 				if (accountContactsList != null && !accountContactsList.isEmpty()) {
@@ -136,8 +152,9 @@ public class AccountDAO {
 				
 				if (accountCasosList != null && !accountCasosList.isEmpty()) {
 					for (CaseVO cas: accountCasosList) {
-						//Anulamos la cuenta para que no entre en bucle.
+						//Anulamos la cuenta y suministro para que no entre en bucle.
 						cas.setCuentaJoin(null);
+						cas.setSuministroJoin(null);
 					}
 					account.setCasos(accountCasosList);
 				}

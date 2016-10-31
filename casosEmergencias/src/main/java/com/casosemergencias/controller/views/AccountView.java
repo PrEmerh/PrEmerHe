@@ -37,6 +37,12 @@ public class AccountView extends ObjectView {
 	
 	private DireccionView direccionJoin;
 	
+	//variables con las que controlamos si las tablas tienen mas de 10 registros. Si los tienen en el jsp se dara la opcion de 
+	//mostrar todos los registros
+	private boolean controlNumSuministros;
+	private boolean controlNumCasos;
+	private boolean controlNumContactos;
+	
 	
 	/* Getters y Setters */
 	public Integer getId() {

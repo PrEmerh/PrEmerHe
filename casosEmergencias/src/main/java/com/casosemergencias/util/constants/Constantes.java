@@ -20,12 +20,14 @@ public class Constantes {
 	public static final String EDIT_MODE_UPDATED_ERROR = "UPDATED_ERROR";
 	public static final String EDIT_MODE_INSERTED_OK = "INSERTED_OK";
 	
-	//Modo creación
-	
+	//Modo creación	
 	public static final String CREATED_MODE_CREATED_OK = "CREATED_OK";
 	public static final String CREATED_MODE_CREATED_ERROR = "CREATED_ERROR";
 	
-	//PcikLists
+	//Cancelar caso
+	public static final String CANCEL_CASE_OK = "CANCEL_OK";
+	public static final String CANCEL_CASE_ERROR = "CACEL_ERROR";
+
 	//Caso
 	public static final String PICKLIST_CASO_DEFAULT = "Default";
 	public static final String PICKLIST_CASO_STATUS = "Status";
@@ -37,7 +39,18 @@ public class Constantes {
 	public static final String PICKLIST_CASO_SUBMOTIVO = "Motivo_Empresa__c";
 	public static final String PICKLIST_CASO_CONDICION_AGRAVANTE = "Condici_n_agravante__c";
 	public static final String PICKLIST_CASO_CANAL_NOTIFICACION = "Canal_de_notificaciOn__c";
-	public static final String PICKLIST_CASO_FAVORABILIDAD = "Favorabilidad_del_Caso__c";
+	public static final String PICKLIST_CASO_FAVORABILIDAD = "Favorabilidad_del_Caso__c";	
+	//Suministro
+	public static final String PICKLIST_SUMINISTRO_COMUNA = "Comuna__c";
+	public static final String PICKLIST_SUMINISTRO_REGION = "Regi_n__c";
+	//Contacto
+	public static final String SUM_ASSOCIATION_CONTACT_ERROR = "ASSOCIATION_ERROR";
+	public static final String SUM_ASSOCIATION_CONTACT_OK = "ASSOCIATION_OK";
+	
+	
+	//RelaciónActivoContacto
+	
+	public static final String PICKLIST_RELACIONACTIVO_REPORTADOR = "REL003";
 	
 	//
 	//Case Object
@@ -52,6 +65,7 @@ public class Constantes {
 	public static final String COD_CASO_STATUS_CANCELADO = "ESTA008";
 	public static final String COD_CASO_SUBMOTIVO_CORTE_DEUDA="FA001";
 	public static final String COD_CASO_SUBMOTIVO_CORTE_PROGRAMADO ="FA002";
+	public static final String COD_CASO_SUBMOTIVO_CONS_FUERA_ZONA_CONCE ="FA003";	
 	public static final String COD_CASO_MOTIVO_EMERGENCIA ="MOT001";
 	public static final String COD_CASO_DESC_DEUDA="Se informa a Cliente que corte de suministro es por deuda comercial";			
 	public static final String COD_CASO_DESC_PROGRAMADO="Se informa a cliente que corte de suministro es por una mantención programada ";	
@@ -62,7 +76,8 @@ public class Constantes {
 	public static final String COD_CASO_SUBSTATUS_COMUNICACION_INTERRUMPIDA_DESC = "Comunicación Interrumpida";
 	public static final String COD_CASO_SUBSTATUS_PRUEBA_ERROR_INGRESO_DESC = "Prueba o Error de Ingreso";	
 	public static final String COD_CASO_SUBSTATUS_ERROR_INGRESO_DESC = "Error de Ingreso";	
-	public static final String COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC = "Cliente con Luz, por contacto recibido";
+	public static final String COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC = "Cliente con Luz";
+	public static final String COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC_COMENTARIO = "Cliente con Luz, por contacto recibido";
 	
 	
 	//
