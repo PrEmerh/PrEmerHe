@@ -107,10 +107,33 @@ function establecerDireccion(sfid, name) {
 	$('#dialogDireccion').dialog('close');
 }
 
-
-//Crear caso por contacto
-
-function goCrearCasoByContacto(){	
-	window.location="../private/goCrearCasoByContacto";
+function cargandoGif(sfid,page) {
+	verCargando();
+	if(page=="entidadCaso"){
+	window.location="../private/entidadCaso?editMode=VIEW&sfid=" + sfid ;
+	}
+	if(page=="entidadContacto"){
+		window.location="../private/entidadContacto?editMode=VIEW&sfid=" + sfid ;
+		}
+	if(page=="entidadSuministro"){
+		window.location="../private/entidadSuministro?sfid=" + sfid ;
+		}
+	if(page=="entidadCuenta"){
+		window.location="../private/entidadCuenta?sfid=" + sfid ;
+		}
+	if(page=="entidadDireccion"){
+		window.location="../private/entidadDireccion?sfid=" + sfid ;
+		}
 }
+
+//Metodo que muestra el div de "cargando.."
+function verCargando(){
+	document.getElementById("cargandoGif").hidden=false;
+}
+
+//Metodo que oculta el div de "cargando.."
+function ocultarCargando(){
+	document.getElementById("cargandoGif").hidden=true;
+}
+
 

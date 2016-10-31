@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.AccountDAO;
 import com.casosemergencias.dao.vo.AccountVO;
+import com.casosemergencias.dao.vo.SuministroVO;
 import com.casosemergencias.model.Cuenta;
+import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -19,6 +21,8 @@ public class AccountServiceImpl implements AccountService {
 
 	@Autowired
 	private AccountDAO accountDao;
+	@Autowired
+	private SuministroDAO suministroDao;
 
 	/**
 	 * Metodo que devuelve una lista de todas las cuentas a mostrar en la tabla
@@ -49,15 +53,21 @@ public class AccountServiceImpl implements AccountService {
 	/**
 	 * Método que los datos de una cuenta, a partir de su id.
 	 * @param sfid Identificador de la cuenta.
+	 * @param limiteSuministros numero que limita los suministros asociados a la cuenta. Si es null se recuperan todos los suministros
+	 * @param limiteContacto numero que limita los contactos asociados a la cuenta. Si es null se recuperan todos los contactos
+	 * @param limiteCasos numero que limita los casos asociados a la cuenta. Si es null se recuperan todos los casos
+	 * 
 	 * @return ModelAndView Datos de la cuenta a mostrar en la página.
 	 */
 	@Override
-	public Cuenta getAccountBySfid(String sfid) {
+	public Cuenta getAccountBySfid(String sfid, Integer limiteSuministros, Integer limiteContacto, Integer limiteCasos) {
 		Cuenta cuenta = new Cuenta();
-		AccountVO cuentaVO = accountDao.readAccountBySfid(sfid);
+		AccountVO cuentaVO = accountDao.readAccountBySfid(sfid, limiteSuministros, limiteContacto, limiteCasos);
+
 		if (cuentaVO != null) {
 			ParserModelVO.parseDataModelVO(cuentaVO, cuenta);
 		}
+	
 		return cuenta;
 	}
 

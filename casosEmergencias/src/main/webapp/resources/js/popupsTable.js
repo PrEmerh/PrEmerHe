@@ -13,7 +13,10 @@ function createTableDireccion() {
 			"scrollX": false,
 			"scrollCollapse": true,
 			"paging": true,
-			"serverSide": true,
+			"serverSide": true, 
+			   oLanguage: {
+			        sProcessing: "<img src='../resources/images/loading.gif' width='25' > Cargando..."
+			    },
 			"deferLoading": 0,
 			"processing": true, 
 			"ajax": { 
@@ -25,11 +28,11 @@ function createTableDireccion() {
 	        	 }
 	       	}, 
 	       	"columns": [ 
-	       	            {"data": "name","width" : "15%","defaultContent": ""}, 
-	       	            {"data": "numero", "width":"10%", "defaultContent": ""},
+	       	            {"data": "name","width" : "20%","defaultContent": ""}, 
+	       	            {"data": "numero", "width":"20%", "defaultContent": ""},
 	       	            {"data": "literalComuna", "width":"20%", "defaultContent": ""},
-	       	            {"data": "direccionConcatenada", "width":"35%", "defaultContent": ""},
-	       	            {"data": "departamento", "width":"9%", "defaultContent": ""},
+	       	            {"data": "direccionConcatenada", "width":"20%", "defaultContent": ""},
+	       	            {"data": "departamento", "width":"19%", "defaultContent": ""},
 	       	            {"data": "sfid", "width":"1%", "visible": false, "defaultContent": ""}
 	       	            ],
 	       "columnDefs": [
@@ -71,6 +74,9 @@ function createTableSuministro() {
 			"scrollCollapse": true,
 			"paging": true,
 			"serverSide": true,
+			   oLanguage: {
+			        sProcessing: "<img src='../resources/images/loading.gif' width='25' > Cargando..."
+			    },
 			"deferLoading": 0,
 			"processing": true, 
 			"ajax": { 
@@ -82,13 +88,13 @@ function createTableSuministro() {
 	        	 }
 	       	}, 
 	       	"columns": [ 
-	       	            {"data": "name", "width" : "10%","defaultContent": ""}, 
-	       	            {"data": "id_empresa__c", "width":"20%", "defaultContent": ""},
-	       	            {"data": "comuna__c", "width":"20%", "defaultContent": ""},
-	       	            {"data": "DireccionConcatenada__c", "width":"19%", "defaultContent": ""},
-	       	            {"data": "direccionSfid", "width":"0.5%", "defaultContent": "","visible": false},
-	       	            {"data": "direccionName", "width":"0.5%", "defaultContent": "","visible": false},
-	       	            {"data": "sfid", "width":"0.5%", "defaultContent": "", "visible": false}
+	       	            {"data": "name", "width" : "20%","defaultContent": ""}, 
+	       	            {"data": "idEmpresa", "width":"20%", "defaultContent": ""},
+	       	            {"data": "comuna", "width":"20%", "defaultContent": ""},
+	       	            {"data": "direccionConcatenada", "width":"20%", "defaultContent": ""},
+	       	            {"data": "direccionSfid", "width":"1%", "defaultContent": "","visible": false},
+	       	            {"data": "direccionName", "width":"1%", "defaultContent": "","visible": false},
+	       	            {"data": "sfid", "width":"1%", "defaultContent": "", "visible": false}
 	       	            ],
 	       "columnDefs": [
 	                    {"targets":0,

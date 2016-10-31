@@ -22,7 +22,7 @@
 	<body onload="initHeader();showNotifications();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadSuministro_title_label_detalle_suministro"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
-		<!-- Mensajes de inserccion caso por corte-->
+		<!-- Mensajes de inserccion caso por corte-->	
 		<div>
 			<div id="divCaseCorteCreatedError" class="divError">
 				<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
@@ -44,16 +44,14 @@
 				</div>
 			</div>
 		</c:if>
-		<form:form name="formEntidadSuministroName" id="formEntidadSuministro" action="actualizarSuministro" modelAttribute="suministro" method="POST">
-			<center>
-				<div class="botoneraListado">
+		<form:form name="formEntidadSuministroName" id="formEntidadSuministro" action="actualizarSuministro" modelAttribute="suministro" method="POST">			
+				<div class="botoneraCentrado">
 					<ul>
-						<li><input type="button" name="goCrearCasoBySuministroName" value="<s:message code="homeCasos_button_nuevocaso"/>" onclick="goCrearCasoBySuministro();" /></li>
-						<li><input type="button" name="corteDeudaName" value="<s:message code="homeCasos_button_corteDeuda"/>" onclick="crearCasoCorteDeuda();"  /></li>
-						<li><input type="button" name="corteProgramadoName" value="<s:message code="homeCasos_button_corteProgramado"/>" onclick="crearCasoCorteProgramado();" /></li>
+						<li><input type="button" name="goCrearCasoBySuministroName" value="<s:message code="entidadSuministro_table_label_botonCrearCaso"/>" onclick="goCrearCasoBySuministro();" /></li>
+						<li><input type="button" name="corteDeudaName" value="<s:message code="entidadSuministro_table_label_botonCorteDeuda"/>" onclick="crearCasoCorteDeuda();"  /></li>
+						<li><input type="button" name="corteProgramadoName" value="<s:message code="entidadSuministro_table_label_botonCorteProg"/>" onclick="crearCasoCorteProgramado();" /></li>
 					</ul>
-				</div>
-			</center>
+				</div>			
 			<form:hidden path="sfid" id="sfidSum"/>
 			<div class="divEntidadDatos">
 				<div class="divEntidad">
@@ -77,7 +75,7 @@
 							<label><s:message code="entidadSuministro_title_label_detalleDireccion"/></label>
 						</div>
 						<div>
-							<label><a class="link" href="../private/entidadDireccion?sfid=${suministro.dirSuministroJoin.sfid}">${suministro.dirSuministroJoin.name}</a></label>
+							<label><a class="link" href="javascript:cargandoGif('${suministro.dirSuministroJoin.sfid}','entidadDireccion');">${suministro.dirSuministroJoin.name}</a></label>
 						</div>
 					</div>
 					<div>
@@ -145,7 +143,7 @@
 							<c:when test="${not empty suministro.contactosRelacionados}">
 								<c:forEach items="${suministro.contactosRelacionados}" var="contacto">
 									<tr>
-										<td><a class="link" href="../private/entidadContacto?sfid=${contacto.sfid}">${contacto.name}</a></td>
+										<td><a class="link" href="javascript:cargandoGif('${contacto.sfid}','entidadContacto');">${contacto.name}</a></td>									
 										<td>${contacto.relacionActivo}</td>
 										<c:if test="${contacto.principal}">
 						    				<td><input type="checkbox" id="checkbox" value="true" checked="checked" disabled/></td>					
@@ -185,7 +183,7 @@
 							<label><s:message code="entidadSuministro_title_label_cuenta"/></label>
 						</div>
 						<div>
-							<label><a class="link" href="../private/entidadCuenta?sfid=${suministro.cuentaJoin.sfid}">${suministro.cuentaJoin.name}</a></label>
+							<label><a class="link" href="javascript:cargandoGif('${suministro.cuentaJoin.sfid}','entidadCuenta');">${suministro.cuentaJoin.name}</a></label>		
 						</div>		
 						<div class="divLabel">
 							<label><s:message code="entidadSuministro_title_label_runRut"/></label>
@@ -430,7 +428,7 @@
 								<c:when test="${not empty suministro.casos}">
 									<c:forEach items="${suministro.casos}" var="caso">
 										<tr>
-											<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
+											<td><a class="link" href="javascript:cargandoGif('${caso.sfid}','entidadCaso');">${caso.numeroCaso}</a></td>					
 											<td class="filaImagen">
 											<c:if test="${caso.labelEstadoPickList!=null && caso.labelEstadoPickList!='Cerrado' && caso.labelEstadoPickList!='Cancelado'}">					
 											<img src="../resources/images/inservice_red_point.png" height="12px" width="12px">

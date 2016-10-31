@@ -12,15 +12,19 @@
 		<link rel="icon" type="image/png" href="../resources/images/favicon.png">
 		
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
-		<link href="../resources/css/body.css" rel="stylesheet" />
 		<link href="../resources/css/styles.css" rel="stylesheet" />	
+		<link href="../resources/css/body.css" rel="stylesheet" />
+		<link href="../resources/css/jquery-ui.css" rel="stylesheet" />
+		<link href="../resources/css/jQueryDatatable.css" rel="stylesheet" />
 	
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
+  		<script src="../resources/js/jquery-ui.js"></script>
+		<script src="../resources/js/jQueryDatatables.js"></script>
 		<script src="../resources/js/header.js" lang=""></script>
 		<script src="../resources/js/utils.js" lang=""></script>
 		<script src="../resources/js/contactos.js" lang=""></script>
 	</head>
-	<body onload="initHeader(); showNotifications();">
+	<body onload="funcionOnload();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadContacto_title_label_detalle_contacto"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<!-- Mensajes de estado de operación -->
@@ -34,15 +38,23 @@
 					<label class="labelDivError"><s:message code="notificaciones_label_error_mensaje"/>&nbsp;<s:message code="notificaciones_label_error_alta_caso_ya_existente"/></label>
 				</div>
 			</div>
-		</c:if>
+		</c:if>		
+		<div id="divAssociationError" class="divError">
+			<label class="labelDivError"><s:message code="notificaciones_label_error_suministro_association"/></label>
+		</div>
+		<div id="divAssociationOk" class="divOk">
+			<label class="labelDivOk"><s:message code="notificaciones_label_ok_suministro_association"/></label>
+		</div>
 		<div>
 		<form:form name="formEntidadContacto" action="actualizarContacto" modelAttribute="contacto" method="POST">
 			<div class="botoneraListado">
 				<ul>
-					<li><input type="button" name="goCrearCasoByContactoName" value="<s:message code="homeCasos_button_nuevocaso"/>" onclick="goCrearCasoByContacto();" /></li>
+					<li><input type="button" name="goCrearCasoByContactoName" value="<s:message code="entidadContacto_table_label_botonCrearCaso"/>" onclick="goCrearCasoByContacto();" /></li>
+					<li><input type="button" name="asociarSumministro" value="Asociar Suministro" onclick="abrirAsociarSuministro();" /></li>
 				</ul>
 			</div>
 			<form:hidden path="sfid"/>
+			<input type="hidden" value="${editMode}" id="editModeId"/>
 			<div class="divEntidadDatos">
 				<div id="divEntidadContactoSuministros" class="divEntidad">
 					<div class="subtitleAltaEntidad">
@@ -69,7 +81,7 @@
 									<c:forEach items="${contacto.suministros}" var="suministro">
 										<tr>
 										    <td>${suministro.labelEmpresaPickList}</td>
-											<td><a class="link" href="../private/entidadSuministro?sfid=${suministro.sfid}">${suministro.name}</a></td>
+											<td><a class="link" href="javascript:cargandoGif('${suministro.sfid}','entidadSuministro');">${suministro.name}</a></td>
 											<td>${suministro.direccionConcatenada}</td>
 											<td>${suministro.comuna}</td>
 											<td>${suministro.labelEstadoConexionPickList}</td>
@@ -185,7 +197,7 @@
 							<label><s:message code="entidadContacto_table_label_nombreCuenta"/></label>
 						</div>
 						<div>
-							<label><a class="link" href="../private/entidadCuenta?sfid=${contacto.cuentaJoin.sfid}">${contacto.cuentaJoin.name}</a></label>
+							<label><a class="link" href="javascript:cargandoGif('${contacto.cuentaJoin.sfid}','entidadCuenta');">${contacto.cuentaJoin.name}</a></label>
 						</div>  
 					</div>
 					<div>
@@ -193,7 +205,7 @@
 							<label><s:message code="entidadContacto_table_label_direccionContacto"/></label>
 						</div>
 						<div>
-							<label><a class="link" href="../private/entidadDireccion?sfid=${contacto.dirContactoJoin.sfid}">${contacto.dirContactoJoin.name}</a></label>			
+							<label><a class="link" href="javascript:cargandoGif('${contacto.dirContactoJoin.sfid}','entidadDireccion');">${contacto.dirContactoJoin.name}</a></label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_emailSecundario"/></label>
@@ -291,7 +303,7 @@
 								<c:when test="${not empty contacto.casos}">
 									<c:forEach items="${contacto.casos}" var="caso">
 										<tr>
-											<td><a class="link" href="../private/entidadCaso?editMode=VIEW&sfid=${caso.sfid}">${caso.numeroCaso}</a></td>
+											<td><a class="link" href="javascript:cargandoGif('${caso.sfid}','entidadCaso');">${caso.numeroCaso}</a></td>
 											<td class="filaImagen">
 											<c:if test="${caso.labelEstadoPickList!=null && caso.labelEstadoPickList!='Cerrado' && caso.labelEstadoPickList!='Cancelado'}">					
 											<img src="../resources/images/inservice_red_point.png" height="12px" width="12px">
@@ -490,6 +502,7 @@
 				</div>
 			</div>
 		</form:form> 
+		<jsp:include page="asociarSuministroDialog.jsp"/>
 		</div>		
 	</body>
 </html>

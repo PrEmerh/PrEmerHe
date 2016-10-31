@@ -132,7 +132,7 @@ public class SuministroDAO {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<SuministroVO> readSuministro(SuministroVO suministro) {
+	public List<SuministroVO> readSuministro(SuministroVO suministro, Integer numeroSuministros) {
 		
 		logger.debug("--- Inicio -- readSuministro ---");
 		
@@ -712,7 +712,13 @@ public class SuministroDAO {
 				result.setDate("systemDate", suministro.getSystemDate());
 			}
 
-			List<SuministroVO> suministrosList = result.list(); 	 
+			List<SuministroVO> suministrosList;
+			if(numeroSuministros == null){
+				suministrosList = result.list(); 	 
+			}else{
+
+				suministrosList = result.setMaxResults(numeroSuministros).list(); 	 
+			}
 			
 			logger.debug("--- Fin -- readSuministro ---");
 			
@@ -778,40 +784,113 @@ public class SuministroDAO {
 	public List<SuministroVO> readSuministroDataTable(DataTableProperties dataTableProperties) {
 		logger.debug("--- Inicio -- readSuministroDataTable ---");
 		
-		Session session = sessionFactory.openSession();
-		String order = (String) dataTableProperties.getTableOrdering().get("orderingColumnName");
-		String dirOrder = (String) dataTableProperties.getTableOrdering().get("orderingDirection");
+		Session session = sessionFactory.openSession();		
+		String order = null;
+		String dirOrder = null;
+		if(dataTableProperties.getTableOrdering() != null){
+			order = (String) dataTableProperties.getTableOrdering().get("orderingColumnName");
+			dirOrder = (String) dataTableProperties.getTableOrdering().get("orderingDirection");
+		}
+		
 		int numStart = dataTableProperties.getStart();
 		int numLength = dataTableProperties.getLength();
 		int searchParamsCounter = 0;
 				
 		try {
+			//DESCOMENTAR Y PROBAR, NO ESTA FUNCIONANDO, PERO LA IDEA ES ADAPTARLO PARA USARLO EN EL DIALOG DE ASOCIAR SUMINISTRO
+//			StringBuilder query = new StringBuilder("FROM SuministroVO suministro "
+//					+ "LEFT JOIN FETCH suministro.estadoConexionPickList estadoConexion "
+//					+ "LEFT JOIN FETCH suministro.estadoSuministroPickList estadoSuministro "
+//					+ "LEFT JOIN FETCH suministro.dirSuministroJoin direccionSumi ");
+//			
+//			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
+//				query.append(" WHERE ");
+//				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
+//					if ("name".equals(columnInfo.getData())) {
+//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+//							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+//							query.append(" AND ");
+//							searchParamsCounter++;
+//						}
+//					}					
+//					if ("DireccionConcatenada__c".equals(columnInfo.getData())) {
+//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+//							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+//							query.append(" AND ");
+//							searchParamsCounter++;
+//						}
+//					}					
+//					if ("comuna__c".equals(columnInfo.getData())) {
+//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+//							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+//							query.append(" AND ");
+//							searchParamsCounter++;
+//						}
+//					}
+//					
+//					if ("calle".equals(columnInfo.getData())) {
+//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+//							query.append("UPPER(direccionSumi." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+//							query.append(" AND ");
+//							searchParamsCounter++;
+//						}
+//					}					
+//					if ("comuna".equals(columnInfo.getData())) {
+//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+//							query.append("UPPER(direccionSumi." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+//							query.append(" AND ");
+//							searchParamsCounter++;
+//						}
+//					}				
+//					if ("numero".equals(columnInfo.getData())) {
+//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+//							query.append("UPPER(direccionSumi." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+//							query.append(" AND ");
+//							searchParamsCounter++;
+//						}
+//					}
+//				}
+//			}
 			StringBuilder query = new StringBuilder("FROM SuministroVO suministro "
 					+ "LEFT JOIN FETCH suministro.estadoConexionPickList estadoConexion "
-					+ "LEFT JOIN FETCH suministro.estadoSuministroPickList estadoSuministro ");
+					+ "LEFT JOIN FETCH suministro.estadoSuministroPickList estadoSuministro "
+					+ "LEFT JOIN FETCH suministro.dirSuministroJoin direccionSumi ");
 			
 			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
 				query.append(" WHERE ");
 				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
 					if ("name".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							query.append("UPPER(suministro." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							query.append(" AND ");
+							searchParamsCounter++;
+						}
+					}					
+					if ("direccionConcatenada".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							query.append("UPPER(suministro." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							query.append(" AND ");
+							searchParamsCounter++;
+						}
+					}					
+					if ("comuna".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							query.append("UPPER(suministro." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 							query.append(" AND ");
 							searchParamsCounter++;
 						}
 					}
 					
-					if ("DireccionConcatenada__c".equals(columnInfo.getData())) {
+					if ("calle".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							query.append("UPPER(direccionSumi." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 							query.append(" AND ");
 							searchParamsCounter++;
 						}
-					}
-					
-					if ("comuna__c".equals(columnInfo.getData())) {
+					}							
+					if ("numero".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							query.append("UPPER(direccionSumi." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 							query.append(" AND ");
 							searchParamsCounter++;
 						}
@@ -829,8 +908,10 @@ public class SuministroDAO {
 				if("estadoConexion".equals(order) || "estadoSuministro".equals(order)){
 					query.append(" ORDER BY " + order + ".valor " + dirOrder);
 				}else{
-					query.append(" ORDER BY " + order + " " + dirOrder);
+					query.append(" ORDER BY suministro." + order + " " + dirOrder);
 				}
+			}else{
+				query.append(" ORDER BY suministro.name desc" );
 			}
 			
 			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);
@@ -847,6 +928,82 @@ public class SuministroDAO {
 	    }
 	    return null;
 	}
+	
+//	/**
+//	 * Devuelve una lista de suministros utilizando los parametros del datatable
+//	 * 
+//	 * @return
+//	 */
+//	@SuppressWarnings("unchecked")
+//	public List<SuministroVO> readSuministroAsociarContacto(DataTableProperties dataTableProperties) {
+//		logger.debug("--- Inicio -- readSuministroDataTable ---");
+//		
+//		Session session = sessionFactory.openSession();
+//		
+//		int searchParamsCounter = 0;
+//				
+//		try {
+//			StringBuilder query = new StringBuilder("FROM SuministroVO suministro "
+//					+ "LEFT JOIN FETCH suministro.estadoConexionPickList estadoConexion "
+//					+ "LEFT JOIN FETCH suministro.estadoSuministroPickList estadoSuministro ");
+//			
+//			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
+//				query.append(" WHERE ");
+//				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
+//					if ("name".equals(columnInfo.getData())) {
+//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+//							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+//							query.append(" AND ");
+//							searchParamsCounter++;
+//						}
+//					}
+//					
+//					if ("DireccionConcatenada__c".equals(columnInfo.getData())) {
+//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+//							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+//							query.append(" AND ");
+//							searchParamsCounter++;
+//						}
+//					}
+//					
+//					if ("comuna__c".equals(columnInfo.getData())) {
+//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+//							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+//							query.append(" AND ");
+//							searchParamsCounter++;
+//						}
+//					}
+//				}
+//			}
+//			
+//			if (searchParamsCounter == 0) {
+//				query.setLength(query.length() - 7);
+//			} else {
+//				query.setLength(query.length() - 5);
+//			}
+//			
+//			if (order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)) {
+//				if("estadoConexion".equals(order) || "estadoSuministro".equals(order)){
+//					query.append(" ORDER BY " + order + ".valor " + dirOrder);
+//				}else{
+//					query.append(" ORDER BY " + order + " " + dirOrder);
+//				}
+//			}
+//			
+//			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);
+//			List<SuministroVO> suministroList = result.list();
+//
+//			logger.debug("--- Fin -- readSuministroDataTable ---");
+//			
+//			return suministroList;
+//	    } catch (HibernateException e) {
+//	    	logger.error("--- readSuministroDataTable ", e); 
+//	    	logger.error("--- Fin -- readSuministroDataTable ---");
+//	    } finally {
+//	    	session.close(); 
+//	    }
+//	    return null;
+//	}
 	
 	/**
 	 * Devuelve el número de direcciones utilizando los parametros del datatable
@@ -907,6 +1064,36 @@ public class SuministroDAO {
 	    } catch (HibernateException e) {
 	    	logger.error("--- countSuministro ", e); 
 	    	logger.error("--- Fin -- countSuministro ---");
+	    } finally {
+	    	session.close(); 
+	    }
+		return null;
+	}
+	
+	/**
+	 * Devuelve el número de direcciones utilizando los parametros del datatable
+	 * 
+	 * @return
+	 */
+	public Integer countSuministroDeCuenta(String sfidCuenta) {
+		logger.debug("--- Inicio -- countSuministroDeCuenta ---");
+		
+		Session session = sessionFactory.openSession();
+		
+		try {
+			StringBuilder sqlQuery = new StringBuilder("SELECT COUNT(id) FROM SuministroVO as suministro ");
+			sqlQuery.append(" WHERE suministro.cuenta = '" + sfidCuenta + "'");
+			
+			Query query = session.createQuery(sqlQuery.toString());
+			Long count = (Long) query.uniqueResult();
+			
+			logger.debug("--- Fin -- countSuministroDeCuenta ---");
+			
+			return count.intValue();
+			
+	    } catch (HibernateException e) {
+	    	logger.error("--- countSuministroDeCuenta ", e); 
+	    	logger.error("--- Fin -- countSuministroDeCuenta ---");
 	    } finally {
 	    	session.close(); 
 	    }

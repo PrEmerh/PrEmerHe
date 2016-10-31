@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.casosemergencias.dao.vo.DireccionVO;
+import com.casosemergencias.dao.vo.SuministroVO;
 import com.casosemergencias.util.datatables.DataTableColumnInfo;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -365,7 +366,7 @@ public class DireccionDAO {
 	 * 
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	public List<DireccionVO> readDireccionDataTable(DataTableProperties dataTableProperties) {
 				
 		logger.debug("--- Inicio -- readDireccionDataTable ---");
@@ -431,6 +432,90 @@ public class DireccionDAO {
 	    	session.close(); 
 	    }
 		return null;
+	}*/
+	
+	/**
+	 * Devuelve una lista de direcciones utilizando los parametros del datatable
+	 * 
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<DireccionVO> readDireccionDataTable(DataTableProperties dataTableProperties) {
+		logger.debug("--- Inicio -- readDireccionDataTable ---");
+		
+		Session session = sessionFactory.openSession();		
+		String order = null;
+		String dirOrder = null;
+		if(dataTableProperties.getTableOrdering() != null){
+			order = (String) dataTableProperties.getTableOrdering().get("orderingColumnName");
+			dirOrder = (String) dataTableProperties.getTableOrdering().get("orderingDirection");
+		}
+		
+		int numStart = dataTableProperties.getStart();
+		int numLength = dataTableProperties.getLength();
+		int searchParamsCounter = 0;
+				
+		try {
+			StringBuilder query = new StringBuilder("FROM DireccionVO direccion ");
+			
+			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
+				query.append(" WHERE ");
+				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
+					if ("name".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							query.append("UPPER(direccion." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							query.append(" AND ");
+							searchParamsCounter++;
+						}
+					}					
+					if ("direccionConcatenada".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							query.append("UPPER(direccion." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							query.append(" AND ");
+							searchParamsCounter++;
+						}
+					}					
+					if ("comuna".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							query.append("UPPER(direccion." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							query.append(" AND ");
+							searchParamsCounter++;
+						}
+					}
+					
+					if ("calle".equals(columnInfo.getData())) {
+						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+							query.append("UPPER(direccion." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							query.append(" AND ");
+							searchParamsCounter++;
+						}
+					}							
+				}
+			}
+			
+			if (searchParamsCounter == 0) {
+				query.setLength(query.length() - 7);
+			} else {
+				query.setLength(query.length() - 5);
+			}
+			
+			if (order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)) {
+				query.append(" ORDER BY direccion.direccionConcatenada asc" );
+			}
+			
+			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);
+			List<DireccionVO> direccionList = result.list();
+
+			logger.debug("--- Fin -- readDireccionDataTable ---");
+			
+			return direccionList;
+	    } catch (HibernateException e) {
+	    	logger.error("--- readDireccionDataTable ", e); 
+	    	logger.error("--- Fin -- readDireccionDataTable ---");
+	    } finally {
+	    	session.close(); 
+	    }
+	    return null;
 	}
 	
 	/**

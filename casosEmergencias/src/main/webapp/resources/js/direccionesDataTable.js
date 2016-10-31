@@ -37,7 +37,7 @@ $(document).ready(function() {
                     	 if (data != null) {
                     		 txtColumn = data;
                     	 }
-                    	 return '<a href="../private/entidadDireccion?sfid=' + sfid + '">' + txtColumn + '</a>';
+                    	 return '<a href="javaScript:{cargandoGif('+"'" +sfid + "'"+","+"'"+"entidadDireccion"+"'"+')}">'+ txtColumn + '</a>';
                     }
         }],
         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
@@ -47,8 +47,8 @@ $(document).ready(function() {
 	
 	$('#search').on('click', function() {
 		table
-			.columns(1).search($('#filtroCalle').val())
-			.columns(5).search($('#filtroComuna').val())
+			.columns(0).search($('#filtroCalle').val())
+			.columns(1).search($('#filtroComuna').val())
 			.draw();
 	});
 });

@@ -56,6 +56,12 @@ public class RelacionActivoContactoVO implements Serializable {
 	@Column(name = "principal__c")
 	private Boolean principal;
 	
+	@Column(name = "activo__c")
+	private String activoId;
+	
+	@Column(name = "tipo_de_relaci_n__c")
+	private String tipoRelacionActivoClave;
+	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="tipo_de_relaci_n__c", referencedColumnName="codigo", insertable = false, updatable=false)
 	@WhereJoinTable(clause = "campo ='Tipo_de_Relaci_n__c' and objeto='relacion_activo_contacto__c'")
@@ -172,6 +178,25 @@ public class RelacionActivoContactoVO implements Serializable {
 	public void setPrincipal(Boolean principal) {
 		this.principal = principal;
 	}
+
+	public String getActivoId() {
+		return activoId;
+	}
+
+	public void setActivoId(String activoId) {
+		this.activoId = activoId;
+	}
+
+	public String getTipoRelacionActivoClave() {
+		return tipoRelacionActivoClave;
+	}
+
+	public void setTipoRelacionActivoClave(String tipoRelacionActivoClave) {
+		this.tipoRelacionActivoClave = tipoRelacionActivoClave;
+	}
+	
+	
+	
 	
 
 }

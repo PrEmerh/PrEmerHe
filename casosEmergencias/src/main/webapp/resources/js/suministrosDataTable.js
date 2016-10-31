@@ -8,6 +8,9 @@ $(document).ready(function() {
 		"scrollCollapse": true,
 		"paging": true,
 		"serverSide": true,
+		   oLanguage: {
+		        sProcessing: "<img src='../resources/images/loading.gif' width='25' > Cargando..."
+		    },
 		"processing": true, 
 		"ajax": { 
         	"type": "POST", 
@@ -21,8 +24,8 @@ $(document).ready(function() {
        	            {"data": "name", 						"width": "20%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true}, 
        	            {"data": "estadoConexion",				"width": "20%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
        	            {"data": "estadoSuministro", 			"width": "19%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
-       	            {"data": "DireccionConcatenada__c", 	"width": "20%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
-       	            {"data": "comuna__c", 					"width": "20%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
+       	            {"data": "direccionConcatenada", 		"width": "20%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
+       	            {"data": "comuna", 						"width": "20%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
        	            {"data": "sfid", 						"width": "1%", 	"defaultContent": "", "searchable": false, 	"orderable": false,	"visible": false}
 		],
 		"columnDefs": [
@@ -36,7 +39,7 @@ $(document).ready(function() {
                     	 if (data != null) {
                     		 txtColumn = data;
                     	 }
-                    	 return '<a href="../private/entidadSuministro?sfid=' + sfid + '">' + txtColumn + '</a>';
+                    	 return '<a href="javaScript:{cargandoGif('+"'" +sfid + "'"+","+"'"+"entidadSuministro"+"'"+')}">'+ txtColumn + '</a>';
                     }
         }],
         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
@@ -50,6 +53,23 @@ $(document).ready(function() {
 			.columns(3).search($('#filtroDireccion').val())
 			.columns(4).search($('#filtroComuna').val())
 			.draw();
+	});
+	
+	//Añadir opcion de buscar pulsando enter
+	$("#filtroNumSuministro").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
+	$("#filtroDireccion").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
+	$("#filtroComuna").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
 	});
 });
 

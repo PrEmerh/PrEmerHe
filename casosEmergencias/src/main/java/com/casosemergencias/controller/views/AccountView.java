@@ -244,4 +244,30 @@ public class AccountView extends ObjectView {
 	public void setRun(String run) {
 		this.run = run;
 	}
+
+	public boolean isControlNumSuministros() {
+		return controlNumSuministros;
+	}
+
+	public void setControlNumSuministros(boolean controlNumSuministros) {
+		this.controlNumSuministros = controlNumSuministros;
+	}
+
+	public boolean isControlNumCasos() {
+		return controlNumCasos;
+	}
+
+	public void setControlNumCasos(boolean controlNumCasos) {
+		this.controlNumCasos = controlNumCasos;
+	}
+
+	public boolean isControlNumContactos() {
+		return controlNumContactos;
+	}
+
+	public void setControlNumContactos(boolean controlNumContactos) {
+		this.controlNumContactos = controlNumContactos;
+	}
+	
+	
 }

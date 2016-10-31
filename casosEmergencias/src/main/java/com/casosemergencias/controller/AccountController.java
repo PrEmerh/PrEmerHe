@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.casosemergencias.controller.views.AccountView;
+import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.AccountService;
+import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.constants.Constantes;
@@ -35,6 +37,9 @@ public class AccountController {
 	
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private SuministroService suministroService;
 	
 	@RequestMapping(value = "/private/homeCuentas", method = RequestMethod.GET)
 	public ModelAndView listadoCuentas() {
@@ -61,17 +66,31 @@ public class AccountController {
 		logger.trace("Detalle de cuenta");
 		HttpSession session = request.getSession(true);
 		
+		//def. variables para controlar tablas de la pantalla
+		Integer limiteSuministros = 10; //por defecto recuperaremos 10 suministros asociados a la cuenta.
+		Integer limiteContacto = 10; //por defecto recuperaremos 10 contactos asociados a la cuenta.
+		Integer limiteCasos = 10; //por defecto recuperaremos 10 casos asociados a la cuenta.
+		Integer numSuministros;
+		
 		
 		session.setAttribute(Constantes.SFID_CUENTA, sfid);	
 		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, Constantes.FINAL_DETAIL_PAGE_CUENTA);
 		
 		AccountView cuentaView = new AccountView();
 		ModelAndView model = new ModelAndView();
-		Cuenta cuentaBBDD = accountService.getAccountBySfid(sfid);
+		Cuenta cuentaBBDD = accountService.getAccountBySfid(sfid, limiteSuministros, null, null);
 		
 		if (cuentaBBDD != null) {
 			ParserModelVO.parseDataModelVO(cuentaBBDD, cuentaView);
 		}
+				
+		numSuministros = suministroService.getNumSuministrosDeUnaCuetna(sfid);
+		if(numSuministros > limiteSuministros){
+			cuentaView.setControlNumSuministros(true);
+		}else{
+			cuentaView.setControlNumSuministros(false);
+		}
+		
 		
 		//transformamos las fechas con el gmt de sesion
 		long offset = (long)session.getAttribute("difGMTUser");	
@@ -84,22 +103,20 @@ public class AccountController {
 				}
 			}	
 		}
-//	-----------	Descomentar cuando se añada la lista de casos
-//		if(cuentaView.getCasos() != null && !cuentaView.getCasos().isEmpty()){
-//			for(CaseView miCase : contactoView.getCasos()){
-//				if(miCase.getFechaApertura() != null){
-//					Date fechaApertura = miCase.getFechaApertura();
-//					fechaApertura = new Date(fechaApertura.getTime() + offset);
-//					miCase.setFechaApertura(fechaApertura);
-//				}
-//				if(miCase.getFechaEstimadaCierre() != null){
-//					Date fechaEstimacion = miCase.getFechaEstimadaCierre();
-//					fechaEstimacion = new Date(fechaEstimacion.getTime() + offset);
-//					miCase.setFechaEstimadaCierre(fechaEstimacion);
-//				}
-//			}	
-//		}
-//----------
+		if(cuentaView.getCasos() != null && !cuentaView.getCasos().isEmpty()){
+			for(CaseView miCase : cuentaView.getCasos()){
+				if(miCase.getFechaApertura() != null){
+					Date fechaApertura = miCase.getFechaApertura();
+					fechaApertura = new Date(fechaApertura.getTime() + offset);
+					miCase.setFechaApertura(fechaApertura);
+				}
+				if(miCase.getFechaEstimadaCierre() != null){
+					Date fechaEstimacion = miCase.getFechaEstimadaCierre();
+					fechaEstimacion = new Date(fechaEstimacion.getTime() + offset);
+					miCase.setFechaEstimadaCierre(fechaEstimacion);
+				}
+			}	
+		}
 		
 		logger.info("SFID_CUENTA" + session.getAttribute(Constantes.SFID_CUENTA));
 		logger.info("SFID_CONTACTO" + session.getAttribute(Constantes.SFID_CONTACTO));
