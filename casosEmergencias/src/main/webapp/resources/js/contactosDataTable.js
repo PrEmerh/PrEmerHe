@@ -7,7 +7,10 @@ $(document).ready(function() {
 		"scrollX": true,
 		"scrollCollapse": true,
 		"paging": true,
-		"serverSide": true,
+		"serverSide": true,   
+		   oLanguage: {
+		        sProcessing: "<img src='../resources/images/loading.gif' width='25' > Cargando..."
+		    },
 		"processing": true, 
 		"ajax": { 
         	"type": "POST", 
@@ -36,7 +39,7 @@ $(document).ready(function() {
                     	 if (data != null) {
                     		 txtColumn = data;
                     	 }
-                    	 return '<a href="../private/entidadContacto?sfid=' + sfid + '">' + txtColumn + '</a>';
+                    	 return '<a href="javaScript:{cargandoGif('+"'" +sfid + "'"+","+"'"+"entidadContacto"+"'"+')}">'+ txtColumn + '</a>';
                     }
         }],
         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
@@ -52,6 +55,33 @@ $(document).ready(function() {
 			.columns(3).search($('#filtroEmail').val())
 			.columns(4).search($('#filtroTwitter').val())
 			.draw();
+	});
+	
+	//Añadir opcion de buscar pulsando enter
+	$("#filtroRunRut").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
+	$("#filtroNombreApellidos").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
+	$("#filtroTelefono").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
+	$("#filtroEmail").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
+	});
+	$("#filtroTwitter").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
 	});
 });
 

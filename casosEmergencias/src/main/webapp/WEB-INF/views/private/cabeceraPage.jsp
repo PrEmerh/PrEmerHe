@@ -1,5 +1,12 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
-
+<div  class="divCargando" id="cargandoGif" hidden="true">
+	<div>
+		<label class="labelCargando">
+			<img  src="${pageContext.request.contextPath}/resources/images/loading.gif" width="2%"/>
+			<s:message code="notificaciones_label_loading"/>
+		</label>
+	</div>
+</div>
 <div id="cabeceraEnel">
 	<div id="divImagenEnel">
 		<img src="../resources/images/logo.png" id="logoEnel" />

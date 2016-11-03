@@ -20,4 +20,5 @@ public class ConstantesTibcoWS {
 	
 	public static final String SIRES033_RESPONSE_LIST_NAME = "listadoSuministros";
 	public static final String SIEME009_RESPONSE_LIST_NAME = "listadoEventos";
+	public static final String SIEME002_RESPONSE_LIST_NAME = "listadoCalles";
 }

@@ -1,9 +1,11 @@
 //Funcion que oculta o muestra todos los suministros de una cuenta.
 function allSuministros(numeroSuministros){	
+	verCargando();
 	$.post("../private/listarSuministrosCuenta",
 			{sfidCuenta: document.getElementById('sfidCuenta').value,
 			numSuministros: numeroSuministros},
 			function(data) {
+				ocultarCargando();
 				var tablaDatos=  document.getElementById("tablaSuministros");
 				var longTabla = tablaDatos.rows.length;
 				
@@ -23,7 +25,7 @@ function allSuministros(numeroSuministros){
 					numero.href = '../private/entidadSuministro?sfid=' + fila.sfid;
 					numero.className = "link";
 					numero.text =fila.name;
-
+					
 					var numeroSuministro = row.insertCell(0);
 				    numeroSuministro.appendChild(numero);				    
 				    var idEmpresa = row.insertCell(1);
@@ -52,6 +54,7 @@ function allSuministros(numeroSuministros){
 					//mostramos href 'Mostar todos'
 					document.getElementById('hrefNoTodosSuministros').hidden = true;
 					document.getElementById('hrefTodosSuministros').hidden = false;
+
 					
 				}
 		}); 	

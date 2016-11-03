@@ -223,6 +223,14 @@
     	</jaxws:handlers>
 	</jaxws:client>
     
+    <!-- Configuracion del servicio web SIEME002 para consultar calles -->
+    <bean id="getCalleWSClient" class="com.casosemergencias.logic.ws.clients.GetCalleWSClient"/>
+    <jaxws:client id="sieme002Service" serviceClass="org.example.sieme002.SIEME002" address="${sieme002.endpoint}">
+		<jaxws:handlers>
+      		<ref bean="tibcoRequestsSOAPHandler" />
+    	</jaxws:handlers>
+	</jaxws:client>
+    
     <!-- Configuracion del servicio web SIEME009 para consultar eventos relacionados de un suministro -->
     <bean id="getEventosRelacionadosWSClient" class="com.casosemergencias.logic.ws.clients.GetEventosRelacionadosWSClient"/>
     <jaxws:client id="sieme009Service" serviceClass="org.example.sieme009.SIEME009" address="${sieme009.endpoint}">
@@ -230,7 +238,7 @@
       		<ref bean="tibcoRequestsSOAPHandler" />
     	</jaxws:handlers>
 	</jaxws:client>
-    
+	
     <!-- Autenticacion SSL para conectar con los servicios de TIBCO -->
     <http:conduit id="siresConduit" name="*">
         <http:tlsClientParameters><!-- parametro disableCNCheck="true" para no comprobar que el CN del cert de servidor concuerte con el hostname -->

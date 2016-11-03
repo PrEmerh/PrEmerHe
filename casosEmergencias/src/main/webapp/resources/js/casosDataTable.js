@@ -8,6 +8,9 @@ $(document).ready(function() {
 		"scrollCollapse": true,
 		"paging": true,
 		"serverSide": true,
+		   oLanguage: {
+		        sProcessing: "<img src='../resources/images/loading.gif' width='25' > Cargando..."
+		    },
 		"processing": true, 
 		"ajax": {
 			"type": "POST", 
@@ -36,8 +39,8 @@ $(document).ready(function() {
                     	}
                     	if (data != null) {
                     	 txtColumn = data;
-                    	}
-                    	return '<a href="../private/entidadCaso?editMode=VIEW&sfid=' + sfid + '">' + txtColumn + '</a>';
+                    	}                    	
+                   	 return '<a href="javaScript:{cargandoGif('+"'" +sfid + "'"+","+"'"+"entidadCaso"+"'"+')}">'+ txtColumn + '</a>';
                      }
                     }],
         "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
@@ -49,6 +52,13 @@ $(document).ready(function() {
 		table
 			.columns(0).search($('#filtroNumCaso').val())
 			.draw();
+	});
+	
+	//Añadir opcion de buscar pulsando enter
+	$("#filtroNumCaso").on("keyup", function (event) {
+	    if (event.keyCode==13) {
+	        $("#search").get(0).click();
+	    }
 	});
 });
 
