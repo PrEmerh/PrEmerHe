@@ -94,7 +94,7 @@ function cargarTablaSuministros(){
 	        	 "url": formulario.attr('action'), 	               	
 	        	 "contentType": 'application/json; charset=utf-8' ,
 	        	 "error": function(data) {
-	        		 alert('Se ha producido un error obteniendo la lista de suministros. Repita la operación y, si el error persiste, contacte con el administrador de la plataforma.');
+	        		 alert('Se ha producido un error obteniendo la lista de suministros. Repita la operaci�n y, si el error persiste, contacte con el administrador de la plataforma.');
 	        	 }
 	      	},
 	       	"columns": [
@@ -149,7 +149,7 @@ function cargarTablaSuministros(){
 				.draw();			
 		});
 		
-		//Añadir opcion de buscar pulsando enter
+		//A�adir opcion de buscar pulsando enter
 		$("#idNameSuministro").on("keyup", function (event) {
 		    if (event.keyCode==13) {
 		        $("#buscar").get(0).click();
@@ -227,7 +227,7 @@ function cargarTablaDirecciones(){
 	        	"url": 'listarDirecciones', 	               	
 	        	 "contentType": 'application/json; charset=utf-8' ,
 	        	 "error": function(data) {
-	        		 alert('Se ha producido un error obteniendo la lista de direcciones. Repita la operación y, si el error persiste, contacte con el administrador de la plataforma.');
+	        		 alert('Se ha producido un error obteniendo la lista de direcciones. Repita la operacion y, si el error persiste, contacte con el administrador de la plataforma.');
 	        	 }
 	      	},
 	       	"columns": [
@@ -235,7 +235,6 @@ function cargarTablaDirecciones(){
 	       	            {data: "tipoCalle", width: "1%", defaultContent: "", orderable: false},
 	       	            {data: "comuna", width: "1%", defaultContent: "", visible: false, orderable: false},
 	       	            {data: "direccionConcatenada", width: "1%",visible: false, defaultContent: "", orderable: false},
-
 			],
 			"columnDefs": [
 	                    {"targets": 0,
@@ -243,7 +242,7 @@ function cargarTablaDirecciones(){
 	                    	 var txtColumn = "";
 	                    	 var tipoCalle ="";
 	                    	 if (data!= null) {
-	                    		 calle = full.calle;;
+	                    		 calle = full.calle;
 	                    	 }if (full.tipoCalle != null) {
 	                    		 tipoCalle = full.tipoCalle;
 	                     	 }if (full.comuna != null) {
@@ -279,7 +278,7 @@ function cargarTablaDirecciones(){
 			}
 		});
 		
-		//Añadir opcion de buscar pulsando enter
+		//A�adir opcion de buscar pulsando enter
 		$("#idComunaDir").on("keyup", function (event) {
 		    if (event.keyCode==13) {
 		        $("#buscarCalleID").get(0).click();

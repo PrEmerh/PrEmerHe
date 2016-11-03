@@ -1,7 +1,9 @@
 package com.casosemergencias.controller;
 
+
 import java.io.FileInputStream;
 import java.io.IOException;
+
 import java.io.InputStream;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
@@ -128,9 +130,9 @@ public class CaseController {
 		//def. variables para controlar el numero de registros de las tablas
 		int limiteEntradasHistorial = 10;
 		int numeroHistorial;
+
 		int limiteEntradasComentarios = 10;
 		int numeroComentarios;
-
 
 		ModelAndView model = new ModelAndView();		
 		model.addObject("sfid", sfid);

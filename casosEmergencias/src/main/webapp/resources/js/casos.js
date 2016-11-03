@@ -11,6 +11,8 @@ function funcionOnload(){
 function modificarCasoButton() {
 	ocultarDivNotificacion();
 	
+
+	var modificar = document.getElementById('Modificar');
 	var modificar = document.getElementById('Modificar');
 	var cancelarCaso = document.getElementById('CancelarCaso');
 	var guardar = document.getElementById('Guardar');
@@ -20,11 +22,13 @@ function modificarCasoButton() {
 	var datosEmergenciaDiv = document.getElementById('datosEmergencia');
 	var arrowDatosEmergenciaDiv = document.getElementById('arrowDatosEmergencia');
 	
+
+	modificar.hidden = true;
 	modificar.hidden = true;
 	cancelarCaso.hidden = true;
 	guardar.hidden = false;
 	cancelar.hidden = false;	
-	
+		
 	if (datosEmergenciaDiv.style.display == 'none'){
 		datosEmergenciaDiv.style.display = '';
 		arrowDatosEmergenciaDiv.src="../resources/images/arrow-down-black.png";
@@ -39,6 +43,7 @@ function modificarCasoButton() {
 
 function cancelarButton() {
 	var modificar = document.getElementById('Modificar');
+	var modificar = document.getElementById('Modificar');
 	var cancelarCaso = document.getElementById('CancelarCaso');
 	var guardar = document.getElementById('Guardar');
 	var cancelar = document.getElementById('Cancelar');
@@ -48,6 +53,8 @@ function cancelarButton() {
 	document.getElementById('descrip').value=document.getElementById('fieldRead').innerText;
 	
 	modificar.hidden = false;
+	modificar.hidden = false;
+
 	cancelarCaso.hidden = false;
 	guardar.hidden = true;
 	cancelar.hidden = true;	
@@ -109,6 +116,26 @@ function guardarCancelarCaso(){
 
 function cerrarDialogCancelarCaso(){
 	$('#dialogCancelarCaso').dialog('close');
+}
+
+function checkUpdates() {
+	if ($('#editMode').val() == 'UPDATED_OK') {
+		$('#divCaseModifiedOk').show();
+	} else if ($('#editMode').val() == 'UPDATED_ERROR') {
+		$('#divCaseModifiedError').show();
+	} else if ($('#editMode').val() == 'CREATED_OK') {
+		$('#divCaseCommentCreated').show();
+	} else if ($('#editMode').val() == 'CREATED_ERROR') {
+		$('#divCaseCommentNOCreated').show();
+	} else if ($('#editMode').val() == 'INSERTED_OK') {
+		$('#divCaseCreatedOk').show();
+	} else if ($('#editMode').val() == 'INSERTED_ERROR') {
+	  $('#divCaseCreatedError').show();
+	} else if ($('#editMode').val() == 'CANCEL_OK') {
+		$('#divCaseCancel').show();
+	} else if ($('#editMode').val() == 'CACEL_ERROR') {
+	  $('#divCaseCancelError').show();
+	}
 }
 
 
@@ -264,6 +291,5 @@ function refrescarHistorial(numeroEntradas){
 					document.getElementById('hrefTodosHistorial').hidden = false;
 					
 				}
-		});
-	
+		});	
 }

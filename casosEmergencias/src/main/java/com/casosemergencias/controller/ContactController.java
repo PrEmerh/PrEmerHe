@@ -2,7 +2,6 @@ package com.casosemergencias.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.example.sieme002_schema.CalleType;
+import org.example.sieme002_schema.ListadoCallesType;
 import org.example.sieme009_schema.ListadoEventosType;
 import org.example.sires033_schema.ListadoSuministrosType;
 import org.example.sires033_schema.SuministroType;
@@ -17,7 +18,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,20 +28,18 @@ import org.springframework.web.servlet.ModelAndView;
 import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.ContactView;
 import com.casosemergencias.controller.views.DireccionView;
-import com.casosemergencias.controller.views.HerokuUserView;
 import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.ContactService;
 import com.casosemergencias.logic.DireccionService;
 import com.casosemergencias.logic.PickListsService;
 import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.Contacto;
-import com.casosemergencias.model.Direccion;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.PickListByField;
 import com.casosemergencias.util.constants.Constantes;
-import com.casosemergencias.util.datatables.DataTableColumnInfo;
 import com.casosemergencias.util.constants.ConstantesTibcoWS;
+import com.casosemergencias.util.datatables.DataTableColumnInfo;
 import com.casosemergencias.util.datatables.DataTableParser;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -52,7 +50,7 @@ public class ContactController {
 
 	@Autowired
 	private ContactService contactService;
-	
+
 	@Autowired
 	private SuministroService suministroService;
 	
@@ -93,7 +91,7 @@ public class ContactController {
 		if (contactoBBDD != null){
 			ParserModelVO.parseDataModelVO(contactoBBDD, contactoView);
 		}
-				
+		
 		//Almacenamos sfid de suministro relacionado en caso de que el contacto tenga solo uno asociado.
 		
 //		if(contactoView.getSuministros()!=null && contactoView.getSuministros().isEmpty()==false  && contactoView.getSuministros().size()==1 && session.getAttribute(Constantes.SFID_SUMINISTRO)==null){
@@ -345,33 +343,69 @@ public class ContactController {
 		DataTableProperties propDataTable = DataTableParser.parseBodyToDataTable(body);
 		boolean busqueda = realizarBusquedaDataTable(propDataTable.getColumsInfo());
 		
-		if(busqueda){
+		if (busqueda) {
 			//Realizamos la busqueda en BBDD
-			List<Direccion> listaDirecciones = new ArrayList<Direccion>();
-			listaDirecciones = this.direccionService.readAllDirecciones(propDataTable);
-
-			
-			for(Direccion direccion : listaDirecciones){
-				jsonResult = new JSONObject();
-				jsonResult.put("comuna", direccion.getComuna());
-				jsonResult.put("calle", direccion.getCalle());
-				jsonResult.put("tipoCalle", direccion.getTipoCalle());
-				jsonResult.put("direccionConcatenada", direccion.getDireccionConcatenada());
-				jsonArray.put(jsonResult);
+			List<DireccionView> listaDirecciones = new ArrayList<DireccionView>();
+			Map<String, Object> datosCallesWS = null;
+			String idComuna = "";
+			String nombreCalle = "";
+			if (propDataTable.getColumsInfo() != null && !propDataTable.getColumsInfo().isEmpty()) {
+				for (DataTableColumnInfo columnInfo : propDataTable.getColumsInfo()) {
+					if ("comuna".equals(columnInfo.getData()) && columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+						idComuna = columnInfo.getSearchValue();
+					}
+					
+					if ("calle".equals(columnInfo.getData()) && columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
+						nombreCalle = columnInfo.getSearchValue();
+					}
+				}
 			}
+			
+			datosCallesWS = direccionService.getDatosCalleWS(idComuna, nombreCalle);
 
+			if (datosCallesWS != null && !datosCallesWS.isEmpty() && datosCallesWS.get(ConstantesTibcoWS.SIEME002_RESPONSE_LIST_NAME) != null) {
+				//TODO: Buscar direcciones en SF
+				logger.info("Se parsean las calles obtenidas en el WS al objeto de direcciones de la vista");
+				List<CalleType> listaCalles = ((ListadoCallesType) datosCallesWS.get(ConstantesTibcoWS.SIEME002_RESPONSE_LIST_NAME)).getCalle();
+				for (CalleType calle : listaCalles) {
+					DireccionView direccion = new DireccionView();
+					direccion.setCalle(calle.getNombreCalle());
+					direccion.setTipoCalle(calle.getTipoCalle());
+					direccion.setComuna(idComuna);
+					listaDirecciones.add(direccion);
+				}
+			}
+						
+			/*TODO: Al recuperar la calle del WS, sólo se obtiene id, nombre y tipo
+			 * Calle con id '4663327', tipo 'CALLE' y nombre 'AUGUSTO LEGUIA SUR'
+			 * 
+			 * ¿Mostramos los datos en el listado y, una vez seleccionada una hacemos la búsqueda en SF para
+			 * crear el caso posteriormente?
+			 * 
+			 * - ¿Cómo guardamos el tipo? Se guardan 3 letras ahora.
+			 */
+						
+//			listaDirecciones = this.direccionService.readAllDirecciones(propDataTable);
+			
+			if (listaDirecciones != null && !listaDirecciones.isEmpty()) {
+				logger.info("La lista de direcciones tiene datos. Se envian a la pagina");
+				for (DireccionView direccion : listaDirecciones) {
+					jsonResult = new JSONObject();
+					jsonResult.put("comuna", (direccion.getComuna() != null ? direccion.getComuna() : ""));
+					jsonResult.put("calle", (direccion.getCalle() != null ? direccion.getCalle() : ""));
+					jsonResult.put("tipoCalle", (direccion.getTipoCalle() != null ? direccion.getTipoCalle() : ""));
+					jsonResult.put("direccionConcatenada", (direccion.getDireccionConcatenada() != null ? direccion.getDireccionConcatenada() : ""));
+					jsonArray.put(jsonResult);
+				}
+			}
 		}		
 
 		jsonObject.put("data", jsonArray);
 		//jsonObject.put("iTotalRecords", "10"); 
 		//jsonObject.put("iTotalDisplayRecords",  "10"); 
-	
 				
 		logger.info("--- Fin -- listarDirecciones ---");
 		
 		return jsonObject.toString();
 	}
-	
-
-	
 }

@@ -117,7 +117,6 @@ public class GetEventosRelacionadosWSClient {
 		StringBuilder strErrores = new StringBuilder("");
 		
 		if (errors != null && !errors.getError().isEmpty()) {
-            strErrores.append("Se han producido los siguientes errores al llamar al servicio de obtención de eventos relacionados con el suministro " + numSuministro);
             for (ErrorType datosError: errors.getError()) {
             	strErrores.append(" Código de error - ").append(datosError.getCodigoError()).append(". Descripción Error: ").append(datosError.getMensajeError()).append(".");
                 errorsMap.put(datosError.getCodigoError(), datosError.getMensajeError());

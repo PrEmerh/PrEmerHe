@@ -277,12 +277,12 @@
 				<artifactId>heroku-maven-plugin</artifactId>
 				<version>1.1.1</version>
 				<configuration>
-					<appName>chile-en-dev</appName>					
+					<appName>chile-local</appName>
 				</configuration>
 			</plugin>
 			<!-- Configuracion CXF para generar las clases cliente de los servicios web -->
-			<!-- Tenerlo comentado para evitar que genere las clases cada vez que compile.
-			<plugin>
+			<!-- Tenerlo comentado para evitar que genere las clases cada vez que compile. -->
+			<!-- <plugin>
 			    <groupId>org.apache.cxf</groupId>
 			    <artifactId>cxf-codegen-plugin</artifactId>
 			    <version>${cxf.version}</version>
@@ -297,7 +297,7 @@
 			                <sourceRoot>${project.build.directory}/generated/cxf</sourceRoot>
 			                <wsdlOptions>
 			                    <wsdlOption>
-			                        <wsdl>${basedir}/src/main/resources/wsdl/SIEME009.WSDL</wsdl>
+			                        <wsdl>${basedir}/src/main/resources/webservices/wsdl/SIEME009.WSDL</wsdl>
 			                        <extraargs>
 			                        	<extraarg>-client</extraarg>
 			                        	<extraarg>-verboset</extraarg>
@@ -306,7 +306,10 @@
 			                        </extraargs>
 			                    </wsdlOption>
 			                    <wsdlOption>
-			                        <wsdl>${basedir}/src/main/resources/wsdl/SIRES033.WSDL</wsdl>
+			                        <wsdl>${basedir}/src/main/resources/webservices/wsdl/SIRES033.WSDL</wsdl>
+			                    </wsdlOption>
+			                    <wsdlOption>
+			                        <wsdl>${basedir}/src/main/resources/webservices/wsdl/SIEME002.WSDL</wsdl>
 			                    </wsdlOption>
 			                </wsdlOptions>
 			            </configuration>
@@ -315,7 +318,7 @@
 			            </goals>
 			        </execution>
 			    </executions>
-			</plugin>-->
+			</plugin> -->
 		</plugins>
 	</build>
 </project>
