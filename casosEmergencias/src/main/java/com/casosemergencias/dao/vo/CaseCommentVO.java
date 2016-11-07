@@ -57,6 +57,7 @@ public class CaseCommentVO extends ObjectVO implements Serializable {
 	@Column(name = "commentbody")
 	private String comment;
 	
+	/*TODO: FALTA EN SF*/
 	@Column(name = "creatorname")
 	private String creatorname;
 	

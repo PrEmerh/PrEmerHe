@@ -51,197 +51,199 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "full_electric__c")
+	@Column(name = "fullelectric__c")
 	private String fullElectric;
 
-	@Column(name = "casos_abiertos__c")
+	@Column(name = "opencases__c")
 	private Boolean casosAbiertos;
 
-	@Column(name = "tipo_de_transformador__c")
+	@Column(name = "transformertype__c")
 	private String tipoTransformador;
 
-	@Column(name = "corte_por_deuda__c")
+	@Column(name = "cuttingdebt__c")
 	private Boolean cortePorDeuda;
 
-	@Column(name = "tipo_lectura__c")
+	@Column(name = "readingtype__c")
 	private String tipoLectura;
 
-	@Column(name = "proceso_de_lectura__c")
+	@Column(name = "readingprocess__c")
 	private String procesoLectura;
 
-	@Column(name = "estado_de_conexi_n__c")
+	@Column(name = "connectionstatus__c")
 	private String estadoConexion;
 
-	@Column(name = "tipo_de_medida__c")
+	@Column(name = "metertype__c")
 	private String tipoMedida;
 
-	@Column(name = "comuna_reparto__c")
+	@Column(name = "municipalityallocation__c")
 	private String comunaReparto;
 
-	@Column(name = "comuna__c")
+	@Column(name = "municipality__c")
 	private String comuna;
 
-	@Column(name = "n_mero_medidor__c")
+	@Column(name = "meternumber__c")
 	private String numeroMedidor;
 
-	@Column(name = "modelo_medidor__c")
+	@Column(name = "metermodel__c")
 	private String modeloMedidor;
 
-	@Column(name = "n_mero_suministro__c")
+	@Column(name = "pointofdeliverynumber__c")
 	private String numeroSuministro;
 
-	@Column(name = "numero_de_transformador__c")
+	@Column(name = "transformernumber__c")
 	private String numeroTransformador;
 
-	@Column(name = "estado_del_suministro__c")
+	@Column(name = "pointofdeliverystatus__c")
 	private String estadoSuministro;
 
-	@Column(name = "marca_medidor__c")
+	@Column(name = "meterbrand__c")
 	private String marcaMedidor;
 
-	@Column(name = "fecha_de_corte__c")
+	@Column(name = "cutoffdate__c")
 	private Date fechaCorte;
 
-	@Column(name = "propiedad_medidor__c")
+	@Column(name = "meterproperty__c")
 	private String propiedadMedidor;
 
-	@Column(name = "id_empresa__c")
+	@Column(name = "companyid__c")
 	private String idEmpresa;
 
-	@Column(name = "direccion__c")
+	@Column(name = "detailaddress__c")
 	private String direccion;
 
-	@Column(name = "run_rut__c")
-	private String runRut;
-
-	@Column(name = "pago_en_proceso__c")
+	@Column(name = "paymentprocess__c")
 	private Boolean pagoEnProceso;
 
-	@Column(name = "nombre_due_o_boleta__c")
+	@Column(name = "ballotname__c")
 	private String nombreDuenoBoleta;
 
-	@Column(name = "bloque__c")
+	@Column(name = "block__c")
 	private String bloque;
 
-	@Column(name = "tipo_de_conexi_n__c")
+	@Column(name = "connectiontype__c")
 	private String tipoConexion;
 
-	@Column(name = "direccion_cliente__c")
+	@Column(name = "pointofdeliveryaddress__c")
 	private String direccionCliente;
 
-	@Column(name = "electrodependiente__c")
+	@Column(name = "electrodependant__c")
 	private String electrodependiente;
 
-	@Column(name = "Datos_Clientes_con_Disciplina__c")//lo cambiamos por como está en SF, alli hay una variable de cada tipo, pero la que lleva información es esta.
+	@Column(name = "disciplinarymeasure__c")//lo cambiamos por como está en SF, alli hay una variable de cada tipo, pero la que lleva información es esta.
 	private String medidaDisciplina;
 
-	@Column(name = "horario_de_racionamiento__c")
+	@Column(name = "rationingschedule__c")
 	private String horarioRacionamiento;
 
-	@Column(name = "casos_reiterados__c")
+	@Column(name = "repeatedcases__c")
 	private Double casosReiterados;
 
-	@Column(name = "tarifa__c")
+	@Column(name = "rate__c")
 	private String tarifa;
 
-	@Column(name = "alimentador__c")
+	@Column(name = "feedernumber__c")
 	private String alimentador;
 
-	@Column(name = "direcci_n_de_boleta__c")
+	@Column(name = "distributionaddress__c")
 	private String direccionBoleta;
 
+	/*TODO:FALTA*/
 	@Column(name = "cuenta__c")
 	private String cuenta;
 
-	@Column(name = "subestaci_n_el_ctrica_conexi_n__c")
+	@Column(name = "electricalsubstationconnection__c")
 	private String subestacionElectricaConexion;
 
-	@Column(name = "ruta__c")
+	@Column(name = "route__c")
 	private String ruta;
 
+	/*TODO:FALTA*/
 	@Column(name = "tipo_de_cuenta__c")
 	private String tipoCuenta;
-
-	@Column(name = "tipo_de_segmento__c")
+	
+	/*TODO:FALTA*/
+	@Column(name = "run_rut__c")
+	private String runRut;
+	
+	@Column(name = "segmenttype__c")
 	private String tipoSegmento;
 
-	@Column(name = "DireccionConcatenada__c")
+	@Column(name = "pointofdeliveryaddress__c")
 	private String direccionConcatenada;
 
-	@Column(name = "tipoevento__c")
-	private String tipoEvento;
-
+	/*TODO:FALTA*/
 	@Column(name = "suministroafectado__c")
 	private Boolean suministroAfectado;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "proceso_de_lectura__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "readingprocess__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@Where(clause = "objeto='suministro__c'  AND campo='Proceso_de_Lectura__c'")
 	private PickListsVO procesoLecturaPickList;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "tipo_de_medida__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "metertype__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@Where(clause = "objeto='suministro__c'  AND campo='Tipo_de_medida__c'")
 	private PickListsVO tipoMedidaPickList;
 	
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "tipo_de_segmento__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "segmenttype__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumTipoSegmentoVO tipoSegmentoPickList;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "subestaci_n_el_ctrica_conexi_n__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "electricalsubstationconnection__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumSubestacionElecVO subestacionElecPickList;
 	
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "propiedad_medidor__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "meterproperty__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumPropiedadMedidorVO propMedidorPickList;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "tipo_de_conexi_n__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "connectiontype__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumTipoConexionVO tipoConexionPickList;
 	
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "tipo_lectura__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "readingtype__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumTipoLecturaVO tipoLecturaPickList;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "tipo_de_transformador__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "transformertype__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumTipoTransfVO tipoTransformadorPickList;
 	
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "comuna_reparto__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "municipalityallocation__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumComunaRepartoVO comunaRepartoPickList;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "full_electric__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "fullelectric__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumFullElectricVO fullElectricPickList;
 	
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "Datos_Clientes_con_Disciplina__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "disciplinarymeasure__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumMedidaDisciplinaVO medidaDisciplinaPickList;
 	
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_empresa__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "companyid__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumEmpresaVO empresaPickList;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "estado_de_conexi_n__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "connectionstatus__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumEstadoConVO estadoConexionPickList;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "estado_del_suministro__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "pointofdeliverystatus__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumEstadoSumVO estadoSuministroPickList;
 	
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "electrodependiente__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "electrodependant__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumElectrodependienteVO electrodependientePickList;
-
+	
+	/*TODO:FALTA*/
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cuenta__c", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private AccountVO cuentaJoin;
 	
 	@OneToOne(fetch=FetchType.LAZY, optional=true)
-	@JoinColumn(name="direccion__c", referencedColumnName="sfid", insertable = false, updatable=false)
+	@JoinColumn(name="detailaddress__c", referencedColumnName="sfid", insertable = false, updatable=false)
 	private DireccionVO dirSuministroJoin;
 
 	public SuministroVO() {
@@ -307,7 +309,6 @@ public class SuministroVO extends ObjectVO implements Serializable {
 		this.tipoCuenta = tipoCuenta;
 		this.tipoSegmento = tipoSegmento;
 		this.direccionConcatenada = direccionConcatenada;
-		this.tipoEvento = tipoEvento;
 		this.suministroAfectado = suministroAfectado;
 		this.empresaPickList = empresaPickList;
 		this.estadoConexionPickList = estadoConexionPickList;
@@ -681,15 +682,7 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	public void setDireccionConcatenada(String direccionConcatenada) {
 		this.direccionConcatenada = direccionConcatenada;
 	}
-
-	public String getTipoEvento() {
-		return tipoEvento;
-	}
-
-	public void setTipoEvento(String tipoEvento) {
-		this.tipoEvento = tipoEvento;
-	}
-
+	
 	public Boolean getSuministroAfectado() {
 		return suministroAfectado;
 	}

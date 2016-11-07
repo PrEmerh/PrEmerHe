@@ -49,43 +49,42 @@ public class DireccionVO extends ObjectVO implements Serializable {
 	@Column(name = "createddate")
 	private Date createddate;
 			
-	@Column(name = "regi_n__c")
+	@Column(name = "region__c")
 	private String region;
 	
-	@Column(name = "comuna__c")
+	@Column(name = "municipality__c")
 	private String comuna;
 	
-	@Column(name = "tipo_de_calle__c")
+	@Column(name = "street_type__c")
 	private String tipoCalle;
 	
+	/*TODO:NUEVO OBJETO
+	 * streetmd__c*/
 	@Column(name = "calle__c")
 	private String calle;
 	
-	@Column(name = "altura__c")
+	@Column(name = "number__c")
 	private String numero;
 	
-	@Column(name = "departamento__c")
+	@Column(name = "department__c")
 	private String departamento;
 	
 	@Column(name = "name")
 	private String name;
 		
-	@Column(name = "direccionconcatenada__c")
+	@Column(name = "concatenatedaddress__c")
 	private String direccionConcatenada;
 	
-	@Column(name = "esquina__c")
+	@Column(name = "corner__c")
 	private String esquina;
-	
-	@Column(name = "literalcomuna__c")
-	private String literalComuna;	
 
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "tipo_de_calle__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "street_type__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Tipo_de_Calle__c' and objeto = 'Direccion__c'")
 	private PickListsDireccionTipoCalleVO tipoCallePickList;
 
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "regi_n__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "region__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Regi_n__c' and objeto = 'Direccion__c'")
 	private PickListsDireccionRegionVO regionPickList;
 	
@@ -254,14 +253,6 @@ public class DireccionVO extends ObjectVO implements Serializable {
 	public Object instantiateTargetLogic() {
 		Direccion direccion = new Direccion();
 		return direccion;
-	}
-
-	public String getLiteralComuna() {
-		return literalComuna;
-	}
-
-	public void setLiteralComuna(String literalComuna) {
-		this.literalComuna = literalComuna;
 	}
 
 	public PickListsDireccionTipoCalleVO getTipoCallePickList() {

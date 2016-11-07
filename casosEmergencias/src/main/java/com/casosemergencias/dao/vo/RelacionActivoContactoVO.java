@@ -50,29 +50,29 @@ public class RelacionActivoContactoVO implements Serializable {
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "contacto__c")
+	@Column(name = "contact__c")
 	private String contactoId;
 	
 	@Column(name = "principal__c")
 	private Boolean principal;
 	
-	@Column(name = "activo__c")
+	@Column(name = "asset__c")
 	private String activoId;
 	
-	@Column(name = "tipo_de_relaci_n__c")
+	@Column(name = "typeofrelationship__c")
 	private String tipoRelacionActivoClave;
 	
 	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="tipo_de_relaci_n__c", referencedColumnName="codigo", insertable = false, updatable=false)
+	@JoinColumn(name="typeofrelationship__c", referencedColumnName="codigo", insertable = false, updatable=false)
 	@WhereJoinTable(clause = "campo ='Tipo_de_Relaci_n__c' and objeto='relacion_activo_contacto__c'")
 	private PickListsRelacionActivoVO tipoRelacionActivo;
 	
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="activo__c", referencedColumnName="sfid", insertable = false, updatable=false)
+	@JoinColumn(name="asset__c", referencedColumnName="sfid", insertable = false, updatable=false)
 	private AssetVO activo;
 	
 	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="contacto__c", referencedColumnName="sfid", insertable = false, updatable=false)
+	@JoinColumn(name="contact__c", referencedColumnName="sfid", insertable = false, updatable=false)
 	private ContactVO contacto;
 
 	public Boolean getIsDeleted() {

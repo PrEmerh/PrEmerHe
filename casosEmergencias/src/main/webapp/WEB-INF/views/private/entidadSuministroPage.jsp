@@ -508,7 +508,7 @@
 												<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
 											</c:otherwise>
 										</c:choose>
-									</tr> --%>
+									</tr> 
 									<tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_corte_programado"/></td>
 										<c:choose>
@@ -521,7 +521,7 @@
 												<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
 											</c:otherwise>
 										</c:choose>
-									</tr>
+									</tr> --%>
 									<tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_corte_deuda"/></td>
 										<c:choose>
