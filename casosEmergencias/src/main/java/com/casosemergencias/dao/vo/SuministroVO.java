@@ -238,9 +238,9 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	private PickListsSumElectrodependienteVO electrodependientePickList;
 	
 	/*TODO:FALTA*/
-	@OneToOne(fetch = FetchType.LAZY)
+	/*@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cuenta__c", referencedColumnName = "sfid", insertable = false, updatable = false)
-	private AccountVO cuentaJoin;
+	private AccountVO cuentaJoin;*/
 	
 	@OneToOne(fetch=FetchType.LAZY, optional=true)
 	@JoinColumn(name="detailaddress__c", referencedColumnName="sfid", insertable = false, updatable=false)
@@ -762,7 +762,7 @@ public class SuministroVO extends ObjectVO implements Serializable {
 		return suministro;
 	}
 
-	public AccountVO getCuentaJoin() {
+	/*public AccountVO getCuentaJoin() {
 		return cuentaJoin;
 	}
 
@@ -772,7 +772,7 @@ public class SuministroVO extends ObjectVO implements Serializable {
 
 	public DireccionVO getDirSuministroJoin() {
 		return dirSuministroJoin;
-	}
+	}*/
 
 	public void setDirSuministroJoin(DireccionVO dirSuministroJoin) {
 		this.dirSuministroJoin = dirSuministroJoin;
