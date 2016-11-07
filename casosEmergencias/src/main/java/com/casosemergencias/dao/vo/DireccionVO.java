@@ -18,7 +18,7 @@ import com.casosemergencias.model.Direccion;
 
 
 @Entity
-@Table(name="salesforce.direccion__c")
+@Table(name="salesforce.address__c")
 public class DireccionVO extends ObjectVO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

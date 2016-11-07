@@ -13,7 +13,7 @@ import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "salesforce.picklists")
-@Where(clause = "objeto='Contact' AND campo='identitytype__c'")
+@Where(clause = "objeto='Contact' AND campo='IdentityType__c'")
 public class PickListsContactTipoIdentidadVO extends ObjectVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;

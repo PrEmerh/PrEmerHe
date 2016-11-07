@@ -68,8 +68,6 @@ public class AccountController {
 		
 		//def. variables para controlar tablas de la pantalla
 		Integer limiteSuministros = 10; //por defecto recuperaremos 10 suministros asociados a la cuenta.
-		Integer limiteContacto = 10; //por defecto recuperaremos 10 contactos asociados a la cuenta.
-		Integer limiteCasos = 10; //por defecto recuperaremos 10 casos asociados a la cuenta.
 		Integer numSuministros;
 		
 		

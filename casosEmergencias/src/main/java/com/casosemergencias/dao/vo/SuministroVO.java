@@ -18,7 +18,7 @@ import org.hibernate.annotations.Where;
 import com.casosemergencias.model.Suministro;
 
 @Entity
-@Table(name = "salesforce.suministro__c")
+@Table(name = "salesforce.pointofdelivery__c")
 public class SuministroVO extends ObjectVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -177,12 +177,12 @@ public class SuministroVO extends ObjectVO implements Serializable {
 
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "readingprocess__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@Where(clause = "objeto='suministro__c'  AND campo='Proceso_de_Lectura__c'")
+	@Where(clause = "objeto='pointofdelivery__c'  AND campo='ReadingProcess__c'")
 	private PickListsVO procesoLecturaPickList;
 
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "metertype__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@Where(clause = "objeto='suministro__c'  AND campo='Tipo_de_medida__c'")
+	@Where(clause = "objeto='pointofdelivery__c'  AND campo='MeterType__c'")
 	private PickListsVO tipoMedidaPickList;
 	
 	@OneToOne(fetch = FetchType.EAGER)

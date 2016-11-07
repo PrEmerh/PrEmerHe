@@ -1,15 +1,11 @@
 package com.casosemergencias.controller;
 
 
-import java.io.FileInputStream;
-import java.io.IOException;
-
 import java.io.InputStream;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -33,7 +29,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.casosemergencias.batch.bean.FieldLabelBatch;
 import com.casosemergencias.controller.views.AccountView;
 import com.casosemergencias.controller.views.CaseCommentView;
 import com.casosemergencias.controller.views.CaseHistoryView;
@@ -60,7 +55,6 @@ import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.PickListByField;
 import com.casosemergencias.util.constants.Constantes;
-import com.casosemergencias.util.constants.ConstantesBatch;
 import com.casosemergencias.util.constants.ConstantesError;
 import com.casosemergencias.util.datatables.DataTableParser;
 import com.casosemergencias.util.datatables.DataTableProperties;
@@ -131,8 +125,6 @@ public class CaseController {
 		int limiteEntradasHistorial = 10;
 		int numeroHistorial;
 
-		int limiteEntradasComentarios = 10;
-		int numeroComentarios;
 
 		ModelAndView model = new ModelAndView();		
 		model.addObject("sfid", sfid);

@@ -143,17 +143,17 @@ public class ContactVO extends ObjectVO implements Serializable {
 	/*Joins con picklist*/
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "preferredchannelcontact__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@WhereJoinTable(clause = "campo = 'Canal_Preferente_de_Contacto__c' and objeto = 'Contact'")
+	@WhereJoinTable(clause = "campo = 'PreferredChannelContact__c' and objeto = 'Contact'")
 	private PickListsContactCanalPreferenteContactoVO canalPreferenteContactoPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "identitytype__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@WhereJoinTable(clause = "campo = 'Tipo_de_Identidad__c' and objeto = 'Contact'")
+	@WhereJoinTable(clause = "campo = 'IdentityType__c' and objeto = 'Contact'")
 	private PickListsContactTipoIdentidadVO tipoIdentidadPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "contacttype__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@WhereJoinTable(clause = "campo = 'Tipo_de_contacto__c' and objeto = 'Contact'")
+	@WhereJoinTable(clause = "campo = 'ContactType__c' and objeto = 'Contact'")
 	private PickListsContactTipoContactoVO tipoContactoPickList;
 	
 	public ContactVO() {

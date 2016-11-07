@@ -1,6 +1,5 @@
 package com.casosemergencias.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;

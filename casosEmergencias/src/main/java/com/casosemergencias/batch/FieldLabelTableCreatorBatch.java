@@ -51,7 +51,6 @@ public class FieldLabelTableCreatorBatch {
 				}
 			}
 		} catch (Exception ex) {
-			ex.printStackTrace();
 			logger.error("Error cargando los labels de campo: ", ex);
 		}
 		logger.trace("Proceso de carga de los labels de campo de SalesForce a la base de datos de Heroku completado");

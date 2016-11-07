@@ -106,7 +106,7 @@ public class DireccionController {
 			jsonResult.put("name", direccion.getName());
 			jsonResult.put("calle", direccion.getCalle());
 			jsonResult.put("number__c", direccion.getNumero());
-			jsonResult.put("literalmunicipality__c", direccion.getLiteralComuna());
+			jsonResult.put("municipality__c", direccion.getLiteralComuna());
 			jsonResult.put("concatenatedaddress__c", direccion.getDireccionConcatenada());
 			jsonResult.put("sfid", direccion.getSfid());
 			array.put(jsonResult);

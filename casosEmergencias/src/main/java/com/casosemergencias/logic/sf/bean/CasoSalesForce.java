@@ -5,266 +5,267 @@ import java.util.Date;
 import com.casosemergencias.model.Caso;
 
 public class CasoSalesForce {
-	private String Petici_n__c;
-	private String Status;
-	private String inservicenumber__c;
-	private String Sub_Estado__c;
-	private Date estimatedstandardizationtime__c;
-	private String Origin;
-	private String ownerId;
-	private String parentId;
-	private String Type;
-	private String Subject;
-	private String subcause__c;
-	private String Description;
-	private String Condici_n_agravante__c;
-	private String contactId;
-	private String Canal_de_notificaciOn__c;
-	private String pointofdelivery__c;
-	private String Telefono_de_Contacto__c;
+	/*NO EXISTE EN SF*/
+	private String petici_n__c;
+	private String status;
+	private String inserviceNumber__c;
+	private String subStatus__c;
+	private Date estimatedStandardizationTime__c;
+	private String origin;
+	private String owner;
+	private String parent;
+	private String type;
+	private String subject;
+	private String subCause__c;
+	private String description;
+	private String aggravatedCondition__c;
+	private String contact;
+	private String notificationChannel__c;
+	private String pointOfDelivery__c;
+	private String contactPhone__c;
 	private String address__c;
-	private String notificationemail__c;
-	private String accountId;
-	private String Facebook__c;
-	private String Twitter__c;
-	private Boolean updatecontact__c;
-	private String ANI__c;
-	private String Cuerpo_Mail__c;
-	private String Respuesta_al_Cliente__c;
-	private String casefavorability__c;
-	private String HerokuUser__c;
+	private String notificationEmail__c;
+	private String account;
+	private String idFacebook__c;
+	private String twitter__c;
+	private Boolean updateContact__c;
+	private String ani__c;
+	private String mailBody__c;
+	private String customerResponse__c;
+	private String caseFavorability__c;
+	private String herokuUser__c;
 	private String unity__c;
 	
 	public String getPetici_n__c() {
-		return Petici_n__c;
+		return petici_n__c;
 	}
 
 	public void setPetici_n__c(String petici_n__c) {
-		Petici_n__c = petici_n__c;
+		this.petici_n__c = petici_n__c;
 	}
 
 	public String getStatus() {
-		return Status;
+		return status;
 	}
 
 	public void setStatus(String status) {
-		Status = status;
+		this.status = status;
 	}
 
-	public String getinservicenumber__c() {
-		return inservicenumber__c;
+	public String getInserviceNumber__c() {
+		return inserviceNumber__c;
 	}
 
-	public void setinservicenumber__c(String inservicenumber__c) {
-		inservicenumber__c = inservicenumber__c;
+	public void setInserviceNumber__c(String inserviceNumber__c) {
+		this.inserviceNumber__c = inserviceNumber__c;
 	}
 
-	public String getSub_Estado__c() {
-		return Sub_Estado__c;
+	public String getSubStatus__c() {
+		return subStatus__c;
 	}
 
-	public void setSub_Estado__c(String sub_Estado__c) {
-		Sub_Estado__c = sub_Estado__c;
+	public void setSubStatus__c(String subStatus__c) {
+		this.subStatus__c = subStatus__c;
 	}
 
-	public Date getestimatedstandardizationtime__c() {
-		return estimatedstandardizationtime__c;
+	public Date getEstimatedStandardizationTime__c() {
+		return estimatedStandardizationTime__c;
 	}
 
-	public void setestimatedstandardizationtime__c(Date estimatedstandardizationtime__c) {
-		estimatedstandardizationtime__c = estimatedstandardizationtime__c;
+	public void setEstimatedStandardizationTime__c(Date estimatedStandardizationTime__c) {
+		this.estimatedStandardizationTime__c = estimatedStandardizationTime__c;
 	}
 
 	public String getOrigin() {
-		return Origin;
+		return origin;
 	}
 
 	public void setOrigin(String origin) {
-		Origin = origin;
+		this.origin = origin;
 	}
 
-	public String getOwnerId() {
-		return ownerId;
+	public String getOwner() {
+		return owner;
 	}
 
-	public void setOwnerId(String ownerId) {
-		this.ownerId = ownerId;
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
 
-	public String getParentId() {
-		return parentId;
+	public String getParent() {
+		return parent;
 	}
 
-	public void setParentId(String parentId) {
-		this.parentId = parentId;
+	public void setParent(String parent) {
+		this.parent = parent;
 	}
 
 	public String getType() {
-		return Type;
+		return type;
 	}
 
 	public void setType(String type) {
-		Type = type;
+		this.type = type;
 	}
 
 	public String getSubject() {
-		return Subject;
+		return subject;
 	}
 
 	public void setSubject(String subject) {
-		Subject = subject;
+		this.subject = subject;
 	}
 
-	public String getsubcause__c() {
-		return subcause__c;
+	public String getSubCause__c() {
+		return subCause__c;
 	}
 
-	public void setsubcause__c(String subcause__c) {
-		subcause__c = subcause__c;
+	public void setSubCause__c(String subCause__c) {
+		this.subCause__c = subCause__c;
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
-	public String getCondici_n_agravante__c() {
-		return Condici_n_agravante__c;
+	public String getAggravatedCondition__c() {
+		return aggravatedCondition__c;
 	}
 
-	public void setCondici_n_agravante__c(String condici_n_agravante__c) {
-		Condici_n_agravante__c = condici_n_agravante__c;
+	public void setAggravatedCondition__c(String aggravatedCondition__c) {
+		this.aggravatedCondition__c = aggravatedCondition__c;
 	}
 
-	public String getContactId() {
-		return contactId;
+	public String getContact() {
+		return contact;
 	}
 
-	public void setContactId(String contactId) {
-		this.contactId = contactId;
+	public void setContact(String contact) {
+		this.contact = contact;
 	}
 
-	public String getCanal_de_notificaciOn__c() {
-		return Canal_de_notificaciOn__c;
+	public String getNotificationChannel__c() {
+		return notificationChannel__c;
 	}
 
-	public void setCanal_de_notificaciOn__c(String canal_de_notificaciOn__c) {
-		Canal_de_notificaciOn__c = canal_de_notificaciOn__c;
+	public void setNotificationChannel__c(String notificationChannel__c) {
+		this.notificationChannel__c = notificationChannel__c;
 	}
 
-	public String getpointofdelivery__c() {
-		return pointofdelivery__c;
+	public String getPointOfDelivery__c() {
+		return pointOfDelivery__c;
 	}
 
-	public void setpointofdelivery__c(String pointofdelivery__c) {
-		pointofdelivery__c = pointofdelivery__c;
+	public void setPointOfDelivery__c(String pointOfDelivery__c) {
+		this.pointOfDelivery__c = pointOfDelivery__c;
 	}
 
-	public String getTelefono_de_Contacto__c() {
-		return Telefono_de_Contacto__c;
+	public String getContactPhone__c() {
+		return contactPhone__c;
 	}
 
-	public void setTelefono_de_Contacto__c(String telefono_de_Contacto__c) {
-		Telefono_de_Contacto__c = telefono_de_Contacto__c;
+	public void setContactPhone__c(String contactPhone__c) {
+		this.contactPhone__c = contactPhone__c;
 	}
 
-	public String getaddress__c() {
+	public String getAddress__c() {
 		return address__c;
 	}
 
-	public void setaddress__c(String address__c) {
-		address__c = address__c;
+	public void setAddress__c(String address__c) {
+		this.address__c = address__c;
 	}
 
-	public String getnotificationemail__c() {
-		return notificationemail__c;
+	public String getNotificationEmail__c() {
+		return notificationEmail__c;
 	}
 
-	public void setnotificationemail__c(String notificationemail__c) {
-		notificationemail__c = notificationemail__c;
+	public void setNotificationEmail__c(String notificationEmail__c) {
+		this.notificationEmail__c = notificationEmail__c;
 	}
 
-	public String getAccountId() {
-		return accountId;
+	public String getAccount() {
+		return account;
 	}
 
-	public void setAccountId(String accountId) {
-		this.accountId = accountId;
+	public void setAccount(String account) {
+		this.account = account;
 	}
 
-	public String getFacebook__c() {
-		return Facebook__c;
+	public String getIdFacebook__c() {
+		return idFacebook__c;
 	}
 
-	public void setFacebook__c(String facebook__c) {
-		Facebook__c = facebook__c;
+	public void setIdFacebook__c(String idFacebook__c) {
+		this.idFacebook__c = idFacebook__c;
 	}
 
 	public String getTwitter__c() {
-		return Twitter__c;
+		return twitter__c;
 	}
 
 	public void setTwitter__c(String twitter__c) {
-		Twitter__c = twitter__c;
+		this.twitter__c = twitter__c;
 	}
 
-	public Boolean getupdatecontact__c() {
-		return updatecontact__c;
+	public Boolean getUpdateContact__c() {
+		return updateContact__c;
 	}
 
-	public void setupdatecontact__c(Boolean updatecontact__c) {
-		updatecontact__c = updatecontact__c;
+	public void setUpdateContact__c(Boolean updateContact__c) {
+		this.updateContact__c = updateContact__c;
 	}
 
-	public String getANI__c() {
-		return ANI__c;
+	public String getAni__c() {
+		return ani__c;
 	}
 
-	public void setANI__c(String aNI__c) {
-		ANI__c = aNI__c;
+	public void setAni__c(String ani__c) {
+		this.ani__c = ani__c;
 	}
 
-	public String getCuerpo_Mail__c() {
-		return Cuerpo_Mail__c;
+	public String getMailBody__c() {
+		return mailBody__c;
 	}
 
-	public void setCuerpo_Mail__c(String cuerpo_Mail__c) {
-		Cuerpo_Mail__c = cuerpo_Mail__c;
+	public void setMailBody__c(String mailBody__c) {
+		this.mailBody__c = mailBody__c;
 	}
 
-	public String getRespuesta_al_Cliente__c() {
-		return Respuesta_al_Cliente__c;
+	public String getCustomerResponse__c() {
+		return customerResponse__c;
 	}
 
-	public void setRespuesta_al_Cliente__c(String respuesta_al_Cliente__c) {
-		Respuesta_al_Cliente__c = respuesta_al_Cliente__c;
+	public void setCustomerResponse__c(String customerResponse__c) {
+		this.customerResponse__c = customerResponse__c;
 	}
 
-	public String getcasefavorability__c() {
-		return casefavorability__c;
+	public String getCaseFavorability__c() {
+		return caseFavorability__c;
 	}
 
-	public void setcasefavorability__c(String casefavorability__c) {
-		casefavorability__c = casefavorability__c;
+	public void setCaseFavorability__c(String caseFavorability__c) {
+		this.caseFavorability__c = caseFavorability__c;
 	}
 
 	public String getHerokuUser__c() {
-		return HerokuUser__c;
+		return herokuUser__c;
 	}
 
 	public void setHerokuUser__c(String herokuUser__c) {
-		HerokuUser__c = herokuUser__c;
+		this.herokuUser__c = herokuUser__c;
 	}
 
-	public String getunity__c() {
+	public String getUnity__c() {
 		return unity__c;
 	}
 
-	public void setunity__c(String unity__c) {
-		unity__c = unity__c;
+	public void setUnity__c(String unity__c) {
+		this.unity__c = unity__c;
 	}
 	
 	public static CasoSalesForce copyFieldsFromHerokuToSalesForceCaseBean(Caso casoHeroku) {
@@ -272,33 +273,33 @@ public class CasoSalesForce {
 		if (casoHeroku != null) {
 			casoSF.setPetici_n__c((casoHeroku.getPeticion() != null && !"".equals(casoHeroku.getPeticion()) ? casoHeroku.getPeticion() : ""));
 			casoSF.setStatus((casoHeroku.getEstado() != null && !"".equals(casoHeroku.getEstado()) ? casoHeroku.getEstado() : ""));
-			casoSF.setinservicenumber__c((casoHeroku.getNumeroInservice() != null && !"".equals(casoHeroku.getNumeroInservice()) ? casoHeroku.getNumeroInservice() : ""));
-			casoSF.setSub_Estado__c((casoHeroku.getSubestado() != null && !"".equals(casoHeroku.getSubestado()) ? casoHeroku.getSubestado() : ""));
-			casoSF.setestimatedstandardizationtime__c((casoHeroku.getFechaEstimadaCierre() != null ? casoHeroku.getFechaEstimadaCierre() : null));
+			casoSF.setInserviceNumber__c((casoHeroku.getNumeroInservice() != null && !"".equals(casoHeroku.getNumeroInservice()) ? casoHeroku.getNumeroInservice() : ""));
+			casoSF.setSubStatus__c((casoHeroku.getSubestado() != null && !"".equals(casoHeroku.getSubestado()) ? casoHeroku.getSubestado() : ""));
+			casoSF.setEstimatedStandardizationTime__c((casoHeroku.getFechaEstimadaCierre() != null ? casoHeroku.getFechaEstimadaCierre() : null));
 			casoSF.setOrigin((casoHeroku.getCanalOrigen() != null && !"".equals(casoHeroku.getCanalOrigen()) ? casoHeroku.getCanalOrigen() : ""));
-			casoSF.setOwnerId((casoHeroku.getPropietarioCaso() != null && !"".equals(casoHeroku.getPropietarioCaso()) ? casoHeroku.getPropietarioCaso() : ""));
-			casoSF.setParentId((casoHeroku.getParent() != null && !"".equals(casoHeroku.getParent()) ? casoHeroku.getParent() : ""));
+			casoSF.setOwner((casoHeroku.getPropietarioCaso() != null && !"".equals(casoHeroku.getPropietarioCaso()) ? casoHeroku.getPropietarioCaso() : ""));
+			casoSF.setParent((casoHeroku.getParent() != null && !"".equals(casoHeroku.getParent()) ? casoHeroku.getParent() : ""));
 			casoSF.setType((casoHeroku.getType() != null && !"".equals(casoHeroku.getType()) ? casoHeroku.getType() : ""));
 			casoSF.setSubject((casoHeroku.getAsunto() != null && !"".equals(casoHeroku.getAsunto()) ? casoHeroku.getAsunto() : ""));
-			casoSF.setsubcause__c((casoHeroku.getSubmotivo() != null && !"".equals(casoHeroku.getSubmotivo()) ? casoHeroku.getSubmotivo() : ""));
+			casoSF.setSubStatus__c((casoHeroku.getSubmotivo() != null && !"".equals(casoHeroku.getSubmotivo()) ? casoHeroku.getSubmotivo() : ""));
 			casoSF.setDescription((casoHeroku.getDescription() != null && !"".equals(casoHeroku.getDescription()) ? casoHeroku.getDescription() : ""));
-			casoSF.setCondici_n_agravante__c((casoHeroku.getCondicionAgravante() != null && !"".equals(casoHeroku.getCondicionAgravante()) ? casoHeroku.getCondicionAgravante() : ""));
-			casoSF.setContactId((casoHeroku.getNombreContacto() != null && !"".equals(casoHeroku.getNombreContacto()) ? casoHeroku.getNombreContacto() : ""));
-			casoSF.setCanal_de_notificaciOn__c((casoHeroku.getCanalNotificacion() != null && !"".equals(casoHeroku.getCanalNotificacion()) ? casoHeroku.getCanalNotificacion() : ""));
-			casoSF.setpointofdelivery__c((casoHeroku.getSuministro() != null && !"".equals(casoHeroku.getSuministroJoin()) ? casoHeroku.getSuministro() : ""));
-			casoSF.setTelefono_de_Contacto__c((casoHeroku.getTelefonoContacto() != null && !"".equals(casoHeroku.getTelefonoContacto()) ? casoHeroku.getTelefonoContacto() : ""));
-			casoSF.setaddress__c((casoHeroku.getDireccion() != null && !"".equals(casoHeroku.getDireccion()) ? casoHeroku.getDireccion() : ""));
-			casoSF.setnotificationemail__c((casoHeroku.getEmailNotificacion() != null && !"".equals(casoHeroku.getEmailNotificacion()) ? casoHeroku.getEmailNotificacion() : ""));
-			casoSF.setAccountId((casoHeroku.getNombreCuenta() != null && !"".equals(casoHeroku.getNombreCuenta()) ? casoHeroku.getNombreCuenta() : ""));
-			casoSF.setFacebook__c((casoHeroku.getFacebook() != null && !"".equals(casoHeroku.getFacebook()) ? casoHeroku.getFacebook() : ""));
+			casoSF.setAggravatedCondition__c((casoHeroku.getCondicionAgravante() != null && !"".equals(casoHeroku.getCondicionAgravante()) ? casoHeroku.getCondicionAgravante() : ""));
+			casoSF.setContact((casoHeroku.getNombreContacto() != null && !"".equals(casoHeroku.getNombreContacto()) ? casoHeroku.getNombreContacto() : ""));
+			casoSF.setNotificationChannel__c((casoHeroku.getCanalNotificacion() != null && !"".equals(casoHeroku.getCanalNotificacion()) ? casoHeroku.getCanalNotificacion() : ""));
+			casoSF.setPointOfDelivery__c((casoHeroku.getSuministro() != null && !"".equals(casoHeroku.getSuministroJoin()) ? casoHeroku.getSuministro() : ""));
+			casoSF.setContactPhone__c((casoHeroku.getTelefonoContacto() != null && !"".equals(casoHeroku.getTelefonoContacto()) ? casoHeroku.getTelefonoContacto() : ""));
+			casoSF.setAddress__c((casoHeroku.getDireccion() != null && !"".equals(casoHeroku.getDireccion()) ? casoHeroku.getDireccion() : ""));
+			casoSF.setNotificationEmail__c((casoHeroku.getEmailNotificacion() != null && !"".equals(casoHeroku.getEmailNotificacion()) ? casoHeroku.getEmailNotificacion() : ""));
+			casoSF.setAccount((casoHeroku.getNombreCuenta() != null && !"".equals(casoHeroku.getNombreCuenta()) ? casoHeroku.getNombreCuenta() : ""));
+			casoSF.setIdFacebook__c((casoHeroku.getFacebook() != null && !"".equals(casoHeroku.getFacebook()) ? casoHeroku.getFacebook() : ""));
 			casoSF.setTwitter__c((casoHeroku.getTwitter() != null && !"".equals(casoHeroku.getTwitter()) ? casoHeroku.getTwitter() : ""));
-			casoSF.setupdatecontact__c(Boolean.valueOf(casoHeroku.getActDatosContacto()));
-			casoSF.setANI__c((casoHeroku.getAni() != null && !"".equals(casoHeroku.getAni()) ? casoHeroku.getAni() : ""));
-			casoSF.setCuerpo_Mail__c((casoHeroku.getCuerpoMail() != null && !"".equals(casoHeroku.getCuerpoMail()) ? casoHeroku.getCuerpoMail() : ""));
-			casoSF.setRespuesta_al_Cliente__c((casoHeroku.getRespuestaAlCliente() != null && !"".equals(casoHeroku.getRespuestaAlCliente()) ? casoHeroku.getRespuestaAlCliente() : ""));
-			casoSF.setcasefavorability__c((casoHeroku.getFavorabilidadDelCaso() != null && !"".equals(casoHeroku.getFavorabilidadDelCaso()) ? casoHeroku.getFavorabilidadDelCaso() : ""));
+			casoSF.setUpdateContact__c(Boolean.valueOf(casoHeroku.getActDatosContacto()));
+			casoSF.setAni__c((casoHeroku.getAni() != null && !"".equals(casoHeroku.getAni()) ? casoHeroku.getAni() : ""));
+			casoSF.setMailBody__c((casoHeroku.getCuerpoMail() != null && !"".equals(casoHeroku.getCuerpoMail()) ? casoHeroku.getCuerpoMail() : ""));
+			casoSF.setCustomerResponse__c((casoHeroku.getRespuestaAlCliente() != null && !"".equals(casoHeroku.getRespuestaAlCliente()) ? casoHeroku.getRespuestaAlCliente() : ""));
+			casoSF.setCaseFavorability__c((casoHeroku.getFavorabilidadDelCaso() != null && !"".equals(casoHeroku.getFavorabilidadDelCaso()) ? casoHeroku.getFavorabilidadDelCaso() : ""));
 			casoSF.setHerokuUser__c((casoHeroku.getHerokuUsername() != null && !"".equals(casoHeroku.getHerokuUsername()) ? casoHeroku.getHerokuUsername() : ""));
-			casoSF.setunity__c((casoHeroku.getCallCenter() != null && !"".equals(casoHeroku.getCallCenter()) ? casoHeroku.getCallCenter() : ""));
+			casoSF.setUnity__c((casoHeroku.getCallCenter() != null && !"".equals(casoHeroku.getCallCenter()) ? casoHeroku.getCallCenter() : ""));
 		}
 		return casoSF;
 	}

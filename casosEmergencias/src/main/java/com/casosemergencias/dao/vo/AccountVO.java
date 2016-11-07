@@ -105,12 +105,10 @@ public class AccountVO extends ObjectVO implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "address__c", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private DireccionVO direccionJoin;
-	
-	/*Picarselo/*/
+
 	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cuenta__c", referencedColumnName = "sfid", insertable = false, updatable = false, nullable = true)
+	@JoinColumn(name = "accountid", referencedColumnName = "sfid", insertable = false, updatable = false, nullable = true)
 	private List<SuministroVO> suministros;
-	/*Picarselo/*/
 
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "accountid", referencedColumnName = "sfid", insertable = false, updatable = false, nullable = true)

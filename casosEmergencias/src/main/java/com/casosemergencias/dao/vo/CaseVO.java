@@ -57,7 +57,6 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "estimatedstandardizationtime__c")
 	private Date fechaEstimadaCierre;
 
-	/*TODO: FALTA*/
 	@Column(name = "accountid")
 	private String nombreCuenta;
 
@@ -186,8 +185,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "typesecattention__c")
 	private String tipoAtencionSEC;
 
-	/*TODO: NO ESTA*/
-	@Column(name = "sub_estado__c")
+	@Column(name = "substatus__c")
 	private String subEstado;
 
 	/*TODO: NO ESTA*/
@@ -387,13 +385,13 @@ public class CaseVO extends ObjectVO implements Serializable {
 	
 	/*TODO: NO ESTA*/
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "sub_estado__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@WhereJoinTable(clause = "campo = 'Sub_Estado__c' and objeto = 'Case'")
+	@JoinColumn(name = "substatus__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'SubStatus__c' and objeto = 'Case'")
 	private PickListsCaseVO subestadoPickList;
 
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "subcause__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@WhereJoinTable(clause = "campo = 'Motivo_Empresa__c' and objeto = 'Case'")
+	@WhereJoinTable(clause = "campo = 'SubCause__c' and objeto = 'Case'")
 	private PickListsCaseVO submotivoPickList;
 
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
@@ -403,17 +401,17 @@ public class CaseVO extends ObjectVO implements Serializable {
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "aggravatedcondition__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@WhereJoinTable(clause = "campo = 'Condici_n_agravante__c' and objeto = 'Case'")
+	@WhereJoinTable(clause = "campo = 'AggravatedCondition__c' and objeto = 'Case'")
 	private PickListsCaseVO condicionAgravantePickList;
 
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "notificationchannel__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@WhereJoinTable(clause = "campo = 'Canal_de_notificaciOn__c' and objeto = 'Case'")
+	@WhereJoinTable(clause = "campo = 'NotificationChannel__c' and objeto = 'Case'")
 	private PickListsCaseCanalNotificacionVO canalNotificacionPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "casefavorability__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@WhereJoinTable(clause = "campo = 'Favorabilidad_del_caso__c' and objeto = 'Case'")
+	@WhereJoinTable(clause = "campo = 'CaseFavorability__c' and objeto = 'Case'")
 	private PickListsCaseVO favorabilidadDelCasoPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
@@ -423,7 +421,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "unity__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@WhereJoinTable(clause = "campo = 'Call_Center__c' and objeto = 'Case'")
+	@WhereJoinTable(clause = "campo = 'Unity__c' and objeto = 'Case'")
 	private PickListsCaseCallCenterVO callCenterPickList;
 	
 	// vamos a recuperar los datos de Cuenta,Contacto,Suministro y Usuario
@@ -431,7 +429,6 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@JoinColumn(name = "contactid", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private ContactVO contactoJoin;
 
-	/*TODO: FALTA*/
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "accountid", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private AccountVO cuentaJoin;

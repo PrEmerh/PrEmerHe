@@ -15,7 +15,7 @@ import com.casosemergencias.model.CasosReiterados;
 
 
 @Entity
-@Table(name="salesforce.casos_reiterados__c")
+@Table(name="salesforce.repeatedcases__c")
 public class CasosReiteradosVO extends ObjectVO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

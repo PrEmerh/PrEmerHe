@@ -52,7 +52,6 @@ public class PicklistTableCreatorBatch {
 				}
 			}
 		} catch (Exception ex) {
-			ex.printStackTrace();
 			logger.error("Error cargando los picklists: ", ex);
 		}
 		logger.trace("Proceso de carga de los picklists de SalesForce a la base de datos de Heroku completado");

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.WhereJoinTable;
 
 @Entity
-@Table(name="salesforce.relacion_activo_contacto__c")
+@Table(name="salesforce.serviceproduct__c")
 public class RelacionActivoContactoVO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -64,7 +64,7 @@ public class RelacionActivoContactoVO implements Serializable {
 	
 	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="typeofrelationship__c", referencedColumnName="codigo", insertable = false, updatable=false)
-	@WhereJoinTable(clause = "campo ='Tipo_de_Relaci_n__c' and objeto='relacion_activo_contacto__c'")
+	@WhereJoinTable(clause = "campo ='TypeofRelationship__c' and objeto='ServiceProduct__c'")
 	private PickListsRelacionActivoVO tipoRelacionActivo;
 	
 	@OneToOne(fetch=FetchType.EAGER)
