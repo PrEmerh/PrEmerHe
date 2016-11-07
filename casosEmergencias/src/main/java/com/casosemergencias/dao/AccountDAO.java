@@ -135,13 +135,13 @@ public class AccountDAO {
 			//Metemos las listas en los objetos, ya que al estar a lazy no les devolvería
 			if (accountList != null && !accountList.isEmpty()) {
 				account = accountList.get(0);
-				if (accountSuppliesList != null && !accountSuppliesList.isEmpty()) {
+				/*if (accountSuppliesList != null && !accountSuppliesList.isEmpty()) {
 					for (SuministroVO sum: accountSuppliesList) {
 						//Anulamos la cuenta para que no entre en bucle.
 						sum.setCuentaJoin(null);
 					}					
 					account.setSuministros(accountSuppliesList);
-				}
+				}*/
 				if (accountContactsList != null && !accountContactsList.isEmpty()) {
 					for (ContactVO cont: accountContactsList) {
 						//Anulamos la cuenta para que no entre en bucle.
