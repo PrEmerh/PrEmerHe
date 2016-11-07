@@ -54,25 +54,27 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "subject")
 	private String asunto;
 
-	@Column(name = "fecha_estimada_de_cierre__c")
+	@Column(name = "estimatedstandardizationtime__c")
 	private Date fechaEstimadaCierre;
 
+	/*TODO: FALTA*/
 	@Column(name = "accountid")
 	private String nombreCuenta;
 
-	@Column(name = "favorabilidad_del_caso__c")
+	@Column(name = "casefavorability__c")
 	private String favorabilidadDelCaso;
 
-	@Column(name = "flag_sec__c")
+	@Column(name = "secflag__c")
 	private String flagSec;
 
 	@Column(name = "lastmodifiedbyid")
 	private String lastmodifiedbyid;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "productid")
 	private String productid;
 
-	@Column(name = "validar_electrodependiente__c")
+	@Column(name = "electrodependantvalidate__c")
 	private Boolean validarElectrodependiente;
 
 	@Column(name = "sf4twitter__twitter_username__c")
@@ -81,76 +83,80 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "ownerid")
 	private String propietarioCaso;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "slastartdate")
 	private Date slastartdate;
 
-	@Column(name = "motivo_empresa__c")
+	@Column(name = "subcause__c")
 	private String submotivo;
 
-	@Column(name = "call_center__c")
+	@Column(name = "unity__c")
 	private String callCenter;
 
-	@Column(name = "fallo_envio_validacion__c")
+	@Column(name = "validationsenterror__c")
 	private Boolean falloEnvioValidacion;
 
-	@Column(name = "literal_comuna__c")
+	@Column(name = "literalmunicipality__c")
 	private String literalComuna;
 
-	@Column(name = "act_datos_contacto__c")
+	@Column(name = "updatecontact__c")
 	private Boolean actDatosContacto;
 
-	@Column(name = "fallo_creacion_observacion__c")
+	@Column(name = "creationobservationerror__c")
 	private String falloCreacionObservacion;
 
-	@Column(name = "estado_preingreso__c")
+	@Column(name = "preadmissionstatus__c")
 	private Boolean estadoPreingreso;
 
-	@Column(name = "email_de_notificacion__c")
+	@Column(name = "notificationemail__c")
 	private String emailNotificacion;
 
-	@Column(name = "horaap__c")
+	@Column(name = "aphour__c")
 	private Double horaap;
 
-	@Column(name = "numero_de_inservice__c")
+	@Column(name = "inservicenumber__c")
 	private String numeroInservice;
 
 	@Column(name = "suppliedphone")
 	private String suppliedphone;
 
-	@Column(name = "numero_de_medidor__c")
+	@Column(name = "meternumber__c")
 	private String numeroMedidor;
-
+	
+	/*TODO: NO ESTA*/
 	@Column(name = "isstopped")
 	private Boolean isstopped;
 
-	@Column(name = "cuerpo_mail__c")
+	@Column(name = "mailbody__c")
 	private String cuerpoMail;
 
-	@Column(name = "telefono_de_contacto__c")
+	@Column(name = "contactphone")
 	private String telefonoContacto;
-
+	
+	/*TODO: NO ESTA*/
 	@Column(name = "questionid")
 	private String questionid;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "hasselfservicecomments")
 	private Boolean hasselfservicecomments;
 
-	@Column(name = "traza_fallo_inservice__c")
+	@Column(name = "traceerrorinservice__c")
 	private String trazaFalloInservice;
 
-	@Column(name = "canal_de_notificacion__c")
+	@Column(name = "notificationchannel__c")
 	private String canalNotificacion;
 
 	@Column(name = "createdbyid")
 	private String createdbyid;
 
-	@Column(name = "categor_a__c")
+	@Column(name = "category__c")
 	private String categoria;
 
 	@Column(name = "flag__c")
 	private String flag;
 
-	@Column(name = "observaciones__c")
+	@Column(name = "observations__c")
 	private String observaciones;
 
 	@Column(name = "casenumber")
@@ -165,63 +171,71 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "sf4twitter__twitterid__c")
 	private String sf4twitterTwitterid;
 
-	@Column(name = "respuesta_al_cliente__c")
+	@Column(name = "customerresponse__c")
 	private String respuestaAlCliente;
 
-	@Column(name = "n_mero_de_caso_ap__c")
+	@Column(name = "apcasenumber__c")
 	private String numeroCasoAp;
 
 	@Column(name = "isescalated")
 	private Boolean isescalated;
 
-	@Column(name = "interaccion__c")
+	@Column(name = "interaction__c")
 	private String interaccion;
 
-	@Column(name = "tipo_atencion_sec__c")
+	@Column(name = "typesecattention__c")
 	private String tipoAtencionSEC;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "sub_estado__c")
 	private String subEstado;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "isvisibleinselfservice")
 	private Boolean isvisibleinselfservice;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "tipo_atencion_interna__c")
 	private String tipoAtencionInterna;
 
-	@Column(name = "hora_sec__c")
+	@Column(name = "sechour__c")
 	private Date horaSec;
 
-	@Column(name = "pendientevalidacioncondagr__c")
+	@Column(name = "pendingvalidationaggcond__c")
 	private Boolean pendienteValidacionCondagr;
 
-	@Column(name = "ejecutivoanterior__c")
+	@Column(name = "previousexecutive__c")
 	private String ejecutivoAnterior;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "entitlementid")
 	private String entitlementid;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "assetid")
 	private String assetid;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "stopstartdate")
 	private Date stopstartDate;
 
 	@Column(name = "suppliedcompany")
 	private String suppliedCompany;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "isclosedoncreate")
 	private Boolean isClosedonCreate;
 
-	@Column(name = "estado_condici_n_agravante__c")
+	@Column(name = "aggravatedconditionstatus__c")
 	private String estadoCondicionAgravante;
 
-	@Column(name = "hora_cancelado__c")
+	@Column(name = "cancelhour__c")
 	private Date horaCancelado;
 
-	@Column(name = "suministro__c")
+	@Column(name = "pointofdelivery__c")
 	private String suministro;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "isselfserviceclosed")
 	private Boolean isSelfserviceClosed;
 
@@ -231,7 +245,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "ui__c")
 	private Boolean ui;
 
-	@Column(name = "numsum__c")
+	@Column(name = "pointofdeliverynumber__c")
 	private String numSum;
 
 	@Column(name = "twitter__c")
@@ -243,117 +257,124 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "closeddate")
 	private Date fechaCierre;
 
-	@Column(name = "fallo_envio_inservice__c")
+	@Column(name = "inservicesenterror__c")
 	private Boolean falloEnvioInservice;
 
 	@Column(name = "description")
 	private String description;
 
-	@Column(name = "hora_arribado__c")
+	@Column(name = "arrivedhour__c")
 	private Date horaArribado;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "slaexitdate")
 	private Date slaexitDate;
 
 	@Column(name = "origin")
 	private String canalOrigen;
 
-	@Column(name = "descripcion_estado__c")
+	@Column(name = "statusdescription__c")
 	private String descripcionEstado;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "businesshoursid")
 	private String businessHoursId;
 
 	@Column(name = "sf4twitter__author_external_id__c")
 	private String sf4twitterAuthorExternalId;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "hascommentsunreadbyowner")
 	private Boolean hasCommentSunReadByOwner;
 
-	@Column(name = "hora_cerrado__c")
+	@Column(name = "closedhour__c")
 	private Date horaCerrado;
 
-	@Column(name = "literal_condici_n_agravante__c")
+	@Column(name = "literalaggravatedcondition__c")
 	private String literalCondicionAgravante;
 
 	@Column(name = "type")
 	private String type;
 
-	@Column(name = "direccion_del_suministro__c")
+	@Column(name = "pointofdeliveryaddress__c")
 	private String direccionSuministro;
 
-	@Column(name = "hora_pendiente__c")
+	@Column(name = "pendinghour__c")
 	private Date horaPendiente;
 
 	@Column(name = "ani__c")
 	private String ani;
 
-	@Column(name = "facebook__c")
+	@Column(name = "idfacebook__c")
 	private String facebook;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "petici_n__c")
 	private String peticion;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "communityid")
 	private String communityId;
 
-	@Column(name = "direccion__c")
+	@Column(name = "address__c")
 	private String direccion;
 
-	@Column(name = "hora_asignado__c")
+	@Column(name = "asignedhour__c")
 	private Date horaAsignado;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "milestonestatus")
 	private String milestoneStatus;
 
 	@Column(name = "contactid")
 	private String nombreContacto;
 
-	@Column(name = "hora_predespacho__c")
+	@Column(name = "predispatchinghour__c")
 	private Date horaPredespacho;
 
-	@Column(name = "hora_enruta__c")
+	@Column(name = "onroutehour__c")
 	private Date horaEnruta;
 
 	@Column(name = "reason")
 	private String reason;
 
-	@Column(name = "id_empresa__c")
+	@Column(name = "companyid__c")
 	private String idEmpresa;
 
-	@Column(name = "hora_programado__c")
+	@Column(name = "programmedhour__c")
 	private Date horaProgramado;
 
-	@Column(name = "numero_de_seguidores_del__c")
+	@Column(name = "followersnumber__c")
 	private Double numeroSeguidoresDel;
 
-	@Column(name = "literal_categoria__c")
+	@Column(name = "literalcategory__c")
 	private String literalCategorias;
 
 	@Column(name = "recordtypeid")
 	private String recordtypeId;
 
-	@Column(name = "comuna_f__c")
+	@Column(name = "municipality__c")
 	private String comuna;
 
-	@Column(name = "prioridad__c")
+	@Column(name = "priority")
 	private String prioridad;
 
-	@Column(name = "valorsubestadoins__c")
+	@Column(name = "substatusinsvalue__c")
 	private String valorSubestadoins;
 
-	@Column(name = "control_electrodependiente__c")
+	@Column(name = "electrodependantcontrol__c")
 	private Boolean controlElectrodependiente;
 
-	@Column(name = "cancelar__c")
+	@Column(name = "cancel__c")
 	private Boolean cancelar;
 
-	@Column(name = "condici_n_agravante__c")
+	@Column(name = "aggravatedcondition__c")
 	private String condicionAgravante;
 	
 	@Column(name = "herokuuser__c")
 	private String herokuUsername;
 
+	/*TODO: NO ESTA*/
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "petici_n__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Petici_n__c' and objeto = 'Case'")
@@ -364,13 +385,14 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@WhereJoinTable(clause = "campo = 'Status' and objeto = 'Case'")
 	private PickListsCaseVO estadoPickList;
 	
+	/*TODO: NO ESTA*/
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "sub_estado__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Sub_Estado__c' and objeto = 'Case'")
 	private PickListsCaseVO subestadoPickList;
 
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "motivo_empresa__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "subcause__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Motivo_Empresa__c' and objeto = 'Case'")
 	private PickListsCaseVO submotivoPickList;
 
@@ -380,17 +402,17 @@ public class CaseVO extends ObjectVO implements Serializable {
 	private PickListsCaseOriginVO canalOrigenPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "condici_n_agravante__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "aggravatedcondition__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Condici_n_agravante__c' and objeto = 'Case'")
 	private PickListsCaseVO condicionAgravantePickList;
 
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "canal_de_notificaciOn__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "notificationchannel__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Canal_de_notificaciOn__c' and objeto = 'Case'")
 	private PickListsCaseCanalNotificacionVO canalNotificacionPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "favorabilidad_del_caso__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "casefavorability__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Favorabilidad_del_caso__c' and objeto = 'Case'")
 	private PickListsCaseVO favorabilidadDelCasoPickList;
 	
@@ -400,7 +422,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	private PickListsCaseTypeVO typeCasoPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "call_center__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "unity__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Call_Center__c' and objeto = 'Case'")
 	private PickListsCaseCallCenterVO callCenterPickList;
 	
@@ -409,16 +431,17 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@JoinColumn(name = "contactid", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private ContactVO contactoJoin;
 
+	/*TODO: FALTA*/
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "accountid", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private AccountVO cuentaJoin;
 
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "suministro__c", referencedColumnName = "sfid", insertable = false, updatable = false)
+	@JoinColumn(name = "pointofdelivery__c", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private SuministroVO suministroJoin;
 
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "direccion__c", referencedColumnName = "sfid", insertable = false, updatable = false)
+	@JoinColumn(name = "address__c", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private DireccionVO direccionJoin;
 	
 	@OneToOne(fetch = FetchType.LAZY)
