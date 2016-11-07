@@ -49,17 +49,17 @@ public class ContactVO extends ObjectVO implements Serializable {
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "birthdate__c")
+	@Column(name = "birthdate")
 	private Date fechaNacimiento;
 
-	@Column(name = "canal_preferente_de_contacto__c")
+	@Column(name = "preferredchannelcontact__c")
 	private String canalPreferenteContacto;
 	
-	@Column(name = "tipo_de_cuenta_asociado__c")
+	@Column(name = "associatedaccounttype__c")
 	private String tipoCuentaAsociado;
 	
-	@Column(name = "apellido_materno__c")
-	private String motherslastname__c;
+	@Column(name = "motherslastname__c")
+	private String apellidoMaterno;
 	
 	@Column(name = "identitytype__c")
 	private String tipoIdentidad;
@@ -73,19 +73,20 @@ public class ContactVO extends ObjectVO implements Serializable {
 	@Column(name = "sf4twitter__fcbk_username__c")
 	private String sf4twitterFcbkUsername;
 
-	@Column(name = "casos_reiterados__c")
+	@Column(name = "repeatedcases__c")
 	private Boolean casosReiterados;
 	
 	@Column(name = "email")
 	private String email;
-		
-	@Column(name = "account__identitynumber__c")
+	
+	/*TODO: SE USA?*/
+	@Column(name = "account__run__c")
 	private String accountRun;
 	
 	@Column(name = "identitynumber__c")
 	private String run;
 	
-	@Column(name = "dircontacto__c")
+	@Column(name = "concatenatecontacaddress__c")
 	private String dirContacto;
 	
 	@Column(name = "sf4twitter__twitter_user_id__c")
@@ -97,7 +98,7 @@ public class ContactVO extends ObjectVO implements Serializable {
 	@Column(name = "sf4twitter__twitter_username__c")
 	private String sf4twitterTwitterUsername;
 		
-	@Column(name = "tipo_de_contacto__c")
+	@Column(name = "contacttype__c")
 	private String tipoContacto;
 	
 	@Column(name = "phone")
@@ -129,7 +130,7 @@ public class ContactVO extends ObjectVO implements Serializable {
 	private AccountVO cuentaJoin;
 	
 	@OneToOne(fetch=FetchType.LAZY, optional=true)
-	@JoinColumn(name="address__c", referencedColumnName="sfid", insertable = false, updatable=false)
+	@JoinColumn(name="contactaddress__c", referencedColumnName="sfid", insertable = false, updatable=false)
 	private DireccionVO dirContactoJoin;
 	
 	
@@ -141,17 +142,17 @@ public class ContactVO extends ObjectVO implements Serializable {
 
 	/*Joins con picklist*/
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "canal_preferente_de_contacto__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "preferredchannelcontact__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Canal_Preferente_de_Contacto__c' and objeto = 'Contact'")
 	private PickListsContactCanalPreferenteContactoVO canalPreferenteContactoPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "identitytype__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@WhereJoinTable(clause = "campo = 'identitytype__c' and objeto = 'Contact'")
+	@WhereJoinTable(clause = "campo = 'Tipo_de_Identidad__c' and objeto = 'Contact'")
 	private PickListsContactTipoIdentidadVO tipoIdentidadPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "tipo_de_contacto__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "contacttype__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Tipo_de_contacto__c' and objeto = 'Contact'")
 	private PickListsContactTipoContactoVO tipoContactoPickList;
 	
@@ -161,7 +162,7 @@ public class ContactVO extends ObjectVO implements Serializable {
 
 	public ContactVO(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
 			String name, Date fechaNacimiento, String canalPreferenteContacto, String tipoCuentaAsociado,
-			String motherslastname__c, String tipoIdentidad, String telefonoSecundario, String emailSecundario,
+			String apellidoMaterno, String tipoIdentidad, String telefonoSecundario, String emailSecundario,
 			String sf4twitterFcbkUsername, Boolean casosReiterados, String email, String accountRun,String run, String dirContacto,
 			String sf4twitterTwitterUserId, String sf4twitterFcbkUserId, String sf4twitterTwitterUsername,
 			String tipoContacto, String phone, String apellidoPaterno, String accountid,String firstname, AccountVO cuentaJoin,
@@ -178,7 +179,7 @@ public class ContactVO extends ObjectVO implements Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 		this.canalPreferenteContacto = canalPreferenteContacto;
 		this.tipoCuentaAsociado = tipoCuentaAsociado;
-		this.motherslastname__c = motherslastname__c;
+		this.apellidoMaterno = apellidoMaterno;
 		this.tipoIdentidad = tipoIdentidad;
 		this.telefonoSecundario = telefonoSecundario;
 		this.emailSecundario = emailSecundario;
@@ -282,12 +283,12 @@ public class ContactVO extends ObjectVO implements Serializable {
 		this.tipoCuentaAsociado = tipoCuentaAsociado;
 	}
 
-	public String getmotherslastname__c() {
-		return motherslastname__c;
+	public String getApellidoMaterno() {
+		return apellidoMaterno;
 	}
 
-	public void setmotherslastname__c(String motherslastname__c) {
-		this.motherslastname__c = motherslastname__c;
+	public void setApellidoMaterno(String apellidoMaterno) {
+		this.apellidoMaterno = apellidoMaterno;
 	}
 
 	public String getTipoIdentidad() {

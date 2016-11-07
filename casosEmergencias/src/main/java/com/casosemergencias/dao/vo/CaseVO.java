@@ -57,10 +57,11 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "estimatedstandardizationtime__c")
 	private Date fechaEstimadaCierre;
 
+	/*TODO: FALTA*/
 	@Column(name = "accountid")
 	private String nombreCuenta;
 
-	/**/@Column(name = "casefavorability__c")
+	@Column(name = "casefavorability__c")
 	private String favorabilidadDelCaso;
 
 	@Column(name = "secflag__c")
@@ -68,6 +69,10 @@ public class CaseVO extends ObjectVO implements Serializable {
 
 	@Column(name = "lastmodifiedbyid")
 	private String lastmodifiedbyid;
+
+	/*TODO: NO ESTA*/
+	@Column(name = "productid")
+	private String productid;
 
 	@Column(name = "electrodependantvalidate__c")
 	private Boolean validarElectrodependiente;
@@ -78,6 +83,10 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "ownerid")
 	private String propietarioCaso;
 
+	/*TODO: NO ESTA*/
+	@Column(name = "slastartdate")
+	private Date slastartdate;
+
 	@Column(name = "subcause__c")
 	private String submotivo;
 
@@ -87,7 +96,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "validationsenterror__c")
 	private Boolean falloEnvioValidacion;
 
-	@Column(name = "literal_municipality__c")
+	@Column(name = "literalmunicipality__c")
 	private String literalComuna;
 
 	@Column(name = "updatecontact__c")
@@ -111,31 +120,43 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "suppliedphone")
 	private String suppliedphone;
 
-	@Column(name = "numero_de_medidor__c")
+	@Column(name = "meternumber__c")
 	private String numeroMedidor;
+	
+	/*TODO: NO ESTA*/
+	@Column(name = "isstopped")
+	private Boolean isstopped;
 
-	@Column(name = "cuerpo_mail__c")
+	@Column(name = "mailbody__c")
 	private String cuerpoMail;
 
-	@Column(name = "telefono_de_contacto__c")
+	@Column(name = "contactphone")
 	private String telefonoContacto;
+	
+	/*TODO: NO ESTA*/
+	@Column(name = "questionid")
+	private String questionid;
 
-	@Column(name = "traza_fallo_inservice__c")
+	/*TODO: NO ESTA*/
+	@Column(name = "hasselfservicecomments")
+	private Boolean hasselfservicecomments;
+
+	@Column(name = "traceerrorinservice__c")
 	private String trazaFalloInservice;
 
-	@Column(name = "canal_de_notificacion__c")
+	@Column(name = "notificationchannel__c")
 	private String canalNotificacion;
 
 	@Column(name = "createdbyid")
 	private String createdbyid;
 
-	@Column(name = "categor_a__c")
+	@Column(name = "category__c")
 	private String categoria;
 
 	@Column(name = "flag__c")
 	private String flag;
 
-	@Column(name = "observaciones__c")
+	@Column(name = "observations__c")
 	private String observaciones;
 
 	@Column(name = "casenumber")
@@ -150,44 +171,73 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "sf4twitter__twitterid__c")
 	private String sf4twitterTwitterid;
 
-	@Column(name = "respuesta_al_cliente__c")
+	@Column(name = "customerresponse__c")
 	private String respuestaAlCliente;
 
-	@Column(name = "n_mero_de_caso_ap__c")
+	@Column(name = "apcasenumber__c")
 	private String numeroCasoAp;
 
 	@Column(name = "isescalated")
 	private Boolean isescalated;
 
-	@Column(name = "interaccion__c")
+	@Column(name = "interaction__c")
 	private String interaccion;
 
-	@Column(name = "tipo_atencion_sec__c")
+	@Column(name = "typesecattention__c")
 	private String tipoAtencionSEC;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "sub_estado__c")
 	private String subEstado;
 
-	@Column(name = "hora_sec__c")
+	/*TODO: NO ESTA*/
+	@Column(name = "isvisibleinselfservice")
+	private Boolean isvisibleinselfservice;
+
+	/*TODO: NO ESTA*/
+	@Column(name = "tipo_atencion_interna__c")
+	private String tipoAtencionInterna;
+
+	@Column(name = "sechour__c")
 	private Date horaSec;
 
-	@Column(name = "pendientevalidacioncondagr__c")
+	@Column(name = "pendingvalidationaggcond__c")
 	private Boolean pendienteValidacionCondagr;
 
-	@Column(name = "ejecutivoanterior__c")
+	@Column(name = "previousexecutive__c")
 	private String ejecutivoAnterior;
+
+	/*TODO: NO ESTA*/
+	@Column(name = "entitlementid")
+	private String entitlementid;
+
+	/*TODO: NO ESTA*/
+	@Column(name = "assetid")
+	private String assetid;
+
+	/*TODO: NO ESTA*/
+	@Column(name = "stopstartdate")
+	private Date stopstartDate;
 
 	@Column(name = "suppliedcompany")
 	private String suppliedCompany;
 
-	@Column(name = "estado_condici_n_agravante__c")
+	/*TODO: NO ESTA*/
+	@Column(name = "isclosedoncreate")
+	private Boolean isClosedonCreate;
+
+	@Column(name = "aggravatedconditionstatus__c")
 	private String estadoCondicionAgravante;
 
-	@Column(name = "hora_cancelado__c")
+	@Column(name = "cancelhour__c")
 	private Date horaCancelado;
 
 	@Column(name = "pointofdelivery__c")
 	private String suministro;
+
+	/*TODO: NO ESTA*/
+	@Column(name = "isselfserviceclosed")
+	private Boolean isSelfserviceClosed;
 
 	@Column(name = "parentid")
 	private String parent;
@@ -195,7 +245,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "ui__c")
 	private Boolean ui;
 
-	@Column(name = "numsum__c")
+	@Column(name = "pointofdeliverynumber__c")
 	private String numSum;
 
 	@Column(name = "twitter__c")
@@ -207,61 +257,82 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "closeddate")
 	private Date fechaCierre;
 
-	@Column(name = "fallo_envio_inservice__c")
+	@Column(name = "inservicesenterror__c")
 	private Boolean falloEnvioInservice;
 
 	@Column(name = "description")
 	private String description;
 
-	@Column(name = "hora_arribado__c")
+	@Column(name = "arrivedhour__c")
 	private Date horaArribado;
+
+	/*TODO: NO ESTA*/
+	@Column(name = "slaexitdate")
+	private Date slaexitDate;
 
 	@Column(name = "origin")
 	private String canalOrigen;
 
-	@Column(name = "descripcion_estado__c")
+	@Column(name = "statusdescription__c")
 	private String descripcionEstado;
+
+	/*TODO: NO ESTA*/
+	@Column(name = "businesshoursid")
+	private String businessHoursId;
 
 	@Column(name = "sf4twitter__author_external_id__c")
 	private String sf4twitterAuthorExternalId;
 
-	@Column(name = "hora_cerrado__c")
+	/*TODO: NO ESTA*/
+	@Column(name = "hascommentsunreadbyowner")
+	private Boolean hasCommentSunReadByOwner;
+
+	@Column(name = "closedhour__c")
 	private Date horaCerrado;
 
-	@Column(name = "literal_condici_n_agravante__c")
+	@Column(name = "literalaggravatedcondition__c")
 	private String literalCondicionAgravante;
 
 	@Column(name = "type")
 	private String type;
 
-	@Column(name = "direccion_del_pointofdelivery__c")
+	@Column(name = "pointofdeliveryaddress__c")
 	private String direccionSuministro;
 
-	@Column(name = "hora_pendiente__c")
+	@Column(name = "pendinghour__c")
 	private Date horaPendiente;
 
 	@Column(name = "ani__c")
 	private String ani;
 
-	@Column(name = "facebook__c")
+	@Column(name = "idfacebook__c")
 	private String facebook;
 
+	/*TODO: NO ESTA*/
 	@Column(name = "petici_n__c")
 	private String peticion;
+
+	/*TODO: NO ESTA*/
+	@Column(name = "communityid")
+	private String communityId;
 
 	@Column(name = "address__c")
 	private String direccion;
 
-	@Column(name = "hora_asignado__c")
+	@Column(name = "asignedhour__c")
 	private Date horaAsignado;
+
+	/*TODO: NO ESTA*/
+	@Column(name = "milestonestatus")
+	private String milestoneStatus;
 
 	@Column(name = "contactid")
 	private String nombreContacto;
 
-	@Column(name = "hora_predespacho__c")
+	@Column(name = "predispatchinghour__c")
 	private Date horaPredespacho;
 
-	@Column(name = "hora_enruta__c")
+	@Column(name = "onroutehour__c")
 	private Date horaEnruta;
 
 	@Column(name = "reason")
@@ -270,39 +341,40 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "companyid__c")
 	private String idEmpresa;
 
-	@Column(name = "hora_programado__c")
+	@Column(name = "programmedhour__c")
 	private Date horaProgramado;
 
-	@Column(name = "numero_de_seguidores_del__c")
+	@Column(name = "followersnumber__c")
 	private Double numeroSeguidoresDel;
 
-	@Column(name = "literal_categoria__c")
+	@Column(name = "literalcategory__c")
 	private String literalCategorias;
 
 	@Column(name = "recordtypeid")
 	private String recordtypeId;
 
-	@Column(name = "comuna_f__c")
+	@Column(name = "municipality__c")
 	private String comuna;
 
-	@Column(name = "prioridad__c")
+	@Column(name = "priority")
 	private String prioridad;
 
-	@Column(name = "valorsubestadoins__c")
+	@Column(name = "substatusinsvalue__c")
 	private String valorSubestadoins;
 
-	@Column(name = "control_electrodependiente__c")
+	@Column(name = "electrodependantcontrol__c")
 	private Boolean controlElectrodependiente;
 
-	@Column(name = "cancelar__c")
+	@Column(name = "cancel__c")
 	private Boolean cancelar;
 
-	@Column(name = "condici_n_agravante__c")
+	@Column(name = "aggravatedcondition__c")
 	private String condicionAgravante;
 	
 	@Column(name = "herokuuser__c")
 	private String herokuUsername;
 
+	/*TODO: NO ESTA*/
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "petici_n__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Petici_n__c' and objeto = 'Case'")
@@ -313,6 +385,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@WhereJoinTable(clause = "campo = 'Status' and objeto = 'Case'")
 	private PickListsCaseVO estadoPickList;
 	
+	/*TODO: NO ESTA*/
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "sub_estado__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Sub_Estado__c' and objeto = 'Case'")
@@ -320,7 +393,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "subcause__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@WhereJoinTable(clause = "campo = 'subcause__c' and objeto = 'Case'")
+	@WhereJoinTable(clause = "campo = 'Motivo_Empresa__c' and objeto = 'Case'")
 	private PickListsCaseVO submotivoPickList;
 
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
@@ -329,18 +402,18 @@ public class CaseVO extends ObjectVO implements Serializable {
 	private PickListsCaseOriginVO canalOrigenPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "condici_n_agravante__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "aggravatedcondition__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Condici_n_agravante__c' and objeto = 'Case'")
 	private PickListsCaseVO condicionAgravantePickList;
 
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "canal_de_notificaciOn__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "notificationchannel__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'Canal_de_notificaciOn__c' and objeto = 'Case'")
 	private PickListsCaseCanalNotificacionVO canalNotificacionPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "casefavorability__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@WhereJoinTable(clause = "campo = 'casefavorability__c' and objeto = 'Case'")
+	@WhereJoinTable(clause = "campo = 'Favorabilidad_del_caso__c' and objeto = 'Case'")
 	private PickListsCaseVO favorabilidadDelCasoPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
@@ -350,7 +423,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "unity__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@WhereJoinTable(clause = "campo = 'unity__c' and objeto = 'Case'")
+	@WhereJoinTable(clause = "campo = 'Call_Center__c' and objeto = 'Case'")
 	private PickListsCaseCallCenterVO callCenterPickList;
 	
 	// vamos a recuperar los datos de Cuenta,Contacto,Suministro y Usuario
@@ -358,6 +431,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@JoinColumn(name = "contactid", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private ContactVO contactoJoin;
 
+	/*TODO: FALTA*/
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "accountid", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private AccountVO cuentaJoin;
@@ -425,9 +499,11 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.favorabilidadDelCaso = favorabilidadDelCaso;
 		this.flagSec = flagSec;
 		this.lastmodifiedbyid = lastmodifiedbyid;
+		this.productid = productid;
 		this.validarElectrodependiente = validarElectrodependiente;
 		this.sf4twitterTwitterUsername = sf4twitterTwitterUsername;
 		this.propietarioCaso = propietarioCaso;
+		this.slastartdate = slastartdate;
 		this.submotivo = submotivo;
 		this.callCenter = callCenter;
 		this.falloEnvioValidacion = falloEnvioValidacion;
@@ -440,8 +516,11 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.numeroInservice = numeroInservice;
 		this.suppliedphone = suppliedphone;
 		this.numeroMedidor = numeroMedidor;
+		this.isstopped = isstopped;
 		this.cuerpoMail = cuerpoMail;
 		this.telefonoContacto = telefonoContacto;
+		this.questionid = questionid;
+		this.hasselfservicecomments = hasselfservicecomments;
 		this.trazaFalloInservice = trazaFalloInservice;
 		this.canalNotificacion = canalNotificacion;
 		this.createdbyid = createdbyid;
@@ -458,13 +537,20 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.interaccion = interaccion;
 		this.tipoAtencionSEC = tipoAtencionSEC;
 		this.subEstado = subEstado;
+		this.isvisibleinselfservice = isvisibleinselfservice;
+		this.tipoAtencionInterna = tipoAtencionInterna;
 		this.horaSec = horaSec;
 		this.pendienteValidacionCondagr = pendienteValidacionCondagr;
 		this.ejecutivoAnterior = ejecutivoAnterior;
+		this.entitlementid = entitlementid;
+		this.assetid = assetid;
+		this.stopstartDate = stopstartDate;
 		this.suppliedCompany = suppliedCompany;
+		this.isClosedonCreate = isClosedonCreate;
 		this.estadoCondicionAgravante = estadoCondicionAgravante;
 		this.horaCancelado = horaCancelado;
 		this.suministro = suministro;
+		this.isSelfserviceClosed = isSelfserviceClosed;
 		this.parent = parent;
 		this.ui = ui;
 		this.numSum = numSum;
@@ -474,9 +560,12 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.falloEnvioInservice = falloEnvioInservice;
 		this.description = description;
 		this.horaArribado = horaArribado;
+		this.slaexitDate = slaexitDate;
 		this.canalOrigen = canalOrigen;
 		this.descripcionEstado = descripcionEstado;
+		this.businessHoursId = businessHoursId;
 		this.sf4twitterAuthorExternalId = sf4twitterAuthorExternalId;
+		this.hasCommentSunReadByOwner = hasCommentSunReadByOwner;
 		this.horaCerrado = horaCerrado;
 		this.literalCondicionAgravante = literalCondicionAgravante;
 		this.type = type;
@@ -485,8 +574,10 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.ani = ani;
 		this.facebook = facebook;
 		this.peticion = peticion;
+		this.communityId = communityId;
 		this.direccion = direccion;
 		this.horaAsignado = horaAsignado;
+		this.milestoneStatus = milestoneStatus;
 		this.nombreContacto = nombreContacto;
 		this.horaPredespacho = horaPredespacho;
 		this.horaEnruta = horaEnruta;
@@ -628,6 +719,14 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.lastmodifiedbyid = lastmodifiedbyid;
 	}
 
+	public String getProductid() {
+		return productid;
+	}
+
+	public void setProductid(String productid) {
+		this.productid = productid;
+	}
+
 	public Boolean getValidarElectrodependiente() {
 		return validarElectrodependiente;
 	}
@@ -651,6 +750,16 @@ public class CaseVO extends ObjectVO implements Serializable {
 	public void setPropietarioCaso(String propietarioCaso) {
 		this.propietarioCaso = propietarioCaso;
 	}
+
+	public Date getSlastartdate() {
+		return slastartdate;
+	}
+
+	public void setSlastartdate(Date slastartdate) {
+		this.slastartdate = slastartdate;
+	}
+
+
 
 	public String getSubmotivo() {
 		return submotivo;
@@ -748,6 +857,14 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.numeroMedidor = numeroMedidor;
 	}
 
+	public Boolean getIsstopped() {
+		return isstopped;
+	}
+
+	public void setIsstopped(Boolean isstopped) {
+		this.isstopped = isstopped;
+	}
+
 	public String getCuerpoMail() {
 		return cuerpoMail;
 	}
@@ -762,6 +879,22 @@ public class CaseVO extends ObjectVO implements Serializable {
 
 	public void setTelefonoContacto(String telefonoContacto) {
 		this.telefonoContacto = telefonoContacto;
+	}
+
+	public String getQuestionid() {
+		return questionid;
+	}
+
+	public void setQuestionid(String questionid) {
+		this.questionid = questionid;
+	}
+
+	public Boolean getHasselfservicecomments() {
+		return hasselfservicecomments;
+	}
+
+	public void setHasselfservicecomments(Boolean hasselfservicecomments) {
+		this.hasselfservicecomments = hasselfservicecomments;
 	}
 
 	public String getTrazaFalloInservice() {
@@ -892,6 +1025,22 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.subEstado = subEstado;
 	}
 
+	public Boolean getIsvisibleinselfservice() {
+		return isvisibleinselfservice;
+	}
+
+	public void setIsvisibleinselfservice(Boolean isvisibleinselfservice) {
+		this.isvisibleinselfservice = isvisibleinselfservice;
+	}
+
+	public String getTipoAtencionInterna() {
+		return tipoAtencionInterna;
+	}
+
+	public void setTipoAtencionInterna(String tipoAtencionInterna) {
+		this.tipoAtencionInterna = tipoAtencionInterna;
+	}
+
 	public Date getHoraSec() {
 		return horaSec;
 	}
@@ -916,12 +1065,44 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.ejecutivoAnterior = ejecutivoAnterior;
 	}
 
+	public String getEntitlementid() {
+		return entitlementid;
+	}
+
+	public void setEntitlementid(String entitlementid) {
+		this.entitlementid = entitlementid;
+	}
+
+	public String getAssetid() {
+		return assetid;
+	}
+
+	public void setAssetid(String assetid) {
+		this.assetid = assetid;
+	}
+
+	public Date getStopstartDate() {
+		return stopstartDate;
+	}
+
+	public void setStopstartDate(Date stopstartDate) {
+		this.stopstartDate = stopstartDate;
+	}
+
 	public String getSuppliedCompany() {
 		return suppliedCompany;
 	}
 
 	public void setSuppliedCompany(String suppliedCompany) {
 		this.suppliedCompany = suppliedCompany;
+	}
+
+	public Boolean getIsClosedonCreate() {
+		return isClosedonCreate;
+	}
+
+	public void setIsClosedonCreate(Boolean isClosedonCreate) {
+		this.isClosedonCreate = isClosedonCreate;
 	}
 
 	public String getEstadoCondicionAgravante() {
@@ -946,6 +1127,14 @@ public class CaseVO extends ObjectVO implements Serializable {
 
 	public void setSuministro(String suministro) {
 		this.suministro = suministro;
+	}
+
+	public Boolean getIsSelfserviceClosed() {
+		return isSelfserviceClosed;
+	}
+
+	public void setIsSelfserviceClosed(Boolean isSelfserviceClosed) {
+		this.isSelfserviceClosed = isSelfserviceClosed;
 	}
 
 	public String getParent() {
@@ -1019,7 +1208,15 @@ public class CaseVO extends ObjectVO implements Serializable {
 	public void setHoraArribado(Date horaArribado) {
 		this.horaArribado = horaArribado;
 	}
-	
+
+	public Date getSlaexitDate() {
+		return slaexitDate;
+	}
+
+	public void setSlaexitDate(Date slaexitDate) {
+		this.slaexitDate = slaexitDate;
+	}
+
 	public String getCanalOrigen() {
 		return canalOrigen;
 	}
@@ -1036,12 +1233,28 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.descripcionEstado = descripcionEstado;
 	}
 
+	public String getBusinessHoursId() {
+		return businessHoursId;
+	}
+
+	public void setBusinessHoursId(String businessHoursId) {
+		this.businessHoursId = businessHoursId;
+	}
+
 	public String getSf4twitterAuthorExternalId() {
 		return sf4twitterAuthorExternalId;
 	}
 
 	public void setSf4twitterAuthorExternalId(String sf4twitterAuthorExternalId) {
 		this.sf4twitterAuthorExternalId = sf4twitterAuthorExternalId;
+	}
+
+	public Boolean getHasCommentSunReadByOwner() {
+		return hasCommentSunReadByOwner;
+	}
+
+	public void setHasCommentSunReadByOwner(Boolean hasCommentSunReadByOwner) {
+		this.hasCommentSunReadByOwner = hasCommentSunReadByOwner;
 	}
 
 	public Date getHoraCerrado() {
@@ -1108,6 +1321,14 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.peticion = peticion;
 	}
 
+	public String getCommunityId() {
+		return communityId;
+	}
+
+	public void setCommunityId(String communityId) {
+		this.communityId = communityId;
+	}
+
 	public String getDireccion() {
 		return direccion;
 	}
@@ -1122,6 +1343,14 @@ public class CaseVO extends ObjectVO implements Serializable {
 
 	public void setHoraAsignado(Date horaAsignado) {
 		this.horaAsignado = horaAsignado;
+	}
+
+	public String getMilestoneStatus() {
+		return milestoneStatus;
+	}
+
+	public void setMilestoneStatus(String milestoneStatus) {
+		this.milestoneStatus = milestoneStatus;
 	}
 
 	public String getNombreContacto() {

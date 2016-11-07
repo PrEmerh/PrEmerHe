@@ -28,10 +28,10 @@ public class CasosReiteradosVO extends ObjectVO implements Serializable {
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "num_casos__c")
+	@Column(name = "numbercases__c")
 	private Double numCasos;
 	
-	@Column(name = " num_dias__c")
+	@Column(name = "numberdays__c")
 	private Double numDias;
 	
 	@Column(name = "sfid")

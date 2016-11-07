@@ -39,13 +39,13 @@ public class HerokuUserVO extends ObjectVO implements Serializable {
 	@Column(name = "password__c")
 	private String password;
 	
-	@Column(name = "email__c")
+	@Column(name = "mail__c")
 	private String email;
 	
-	@Column(name = "enviomail__c")
+	@Column(name = "sentmail__c")
 	private Boolean envioMail;
 	
-	@Column(name = "activo__c")
+	@Column(name = "active__c")
 	private Boolean activo;
 	
 	@Column(name = "country__c")
