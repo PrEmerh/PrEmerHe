@@ -13,7 +13,7 @@ public class ContactView extends ObjectView {
 	/*Nombre*/                              private String name;
 	/*Firstname*/ 							private String firstname;
 	/*Apellido Paterno*/                    private String apellidoPaterno;
-	/*Apellido Materno*/                    private String motherslastname__c;
+	/*Apellido Materno*/                    private String apellidoMaterno;
 	/*Tipo de Identidad*/                   private String tipoIdentidad;
 	/*AccountRun*/                          private String accountRun;
 	/*RUN*/									private String run;
@@ -91,11 +91,11 @@ public class ContactView extends ObjectView {
 	public void setApellidoPaterno(String apellidoPaterno) {
 		this.apellidoPaterno = apellidoPaterno;
 	}
-	public String getmotherslastname__c() {
-		return motherslastname__c;
+	public String getApellidoMaterno() {
+		return apellidoMaterno;
 	}
-	public void setmotherslastname__c(String motherslastname__c) {
-		this.motherslastname__c = motherslastname__c;
+	public void setApellidoMaterno(String apellidoMaterno) {
+		this.apellidoMaterno = apellidoMaterno;
 	}
 	public String getTipoIdentidad() {
 		return tipoIdentidad;

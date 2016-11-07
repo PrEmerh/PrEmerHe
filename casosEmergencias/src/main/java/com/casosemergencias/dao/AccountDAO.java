@@ -225,12 +225,12 @@ public class AccountDAO {
 				}
 			}
 
-			if (account.getmotherslastname__c() != null) {
+			if (account.getApellidoMaterno() != null) {
 				if (isFirst) {
-					query.append(" WHERE account.motherslastname__c = :motherslastname__c");
+					query.append(" WHERE account.apellidoMaterno = :apellidoMaterno");
 					isFirst = false;
 				} else {
-					query.append(" AND account.motherslastname__c = :motherslastname__c");
+					query.append(" AND account.apellidoMaterno = :apellidoMaterno");
 				}
 			}
 			
@@ -374,8 +374,8 @@ public class AccountDAO {
 				result.setString("apellidoPaterno", account.getApellidoPaterno());
 			}
 
-			if (account.getmotherslastname__c() != null) {
-				result.setString("motherslastname__c", account.getmotherslastname__c());
+			if (account.getApellidoMaterno() != null) {
+				result.setString("apellidoMaterno", account.getApellidoMaterno());
 			}
 
 			if (account.getTipoIdentidad() != null) {

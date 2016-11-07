@@ -56,8 +56,8 @@ public class AccountVO extends ObjectVO implements Serializable {
 	@Column(name = "fatherslastname__c")
 	private String apellidoPaterno;
 
-	@Column(name = "apellido_materno__c")
-	private String motherslastname__c;
+	@Column(name = "motherslastname__c")
+	private String apellidoMaterno;
 
 	@Column(name = "identitytype__c")
 	private String tipoIdentidad;
@@ -131,7 +131,7 @@ public class AccountVO extends ObjectVO implements Serializable {
 	
 	// Tipo de registro de cuenta
 	public AccountVO(Boolean isDeleted, Date systemDate, String hcLastop, String hcError, Integer id, String sfid,
-			String name, String apellidoPaterno, String motherslastname__c, String tipoIdentidad, String parentRutEmpresa,
+			String name, String apellidoPaterno, String apellidoMaterno, String tipoIdentidad, String parentRutEmpresa,
 			String accountRun, Date fechaNacimiento, String phone, String telefonoPrincipal, String telefonoSecundario,
 			String email, String emailSecundario, String direccion, String accountsource, String idEmpresa,
 			List<SuministroVO> suministros, List<ContactVO> contactos,List<CaseVO> casos,
@@ -145,7 +145,7 @@ public class AccountVO extends ObjectVO implements Serializable {
 		this.sfid = sfid;
 		this.name = name;
 		this.apellidoPaterno = apellidoPaterno;
-		this.motherslastname__c = motherslastname__c;
+		this.apellidoMaterno = apellidoMaterno;
 		this.tipoIdentidad = tipoIdentidad;
 		this.parentRutEmpresa = parentRutEmpresa;
 		this.accountRun = accountRun;
@@ -233,12 +233,12 @@ public class AccountVO extends ObjectVO implements Serializable {
 		this.apellidoPaterno = apellidoPaterno;
 	}
 
-	public String getmotherslastname__c() {
-		return motherslastname__c;
+	public String getApellidoMaterno() {
+		return apellidoMaterno;
 	}
 
-	public void setmotherslastname__c(String motherslastname__c) {
-		this.motherslastname__c = motherslastname__c;
+	public void setApellidoMaterno(String apellidoMaterno) {
+		this.apellidoMaterno = apellidoMaterno;
 	}
 
 	public String getTipoIdentidad() {

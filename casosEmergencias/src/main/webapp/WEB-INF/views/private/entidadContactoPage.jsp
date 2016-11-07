@@ -127,10 +127,10 @@
 					</div>
 					<div>
 						<div class="divLabel">
-							<label><s:message code="entidadContacto_table_label_motherslastname__c"/></label>
+							<label><s:message code="entidadContacto_table_label_apellidoMaterno"/></label>
 						</div>
 						<div>
-							<label>${contacto.motherslastname__c}</label>
+							<label>${contacto.apellidoMaterno}</label>
 						</div>
 						<div class="divLabel">
 							<label><s:message code="entidadContacto_table_label_tipoIdentidad"/></label>
