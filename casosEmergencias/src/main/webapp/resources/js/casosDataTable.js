@@ -16,6 +16,9 @@ $(document).ready(function() {
 			"type": "POST", 
         	"url": urlTable +'/listarCasos', 	        	
         	"contentType": 'application/json; charset=utf-8' ,
+        	/*"success":function(data) {
+        		alert('sdfsfsf');
+        	},*/
         	"error": function(data) {
         		alert('Se ha producido un error obteniendo la lista de casos. Repita la operación y, si el error persiste, contacte con el administrador de la plataforma.');
         	}

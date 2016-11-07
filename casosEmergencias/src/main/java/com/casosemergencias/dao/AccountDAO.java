@@ -1,5 +1,6 @@
 package com.casosemergencias.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -519,7 +520,7 @@ public class AccountDAO {
 						}
 					}
 					
-					if ("tel_fono_principal__c".equals(columnInfo.getData())) {
+					if ("mainphone__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							query.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
 							query.append(" AND ");
@@ -527,7 +528,7 @@ public class AccountDAO {
 						}
 					}
 					
-					if ("email_principal__c".equals(columnInfo.getData())) {
+					if ("primaryemail__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							query.append("UPPER("+columnInfo.getData()+")" + " LIKE UPPER('%" + columnInfo.getSearchValue() +"%'"+")");
 							query.append(" AND ");
@@ -595,7 +596,7 @@ public class AccountDAO {
 						}
 					}
 					
-					if ("tel_fono_principal__c".equals(columnInfo.getData())) {
+					if ("mainphone__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
 							sqlQuery.append(" AND ");
@@ -603,7 +604,7 @@ public class AccountDAO {
 						}
 					}
 					
-					if ("email_principal__c".equals(columnInfo.getData())) {
+					if ("primaryemail__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
 							sqlQuery.append(" AND ");

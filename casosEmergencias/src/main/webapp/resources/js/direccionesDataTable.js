@@ -20,10 +20,10 @@ $(document).ready(function() {
        	"columns": [
        	            {"data": "name", 					"width": "15%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
        	            {"data": "calle", 				"width": "20%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true}, 
-       	            {"data": "altura__c",				"width": "15%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
-       	            {"data": "literalcomuna__c",		"width": "20%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
-       	            {"data": "direccionconcatenada__c", "width": "28%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
-       	            {"data": "comuna__c", 				"width": "1%",  "defaultContent": "", "searchable": true, 	"orderable": false,	"visible": false},
+       	            {"data": "number__c",				"width": "15%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
+       	            {"data": "literalmunicipality__c",		"width": "20%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
+       	            {"data": "concatenatedaddress__c", "width": "28%", "defaultContent": "", "searchable": false, 	"orderable": true,	"visible": true},
+       	            {"data": "municipality__c", 				"width": "1%",  "defaultContent": "", "searchable": true, 	"orderable": false,	"visible": false},
        	            {"data": "sfid", 					"width": "1%", 	"defaultContent": "", "searchable": false, 	"orderable": false,	"visible": false}
 		],
 		"columnDefs": [

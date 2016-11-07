@@ -7,33 +7,33 @@ import com.casosemergencias.model.Caso;
 public class CasoSalesForce {
 	private String Petici_n__c;
 	private String Status;
-	private String Numero_de_Inservice__c;
+	private String inservicenumber__c;
 	private String Sub_Estado__c;
-	private Date Fecha_Estimada_de_Cierre__c;
+	private Date estimatedstandardizationtime__c;
 	private String Origin;
 	private String ownerId;
 	private String parentId;
 	private String Type;
 	private String Subject;
-	private String Motivo_Empresa__c;
+	private String subcause__c;
 	private String Description;
 	private String Condici_n_agravante__c;
 	private String contactId;
 	private String Canal_de_notificaciOn__c;
-	private String Suministro__c;
+	private String pointofdelivery__c;
 	private String Telefono_de_Contacto__c;
-	private String Direccion__c;
-	private String Email_de_notificacion__c;
+	private String address__c;
+	private String notificationemail__c;
 	private String accountId;
 	private String Facebook__c;
 	private String Twitter__c;
-	private Boolean Act_Datos_Contacto__c;
+	private Boolean updatecontact__c;
 	private String ANI__c;
 	private String Cuerpo_Mail__c;
 	private String Respuesta_al_Cliente__c;
-	private String Favorabilidad_del_Caso__c;
+	private String casefavorability__c;
 	private String HerokuUser__c;
-	private String Call_Center__c;
+	private String unity__c;
 	
 	public String getPetici_n__c() {
 		return Petici_n__c;
@@ -51,12 +51,12 @@ public class CasoSalesForce {
 		Status = status;
 	}
 
-	public String getNumero_de_Inservice__c() {
-		return Numero_de_Inservice__c;
+	public String getinservicenumber__c() {
+		return inservicenumber__c;
 	}
 
-	public void setNumero_de_Inservice__c(String numero_de_Inservice__c) {
-		Numero_de_Inservice__c = numero_de_Inservice__c;
+	public void setinservicenumber__c(String inservicenumber__c) {
+		inservicenumber__c = inservicenumber__c;
 	}
 
 	public String getSub_Estado__c() {
@@ -67,12 +67,12 @@ public class CasoSalesForce {
 		Sub_Estado__c = sub_Estado__c;
 	}
 
-	public Date getFecha_Estimada_de_Cierre__c() {
-		return Fecha_Estimada_de_Cierre__c;
+	public Date getestimatedstandardizationtime__c() {
+		return estimatedstandardizationtime__c;
 	}
 
-	public void setFecha_Estimada_de_Cierre__c(Date fecha_Estimada_de_Cierre__c) {
-		Fecha_Estimada_de_Cierre__c = fecha_Estimada_de_Cierre__c;
+	public void setestimatedstandardizationtime__c(Date estimatedstandardizationtime__c) {
+		estimatedstandardizationtime__c = estimatedstandardizationtime__c;
 	}
 
 	public String getOrigin() {
@@ -115,12 +115,12 @@ public class CasoSalesForce {
 		Subject = subject;
 	}
 
-	public String getMotivo_Empresa__c() {
-		return Motivo_Empresa__c;
+	public String getsubcause__c() {
+		return subcause__c;
 	}
 
-	public void setMotivo_Empresa__c(String motivo_Empresa__c) {
-		Motivo_Empresa__c = motivo_Empresa__c;
+	public void setsubcause__c(String subcause__c) {
+		subcause__c = subcause__c;
 	}
 
 	public String getDescription() {
@@ -155,12 +155,12 @@ public class CasoSalesForce {
 		Canal_de_notificaciOn__c = canal_de_notificaciOn__c;
 	}
 
-	public String getSuministro__c() {
-		return Suministro__c;
+	public String getpointofdelivery__c() {
+		return pointofdelivery__c;
 	}
 
-	public void setSuministro__c(String suministro__c) {
-		Suministro__c = suministro__c;
+	public void setpointofdelivery__c(String pointofdelivery__c) {
+		pointofdelivery__c = pointofdelivery__c;
 	}
 
 	public String getTelefono_de_Contacto__c() {
@@ -171,20 +171,20 @@ public class CasoSalesForce {
 		Telefono_de_Contacto__c = telefono_de_Contacto__c;
 	}
 
-	public String getDireccion__c() {
-		return Direccion__c;
+	public String getaddress__c() {
+		return address__c;
 	}
 
-	public void setDireccion__c(String direccion__c) {
-		Direccion__c = direccion__c;
+	public void setaddress__c(String address__c) {
+		address__c = address__c;
 	}
 
-	public String getEmail_de_notificacion__c() {
-		return Email_de_notificacion__c;
+	public String getnotificationemail__c() {
+		return notificationemail__c;
 	}
 
-	public void setEmail_de_notificacion__c(String email_de_notificacion__c) {
-		Email_de_notificacion__c = email_de_notificacion__c;
+	public void setnotificationemail__c(String notificationemail__c) {
+		notificationemail__c = notificationemail__c;
 	}
 
 	public String getAccountId() {
@@ -211,12 +211,12 @@ public class CasoSalesForce {
 		Twitter__c = twitter__c;
 	}
 
-	public Boolean getAct_Datos_Contacto__c() {
-		return Act_Datos_Contacto__c;
+	public Boolean getupdatecontact__c() {
+		return updatecontact__c;
 	}
 
-	public void setAct_Datos_Contacto__c(Boolean act_Datos_Contacto__c) {
-		Act_Datos_Contacto__c = act_Datos_Contacto__c;
+	public void setupdatecontact__c(Boolean updatecontact__c) {
+		updatecontact__c = updatecontact__c;
 	}
 
 	public String getANI__c() {
@@ -243,12 +243,12 @@ public class CasoSalesForce {
 		Respuesta_al_Cliente__c = respuesta_al_Cliente__c;
 	}
 
-	public String getFavorabilidad_del_Caso__c() {
-		return Favorabilidad_del_Caso__c;
+	public String getcasefavorability__c() {
+		return casefavorability__c;
 	}
 
-	public void setFavorabilidad_del_Caso__c(String favorabilidad_del_Caso__c) {
-		Favorabilidad_del_Caso__c = favorabilidad_del_Caso__c;
+	public void setcasefavorability__c(String casefavorability__c) {
+		casefavorability__c = casefavorability__c;
 	}
 
 	public String getHerokuUser__c() {
@@ -259,12 +259,12 @@ public class CasoSalesForce {
 		HerokuUser__c = herokuUser__c;
 	}
 
-	public String getCall_Center__c() {
-		return Call_Center__c;
+	public String getunity__c() {
+		return unity__c;
 	}
 
-	public void setCall_Center__c(String call_Center__c) {
-		Call_Center__c = call_Center__c;
+	public void setunity__c(String unity__c) {
+		unity__c = unity__c;
 	}
 	
 	public static CasoSalesForce copyFieldsFromHerokuToSalesForceCaseBean(Caso casoHeroku) {
@@ -272,33 +272,33 @@ public class CasoSalesForce {
 		if (casoHeroku != null) {
 			casoSF.setPetici_n__c((casoHeroku.getPeticion() != null && !"".equals(casoHeroku.getPeticion()) ? casoHeroku.getPeticion() : ""));
 			casoSF.setStatus((casoHeroku.getEstado() != null && !"".equals(casoHeroku.getEstado()) ? casoHeroku.getEstado() : ""));
-			casoSF.setNumero_de_Inservice__c((casoHeroku.getNumeroInservice() != null && !"".equals(casoHeroku.getNumeroInservice()) ? casoHeroku.getNumeroInservice() : ""));
+			casoSF.setinservicenumber__c((casoHeroku.getNumeroInservice() != null && !"".equals(casoHeroku.getNumeroInservice()) ? casoHeroku.getNumeroInservice() : ""));
 			casoSF.setSub_Estado__c((casoHeroku.getSubestado() != null && !"".equals(casoHeroku.getSubestado()) ? casoHeroku.getSubestado() : ""));
-			casoSF.setFecha_Estimada_de_Cierre__c((casoHeroku.getFechaEstimadaCierre() != null ? casoHeroku.getFechaEstimadaCierre() : null));
+			casoSF.setestimatedstandardizationtime__c((casoHeroku.getFechaEstimadaCierre() != null ? casoHeroku.getFechaEstimadaCierre() : null));
 			casoSF.setOrigin((casoHeroku.getCanalOrigen() != null && !"".equals(casoHeroku.getCanalOrigen()) ? casoHeroku.getCanalOrigen() : ""));
 			casoSF.setOwnerId((casoHeroku.getPropietarioCaso() != null && !"".equals(casoHeroku.getPropietarioCaso()) ? casoHeroku.getPropietarioCaso() : ""));
 			casoSF.setParentId((casoHeroku.getParent() != null && !"".equals(casoHeroku.getParent()) ? casoHeroku.getParent() : ""));
 			casoSF.setType((casoHeroku.getType() != null && !"".equals(casoHeroku.getType()) ? casoHeroku.getType() : ""));
 			casoSF.setSubject((casoHeroku.getAsunto() != null && !"".equals(casoHeroku.getAsunto()) ? casoHeroku.getAsunto() : ""));
-			casoSF.setMotivo_Empresa__c((casoHeroku.getSubmotivo() != null && !"".equals(casoHeroku.getSubmotivo()) ? casoHeroku.getSubmotivo() : ""));
+			casoSF.setsubcause__c((casoHeroku.getSubmotivo() != null && !"".equals(casoHeroku.getSubmotivo()) ? casoHeroku.getSubmotivo() : ""));
 			casoSF.setDescription((casoHeroku.getDescription() != null && !"".equals(casoHeroku.getDescription()) ? casoHeroku.getDescription() : ""));
 			casoSF.setCondici_n_agravante__c((casoHeroku.getCondicionAgravante() != null && !"".equals(casoHeroku.getCondicionAgravante()) ? casoHeroku.getCondicionAgravante() : ""));
 			casoSF.setContactId((casoHeroku.getNombreContacto() != null && !"".equals(casoHeroku.getNombreContacto()) ? casoHeroku.getNombreContacto() : ""));
 			casoSF.setCanal_de_notificaciOn__c((casoHeroku.getCanalNotificacion() != null && !"".equals(casoHeroku.getCanalNotificacion()) ? casoHeroku.getCanalNotificacion() : ""));
-			casoSF.setSuministro__c((casoHeroku.getSuministro() != null && !"".equals(casoHeroku.getSuministroJoin()) ? casoHeroku.getSuministro() : ""));
+			casoSF.setpointofdelivery__c((casoHeroku.getSuministro() != null && !"".equals(casoHeroku.getSuministroJoin()) ? casoHeroku.getSuministro() : ""));
 			casoSF.setTelefono_de_Contacto__c((casoHeroku.getTelefonoContacto() != null && !"".equals(casoHeroku.getTelefonoContacto()) ? casoHeroku.getTelefonoContacto() : ""));
-			casoSF.setDireccion__c((casoHeroku.getDireccion() != null && !"".equals(casoHeroku.getDireccion()) ? casoHeroku.getDireccion() : ""));
-			casoSF.setEmail_de_notificacion__c((casoHeroku.getEmailNotificacion() != null && !"".equals(casoHeroku.getEmailNotificacion()) ? casoHeroku.getEmailNotificacion() : ""));
+			casoSF.setaddress__c((casoHeroku.getDireccion() != null && !"".equals(casoHeroku.getDireccion()) ? casoHeroku.getDireccion() : ""));
+			casoSF.setnotificationemail__c((casoHeroku.getEmailNotificacion() != null && !"".equals(casoHeroku.getEmailNotificacion()) ? casoHeroku.getEmailNotificacion() : ""));
 			casoSF.setAccountId((casoHeroku.getNombreCuenta() != null && !"".equals(casoHeroku.getNombreCuenta()) ? casoHeroku.getNombreCuenta() : ""));
 			casoSF.setFacebook__c((casoHeroku.getFacebook() != null && !"".equals(casoHeroku.getFacebook()) ? casoHeroku.getFacebook() : ""));
 			casoSF.setTwitter__c((casoHeroku.getTwitter() != null && !"".equals(casoHeroku.getTwitter()) ? casoHeroku.getTwitter() : ""));
-			casoSF.setAct_Datos_Contacto__c(Boolean.valueOf(casoHeroku.getActDatosContacto()));
+			casoSF.setupdatecontact__c(Boolean.valueOf(casoHeroku.getActDatosContacto()));
 			casoSF.setANI__c((casoHeroku.getAni() != null && !"".equals(casoHeroku.getAni()) ? casoHeroku.getAni() : ""));
 			casoSF.setCuerpo_Mail__c((casoHeroku.getCuerpoMail() != null && !"".equals(casoHeroku.getCuerpoMail()) ? casoHeroku.getCuerpoMail() : ""));
 			casoSF.setRespuesta_al_Cliente__c((casoHeroku.getRespuestaAlCliente() != null && !"".equals(casoHeroku.getRespuestaAlCliente()) ? casoHeroku.getRespuestaAlCliente() : ""));
-			casoSF.setFavorabilidad_del_Caso__c((casoHeroku.getFavorabilidadDelCaso() != null && !"".equals(casoHeroku.getFavorabilidadDelCaso()) ? casoHeroku.getFavorabilidadDelCaso() : ""));
+			casoSF.setcasefavorability__c((casoHeroku.getFavorabilidadDelCaso() != null && !"".equals(casoHeroku.getFavorabilidadDelCaso()) ? casoHeroku.getFavorabilidadDelCaso() : ""));
 			casoSF.setHerokuUser__c((casoHeroku.getHerokuUsername() != null && !"".equals(casoHeroku.getHerokuUsername()) ? casoHeroku.getHerokuUsername() : ""));
-			casoSF.setCall_Center__c((casoHeroku.getCallCenter() != null && !"".equals(casoHeroku.getCallCenter()) ? casoHeroku.getCallCenter() : ""));
+			casoSF.setunity__c((casoHeroku.getCallCenter() != null && !"".equals(casoHeroku.getCallCenter()) ? casoHeroku.getCallCenter() : ""));
 		}
 		return casoSF;
 	}

@@ -53,49 +53,49 @@ public class AccountVO extends ObjectVO implements Serializable {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "apellido_paterno__c")
+	@Column(name = "fatherslastname__c")
 	private String apellidoPaterno;
 
-	@Column(name = "apellido_materno__c")
+	@Column(name = "motherslastname__c")
 	private String apellidoMaterno;
 
-	@Column(name = "tipo_de_identidad__c")
+	@Column(name = "identitytype__c")
 	private String tipoIdentidad;
 
-	@Column(name = "parent__rut_empresa__c")
+	@Column(name = "parent__identityNumber__c")
 	private String parentRutEmpresa;
 
-	@Column(name = "masterrecord__run__c")
+	@Column(name = "masterrecord__identitynumber__c")
 	private String accountRun;
 	
-	@Column(name = "run__c")
+	@Column(name = "identitynumber__c")
 	private String run;
 
-	@Column(name = "fecha_nacimiento__c")
+	@Column(name = "birthdate__c")
 	private Date fechaNacimiento;
 
 	@Column(name = "phone")
 	private String phone;
 
-	@Column(name = "tel_fono_principal__c")
+	@Column(name = "mainphone__c")
 	private String telefonoPrincipal;
 	
-	@Column(name = "tel_fono_secundario__c")
+	@Column(name = "secondaryphone__c")
 	private String telefonoSecundario;
 
-	@Column(name = "email_principal__c")
+	@Column(name = "primaryemail__c")
 	private String emailPrincipal;
 
-	@Column(name = "email_secundario__c")
+	@Column(name = "secondaryemail__c")
 	private String emailSecundario;
 
-	@Column(name = "direccion__c")
+	@Column(name = "address__c")
 	private String direccion;
 
 	@Column(name = "accountsource")
 	private String accountsource;
 
-	@Column(name = "id_empresa__c")
+	@Column(name = "companyid__c")
 	private String idEmpresa;
 
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
@@ -103,12 +103,14 @@ public class AccountVO extends ObjectVO implements Serializable {
 	private AccountVO parent;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "direccion__c", referencedColumnName = "sfid", insertable = false, updatable = false)
+	@JoinColumn(name = "address__c", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private DireccionVO direccionJoin;
 	
+	/*Picarselo/*/
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cuenta__c", referencedColumnName = "sfid", insertable = false, updatable = false, nullable = true)
 	private List<SuministroVO> suministros;
+	/*Picarselo/*/
 
 	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "accountid", referencedColumnName = "sfid", insertable = false, updatable = false, nullable = true)
@@ -120,11 +122,11 @@ public class AccountVO extends ObjectVO implements Serializable {
 
 	/*Joins con picklist*/
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "tipo_de_identidad__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "identitytype__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsAccountTipoIdentidadVO tipoIdentidadPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "Id_Empresa__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "companyid__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsAccountIdEmpresaVO idEmpresaPickList;
 	
 	// Tipo de registro de cuenta

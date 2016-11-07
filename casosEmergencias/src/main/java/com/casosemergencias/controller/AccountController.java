@@ -68,7 +68,10 @@ public class AccountController {
 		
 		//def. variables para controlar tablas de la pantalla
 		Integer limiteSuministros = 10; //por defecto recuperaremos 10 suministros asociados a la cuenta.
+		Integer limiteContacto = 10; //por defecto recuperaremos 10 contactos asociados a la cuenta.
+		Integer limiteCasos = 10; //por defecto recuperaremos 10 casos asociados a la cuenta.
 		Integer numSuministros;
+		
 		
 		session.setAttribute(Constantes.SFID_CUENTA, sfid);	
 		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, Constantes.FINAL_DETAIL_PAGE_CUENTA);
@@ -159,8 +162,8 @@ public class AccountController {
 			jsonResult = new JSONObject();
 			jsonResult.put("name", cuenta.getName());
 			jsonResult.put("run", cuenta.getAccountRun());
-			jsonResult.put("tel_fono_principal__c", cuenta.getTelefonoPrincipal());
-			jsonResult.put("email_principal__c", cuenta.getEmailPrincipal());
+			jsonResult.put("mainphone__c", cuenta.getTelefonoPrincipal());
+			jsonResult.put("primaryemail__c", cuenta.getEmailPrincipal());
 			jsonResult.put("sfid", cuenta.getSfid());
 			jsonArray.put(jsonResult);
 		}

@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.casosemergencias.dao.vo.AssetVO;
+import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.dao.vo.RelacionActivoContactoVO;
 
 @Repository
