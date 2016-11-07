@@ -51,7 +51,7 @@ public class AssetVO implements Serializable {
 		@Column(name = "contactid")
 		private String contactid;
 		
-		@Column(name = "suministro__c")
+		@Column(name = "pointofdelivery__c")
 		private String suministroid;
 
 		@OneToOne(fetch=FetchType.EAGER)
@@ -59,7 +59,7 @@ public class AssetVO implements Serializable {
 		private ContactVO contactoJoin;
 		
 		@OneToOne(fetch=FetchType.EAGER)
-		@JoinColumn(name="suministro__c", referencedColumnName="sfid", insertable = false, updatable=false)
+		@JoinColumn(name="pointofdelivery__c", referencedColumnName="sfid", insertable = false, updatable=false)
 		private SuministroVO suministroJoin;
 
 		public Boolean getIsDeleted() {

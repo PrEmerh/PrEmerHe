@@ -71,7 +71,7 @@
 						<label><s:message code="entidadCuenta_title_label_last_name" /></label>
 					</div>
 					<div>
-						<label>${cuenta.apellidoMaterno}</label>
+						<label>${cuenta.motherslastname__c}</label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadCuenta_title_label_first_email" /></label>

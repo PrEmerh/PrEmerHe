@@ -162,8 +162,8 @@ public class AccountController {
 			jsonResult = new JSONObject();
 			jsonResult.put("name", cuenta.getName());
 			jsonResult.put("run", cuenta.getAccountRun());
-			jsonResult.put("tel_fono_principal__c", cuenta.getTelefonoPrincipal());
-			jsonResult.put("email_principal__c", cuenta.getEmailPrincipal());
+			jsonResult.put("mainphone__c", cuenta.getTelefonoPrincipal());
+			jsonResult.put("primaryemail__c", cuenta.getEmailPrincipal());
 			jsonResult.put("sfid", cuenta.getSfid());
 			jsonArray.put(jsonResult);
 		}

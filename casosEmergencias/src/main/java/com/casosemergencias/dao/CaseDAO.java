@@ -432,14 +432,6 @@ public class CaseDAO {
 					query.append(" AND caso.isdeleted = :isDeleted");
 				}
 			}
-			if (caso.getProductid() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.productid = :productid");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.productid = :productid");
-				}
-			}
 			
 			if (caso.getValidarElectrodependiente() != null) {
 				if (isFirst) {
@@ -466,16 +458,7 @@ public class CaseDAO {
 				} else {
 					query.append(" AND caso.parent = :parent");
 				}
-			}
-			
-			if (caso.getSlastartdate() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.slastartdate = :slastartdate");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.slastartdate = :slastartdate");
-				}
-			}
+			}			
 			
 			if (caso.getSubmotivo() != null) {
 				if (isFirst) {
@@ -585,15 +568,6 @@ public class CaseDAO {
 				}
 			}
 			
-			if (caso.getIsstopped() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.isstopped = :isstopped");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.isstopped = :isstopped");
-				}
-			}
-			
 			if (caso.getCuerpoMail() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.cuerpoMail = :cuerpoMail");
@@ -610,25 +584,7 @@ public class CaseDAO {
 				} else {
 					query.append(" AND caso.telefonoContacto = :telefonoContacto");
 				}
-			}
-			
-			if (caso.getQuestionid() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.questionid = :questionid");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.questionid = :questionid");
-				}
-			}
-			
-			if (caso.getHasselfservicecomments() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.hasselfservicecomments = :hasselfservicecomments");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.hasselfservicecomments = :hasselfservicecomments");
-				}
-			}
+			}			
 			
 			if (caso.getTrazaFalloInservice() != null) {
 				if (isFirst) {
@@ -774,24 +730,6 @@ public class CaseDAO {
 				}
 			}
 			
-			if (caso.getIsvisibleinselfservice() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.isvisibleinselfservice = :isvisibleinselfservice");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.isvisibleinselfservice = :isvisibleinselfservice");
-				}
-			}
-			
-			if (caso.getTipoAtencionInterna() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.tipoAtencionInterna = :tipoAtencionInterna");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.tipoAtencionInterna = :tipoAtencionInterna");
-				}
-			}
-			
 			if (caso.getHoraSec() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.horaSec = :horaSec");
@@ -818,49 +756,13 @@ public class CaseDAO {
 					query.append(" AND caso.ejecutivoAnterior = :ejecutivoAnterior");
 				}
 			}
-			
-			if (caso.getEntitlementid() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.entitlementid = :entitlementid");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.entitlementid = :entitlementid");
-				}
-			}
-			
-			if (caso.getAssetid() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.assetid = :assetid");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.assetid = :assetid");
-				}
-			}
-			
-			if (caso.getStopstartDate() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.stopstartDate = :stopstartDate");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.stopstartDate = :stopstartDate");
-				}
-			}
-			
+
 			if (caso.getSuppliedCompany() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.suppliedCompany = :suppliedCompany");
 					isFirst = false;
 				} else {
 					query.append(" AND caso.suppliedCompany = :suppliedCompany");
-				}
-			}
-			
-			if (caso.getIsClosedonCreate() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.isClosedonCreate = :isClosedonCreate");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.isClosedonCreate = :isClosedonCreate");
 				}
 			}
 			
@@ -888,15 +790,6 @@ public class CaseDAO {
 					isFirst = false;
 				} else {
 					query.append(" AND caso.suministro = :suministro");
-				}
-			}
-			
-			if (caso.getIsSelfserviceClosed() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.isSelfserviceClosed = :isSelfserviceClosed");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.isSelfserviceClosed = :isSelfserviceClosed");
 				}
 			}
 			
@@ -972,15 +865,6 @@ public class CaseDAO {
 				}
 			}
 			
-			if (caso.getSlaexitDate() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.slaexitDate = :slaexitDate");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.slaexitDate = :slaexitDate");
-				}
-			}
-			
 			if (caso.getCanalOrigen() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.canalOrigen = :canalOrigen");
@@ -999,30 +883,12 @@ public class CaseDAO {
 				}
 			}
 			
-			if (caso.getBusinessHoursId() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.businessHoursId = :businessHoursId");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.businessHoursId = :businessHoursId");
-				}
-			}
-			
 			if (caso.getSf4twitterAuthorExternalId() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.sf4twitterAuthorExternalId = :sf4twitterAuthorExternalId");
 					isFirst = false;
 				} else {
 					query.append(" AND caso.sf4twitterAuthorExternalId = :sf4twitterAuthorExternalId");
-				}
-			}
-			
-			if (caso.getHasCommentSunReadByOwner() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.hasCommentSunReadByOwner = :hasCommentSunReadByOwner");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.hasCommentSunReadByOwner = :hasCommentSunReadByOwner");
 				}
 			}
 			
@@ -1098,15 +964,6 @@ public class CaseDAO {
 				}
 			}
 			
-			if (caso.getCommunityId() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.communityId = :communityId");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.communityId = :communityId");
-				}
-			}
-			
 			if (caso.getDireccion() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.direccion = :direccion");
@@ -1122,15 +979,6 @@ public class CaseDAO {
 					isFirst = false;
 				} else {
 					query.append(" AND caso.horaAsignado = :horaAsignado");
-				}
-			}
-			
-			if (caso.getMilestoneStatus() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.milestoneStatus = :milestoneStatus");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.milestoneStatus = :milestoneStatus");
 				}
 			}
 			
@@ -1321,10 +1169,6 @@ public class CaseDAO {
 				result.setBoolean("isDeleted", caso.getIsdeleted());
 			}
 			
-			if (caso.getProductid() != null) {
-				result.setString("productid", caso.getProductid());
-			}
-			
 			if (caso.getValidarElectrodependiente() != null) {
 				result.setBoolean("validarElectrodependiente", caso.getValidarElectrodependiente());
 			}
@@ -1335,10 +1179,6 @@ public class CaseDAO {
 			
 			if (caso.getParent() != null) {
 				result.setString("parent", caso.getParent());
-			}
-			
-			if (caso.getSlastartdate() != null) {
-				result.setDate("slastartdate", caso.getSlastartdate());
 			}
 			
 			if (caso.getSubmotivo() != null) {
@@ -1392,25 +1232,13 @@ public class CaseDAO {
 			if (caso.getNumeroMedidor() != null) {
 				result.setString("numeroMedidor", caso.getNumeroMedidor());
 			}
-			
-			if (caso.getIsstopped() != null) {
-				result.setBoolean("isstopped", caso.getIsstopped());
-			}
-			
+
 			if (caso.getCuerpoMail() != null) {
 				result.setString("cuerpoMail", caso.getCuerpoMail());
 			}
 			
 			if (caso.getTelefonoContacto() != null) {
 				result.setString("telefonoContacto", caso.getTelefonoContacto());
-			}
-			
-			if (caso.getQuestionid() != null) {
-				result.setString("questionid", caso.getQuestionid());
-			}
-			
-			if (caso.getHasselfservicecomments() != null) {
-				result.setBoolean("hasselfservicecomments", caso.getHasselfservicecomments());
 			}
 			
 			if (caso.getTrazaFalloInservice() != null) {
@@ -1476,15 +1304,7 @@ public class CaseDAO {
 			if (caso.getSubEstado() != null) {
 				result.setString("subEstado", caso.getSubEstado());
 			}
-			
-			if (caso.getIsvisibleinselfservice() != null) {
-				result.setBoolean("isvisibleinselfservice", caso.getIsvisibleinselfservice());
-			}
-			
-			if (caso.getTipoAtencionInterna() != null) {
-				result.setString("tipoAtencionInterna", caso.getTipoAtencionInterna());
-			}
-			
+
 			if (caso.getHoraSec() != null) {
 				result.setDate("horaSec", caso.getHoraSec());
 			}
@@ -1497,24 +1317,8 @@ public class CaseDAO {
 				result.setString("ejecutivoAnterior", caso.getEjecutivoAnterior());
 			}
 			
-			if (caso.getEntitlementid() != null) {
-				result.setString("entitlementid", caso.getEntitlementid());
-			}
-			
-			if (caso.getAssetid() != null) {
-				result.setString("assetid", caso.getAssetid());
-			}
-			
-			if (caso.getStopstartDate() != null) {
-				result.setDate("stopstartDate", caso.getStopstartDate());
-			}
-			
 			if (caso.getSuppliedCompany() != null) {
 				result.setString("suppliedCompany", caso.getSuppliedCompany());
-			}
-			
-			if (caso.getIsClosedonCreate() != null) {
-				result.setBoolean("isClosedonCreate", caso.getIsClosedonCreate());
 			}
 			
 			if (caso.getEstadoCondicionAgravante() != null) {
@@ -1527,10 +1331,6 @@ public class CaseDAO {
 			
 			if (caso.getSuministro() != null) {
 				result.setString("suministro", caso.getSuministro());
-			}
-			
-			if (caso.getIsSelfserviceClosed() != null) {
-				result.setBoolean("isSelfserviceClosed", caso.getIsSelfserviceClosed());
 			}
 			
 			if (caso.getParent() != null) {
@@ -1568,11 +1368,7 @@ public class CaseDAO {
 			if (caso.getHoraArribado() != null) {
 				result.setDate("horaArribado", caso.getHoraArribado());
 			}
-			
-			if (caso.getSlaexitDate() != null) {
-				result.setDate("slaexitDate", caso.getSlaexitDate());
-			}
-			
+
 			if (caso.getCanalOrigen() != null) {
 				result.setString("canalOrigen", caso.getCanalOrigen());
 			}
@@ -1580,17 +1376,9 @@ public class CaseDAO {
 			if (caso.getDescripcionEstado() != null) {
 				result.setString("descripcionEstado", caso.getDescripcionEstado());
 			}
-			
-			if (caso.getBusinessHoursId() != null) {
-				result.setString("businessHoursId", caso.getBusinessHoursId());
-			}
-			
+
 			if (caso.getSf4twitterAuthorExternalId() != null) {
 				result.setString("sf4twitterAuthorExternalId", caso.getSf4twitterAuthorExternalId());
-			}
-			
-			if (caso.getHasCommentSunReadByOwner() != null) {
-				result.setBoolean("hasCommentSunReadByOwner", caso.getHasCommentSunReadByOwner());
 			}
 			
 			if (caso.getHoraCerrado() != null) {
@@ -1625,20 +1413,12 @@ public class CaseDAO {
 				result.setString("peticion", caso.getPeticion());
 			}
 			
-			if (caso.getCommunityId() != null) {
-				result.setString("communityId", caso.getCommunityId());
-			}
-			
 			if (caso.getDireccion() != null) {
 				result.setString("direccion", caso.getDireccion());
 			}
 			
 			if (caso.getHoraAsignado() != null) {
 				result.setDate("horaAsignado", caso.getHoraAsignado());
-			}
-			
-			if (caso.getMilestoneStatus() != null) {
-				result.setString("milestoneStatus", caso.getMilestoneStatus());
 			}
 			
 			if (caso.getNombreContacto() != null) {

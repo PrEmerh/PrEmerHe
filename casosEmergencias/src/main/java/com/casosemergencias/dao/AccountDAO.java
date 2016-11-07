@@ -225,12 +225,12 @@ public class AccountDAO {
 				}
 			}
 
-			if (account.getApellidoMaterno() != null) {
+			if (account.getmotherslastname__c() != null) {
 				if (isFirst) {
-					query.append(" WHERE account.apellidoMaterno = :apellidoMaterno");
+					query.append(" WHERE account.motherslastname__c = :motherslastname__c");
 					isFirst = false;
 				} else {
-					query.append(" AND account.apellidoMaterno = :apellidoMaterno");
+					query.append(" AND account.motherslastname__c = :motherslastname__c");
 				}
 			}
 			
@@ -374,8 +374,8 @@ public class AccountDAO {
 				result.setString("apellidoPaterno", account.getApellidoPaterno());
 			}
 
-			if (account.getApellidoMaterno() != null) {
-				result.setString("apellidoMaterno", account.getApellidoMaterno());
+			if (account.getmotherslastname__c() != null) {
+				result.setString("motherslastname__c", account.getmotherslastname__c());
 			}
 
 			if (account.getTipoIdentidad() != null) {
@@ -520,7 +520,7 @@ public class AccountDAO {
 						}
 					}
 					
-					if ("tel_fono_principal__c".equals(columnInfo.getData())) {
+					if ("mainphone__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							query.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
 							query.append(" AND ");
@@ -528,7 +528,7 @@ public class AccountDAO {
 						}
 					}
 					
-					if ("email_principal__c".equals(columnInfo.getData())) {
+					if ("primaryemail__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							query.append("UPPER("+columnInfo.getData()+")" + " LIKE UPPER('%" + columnInfo.getSearchValue() +"%'"+")");
 							query.append(" AND ");
@@ -596,7 +596,7 @@ public class AccountDAO {
 						}
 					}
 					
-					if ("tel_fono_principal__c".equals(columnInfo.getData())) {
+					if ("mainphone__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
 							sqlQuery.append(" AND ");
@@ -604,7 +604,7 @@ public class AccountDAO {
 						}
 					}
 					
-					if ("email_principal__c".equals(columnInfo.getData())) {
+					if ("primaryemail__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
 							sqlQuery.append(" AND ");

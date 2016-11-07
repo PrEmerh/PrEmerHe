@@ -18,7 +18,7 @@ import org.hibernate.annotations.Where;
 import com.casosemergencias.model.Suministro;
 
 @Entity
-@Table(name = "salesforce.suministro__c")
+@Table(name = "salesforce.pointofdelivery__c")
 public class SuministroVO extends ObjectVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -78,7 +78,7 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	@Column(name = "comuna_reparto__c")
 	private String comunaReparto;
 
-	@Column(name = "comuna__c")
+	@Column(name = "municipality__c")
 	private String comuna;
 
 	@Column(name = "n_mero_medidor__c")
@@ -87,13 +87,13 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	@Column(name = "modelo_medidor__c")
 	private String modeloMedidor;
 
-	@Column(name = "n_mero_suministro__c")
+	@Column(name = "n_mero_pointofdelivery__c")
 	private String numeroSuministro;
 
 	@Column(name = "numero_de_transformador__c")
 	private String numeroTransformador;
 
-	@Column(name = "estado_del_suministro__c")
+	@Column(name = "estado_del_pointofdelivery__c")
 	private String estadoSuministro;
 
 	@Column(name = "marca_medidor__c")
@@ -105,10 +105,10 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	@Column(name = "propiedad_medidor__c")
 	private String propiedadMedidor;
 
-	@Column(name = "id_empresa__c")
+	@Column(name = "companyid__c")
 	private String idEmpresa;
 
-	@Column(name = "direccion__c")
+	@Column(name = "address__c")
 	private String direccion;
 
 	@Column(name = "run_rut__c")
@@ -165,7 +165,7 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	@Column(name = "tipo_de_segmento__c")
 	private String tipoSegmento;
 
-	@Column(name = "DireccionConcatenada__c")
+	@Column(name = "concatenatedaddress__c")
 	private String direccionConcatenada;
 
 	@Column(name = "tipoevento__c")
@@ -176,12 +176,12 @@ public class SuministroVO extends ObjectVO implements Serializable {
 
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "proceso_de_lectura__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@Where(clause = "objeto='suministro__c'  AND campo='Proceso_de_Lectura__c'")
+	@Where(clause = "objeto='pointofdelivery__c'  AND campo='Proceso_de_Lectura__c'")
 	private PickListsVO procesoLecturaPickList;
 
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "tipo_de_medida__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@Where(clause = "objeto='suministro__c'  AND campo='Tipo_de_medida__c'")
+	@Where(clause = "objeto='pointofdelivery__c'  AND campo='Tipo_de_medida__c'")
 	private PickListsVO tipoMedidaPickList;
 	
 	@OneToOne(fetch = FetchType.EAGER)
@@ -221,7 +221,7 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	private PickListsSumMedidaDisciplinaVO medidaDisciplinaPickList;
 	
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "id_empresa__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "companyid__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumEmpresaVO empresaPickList;
 
 	@OneToOne(fetch = FetchType.EAGER)
@@ -229,7 +229,7 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	private PickListsSumEstadoConVO estadoConexionPickList;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "estado_del_suministro__c", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@JoinColumn(name = "estado_del_pointofdelivery__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumEstadoSumVO estadoSuministroPickList;
 	
 	@OneToOne(fetch = FetchType.EAGER)
@@ -241,7 +241,7 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	private AccountVO cuentaJoin;
 	
 	@OneToOne(fetch=FetchType.LAZY, optional=true)
-	@JoinColumn(name="direccion__c", referencedColumnName="sfid", insertable = false, updatable=false)
+	@JoinColumn(name="address__c", referencedColumnName="sfid", insertable = false, updatable=false)
 	private DireccionVO dirSuministroJoin;
 
 	public SuministroVO() {

@@ -813,14 +813,14 @@ public class SuministroDAO {
 //							searchParamsCounter++;
 //						}
 //					}					
-//					if ("DireccionConcatenada__c".equals(columnInfo.getData())) {
+//					if ("concatenatedaddress__c".equals(columnInfo.getData())) {
 //						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 //							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 //							query.append(" AND ");
 //							searchParamsCounter++;
 //						}
 //					}					
-//					if ("comuna__c".equals(columnInfo.getData())) {
+//					if ("municipality__c".equals(columnInfo.getData())) {
 //						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 //							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 //							query.append(" AND ");
@@ -958,7 +958,7 @@ public class SuministroDAO {
 //						}
 //					}
 //					
-//					if ("DireccionConcatenada__c".equals(columnInfo.getData())) {
+//					if ("concatenatedaddress__c".equals(columnInfo.getData())) {
 //						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 //							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 //							query.append(" AND ");
@@ -966,7 +966,7 @@ public class SuministroDAO {
 //						}
 //					}
 //					
-//					if ("comuna__c".equals(columnInfo.getData())) {
+//					if ("municipality__c".equals(columnInfo.getData())) {
 //						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 //							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 //							query.append(" AND ");
@@ -1030,7 +1030,7 @@ public class SuministroDAO {
 						}
 					}
 					
-					if ("DireccionConcatenada__c".equals(columnInfo.getData())) {
+					if ("concatenatedaddress__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							sqlQuery.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 							sqlQuery.append(" AND ");
@@ -1038,7 +1038,7 @@ public class SuministroDAO {
 						}
 					}
 									
-					if ("comuna__c".equals(columnInfo.getData())) {
+					if ("municipality__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							sqlQuery.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 							sqlQuery.append(" AND ");

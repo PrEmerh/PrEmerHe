@@ -10,7 +10,7 @@ public class AccountView extends ObjectView {
 	/* SFID */ private String sfid;
 	/* Nombre de la cuenta */ private String name;
 	/* Apellido Paterno */ private String apellidoPaterno;
-	/* Apellido Materno */ private String apellidoMaterno;
+	/* Apellido Materno */ private String motherslastname__c;
 	/* Tipo de Identidad */ private String tipoIdentidad;
 	/* RUT empresa */ private String parentRutEmpresa;
 	/* RUN */ private String accountRun;
@@ -77,12 +77,12 @@ public class AccountView extends ObjectView {
 		this.apellidoPaterno = apellidoPaterno;
 	}
 
-	public String getApellidoMaterno() {
-		return apellidoMaterno;
+	public String getmotherslastname__c() {
+		return motherslastname__c;
 	}
 
-	public void setApellidoMaterno(String apellidoMaterno) {
-		this.apellidoMaterno = apellidoMaterno;
+	public void setmotherslastname__c(String motherslastname__c) {
+		this.motherslastname__c = motherslastname__c;
 	}
 
 	public String getTipoIdentidad() {

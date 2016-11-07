@@ -44,8 +44,8 @@ public class DireccionController {
 		
 		List<PickListView> picklistsComuna = new ArrayList<PickListView>();
 		
-		String objetoPicklistComuna = "Direccion__c";
-		String campoPicklistComuna = "Comuna__c";
+		String objetoPicklistComuna = "address__c";
+		String campoPicklistComuna = "municipality__c";
 		
 		List<PickList> picklistsLogic = picklistService.getPickListPorObjetoYCampo(objetoPicklistComuna, campoPicklistComuna);
 		
@@ -105,9 +105,9 @@ public class DireccionController {
 			jsonResult = new JSONObject();
 			jsonResult.put("name", direccion.getName());
 			jsonResult.put("calle", direccion.getCalle());
-			jsonResult.put("altura__c", direccion.getNumero());
-			jsonResult.put("literalcomuna__c", direccion.getLiteralComuna());
-			jsonResult.put("direccionconcatenada__c", direccion.getDireccionConcatenada());
+			jsonResult.put("number__c", direccion.getNumero());
+			jsonResult.put("literalmunicipality__c", direccion.getLiteralComuna());
+			jsonResult.put("concatenatedaddress__c", direccion.getDireccionConcatenada());
 			jsonResult.put("sfid", direccion.getSfid());
 			array.put(jsonResult);
 		}

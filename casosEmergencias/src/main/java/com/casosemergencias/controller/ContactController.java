@@ -157,7 +157,7 @@ public class ContactController {
 		
 		//Setteamos picklist del campo comuna y region del cuadro de dialogo "Asociar suministro"
 		SuministroView suministroViewDial =new SuministroView();
-		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("Direccion__c");
+		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("address__c");
 		suministroViewDial.setMapComuna(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_SUMINISTRO_COMUNA, true));
 		suministroViewDial.setMapRegion(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_SUMINISTRO_REGION, true));
 

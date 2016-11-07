@@ -16,7 +16,7 @@ public class Contacto extends ObjectLogic {
 	/*Nombre*/                              private String name;
 	/*Firstname*/ 							private String firstname;
 	/*Apellido Paterno*/                    private String apellidoPaterno;
-	/*Apellido Materno*/                    private String apellidoMaterno;
+	/*Apellido Materno*/                    private String motherslastname__c;
 	/*Tipo de Identidad*/                   private String tipoIdentidad;
 	/*AccounRun*/                           private String accountRun;
 	/*Run*/									private String run;
@@ -107,12 +107,12 @@ public class Contacto extends ObjectLogic {
 		this.apellidoPaterno = apellidoPaterno;
 	}
 
-	public String getApellidoMaterno() {
-		return apellidoMaterno;
+	public String getmotherslastname__c() {
+		return motherslastname__c;
 	}
 
-	public void setApellidoMaterno(String apellidoMaterno) {
-		this.apellidoMaterno = apellidoMaterno;
+	public void setmotherslastname__c(String motherslastname__c) {
+		this.motherslastname__c = motherslastname__c;
 	}
 
 	public String getTipoIdentidad() {

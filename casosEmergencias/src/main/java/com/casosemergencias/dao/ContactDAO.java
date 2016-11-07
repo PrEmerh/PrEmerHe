@@ -188,12 +188,12 @@ public class ContactDAO {
 				}
 			}
 			
-			if (contact.getApellidoMaterno() != null) {
+			if (contact.getmotherslastname__c() != null) {
 				if (isFirst) {
-					query.append(" WHERE contact.apellidoMaterno = :apellidoMaterno");
+					query.append(" WHERE contact.motherslastname__c = :motherslastname__c");
 					isFirst = false;
 				} else {
-					query.append(" AND contact.apellidoMaterno = :apellidoMaterno");
+					query.append(" AND contact.motherslastname__c = :motherslastname__c");
 				}
 			}
 
@@ -362,8 +362,8 @@ public class ContactDAO {
 				result.setString("tipoCuentaAsociado", contact.getTipoCuentaAsociado());
 			}
 			
-			if (contact.getApellidoMaterno() != null) {
-				result.setString("apellidoMaterno", contact.getApellidoMaterno());
+			if (contact.getmotherslastname__c() != null) {
+				result.setString("motherslastname__c", contact.getmotherslastname__c());
 			}
 			
 			if (contact.getTipoIdentidad() != null) {
