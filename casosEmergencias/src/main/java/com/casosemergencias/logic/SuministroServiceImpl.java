@@ -12,10 +12,14 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.casosemergencias.dao.AccountDAO;
+import com.casosemergencias.dao.AssetDAO;
 import com.casosemergencias.dao.CaseDAO;
 import com.casosemergencias.dao.CasosReiteradosDAO;
 import com.casosemergencias.dao.RelacionActivoContactoDAO;
 import com.casosemergencias.dao.SuministroDAO;
+import com.casosemergencias.dao.vo.AccountVO;
+import com.casosemergencias.dao.vo.AssetVO;
 import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.dao.vo.CasosReiteradosVO;
 import com.casosemergencias.dao.vo.RelacionActivoContactoVO;
@@ -26,6 +30,7 @@ import com.casosemergencias.logic.ws.responses.ConsultaDatosSuministroWSResponse
 import com.casosemergencias.logic.ws.responses.GetEventosRelacionadosWSResponse;
 import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
+import com.casosemergencias.model.Cuenta;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.constants.Constantes;
@@ -54,6 +59,12 @@ public class SuministroServiceImpl implements SuministroService{
 	
 	@Autowired
 	private CasosReiteradosDAO casoReiteradosDAO;
+	
+	@Autowired
+	private AssetDAO assetDAO;
+	
+	@Autowired
+	private AccountDAO accountDAO;
 	
 	@Override
 	public List<Suministro> readAllSuministros() {
@@ -138,7 +149,20 @@ public class SuministroServiceImpl implements SuministroService{
 			List<RelacionActivoContactoVO> listaRelacionVO = relacionDAO.getContactosRelacionadosPorSuministro(sfid);
 			List<Contacto> contactosRelacionado = parseaListaContactosRel(listaRelacionVO);
 			suministro.setContactosRelacionados(contactosRelacionado);
-			
+				//Metodo para obtener cuenta relacionada a través del objeto Asset
+				List<AssetVO> listaAssetVO = assetDAO.readAssetBySuministroid(sfid);
+				if(listaAssetVO!=null && listaAssetVO.size()==1){
+					AssetVO assetVO=listaAssetVO.get(0);
+					String accountSfid=assetVO.getSfid();
+					if(accountSfid!=null){
+						AccountVO accountVO= accountDAO.readAccountBySfid(accountSfid, null, null, null);
+						if(accountVO!=null){
+								Cuenta cuenta=new Cuenta();
+								ParserModelVO.parseDataModelVO(accountVO, cuenta);
+								suministro.setCuentaJoin(cuenta);
+						}
+					}		
+				}			
 			//Se puede añadir dentro del for el calculo de casos abiertos
 			if(casoRelacionado != null && !casoRelacionado.isEmpty() && casoRelacionado.size()>0){
 				
