@@ -118,6 +118,10 @@
 	                <value>com.casosemergencias.dao.vo.FieldLabelVO</value>
 	               	<value>com.casosemergencias.dao.vo.GroupVO</value>   
 	               	<value>com.casosemergencias.dao.vo.CasosReiteradosVO</value>                 
+	               	<value>com.casosemergencias.dao.vo.StreetVO</value>
+	               	<value>com.casosemergencias.dao.vo.PickListsStreetMunicipalityVO</value>
+	               	<value>com.casosemergencias.dao.vo.PickListsStreetRegionVO</value>
+	               	<value>com.casosemergencias.dao.vo.PickListsStreetTypeVO</value>
 	            </list>
 		  </property>
 		  <property name="hibernateProperties">

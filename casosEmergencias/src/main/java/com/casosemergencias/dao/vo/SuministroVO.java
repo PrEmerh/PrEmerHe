@@ -123,9 +123,6 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	@Column(name = "connectiontype__c")
 	private String tipoConexion;
 
-	@Column(name = "pointofdeliveryaddress__c")
-	private String direccionCliente;
-
 	@Column(name = "electrodependant__c")
 	private String electrodependiente;
 
@@ -238,9 +235,9 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	private PickListsSumElectrodependienteVO electrodependientePickList;
 	
 	/*TODO:FALTA*/
-	@OneToOne(fetch = FetchType.LAZY)
+	/*@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "cuenta__c", referencedColumnName = "sfid", insertable = false, updatable = false)
-	private AccountVO cuentaJoin;
+	private AccountVO cuentaJoin;*/
 	
 	@OneToOne(fetch=FetchType.LAZY, optional=true)
 	@JoinColumn(name="detailaddress__c", referencedColumnName="sfid", insertable = false, updatable=false)
@@ -295,7 +292,6 @@ public class SuministroVO extends ObjectVO implements Serializable {
 		this.nombreDuenoBoleta = nombreDuenoBoleta;
 		this.bloque = bloque;
 		this.tipoConexion = tipoConexion;
-		this.direccionCliente = direccionCliente;
 		this.electrodependiente = electrodependiente;
 		this.medidaDisciplina = medidaDisciplina;
 		this.horarioRacionamiento = horarioRacionamiento;
@@ -571,14 +567,6 @@ public class SuministroVO extends ObjectVO implements Serializable {
 		this.tipoConexion = tipoConexion;
 	}
 
-	public String getDireccionCliente() {
-		return direccionCliente;
-	}
-
-	public void setDireccionCliente(String direccionCliente) {
-		this.direccionCliente = direccionCliente;
-	}
-
 	public String getElectrodependiente() {
 		return electrodependiente;
 	}
@@ -762,7 +750,7 @@ public class SuministroVO extends ObjectVO implements Serializable {
 		return suministro;
 	}
 
-	public AccountVO getCuentaJoin() {
+	/*public AccountVO getCuentaJoin() {
 		return cuentaJoin;
 	}
 
@@ -772,7 +760,7 @@ public class SuministroVO extends ObjectVO implements Serializable {
 
 	public DireccionVO getDirSuministroJoin() {
 		return dirSuministroJoin;
-	}
+	}*/
 
 	public void setDirSuministroJoin(DireccionVO dirSuministroJoin) {
 		this.dirSuministroJoin = dirSuministroJoin;

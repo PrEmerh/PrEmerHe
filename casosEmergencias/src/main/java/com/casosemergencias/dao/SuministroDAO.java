@@ -414,15 +414,6 @@ public class SuministroDAO {
 					query.append(" AND suministro.tipoConexion = :tipoConexion");
 				}
 			}
-
-			if (suministro.getDireccionCliente() != null) {
-				if (isFirst) {
-					query.append(" WHERE suministro.direccionCliente = :direccionCliente");
-					isFirst = false;
-				} else {
-					query.append(" AND suministro.direccionCliente = :direccionCliente");
-				}
-			}
 			
 			if (suministro.getElectrodependiente() != null) {
 				if (isFirst) {
@@ -656,10 +647,6 @@ public class SuministroDAO {
 				result.setString("tipoConexion", suministro.getTipoConexion());
 			}
 
-			if (suministro.getDireccionCliente() != null) {
-				result.setString("direccionCliente", suministro.getDireccionCliente());
-			}
-			
 			if (suministro.getElectrodependiente() != null) {
 				result.setString("electrodependiente", suministro.getElectrodependiente());
 			}

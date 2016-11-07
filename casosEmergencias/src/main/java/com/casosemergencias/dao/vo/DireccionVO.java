@@ -57,10 +57,8 @@ public class DireccionVO extends ObjectVO implements Serializable {
 	
 	@Column(name = "street_type__c")
 	private String tipoCalle;
-	
-	/*TODO:NUEVO OBJETO
-	 * streetmd__c*/
-	@Column(name = "calle__c")
+
+	@Column(name = "streetmd__c")
 	private String calle;
 	
 	@Column(name = "number__c")
@@ -88,10 +86,14 @@ public class DireccionVO extends ObjectVO implements Serializable {
 	@WhereJoinTable(clause = "campo = 'Regi_n__c' and objeto = 'Direccion__c'")
 	private PickListsDireccionRegionVO regionPickList;
 	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "street__c", referencedColumnName = "sfid", insertable = false, updatable = false)
+	private StreetVO calleJoin;
+	
 	public DireccionVO(Boolean isdeleted, Date systemmodstamp, String hcLastop, String hcError, Integer id, String sfid,
 			Date createddate, String region, String comuna, String tipoCalle, String calle, String numero,
 			String departamento, String name, String direccionConcatenada, String esquina,
-			PickListsDireccionTipoCalleVO tipoCallePickList, PickListsDireccionRegionVO regionPickList) {
+			PickListsDireccionTipoCalleVO tipoCallePickList, PickListsDireccionRegionVO regionPickList, StreetVO calleJoin) {
 		super();
 		this.isDeleted = isdeleted;
 		this.systemmodstamp = systemmodstamp;
@@ -111,6 +113,7 @@ public class DireccionVO extends ObjectVO implements Serializable {
 		this.esquina = esquina;
 		this.tipoCallePickList = tipoCallePickList;
 		this.regionPickList = regionPickList;
+		this.calleJoin = calleJoin;
 	}
 
 	public DireccionVO() {
@@ -285,5 +288,13 @@ public class DireccionVO extends ObjectVO implements Serializable {
 			result = this.getRegionPickList().getValor();
 		}
 		return result;
+	}
+
+	public StreetVO getCalleJoin() {
+		return calleJoin;
+	}
+
+	public void setCalleJoin(StreetVO calleJoin) {
+		this.calleJoin = calleJoin;
 	}
 }
