@@ -15,10 +15,10 @@
 						<label for="filtroDireccion">Region</label>
 					</td>
 					<td class="tablaAsociarSuministroTextos">					
-						<select id="idRegionDir" name= "mapRegion">
-							<c:forEach items="${suministroDial.mapRegion}" var="region">
-								<option value="${region.key}">								
-									${region.value}								
+						<select id="idRegionDir" name= "region">
+							<c:forEach items="${suministroDial.mapRegion}" var="reg">
+								<option value="${reg.key}" >								
+									${reg.value}								
 								</option>
 							</c:forEach>
 						</select>
@@ -79,6 +79,14 @@
 					</td>
 					<td class="tablaAsociarSuministroTextos">
 						<input type="text" name="direccionConDir" value="" id="idDireccionCon" class="buttontext">
+					</td>
+				</tr>
+				<tr>
+					<td class="tablaAsociarSuministroEtiquetas">
+						<label for="filtroComuna">Comuna</label>
+					</td>
+					<td class="tablaAsociarSuministroTextos">
+						<input type="text" name="comunaDir" value="" id="idComuna" class="buttontext">
 					</td>
 				</tr>
 				<tr>

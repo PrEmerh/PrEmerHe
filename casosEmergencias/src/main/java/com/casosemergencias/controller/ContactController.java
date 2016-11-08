@@ -18,6 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -29,11 +30,14 @@ import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.ContactView;
 import com.casosemergencias.controller.views.DireccionView;
 import com.casosemergencias.controller.views.SuministroView;
+import com.casosemergencias.dao.vo.DireccionVO;
 import com.casosemergencias.logic.ContactService;
 import com.casosemergencias.logic.DireccionService;
 import com.casosemergencias.logic.PickListsService;
 import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.Contacto;
+import com.casosemergencias.model.Direccion;
+import com.casosemergencias.model.Street;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.PickListByField;
@@ -408,4 +412,39 @@ public class ContactController {
 		
 		return jsonObject.toString();
 	}
+	
+	
+	@RequestMapping(value = "/private/crearCasoPorDireccion", method = RequestMethod.GET)
+	public String crearCasoPorDireccion(HttpServletRequest request) {
+		
+		String contactSfid= request.getParameterValues("sfid")[0];
+		
+		Street street= new Street();
+		Direccion direccion = new Direccion();
+				
+		String region= request.getParameterValues("region")[0];
+		String comuna= request.getParameterValues("comunaDir")[0];
+		String nombre= request.getParameterValues("calleDir")[0];
+		String tipoCalle= request.getParameterValues("tipoCalleDir")[0];
+		
+		street.setRegion(region);	
+		street.setMunicipality(comuna);
+		street.setName(nombre);
+		street.setStreetType(tipoCalle);
+				
+		String numero= request.getParameterValues("numeroName")[0];
+		String departamento= request.getParameterValues("departamentoDir")[0];
+		
+		direccion.setNumero(numero);
+		direccion.setDepartamento(departamento);
+
+		
+		//Enviamos datos de Strees y Address a salesforce.
+		 
+		/*direccionService.sendDirectionToSF(direccion);*/
+		
+		
+		return null;
+	}
+	
 }

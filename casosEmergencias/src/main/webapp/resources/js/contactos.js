@@ -250,7 +250,10 @@ function cargarTablaDirecciones(){
 	                     	 }if (full.direccionConcatenada != null) {
 	                     		 direccionConcatenada  = full.direccionConcatenada;
 	                     	 }
-	                    	 return '<a href="javaScript:{agregarDireccion('+"'" +calle +"'"+","+"'"+tipoCalle+"'"+","+"'"+direccionConcatenada+"'"+')}">'+ calle  + '</a>';
+	                     	  if (full.comuna != null) {
+	                     		 comuna  = full.comuna;
+	                     	 }
+	                    	 return '<a href="javaScript:{agregarDireccion('+"'" +calle +"'"+","+"'"+tipoCalle+"'"+","+"'"+direccionConcatenada+"'"+","+"'"+comuna+"'"+')}">'+ calle  + '</a>';
 	                    }
 	        }]
 //	      	,
@@ -292,10 +295,11 @@ function cargarTablaDirecciones(){
 	}
 }
 
-function agregarDireccion(direccion,tipoCalle,direccionConcatenada){
+function agregarDireccion(direccion,tipoCalle,direccionConcatenada,comuna){
 	document.getElementById("idCalleDir").value=direccion;
 	document.getElementById("idTipoCalleDir").value=tipoCalle;
 	document.getElementById("idDireccionCon").value=direccionConcatenada;
+	document.getElementById("idComuna").value=comuna;
 }
 
 
