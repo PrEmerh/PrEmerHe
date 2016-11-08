@@ -295,7 +295,6 @@ public class SuministroVO extends ObjectVO implements Serializable {
 		this.nombreDuenoBoleta = nombreDuenoBoleta;
 		this.bloque = bloque;
 		this.tipoConexion = tipoConexion;
-		/*this.direccionCliente = direccionCliente;*/
 		this.electrodependiente = electrodependiente;
 		this.medidaDisciplina = medidaDisciplina;
 		this.horarioRacionamiento = horarioRacionamiento;
@@ -566,7 +565,6 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	public String getTipoConexion() {
 		return tipoConexion;
 	}
-
 	public void setTipoConexion(String tipoConexion) {
 		this.tipoConexion = tipoConexion;
 	}
