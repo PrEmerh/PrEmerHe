@@ -57,10 +57,6 @@ public class CaseCommentVO extends ObjectVO implements Serializable {
 	@Column(name = "commentbody")
 	private String comment;
 	
-	/*TODO: FALTA EN SF*/
-	@Column(name = "creatorname")
-	private String creatorname;
-	
 	@Column(name = "lastmodifieddate")
 	private Date lastmodifieddate;
 	
@@ -82,7 +78,7 @@ public class CaseCommentVO extends ObjectVO implements Serializable {
 
 	public CaseCommentVO(Boolean isDeleted, String hcLastop, String hcError, Integer id, String sfid,
 			String createdbyid, Date createddate, Boolean ispublished, String caseid, String comment,
-			String creatorname, Date lastmodifieddate, String lastmodifiedbyid,UserVO userJoinComment,UserVO userJoinModifyComment) {
+			Date lastmodifieddate, String lastmodifiedbyid,UserVO userJoinComment,UserVO userJoinModifyComment) {
 		super();
 		this.isDeleted = isDeleted;
 		this.hcLastop = hcLastop;
@@ -94,7 +90,6 @@ public class CaseCommentVO extends ObjectVO implements Serializable {
 		this.ispublished = ispublished;
 		this.caseid = caseid;
 		this.comment = comment;
-		this.creatorname = creatorname;
 		this.lastmodifieddate = lastmodifieddate;
 		this.lastmodifiedbyid = lastmodifiedbyid;
 		this.userJoinCreateComment=userJoinComment;
@@ -183,14 +178,6 @@ public class CaseCommentVO extends ObjectVO implements Serializable {
 
 	public void setComment(String comment) {
 		this.comment = comment;
-	}
-
-	public String getCreatorname() {
-		return creatorname;
-	}
-
-	public void setCreatorname(String creatorname) {
-		this.creatorname = creatorname;
 	}
 
 	public Date getLastmodifieddate() {

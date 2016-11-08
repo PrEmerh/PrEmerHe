@@ -144,33 +144,17 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	@Column(name = "distributionaddress__c")
 	private String direccionBoleta;
 
-	/*TODO:FALTA*/
-	@Column(name = "cuenta__c")
-	private String cuenta;
-
 	@Column(name = "electricalsubstationconnection__c")
 	private String subestacionElectricaConexion;
 
 	@Column(name = "route__c")
 	private String ruta;
-
-	/*TODO:FALTA*/
-	@Column(name = "tipo_de_cuenta__c")
-	private String tipoCuenta;
-	
-	/*TODO:FALTA*/
-	@Column(name = "run_rut__c")
-	private String runRut;
 	
 	@Column(name = "segmenttype__c")
 	private String tipoSegmento;
 
 	@Column(name = "pointofdeliveryaddress__c")
 	private String direccionConcatenada;
-
-	/*TODO:FALTA*/
-	@Column(name = "suministroafectado__c")
-	private Boolean suministroAfectado;
 
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "readingprocess__c", referencedColumnName = "codigo", insertable = false, updatable = false)
@@ -234,11 +218,6 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	@JoinColumn(name = "electrodependant__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsSumElectrodependienteVO electrodependientePickList;
 	
-	/*TODO:FALTA*/
-	/*@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "cuenta__c", referencedColumnName = "sfid", insertable = false, updatable = false)
-	private AccountVO cuentaJoin;*/
-	
 	@OneToOne(fetch=FetchType.LAZY, optional=true)
 	@JoinColumn(name="detailaddress__c", referencedColumnName="sfid", insertable = false, updatable=false)
 	private DireccionVO dirSuministroJoin;
@@ -251,12 +230,12 @@ public class SuministroVO extends ObjectVO implements Serializable {
 			String tipoLectura, String procesoLectura, String estadoConexion, String tipoMedida, String comunaReparto,
 			String comuna, String numeroMedidor, String modeloMedidor, String numeroSuministro,
 			String numeroTransformador, String estadoSuministro, String marcaMedidor, Date fechaCorte,
-			String propiedadMedidor, String idEmpresa, String direccion, String runRut, Boolean pagoEnProceso,
+			String propiedadMedidor, String idEmpresa, String direccion, Boolean pagoEnProceso,
 			String nombreDuenoBoleta, String bloque, String tipoConexion, String direccionCliente,
 			String electrodependiente, String medidaDisciplina, String horarioRacionamiento, Double casosReiterados,
-			String tarifa, String alimentador, String direccionBoleta, String cuenta,
-			String subestacionElectricaConexion, String ruta, String tipoCuenta, String tipoSegmento,
-			String direccionConcatenada, String tipoEvento, Boolean suministroAfectado,
+			String tarifa, String alimentador, String direccionBoleta,
+			String subestacionElectricaConexion, String ruta, String tipoSegmento,
+			String direccionConcatenada, String tipoEvento,
 			PickListsSumEmpresaVO empresaPickList, PickListsSumEstadoConVO estadoConexionPickList,
 			PickListsSumEstadoSumVO estadoSuministroPickList,PickListsSumElectrodependienteVO electrodependientePickList) {
 		super();
@@ -287,7 +266,6 @@ public class SuministroVO extends ObjectVO implements Serializable {
 		this.propiedadMedidor = propiedadMedidor;
 		this.idEmpresa = idEmpresa;
 		this.direccion = direccion;
-		this.runRut = runRut;
 		this.pagoEnProceso = pagoEnProceso;
 		this.nombreDuenoBoleta = nombreDuenoBoleta;
 		this.bloque = bloque;
@@ -299,13 +277,10 @@ public class SuministroVO extends ObjectVO implements Serializable {
 		this.tarifa = tarifa;
 		this.alimentador = alimentador;
 		this.direccionBoleta = direccionBoleta;
-		this.cuenta = cuenta;
 		this.subestacionElectricaConexion = subestacionElectricaConexion;
 		this.ruta = ruta;
-		this.tipoCuenta = tipoCuenta;
 		this.tipoSegmento = tipoSegmento;
 		this.direccionConcatenada = direccionConcatenada;
-		this.suministroAfectado = suministroAfectado;
 		this.empresaPickList = empresaPickList;
 		this.estadoConexionPickList = estadoConexionPickList;
 		this.estadoSuministroPickList = estadoSuministroPickList;
@@ -527,14 +502,6 @@ public class SuministroVO extends ObjectVO implements Serializable {
 		this.direccion = direccion;
 	}
 
-	public String getRunRut() {
-		return runRut;
-	}
-
-	public void setRunRut(String runRut) {
-		this.runRut = runRut;
-	}
-
 	public Boolean getPagoEnProceso() {
 		return pagoEnProceso;
 	}
@@ -623,14 +590,6 @@ public class SuministroVO extends ObjectVO implements Serializable {
 		this.direccionBoleta = direccionBoleta;
 	}
 
-	public String getCuenta() {
-		return cuenta;
-	}
-
-	public void setCuenta(String cuenta) {
-		this.cuenta = cuenta;
-	}
-
 	public String getSubestacionElectricaConexion() {
 		return subestacionElectricaConexion;
 	}
@@ -647,14 +606,6 @@ public class SuministroVO extends ObjectVO implements Serializable {
 		this.ruta = ruta;
 	}
 
-	public String getTipoCuenta() {
-		return tipoCuenta;
-	}
-
-	public void setTipoCuenta(String tipoCuenta) {
-		this.tipoCuenta = tipoCuenta;
-	}
-
 	public String getTipoSegmento() {
 		return tipoSegmento;
 	}
@@ -669,14 +620,6 @@ public class SuministroVO extends ObjectVO implements Serializable {
 
 	public void setDireccionConcatenada(String direccionConcatenada) {
 		this.direccionConcatenada = direccionConcatenada;
-	}
-	
-	public Boolean getSuministroAfectado() {
-		return suministroAfectado;
-	}
-
-	public void setSuministroAfectado(Boolean suministroAfectado) {
-		this.suministroAfectado = suministroAfectado;
 	}
 
 	public PickListsSumEmpresaVO getEmpresaPickList() {

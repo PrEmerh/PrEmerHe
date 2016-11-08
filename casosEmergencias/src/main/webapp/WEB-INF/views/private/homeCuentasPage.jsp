@@ -76,7 +76,7 @@
 		           		<th width="33%"><s:message code="homeCuentas_table_head_name"/></th>
 			            <th width="32%"><s:message code="homeCuentas_table_head_phone"/></th>
 			            <th width="33%"><s:message code="homeCuentas_table_head_emailPrincipal"/></th>
-			            <th width="1%" hidden="true">masterrecord__identitynumber__c</th>
+			            <th width="1%" hidden="true">identitynumber__c</th>
 			            <th width="1%" hidden="true">sfid</th>
 	            	</tr>
         		</thead>

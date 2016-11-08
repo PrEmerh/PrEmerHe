@@ -21,11 +21,11 @@ $(document).ready(function() {
         	 }
        	},
        	"columns": [
-       	            {"data": "name", 					"width": "33%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
-       	            {"data": "mainphone__c",	"width": "32%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
+       	            {"data": "name", 				"width": "33%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
+       	            {"data": "mainphone__c",		"width": "32%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
        	            {"data": "primaryemail__c",		"width": "33%", "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": true},
-       	            {"data": "run", 	"width": "1%",  "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": false},
-       	            {"data": "sfid", 					"width": "1%", 	"defaultContent": "", "searchable": false, 	"orderable": false,	"visible": false}
+       	            {"data": "identitynumber__c",	"width": "1%",  "defaultContent": "", "searchable": true, 	"orderable": true,	"visible": false},
+       	            {"data": "sfid", 				"width": "1%", 	"defaultContent": "", "searchable": false, 	"orderable": false,	"visible": false}
 		],
 		"columnDefs": [
                     {"targets": 0,

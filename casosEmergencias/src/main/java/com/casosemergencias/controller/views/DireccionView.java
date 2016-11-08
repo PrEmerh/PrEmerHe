@@ -21,6 +21,8 @@ public class DireccionView extends ObjectView {
 	private String labelTipoCallePickList;
 	private String labelRegionPickList;
 	
+	private StreetView calleJoin;
+	
 	/* Getters y Setters */
 	public Integer getId() {
 		return id;
@@ -111,5 +113,11 @@ public class DireccionView extends ObjectView {
 	}
 	public void setLabelRegionPickList(String labelRegionPickList) {
 		this.labelRegionPickList = labelRegionPickList;
+	}
+	public StreetView getCalleJoin() {
+		return calleJoin;
+	}
+	public void setCalleJoin(StreetView calleJoin) {
+		this.calleJoin = calleJoin;
 	}
 }

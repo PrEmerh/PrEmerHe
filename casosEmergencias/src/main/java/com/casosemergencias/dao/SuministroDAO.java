@@ -370,15 +370,6 @@ public class SuministroDAO {
 				}
 			}
 
-			if (suministro.getRunRut() != null) {
-				if (isFirst) {
-					query.append(" WHERE suministro.runRut = :runRut");
-					isFirst = false;
-				} else {
-					query.append(" AND suministro.runRut = :runRut");
-				}
-			}
-			
 			if (suministro.getPagoEnProceso() != null) {
 				if (isFirst) {
 					query.append(" WHERE suministro.pagoEnProceso = :pagoEnProceso");
@@ -478,15 +469,6 @@ public class SuministroDAO {
 				}
 			}
 			
-			if (suministro.getCuenta() != null) {
-				if (isFirst) {
-					query.append(" WHERE suministro.cuenta = :cuenta");
-					isFirst = false;
-				} else {
-					query.append(" AND suministro.cuenta = :cuenta");
-				}
-			}
-			
 			if (suministro.getSubestacionElectricaConexion() != null) {
 				if (isFirst) {
 					query.append(" WHERE suministro.subestacionElectricaConexion = :subestacionElectricaConexion");
@@ -502,15 +484,6 @@ public class SuministroDAO {
 					isFirst = false;
 				} else {
 					query.append(" AND suministro.ruta = :ruta");
-				}
-			}
-
-			if (suministro.getTipoCuenta() != null) {
-				if (isFirst) {
-					query.append(" WHERE suministro.tipoCuenta = :tipoCuenta");
-					isFirst = false;
-				} else {
-					query.append(" AND suministro.tipoCuenta = :tipoCuenta");
 				}
 			}
 			
@@ -627,10 +600,6 @@ public class SuministroDAO {
 				result.setString("direccion", suministro.getDireccion());
 			}
 
-			if (suministro.getRunRut() != null) {
-				result.setString("runRut", suministro.getRunRut());
-			}
-			
 			if (suministro.getPagoEnProceso() != null) {
 				result.setBoolean("pagoEnProceso", suministro.getPagoEnProceso());
 			}
@@ -675,20 +644,12 @@ public class SuministroDAO {
 				result.setString("direccionBoleta", suministro.getDireccionBoleta());
 			}
 			
-			if (suministro.getCuenta() != null) {
-				result.setString("cuenta", suministro.getCuenta());
-			}
-			
 			if (suministro.getSubestacionElectricaConexion() != null) {
 				result.setString("subestacionElectricaConexion", suministro.getSubestacionElectricaConexion());
 			}
 			
 			if (suministro.getRuta() != null) {
 				result.setString("ruta", suministro.getRuta());
-			}
-
-			if (suministro.getTipoCuenta() != null) {
-				result.setString("tipoCuenta", suministro.getTipoCuenta());
 			}
 			
 			if (suministro.getTipoSegmento() != null) {
@@ -916,82 +877,6 @@ public class SuministroDAO {
 	    return null;
 	}
 	
-//	/**
-//	 * Devuelve una lista de suministros utilizando los parametros del datatable
-//	 * 
-//	 * @return
-//	 */
-//	@SuppressWarnings("unchecked")
-//	public List<SuministroVO> readSuministroAsociarContacto(DataTableProperties dataTableProperties) {
-//		logger.debug("--- Inicio -- readSuministroDataTable ---");
-//		
-//		Session session = sessionFactory.openSession();
-//		
-//		int searchParamsCounter = 0;
-//				
-//		try {
-//			StringBuilder query = new StringBuilder("FROM SuministroVO suministro "
-//					+ "LEFT JOIN FETCH suministro.estadoConexionPickList estadoConexion "
-//					+ "LEFT JOIN FETCH suministro.estadoSuministroPickList estadoSuministro ");
-//			
-//			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
-//				query.append(" WHERE ");
-//				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
-//					if ("name".equals(columnInfo.getData())) {
-//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-//							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
-//							query.append(" AND ");
-//							searchParamsCounter++;
-//						}
-//					}
-//					
-//					if ("concatenatedaddress__c".equals(columnInfo.getData())) {
-//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-//							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
-//							query.append(" AND ");
-//							searchParamsCounter++;
-//						}
-//					}
-//					
-//					if ("municipality__c".equals(columnInfo.getData())) {
-//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-//							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
-//							query.append(" AND ");
-//							searchParamsCounter++;
-//						}
-//					}
-//				}
-//			}
-//			
-//			if (searchParamsCounter == 0) {
-//				query.setLength(query.length() - 7);
-//			} else {
-//				query.setLength(query.length() - 5);
-//			}
-//			
-//			if (order != null && !"".equals(order) && dirOrder != null && !"".equals(dirOrder)) {
-//				if("estadoConexion".equals(order) || "estadoSuministro".equals(order)){
-//					query.append(" ORDER BY " + order + ".valor " + dirOrder);
-//				}else{
-//					query.append(" ORDER BY " + order + " " + dirOrder);
-//				}
-//			}
-//			
-//			Query result = session.createQuery(query.toString()).setFirstResult(numStart).setMaxResults(numLength);
-//			List<SuministroVO> suministroList = result.list();
-//
-//			logger.debug("--- Fin -- readSuministroDataTable ---");
-//			
-//			return suministroList;
-//	    } catch (HibernateException e) {
-//	    	logger.error("--- readSuministroDataTable ", e); 
-//	    	logger.error("--- Fin -- readSuministroDataTable ---");
-//	    } finally {
-//	    	session.close(); 
-//	    }
-//	    return null;
-//	}
-	
 	/**
 	 * Devuelve el número de direcciones utilizando los parametros del datatable
 	 * 
@@ -1017,14 +902,14 @@ public class SuministroDAO {
 						}
 					}
 					
-					if ("concatenatedaddress__c".equals(columnInfo.getData())) {
+					if ("pointofdeliveryaddress__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							sqlQuery.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 							sqlQuery.append(" AND ");
 							searchParamsCounter++;
 						}
 					}
-									
+							
 					if ("municipality__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							sqlQuery.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");

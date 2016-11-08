@@ -5,8 +5,8 @@ import java.util.Date;
 import com.casosemergencias.model.Caso;
 
 public class CasoSalesForce {
-	/*NO EXISTE EN SF*/
-	private String petici_n__c;
+	
+	private String cause__c;
 	private String status;
 	private String inserviceNumber__c;
 	private String subStatus__c;
@@ -36,12 +36,12 @@ public class CasoSalesForce {
 	private String herokuUser__c;
 	private String unity__c;
 	
-	public String getPetici_n__c() {
-		return petici_n__c;
+	public String getCause__c() {
+		return cause__c;
 	}
 
-	public void setPetici_n__c(String petici_n__c) {
-		this.petici_n__c = petici_n__c;
+	public void setCause__c(String cause__c) {
+		this.cause__c = cause__c;
 	}
 
 	public String getStatus() {
@@ -271,7 +271,7 @@ public class CasoSalesForce {
 	public static CasoSalesForce copyFieldsFromHerokuToSalesForceCaseBean(Caso casoHeroku) {
 		CasoSalesForce casoSF = new CasoSalesForce();
 		if (casoHeroku != null) {
-			casoSF.setPetici_n__c((casoHeroku.getPeticion() != null && !"".equals(casoHeroku.getPeticion()) ? casoHeroku.getPeticion() : ""));
+			casoSF.setCause__c((casoHeroku.getPeticion() != null && !"".equals(casoHeroku.getPeticion()) ? casoHeroku.getPeticion() : ""));
 			casoSF.setStatus((casoHeroku.getEstado() != null && !"".equals(casoHeroku.getEstado()) ? casoHeroku.getEstado() : ""));
 			casoSF.setInserviceNumber__c((casoHeroku.getNumeroInservice() != null && !"".equals(casoHeroku.getNumeroInservice()) ? casoHeroku.getNumeroInservice() : ""));
 			casoSF.setSubStatus__c((casoHeroku.getSubestado() != null && !"".equals(casoHeroku.getSubestado()) ? casoHeroku.getSubestado() : ""));

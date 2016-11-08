@@ -159,7 +159,7 @@ public class AccountController {
 		for (Cuenta cuenta : listaCuentas) {
 			jsonResult = new JSONObject();
 			jsonResult.put("name", cuenta.getName());
-			jsonResult.put("run", cuenta.getAccountRun());
+			jsonResult.put("identitynumber__c", cuenta.getAccountRun());
 			jsonResult.put("mainphone__c", cuenta.getTelefonoPrincipal());
 			jsonResult.put("primaryemail__c", cuenta.getEmailPrincipal());
 			jsonResult.put("sfid", cuenta.getSfid());

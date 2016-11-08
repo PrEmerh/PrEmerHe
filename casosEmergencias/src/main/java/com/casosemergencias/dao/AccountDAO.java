@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.casosemergencias.dao.vo.AccountVO;
 import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.dao.vo.ContactVO;
-import com.casosemergencias.dao.vo.SuministroVO;
 import com.casosemergencias.util.datatables.DataTableColumnInfo;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -107,13 +106,7 @@ public class AccountDAO {
 			
 			Query suppliesQuery = session.createQuery("from SuministroVO as suministro WHERE suministro.cuenta = :sfid "); 
 			suppliesQuery.setString("sfid", sfid);
-			List<SuministroVO> accountSuppliesList;
-			if(limiteSuministros != null){
-				accountSuppliesList = suppliesQuery.setMaxResults(limiteSuministros).list();
-			}else{
-				accountSuppliesList = suppliesQuery.list();
-			}	
-			
+
 			Query contactsQuery = session.createQuery("from ContactVO as contacto WHERE contacto.accountid = :sfid "); 
 			contactsQuery.setString("sfid", sfid);
 			List<ContactVO> accountContactsList;
@@ -535,7 +528,7 @@ public class AccountDAO {
 						}
 					}
 					
-					if ("run".equals(columnInfo.getData())) {
+					if ("identitynumber__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							query.append("UPPER("+columnInfo.getData()+")" + " LIKE UPPER('%" + columnInfo.getSearchValue() +"%'"+")");
 							query.append(" AND ");
@@ -611,7 +604,7 @@ public class AccountDAO {
 						}
 					}
 					
-					if ("run".equals(columnInfo.getData())) {
+					if ("identitynumber__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
 							sqlQuery.append(" AND ");

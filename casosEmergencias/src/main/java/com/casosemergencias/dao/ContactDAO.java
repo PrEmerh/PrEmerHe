@@ -250,16 +250,7 @@ public class ContactDAO {
 					query.append(" AND contact.email = :email");
 				}
 			}
-			
-			if (contact.getAccountRun() != null) {
-				if (isFirst) {
-					query.append(" WHERE contact.accountRun = :accountRun");
-					isFirst = false;
-				} else {
-					query.append(" AND contact.accountRun = :accountRun");
-				}
-			}
-			
+						
 			if (contact.getDirContacto() != null) {
 				if (isFirst) {
 					query.append(" WHERE contact.dirContacto = :dirContacto");
@@ -390,10 +381,6 @@ public class ContactDAO {
 				result.setString("email", contact.getEmail());
 			}
 			
-			if (contact.getAccountRun() != null) {
-				result.setString("accountRun", contact.getAccountRun());
-			}
-			
 			if (contact.getDirContacto() != null) {
 				result.setString("dirContacto", contact.getDirContacto());
 			}
@@ -505,7 +492,7 @@ public class ContactDAO {
 			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
 				query.append(" WHERE ");
 				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
-					if ("run".equals(columnInfo.getData())) {
+					if ("identitynumber__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							query.append("UPPER("+columnInfo.getData()+")" + " LIKE UPPER('%" + columnInfo.getSearchValue() +"%'"+")");
 							query.append(" AND ");
@@ -593,7 +580,7 @@ public class ContactDAO {
 			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
 				sqlQuery.append(" WHERE ");
 				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
-					if ("run".equals(columnInfo.getData())) {
+					if ("identitynumber__c".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
 							sqlQuery.append(columnInfo.getData() + " LIKE '%" + columnInfo.getSearchValue() +"%'");
 							sqlQuery.append(" AND ");

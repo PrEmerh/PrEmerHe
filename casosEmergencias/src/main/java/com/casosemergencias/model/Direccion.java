@@ -21,6 +21,8 @@ public class Direccion extends ObjectLogic {
 	/*Joins con picklist*/
 	private String labelTipoCallePickList;
 	private String labelRegionPickList;
+	
+	private Calle calleJoin;
 
 	/* Getters y Setters */
 	public Integer getId() {
@@ -145,5 +147,13 @@ public class Direccion extends ObjectLogic {
 
 	public void setLabelRegionPickList(String labelRegionPickList) {
 		this.labelRegionPickList = labelRegionPickList;
+	}
+
+	public Calle getCalleJoin() {
+		return calleJoin;
+	}
+
+	public void setCalleJoin(Calle calleJoin) {
+		this.calleJoin = calleJoin;
 	}
 }

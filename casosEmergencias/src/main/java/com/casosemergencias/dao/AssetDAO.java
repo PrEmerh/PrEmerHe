@@ -84,4 +84,38 @@ public class AssetDAO {
 	    return null;
 	}
 
+	/**
+	 * Devuelve el los Asset que tiene como suministroid el pasado por parametro al metodo
+	 * 
+	 * @param id - id de un Asset
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public List<AssetVO> readAssetByAccountId(String accountId) {
+		
+		logger.debug("--- Inicio -- readAssetBySuministroid ---");
+		
+		Session session = sessionFactory.openSession();
+			
+		try {
+			Query query = session.createQuery("from AssetVO as asset WHERE asset.accountid = :accountid");
+			query.setString("accountid", accountId);
+			
+			List<AssetVO> assetList = query.list(); 
+
+			if (assetList != null && !assetList.isEmpty()) {
+				return assetList;
+			}
+			
+			logger.debug("--- Fin -- readAssetBySuministroid ---");
+			
+	    } catch (HibernateException e) {
+	    	logger.error("--- readAssetById ", e); 
+	    	logger.error("--- Fin -- readAssetBySuministroid ---");
+	    } finally {
+	    	session.close(); 
+	    }
+	    return null;
+	}
+	
 }
