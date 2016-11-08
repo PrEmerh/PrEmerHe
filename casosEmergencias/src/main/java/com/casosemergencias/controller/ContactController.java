@@ -29,11 +29,15 @@ import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.ContactView;
 import com.casosemergencias.controller.views.DireccionView;
 import com.casosemergencias.controller.views.SuministroView;
+import com.casosemergencias.exception.EmergenciasException;
 import com.casosemergencias.logic.ContactService;
 import com.casosemergencias.logic.DireccionService;
 import com.casosemergencias.logic.PickListsService;
 import com.casosemergencias.logic.SuministroService;
+import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
+import com.casosemergencias.model.Direccion;
+import com.casosemergencias.model.Street;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.PickListByField;
@@ -408,4 +412,41 @@ public class ContactController {
 		
 		return jsonObject.toString();
 	}
+	
+	
+	@RequestMapping(value = "/private/crearCasoPorDireccion", method = RequestMethod.GET)
+	public String crearCasoPorDireccion(HttpServletRequest request) throws EmergenciasException {
+				
+		Street street= new Street();
+		Direccion direccion = new Direccion();		
+		String contactSfid= request.getParameterValues("sfidContactDir")[0];
+		String region= request.getParameterValues("region")[0];
+		String comuna= request.getParameterValues("comunaDir")[0];
+		String nombre= request.getParameterValues("calleDir")[0];
+		String tipoCalle= request.getParameterValues("tipoCalleDir")[0];
+		String numero= request.getParameterValues("numeroName")[0];
+		String departamento= request.getParameterValues("departamentoDir")[0];
+		
+		//Mapeo Street
+		street.setRegion(region);	
+		street.setMunicipality(comuna);
+		street.setStreet(nombre);
+		street.setStreetType(tipoCalle);
+		
+		//Mapeo Address
+		direccion.setNumero(numero);
+		direccion.setDepartamento(departamento);
+		
+		//Enviamos datos de Street y Address a Salesforce para recuperar Direccion.
+		 
+		String  direccionSfid= contactService.getSalesforceAddress(street,direccion).getSfid();
+
+		if(direccionSfid!=null && contactSfid!=null){
+			Caso createCasoForDirectionToInsert =contactService.createCasoForDirection(direccionSfid,contactSfid);
+			
+		}
+		
+		return null;
+	}
+	
 }

@@ -55,6 +55,7 @@
 			</div>
 			<form:hidden path="sfid"/>
 			<input type="hidden" value="${editMode}" id="editModeId"/>
+			<input type="hidden" value="${sfid}" id="contactSfidId"/>
 			<div class="divEntidadDatos">
 				<div id="divEntidadContactoSuministros" class="divEntidad">
 					<div class="subtitleAltaEntidad">

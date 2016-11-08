@@ -123,6 +123,9 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	@Column(name = "connectiontype__c")
 	private String tipoConexion;
 
+	/*@Column(name = "pointofdeliveryaddress__c")
+	private String direccionCliente;*/
+
 	@Column(name = "electrodependant__c")
 	private String electrodependiente;
 
@@ -529,10 +532,17 @@ public class SuministroVO extends ObjectVO implements Serializable {
 	public String getTipoConexion() {
 		return tipoConexion;
 	}
-
 	public void setTipoConexion(String tipoConexion) {
 		this.tipoConexion = tipoConexion;
 	}
+
+	/*public String getDireccionCliente() {
+		return direccionCliente;
+	}
+
+	public void setDireccionCliente(String direccionCliente) {
+		this.direccionCliente = direccionCliente;
+	}*/
 
 	public String getElectrodependiente() {
 		return electrodependiente;

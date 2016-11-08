@@ -1,7 +1,10 @@
 package com.casosemergencias.logic;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +16,24 @@ import com.casosemergencias.dao.RelacionActivoContactoDAO;
 import com.casosemergencias.dao.vo.AssetVO;
 import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.dao.vo.ContactVO;
+import com.casosemergencias.dao.vo.DireccionVO;
 import com.casosemergencias.dao.vo.RelacionActivoContactoVO;
 import com.casosemergencias.dao.vo.SuministroVO;
+import com.casosemergencias.exception.EmergenciasException;
+import com.casosemergencias.logic.sf.response.CreateCaseResponse;
+import com.casosemergencias.logic.sf.response.SearchDirectionResponse;
+import com.casosemergencias.logic.sf.rest.CreateDireccion;
+import com.casosemergencias.logic.sf.rest.SearchDirection;
+import com.casosemergencias.logic.sf.util.SalesforceLoginChecker;
 import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
+import com.casosemergencias.model.Direccion;
+import com.casosemergencias.model.Street;
 import com.casosemergencias.model.Suministro;
+import com.casosemergencias.model.UserSessionInfo;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.constants.Constantes;
+import com.casosemergencias.util.constants.ConstantesError;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
 
@@ -39,6 +53,9 @@ public class ContactServiceImpl implements ContactService{
 	
 	@Autowired
 	private AssetDAO assetDAO;
+	
+	@Autowired
+	private SalesforceLoginChecker salesforceLoginChecker;
 		
 	/**
 	 * Metodo que devuelve una lista de todos los contactos a mostrar en la tabla de nuestra app.
@@ -160,6 +177,81 @@ public class ContactServiceImpl implements ContactService{
 				}
 		}
 		return null;
+	}
+	
+	@Override
+	public Direccion getSalesforceAddress(Street street,Direccion direccion) throws EmergenciasException {
+		
+		logger.trace("--- Servicio getSFDirection iniciado ---");
+		// 1. Leer usuario de fichero de propiedades
+		Properties properties = new Properties();
+		String username = null;
+		String password = null;
+		String token = null;
+		String userId = null;
+		UserSessionInfo userSessionInfoFromDB = null;
+		SearchDirectionResponse respuestaDireccion = null;
+		Direccion direccionSf = new Direccion();
+		
+		try (InputStream propsInputStream = getClass().getClassLoader().getResourceAsStream("/environment/dev/config.properties")) {
+			properties.load(propsInputStream);
+			username = properties.getProperty("heroku.user");
+			password = properties.getProperty("heroku.pass");
+			token = properties.getProperty("heroku.token");
+			userId = properties.getProperty("heroku.userid");
+			
+			if (username != null && !"".equals(username) && password != null && !"".equals(password) && token != null && !"".equals(token)) {
+				UserSessionInfo sessionInfoToLogin = new UserSessionInfo();
+				sessionInfoToLogin.setUsername(properties.getProperty("heroku.user"));
+				sessionInfoToLogin.setPassword(properties.getProperty("heroku.pass"));
+				sessionInfoToLogin.setAccessToken(properties.getProperty("heroku.token"));
+				userSessionInfoFromDB = salesforceLoginChecker.getUserSessionInfo(sessionInfoToLogin);
+				if (userSessionInfoFromDB != null) {
+					respuestaDireccion=CreateDireccion.createDireccionInSalesforce(userSessionInfoFromDB, street,direccion);
+					if (respuestaDireccion.getIdDireccion() != null && !"".equals(respuestaDireccion.getIdDireccion())) {
+						logger.info("Direccion recuperada correctamente" + respuestaDireccion.getIdDireccion());
+						direccionSf.setSfid(respuestaDireccion.getIdDireccion());
+					}
+					else{
+						direccionSf = null;
+						logger.warn("Se ha producido un error al recuperar la direccion  en SalesForce");
+						//throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_002, ConstantesError.SALESFORCE_CASE_CREATION_ERROR);
+					}
+
+				}
+			}
+		} catch (IOException exception) {
+			logger.error("Error obteniendo los datos del usuario: ", exception);
+			//throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_002, ConstantesError.SALESFORCE_CASE_CREATION_ERROR);
+		}
+		logger.trace("--- Servicio getSFDirection completado ---");
+		return direccionSf;
+	}
+
+	
+	@Override
+	public Caso createCasoForDirection(String direccionSf,String contactSfid) {
+		
+		Caso casoToInsert=new Caso();
+		ContactVO contacto=contactDao.readContactBySfid(contactSfid);
+		String canalNotificacion= new String();
+		if(contacto.getCanalPreferenteContacto()!=null){
+			canalNotificacion=contacto.getCanalPreferenteContacto();
+		}
+		else{
+			canalNotificacion.equals(Constantes.COD_CONTACTO_CANAL_PREF_CONTACT_003);
+		}
+		casoToInsert.setNombreContacto(contacto.getSfid());
+		casoToInsert.setDireccion(direccionSf);
+		casoToInsert.setCanalOrigen(Constantes.COD_CASO_ORIGEN_CALL_CENTER);
+		casoToInsert.setType(Constantes.COD_CASO_TYPE_RECLAMO);
+		casoToInsert.setEstado(Constantes.COD_CASO_STATUS_PREINGRESADO);
+		casoToInsert.setRecordtypeId(Constantes.COD_CASO_RECORDTYPEID_EMERGENCIA);
+		casoToInsert.setCanalNotificacion(canalNotificacion);
+		casoToInsert.setEmailNotificacion(contacto.getEmail());
+		casoToInsert.setTelefonoContacto(contacto.getPhone());
+		
+		return casoToInsert;
 	}
 	
 	

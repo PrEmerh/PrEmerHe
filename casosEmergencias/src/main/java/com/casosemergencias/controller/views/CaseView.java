@@ -65,6 +65,8 @@ public class CaseView extends ObjectView {
 	private GroupView groupJoin;
 	private List<CaseHistoryView> historialCaso;
 	private List<CaseCommentView> commentarioCaso;
+	private String recordtypeId;
+
 	
 	/*Joins con picklist*/
 	private String labelSubmotivoPickList;
@@ -602,4 +604,11 @@ public class CaseView extends ObjectView {
 	public void setDireccionString(String direccionString) {
 		this.direccionString = direccionString;
 	}
+	public String getRecordtypeId() {
+		return recordtypeId;
+	}
+	public void setRecordtypeId(String recordtypeId) {
+		this.recordtypeId = recordtypeId;
+	}
+	
 }
