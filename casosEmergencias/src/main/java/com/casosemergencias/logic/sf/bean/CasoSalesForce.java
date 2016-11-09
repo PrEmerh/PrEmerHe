@@ -35,6 +35,7 @@ public class CasoSalesForce {
 	private String caseFavorability__c;
 	private String herokuUser__c;
 	private String unity__c;
+	private String recordtypeid;
 	
 	public String getCause__c() {
 		return cause__c;
@@ -268,6 +269,14 @@ public class CasoSalesForce {
 		this.unity__c = unity__c;
 	}
 	
+	public String getRecordtypeid() {
+		return recordtypeid;
+	}
+
+	public void setRecordtypeid(String recordtypeid) {
+		this.recordtypeid = recordtypeid;
+	}
+
 	public static CasoSalesForce copyFieldsFromHerokuToSalesForceCaseBean(Caso casoHeroku) {
 		CasoSalesForce casoSF = new CasoSalesForce();
 		if (casoHeroku != null) {
@@ -300,6 +309,8 @@ public class CasoSalesForce {
 			casoSF.setCaseFavorability__c((casoHeroku.getFavorabilidadDelCaso() != null && !"".equals(casoHeroku.getFavorabilidadDelCaso()) ? casoHeroku.getFavorabilidadDelCaso() : ""));
 			casoSF.setHerokuUser__c((casoHeroku.getHerokuUsername() != null && !"".equals(casoHeroku.getHerokuUsername()) ? casoHeroku.getHerokuUsername() : ""));
 			casoSF.setUnity__c((casoHeroku.getCallCenter() != null && !"".equals(casoHeroku.getCallCenter()) ? casoHeroku.getCallCenter() : ""));
+			casoSF.setRecordtypeid((casoHeroku.getRecordtypeId() != null && !"".equals(casoHeroku.getRecordtypeId()) ? casoHeroku.getRecordtypeId() : ""));
+
 		}
 		return casoSF;
 	}

@@ -207,7 +207,7 @@ public class ContactServiceImpl implements ContactService{
 				sessionInfoToLogin.setAccessToken(properties.getProperty("heroku.token"));
 				userSessionInfoFromDB = salesforceLoginChecker.getUserSessionInfo(sessionInfoToLogin);
 				if (userSessionInfoFromDB != null) {
-					respuestaDireccion=CreateDireccion.createDireccionInSalesforce(userSessionInfoFromDB, street,direccion);
+					respuestaDireccion=CreateDireccion.searchDireccionInSalesforce(userSessionInfoFromDB, street,direccion);
 					if (respuestaDireccion.getIdDireccion() != null && !"".equals(respuestaDireccion.getIdDireccion())) {
 						logger.info("Direccion recuperada correctamente" + respuestaDireccion.getIdDireccion());
 						direccionSf.setSfid(respuestaDireccion.getIdDireccion());

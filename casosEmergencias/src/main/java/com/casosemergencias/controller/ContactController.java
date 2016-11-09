@@ -30,6 +30,7 @@ import com.casosemergencias.controller.views.ContactView;
 import com.casosemergencias.controller.views.DireccionView;
 import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.exception.EmergenciasException;
+import com.casosemergencias.logic.CaseService;
 import com.casosemergencias.logic.ContactService;
 import com.casosemergencias.logic.DireccionService;
 import com.casosemergencias.logic.PickListsService;
@@ -63,6 +64,9 @@ public class ContactController {
 	
 	@Autowired
 	private DireccionService direccionService;
+	
+	@Autowired
+	private CaseService casoService;
 
 	@RequestMapping(value = "/private/homeContacts", method = RequestMethod.GET)
 	public ModelAndView listadoContactos() {
@@ -161,7 +165,7 @@ public class ContactController {
 		
 		//Setteamos picklist del campo comuna y region del cuadro de dialogo "Asociar suministro"
 		SuministroView suministroViewDial =new SuministroView();
-		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("address__c");
+		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("street__c");
 		suministroViewDial.setMapComuna(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_SUMINISTRO_COMUNA, true));
 		suministroViewDial.setMapRegion(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_SUMINISTRO_REGION, true));
 
@@ -266,14 +270,14 @@ public class ContactController {
 		if(busqueda){
 			//Realizamos la busqueda en BBDD
 			List<Suministro> listaSuministros = new ArrayList<Suministro>();
-			listaSuministros = this.suministroService.readAllSuministros(propDataTable);
+			listaSuministros = suministroService.readAllSuministros(propDataTable);
 
 			
 			for(Suministro suministro : listaSuministros){
 				jsonResult = new JSONObject();
 				jsonResult.put("name", suministro.getName());
 				jsonResult.put("direccionConcatenada", suministro.getDireccionConcatenada());
-				jsonResult.put("comuna", suministro.getComuna());
+				jsonResult.put("comuna", suministro.getLabelComunaRepartoPickList());
 				jsonResult.put("estadoSuministroPickList", suministro.getLabelEstadoSuministroPickList());
 				jsonResult.put("empresaPickList", suministro.getLabelEmpresaPickList());
 				jsonResult.put("sfid", suministro.getSfid());
@@ -419,13 +423,21 @@ public class ContactController {
 				
 		Street street= new Street();
 		Direccion direccion = new Direccion();		
-		String contactSfid= request.getParameterValues("sfidContactDir")[0];
+		/*String contactSfid= request.getParameterValues("sfidContactDir")[0];
 		String region= request.getParameterValues("region")[0];
 		String comuna= request.getParameterValues("comunaDir")[0];
 		String nombre= request.getParameterValues("calleDir")[0];
 		String tipoCalle= request.getParameterValues("tipoCalleDir")[0];
 		String numero= request.getParameterValues("numeroName")[0];
-		String departamento= request.getParameterValues("departamentoDir")[0];
+		String departamento= request.getParameterValues("departamentoDir")[0];*/
+		
+		String contactSfid="0035B0000044st4QAA";
+		String region= "13";
+		String comuna= "14";
+		String nombre= "TRINIDAD";
+		String tipoCalle= "AVD";
+		String numero= "13441";
+		String departamento="12";
 		
 		//Mapeo Street
 		street.setRegion(region);	
@@ -442,10 +454,15 @@ public class ContactController {
 		String  direccionSfid= contactService.getSalesforceAddress(street,direccion).getSfid();
 
 		if(direccionSfid!=null && contactSfid!=null){
-			Caso createCasoForDirectionToInsert =contactService.createCasoForDirection(direccionSfid,contactSfid);
+			Caso createCasoForDirectionToInsert =contactService.createCasoForDirection(direccionSfid,contactSfid);	
+			//Insertamos Caso con Address recuperada en Salesforce
+			if(createCasoForDirectionToInsert!=null ){
+				Caso casoForDirectionToInserted = casoService.insertCase(createCasoForDirectionToInsert);
+			}
 			
 		}
 		
+
 		return null;
 	}
 	

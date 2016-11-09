@@ -27,7 +27,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class CreateDireccion {
 	final static Logger logger = Logger.getLogger(CreateCase.class);
 	
-	public static SearchDirectionResponse createDireccionInSalesforce(UserSessionInfo userSessionInfo,Street streetToSearch, Direccion direccionToSearch) throws EmergenciasException {
+	public static SearchDirectionResponse searchDireccionInSalesforce(UserSessionInfo userSessionInfo,Street streetToSearch, Direccion direccionToSearch) throws EmergenciasException {
 		SearchDirectionResponse searchDireccionResponse = null;
 		HttpClient httpClient = null;
 		HttpPost post = null;
@@ -37,9 +37,7 @@ public class CreateDireccion {
 			if (userSessionInfo.getSessionId() != null) {
 				logger.trace("Inicio crear direccion");
 				httpClient = HttpClientBuilder.create().build();
-				/*Rellenar
 				post = new HttpPost(ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_INSTANCE_URL + ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_REST_SERVICE_SEARCH_DIRECTION_PATH_URI);
-				*/
 				post.setHeader(ConstantesSalesforceLogin.DEV_REST_SALESFORCE_AUTHORIZATION_HEADER_KEY, "Bearer " + userSessionInfo.getSessionId());
 				post.setHeader(ConstantesSalesforceLogin.DEV_REST_SALESFORCE_CONTENT_TYPE_HEADER_KEY, ConstantesSalesforceLogin.DEV_REST_SALESFORCE_JSON_CONTENT_TYPE);
 				post.setHeader(ConstantesSalesforceLogin.DEV_REST_SALESFORCE_ACCEPT_HEADER_KEY, ConstantesSalesforceLogin.DEV_REST_SALESFORCE_JSON_CONTENT_TYPE);

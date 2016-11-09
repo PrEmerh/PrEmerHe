@@ -27,5 +27,5 @@ public class ConstantesSalesforceLogin {
 	
 	public static final String DEV_REST_SALESFORCE_JSON_CONTENT_TYPE = "application/json";
 	
-	public static final String DEV_LOGIN_SALESFORCE_REST_SERVICE_SEARCH_DIRECTION_PATH_URI= "/services/apexrest/url";
+	public static final String DEV_LOGIN_SALESFORCE_REST_SERVICE_SEARCH_DIRECTION_PATH_URI= "/services/apexrest/RESTCreateHerokuAddress";
 }
