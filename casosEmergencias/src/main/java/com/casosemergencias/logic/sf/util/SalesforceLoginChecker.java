@@ -51,17 +51,22 @@ public class SalesforceLoginChecker {
 			// Se comprueba que el usuario exista en BBDD.
 			userSessionInfoFromDB = userSessionInfoService.readUserSessionInfo(userSessionInfoToLogin);
 			if (userSessionInfoFromDB != null) {
-				//Si el usuario existe, se comprueba si la fecha de conexión es mayor o menor de 12 horas.
-				if (!isValidToken(userSessionInfoFromDB.getLastConnection())) {
+				// Si el usuario existe pero no tiene SessionId guardado, se hace login para rellenarlo
+				if (userSessionInfoFromDB.getSessionId() == null || "".equals(userSessionInfoFromDB.getSessionId())) {
+					logger.info("El sessionId del usuario no es válido. Se procede a hacer login y actualizar los datos de sesion del usuario");
+					salesforceLogin(userSessionInfoFromDB);
+					userSessionInfoService.updateUserSessionInfo(userSessionInfoFromDB);
+				} else if (!isValidToken(userSessionInfoFromDB.getLastConnection())) {
+					// Si el usuario existe, se comprueba si la fecha de conexión es mayor o menor de 12 horas.
 					// Si la fecha es mayor de 12 horas, se hace login, y se actualiza la información en BBDD antes de devolver los datos del usuario.
 					logger.info("El token no es válido. Se procede a hacer login y actualizar los datos de sesion del usuario");
 					salesforceLogin(userSessionInfoFromDB);
 					userSessionInfoService.updateUserSessionInfo(userSessionInfoFromDB);
 				}
-				logger.info("El token es válido. No es necesario actualizar los datos del usuario");
+				logger.info("El usuario es válido. No es necesario actualizar los datos del usuario");
 			} else {
 				// Si el usuario no existe, se hace login, se guardan en BBDD y se devuelven los datos del usuario.
-				logger.info("El usuario no existe. Se procede a hacer login y guardar los datos de sesion del usuario");
+				logger.info("El usuario no existe o su sessionId es nulo. Se procede a hacer login y guardar los datos de sesion del usuario");
 				salesforceLogin(userSessionInfoFromDB);
 				userSessionInfoService.insertUserSessionInfo(userSessionInfoFromDB);
 			}
