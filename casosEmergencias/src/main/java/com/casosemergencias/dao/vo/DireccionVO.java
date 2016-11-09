@@ -87,7 +87,7 @@ public class DireccionVO extends ObjectVO implements Serializable {
 	private PickListsDireccionRegionVO regionPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "street__c", referencedColumnName = "sfid", insertable = false, updatable = false)
+	@JoinColumn(name = "streetmd__c", referencedColumnName = "sfid", insertable = false, updatable = false)
 	private StreetVO calleJoin;
 	
 	public DireccionVO(Boolean isdeleted, Date systemmodstamp, String hcLastop, String hcError, Integer id, String sfid,

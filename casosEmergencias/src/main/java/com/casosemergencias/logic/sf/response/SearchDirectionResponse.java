@@ -1,17 +1,15 @@
 package com.casosemergencias.logic.sf.response;
 
-import com.casosemergencias.model.Direccion;
-
 public class SearchDirectionResponse {
-	private Direccion direccion;
+	private String idDireccion;
 	private ControlErrores controlErrores;
 
-	public Direccion getDireccion() {
-		return direccion;
+	public String getDireccion() {
+		return idDireccion;
 	}
 
-	public void setDireccion(Direccion direccion) {
-		this.direccion = direccion;
+	public void setDireccion(String idDireccion) {
+		this.idDireccion = idDireccion;
 	}
 	
 	public ControlErrores getControlErrores() {

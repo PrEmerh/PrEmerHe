@@ -51,6 +51,9 @@ public class AssetVO implements Serializable {
 		@Column(name = "contactid")
 		private String contactid;
 		
+		@Column(name = "accountid")
+		private String accountid;
+		
 		@Column(name = "pointofdelivery__c")
 		private String suministroid;
 
@@ -138,6 +141,14 @@ public class AssetVO implements Serializable {
 			this.contactid = contactid;
 		}
 
+		public String getAccountid() {
+			return accountid;
+		}
+
+		public void setAccountid(String accountid) {
+			this.accountid = accountid;
+		}
+		
 		public SuministroVO getSuministroJoin() {
 			return suministroJoin;
 		}
