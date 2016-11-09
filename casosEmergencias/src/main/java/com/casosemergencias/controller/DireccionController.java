@@ -104,9 +104,9 @@ public class DireccionController {
 		for (Direccion direccion : listDirecciones) {
 			jsonResult = new JSONObject();
 			jsonResult.put("name", direccion.getName());
-			jsonResult.put("calle", direccion.getCalle());
+			jsonResult.put("calle", direccion.getCalleJoin().getStreet());
 			jsonResult.put("number__c", direccion.getNumero());
-			jsonResult.put("municipality__c", direccion.getLiteralComuna());
+			jsonResult.put("municipality__c", direccion.getComuna());
 			jsonResult.put("concatenatedaddress__c", direccion.getDireccionConcatenada());
 			jsonResult.put("sfid", direccion.getSfid());
 			array.put(jsonResult);
@@ -146,10 +146,10 @@ public class DireccionController {
 		for(Direccion direccion : listDirecciones) {
 			jsonResult = new JSONObject();
 			jsonResult.put("name", direccion.getName());
-			jsonResult.put("numero", direccion.getNumero());
-			jsonResult.put("literalComuna", direccion.getLiteralComuna());
-			jsonResult.put("direccionConcatenada", direccion.getDireccionConcatenada());
-			jsonResult.put("departamento", direccion.getDepartamento());
+			jsonResult.put("number__c", direccion.getNumero());
+			jsonResult.put("municipality__c", direccion.getComuna());
+			jsonResult.put("concatenatedaddress__c", direccion.getDireccionConcatenada());
+			jsonResult.put("department__c", direccion.getDepartamento());
 			jsonResult.put("sfid", direccion.getSfid());
 			array.put(jsonResult);
 		}

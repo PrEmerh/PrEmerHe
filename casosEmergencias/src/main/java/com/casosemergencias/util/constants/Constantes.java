@@ -31,18 +31,18 @@ public class Constantes {
 	//Caso
 	public static final String PICKLIST_CASO_DEFAULT = "Default";
 	public static final String PICKLIST_CASO_STATUS = "Status";
-	public static final String PICKLIST_CASO_SUBSTATUS = "Sub_Estado__c";
-	public static final String PICKLIST_CASO_PETICION = "Petici_n__c";
+	public static final String PICKLIST_CASO_SUBSTATUS = "Substatus__c";
+	public static final String PICKLIST_CASO_PETICION = "Cause__c";
 	public static final String PICKLIST_CASO_ORIGIN = "Origin";
-	public static final String PICKLIST_CASO_CALLCENTER = "unity__c";
+	public static final String PICKLIST_CASO_CALLCENTER = "Unity__c";
 	public static final String PICKLIST_CASO_PETICION_EMERGENCIA_NAME = "Emergencia";
-	public static final String PICKLIST_CASO_SUBMOTIVO = "subcause__c";
-	public static final String PICKLIST_CASO_CONDICION_AGRAVANTE = "Condici_n_agravante__c";
-	public static final String PICKLIST_CASO_CANAL_NOTIFICACION = "Canal_de_notificaciOn__c";
-	public static final String PICKLIST_CASO_FAVORABILIDAD = "casefavorability__c";	
+	public static final String PICKLIST_CASO_SUBMOTIVO = "Subcause__c";
+	public static final String PICKLIST_CASO_CONDICION_AGRAVANTE = "Aggravatedcondition__c";
+	public static final String PICKLIST_CASO_CANAL_NOTIFICACION = "Notificationchannel__c";
+	public static final String PICKLIST_CASO_FAVORABILIDAD = "Casefavorability__c";	
 	//Suministro
-	public static final String PICKLIST_SUMINISTRO_COMUNA = "municipality__c";
-	public static final String PICKLIST_SUMINISTRO_REGION = "region__c";
+	public static final String PICKLIST_SUMINISTRO_COMUNA = "Municipality__c";
+	public static final String PICKLIST_SUMINISTRO_REGION = "Region__c";
 	//Contacto
 	public static final String SUM_ASSOCIATION_CONTACT_ERROR = "ASSOCIATION_ERROR";
 	public static final String SUM_ASSOCIATION_CONTACT_OK = "ASSOCIATION_OK";

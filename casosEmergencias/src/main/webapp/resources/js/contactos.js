@@ -94,7 +94,7 @@ function cargarTablaSuministros(){
 	        	 "url": formulario.attr('action'), 	               	
 	        	 "contentType": 'application/json; charset=utf-8' ,
 	        	 "error": function(data) {
-	        		 alert('Se ha producido un error obteniendo la lista de suministros. Repita la operaci�n y, si el error persiste, contacte con el administrador de la plataforma.');
+	        		 alert('Se ha producido un error obteniendo la lista de suministros. Repita la operaci&oacute;n y, si el error persiste, contacte con el administrador de la plataforma.');
 	        	 }
 	      	},
 	       	"columns": [

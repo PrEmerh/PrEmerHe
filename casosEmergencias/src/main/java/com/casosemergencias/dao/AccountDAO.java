@@ -103,9 +103,6 @@ public class AccountDAO {
 			Query query = session.createQuery("from AccountVO account WHERE account.sfid = :sfid ");
 			query.setString("sfid", sfid);
 			List<AccountVO> accountList = query.list(); 
-			
-			Query suppliesQuery = session.createQuery("from SuministroVO as suministro WHERE suministro.cuenta = :sfid "); 
-			suppliesQuery.setString("sfid", sfid);
 
 			Query contactsQuery = session.createQuery("from ContactVO as contacto WHERE contacto.accountid = :sfid "); 
 			contactsQuery.setString("sfid", sfid);

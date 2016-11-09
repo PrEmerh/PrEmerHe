@@ -25,6 +25,7 @@ import com.casosemergencias.controller.views.SuministroView;
 import com.casosemergencias.logic.AccountService;
 import com.casosemergencias.logic.SuministroService;
 import com.casosemergencias.model.Cuenta;
+import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.constants.Constantes;
 import com.casosemergencias.util.datatables.DataTableParser;
@@ -68,8 +69,8 @@ public class AccountController {
 		
 		//def. variables para controlar tablas de la pantalla
 		Integer limiteSuministros = 10; //por defecto recuperaremos 10 suministros asociados a la cuenta.
-		Integer numSuministros;
-		
+		Integer numSuministros = 0;
+		List<SuministroView> suministrosView = new ArrayList<SuministroView>();
 		
 		session.setAttribute(Constantes.SFID_CUENTA, sfid);	
 		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, Constantes.FINAL_DETAIL_PAGE_CUENTA);
@@ -82,13 +83,23 @@ public class AccountController {
 			ParserModelVO.parseDataModelVO(cuentaBBDD, cuentaView);
 		}
 				
-		numSuministros = suministroService.getNumSuministrosDeUnaCuetna(sfid);
-		if(numSuministros > limiteSuministros){
-			cuentaView.setControlNumSuministros(true);
-		}else{
-			cuentaView.setControlNumSuministros(false);
+		List<Suministro> listaSuministros = suministroService.getNumSuministrosDeUnaCuenta(sfid);
+		
+		if (listaSuministros != null && !listaSuministros.isEmpty()) {
+			numSuministros = listaSuministros.size();
+			for (Suministro suministro : listaSuministros) {
+				SuministroView suministroView = new SuministroView();
+				ParserModelVO.parseDataModelVO(suministro, suministroView);
+				suministrosView.add(suministroView);
+			}
+			cuentaView.setSuministros(suministrosView);
 		}
 		
+		if (numSuministros > limiteSuministros) {
+			cuentaView.setControlNumSuministros(true);
+		} else {
+			cuentaView.setControlNumSuministros(false);
+		}
 		
 		//transformamos las fechas con el gmt de sesion
 		long offset = (long)session.getAttribute("difGMTUser");	

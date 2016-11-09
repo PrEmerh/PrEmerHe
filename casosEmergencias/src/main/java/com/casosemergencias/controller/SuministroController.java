@@ -173,8 +173,8 @@ public class SuministroController {
 			jsonResult = new JSONObject();
 			jsonResult.put("name", suministro.getName());
 			jsonResult.put("idEmpresa", suministro.getIdEmpresa());
-			jsonResult.put("municipality__c", suministro.getComuna());
-			jsonResult.put("pointofdeliveryaddress__c", suministro.getDireccionConcatenada());
+			jsonResult.put("comuna", suministro.getComuna());
+			jsonResult.put("direccionConcatenada", suministro.getDireccionConcatenada());
 			if(suministro.getDireccion()!=null){
 				jsonResult.put("direccionSfid", suministro.getDirSuministroJoin().getSfid());
 				jsonResult.put("direccionName", suministro.getDirSuministroJoin().getName());	

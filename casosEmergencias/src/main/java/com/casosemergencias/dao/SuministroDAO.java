@@ -746,59 +746,6 @@ public class SuministroDAO {
 				
 		try {
 			//DESCOMENTAR Y PROBAR, NO ESTA FUNCIONANDO, PERO LA IDEA ES ADAPTARLO PARA USARLO EN EL DIALOG DE ASOCIAR SUMINISTRO
-//			StringBuilder query = new StringBuilder("FROM SuministroVO suministro "
-//					+ "LEFT JOIN FETCH suministro.estadoConexionPickList estadoConexion "
-//					+ "LEFT JOIN FETCH suministro.estadoSuministroPickList estadoSuministro "
-//					+ "LEFT JOIN FETCH suministro.dirSuministroJoin direccionSumi ");
-//			
-//			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
-//				query.append(" WHERE ");
-//				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
-//					if ("name".equals(columnInfo.getData())) {
-//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-//							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
-//							query.append(" AND ");
-//							searchParamsCounter++;
-//						}
-//					}					
-//					if ("concatenatedaddress__c".equals(columnInfo.getData())) {
-//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-//							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
-//							query.append(" AND ");
-//							searchParamsCounter++;
-//						}
-//					}					
-//					if ("municipality__c".equals(columnInfo.getData())) {
-//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-//							query.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
-//							query.append(" AND ");
-//							searchParamsCounter++;
-//						}
-//					}
-//					
-//					if ("calle".equals(columnInfo.getData())) {
-//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-//							query.append("UPPER(direccionSumi." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
-//							query.append(" AND ");
-//							searchParamsCounter++;
-//						}
-//					}					
-//					if ("comuna".equals(columnInfo.getData())) {
-//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-//							query.append("UPPER(direccionSumi." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
-//							query.append(" AND ");
-//							searchParamsCounter++;
-//						}
-//					}				
-//					if ("numero".equals(columnInfo.getData())) {
-//						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-//							query.append("UPPER(direccionSumi." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
-//							query.append(" AND ");
-//							searchParamsCounter++;
-//						}
-//					}
-//				}
-//			}
 			StringBuilder query = new StringBuilder("FROM SuministroVO suministro "
 					+ "LEFT JOIN FETCH suministro.estadoConexionPickList estadoConexion "
 					+ "LEFT JOIN FETCH suministro.estadoSuministroPickList estadoSuministro "
@@ -878,7 +825,7 @@ public class SuministroDAO {
 	}
 	
 	/**
-	 * Devuelve el número de direcciones utilizando los parametros del datatable
+	 * Devuelve el número de suministros utilizando los parametros del datatable
 	 * 
 	 * @return
 	 */
@@ -889,30 +836,30 @@ public class SuministroDAO {
 		int searchParamsCounter = 0;
 		
 		try {
-			StringBuilder sqlQuery = new StringBuilder("SELECT COUNT(id) FROM SuministroVO ");
+			StringBuilder sqlQuery = new StringBuilder("SELECT COUNT(id) FROM SuministroVO suministro");
 			
 			if (dataTableProperties.getColumsInfo() != null && !dataTableProperties.getColumsInfo().isEmpty()) {
 				sqlQuery.append(" WHERE ");
 				for (DataTableColumnInfo columnInfo : dataTableProperties.getColumsInfo()) {
 					if ("name".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							sqlQuery.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							sqlQuery.append("UPPER(suministro." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 							sqlQuery.append(" AND ");
 							searchParamsCounter++;
 						}
 					}
 					
-					if ("pointofdeliveryaddress__c".equals(columnInfo.getData())) {
+					if ("direccionConcatenada".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							sqlQuery.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							sqlQuery.append("UPPER(suministro." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 							sqlQuery.append(" AND ");
 							searchParamsCounter++;
 						}
 					}
-							
-					if ("municipality__c".equals(columnInfo.getData())) {
+					
+					if ("comuna".equals(columnInfo.getData())) {
 						if (columnInfo.getSearchValue() != null && !"".equals(columnInfo.getSearchValue())) {
-							sqlQuery.append("UPPER(" + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
+							sqlQuery.append("UPPER(suministro." + columnInfo.getData() + ") LIKE UPPER('%" + columnInfo.getSearchValue() +"%')");
 							sqlQuery.append(" AND ");
 							searchParamsCounter++;
 						}
@@ -936,36 +883,6 @@ public class SuministroDAO {
 	    } catch (HibernateException e) {
 	    	logger.error("--- countSuministro ", e); 
 	    	logger.error("--- Fin -- countSuministro ---");
-	    } finally {
-	    	session.close(); 
-	    }
-		return null;
-	}
-	
-	/**
-	 * Devuelve el número de direcciones utilizando los parametros del datatable
-	 * 
-	 * @return
-	 */
-	public Integer countSuministroDeCuenta(String sfidCuenta) {
-		logger.debug("--- Inicio -- countSuministroDeCuenta ---");
-		
-		Session session = sessionFactory.openSession();
-		
-		try {
-			StringBuilder sqlQuery = new StringBuilder("SELECT COUNT(id) FROM SuministroVO as suministro ");
-			sqlQuery.append(" WHERE suministro.cuenta = '" + sfidCuenta + "'");
-			
-			Query query = session.createQuery(sqlQuery.toString());
-			Long count = (Long) query.uniqueResult();
-			
-			logger.debug("--- Fin -- countSuministroDeCuenta ---");
-			
-			return count.intValue();
-			
-	    } catch (HibernateException e) {
-	    	logger.error("--- countSuministroDeCuenta ", e); 
-	    	logger.error("--- Fin -- countSuministroDeCuenta ---");
 	    } finally {
 	    	session.close(); 
 	    }

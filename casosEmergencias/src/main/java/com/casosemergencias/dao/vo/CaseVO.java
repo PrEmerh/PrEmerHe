@@ -300,7 +300,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "aggravatedcondition__c")
 	private String condicionAgravante;
 	
-	@Column(name = "herokuuser__c")
+	@Column(name = "heroku_user__c")
 	private String herokuUsername;
 
 	@OneToOne(fetch = FetchType.LAZY, optional = true)

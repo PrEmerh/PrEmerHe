@@ -200,8 +200,8 @@ public class SuministroServiceImpl implements SuministroService{
 		return suministroDao.countSuministro(propDatatable);
 	}
 
-	public Integer getNumSuministrosDeUnaCuetna(String sfidCuenta){
-		return suministroDao.countSuministroDeCuenta(sfidCuenta);
+	public List<Suministro> getNumSuministrosDeUnaCuenta(String sfidCuenta) {
+		return readSuministrosCuenta(sfidCuenta, null);
 	}
 	
 	public List<Suministro> readSuministrosCuenta(String sfidCuenta, Integer numeroSuministros){

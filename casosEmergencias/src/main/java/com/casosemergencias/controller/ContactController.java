@@ -157,7 +157,7 @@ public class ContactController {
 		
 		//Setteamos picklist del campo comuna y region del cuadro de dialogo "Asociar suministro"
 		SuministroView suministroViewDial =new SuministroView();
-		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("address__c");
+		Map<String, Map<String, String>> mapaGeneral = pickListsService.getPickListPorObjeto("street__c");
 		suministroViewDial.setMapComuna(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_SUMINISTRO_COMUNA, true));
 		suministroViewDial.setMapRegion(PickListByField.getPickListPorCampo(mapaGeneral, Constantes.PICKLIST_SUMINISTRO_REGION, true));
 
@@ -262,14 +262,14 @@ public class ContactController {
 		if(busqueda){
 			//Realizamos la busqueda en BBDD
 			List<Suministro> listaSuministros = new ArrayList<Suministro>();
-			listaSuministros = this.suministroService.readAllSuministros(propDataTable);
+			listaSuministros = suministroService.readAllSuministros(propDataTable);
 
 			
 			for(Suministro suministro : listaSuministros){
 				jsonResult = new JSONObject();
 				jsonResult.put("name", suministro.getName());
 				jsonResult.put("direccionConcatenada", suministro.getDireccionConcatenada());
-				jsonResult.put("comuna", suministro.getComuna());
+				jsonResult.put("comuna", suministro.getLabelComunaRepartoPickList());
 				jsonResult.put("estadoSuministroPickList", suministro.getLabelEstadoSuministroPickList());
 				jsonResult.put("empresaPickList", suministro.getLabelEmpresaPickList());
 				jsonResult.put("sfid", suministro.getSfid());
