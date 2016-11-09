@@ -214,8 +214,8 @@ public class ContactServiceImpl implements ContactService{
 					}
 					else{
 						direccionSf = null;
-						logger.warn("Se ha producido un error al recuperar la direccion  en SalesForce");
-						//throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_002, ConstantesError.SALESFORCE_CASE_CREATION_ERROR);
+						logger.warn("Se ha producido un error al recuperar la direccion en SalesForce");
+						throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_006, ConstantesError.SALESFORCE__SEARCH_ADDRESS_ERROR);
 					}
 
 				}
@@ -230,7 +230,7 @@ public class ContactServiceImpl implements ContactService{
 
 	
 	@Override
-	public Caso createCasoForDirection(String direccionSf,String contactSfid) {
+	public Caso createCaseForDirection(String direccionSf,String contactSfid) {
 		
 		Caso casoToInsert=new Caso();
 		ContactVO contacto=contactDao.readContactBySfid(contactSfid);

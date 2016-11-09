@@ -63,12 +63,12 @@ public class CreateDireccion {
 					throw new EmergenciasException(searchDireccionResponse.getControlErrores().getCodigoError(), searchDireccionResponse.getControlErrores().getMensajeError());
 				}
 			} else {
-				/*logger.error(ConstantesError.SALESFORCE_CASE_CREATION_ERROR + ". El sessionId es nulo.");
-				throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_002, ConstantesError.SALESFORCE_CASE_CREATION_ERROR);*/
+				logger.error(ConstantesError.SALESFORCE__SEARCH_ADDRESS_ERROR + ". El sessionId es nulo.");
+				throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_006, ConstantesError.SALESFORCE__SEARCH_ADDRESS_ERROR);
 			}
 		} catch(IOException exception) {
-			//logger.error(ConstantesError.SALESFORCE_CASE_CREATION_ERROR, exception);
-			throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_002, ConstantesError.SALESFORCE_CASE_CREATION_ERROR);
+			logger.error(ConstantesError.SALESFORCE__SEARCH_ADDRESS_ERROR, exception);
+			throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_006, ConstantesError.SALESFORCE__SEARCH_ADDRESS_ERROR);
 		} finally {
 			if (post != null) {
 				post.releaseConnection();

@@ -31,15 +31,15 @@ public class Constantes {
 	//Caso
 	public static final String PICKLIST_CASO_DEFAULT = "Default";
 	public static final String PICKLIST_CASO_STATUS = "Status";
-	public static final String PICKLIST_CASO_SUBSTATUS = "Substatus__c";
+	public static final String PICKLIST_CASO_SUBSTATUS = "SubStatus__c";
 	public static final String PICKLIST_CASO_PETICION = "Cause__c";
 	public static final String PICKLIST_CASO_ORIGIN = "Origin";
 	public static final String PICKLIST_CASO_CALLCENTER = "Unity__c";
 	public static final String PICKLIST_CASO_PETICION_EMERGENCIA_NAME = "Emergencia";
-	public static final String PICKLIST_CASO_SUBMOTIVO = "Subcause__c";
-	public static final String PICKLIST_CASO_CONDICION_AGRAVANTE = "Aggravatedcondition__c";
-	public static final String PICKLIST_CASO_CANAL_NOTIFICACION = "Notificationchannel__c";
-	public static final String PICKLIST_CASO_FAVORABILIDAD = "Casefavorability__c";	
+	public static final String PICKLIST_CASO_SUBMOTIVO = "SubCause__c";
+	public static final String PICKLIST_CASO_CONDICION_AGRAVANTE = "AggravatedCondition__c";
+	public static final String PICKLIST_CASO_CANAL_NOTIFICACION = "NotificationChannel__c";
+	public static final String PICKLIST_CASO_FAVORABILIDAD = "CaseFavorability__c";	
 	//Suministro
 	public static final String PICKLIST_SUMINISTRO_COMUNA = "Municipality__c";
 	public static final String PICKLIST_SUMINISTRO_REGION = "Region__c";

@@ -43,6 +43,7 @@ import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.PickListByField;
 import com.casosemergencias.util.constants.Constantes;
+import com.casosemergencias.util.constants.ConstantesError;
 import com.casosemergencias.util.constants.ConstantesTibcoWS;
 import com.casosemergencias.util.datatables.DataTableColumnInfo;
 import com.casosemergencias.util.datatables.DataTableParser;
@@ -419,8 +420,9 @@ public class ContactController {
 	
 	
 	@RequestMapping(value = "/private/crearCasoPorDireccion", method = RequestMethod.GET)
-	public String crearCasoPorDireccion(HttpServletRequest request) throws EmergenciasException {
-				
+	public ModelAndView crearCasoPorDireccion(HttpServletRequest request) throws EmergenciasException {
+		
+		ModelAndView model = new ModelAndView();		
 		Street street= new Street();
 		Direccion direccion = new Direccion();		
 		/*String contactSfid= request.getParameterValues("sfidContactDir")[0];
@@ -449,21 +451,45 @@ public class ContactController {
 		direccion.setNumero(numero);
 		direccion.setDepartamento(departamento);
 		
-		//Enviamos datos de Street y Address a Salesforce para recuperar Direccion.
-		 
-		String  direccionSfid= contactService.getSalesforceAddress(street,direccion).getSfid();
-
-		if(direccionSfid!=null && contactSfid!=null){
-			Caso createCasoForDirectionToInsert =contactService.createCasoForDirection(direccionSfid,contactSfid);	
-			//Insertamos Caso con Address recuperada en Salesforce
-			if(createCasoForDirectionToInsert!=null ){
-				Caso casoForDirectionToInserted = casoService.insertCase(createCasoForDirectionToInsert);
-			}
+		//Creacion de Caso por Direccion
+		try{			
+			//Enviamos datos de Street y Address a Salesforce para recuperar Direccion.		 
+			String  direccionSfid= contactService.getSalesforceAddress(street,direccion).getSfid();
+			Caso casoForDirectionToInserted= new Caso();
 			
-		}
-		
+			if(direccionSfid!=null && contactSfid!=null){
+				Caso createCasoForDirectionToInsert =contactService.createCaseForDirection(direccionSfid,contactSfid);	
+				//Insertamos Caso con Address recuperada en Salesforce
+				if(createCasoForDirectionToInsert!=null ){
+					casoForDirectionToInserted = casoService.insertCase(createCasoForDirectionToInsert);
+				}			
+			}
+			if (casoForDirectionToInserted != null) {
+				logger.info("Caso guardado correctamente con sfid:" + casoForDirectionToInserted.getSfid());
+				
+				logger.info("Se redirecciona a página de detalle del caso");
+				model.setViewName("redirect:entidadCaso?sfid=" + casoForDirectionToInserted.getSfid() + "&editMode=" + Constantes.EDIT_MODE_INSERTED_OK);
 
-		return null;
+			}
+			else {
+				logger.info("Se ha producido un error guardando el caso");
+				model.addObject("mostrarMensaje", true);
+				model.addObject("hayError", true);
+				model.addObject("codigoError", ConstantesError.EMERG_ERROR_CODE_004);
+				model.addObject("mensajeResultado", ConstantesError.HEROKU_CASE_CREATION_GENERIC_ERROR);
+				model.setViewName("redirect:entidadContacto?editMode=VIEW" + contactSfid);
+			}
+		}
+		catch(EmergenciasException exception) {
+			logger.info("No se ha guardado correctamente el caso");
+			model.addObject("mostrarMensaje", true);
+			model.addObject("hayError", true);
+			model.addObject("codigoError", exception.getCode());
+			model.addObject("mensajeResultado", exception.getMessage());
+			model.setViewName("private/entidadCasoAltaPage");
+		}
+		logger.info("--- Fin -- guardarCaso ---");
+		return model;
 	}
 	
 }

@@ -16,7 +16,7 @@ public interface ContactService {
 	public Integer getNumContactos(DataTableProperties propDatatable);
 	public Boolean asociarSuministro(String sfid,String contactSfid);
 	public Direccion getSalesforceAddress(Street street, Direccion direccion) throws EmergenciasException;
-	public Caso createCasoForDirection(String direccionSf,String contactSfid);
+	public Caso createCaseForDirection(String direccionSf,String contactSfid);
 
 
 }

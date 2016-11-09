@@ -272,6 +272,9 @@ public class CaseController {
 		} else {
 			logger.info("El caso con id " + casoSuministro.getSfid() + " y número " + casoSuministro.getNumeroCaso() + " está abierto. No se puede crear otro caso hasta que se complete");
 			model.addObject("codigoError", ConstantesError.EMERG_ERROR_CODE_005);
+			model.addObject("mostrarMensaje", true);
+			model.addObject("hayError", false);
+			model.addObject("mensajeResultado", "No se puede crear un nuevo caso. Existen casos abiertos pendientes.");
 			// Comprobar redirección
 			String redirectionPage = checkRedirectionPage(request);
 			model.setViewName(redirectionPage);
