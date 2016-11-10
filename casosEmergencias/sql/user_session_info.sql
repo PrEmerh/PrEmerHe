@@ -9,9 +9,9 @@ CREATE TABLE user_session_info (
 );
 
 -- Usuario desarrollo Antigua Org
-INSERT INTO user_session_info (username, password, access_token) 
+INSERT INTO salesforce.user_session_info (username, password, access_token) 
 	 VALUES ('herokuintegracion@enel.dev', 'heroku123', 'gNjrVGPboZO0WvrSE8P8axaa');
 	 
 -- Usuario desarrollo Nueva Org
-INSERT INTO user_session_info (username, password, access_token) 
+INSERT INTO salesforce.user_session_info (username, password, access_token) 
 	 VALUES ('herokuintegracion@enellatam.com.emerchdev', 'Del*Alvaro16', 'ZHmyxlWZa8Hfkjga1jCYiXsA');

@@ -156,7 +156,6 @@ public class PicklistTableCreatorBatch {
 			logger.debug("Conectado correctamente");
 			stmt = connection.createStatement();
 			Boolean existeTabla = false;
-			Boolean existeUsuarioSessionInfo = false;
 			// Comprobar si ya existe la tabla
 			DatabaseMetaData md = connection.getMetaData();
 			ResultSet rs = md.getTables(null, null, "%", null);
@@ -165,19 +164,6 @@ public class PicklistTableCreatorBatch {
 				if ("picklists".equalsIgnoreCase(rs.getString(3))) {
 					existeTabla = true;
 				}
-				if ("user_session_info".equalsIgnoreCase(rs.getString(3))) {
-					existeUsuarioSessionInfo = true;
-				}
-			}
-
-			if (!existeUsuarioSessionInfo) {
-				logger.debug("Inicio creacion tabla de usuarios.");
-				stmt.executeUpdate(createUserSessionInfoTable());
-				logger.debug("Tabla de usuarios creada.");
-			} else {
-				logger.debug("Inicio borrado datos de tabla de usuarios.");
-				stmt.executeUpdate("DELETE FROM salesforce.user_session_info");
-				logger.debug("Fin borrado datos de tabla de usuarios.");
 			}
 			
 			if (!existeTabla) {
@@ -189,9 +175,6 @@ public class PicklistTableCreatorBatch {
 				stmt.executeUpdate("DELETE FROM salesforce.picklists");
 				logger.debug("Fin borrado datos.");
 			}
-			logger.info("Insertamos usuarios");
-			stmt.executeQuery(insertUserSessionInfoTable());
-			logger.info("Usuarios insertados");
 			
 			logger.debug("Inicio actualizacion de datos.");
 			pstmt = connection.prepareStatement(
@@ -244,29 +227,4 @@ public class PicklistTableCreatorBatch {
 				+ " PRIMARY KEY (id)"
 				+ ")";
 	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	private static String createUserSessionInfoTable() {
-		return "CREATE TABLE user_session_info ("
-				+ "id 					SERIAL			NOT NULL, "	
-				+ "username 			VARCHAR(255)	NOT NULL, "
-				+ "password			VARCHAR(255)	NOT NULL, "
-				+ "access_token		VARCHAR(255)	NOT NULL, "
-				+ "session_id			VARCHAR(255)	NULL, "
-				+ "last_connection	TIMESTAMP	   NULL		DEFAULT CURRENT_TIMESTAMP, "
-				+ "CONSTRAINT pk_session_control_id PRIMARY KEY(id) "
-				+ ")";
-	}
-	
-	/**
-	 * 
-	 * @return
-	 */
-	private static String insertUserSessionInfoTable() {
-		return "INSERT INTO user_session_info (username, password, access_token)" 
-				+ "VALUES ('herokuintegracion@enellatam.com.emerchdev', 'Del*Alvaro16', 'ZHmyxlWZa8Hfkjga1jCYiXsA')";
-	}		
 }

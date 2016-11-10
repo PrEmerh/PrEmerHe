@@ -222,7 +222,7 @@ public class ContactServiceImpl implements ContactService{
 			}
 		} catch (IOException exception) {
 			logger.error("Error obteniendo los datos del usuario: ", exception);
-			//throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_002, ConstantesError.SALESFORCE_CASE_CREATION_ERROR);
+			throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_006, ConstantesError.SALESFORCE__SEARCH_ADDRESS_ERROR);
 		}
 		logger.trace("--- Servicio getSFDirection completado ---");
 		return direccionSf;

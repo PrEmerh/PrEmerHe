@@ -425,21 +425,22 @@ public class ContactController {
 		ModelAndView model = new ModelAndView();		
 		Street street= new Street();
 		Direccion direccion = new Direccion();		
-		/*String contactSfid= request.getParameterValues("sfidContactDir")[0];
+		
+		String contactSfid= request.getParameterValues("sfidContactDir")[0];
 		String region= request.getParameterValues("region")[0];
 		String comuna= request.getParameterValues("comunaDir")[0];
 		String nombre= request.getParameterValues("calleDir")[0];
 		String tipoCalle= request.getParameterValues("tipoCalleDir")[0];
 		String numero= request.getParameterValues("numeroName")[0];
-		String departamento= request.getParameterValues("departamentoDir")[0];*/
+		String departamento= request.getParameterValues("departamentoDir")[0];
 		
-		String contactSfid="0035B0000044st4QAA";
+		/*String contactSfid="0035B0000044st4QAA";
 		String region= "13";
 		String comuna= "14";
 		String nombre= "TRINIDAD";
-		String tipoCalle= "AVD";
+		String tipoCalle= "AVENIDA";
 		String numero= "13441";
-		String departamento="12";
+		String departamento="12";*/
 		
 		//Mapeo Street
 		street.setRegion(region);	

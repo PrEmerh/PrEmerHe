@@ -175,7 +175,7 @@ public class SuministroController {
 			jsonResult.put("idEmpresa", suministro.getIdEmpresa());
 			jsonResult.put("comuna", suministro.getComuna());
 			jsonResult.put("direccionConcatenada", suministro.getDireccionConcatenada());
-			if(suministro.getDireccion()!=null){
+			if(suministro.getDirSuministroJoin() != null) {
 				jsonResult.put("direccionSfid", suministro.getDirSuministroJoin().getSfid());
 				jsonResult.put("direccionName", suministro.getDirSuministroJoin().getName());	
 			}
