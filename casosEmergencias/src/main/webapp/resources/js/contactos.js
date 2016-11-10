@@ -298,7 +298,7 @@ function agregarDireccion(direccion,tipoCalle,direccionConcatenada,comuna){
 	document.getElementById("idTipoCalleDir").value=tipoCalle;
 	document.getElementById("idDireccionCon").value=direccionConcatenada;
 	document.getElementById("idComuna").value=comuna;
-	document.getElementById("sfidContactDir").value=document.getElementById("contactSfidId").value;
+	document.getElementById("idContactSfid").value=document.getElementById("contactSfidId").value;
 }
 
 function crearCasoPorDireccion() {
