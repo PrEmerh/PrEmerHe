@@ -277,7 +277,8 @@
 				<artifactId>heroku-maven-plugin</artifactId>
 				<version>1.1.1</version>
 				<configuration>
-					<appName>chile-local</appName>
+					<!-- <appName>chile-en-dev</appName> -->
+					<appName>chile-en-dev-new-org</appName>
 				</configuration>
 			</plugin>
 			<!-- Configuracion CXF para generar las clases cliente de los servicios web -->
