@@ -1009,15 +1009,6 @@ public class CaseDAO {
 				}
 			}
 			
-			if (caso.getReason() != null) {
-				if (isFirst) {
-					query.append(" WHERE caso.reason = :reason");
-					isFirst = false;
-				} else {
-					query.append(" AND caso.reason = :reason");
-				}
-			}
-			
 			if (caso.getIdEmpresa() != null) {
 				if (isFirst) {
 					query.append(" WHERE caso.idEmpresa = :idEmpresa");
@@ -1431,10 +1422,6 @@ public class CaseDAO {
 			
 			if (caso.getHoraEnruta() != null) {
 				result.setDate("horaEnruta", caso.getHoraEnruta());
-			}
-			
-			if (caso.getReason() != null) {
-				result.setString("reason", caso.getReason());
 			}
 			
 			if (caso.getIdEmpresa() != null) {

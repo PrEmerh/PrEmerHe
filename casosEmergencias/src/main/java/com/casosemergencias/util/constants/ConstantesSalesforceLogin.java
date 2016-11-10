@@ -16,7 +16,8 @@ public class ConstantesSalesforceLogin {
 	public static final String DEV_LOGIN_SALESFORCE_TOKEN_PATH_URI = "/services/oauth2/token";
 	public static final String DEV_LOGIN_SALESFORCE_INSTANCE_URL = "https://cs52.salesforce.com";
 	public static final String DEV_LOGIN_SALESFORCE_REST_SERVICE_NEW_CASE_PATH_URI = "/services/apexrest/CreateHerokuCase";
-
+	public static final String DEV_LOGIN_SALESFORCE_REST_SERVICE_SEARCH_DIRECTION_PATH_URI= "/services/apexrest/SearchHerokuAddress";
+	
 	public static final String DEV_LOGIN_SALESFORCE_GRANT_TYPE_VALUE = "password";
 	public static final String DEV_LOGIN_SALESFORCE_CLIENT_ID_VALUE = "3MVG9jfQT7vUue.G57q9YxkeioLB1AE02bGctQ09wjCAcxfXK1OFwgt1YXFGm8HdTaXvIRCmF1pG259r4SsTz";
 	public static final String DEV_LOGIN_SALESFORCE_CLIENT_SECRET_VALUE = "4907478524393614560";

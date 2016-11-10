@@ -6,7 +6,7 @@ import com.casosemergencias.model.Caso;
 
 public class CasoSalesForce {
 	
-	private String cause__c;
+	private String reason;
 	private String status;
 	private String inserviceNumber__c;
 	private String subStatus__c;
@@ -35,13 +35,14 @@ public class CasoSalesForce {
 	private String caseFavorability__c;
 	private String heroku_User__c;
 	private String unity__c;
+	private String recordtypeid;
 	
-	public String getCause__c() {
-		return cause__c;
+	public String getReason() {
+		return reason;
 	}
 
-	public void setCause__c(String cause__c) {
-		this.cause__c = cause__c;
+	public void setReason(String reason) {
+		this.reason = reason;
 	}
 
 	public String getStatus() {
@@ -268,10 +269,18 @@ public class CasoSalesForce {
 		this.unity__c = unity__c;
 	}
 	
+	public String getRecordtypeid() {
+		return recordtypeid;
+	}
+
+	public void setRecordtypeid(String recordtypeid) {
+		this.recordtypeid = recordtypeid;
+	}
+
 	public static CasoSalesForce copyFieldsFromHerokuToSalesForceCaseBean(Caso casoHeroku) {
 		CasoSalesForce casoSF = new CasoSalesForce();
 		if (casoHeroku != null) {
-			casoSF.setCause__c((casoHeroku.getPeticion() != null && !"".equals(casoHeroku.getPeticion()) ? casoHeroku.getPeticion() : ""));
+			casoSF.setReason((casoHeroku.getPeticion() != null && !"".equals(casoHeroku.getPeticion()) ? casoHeroku.getPeticion() : ""));
 			casoSF.setStatus((casoHeroku.getEstado() != null && !"".equals(casoHeroku.getEstado()) ? casoHeroku.getEstado() : ""));
 			casoSF.setInserviceNumber__c((casoHeroku.getNumeroInservice() != null && !"".equals(casoHeroku.getNumeroInservice()) ? casoHeroku.getNumeroInservice() : ""));
 			casoSF.setSubStatus__c((casoHeroku.getSubestado() != null && !"".equals(casoHeroku.getSubestado()) ? casoHeroku.getSubestado() : ""));
@@ -300,6 +309,7 @@ public class CasoSalesForce {
 			casoSF.setCaseFavorability__c((casoHeroku.getFavorabilidadDelCaso() != null && !"".equals(casoHeroku.getFavorabilidadDelCaso()) ? casoHeroku.getFavorabilidadDelCaso() : ""));
 			casoSF.setHeroku_User__c((casoHeroku.getHerokuUsername() != null && !"".equals(casoHeroku.getHerokuUsername()) ? casoHeroku.getHerokuUsername() : ""));
 			casoSF.setUnity__c((casoHeroku.getCallCenter() != null && !"".equals(casoHeroku.getCallCenter()) ? casoHeroku.getCallCenter() : ""));
+			casoSF.setRecordtypeid((casoHeroku.getRecordtypeId() != null && !"".equals(casoHeroku.getRecordtypeId()) ? casoHeroku.getRecordtypeId() : ""));
 		}
 		return casoSF;
 	}

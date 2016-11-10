@@ -32,7 +32,7 @@ public class Constantes {
 	public static final String PICKLIST_CASO_DEFAULT = "Default";
 	public static final String PICKLIST_CASO_STATUS = "Status";
 	public static final String PICKLIST_CASO_SUBSTATUS = "SubStatus__c";
-	public static final String PICKLIST_CASO_PETICION = "Cause__c";
+	public static final String PICKLIST_CASO_PETICION = "Reason";
 	public static final String PICKLIST_CASO_ORIGIN = "Origin";
 	public static final String PICKLIST_CASO_CALLCENTER = "Unity__c";
 	public static final String PICKLIST_CASO_PETICION_EMERGENCIA_NAME = "Emergencia";
@@ -60,6 +60,7 @@ public class Constantes {
 	public static final String COD_CASO_ORIGEN_CALL_CENTER_DESC = "Call Center";
 	public static final String COD_CASO_TYPE_RECLAMO = "TIP001";
 	public static final String COD_CASO_TYPE_RECLAMO_DESC = "Reclamo";
+	public static final String COD_CASO_STATUS_PREINGRESADO= "ESTA000";
 	public static final String COD_CASO_STATUS_INGRESADO = "ESTA001";
 	public static final String COD_CASO_STATUS_CERRADO = "ESTA007";
 	public static final String COD_CASO_STATUS_CANCELADO = "ESTA008";
@@ -78,6 +79,11 @@ public class Constantes {
 	public static final String COD_CASO_SUBSTATUS_ERROR_INGRESO_DESC = "Error de Ingreso";	
 	public static final String COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC = "Cliente con Luz";
 	public static final String COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC_COMENTARIO = "Cliente con Luz, por contacto recibido";
+	public static final String COD_CASO_RECORDTYPEID_EMERGENCIA= "01236000000y3fL";
+
+	//CONTACTO
+	public static final String COD_CONTACTO_CANAL_PREF_CONTACT_003 = "CAN003";
+
 	
 	
 	//

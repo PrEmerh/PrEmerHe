@@ -246,7 +246,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@Column(name = "idfacebook__c")
 	private String facebook;
 
-	@Column(name = "cause__c")
+	@Column(name = "reason")
 	private String peticion;
 
 	@Column(name = "address__c")
@@ -263,9 +263,6 @@ public class CaseVO extends ObjectVO implements Serializable {
 
 	@Column(name = "onroutehour__c")
 	private Date horaEnruta;
-
-	@Column(name = "reason")
-	private String reason;
 
 	@Column(name = "companyid__c")
 	private String idEmpresa;
@@ -293,19 +290,19 @@ public class CaseVO extends ObjectVO implements Serializable {
 
 	@Column(name = "electrodependantcontrol__c")
 	private Boolean controlElectrodependiente;
-
+	
 	@Column(name = "cancel__c")
 	private Boolean cancelar;
-
+	
 	@Column(name = "aggravatedcondition__c")
 	private String condicionAgravante;
 	
 	@Column(name = "heroku_user__c")
 	private String herokuUsername;
-
+	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "cause__c", referencedColumnName = "codigo", insertable = false, updatable = false)
-	@WhereJoinTable(clause = "campo = 'Cause__c' and objeto = 'Case'")
+	@JoinColumn(name = "reason", referencedColumnName = "codigo", insertable = false, updatable = false)
+	@WhereJoinTable(clause = "campo = 'Reason' and objeto = 'Case'")
 	private PickListsCaseVO peticionPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY)
@@ -317,7 +314,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 	@JoinColumn(name = "substatus__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'SubStatus__c' and objeto = 'Case'")
 	private PickListsCaseVO subestadoPickList;
-
+	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "subcause__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	@WhereJoinTable(clause = "campo = 'SubCause__c' and objeto = 'Case'")
@@ -400,7 +397,7 @@ public class CaseVO extends ObjectVO implements Serializable {
 			String sf4twitterAuthorExternalId, Date horaCerrado, String literalCondicionAgravante, String type,
 			String direccionSuministro, Date horaPendiente, String ani, String facebook, String peticion,
 			String direccion, Date horaAsignado, String nombreContacto, Date horaPredespacho, Date horaEnruta,
-			String reason, String idEmpresa, Date horaProgramado, Double numeroSeguidoresDel, String literalCategorias,
+			String idEmpresa, Date horaProgramado, Double numeroSeguidoresDel, String literalCategorias,
 			String recordtypeId, String comuna, String prioridad, String valorSubestadoins,
 			Boolean controlElectrodependiente, Boolean cancelar, String condicionAgravante, String herokuUsername,
 			PickListsCaseVO subestadoPickList, PickListsCaseVO submotivoPickList, PickListsCaseVO peticionPickList,
@@ -488,7 +485,6 @@ public class CaseVO extends ObjectVO implements Serializable {
 		this.nombreContacto = nombreContacto;
 		this.horaPredespacho = horaPredespacho;
 		this.horaEnruta = horaEnruta;
-		this.reason = reason;
 		this.idEmpresa = idEmpresa;
 		this.horaProgramado = horaProgramado;
 		this.numeroSeguidoresDel = numeroSeguidoresDel;
@@ -1144,14 +1140,6 @@ public class CaseVO extends ObjectVO implements Serializable {
 
 	public void setHoraEnruta(Date horaEnruta) {
 		this.horaEnruta = horaEnruta;
-	}
-
-	public String getReason() {
-		return reason;
-	}
-
-	public void setReason(String reason) {
-		this.reason = reason;
 	}
 
 	public String getIdEmpresa() {

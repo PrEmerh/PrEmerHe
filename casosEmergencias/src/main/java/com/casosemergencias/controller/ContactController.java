@@ -29,15 +29,21 @@ import com.casosemergencias.controller.views.CaseView;
 import com.casosemergencias.controller.views.ContactView;
 import com.casosemergencias.controller.views.DireccionView;
 import com.casosemergencias.controller.views.SuministroView;
+import com.casosemergencias.exception.EmergenciasException;
+import com.casosemergencias.logic.CaseService;
 import com.casosemergencias.logic.ContactService;
 import com.casosemergencias.logic.DireccionService;
 import com.casosemergencias.logic.PickListsService;
 import com.casosemergencias.logic.SuministroService;
+import com.casosemergencias.model.Calle;
+import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
+import com.casosemergencias.model.Direccion;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.PickListByField;
 import com.casosemergencias.util.constants.Constantes;
+import com.casosemergencias.util.constants.ConstantesError;
 import com.casosemergencias.util.constants.ConstantesTibcoWS;
 import com.casosemergencias.util.datatables.DataTableColumnInfo;
 import com.casosemergencias.util.datatables.DataTableParser;
@@ -59,7 +65,10 @@ public class ContactController {
 	
 	@Autowired
 	private DireccionService direccionService;
-
+	
+	@Autowired
+	private CaseService casoService;
+	
 	@RequestMapping(value = "/private/homeContacts", method = RequestMethod.GET)
 	public ModelAndView listadoContactos() {
 
@@ -364,7 +373,7 @@ public class ContactController {
 			datosCallesWS = direccionService.getDatosCalleWS(idComuna, nombreCalle);
 
 			if (datosCallesWS != null && !datosCallesWS.isEmpty() && datosCallesWS.get(ConstantesTibcoWS.SIEME002_RESPONSE_LIST_NAME) != null) {
-				//TODO: Buscar direcciones en SF
+				
 				logger.info("Se parsean las calles obtenidas en el WS al objeto de direcciones de la vista");
 				List<CalleType> listaCalles = ((ListadoCallesType) datosCallesWS.get(ConstantesTibcoWS.SIEME002_RESPONSE_LIST_NAME)).getCalle();
 				for (CalleType calle : listaCalles) {
@@ -375,18 +384,7 @@ public class ContactController {
 					listaDirecciones.add(direccion);
 				}
 			}
-						
-			/*TODO: Al recuperar la calle del WS, sólo se obtiene id, nombre y tipo
-			 * Calle con id '4663327', tipo 'CALLE' y nombre 'AUGUSTO LEGUIA SUR'
-			 * 
-			 * ¿Mostramos los datos en el listado y, una vez seleccionada una hacemos la búsqueda en SF para
-			 * crear el caso posteriormente?
-			 * 
-			 * - ¿Cómo guardamos el tipo? Se guardan 3 letras ahora.
-			 */
-						
-//			listaDirecciones = this.direccionService.readAllDirecciones(propDataTable);
-			
+
 			if (listaDirecciones != null && !listaDirecciones.isEmpty()) {
 				logger.info("La lista de direcciones tiene datos. Se envian a la pagina");
 				for (DireccionView direccion : listaDirecciones) {
@@ -401,11 +399,85 @@ public class ContactController {
 		}		
 
 		jsonObject.put("data", jsonArray);
-		//jsonObject.put("iTotalRecords", "10"); 
-		//jsonObject.put("iTotalDisplayRecords",  "10"); 
-				
+		
 		logger.info("--- Fin -- listarDirecciones ---");
 		
 		return jsonObject.toString();
 	}
+	
+	
+	@RequestMapping(value = "/private/crearCasoPorDireccion", method = RequestMethod.GET)
+	public ModelAndView crearCasoPorDireccion(HttpServletRequest request) throws EmergenciasException {
+		
+		ModelAndView model = new ModelAndView();		
+		Calle street= new Calle();
+		Direccion direccion = new Direccion();		
+		
+		String contactSfid= request.getParameterValues("sfidContactDir")[0];
+		String region= request.getParameterValues("region")[0];
+		String comuna= request.getParameterValues("comunaDir")[0];
+		String nombre= request.getParameterValues("calleDir")[0];
+		String tipoCalle= request.getParameterValues("tipoCalleDir")[0];
+		String numero= request.getParameterValues("numeroName")[0];
+		String departamento= request.getParameterValues("departamentoDir")[0];
+		
+		/*String contactSfid="0035B0000044st4QAA";
+		String region= "13";
+		String comuna= "14";
+		String nombre= "TRINIDAD";
+		String tipoCalle= "AVENIDA";
+		String numero= "13441";
+		String departamento="12";*/
+		
+		//Mapeo Street
+		street.setRegion(region);	
+		street.setMunicipality(comuna);
+		street.setStreet(nombre);
+		street.setStreetType(tipoCalle);
+		
+		//Mapeo Address
+		direccion.setNumero(numero);
+		direccion.setDepartamento(departamento);
+		
+		//Creacion de Caso por Direccion
+		try{			
+			//Enviamos datos de Street y Address a Salesforce para recuperar Direccion.		 
+			String  direccionSfid= contactService.getSalesforceAddress(street,direccion).getSfid();
+			Caso casoForDirectionToInserted= new Caso();
+			
+			if(direccionSfid!=null && contactSfid!=null){
+				Caso createCasoForDirectionToInsert =contactService.createCaseForDirection(direccionSfid,contactSfid);	
+				//Insertamos Caso con Address recuperada en Salesforce
+				if(createCasoForDirectionToInsert!=null ){
+					casoForDirectionToInserted = casoService.insertCase(createCasoForDirectionToInsert);
+				}			
+			}
+			if (casoForDirectionToInserted != null) {
+				logger.info("Caso guardado correctamente con sfid:" + casoForDirectionToInserted.getSfid());
+				
+				logger.info("Se redirecciona a página de detalle del caso");
+				model.setViewName("redirect:entidadCaso?sfid=" + casoForDirectionToInserted.getSfid() + "&editMode=" + Constantes.EDIT_MODE_INSERTED_OK);
+
+			}
+			else {
+				logger.info("Se ha producido un error guardando el caso");
+				model.addObject("mostrarMensaje", true);
+				model.addObject("hayError", true);
+				model.addObject("codigoError", ConstantesError.EMERG_ERROR_CODE_004);
+				model.addObject("mensajeResultado", ConstantesError.HEROKU_CASE_CREATION_GENERIC_ERROR);
+				model.setViewName("redirect:entidadContacto?editMode=VIEW" + contactSfid);
+			}
+		}
+		catch(EmergenciasException exception) {
+			logger.info("No se ha guardado correctamente el caso");
+			model.addObject("mostrarMensaje", true);
+			model.addObject("hayError", true);
+			model.addObject("codigoError", exception.getCode());
+			model.addObject("mensajeResultado", exception.getMessage());
+			model.setViewName("private/entidadCasoAltaPage");
+		}
+		logger.info("--- Fin -- guardarCaso ---");
+		return model;
+	}
+	
 }

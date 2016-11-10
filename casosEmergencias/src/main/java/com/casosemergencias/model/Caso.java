@@ -61,6 +61,7 @@ public class Caso extends ObjectLogic {
 	private String herokuUsername;
 	private String nombreCuenta;
 	private String nombreContacto;
+	private String recordtypeId;
 	private Caso casoPrincipalJoin;
 	private Group groupJoin;
 	/*Joins caso*/
@@ -459,5 +460,11 @@ public class Caso extends ObjectLogic {
 	public void setLabelCallCenterPickList(String labelCallCenterPickList) {
 		this.labelCallCenterPickList = labelCallCenterPickList;
 	}
-	
+	public String getRecordtypeId() {
+		return recordtypeId;
+	}
+	public void setRecordtypeId(String recordtypeId) {
+		this.recordtypeId = recordtypeId;
+	}
+		
 }

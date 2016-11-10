@@ -3,12 +3,11 @@ package com.casosemergencias.logic.sf.response;
 public class SearchDirectionResponse {
 	private String idDireccion;
 	private ControlErrores controlErrores;
-
-	public String getDireccion() {
+	
+	public String getIdDireccion() {
 		return idDireccion;
 	}
-
-	public void setDireccion(String idDireccion) {
+	public void setIdDireccion(String idDireccion) {
 		this.idDireccion = idDireccion;
 	}
 	
