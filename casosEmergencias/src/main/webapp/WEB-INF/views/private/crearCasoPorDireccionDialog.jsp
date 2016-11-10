@@ -83,14 +83,6 @@
 				</tr>
 				<tr>
 					<td class="tablaAsociarSuministroEtiquetas">
-						<label for="filtroComuna">Comuna</label>
-					</td>
-					<td class="tablaAsociarSuministroTextos">
-						<input type="text" name="comunaDir" value="" id="idComuna" class="buttontext">
-					</td>
-				</tr>
-				<tr>
-					<td class="tablaAsociarSuministroEtiquetas">
 						<label for="filtroSfidContacto">Sfid Contacto</label>
 					</td>
 					<td class="tablaAsociarSuministroTextos">
