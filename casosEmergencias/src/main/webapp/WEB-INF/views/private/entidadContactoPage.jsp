@@ -28,20 +28,16 @@
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadContacto_title_label_detalle_contacto"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
 		<!-- Mensajes de estado de operación -->
-		<c:if test="${not empty mostrarMensaje && mostrarMensaje eq true}">
-			<c:choose>
-				<c:when test="${not empty hayError && hayError eq true}">
-					<div>
-						<div class="divError" id="divInsertError">
-							<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
-							<br/>
-							<label class="labelDivError"><s:message code="notificaciones_label_error_codigo"/>&nbsp;${codigoError}</label>
-							<br/>
-							<label class="labelDivError"><s:message code="notificaciones_label_error_mensaje"/>&nbsp;${mensajeResultado}</label>
-						</div>
-					</div>
-				</c:when>
-			</c:choose>
+		<c:if test="${not empty param.codigoError}">
+			<div>
+				<div class="divError" id="divInsertError">
+					<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
+					<br/>
+					<label class="labelDivError"><s:message code="notificaciones_label_error_codigo"/>&nbsp;${param.codigoError}</label>
+					<br/>
+					<label class="labelDivError"><s:message code="notificaciones_label_error_mensaje"/>&nbsp;${param.mensajeResultado}</label>
+				</div>
+			</div>
 		</c:if>
 		<div id="divAssociationError" class="divError">
 			<label class="labelDivError"><s:message code="notificaciones_label_error_suministro_association"/></label>

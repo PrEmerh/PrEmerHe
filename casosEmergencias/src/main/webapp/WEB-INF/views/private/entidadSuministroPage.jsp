@@ -33,27 +33,16 @@
 			</div>
 		</div>
 		<!-- Mensajes de estado de operación -->
-		<c:if test="${not empty mostrarMensaje && mostrarMensaje eq true}">
-			<c:choose>
-				<c:when test="${not empty hayError && hayError eq true}">
-					<div>
-						<div class="divError" id="divInsertError">
-							<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
-							<br/>
-							<label class="labelDivError"><s:message code="notificaciones_label_error_codigo"/>&nbsp;${codigoError}</label>
-							<br/>
-							<label class="labelDivError"><s:message code="notificaciones_label_error_mensaje"/>&nbsp;${mensajeResultado}</label>
-						</div>
-					</div>
-				</c:when>
-				<c:otherwise>
-					<div>
-						<div id="divInsertOk" class="divOk" >
-							<label class="labelDivOk">${mensajeResultado}</label>
-						</div>	
-					</div>
-				</c:otherwise>
-			</c:choose>
+		<c:if test="${not empty param.codigoError}">
+			<div>
+				<div class="divError" id="divInsertError">
+					<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
+					<br/>
+					<label class="labelDivError"><s:message code="notificaciones_label_error_codigo"/>&nbsp;${param.codigoError}</label>
+					<br/>
+					<label class="labelDivError"><s:message code="notificaciones_label_error_mensaje"/>&nbsp;${param.mensajeResultado}</label>
+				</div>
+			</div>
 		</c:if>
 		<form:form name="formEntidadSuministroName" id="formEntidadSuministro" action="actualizarSuministro" modelAttribute="suministro" method="POST">			
 				<div class="botoneraCentrado">
