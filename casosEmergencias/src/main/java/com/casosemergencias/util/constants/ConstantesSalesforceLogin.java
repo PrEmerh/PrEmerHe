@@ -27,4 +27,5 @@ public class ConstantesSalesforceLogin {
 	public static final String DEV_REST_SALESFORCE_ACCEPT_HEADER_KEY = "Accept";
 	
 	public static final String DEV_REST_SALESFORCE_JSON_CONTENT_TYPE = "application/json";
+	
 }
