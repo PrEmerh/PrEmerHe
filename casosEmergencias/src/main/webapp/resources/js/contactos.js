@@ -301,12 +301,8 @@ function agregarDireccion(direccion,tipoCalle,direccionConcatenada,comuna){
 	document.getElementById("sfidContactDir").value=document.getElementById("contactSfidId").value;
 }
 
-
-
-function crearCasoPorDireccion(){
-	$("#cargarCrearCasoPorDireccion").dialog('close');
-	verCargando();	
-	window.location="../private/crearCasoPorDireccion";
-	
+function crearCasoPorDireccion() {
+	$("#dialogCrearCasoPorDireccion").dialog('close');
+	verCargando();
+	$('#crearCasoPorDireccionId').submit();
 }
-

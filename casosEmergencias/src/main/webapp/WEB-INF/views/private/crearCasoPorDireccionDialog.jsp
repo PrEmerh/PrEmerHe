@@ -54,7 +54,7 @@
 						<label for="filtroDireccion">Número</label>
 					</td>
 					<td class="tablaAsociarSuministroTextos">
-						<input class="requiredTextArea" type="text" name="numeroName value=" id="idNumeroDir" class="buttontext">
+						<input class="requiredTextArea" type="text" name="numeroDir" value="" id="idNumeroDir" class="buttontext">
 					</td>
 				</tr>
 				<tr>

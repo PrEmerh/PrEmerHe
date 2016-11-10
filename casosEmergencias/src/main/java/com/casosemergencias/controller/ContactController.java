@@ -406,20 +406,20 @@ public class ContactController {
 	}
 	
 	
-	@RequestMapping(value = "/private/crearCasoPorDireccion", method = RequestMethod.GET)
+	@RequestMapping(value = "/private/crearCasoPorDireccion", method = RequestMethod.POST)
 	public ModelAndView crearCasoPorDireccion(HttpServletRequest request) throws EmergenciasException {
 		
 		ModelAndView model = new ModelAndView();
 		Calle street= new Calle();
 		Direccion direccion = new Direccion();		
 		
-		String contactSfid= request.getParameterValues("sfidContactDir")[0];
-		String region= request.getParameterValues("region")[0];
-		String comuna= request.getParameterValues("comunaDir")[0];
-		String nombre= request.getParameterValues("calleDir")[0];
-		String tipoCalle= request.getParameterValues("tipoCalleDir")[0];
-		String numero= request.getParameterValues("numeroName")[0];
-		String departamento= request.getParameterValues("departamentoDir")[0];
+		String contactSfid = (String) request.getParameter("sfidContactDir");
+		String region = (String) request.getParameter("region");
+		String comuna = (String) request.getParameter("comunaDir");
+		String nombre = (String) request.getParameter("calleDir");
+		String tipoCalle = (String) request.getParameter("tipoCalleDir");
+		String numero = (String) request.getParameter("numeroDir");
+		String departamento = (String) request.getParameter("departamentoDir");
 		
 		/*String contactSfid="0035B0000044st4QAA";
 		String region= "13";
@@ -455,7 +455,7 @@ public class ContactController {
 			if (casoForDirectionToInserted != null) {
 				logger.info("Caso guardado correctamente con sfid:" + casoForDirectionToInserted.getSfid());
 				
-				logger.info("Se redirecciona a página de detalle del caso");
+				logger.info("Se redirecciona a página de detalle del contacto");
 				model.setViewName("redirect:entidadCaso?sfid=" + casoForDirectionToInserted.getSfid() + "&editMode=" + Constantes.EDIT_MODE_INSERTED_OK);
 
 			}
@@ -465,7 +465,7 @@ public class ContactController {
 				model.addObject("hayError", true);
 				model.addObject("codigoError", ConstantesError.EMERG_ERROR_CODE_004);
 				model.addObject("mensajeResultado", ConstantesError.HEROKU_CASE_CREATION_GENERIC_ERROR);
-				model.setViewName("redirect:entidadContacto?editMode=VIEW" + contactSfid);
+				model.setViewName("redirect:entidadContacto?editMode=VIEW&sfid=" + contactSfid);
 			}
 		}
 		catch(EmergenciasException exception) {
@@ -474,7 +474,7 @@ public class ContactController {
 			model.addObject("hayError", true);
 			model.addObject("codigoError", exception.getCode());
 			model.addObject("mensajeResultado", exception.getMessage());
-			model.setViewName("private/entidadCasoAltaPage");
+			model.setViewName("redirect:entidadContacto?editMode=VIEW&sfid=" + contactSfid);
 		}
 		logger.info("--- Fin -- guardarCaso ---");
 		return model;
