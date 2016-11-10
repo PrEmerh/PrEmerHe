@@ -16,4 +16,6 @@ public interface DireccionService {
 	public Integer getNumDirecciones(DataTableProperties propDatatable);
 	
 	public Map<String, Object> getDatosCalleWS(String idComuna, String nombreCalle);
+	
+	/*public void sendDirectionToSF(Direccion direccion);*/
 }

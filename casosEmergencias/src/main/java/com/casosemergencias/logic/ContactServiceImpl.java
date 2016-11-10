@@ -223,7 +223,6 @@ public class ContactServiceImpl implements ContactService{
 		return direccionSf;
 	}
 
-	
 	@Override
 	public Caso createCaseForDirection(String direccionSf,String contactSfid) {
 		Caso casoToInsert = new Caso();
@@ -232,6 +231,7 @@ public class ContactServiceImpl implements ContactService{
 		if (contacto.getCanalPreferenteContacto() != null) {
 			canalNotificacion=contacto.getCanalPreferenteContacto();
 		} else {
+
 			canalNotificacion.equals(Constantes.COD_CONTACTO_CANAL_PREF_CONTACT_003);
 		}
 		casoToInsert.setNombreContacto(contacto.getSfid());

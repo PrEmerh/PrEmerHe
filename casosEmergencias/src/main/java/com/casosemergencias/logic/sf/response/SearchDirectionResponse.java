@@ -18,4 +18,6 @@ public class SearchDirectionResponse {
 	public void setControlErrores(ControlErrores controlErrores) {
 		this.controlErrores = controlErrores;
 	}
+
+	
 }

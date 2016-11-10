@@ -68,7 +68,7 @@ public class ContactController {
 	
 	@Autowired
 	private CaseService casoService;
-	
+
 	@RequestMapping(value = "/private/homeContacts", method = RequestMethod.GET)
 	public ModelAndView listadoContactos() {
 
@@ -409,7 +409,7 @@ public class ContactController {
 	@RequestMapping(value = "/private/crearCasoPorDireccion", method = RequestMethod.GET)
 	public ModelAndView crearCasoPorDireccion(HttpServletRequest request) throws EmergenciasException {
 		
-		ModelAndView model = new ModelAndView();		
+		ModelAndView model = new ModelAndView();
 		Calle street= new Calle();
 		Direccion direccion = new Direccion();		
 		
