@@ -33,7 +33,7 @@
 					<td class="tablaAsociarSuministroTextos">					
 						<select id="idComuna" name= "mapComuna">
 							<c:forEach items="${suministroDial.mapComuna}" var="comuna">
-								<option value="${comuna.value}">								
+								<option value="${comuna.key}">								
 									${comuna.value}								
 								</option>
 							</c:forEach>

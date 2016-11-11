@@ -100,7 +100,7 @@ function cargarTablaSuministros(){
 	       	"columns": [
 	       	            {data: "name", width: "18%", defaultContent: "", orderable: false}, 
 	       	            {data: "direccionConcatenada", width: "31%", defaultContent: "", orderable: false},
-	       	            {data: "comuna", width: "15%", defaultContent: "", orderable: false},
+	       	            {data: "comunaReparto", width: "15%", defaultContent: "", orderable: false},
 	       	            {data: "estadoSuministroPickList", width: "18%", defaultContent: "", orderable: false},
 	       	            {data: "empresaPickList", width: "15%", defaultContent: "", orderable: false},
 	       	            {data: "sfid", width: "1%", defaultContent: "", visible: false, orderable: false},
