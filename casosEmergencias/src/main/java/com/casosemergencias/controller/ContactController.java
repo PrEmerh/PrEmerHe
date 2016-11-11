@@ -278,7 +278,7 @@ public class ContactController {
 				jsonResult = new JSONObject();
 				jsonResult.put("name", suministro.getName());
 				jsonResult.put("direccionConcatenada", suministro.getDireccionConcatenada());
-				jsonResult.put("comuna", suministro.getLabelComunaRepartoPickList());
+				jsonResult.put("comuna", suministro.getComuna());
 				jsonResult.put("estadoSuministroPickList", suministro.getLabelEstadoSuministroPickList());
 				jsonResult.put("empresaPickList", suministro.getLabelEmpresaPickList());
 				jsonResult.put("sfid", suministro.getSfid());
