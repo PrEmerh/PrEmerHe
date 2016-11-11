@@ -414,21 +414,13 @@ public class ContactController {
 		Direccion direccion = new Direccion();		
 		
 		String contactSfid = (String) request.getParameter("sfidContactDir");
-		String region = (String) request.getParameter("region");
-		String comuna = (String) request.getParameter("comunaDir");
+		String region = (String) request.getParameter("regionDir");
+		String comuna = (String) request.getParameter("comunaDir");		
 		String nombre = (String) request.getParameter("calleDir");
 		String tipoCalle = (String) request.getParameter("tipoCalleDir");
 		String numero = (String) request.getParameter("numeroDir");
 		String departamento = (String) request.getParameter("departamentoDir");
-		
-		/*String contactSfid="0035B0000044st4QAA";
-		String region= "13";
-		String comuna= "14";
-		String nombre= "TRINIDAD";
-		String tipoCalle= "AVENIDA";
-		String numero= "13441";
-		String departamento="12";*/
-		
+
 		//Mapeo Street
 		street.setRegion(region);	
 		street.setMunicipality(comuna);
