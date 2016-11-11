@@ -173,7 +173,7 @@ public class ContactServiceImpl implements ContactService{
 					return true;
 				}
 		}
-		return null;
+		return false;
 	}
 	
 	@Override
@@ -212,7 +212,6 @@ public class ContactServiceImpl implements ContactService{
 						logger.warn("Se ha producido un error al recuperar la direccion en SalesForce");
 						throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_006, ConstantesError.SALESFORCE__SEARCH_ADDRESS_ERROR);
 					}
-
 				}
 			}
 		} catch (IOException exception) {
@@ -224,28 +223,25 @@ public class ContactServiceImpl implements ContactService{
 	}
 
 	@Override
-	public Caso createCaseForDirection(String direccionSf,String contactSfid) {
+	public Caso populateCaseInfoToInsert(String direccionSf, String contactSfid) {
+		logger.debug("Rellenamos los datos del caso para insertarlo por direccion");
 		Caso casoToInsert = new Caso();
-		ContactVO contacto=contactDao.readContactBySfid(contactSfid);
-		String canalNotificacion = new String();
-		if (contacto.getCanalPreferenteContacto() != null) {
-			canalNotificacion=contacto.getCanalPreferenteContacto();
-		} else {
-
-			canalNotificacion.equals(Constantes.COD_CONTACTO_CANAL_PREF_CONTACT_003);
+		ContactVO contacto = contactDao.readContactBySfid(contactSfid);
+		String canalNotificacion = null;
+		if (contacto != null) {
+			logger.debug("El contacto no es nulo, se rellenan sus datos");
+			if (contacto.getCanalPreferenteContacto() != null && !"".equals(contacto.getCanalPreferenteContacto())) {
+				canalNotificacion = contacto.getCanalPreferenteContacto();
+			}
+			casoToInsert.setNombreContacto(contacto.getSfid());
+			casoToInsert.setEmailNotificacion(contacto.getEmail());
+			casoToInsert.setTelefonoContacto(contacto.getPhone());
 		}
-		casoToInsert.setNombreContacto(contacto.getSfid());
 		casoToInsert.setDireccion(direccionSf);
 		casoToInsert.setCanalOrigen(Constantes.COD_CASO_ORIGEN_CALL_CENTER);
 		casoToInsert.setType(Constantes.COD_CASO_TYPE_RECLAMO);
 		casoToInsert.setEstado(Constantes.COD_CASO_STATUS_PREINGRESADO);
-		casoToInsert.setRecordtypeId(Constantes.COD_CASO_RECORDTYPEID_EMERGENCIA);
-		casoToInsert.setCanalNotificacion(canalNotificacion);
-		casoToInsert.setEmailNotificacion(contacto.getEmail());
-		casoToInsert.setTelefonoContacto(contacto.getPhone());
-		
+		casoToInsert.setCanalNotificacion((canalNotificacion != null && !"".equals(canalNotificacion) ? canalNotificacion : Constantes.COD_CONTACTO_CANAL_PREF_CONTACT_003));
 		return casoToInsert;
 	}
-	
-	
 }

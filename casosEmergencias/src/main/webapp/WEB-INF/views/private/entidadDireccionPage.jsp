@@ -58,7 +58,7 @@
 						<label><s:message code="entidadDireccion_table_label_calle"/></label>
 					</div>
 					<div>
-						<label>${direccion.calle}</label>
+						<label>${direccion.calleJoin.name}</label>
 					</div>
 				</div>
 				<div>

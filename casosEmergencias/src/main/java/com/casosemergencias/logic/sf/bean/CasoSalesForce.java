@@ -35,7 +35,8 @@ public class CasoSalesForce {
 	private String caseFavorability__c;
 	private String heroku_User__c;
 	private String unity__c;
-	private String recordtypeid;
+	//De momento no hace falta para los casos que se crean ahora, pero si se incluyen más creaciones de casos será necesario implementarlo
+	//private String recordtypeid;
 	
 	public String getReason() {
 		return reason;
@@ -269,13 +270,14 @@ public class CasoSalesForce {
 		this.unity__c = unity__c;
 	}
 	
-	public String getRecordtypeid() {
-		return recordtypeid;
-	}
-
-	public void setRecordtypeid(String recordtypeid) {
-		this.recordtypeid = recordtypeid;
-	}
+	//De momento no hace falta para los casos que se crean ahora, pero si se incluyen más creaciones de casos será necesario implementarlo
+//	public String getRecordtypeid() {
+//		return recordtypeid;
+//	}
+//
+//	public void setRecordtypeid(String recordtypeid) {
+//		this.recordtypeid = recordtypeid;
+//	}
 
 	public static CasoSalesForce copyFieldsFromHerokuToSalesForceCaseBean(Caso casoHeroku) {
 		CasoSalesForce casoSF = new CasoSalesForce();
@@ -309,7 +311,8 @@ public class CasoSalesForce {
 			casoSF.setCaseFavorability__c((casoHeroku.getFavorabilidadDelCaso() != null && !"".equals(casoHeroku.getFavorabilidadDelCaso()) ? casoHeroku.getFavorabilidadDelCaso() : ""));
 			casoSF.setHeroku_User__c((casoHeroku.getHerokuUsername() != null && !"".equals(casoHeroku.getHerokuUsername()) ? casoHeroku.getHerokuUsername() : ""));
 			casoSF.setUnity__c((casoHeroku.getCallCenter() != null && !"".equals(casoHeroku.getCallCenter()) ? casoHeroku.getCallCenter() : ""));
-			casoSF.setRecordtypeid((casoHeroku.getRecordtypeId() != null && !"".equals(casoHeroku.getRecordtypeId()) ? casoHeroku.getRecordtypeId() : ""));
+			//De momento no hace falta para los casos que se crean ahora, pero si se incluyen más creaciones de casos será necesario implementarlo
+			//casoSF.setRecordtypeid((casoHeroku.getRecordtypeId() != null && !"".equals(casoHeroku.getRecordtypeId()) ? casoHeroku.getRecordtypeId() : ""));
 		}
 		return casoSF;
 	}

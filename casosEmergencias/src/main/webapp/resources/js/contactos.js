@@ -234,26 +234,27 @@ function cargarTablaDirecciones(){
 	       	            {data: "calle", width: "1%", defaultContent: "", orderable: false}, 
 	       	            {data: "tipoCalle", width: "1%", defaultContent: "", orderable: false},
 	       	            {data: "comuna", width: "1%", defaultContent: "", visible: false, orderable: false},
-	       	            {data: "direccionConcatenada", width: "1%",visible: false, defaultContent: "", orderable: false},
 			],
 			"columnDefs": [
 	                    {"targets": 0,
 	                     "render": function (data, type, full, meta) {
 	                    	 var txtColumn = "";
+	                    	 var calle = "";
 	                    	 var tipoCalle ="";
-	                    	 if (data!= null) {
+	                    	 var comuna = "";
+	                    	 if (data != null) {
+	                    		 txtColumn = data;
+	                    	 }
+	                    	 if (full.calle != null) {
 	                    		 calle = full.calle;
-	                    	 }if (full.tipoCalle != null) {
+	                    	 }
+	                    	 if (full.tipoCalle != null) {
 	                    		 tipoCalle = full.tipoCalle;
-	                     	 }if (full.comuna != null) {
+	                     	 }
+	                    	 if (full.comuna != null) {
 	                     		 comuna = full.comuna;
-	                     	 }if (full.direccionConcatenada != null) {
-	                     		 direccionConcatenada  = full.direccionConcatenada;
 	                     	 }
-	                     	  if (full.comuna != null) {
-	                     		 comuna  = full.comuna;
-	                     	 }
-	                    	 return '<a href="javaScript:{agregarDireccion('+"'" +calle +"'"+","+"'"+tipoCalle+"'"+","+"'"+direccionConcatenada+"'"+","+"'"+comuna+"'"+')}">'+ calle  + '</a>';
+	                    	 return '<a href="javaScript:{agregarDireccion('+"'" +calle +"'"+","+"'"+tipoCalle+"'"+","+"'"+comuna+"'"+')}">'+ txtColumn  + '</a>';
 	                    }
 	        }]
 		});
@@ -294,12 +295,11 @@ function cargarTablaDirecciones(){
 	}
 }
 
-function agregarDireccion(direccion,tipoCalle,direccionConcatenada,comuna){
-	document.getElementById("idCalleDir").value=direccion;
-	document.getElementById("idTipoCalleDir").value=tipoCalle;
-	document.getElementById("idDireccionCon").value=direccionConcatenada;
-	document.getElementById("idComuna").value=comuna;
-	document.getElementById("idContactSfid").value=document.getElementById("contactSfidId").value;
+function agregarDireccion(direccion, tipoCalle, comuna) {
+	document.getElementById("idCalleDir").value = direccion;
+	document.getElementById("idTipoCalleDir").value = tipoCalle;
+	document.getElementById("idComuna").value = comuna;
+	document.getElementById("idContactSfid").value = document.getElementById("contactSfidId").value;
 }
 
 function crearCasoPorDireccion() {

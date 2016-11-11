@@ -144,7 +144,6 @@ public class CaseServiceImpl implements CaseService{
 				userSessionInfoFromDB = salesforceLoginChecker.getUserSessionInfo(sessionInfoToLogin);
 				if (userSessionInfoFromDB != null) {
 					caso.setPropietarioCaso(userId);
-					caso.setRecordtypeId(Constantes.COD_CASO_RECORDTYPEID_EMERGENCIA);
 					respuestaCaso = CreateCase.createCaseInSalesforce(userSessionInfoFromDB, caso);
 					if (respuestaCaso != null) {
 						if (respuestaCaso.getIdCaso() != null && !"".equals(respuestaCaso.getIdCaso())) {

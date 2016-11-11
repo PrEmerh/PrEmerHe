@@ -98,7 +98,6 @@
 	            	<th width="1%">Nombre</th>
 	                <th width="1%">Tipo</th>
 	                <th width="1%" hidden="true">comuna</th>
-	                <th width="1%" hidden="true">direccionConcatenada</th>
 	            </tr>
         	</thead>
 		</table>

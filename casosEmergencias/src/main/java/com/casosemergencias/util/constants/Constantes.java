@@ -79,7 +79,8 @@ public class Constantes {
 	public static final String COD_CASO_SUBSTATUS_ERROR_INGRESO_DESC = "Error de Ingreso";	
 	public static final String COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC = "Cliente con Luz";
 	public static final String COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC_COMENTARIO = "Cliente con Luz, por contacto recibido";
-	public static final String COD_CASO_RECORDTYPEID_EMERGENCIA= "01236000000y3fL";
+	//De momento no hace falta para los casos que se crean ahora, pero si se incluyen más creaciones de casos será necesario implementarlo
+	//public static final String COD_CASO_RECORDTYPEID_EMERGENCIA= "01236000000y3fL";
 
 	//CONTACTO
 	public static final String COD_CONTACTO_CANAL_PREF_CONTACT_003 = "CAN003";

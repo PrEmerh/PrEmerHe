@@ -319,17 +319,13 @@ public class ContactController {
 		boolean asociarSuministro=contactService.asociarSuministro(sfid,contactSfid);	
 		if(asociarSuministro==true){
 			return "redirect:entidadContacto?editMode="+Constantes.SUM_ASSOCIATION_CONTACT_OK+"&sfid=" + contactSfid;
-		}
-		else if(asociarSuministro==false){
+		} else if(asociarSuministro==false) {
 			return "redirect:entidadContacto?editMode="+Constantes.SUM_ASSOCIATION_CONTACT_ERROR+"&sfid=" + contactSfid;
 
-		}
-		else{
+		} else {
 			return null;
 		}
-		
 	}
-	
 	
 	/**
 	 * Metodo invocado desde Crear Caso por Direccion. Si los parametros de filtrado estan vacios, no se
@@ -369,11 +365,9 @@ public class ContactController {
 					}
 				}
 			}
-			
 			datosCallesWS = direccionService.getDatosCalleWS(idComuna, nombreCalle);
 
 			if (datosCallesWS != null && !datosCallesWS.isEmpty() && datosCallesWS.get(ConstantesTibcoWS.SIEME002_RESPONSE_LIST_NAME) != null) {
-				
 				logger.info("Se parsean las calles obtenidas en el WS al objeto de direcciones de la vista");
 				List<CalleType> listaCalles = ((ListadoCallesType) datosCallesWS.get(ConstantesTibcoWS.SIEME002_RESPONSE_LIST_NAME)).getCalle();
 				for (CalleType calle : listaCalles) {
@@ -384,7 +378,7 @@ public class ContactController {
 					listaDirecciones.add(direccion);
 				}
 			}
-
+			
 			if (listaDirecciones != null && !listaDirecciones.isEmpty()) {
 				logger.info("La lista de direcciones tiene datos. Se envian a la pagina");
 				for (DireccionView direccion : listaDirecciones) {
@@ -392,23 +386,17 @@ public class ContactController {
 					jsonResult.put("comuna", (direccion.getComuna() != null ? direccion.getComuna() : ""));
 					jsonResult.put("calle", (direccion.getCalle() != null ? direccion.getCalle() : ""));
 					jsonResult.put("tipoCalle", (direccion.getTipoCalle() != null ? direccion.getTipoCalle() : ""));
-					jsonResult.put("direccionConcatenada", (direccion.getDireccionConcatenada() != null ? direccion.getDireccionConcatenada() : ""));
 					jsonArray.put(jsonResult);
 				}
 			}
-		}		
-
+		}
 		jsonObject.put("data", jsonArray);
-		
 		logger.info("--- Fin -- listarDireccioness ---");
-		
 		return jsonObject.toString();
 	}
 	
-	
 	@RequestMapping(value = "/private/crearCasoPorDireccion", method = RequestMethod.POST)
 	public ModelAndView crearCasoPorDireccion(HttpServletRequest request) throws EmergenciasException {
-		
 		ModelAndView model = new ModelAndView();
 		Calle street= new Calle();
 		Direccion direccion = new Direccion();		
@@ -434,24 +422,22 @@ public class ContactController {
 		//Creacion de Caso por Direccion
 		try{			
 			//Enviamos datos de Street y Address a Salesforce para recuperar Direccion.		 
-			String  direccionSfid= contactService.getSalesforceAddress(street,direccion).getSfid();
-			Caso casoForDirectionToInserted= new Caso();
+			String direccionSfid = contactService.getSalesforceAddress(street,direccion).getSfid();
+			Caso casoForDirectionToInserted = null;
 			
-			if(direccionSfid!=null && contactSfid!=null){
-				Caso createCasoForDirectionToInsert =contactService.createCaseForDirection(direccionSfid,contactSfid);	
+			if ((direccionSfid != null && !"".equals(direccionSfid)) && (contactSfid != null && !"".equals(contactSfid))) {
+				Caso createCasoForDirectionToInsert = contactService.populateCaseInfoToInsert(direccionSfid,contactSfid);	
 				//Insertamos Caso con Address recuperada en Salesforce
-				if(createCasoForDirectionToInsert!=null ){
+				if (createCasoForDirectionToInsert != null) {
+					logger.info("Se procede a insertar el caso por direccion");
 					casoForDirectionToInserted = casoService.insertCase(createCasoForDirectionToInsert);
-				}			
+				}	
 			}
 			if (casoForDirectionToInserted != null) {
 				logger.info("Caso guardado correctamente con sfid:" + casoForDirectionToInserted.getSfid());
-				
-				logger.info("Se redirecciona a página de detalle del contacto");
+				logger.info("Se redirecciona a página de detalle del caso");
 				model.setViewName("redirect:entidadCaso?sfid=" + casoForDirectionToInserted.getSfid() + "&editMode=" + Constantes.EDIT_MODE_INSERTED_OK);
-
-			}
-			else {
+			} else {
 				logger.info("Se ha producido un error guardando el caso");
 				model.addObject("mostrarMensaje", true);
 				model.addObject("hayError", true);
