@@ -39,8 +39,11 @@
 				</div>
 			</div>
 		</c:if>
-		<div id="divAssociationError" class="divError">
+		<div id="divAssociationSumError" class="divError">
 			<label class="labelDivError"><s:message code="notificaciones_label_error_suministro_association"/></label>
+		</div>
+		<div id="divAssociationAssetError" class="divError">
+			<label class="labelDivError"><s:message code="notificaciones_label_error_asset_search"/></label>
 		</div>
 		<div id="divAssociationOk" class="divOk">
 			<label class="labelDivOk"><s:message code="notificaciones_label_ok_suministro_association"/></label>

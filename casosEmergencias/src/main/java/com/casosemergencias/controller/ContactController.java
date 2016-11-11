@@ -315,16 +315,20 @@ public class ContactController {
 	@RequestMapping(value = "/private/asociarSuministro", method = RequestMethod.GET)
 	public String getDireccionData(@RequestParam String sfid,@RequestParam String contactSfid) {
 		logger.debug("Ejecutar consulta");
+		String returnUrl="";
 
-		boolean asociarSuministro=contactService.asociarSuministro(sfid,contactSfid);	
-		if(asociarSuministro==true){
-			return "redirect:entidadContacto?editMode="+Constantes.SUM_ASSOCIATION_CONTACT_OK+"&sfid=" + contactSfid;
-		} else if(asociarSuministro==false) {
-			return "redirect:entidadContacto?editMode="+Constantes.SUM_ASSOCIATION_CONTACT_ERROR+"&sfid=" + contactSfid;
-
-		} else {
-			return null;
+		Boolean asociarSuministro=contactService.asociarSuministro(sfid,contactSfid);	
+		if(asociarSuministro!=null){
+			if(asociarSuministro.booleanValue()==true){
+				returnUrl="redirect:entidadContacto?editMode="+Constantes.SUM_ASSOCIATION_CONTACT_OK+"&sfid=" + contactSfid;
+			} else if(asociarSuministro.booleanValue()==false) {
+				returnUrl= "redirect:entidadContacto?editMode="+Constantes.SUM_ASSOCIATION_CONTACT_ERROR+"&sfid=" + contactSfid;
+			}
 		}
+		else {
+			returnUrl= "redirect:entidadContacto?editMode="+Constantes.SUM_ASSET_SEARCH_CONTACT_ERROR+"&sfid=" + contactSfid;
+		}
+		return returnUrl;
 	}
 	
 	/**

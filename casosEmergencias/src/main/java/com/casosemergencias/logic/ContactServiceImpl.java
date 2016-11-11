@@ -173,7 +173,7 @@ public class ContactServiceImpl implements ContactService{
 					return true;
 				}
 		}
-		return false;
+		return null;
 	}
 	
 	@Override

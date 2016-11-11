@@ -46,6 +46,8 @@ public class Constantes {
 	//Contacto
 	public static final String SUM_ASSOCIATION_CONTACT_ERROR = "ASSOCIATION_ERROR";
 	public static final String SUM_ASSOCIATION_CONTACT_OK = "ASSOCIATION_OK";
+	public static final String SUM_ASSET_SEARCH_CONTACT_ERROR = "ASSET_SEARCH_ERROR";
+
 	
 	
 	//RelaciónActivoContacto

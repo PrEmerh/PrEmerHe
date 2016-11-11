@@ -134,20 +134,21 @@ function cargarTablaSuministros(){
 			var calle= document.getElementById("idCalle");
 			var numero= document.getElementById("idNumero");
 			
-			if(numeroSuministro.value=="" && comuna.value=="" && calle.value=="" &&numero.value==""){
+			if(numeroSuministro.value=="" && (comuna.value=="" || comuna.value=="Default") && calle.value=="" &&numero.value==""){
 				$('#divAssociationErrorSearch').show();
 			}
 			else{
 				$('#divAssociationErrorSearch').hide();
-			}
-			
+						
 			tableSum
 				.columns(0).search($('#idNameSuministro').val())
 				.columns(2).search($('#idComuna').val())
 				.columns(6).search($('#idCalle').val())
 				.columns(7).search($('#idNumero').val())
-				.draw();			
+				.draw();
+			}
 		});
+		
 		
 		//A�adir opcion de buscar pulsando enter
 		$("#idNameSuministro").on("keyup", function (event) {
@@ -190,10 +191,13 @@ function asociarSuministro(sfid,contactSfid){
 
 function checkUpdates() {
 	if (document.getElementById('editModeId').value == 'ASSOCIATION_ERROR') {
-		$('#divAssociationError').show();
+		$('#divAssociationSumError').show();
 	}
 	if (document.getElementById('editModeId').value == 'ASSOCIATION_OK') {
 		$('#divAssociationOk').show();
+	}
+	if (document.getElementById('editModeId').value == 'ASSET_SEARCH_ERROR') {
+		$('#divAssociationAssetError').show();
 	}
 }
 
