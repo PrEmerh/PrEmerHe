@@ -45,7 +45,7 @@
 						<label for="filtroDireccion">Calle</label>
 					</td>
 					<td class="tablaAsociarSuministroTextos">
-						<input type="text" name="calle" value="" id="idCalle" class="buttontext">
+						<input type="text" name="calle" value="" id="idDireccionConcatenada" class="buttontext">
 					</td>
 				</tr>
 				<tr>

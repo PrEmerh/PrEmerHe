@@ -131,7 +131,7 @@ function cargarTablaSuministros(){
 						
 			var numeroSuministro= document.getElementById("idNameSuministro");
 			var comuna= document.getElementById("idComuna");
-			var calle= document.getElementById("idCalle");
+			var calle= document.getElementById("idDireccionConcatenada");
 			var numero= document.getElementById("idNumero");
 			
 			if(numeroSuministro.value=="" && (comuna.value=="" || comuna.value=="Default") && calle.value=="" &&numero.value==""){
@@ -142,8 +142,8 @@ function cargarTablaSuministros(){
 						
 			tableSum
 				.columns(0).search($('#idNameSuministro').val())
+				.columns(1).search($('#idDireccionConcatenada').val())
 				.columns(2).search($('#idComuna').val())
-				.columns(6).search($('#idCalle').val())
 				.columns(7).search($('#idNumero').val())
 				.draw();
 			}
@@ -161,7 +161,7 @@ function cargarTablaSuministros(){
 		        $("#buscar").get(0).click();
 		    }
 		});
-		$("#idCalle").on("keyup", function (event) {
+		$("#idDireccionConcatenada").on("keyup", function (event) {
 		    if (event.keyCode==13) {
 		        $("#buscar").get(0).click();
 		    }
