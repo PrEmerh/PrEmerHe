@@ -5,8 +5,11 @@
 <!-- Dialog combo Asociar Suministro a Contacto -->
 <div id="dialogCrearCasoPorDireccion" title="Nueva Dirección" class="dialogLupa">	
 	<form id="crearCasoPorDireccionId" action="crearCasoPorDireccion"  method="POST" name="formCrearCasoPorDireccion">
-		<div id="divDireccionErrorSearch" class="divError">
-			<label class="labelDivError"><s:message code="notificaciones_label_error_direccion_busqueda"/></label>
+		<div id="divDireccionCharErrorSearch" class="divError">
+			<label class="labelDivError"><s:message code="notificaciones_label_error_caracteres_direccion"/></label>
+		</div>
+		<div id="divDireccionRequiredFields" class="divError">
+			<label class="labelDivError"><s:message code="notificaciones_label_error_campos_incompletos"/></label>
 		</div>
 		<div id="busquedaSDireccion" class="divEntidad, divLabel">
 			<table  class="tablaBusqueda">						
@@ -15,7 +18,7 @@
 						<label for="filtroDireccion">Region</label>
 					</td>
 					<td class="tablaAsociarSuministroTextos">					
-						<select id="idRegionDir" name= "region">
+						<select id="idRegionDir" name= "regionDir">
 							<c:forEach items="${suministroDial.mapRegion}" var="reg">
 								<option value="${reg.key}" >								
 									${reg.value}								
@@ -29,7 +32,7 @@
 						<label for="filtroDireccion">Comuna</label>
 					</td>
 					<td class="tablaAsociarSuministroTextos">					
-						<select class="requiredTextArea" id="idComunaDir" name= "mapComuna">
+						<select class="requiredTextArea" id="idComunaDir" name= "comunaDir">
 							<c:forEach items="${suministroDial.mapComuna}" var="comuna">
 								<option value="${comuna.key}">								
 									${comuna.value}								
@@ -74,19 +77,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td class="tablaAsociarSuministroEtiquetas">
-						<label for="filtroDireccion">Direccion Concatenada</label>
-					</td>
 					<td class="tablaAsociarSuministroTextos">
-						<input type="text" name="direccionConDir" value="" id="idDireccionCon" class="buttontext">
-					</td>
-				</tr>
-				<tr>
-					<td class="tablaAsociarSuministroEtiquetas">
-						<label for="filtroSfidContacto">Sfid Contacto</label>
-					</td>
-					<td class="tablaAsociarSuministroTextos">
-						<input type="text" name="sfidContactDir" value="" id="idContactSfid" class="buttontext">
+						<input type="hidden" name="sfidContactDir" value="" id="idContactSfid" class="buttontext">
 					</td>
 				</tr>
 				<tr>

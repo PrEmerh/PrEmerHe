@@ -264,14 +264,15 @@ function cargarTablaDirecciones(){
 			var calleDir= document.getElementById("idCalleDir");
 			var numeroDir= document.getElementById("idNumeroDir");
 			
-			if(comunaDir.value=="" || calleDir.value=="" ||calleDir.value.length<3){
-				$('#divDireccionErrorSearch').show();
+			if(comunaDir.value=="" || calleDir.value==""  ||calleDir.value.length<3){
+				$('#divDireccionRequiredFields').hide();
+				$('#divDireccionCharErrorSearch').show();
 				$('#tablaDirecciones').hide();			
 				}
 			else{
 				$('#tablaDirecciones').show();			
 				$('#divDireccionErrorSearch').hide();
-				
+				$('#divDireccionRequiredFields').hide();			
 			tableDir
 			    .columns(0).search($('#idCalleDir').val())
 				.columns(2).search($('#idComunaDir').val())
@@ -302,7 +303,19 @@ function agregarDireccion(direccion,tipoCalle,direccionConcatenada,comuna){
 }
 
 function crearCasoPorDireccion() {
+	
+	var comunaDir= document.getElementById("idComunaDir");
+	var calleDir= document.getElementById("idCalleDir");
+	var numeroDir= document.getElementById("idNumeroDir");
+	
+	if(comunaDir.value=="" || calleDir.value=="" || numeroDir.value==""){
+		$('#divDireccionCharErrorSearch').hide();
+		$('#divDireccionRequiredFields').show();
+		$('#tablaDirecciones').hide();	
+	}
+	else{
 	$("#dialogCrearCasoPorDireccion").dialog('close');
 	verCargando();
 	$('#crearCasoPorDireccionId').submit();
+	}
 }
