@@ -20,6 +20,7 @@ import org.springframework.util.StringUtils;
 import com.casosemergencias.exception.EmergenciasException;
 import com.casosemergencias.logic.UserSessionInfoService;
 import com.casosemergencias.model.UserSessionInfo;
+import com.casosemergencias.util.constants.Constantes;
 import com.casosemergencias.util.constants.ConstantesError;
 import com.casosemergencias.util.constants.ConstantesSalesforceLogin;
 import com.force.api.ApiSession;
@@ -160,7 +161,7 @@ public class SalesforceLoginChecker {
 
 		logger.info("Diferencia en horas: " + diffInHours);
 		
-		if (diffInHours < 12) {
+		if (diffInHours < ConstantesSalesforceLogin.DEV_LOGIN_SALESFORCE_TOKEN_CADUCATION_HOUR) {
 			isValidToken = true;
 		}
 		

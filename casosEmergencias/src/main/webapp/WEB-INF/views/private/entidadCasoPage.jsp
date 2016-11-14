@@ -203,7 +203,7 @@
 			<div id="datosEmergencia" class="divEntidad">
 				<div>	
 					<div class="divLabel">
-						<label><s:message code="entidadCaso_table_label_motivo"/></label>
+						<label><s:message code="entidadCaso_table_label_tipoAtencionInterna"/></label>
 					</div>
 					<div>
 						<label>${caso.labelTypeCasoPickList}</label>

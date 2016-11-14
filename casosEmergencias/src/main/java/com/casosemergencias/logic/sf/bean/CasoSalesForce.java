@@ -16,6 +16,7 @@ public class CasoSalesForce {
 	private String parentId;
 	private String type;
 	private String subject;
+	private String cause__c;
 	private String subCause__c;
 	private String description;
 	private String aggravatedCondition__c;
@@ -268,7 +269,15 @@ public class CasoSalesForce {
 
 	public void setUnity__c(String unity__c) {
 		this.unity__c = unity__c;
+	}	
+	public String getCause__c() {
+		return cause__c;
 	}
+
+	public void setCause__c(String cause__c) {
+		this.cause__c = cause__c;
+	}
+
 	
 	//De momento no hace falta para los casos que se crean ahora, pero si se incluyen más creaciones de casos será necesario implementarlo
 //	public String getRecordtypeid() {
@@ -278,6 +287,7 @@ public class CasoSalesForce {
 //	public void setRecordtypeid(String recordtypeid) {
 //		this.recordtypeid = recordtypeid;
 //	}
+
 
 	public static CasoSalesForce copyFieldsFromHerokuToSalesForceCaseBean(Caso casoHeroku) {
 		CasoSalesForce casoSF = new CasoSalesForce();
@@ -292,7 +302,7 @@ public class CasoSalesForce {
 			casoSF.setParentId((casoHeroku.getParent() != null && !"".equals(casoHeroku.getParent()) ? casoHeroku.getParent() : ""));
 			casoSF.setType((casoHeroku.getType() != null && !"".equals(casoHeroku.getType()) ? casoHeroku.getType() : ""));
 			casoSF.setSubject((casoHeroku.getAsunto() != null && !"".equals(casoHeroku.getAsunto()) ? casoHeroku.getAsunto() : ""));
-			casoSF.setSubStatus__c((casoHeroku.getSubmotivo() != null && !"".equals(casoHeroku.getSubmotivo()) ? casoHeroku.getSubmotivo() : ""));
+			casoSF.setSubCause__c((casoHeroku.getSubmotivo() != null && !"".equals(casoHeroku.getSubmotivo()) ? casoHeroku.getSubmotivo() : ""));
 			casoSF.setDescription((casoHeroku.getDescription() != null && !"".equals(casoHeroku.getDescription()) ? casoHeroku.getDescription() : ""));
 			casoSF.setAggravatedCondition__c((casoHeroku.getCondicionAgravante() != null && !"".equals(casoHeroku.getCondicionAgravante()) ? casoHeroku.getCondicionAgravante() : ""));
 			casoSF.setContactId((casoHeroku.getNombreContacto() != null && !"".equals(casoHeroku.getNombreContacto()) ? casoHeroku.getNombreContacto() : ""));
@@ -311,6 +321,7 @@ public class CasoSalesForce {
 			casoSF.setCaseFavorability__c((casoHeroku.getFavorabilidadDelCaso() != null && !"".equals(casoHeroku.getFavorabilidadDelCaso()) ? casoHeroku.getFavorabilidadDelCaso() : ""));
 			casoSF.setHeroku_User__c((casoHeroku.getHerokuUsername() != null && !"".equals(casoHeroku.getHerokuUsername()) ? casoHeroku.getHerokuUsername() : ""));
 			casoSF.setUnity__c((casoHeroku.getCallCenter() != null && !"".equals(casoHeroku.getCallCenter()) ? casoHeroku.getCallCenter() : ""));
+
 			//De momento no hace falta para los casos que se crean ahora, pero si se incluyen más creaciones de casos será necesario implementarlo
 			//casoSF.setRecordtypeid((casoHeroku.getRecordtypeId() != null && !"".equals(casoHeroku.getRecordtypeId()) ? casoHeroku.getRecordtypeId() : ""));
 		}

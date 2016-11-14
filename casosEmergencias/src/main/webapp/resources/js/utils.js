@@ -85,7 +85,7 @@ function abrirDialogDireccion() {
 		width: "60%"
 	});	
 	$("#dialogDireccion").dialog('open');
-	createTableDireccion(); //Funcion de popupsTable.js, crea la tabla
+	createTableDireccion(); //Funcion de popupsTable.js, crea la tablaa
 }
 
 function establecerSuministro(sfid, name,direccionSfid,direccionName) {

@@ -66,7 +66,7 @@ function createTableDireccion() {
 
 function createTableSuministro() {
 	
-	//Comprobamos si la tabla esta creada
+	//Comprobamos si la tabla esta creadaa
 	if(tableSuministro==null){
 		tableSuministro= $('#tablaSuministrosPopUp').DataTable( {
 			"scrollY": "250px",

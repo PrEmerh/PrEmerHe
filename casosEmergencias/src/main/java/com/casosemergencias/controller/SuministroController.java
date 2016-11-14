@@ -152,7 +152,7 @@ public class SuministroController {
 	}
 
 	/**
-	 * M&eacute;todo para recuperar los datos de la ventana modal de suministros.
+	 * M&eacute;todo para recuperar los datos de la ventana modal de suministross.
 	 * 
 	 * @param body
 	 * @return

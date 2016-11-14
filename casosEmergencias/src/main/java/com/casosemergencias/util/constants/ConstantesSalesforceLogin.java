@@ -10,6 +10,7 @@ public class ConstantesSalesforceLogin {
 	public static final String DEV_LOGIN_SALESFORCE_REDIRECT_URI_KEY = "redirect_uri";
 	public static final String DEV_LOGIN_SALESFORCE_ACCESS_TOKEN_KEY = "access_token";
 	public static final String DEV_LOGIN_SALESFORCE_INSTANCE_URL_KEY = "instance_url";
+	public static final Integer DEV_LOGIN_SALESFORCE_TOKEN_CADUCATION_HOUR= 12;
 	
 	public static final String DEV_LOGIN_SALESFORCE_LOGIN_URI = "https://test.salesforce.com";
 	public static final String DEV_LOGIN_SALESFORCE_REDIRECT_URI = "https://localhost:8443/_callback";

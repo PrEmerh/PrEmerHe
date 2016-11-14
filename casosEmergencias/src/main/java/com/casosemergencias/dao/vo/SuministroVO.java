@@ -709,11 +709,11 @@ public class SuministroVO extends ObjectVO implements Serializable {
 
 	public void setCuentaJoin(AccountVO cuentaJoin) {
 		this.cuentaJoin = cuentaJoin;
-	}
+	}*/
 
 	public DireccionVO getDirSuministroJoin() {
 		return dirSuministroJoin;
-	}*/
+	}
 
 	public void setDirSuministroJoin(DireccionVO dirSuministroJoin) {
 		this.dirSuministroJoin = dirSuministroJoin;
