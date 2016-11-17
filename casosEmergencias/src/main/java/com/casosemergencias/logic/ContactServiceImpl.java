@@ -7,16 +7,21 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.casosemergencias.dao.AssetDAO;
+import com.casosemergencias.dao.CalleDAO;
 import com.casosemergencias.dao.CaseDAO;
 import com.casosemergencias.dao.ContactDAO;
+import com.casosemergencias.dao.DireccionDAO;
 import com.casosemergencias.dao.RelacionActivoContactoDAO;
 import com.casosemergencias.dao.vo.AssetVO;
 import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.dao.vo.ContactVO;
+import com.casosemergencias.dao.vo.DireccionVO;
 import com.casosemergencias.dao.vo.RelacionActivoContactoVO;
+import com.casosemergencias.dao.vo.StreetVO;
 import com.casosemergencias.dao.vo.SuministroVO;
 import com.casosemergencias.exception.EmergenciasException;
 import com.casosemergencias.logic.sf.response.SearchDirectionResponse;
@@ -50,6 +55,12 @@ public class ContactServiceImpl implements ContactService{
 	
 	@Autowired
 	private AssetDAO assetDAO;
+	
+	@Autowired
+	private CalleDAO calleDAO;
+	
+	@Autowired
+	private DireccionDAO direccionDAO;
 	
 	@Autowired
 	private SalesforceLoginChecker salesforceLoginChecker;
@@ -188,7 +199,9 @@ public class ContactServiceImpl implements ContactService{
 		UserSessionInfo userSessionInfoFromDB = null;
 		SearchDirectionResponse respuestaDireccion = null;
 		Direccion direccionSf = new Direccion();
+		Calle streetSf= new Calle();
 		
+
 		try (InputStream propsInputStream = getClass().getClassLoader().getResourceAsStream("/environment/dev/config.properties")) {
 			properties.load(propsInputStream);
 			username = properties.getProperty("heroku.user");
@@ -203,9 +216,36 @@ public class ContactServiceImpl implements ContactService{
 				userSessionInfoFromDB = salesforceLoginChecker.getUserSessionInfo(sessionInfoToLogin);
 				if (userSessionInfoFromDB != null) {
 					respuestaDireccion=SearchDirection.searchDirectionInSalesforce(userSessionInfoFromDB, street, direccion);
-					if (respuestaDireccion.getIdDireccion() != null && !"".equals(respuestaDireccion.getIdDireccion())) {
-						logger.info("Direccion recuperada correctamente" + respuestaDireccion.getIdDireccion());
-						direccionSf.setSfid(respuestaDireccion.getIdDireccion());
+					if(respuestaDireccion.getIdCalle()!= null && !"".equals(respuestaDireccion.getIdCalle())){
+						logger.info("Calle recuperada correctamente" + respuestaDireccion.getIdCalle());						
+						StreetVO streetHerokuBBDD =calleDAO.readCalleBySfid(respuestaDireccion.getIdCalle());
+							if(streetHerokuBBDD==null){
+								StreetVO streetHerokuNew = new StreetVO();
+								streetHerokuNew.setSfid(respuestaDireccion.getIdCalle());
+								calleDAO.insertCalle(streetHerokuNew);									
+							}			
+						if (respuestaDireccion.getIdDireccion() != null && !"".equals(respuestaDireccion.getIdDireccion()) && respuestaDireccion.getNameDireccion() != null && !"".equals(respuestaDireccion.getNameDireccion()) ) {
+							logger.info("Direccion recuperada correctamente" + respuestaDireccion.getIdDireccion());
+							
+							DireccionVO direccionHerokuBBDD = direccionDAO.readDireccionBySfid(respuestaDireccion.getIdDireccion());
+							DireccionVO direccionHerokuNew =new DireccionVO();
+								if(direccionHerokuBBDD==null){
+									direccionHerokuNew.setSfid(respuestaDireccion.getIdDireccion());
+									direccionHerokuNew.setName(respuestaDireccion.getNameDireccion());
+									direccionHerokuNew.setCalle(respuestaDireccion.getIdCalle());
+									direccionDAO.insertDireccion(direccionHerokuNew);
+									ParserModelVO.parseDataModelVO(direccionHerokuNew, direccionSf);
+
+								}
+								else{
+									ParserModelVO.parseDataModelVO(direccionHerokuBBDD, direccionSf);
+								}
+									
+							/*
+							direccionSf.setSfid(respuestaDireccion.getIdDireccion());
+							direccionSf.setName(respuestaDireccion.getNameDireccion());
+							direccionSf.setCalle(respuestaDireccion.getIdCalle());*/
+						}
 					}
 					else{
 						direccionSf = null;
@@ -238,6 +278,7 @@ public class ContactServiceImpl implements ContactService{
 			casoToInsert.setTelefonoContacto(contacto.getPhone());
 		}
 		casoToInsert.setDireccion(direccionSf);
+		casoToInsert.setPeticion(Constantes.COD_CASO_MOTIVO_EMERGENCIA);
 		casoToInsert.setCanalOrigen(Constantes.COD_CASO_ORIGEN_CALL_CENTER);
 		casoToInsert.setType(Constantes.COD_CASO_TYPE_RECLAMO);
 		casoToInsert.setEstado(Constantes.COD_CASO_STATUS_PREINGRESADO);

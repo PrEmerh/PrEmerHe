@@ -401,10 +401,19 @@ public class ContactController {
 	
 	@RequestMapping(value = "/private/crearCasoPorDireccion", method = RequestMethod.POST)
 	public ModelAndView crearCasoPorDireccion(HttpServletRequest request) throws EmergenciasException {
+		
 		ModelAndView model = new ModelAndView();
 		Calle street= new Calle();
 		Direccion direccion = new Direccion();		
 		
+		/*String contactSfid = "0035B0000044s1DQAQ";
+		String region = (String) request.getParameter("regionDir");
+		String comuna = "07";		
+		String nombre = "AUGUSTO LEGUIA NORTE";
+		String tipoCalle = "CALLE";
+		String numero = "23";
+		String departamento = "aaaa";*/
+			
 		String contactSfid = (String) request.getParameter("sfidContactDir");
 		String region = (String) request.getParameter("regionDir");
 		String comuna = (String) request.getParameter("comunaDir");		
@@ -427,6 +436,7 @@ public class ContactController {
 		try{			
 			//Enviamos datos de Street y Address a Salesforce para recuperar Direccion.		 
 			String direccionSfid = contactService.getSalesforceAddress(street,direccion).getSfid();
+			
 			Caso casoForDirectionToInserted = null;
 			
 			if ((direccionSfid != null && !"".equals(direccionSfid)) && (contactSfid != null && !"".equals(contactSfid))) {

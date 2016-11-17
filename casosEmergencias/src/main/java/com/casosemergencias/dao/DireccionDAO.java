@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.casosemergencias.dao.vo.DireccionVO;
+import com.casosemergencias.dao.vo.StreetVO;
 import com.casosemergencias.util.datatables.DataTableColumnInfo;
 import com.casosemergencias.util.datatables.DataTableProperties;
 
@@ -353,12 +354,28 @@ public class DireccionDAO {
 	 * @param Direccion
 	 * @return
 	 */
-	public int insertDireccion(DireccionVO Direccion, Session session) {
-		logger.debug("updateDireccion -- inicio");
-		int numModif = 0;
-		session.save(Direccion);
-		return numModif;
-	}	
+	@Transactional
+	public Integer insertDireccion(DireccionVO Direccion) {
+
+		logger.debug("--- Inicio -- insert ---");
+
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		try {
+			session.save(Direccion);
+			tx.commit();
+			logger.debug("--- Fin -- insert ---");
+			return Direccion.getId();
+		} catch (HibernateException e) {
+			tx.rollback();
+			logger.error("--- Error en insertDireccion: ", e);
+			logger.error("--- Fin -- updateDireccion---");
+			return 0;
+		} finally {
+			session.close();
+		}
+
+	}
 	
 	/**
 	 * Devuelve una lista de direcciones utilizando los parametros del datatable
