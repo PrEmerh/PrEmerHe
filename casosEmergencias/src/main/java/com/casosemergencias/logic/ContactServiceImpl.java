@@ -10,12 +10,14 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.casosemergencias.dao.AccountDAO;
 import com.casosemergencias.dao.AssetDAO;
 import com.casosemergencias.dao.CalleDAO;
 import com.casosemergencias.dao.CaseDAO;
 import com.casosemergencias.dao.ContactDAO;
 import com.casosemergencias.dao.DireccionDAO;
 import com.casosemergencias.dao.RelacionActivoContactoDAO;
+import com.casosemergencias.dao.vo.AccountVO;
 import com.casosemergencias.dao.vo.AssetVO;
 import com.casosemergencias.dao.vo.CaseVO;
 import com.casosemergencias.dao.vo.ContactVO;
@@ -61,6 +63,9 @@ public class ContactServiceImpl implements ContactService{
 	
 	@Autowired
 	private DireccionDAO direccionDAO;
+	
+	@Autowired
+	private AccountDAO cuentaDAO;
 	
 	@Autowired
 	private SalesforceLoginChecker salesforceLoginChecker;
@@ -267,6 +272,10 @@ public class ContactServiceImpl implements ContactService{
 		logger.debug("Rellenamos los datos del caso para insertarlo por direccion");
 		Caso casoToInsert = new Caso();
 		ContactVO contacto = contactDao.readContactBySfid(contactSfid);
+		if(contacto.getAccountid()!=null){
+				casoToInsert.setNombreCuenta(contacto.getAccountid());
+			
+		}
 		String canalNotificacion = null;
 		if (contacto != null) {
 			logger.debug("El contacto no es nulo, se rellenan sus datos");
