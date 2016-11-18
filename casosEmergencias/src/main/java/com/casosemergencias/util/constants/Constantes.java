@@ -94,6 +94,7 @@ public class Constantes {
 	public static final String SFID_SUMINISTRO= "sfidSuministro";
 	public static final String SFID_CONTACTO= "sfidContacto";
 	public static final String SFID_CUENTA= "sfidCuenta";
+	public static final String SFID_DIRECCION ="sfidDireccion";
 	public static final String SESSION_HEROKU_USER= "user";
 	public static final String FINAL_DETAIL_PAGE= "paginaDetalleFinal";
 	public static final String FINAL_DETAIL_PAGE_CUENTA = "CUENTA";

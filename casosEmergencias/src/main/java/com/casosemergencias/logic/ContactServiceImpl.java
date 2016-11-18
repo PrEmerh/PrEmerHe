@@ -220,37 +220,39 @@ public class ContactServiceImpl implements ContactService{
 				sessionInfoToLogin.setAccessToken(properties.getProperty("heroku.token"));
 				userSessionInfoFromDB = salesforceLoginChecker.getUserSessionInfo(sessionInfoToLogin);
 				if (userSessionInfoFromDB != null) {
+					StreetVO streetHerokuNew= new StreetVO();
+					DireccionVO direccionHerokuNew =new DireccionVO();
 					respuestaDireccion=SearchDirection.searchDirectionInSalesforce(userSessionInfoFromDB, street, direccion);
-					if(respuestaDireccion.getIdCalle()!= null && !"".equals(respuestaDireccion.getIdCalle())){
-						logger.info("Calle recuperada correctamente" + respuestaDireccion.getIdCalle());						
-						StreetVO streetHerokuBBDD =calleDAO.readCalleBySfid(respuestaDireccion.getIdCalle());
-							if(streetHerokuBBDD==null){
-								StreetVO streetHerokuNew = new StreetVO();
-								streetHerokuNew.setSfid(respuestaDireccion.getIdCalle());
-								calleDAO.insertCalle(streetHerokuNew);									
-							}			
-						if (respuestaDireccion.getIdDireccion() != null && !"".equals(respuestaDireccion.getIdDireccion()) && respuestaDireccion.getNameDireccion() != null && !"".equals(respuestaDireccion.getNameDireccion()) ) {
-							logger.info("Direccion recuperada correctamente" + respuestaDireccion.getIdDireccion());
-							
+					if (respuestaDireccion.getIdDireccion() != null && !"".equals(respuestaDireccion.getIdDireccion())  ) {
+						logger.info("Direccion recuperada correctamente" + respuestaDireccion.getIdDireccion());						
+						if(respuestaDireccion.getIdCalle()!= null && !"".equals(respuestaDireccion.getIdCalle())){
+							logger.info("Calle recuperada correctamente" + respuestaDireccion.getIdCalle());						
+							StreetVO streetHerokuBBDD =calleDAO.readCalleBySfid(respuestaDireccion.getIdCalle());
+								if(streetHerokuBBDD==null){
+									streetHerokuNew.setSfid(respuestaDireccion.getIdCalle());
+									streetHerokuNew.setRegion(street.getRegion());
+									streetHerokuNew.setMunicipality(street.getMunicipality());
+									streetHerokuNew.setStreet(street.getStreet());
+									streetHerokuNew.setStreetType(street.getStreetType());
+									calleDAO.insertCalle(streetHerokuNew);		
+								}
+						}																				
 							DireccionVO direccionHerokuBBDD = direccionDAO.readDireccionBySfid(respuestaDireccion.getIdDireccion());
-							DireccionVO direccionHerokuNew =new DireccionVO();
-								if(direccionHerokuBBDD==null){
-									direccionHerokuNew.setSfid(respuestaDireccion.getIdDireccion());
+							if(direccionHerokuBBDD==null){
+								direccionHerokuNew.setNumero(direccion.getNumero());
+								direccionHerokuNew.setDepartamento(direccion.getDepartamento());
+								direccionHerokuNew.setSfid(respuestaDireccion.getIdDireccion());
+								if(respuestaDireccion.getNameDireccion() != null && !"".equals(respuestaDireccion.getNameDireccion())){
 									direccionHerokuNew.setName(respuestaDireccion.getNameDireccion());
-									direccionHerokuNew.setCalle(respuestaDireccion.getIdCalle());
-									direccionDAO.insertDireccion(direccionHerokuNew);
-									ParserModelVO.parseDataModelVO(direccionHerokuNew, direccionSf);
-
 								}
-								else{
-									ParserModelVO.parseDataModelVO(direccionHerokuBBDD, direccionSf);
-								}
-									
-							/*
-							direccionSf.setSfid(respuestaDireccion.getIdDireccion());
-							direccionSf.setName(respuestaDireccion.getNameDireccion());
-							direccionSf.setCalle(respuestaDireccion.getIdCalle());*/
-						}
+								direccionHerokuNew.setCalle(respuestaDireccion.getIdCalle());
+								direccionHerokuNew.setCalleJoin(streetHerokuNew);
+								direccionDAO.insertDireccion(direccionHerokuNew);
+								ParserModelVO.parseDataModelVO(direccionHerokuNew, direccionSf);
+							}
+							else{
+								ParserModelVO.parseDataModelVO(direccionHerokuBBDD, direccionSf);
+							}						
 					}
 					else{
 						direccionSf = null;
@@ -267,25 +269,32 @@ public class ContactServiceImpl implements ContactService{
 		return direccionSf;
 	}
 
-	@Override
-	public Caso populateCaseInfoToInsert(String direccionSf, String contactSfid) {
+	/*@Override
+	public Caso populateCaseInfoToInsert(String direccionSf, String contactSfid,String herokuCaseOwner) {
 		logger.debug("Rellenamos los datos del caso para insertarlo por direccion");
 		Caso casoToInsert = new Caso();
 		ContactVO contacto = contactDao.readContactBySfid(contactSfid);
-		if(contacto.getAccountid()!=null){
-				casoToInsert.setNombreCuenta(contacto.getAccountid());
-			
-		}
+		DireccionVO direccion = direccionDAO.readDireccionBySfid(direccionSf);
 		String canalNotificacion = null;
 		if (contacto != null) {
 			logger.debug("El contacto no es nulo, se rellenan sus datos");
 			if (contacto.getCanalPreferenteContacto() != null && !"".equals(contacto.getCanalPreferenteContacto())) {
 				canalNotificacion = contacto.getCanalPreferenteContacto();
 			}
+			if(contacto.getAccountid()!=null){
+				casoToInsert.setNombreCuenta(contacto.getAccountid());
+			
+			}
 			casoToInsert.setNombreContacto(contacto.getSfid());
 			casoToInsert.setEmailNotificacion(contacto.getEmail());
 			casoToInsert.setTelefonoContacto(contacto.getPhone());
 		}
+		if(direccion!=null){
+			if(direccion.getName()!=null){
+				casoToInsert.setDireccionSuministro(direccion.getName());
+			}
+		}
+		casoToInsert.setHerokuUsername(herokuCaseOwner);
 		casoToInsert.setDireccion(direccionSf);
 		casoToInsert.setPeticion(Constantes.COD_CASO_MOTIVO_EMERGENCIA);
 		casoToInsert.setCanalOrigen(Constantes.COD_CASO_ORIGEN_CALL_CENTER);
@@ -293,5 +302,5 @@ public class ContactServiceImpl implements ContactService{
 		casoToInsert.setEstado(Constantes.COD_CASO_STATUS_PREINGRESADO);
 		casoToInsert.setCanalNotificacion((canalNotificacion != null && !"".equals(canalNotificacion) ? canalNotificacion : Constantes.COD_CONTACTO_CANAL_PREF_CONTACT_003));
 		return casoToInsert;
-	}
+	}*/
 }

@@ -15,6 +15,7 @@ public class ConstantesError {
 	public static final String HEROKU_CASE_CREATION_ERROR = "Error creando el caso en Heroku";
 	public static final String HEROKU_CASE_CREATION_OK_WITH_ERROR = "Se ha insertado el caso con problemas durante el guardado. Espere unos minutos en consultarlo y si no aparece, consulte con el administrador";
 	public static final String HEROKU_CASE_CREATION_GENERIC_ERROR = "Se ha producido un error creando el caso";
+	public static final String HEROKU_CASE_SF_RECOVER_GENERIC_ERROR = "Se ha producido un error creando el caso en SF";
 	public static final String HEROKU_CASE_CREATION_DUPLICATED_CASE = "No se puede crear un nuevo caso. Existen casos abiertos pendientes";
 	public static final String SALESFORCE__SEARCH_ADDRESS_ERROR = "Error recuperando la Direccion de Salesforce";
 

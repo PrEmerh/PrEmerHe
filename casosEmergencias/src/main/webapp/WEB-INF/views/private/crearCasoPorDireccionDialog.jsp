@@ -76,11 +76,11 @@
 						<input type="text" name="tipoCalleDir" value="" id="idTipoCalleDir" class="buttontext">
 					</td>
 				</tr>
-				<tr>
+<!-- 		    <tr>
 					<td class="tablaAsociarSuministroTextos">
 						<input type="hidden" name="sfidContactDir" value="" id="idContactSfid" class="buttontext">
 					</td>
-				</tr>
+				</tr>  -->
 				<tr>
 					<td colspan="3" align="left">
 						<input id="crearCasoDireccionID" type="button" name="crearCasoDireccionName" value="Guardar y Crear Caso" onclick="crearCasoPorDireccion()" />					

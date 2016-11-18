@@ -1,5 +1,7 @@
 package com.casosemergencias.logic.sf.rest;
 
+import java.io.IOException;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -62,7 +64,7 @@ final static Logger logger = Logger.getLogger(CreateCase.class);
 				logger.error(ConstantesError.SALESFORCE__SEARCH_ADDRESS_ERROR + ". El sessionId es nulo.");
 				throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_006, ConstantesError.SALESFORCE__SEARCH_ADDRESS_ERROR);
 			}
-		} catch(Exception exception) {//Cambiar por IOException
+		} catch(IOException exception) {//Cambiar por IOException
 			logger.error(ConstantesError.SALESFORCE__SEARCH_ADDRESS_ERROR, exception);
 			throw new EmergenciasException(ConstantesError.EMERG_ERROR_CODE_006, ConstantesError.SALESFORCE__SEARCH_ADDRESS_ERROR);
 		} finally {

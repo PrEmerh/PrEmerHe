@@ -240,8 +240,11 @@ public class CaseController {
 		}
 		String contactoSfid = (String) session.getAttribute(Constantes.SFID_CONTACTO);
 		String cuentaSfid = (String) session.getAttribute(Constantes.SFID_CUENTA);
+		String direccionSfid = (String) session.getAttribute(Constantes.SFID_DIRECCION);
+		session.setAttribute(Constantes.SFID_DIRECCION, null);
+		
 		HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
-		getEntityDataForNewCase(suministroSfid, contactoSfid, cuentaSfid, user, casoView);
+		getEntityDataForNewCase(suministroSfid, contactoSfid, cuentaSfid,direccionSfid, user, casoView);
 		
 		if (casoView.getSuministroJoin() != null) {
 			suministroAsociado = casoView.getSuministroJoin();
@@ -646,7 +649,7 @@ public class CaseController {
 	 * @param casoView
 	 *            Caso donde guardar la informaci&oacute;n.
 	 */
-	private void getEntityDataForNewCase(String suministroSfid, String contactoSfid, String cuentaSfid, HerokuUser user ,CaseView casoView) {
+	private void getEntityDataForNewCase(String suministroSfid, String contactoSfid, String cuentaSfid,String direccionSfid, HerokuUser user ,CaseView casoView) {
 		logger.trace("Entrando en getEntityDataForNewCase()");
 				
 		if (suministroSfid != null && !"".equals(suministroSfid)) {
@@ -664,8 +667,8 @@ public class CaseController {
 				//Obtener la direccion del suministro para guardarla en el formulario
 				Direccion direccion = new Direccion();
 				DireccionView direccionVista = new DireccionView();
-				String direccionSfid = suministro.getDireccion();
-				direccion = direccionService.readDireccionBySfid(direccionSfid);
+				String direccionSumSfid = suministro.getDireccion();
+				direccion = direccionService.readDireccionBySfid(direccionSumSfid);
 				ParserModelVO.parseDataModelVO(direccion, direccionVista);
 				casoView.setDireccionJoin(direccionVista);
 				casoView.setDireccion(direccionSfid);
@@ -701,6 +704,16 @@ public class CaseController {
 			casoView.setNombreCuenta(cuentaSfid);
 			casoView.setNombreCuentaString(cuentaVista.getName());
 			logger.info("Cuenta encontrada con id: " + cuentaSfid);
+		}
+		if (direccionSfid != null && !"".equals(direccionSfid)) {
+			//Obtener la direccion para guardarla en el formulario
+			Direccion direccion = new Direccion();
+			DireccionView direccionVista= new DireccionView();
+			direccion=direccionService.readDireccionBySfid(direccionSfid);
+			ParserModelVO.parseDataModelVO(direccion, direccionVista);
+			casoView.setDireccionString(direccionVista.getName());
+			casoView.setDireccion(direccionVista.getSfid());
+			logger.info("Direccion encontrada con id: " + direccionSfid);
 		}
 		
 		if (user != null) {

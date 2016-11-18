@@ -39,6 +39,7 @@ import com.casosemergencias.model.Calle;
 import com.casosemergencias.model.Caso;
 import com.casosemergencias.model.Contacto;
 import com.casosemergencias.model.Direccion;
+import com.casosemergencias.model.HerokuUser;
 import com.casosemergencias.model.Suministro;
 import com.casosemergencias.util.ParserModelVO;
 import com.casosemergencias.util.PickListByField;
@@ -399,20 +400,21 @@ public class ContactController {
 		return jsonObject.toString();
 	}
 	
-	@RequestMapping(value = "/private/crearCasoPorDireccion", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/private/crearCasoPorDireccion", method = RequestMethod.POST)
 	public ModelAndView crearCasoPorDireccion(HttpServletRequest request) throws EmergenciasException {
 		
 		ModelAndView model = new ModelAndView();
+		HttpSession session = request.getSession(true);
 		Calle street= new Calle();
 		Direccion direccion = new Direccion();		
 		
-		/*String contactSfid = "0035B0000044s1DQAQ";
+		String contactSfid = "0035B0000044s1DQAQ";
 		String region = (String) request.getParameter("regionDir");
 		String comuna = "07";		
 		String nombre = "AUGUSTO LEGUIA NORTE";
 		String tipoCalle = "CALLE";
 		String numero = "23";
-		String departamento = "aaaa";*/
+		String departamento = "aaaa";
 			
 		String contactSfid = (String) request.getParameter("sfidContactDir");
 		String region = (String) request.getParameter("regionDir");
@@ -436,11 +438,14 @@ public class ContactController {
 		try{			
 			//Enviamos datos de Street y Address a Salesforce para recuperar Direccion.		 
 			String direccionSfid = contactService.getSalesforceAddress(street,direccion).getSfid();
+			HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
+			String herokuCaseOwner = user.getName();
+
 			
 			Caso casoForDirectionToInserted = null;
 			
 			if ((direccionSfid != null && !"".equals(direccionSfid)) && (contactSfid != null && !"".equals(contactSfid))) {
-				Caso createCasoForDirectionToInsert = contactService.populateCaseInfoToInsert(direccionSfid,contactSfid);	
+				Caso createCasoForDirectionToInsert = contactService.populateCaseInfoToInsert(direccionSfid,contactSfid,herokuCaseOwner);	
 				//Insertamos Caso con Address recuperada en Salesforce
 				if (createCasoForDirectionToInsert != null) {
 					logger.info("Se procede a insertar el caso por direccion");
@@ -470,6 +475,69 @@ public class ContactController {
 		}
 		logger.info("--- Fin -- guardarCaso ---");
 		return model;
+	}*/
+	
+	//<-------------------------------CREAR CASO POR DIRECCION ---- METODO NUEVO ------------------------------------------------->
+		
+	@RequestMapping(value = "/private/crearCasoPorDireccion", method = RequestMethod.POST)
+	public ModelAndView crearCasoPorDireccion(HttpServletRequest request) throws EmergenciasException {
+		
+		ModelAndView model = new ModelAndView();
+		HttpSession session = request.getSession(true);
+		Calle street= new Calle();
+		Direccion direccion = new Direccion();		
+		
+		String contactSfid = (String) session.getAttribute(Constantes.SFID_CONTACTO);
+		String region = (String) request.getParameter("regionDir");
+		String comuna = (String) request.getParameter("comunaDir");		
+		String nombre = (String) request.getParameter("calleDir");
+		String tipoCalle = (String) request.getParameter("tipoCalleDir");
+		String numero = (String) request.getParameter("numeroDir");
+		String departamento = (String) request.getParameter("departamentoDir");
+
+		//Mapeo Street
+		street.setRegion(region);	
+		street.setMunicipality(comuna);
+		street.setStreet(nombre);
+		street.setStreetType(tipoCalle);
+		
+		//Mapeo Address
+		direccion.setNumero(numero);
+		direccion.setDepartamento(departamento);
+		
+		//Creacion de Caso por Direccion
+			
+		//Enviamos datos de Street y Address a Salesforce para recuperar Direccion.	
+		try{
+			String direccionSfid = contactService.getSalesforceAddress(street,direccion).getSfid();
+			if (direccionSfid != null) {
+				session.setAttribute(Constantes.SFID_DIRECCION, direccionSfid);
+				model.setViewName("redirect:entidadCasoAlta");
+			}
+			else{
+				model.addObject("mostrarMensaje", true);
+				model.addObject("hayError", true);
+				model.addObject("codigoError", ConstantesError.EMERG_ERROR_CODE_004);
+				model.addObject("mensajeResultado", ConstantesError.HEROKU_CASE_SF_RECOVER_GENERIC_ERROR);
+				model.setViewName("redirect:entidadContacto?editMode=VIEW&sfid=" + contactSfid);
+			}
+		}		
+		catch(EmergenciasException exception) {
+			logger.info("No se ha guardado correctamente el caso");
+			model.addObject("mostrarMensaje", true);
+			model.addObject("hayError", true);
+			model.addObject("codigoError", exception.getCode());
+			model.addObject("mensajeResultado", exception.getMessage());
+			model.setViewName("redirect:entidadContacto?editMode=VIEW&sfid=" + contactSfid);
+		}
+		return model;	
 	}
+	//<-------------------------------CREAR CASO POR DIRECCION ---- METODO NUEVO ------------------------------------------------->
+	
+	
+	
+	
+	
+	
 	
 }

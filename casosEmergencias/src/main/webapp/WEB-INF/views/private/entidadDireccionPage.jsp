@@ -38,13 +38,13 @@
 						<label><s:message code="entidadDireccion_table_label_region"/></label>
 					</div>
 					<div>
-						<label>${direccion.labelRegionPickList}</label>
+						<label>${direccion.calleJoin.labelRegionPickList}</label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadDireccion_table_label_comuna"/></label>
 					</div>
 					<div>
-						<label>${direccion.literalComuna}</label>
+						<label>${direccion.calleJoin.labelMunicipalityPickList}</label>
 					</div>
 				</div>
 				<div>
@@ -52,7 +52,7 @@
 						<label><s:message code="entidadDireccion_table_label_tipoDeCalle"/></label>
 					</div>
 					<div>
-						<label>${direccion.labelTipoCallePickList}</label>
+						<label>${direccion.calleJoin.labelStreetTypePickList}</label>
 					</div>
 					<div class="divLabel">
 						<label><s:message code="entidadDireccion_table_label_calle"/></label>
@@ -86,7 +86,8 @@
 						<label><s:message code="entidadDireccion_table_label_direccionConcatenada"/></label>
 					</div>
 					<div>
-						<label>${direccion.direccionConcatenada}</label>
+						<label>${direccion.calleJoin.street}</label>
+						<label>${direccion.departamento}</label>
 					</div>
 				</div>
 			</div>	

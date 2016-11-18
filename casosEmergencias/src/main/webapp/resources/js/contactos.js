@@ -303,7 +303,7 @@ function agregarDireccion(direccion, tipoCalle, comuna) {
 	document.getElementById("idCalleDir").value = direccion;
 	document.getElementById("idTipoCalleDir").value = tipoCalle;
 	document.getElementById("idComuna").value = comuna;
-	document.getElementById("idContactSfid").value = document.getElementById("contactSfidId").value;
+	//document.getElementById("idContactSfid").value = document.getElementById("contactSfidId").value;
 }
 
 function crearCasoPorDireccion() {

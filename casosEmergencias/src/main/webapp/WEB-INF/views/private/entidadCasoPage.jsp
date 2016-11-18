@@ -311,7 +311,7 @@
 						<label>
 							<c:choose>
 								<c:when test="${not empty caso.direccionSuministro}">${caso.direccionSuministro}</c:when>
-								<c:otherwise>${caso.suministroJoin.direccionConcatenada}</c:otherwise>
+								<c:otherwise>${caso.direccionJoin.name}</c:otherwise>
 							</c:choose>
 						</label>
 					</div>
@@ -329,7 +329,7 @@
 					<div>
 						<label>
 							<c:choose>
-								<c:when test="${not empty caso.comuna}">${caso.comuna}</c:when>
+								<c:when test="${not empty caso.direccionJoin.calleJoin.municipality}">${caso.direccionJoin.calleJoin.labelMunicipalityPickList}</c:when>
 								<c:otherwise>${caso.suministroJoin.comuna}</c:otherwise>
 							</c:choose>
 						</label>					
