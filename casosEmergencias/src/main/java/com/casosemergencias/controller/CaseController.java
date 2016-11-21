@@ -242,6 +242,7 @@ public class CaseController {
 		String cuentaSfid = (String) session.getAttribute(Constantes.SFID_CUENTA);
 		String direccionSfid = (String) session.getAttribute(Constantes.SFID_DIRECCION);
 		session.setAttribute(Constantes.SFID_DIRECCION, null);
+
 		
 		HerokuUser user = (HerokuUser)session.getAttribute(Constantes.SESSION_HEROKU_USER);
 		getEntityDataForNewCase(suministroSfid, contactoSfid, cuentaSfid,direccionSfid, user, casoView);
@@ -406,6 +407,7 @@ public class CaseController {
 		session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
 		session.setAttribute(Constantes.SFID_CONTACTO, null);	
 		session.setAttribute(Constantes.SFID_CUENTA, null);	
+		session.setAttribute(Constantes.SFID_DIRECCION, null);
 		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, null);
 	}
 	

@@ -197,6 +197,7 @@ public class ContactController {
 		session.setAttribute(Constantes.SFID_SUMINISTRO, null);	
 		session.setAttribute(Constantes.SFID_CONTACTO, null);	
 		session.setAttribute(Constantes.SFID_CUENTA, null);	
+		session.setAttribute(Constantes.SFID_DIRECCION, null);
 		session.setAttribute(Constantes.FINAL_DETAIL_PAGE, null);	
 		
 		//Limpieza de sfid que arrastramos
