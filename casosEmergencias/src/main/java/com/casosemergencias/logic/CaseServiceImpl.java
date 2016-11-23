@@ -234,7 +234,7 @@ public class CaseServiceImpl implements CaseService{
 				casoVO.setSubmotivo(Constantes.COD_CASO_SUBMOTIVO_CONS_FUERA_ZONA_CONCE);
 			}
 			
-			comentarioCaso += Constantes.COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC_COMENTARIO;
+			comentarioCaso += "Ejecutivo Cancela el caso por "+Constantes.COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC_COMENTARIO;
 			
 		}else{
 			//cliente si luz
@@ -245,11 +245,11 @@ public class CaseServiceImpl implements CaseService{
 			}			
 			
 			if((Constantes.COD_CASO_SUBSTATUS_COMUNICACION_INTERRUMPIDA).equals(subestadoCancelacion)){
-				comentarioCaso += Constantes.COD_CASO_SUBSTATUS_COMUNICACION_INTERRUMPIDA_DESC;
+				comentarioCaso += "Ejecutivo Cancela el caso por "+Constantes.COD_CASO_SUBSTATUS_COMUNICACION_INTERRUMPIDA_DESC;
 			}else if((Constantes.COD_CASO_SUBSTATUS_PRUEBA_ERROR_INGRESO).equals(subestadoCancelacion)){
-				comentarioCaso += Constantes.COD_CASO_SUBSTATUS_PRUEBA_ERROR_INGRESO_DESC;				
+				comentarioCaso += "Ejecutivo Cancela el caso por "+Constantes.COD_CASO_SUBSTATUS_PRUEBA_ERROR_INGRESO_DESC;				
 			}else if((Constantes.COD_CASO_SUBSTATUS_ERROR_INGRESO).equals(subestadoCancelacion)){
-				comentarioCaso += Constantes.COD_CASO_SUBSTATUS_ERROR_INGRESO_DESC;				
+				comentarioCaso += "Ejecutivo Cancela el caso por "+Constantes.COD_CASO_SUBSTATUS_ERROR_INGRESO_DESC;				
 			}
 		}
 

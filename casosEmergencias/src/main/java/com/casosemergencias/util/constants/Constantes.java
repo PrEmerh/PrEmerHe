@@ -80,15 +80,14 @@ public class Constantes {
 	public static final String COD_CASO_SUBSTATUS_PRUEBA_ERROR_INGRESO_DESC = "Prueba o Error de Ingreso";	
 	public static final String COD_CASO_SUBSTATUS_ERROR_INGRESO_DESC = "Error de Ingreso";	
 	public static final String COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC = "Cliente con Luz";
-	public static final String COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC_COMENTARIO = "Cliente con Luz, por contacto recibido";
+	public static final String COD_CASO_SUBSTATUS_CLIENTE_LUZ_DESC_COMENTARIO = "Cliente con Luz";
 	//De momento no hace falta para los casos que se crean ahora, pero si se incluyen más creaciones de casos será necesario implementarlo
 	//public static final String COD_CASO_RECORDTYPEID_EMERGENCIA= "01236000000y3fL";
 
 	//CONTACTO
 	public static final String COD_CONTACTO_CANAL_PREF_CONTACT_003 = "CAN003";
-
-	
-	
+	//DIRECCION
+	public static final Integer COD_DIRECCION_REGION_13 = 13;
 	//
 	//Sesion SFID	
 	public static final String SFID_SUMINISTRO= "sfidSuministro";

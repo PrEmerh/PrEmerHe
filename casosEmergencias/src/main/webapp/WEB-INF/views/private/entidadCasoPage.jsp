@@ -151,10 +151,10 @@
 						<label><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaEstimadaCierre}"/></label>
 					</div> 
 					<div class="divLabel">
-						<label><s:message code="entidadCaso_table_label_casoPrincipal"/></label>
+						<label><s:message code="entidadCaso_table_label_herokuUsername"/></label>
 					</div>
 					<div>
-						<label><a class="link" href="javascript:cargandoGif('${caso.casoPrincipalJoin.sfid}','entidadCaso');">${caso.casoPrincipalJoin.numeroCaso}</a></label>					
+						<label>${caso.herokuUsername}</label>
 					</div>
 				</div>
 				<div>
@@ -170,10 +170,10 @@
 						</c:if> 
 					</div>
 					<div class="divLabel">
-						<label><s:message code="entidadCaso_table_label_herokuUsername"/></label>
+						<label><s:message code="entidadCaso_table_label_casoPrincipal"/></label>
 					</div>
 					<div>
-						<label>${caso.herokuUsername}</label>
+						<label><a class="link" href="javascript:cargandoGif('${caso.casoPrincipalJoin.sfid}','entidadCaso');">${caso.casoPrincipalJoin.numeroCaso}</a></label>					
 					</div>
 				</div>		
 				<div>

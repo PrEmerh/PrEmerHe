@@ -256,7 +256,12 @@ public class SuministroServiceImpl implements SuministroService{
 					ParserModelVO.parseDataModelVO(relacion.getContacto(), contactoRelacionado);
 					if(relacion.getTipoRelacionActivo()!=null)
 						contactoRelacionado.setRelacionActivo(relacion.getTipoRelacionActivo().getValor());
+					if(relacion.getPrincipal()==null){
+						contactoRelacionado.setPrincipal(false);
+					}
+					else{
 					contactoRelacionado.setPrincipal(relacion.getPrincipal());
+					}
 					retorno.add(contactoRelacionado);
 				}
 			}

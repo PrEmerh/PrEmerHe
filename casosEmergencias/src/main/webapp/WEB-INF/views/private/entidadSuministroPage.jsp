@@ -145,7 +145,7 @@
 									<tr>
 										<td><a class="link" href="javascript:cargandoGif('${contacto.sfid}','entidadContacto');">${contacto.name}</a></td>									
 										<td>${contacto.relacionActivo}</td>
-										<c:if test="${contacto.principal}">
+										<c:if test="${contacto.principal==true} ">
 						    				<td><input type="checkbox" id="checkbox" value="true" checked="checked" disabled/></td>					
 										</c:if> 
 										<c:if test="${contacto.principal == false}">
@@ -440,11 +440,14 @@
 											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaEstimadaCierre}"/></td>
 											<td>${caso.labelCanalOrigenPickList}</td>
 											<td>
-												<c:if test="${caso.userJoin.name!=null}">
+												<c:if test="${caso.userJoin!=null &&caso.userJoin.name!=null}">
 													<label>${caso.userJoin.name}</label>					
 												</c:if> 
-												<c:if test="${caso.userJoin.name==null}">
+												<c:if test="${caso.userJoin!=null && caso.userJoin.name==null}">
 													<label>${caso.groupJoin.name}</label>
+												</c:if> 
+												<c:if test="${caso.userJoin==null}">
+													<label>&nbsp;</label>					
 												</c:if> 
 											</td>	
 											<td><fmt:formatDate pattern="dd/MM/yyyy HH:mm" value="${caso.fechaCierre}"/></td>

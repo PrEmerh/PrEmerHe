@@ -75,17 +75,11 @@ function cargarTablaSuministros(){
 			"scrollCollapse": true,
 			"paging": false,
 			"serverSide": true,
+			   oLanguage: {
+			        sProcessing: "<img src='../resources/images/loading.gif' width='25' > Cargando..."
+			    },
 		    "ordering": false,	    
 			"processing": true, 
-	        "language": {
-	        	processing:  "<img src='../resources/images/loading.gif' width='25' > Cargando...",
-	            lengthMenu: "",
-	            info: "",
-	            infoEmpty: "",
-	            infoFiltered: "",
-	            zeroRecords:"",
-	            emptyTable:"No se han encontrado registros"
-	        },
 	        "lengthChange": false,
 	        "deferRender": true,
 	        "deferLoading": -1,
@@ -177,6 +171,8 @@ function cargarTablaSuministros(){
 function abrirDialogoCasoDireccion(){		
 	$("#dialogAsociarSuministroContacto").dialog('close');
 	$("#dialogCrearCasoPorDireccion").dialog('open');
+	//Ponemos region como "Metropolitana de Santiago por defecto"
+	document.getElementById("idRegionDir").value=13;
 	cargarTablaDirecciones();
 
 }
@@ -212,17 +208,11 @@ function cargarTablaDirecciones(){
 			"scrollCollapse": true,
 			"paging": false,
 			"serverSide": true,
+			   oLanguage: {
+			        sProcessing: "<img src='../resources/images/loading.gif' width='25' > Cargando..."
+			    },
 		    "ordering": false,	    
 			"processing": true, 
-	        "language": {
-	        	processing:  "<img src='../resources/images/loading.gif' width='25' > Cargando...",
-	            lengthMenu: "",
-	            info: "",
-	            infoEmpty: "",
-	            infoFiltered: "",
-	            zeroRecords:"",
-	            emptyTable:"No se han encontrado registros"
-	        },
 	        "lengthChange": false,
 	        "deferRender": true,
 	        "deferLoading": -1,

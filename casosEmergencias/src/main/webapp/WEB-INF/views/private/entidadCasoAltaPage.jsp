@@ -13,8 +13,7 @@
 		<link href="../resources/css/cabecera.css" rel="stylesheet" />
 		<link href="../resources/css/body.css" rel="stylesheet" />
 		<link href="../resources/css/jquery-ui.css" rel="stylesheet" />
-		<link href="../resources/css/jQueryDatatable.css" rel="stylesheet" />
-		
+		<link href="../resources/css/jQueryDatatable.css" rel="stylesheet" />		
 		<script src="../resources/js/jquery-1.12.3.js" lang=""></script>
 		<script src="../resources/js/jQueryDatatables.js"></script>	
   		<script src="../resources/js/jquery-ui.js"></script>
