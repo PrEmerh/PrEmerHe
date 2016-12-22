@@ -24,15 +24,13 @@
 	<body onload="initHeader();">
 		<script type="text/javascript">var objetoSeleccionado='<s:message code="entidadCaso_title_label_comentario_caso"/>';</script>
 		<jsp:include page="cabeceraPage.jsp"/>
+		<div id="divCaseCommentNOCreated" class="divError">
+			<label class="labelDivError"><s:message code="comentarioCase_error_rellenardatos"/></label>
+		</div>
 		<div>
 			<p class="cabeceraTitulo"><s:message code="comentarioCase_label_caso" arguments="${numeroCaso}"/></p>
 			<p class="cabeceraSubTitulo"><s:message code="comentarioCase_label_titulo"/></p>
 		</div>
-		<!-- INICIO---Mensajes de actualizacion de caso -->	
-		<div id="divCaseCommentNOCreated" class="divError">
-			<label class="labelDivError"><s:message code="comentarioCase_error_rellenardatos"/></label>
-		</div>
-		<!-- FIN---Mensajes de actualizacion de caso -->
 		<form:form id="formComentarioCaso" name="formComentarioCaso" action="saveComentarioCaso" modelAttribute="caseComment" method="POST">
 			<form:hidden path="caseid"/>
 			<div class="botoneraListado">

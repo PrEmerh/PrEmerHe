@@ -131,6 +131,9 @@ public class ContactController {
 		if (contactoView.getSuministros() != null && !contactoView.getSuministros().isEmpty() && contactoView.getSuministros().size() == 1) {
 			/* Llamada a los servicios web de Tibco para obtener datos y eventos del suministro para los indicadores */
 			SuministroView suministroView = contactoView.getSuministros().get(0);
+			Suministro suministroBBDD=suministroService.readSuministroBySfid(suministroView.getSfid());
+			ParserModelVO.parseDataModelVO(suministroBBDD, suministroView);
+
 			Map<String, Object> datosWS = suministroService.getDatosSuministroWS(suministroView.getNumeroSuministro());
 			
 			if (datosWS.get(ConstantesTibcoWS.SIRES033_RESPONSE_LIST_NAME) != null) {

@@ -25,10 +25,10 @@
 		<!-- Mensajes de inserccion caso por corte-->	
 		<div>
 			<div id="divCaseCorteCreatedError" class="divError">
-				<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
+<%-- 				<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
 				<br/>
 				<label class="labelDivError" id="idCodigo"><s:message code="notificaciones_label_error_codigo"/></label>
-				<br/>
+				<br/> --%>
 				<label class="labelDivError" id="idMensaje"><s:message code="notificaciones_label_error_mensaje"/></label>
 			</div>
 		</div>
@@ -36,15 +36,15 @@
 		<c:if test="${not empty param.codigoError}">
 			<div>
 				<div class="divError" id="divInsertError">
-					<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
+<%-- 					<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
 					<br/>
 					<label class="labelDivError"><s:message code="notificaciones_label_error_codigo"/>&nbsp;${param.codigoError}</label>
-					<br/>
+					<br/> --%>
 					<label class="labelDivError"><s:message code="notificaciones_label_error_mensaje"/>&nbsp;${param.mensajeResultado}</label>
 				</div>
 			</div>
 		</c:if>
-		<form:form name="formEntidadSuministroName" id="formEntidadSuministro" action="actualizarSuministro" modelAttribute="suministro" method="POST">			
+		<form:form name="formEntidadSuministroName" id="formEntidadSuministro" action="actualizarSuministro" modelAttribute="suministro" method="POST">	
 				<div class="botoneraCentrado">
 					<ul>
 						<li><input type="button" name="goCrearCasoBySuministroName" value="<s:message code="entidadSuministro_table_label_botonCrearCaso"/>" onclick="goCrearCasoBySuministro();" /></li>
@@ -582,9 +582,20 @@
 									<tr>
 										<td class="filaLiteral"><s:message code="entidadSuministro_indicadores_literal_casos_abiertos"/></td>
 										<c:choose>
-											<c:when test="${not empty suministro.casosAbiertos && suministro.casosAbiertos}">
-												<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
-												<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>
+											<c:when test="${not empty suministro.casos}">
+												<c:set var="openCases" value="false"/>
+													<c:forEach items="${suministro.casos}" var="caso">
+														<c:if test="${caso.labelEstadoPickList ne 'Cerrado' && caso.labelEstadoPickList ne 'Cancelado'}" >
+															<c:set var="openCases" value="true"/>
+														</c:if>
+													</c:forEach>
+													<c:if test="${openCases eq true}">
+														<td class="filaImagen"><img src="../resources/images/inservice_red_point.png" height="12px" width="12px"></td>
+														<td class="filaValor"><s:message code="entidadSuministro_indicadores_literal_si"/></td>												
+												    </c:if>	
+												    <c:if test="${openCases eq false}">											    
+												    	<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>
+												    </c:if>												    												
 											</c:when>
 											<c:otherwise>
 												<td class="filaValor" colspan="2"><s:message code="entidadSuministro_indicadores_literal_no"/></td>

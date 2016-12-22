@@ -86,7 +86,7 @@
 						<label><s:message code="entidadDireccion_table_label_direccionConcatenada"/></label>
 					</div>
 					<div>
-						<label>${direccion.calleJoin.street}</label>
+						<label>${direccion.direccionConcatenada}</label>
 						<label>${direccion.departamento}</label>
 					</div>
 				</div>

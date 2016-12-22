@@ -28,12 +28,12 @@ function createTableDireccion() {
 	        	 }
 	       	}, 
 	       	"columns": [ 
-	       	            {"data": "name","width" : "20%","defaultContent": ""}, 
-	       	            {"data": "numero", "width":"20%", "defaultContent": ""},
-	       	            {"data": "literalComuna", "width":"20%", "defaultContent": ""},
-	       	            {"data": "direccionConcatenada", "width":"20%", "defaultContent": ""},
-	       	            {"data": "departamento", "width":"19%", "defaultContent": ""},
-	       	            {"data": "sfid", "width":"1%", "visible": false, "defaultContent": ""}
+	       	            {data: "name",width : "20%",defaultContent: ""}, 
+	       	            {data: "numero", width:"20%", defaultContent: ""},
+	       	            {data: "comuna", width:"20%", defaultContent: ""},
+	       	            {data: "direccionConcatenada", width:"20%", defaultContent: ""},
+	       	            {data: "departamento", width:"19%", defaultContent: ""},
+	       	            {data: "sfid", width:"1%", "visible": false, defaultContent: ""}
 	       	            ],
 	       "columnDefs": [
 	                    {"targets":0,

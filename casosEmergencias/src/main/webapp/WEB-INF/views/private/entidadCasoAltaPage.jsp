@@ -30,11 +30,11 @@
 			<c:choose>
 				<c:when test="${not empty hayError && hayError eq true}">
 					<div>
-						<div class="divError" id="divInsertError">
-							<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
+						<div class="divError" id="divInsertError"><!--  -->
+<%-- 							<label class="labelDivError"><s:message code="notificaciones_label_error_insercion"/></label>
 							<br/>
 							<label class="labelDivError"><s:message code="notificaciones_label_error_codigo"/>&nbsp;${codigoError}</label>
-							<br/>
+							<br/> --%>
 							<label class="labelDivError"><s:message code="notificaciones_label_error_mensaje"/>&nbsp;${mensajeResultado}</label>
 						</div>
 					</div>

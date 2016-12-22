@@ -3,9 +3,9 @@ var urlTable = createUrl();
 
 $(document).ready(function() {
 	table = $('#tablaSuministros').DataTable({
-       	"scrollY": "250px",
+       	/*"scrollY": "250px",
 		"scrollX": true,
-		"scrollCollapse": true,
+		"scrollCollapse": true,*/
 		"paging": true,
 		"serverSide": true,
 		   oLanguage: {
