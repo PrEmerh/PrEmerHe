@@ -35,6 +35,8 @@ public class Cuenta extends ObjectLogic {
 	/*Joins con picklist*/
 	private String labelTipoIdentidadPickList;
 	private String labelIdEmpresaPickList;
+	private String labelTipoPickList;
+
 	
 	private Cuenta parent;
 	private Direccion direccionJoin;
@@ -251,4 +253,14 @@ public class Cuenta extends ObjectLogic {
 	public void setRun(String run) {
 		this.run = run;
 	}
+
+	public String getLabelTipoPickList() {
+		return labelTipoPickList;
+	}
+
+	public void setLabelTipoPickList(String labelTipoPickList) {
+		this.labelTipoPickList = labelTipoPickList;
+	}
+	
+	
 }

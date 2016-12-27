@@ -235,6 +235,8 @@
 					<div>
 						<label>${caso.asunto}</label>
 					</div>
+					<div>
+					</div>
 				</div>	
 			</div>
 			<div class="divEntidad">

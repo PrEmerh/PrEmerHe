@@ -164,43 +164,44 @@
 						</c:choose>
 					</table>
 				</div>
-			</div>
-				
-				
-				
+			</div>			
 				<div class="divEntidad">
 					<div class="subtitleAltaEntidad">
 						<div>
-							<input id="arrowCuentaRelacionada" type="image" src="../resources/images/arrow-down-black.png"  
-								height="15" onclick="showHideCabeceras('cuentaRelacionada','arrowCuentaRelacionada'); return false;"/>
-							<label class="divLabel"><s:message code="entidadSuministro_title_label_cuenta_relacionada"/></label>								
+							<input id="arrowTablaSuministroCuentas" type="image" src="../resources/images/arrow-down-black.png"  
+								height="15" onclick="showHideCabeceras('tablaSuministroCuentas','arrowTablaSuministroCuentas'); return false;"/>
+							<label class="divLabel"><s:message code="entidadSuministro_title_label_cuentas_relacionadas"/></label>								
 						</div>
 					</div>			
-				</div>
-				<div id="cuentaRelacionada" class="divEntidad">
-					<div>
-						<div class="divLabel">
-							<label><s:message code="entidadSuministro_title_label_cuenta"/></label>
-						</div>
-						<div>
-							<label><a class="link" href="javascript:cargandoGif('${suministro.cuentaJoin.sfid}','entidadCuenta');">${suministro.cuentaJoin.name}</a></label>		
-						</div>		
-						<div class="divLabel">
-							<label><s:message code="entidadSuministro_title_label_runRut"/></label>
-						</div>
-						<div>
-							<label>${suministro.runRut}</label>
-						</div>
-					</div>
-					<div>
-						<div class="divLabel">
-							<label><s:message code="entidadSuministro_title_label_tipoCuenta"/></label>
-						</div>
-						<div>
-							<label>${suministro.tipoCuenta}</label>
-						</div>
-					</div>	
-				</div>
+				</div>							
+				<div id="tablaSuministroCuentas">
+					<table class="basicTable">
+						<tr>
+							<th><s:message code="entidadSuministro_title_label_cuenta" /></th>
+						    <th><s:message code="entidadSuministro_title_label_numeroIdentidad"/></th>
+						    <th><s:message code="entidadSuministro_title_label_tipoCuenta" /></th>
+						    
+						</tr>
+						<c:choose>
+							<c:when test="${not empty suministro.cuentasRelacionadas}">
+								<c:forEach items="${suministro.cuentasRelacionadas}" var="cuenta">
+									<tr>
+										<td><a class="link" href="javascript:cargandoGif('${cuenta.sfid}','entidadCuenta');">${cuenta.name}</a></td>									
+										<td>${cuenta.run}</td>
+										<td>${cuenta.labelTipoIdentidadPickList}</td>												
+									</tr>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+								<tr>
+									<td colspan="6" class="tablaVacia">
+										<s:message code="entidades_empty_case_table" />
+									</td>
+								</tr>
+							</c:otherwise>
+						</c:choose>
+					</table>
+				</div>																														
 				<div class="divEntidad">
 					<div class="subtitleAltaEntidad">
 						<div>

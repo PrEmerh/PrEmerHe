@@ -97,6 +97,10 @@ public class AccountVO extends ObjectVO implements Serializable {
 
 	@Column(name = "companyid__c")
 	private String idEmpresa;
+	
+	@Column(name = "type")
+	private String tipo;
+	
 
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "parentid", referencedColumnName = "sfid", insertable = false, updatable = false)
@@ -124,6 +128,10 @@ public class AccountVO extends ObjectVO implements Serializable {
 	private PickListsAccountTipoIdentidadVO tipoIdentidadPickList;
 	
 	@OneToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "type", referencedColumnName = "codigo", insertable = false, updatable = false)
+	private PickListsAccountTipoVO tipoPickList;
+	
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "companyid__c", referencedColumnName = "codigo", insertable = false, updatable = false)
 	private PickListsAccountIdEmpresaVO idEmpresaPickList;
 	
@@ -133,7 +141,7 @@ public class AccountVO extends ObjectVO implements Serializable {
 			String accountRun, Date fechaNacimiento, String phone, String telefonoPrincipal, String telefonoSecundario,
 			String email, String emailSecundario, String direccion, String accountsource, String idEmpresa,
 			List<SuministroVO> suministros, List<ContactVO> contactos,List<CaseVO> casos,
-			PickListsAccountTipoIdentidadVO tipoIdentidadPickList, PickListsAccountIdEmpresaVO idEmpresaPickList) {
+			PickListsAccountTipoIdentidadVO tipoIdentidadPickList, PickListsAccountIdEmpresaVO idEmpresaPickList,PickListsAccountTipoVO tipoPickList,String tipo) {
 		super();
 		this.isDeleted = isDeleted;
 		this.systemDate = systemDate;
@@ -161,6 +169,8 @@ public class AccountVO extends ObjectVO implements Serializable {
 		this.casos=casos;
 		this.tipoIdentidadPickList = tipoIdentidadPickList;
 		this.idEmpresaPickList = idEmpresaPickList;
+		this.tipoPickList=tipoPickList;
+		this.tipo=tipo;
 	}
 
 	public AccountVO() {
@@ -411,6 +421,15 @@ public class AccountVO extends ObjectVO implements Serializable {
 		return result;
 	}
 	
+	
+	public String getLabelTipoPickList() {
+		String result = this.getTipo();
+		if (this.getTipoPickList() != null) {
+			result = this.getTipoPickList().getValor();
+		}
+		return result;
+	}
+	
 	public String getLabelIdEmpresaPickList() {
 		String result = this.getIdEmpresa();
 		if (this.getIdEmpresaPickList() != null) {
@@ -418,6 +437,8 @@ public class AccountVO extends ObjectVO implements Serializable {
 		}
 		return result;
 	}
+	
+	
 
 	public AccountVO getParent() {
 		return parent;
@@ -442,4 +463,23 @@ public class AccountVO extends ObjectVO implements Serializable {
 	public void setRun(String run) {
 		this.run = run;
 	}
+
+	public PickListsAccountTipoVO getTipoPickList() {
+		return tipoPickList;
+	}
+
+	public void setTipoPickList(PickListsAccountTipoVO tipoPickList) {
+		this.tipoPickList = tipoPickList;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	
+	
+	
 }

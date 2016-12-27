@@ -87,7 +87,7 @@
 					</div>
 					<div>
 						<label>${direccion.direccionConcatenada}</label>
-						<label>${direccion.departamento}</label>
+
 					</div>
 				</div>
 			</div>	

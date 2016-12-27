@@ -126,17 +126,19 @@ public class SuministroServiceImpl implements SuministroService{
 			suministro.setContactosRelacionados(contactosRelacionado);
 				//Metodo para obtener cuenta relacionada a través del objeto Asset
 				List<AssetVO> listaAssetVO = assetDAO.readAssetBySuministroid(sfid);
-				if(listaAssetVO!=null && listaAssetVO.size()==1){
-					AssetVO assetVO=listaAssetVO.get(0);
-					String accountSfid=assetVO.getSfid();
-					if(accountSfid!=null){
-						AccountVO accountVO= accountDAO.readAccountBySfid(accountSfid, null, null, null);
+				if(listaAssetVO!=null && !listaAssetVO.isEmpty()){
+					List<Cuenta> cuentasRelacionadasList=new ArrayList<Cuenta>();
+					for(AssetVO activoVO:listaAssetVO){
+						Cuenta cuenta=new Cuenta();
+						AccountVO accountVO = activoVO.getCuentaJoin();
 						if(accountVO!=null){
-								Cuenta cuenta=new Cuenta();
-								ParserModelVO.parseDataModelVO(accountVO, cuenta);
-								suministro.setCuentaJoin(cuenta);
+						ParserModelVO.parseDataModelVO(accountVO, cuenta);		
+						cuentasRelacionadasList.add(cuenta);							
 						}
-					}		
+					}	
+					if(!cuentasRelacionadasList.isEmpty() && cuentasRelacionadasList!=null ){
+						suministro.setCuentasRelacionadas(cuentasRelacionadasList);
+					}
 				}			
 			//Se puede añadir dentro del for el calculo de casos abiertos
 			if(casoRelacionado != null && !casoRelacionado.isEmpty() && casoRelacionado.size()>0){

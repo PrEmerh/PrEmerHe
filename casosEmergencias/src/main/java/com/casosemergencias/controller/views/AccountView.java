@@ -32,6 +32,7 @@ public class AccountView extends ObjectView {
 	/*Joins con picklist*/
 	private String labelTipoIdentidadPickList;
 	private String labelIdEmpresaPickList;
+	private String labelTipoPickList;
 	
 	private AccountView parent;
 	
@@ -274,6 +275,15 @@ public class AccountView extends ObjectView {
 	public void setControlNumContactos(boolean controlNumContactos) {
 		this.controlNumContactos = controlNumContactos;
 	}
+
+	public String getLabelTipoPickList() {
+		return labelTipoPickList;
+	}
+
+	public void setLabelTipoPickList(String labelTipoPickList) {
+		this.labelTipoPickList = labelTipoPickList;
+	}
+	
 	
 	
 }

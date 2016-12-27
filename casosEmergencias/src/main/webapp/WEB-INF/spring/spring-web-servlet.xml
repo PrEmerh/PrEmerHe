@@ -93,7 +93,8 @@
 	                <value>com.casosemergencias.dao.vo.PickListsContactTipoIdentidadVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsAccountVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsAccountIdEmpresaVO</value>
-	                <value>com.casosemergencias.dao.vo.PickListsAccountTipoIdentidadVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsAccountTipoVO</value>
+	                <value>com.casosemergencias.dao.vo.PickListsAccountTipoIdentidadVO</value>	                
 	                <value>com.casosemergencias.dao.vo.PickListsDireccionTipoCalleVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsDireccionRegionVO</value>
 	                <value>com.casosemergencias.dao.vo.PickListsHerokuUserUnidadVO</value>

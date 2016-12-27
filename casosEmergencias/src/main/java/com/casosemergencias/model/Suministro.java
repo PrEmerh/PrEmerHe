@@ -66,6 +66,8 @@ public class Suministro extends ObjectLogic {
 	private Direccion dirSuministroJoin;
 	
 	private List<Contacto> contactosRelacionados;
+	private List<Cuenta> cuentasRelacionadas;
+
 	
 	private String labelProcesoLecturaPickList;
 
@@ -109,7 +111,7 @@ public class Suministro extends ObjectLogic {
 			String labelProcesoLecturaPickList, String labelTipoMedidaPickList, String labelTipoSegmentoPickList,
 			String labelSubestacionElecPickList, String labelPropMedidorPickList, String labelTipoConexionPickList,
 			String labelTipoLecturaPickList, String labelTipoTransformadorPickList, String labelComunaRepartoPickList,
-			String labelFullElectricPickList,String labelElectrodependientePickList,Direccion dirSuministroJoin) {
+			String labelFullElectricPickList,String labelElectrodependientePickList,Direccion dirSuministroJoin,List<Cuenta> cuentasRelacionadas) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -174,6 +176,7 @@ public class Suministro extends ObjectLogic {
 		this.labelComunaRepartoPickList = labelComunaRepartoPickList;
 		this.labelFullElectricPickList = labelFullElectricPickList;
 		this.labelElectrodependientePickList=labelElectrodependientePickList;
+		this.cuentasRelacionadas=cuentasRelacionadas;
 	}
 
 
@@ -703,5 +706,14 @@ public class Suministro extends ObjectLogic {
 	public void setLabelElectrodependientePickList(String labelElectrodependientePickList) {
 		this.labelElectrodependientePickList = labelElectrodependientePickList;
 	}
+
+	public List<Cuenta> getCuentasRelacionadas() {
+		return cuentasRelacionadas;
+	}
+
+	public void setCuentasRelacionadas(List<Cuenta> cuentasRelacionadas) {
+		this.cuentasRelacionadas = cuentasRelacionadas;
+	}
+	
 	
 }

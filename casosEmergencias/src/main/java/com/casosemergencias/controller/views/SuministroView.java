@@ -66,6 +66,8 @@ public class SuministroView extends ObjectView {
 	
 	private List<CaseView> casos;	
 	private List<ContactView> contactosRelacionados;
+	private List<AccountView> cuentasRelacionadas;
+
 	
 	private String labelProcesoLecturaPickList;
 	private String labelTipoMedidaPickList;	
@@ -112,7 +114,7 @@ public class SuministroView extends ObjectView {
 			String labelTipoConexionPickList, String labelTipoLecturaPickList, String labelTipoTransformadorPickList,
 			String labelComunaRepartoPickList, String labelFullElectricPickList, String labelElectrodependientePickList,
 			ListadoSuministrosType listadoSuministros, ListadoEventosType listadoEventos, String fechaCorteString,Map<String, String> mapComuna,
-			Map<String, String> mapRegion) {
+			Map<String, String> mapRegion,List<AccountView> cuentasRelacionadas) {
 		super();
 		this.id = id;
 		this.sfid = sfid;
@@ -181,6 +183,7 @@ public class SuministroView extends ObjectView {
 		this.fechaCorteString = fechaCorteString;
 		this.mapComuna=mapComuna;
 		this.mapRegion=mapRegion;
+		this.cuentasRelacionadas=cuentasRelacionadas;
 	}
 
 
@@ -681,6 +684,12 @@ public class SuministroView extends ObjectView {
 	}
 	public void setMapRegion(Map<String, String> mapRegion) {
 		this.mapRegion = mapRegion;
+	}	
+	public List<AccountView> getCuentasRelacionadas() {
+		return cuentasRelacionadas;
+	}
+	public void setCuentasRelacionadas(List<AccountView> cuentasRelacionadas) {
+		this.cuentasRelacionadas = cuentasRelacionadas;
 	}
 
 
